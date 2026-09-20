@@ -1,0 +1,30 @@
+{
+  "id": "myparcel-pakketten",
+  "name": {
+    "en": "MyParcel Packages",
+    "nl": "MyParcel Pakketten",
+    "de": "MyParcel Pakete",
+    "fr": "Colis MyParcel",
+    "it": "Pacchi MyParcel",
+    "sv": "MyParcel-paket",
+    "no": "MyParcel-pakker",
+    "es": "Paquetes MyParcel",
+    "da": "MyParcel-pakker",
+    "ru": "Посылки MyParcel",
+    "pl": "Paczki MyParcel",
+    "ko": "MyParcel 택배",
+    "ar": "طرود MyParcel"
+  },
+  "height": 360,
+  "transparent": false,
+  "settings": [],
+  "api": {
+    "getData": { "method": "GET", "path": "/" },
+    "refresh": { "method": "POST", "path": "/refresh" }
+  },
+  "devices": {
+    "type": "app",
+    "singular": false,
+    "filter": { "capabilities": "postnl_package_count|dhl_parcel_count" }
+  }
+}
