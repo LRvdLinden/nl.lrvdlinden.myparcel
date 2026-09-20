@@ -1,6 +1,6 @@
 {
-  "0.1.0": {
-    "en": "Initial MyParcel release with PostNL and DHL Parcel devices and combined widgets.",
-    "nl": "Eerste MyParcel-versie met PostNL- en DHL Parcel-devices en gecombineerde widgets."
+  "0.1.1": {
+    "en": "Added Homerr, real DPD sign-in, UPS OAuth sign-in, functional Budbee tracking, carrier-branded pairing and multi-carrier widget improvements.",
+    "nl": "Homerr toegevoegd, echte DPD-login, UPS OAuth-login, werkende Budbee-tracking, pairing met vervoerderslogo’s en verbeteringen aan de multi-carrier widget."
   }
 }
