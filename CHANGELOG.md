@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.1.2
+- Change driver images.
+
 ## 0.1.1
 - Added Homerr / Vinted Go as a device with passwordless e-mail verification, refresh-token handling and automatic account parcel import.
 - DPD / myDPD now has real account sign-in with e-mail/password and automatic parcel synchronization.
