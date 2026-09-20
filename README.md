@@ -10,3 +10,9 @@ MyParcel combines the existing PostNL and DHL Parcel Homey integrations in one a
 
 App ID: `nl.lrvdlinden.MyParcel`  
 Brand color: `#105945`
+
+## 0.1.1 carrier expansion
+
+The MyParcel Packages widget now automatically combines package data from all supported package devices in Homey. PostNL Mail remains restricted to a single PostNL device.
+
+DPD/myDPD, UPS My Choice and Budbee have been added as device foundations. Their consumer apps do expose account-wide parcel overviews, but the publicly documented APIs are not equivalent to those consumer-account interfaces. The 0.1.1 driver foundations therefore do not pretend that a consumer login is working yet; verified consumer-session endpoints are required before those three drivers can retrieve real account packages.
