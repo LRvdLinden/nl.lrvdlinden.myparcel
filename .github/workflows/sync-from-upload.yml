@@ -1,0 +1,29 @@
+name: Sync MyParcel source ZIP
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.sync/full/READY'
+permissions:
+  contents: write
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Rebuild repository from uploaded source
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat .sync/full/part* | base64 --decode > /tmp/myparcel.zip
+          unzip -t /tmp/myparcel.zip
+          find . -mindepth 1 -maxdepth 1 ! -name .git ! -name .sync -exec rm -rf {} +
+          unzip -q /tmp/myparcel.zip -d .
+          rm -rf .sync
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Sync MyParcel source from canonical ZIP"
+          git push origin main
