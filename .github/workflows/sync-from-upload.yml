@@ -3,7 +3,7 @@ on:
   push:
     branches: [main]
     paths:
-      - '.sync/canonical3/READY'
+      - '.sync/canonical2/READY'
 permissions:
   contents: write
 jobs:
@@ -17,7 +17,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          cat .sync/canonical3/part* | base64 --decode > /tmp/myparcel.tar.xz
+          cat .sync/canonical2/part* | base64 --decode > /tmp/myparcel.tar.xz
           xz -t /tmp/myparcel.tar.xz
           find . -mindepth 1 -maxdepth 1 ! -name .git ! -name .sync -exec rm -rf {} +
           tar -xJf /tmp/myparcel.tar.xz -C .
