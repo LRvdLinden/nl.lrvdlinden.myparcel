@@ -1,0 +1,1 @@
+MyParcel voor Homey combineert PostNL en DHL Parcel in één app. Voeg een PostNL-device of DHL Parcel-device toe met de bestaande koppelmethodes. De widget PostNL Poststukken toont poststukken van alle PostNL-devices. De widget MyParcel Pakketten combineert pakketten van alle PostNL- en DHL Parcel-devices en toont per zending het logo van de vervoerder.
