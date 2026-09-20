@@ -3,7 +3,7 @@ on:
   push:
     branches: [main]
     paths:
-      - '.sync/current/READY'
+      - '.sync/canonical2/READY'
 permissions:
   contents: write
 jobs:
@@ -13,21 +13,17 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Replace main with canonical uploaded app
+      - name: Replace repository with canonical uploaded source
         shell: bash
         run: |
           set -euo pipefail
-          cat .sync/current/part* | base64 --decode > /tmp/myparcel.zip
-          unzip -t /tmp/myparcel.zip
-          tmp="$(mktemp -d)"
-          unzip -q /tmp/myparcel.zip -d "$tmp"
-          src="$(find "$tmp" -mindepth 1 -maxdepth 1 -type d | head -n 1)"
-          test -n "$src"
+          cat .sync/canonical2/part* | base64 --decode > /tmp/myparcel.tar.xz
+          xz -t /tmp/myparcel.tar.xz
           find . -mindepth 1 -maxdepth 1 ! -name .git ! -name .sync -exec rm -rf {} +
-          cp -a "$src"/. .
+          tar -xJf /tmp/myparcel.tar.xz -C .
           rm -rf .sync
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
-          git commit -m "Sync main from canonical MyParcel ZIP"
+          git commit -m "Sync canonical MyParcel v0.1.5 source"
           git push origin main
