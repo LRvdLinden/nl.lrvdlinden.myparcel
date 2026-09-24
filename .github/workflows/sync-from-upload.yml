@@ -3,7 +3,7 @@ on:
   push:
     branches: [main]
     paths:
-      - '.sync/v021/READY'
+      - '.sync/v021core/READY'
 permissions:
   contents: write
 jobs:
@@ -13,17 +13,20 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Replace repository with canonical uploaded source
+      - name: Replace repository with MyParcel v0.2.1 source
         shell: bash
         run: |
           set -euo pipefail
-          cat .sync/v021/part* | base64 --decode > /tmp/myparcel.tar.xz
+          cat .sync/v021core/part* | base64 --decode > /tmp/myparcel.tar.xz
           xz -t /tmp/myparcel.tar.xz
-          find . -mindepth 1 -maxdepth 1 ! -name .git ! -name .sync -exec rm -rf {} +
-          tar -xJf /tmp/myparcel.tar.xz -C .
+          mkdir -p /tmp/myparcel-src
+          tar -xJf /tmp/myparcel.tar.xz -C /tmp/myparcel-src
+          find . -mindepth 1 -maxdepth 1 ! -name .git ! -name .github ! -name .sync -exec rm -rf {} +
+          cp -a /tmp/myparcel-src/. .
           rm -rf .sync
+          if test -f package.json; then npm install --package-lock-only --ignore-scripts --no-audit --no-fund; fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
-          git commit -m "Sync canonical MyParcel v0.2.1 source"
+          git commit -m "Sync MyParcel v0.2.1 source"
           git push origin main
