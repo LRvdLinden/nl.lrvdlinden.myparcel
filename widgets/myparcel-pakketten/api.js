@@ -14,14 +14,6 @@ function allDevices(homey) {
 }
 function selectedDevices(homey, value) { const ids=selectedIds(value),devices=allDevices(homey); if(!ids.length)return[];const wanted=new Set(ids);return devices.filter(({device})=>wanted.has(String(device.getId()))); }
 function str(...values){for(const value of values){if(value===0)return'0';if(value!==undefined&&value!==null&&String(value).trim())return String(value).trim();}return'';}
-function detailsUrl(carrierId, parcel, tracking){
-  const direct=str(parcel.detailsUrl,parcel.trackingUrl,parcel.trackUrl,parcel.url);
-  if(direct)return direct;
-  const code=encodeURIComponent(tracking||''); if(!code)return'';
-  if(carrierId==='dhl')return `https://www.dhlecommerce.nl/nl/consument/track-en-trace?piececode=${code}`;
-  if(carrierId==='dhl-de')return `https://www.dhl.de/de/privatkunden/dhl-sendungsverfolgung.html?piececode=${code}`;
-  return'';
-}
 module.exports={
  async getData({homey,query}){
   const devices=selectedDevices(homey,query?.deviceIds||query?.deviceId),packages=[];
@@ -33,8 +25,8 @@ module.exports={
      carrier,carrierId,carrierLogo:carrierId==='dhl-de'?'dhl.svg':`${carrierId}.svg`,account:device.getName(),deviceId:device.getId(),
      tracking,status:localizePackageStatus(homey,parcel.status||''),sender:str(parcel.sender,parcel.title,parcel.sourceDisplayName),receiver:str(parcel.receiver),
      deliveryDate:str(parcel.deliveryDate,parcel.deliveryWindowFrom),deliveryWindow:str(parcel.deliveryWindow),deliveryWindowFrom:str(parcel.deliveryWindowFrom),deliveryWindowTo:str(parcel.deliveryWindowTo),
-     updatedAt:str(parcel.updatedAt,parcel.createdAt),createdAt:str(parcel.createdAt),eventAt:str(parcel.lastEventAt,parcel.eventAt,parcel.delivered?parcel.deliveryDate:'',parcel.updatedAt,parcel.createdAt),lastEventAt:str(parcel.lastEventAt,parcel.eventAt,parcel.delivered?parcel.deliveryDate:'',parcel.updatedAt,parcel.createdAt),detailsUrl:detailsUrl(carrierId,parcel,tracking),
-     service:str(parcel.service),deliveryPoint:str(parcel.deliveryPoint),weight:str(parcel.weight),product:str(parcel.product),partner:str(parcel.partner),lastEvent:str(parcel.lastEvent),
+     updatedAt:str(parcel.updatedAt,parcel.createdAt),createdAt:str(parcel.createdAt),eventAt:str(parcel.lastEventAt,parcel.eventAt,parcel.delivered?parcel.deliveryDate:'',parcel.updatedAt,parcel.createdAt),lastEventAt:str(parcel.lastEventAt,parcel.eventAt,parcel.delivered?parcel.deliveryDate:'',parcel.updatedAt,parcel.createdAt),
+     service:str(parcel.service),deliveryPoint:str(parcel.deliveryPoint),weight:str(parcel.weight),product:str(parcel.product),partner:str(parcel.partner),lastEvent:localizePackageStatus(homey,str(parcel.lastEvent,parcel.status)),
      shipFrom:str(parcel.shipFrom),shipTo:str(parcel.shipTo),accessPoint:str(parcel.accessPoint),shipmentType:str(parcel.shipmentType),direction:str(parcel.direction),
      title:str(parcel.title),delivered:Boolean(parcel.delivered),
     };
