@@ -25,11 +25,19 @@ class PostNLDevice extends Homey.Device {
     this._flowTriggerSyncFailed = this.homey.flow.getDeviceTriggerCard('sync_failed');
     this._flowTriggerLoginExpired = this.homey.flow.getDeviceTriggerCard('login_expired');
 
+    await this._ensureCapabilities();
     await this.applySnapshot(this.snapshot, null);
     if (this.api.hasCredentials()) this.homey.setTimeout(() => this.sync({ reason: 'device-init' }).catch(this.error), 5000);
   }
 
   hasAccountCredentials() { return this.api?.hasCredentials() || Boolean(this.getStoreValue('auth')); }
+
+  async _ensureCapabilities() {
+    const required = ['postnl_delivery_date', 'postnl_delivery_window'];
+    for (const capability of required) {
+      if (!this.hasCapability(capability)) await this.addCapability(capability);
+    }
+  }
 
   async importLegacyAccount(auth, snapshot) {
     await this.api.replaceAuth(auth);
@@ -136,7 +144,7 @@ class PostNLDevice extends Homey.Device {
     return {
       id: parcel.id || '', sender: parcel.sender || '', receiver: parcel.receiver || '',
       title: parcel.title || parcel.sender || parcel.barcode || 'PostNL', barcode: parcel.barcode || '', status: localizePackageStatus(this.homey, parcel.status) || '',
-      delivery_date: parcel.deliveryDate ? this.api.formatDate(parcel.deliveryDate) : '', delivery_window: parcel.deliveryWindow || '',
+      delivery_date: parcel.deliveryDate ? this.api.formatDateDMY(parcel.deliveryDate) : '', delivery_window: parcel.deliveryWindow || '',
       delivery_window_from: parcel.deliveryWindowFrom ? this.api.formatTime(parcel.deliveryWindowFrom) : '',
       delivery_window_to: parcel.deliveryWindowTo ? this.api.formatTime(parcel.deliveryWindowTo) : '',
       delivery_window_type: parcel.deliveryWindowType || '', details_url: parcel.detailsUrl || '', shipment_type: parcel.shipmentType || '',
@@ -251,6 +259,17 @@ class PostNLDevice extends Homey.Device {
     const packageDates = packages.map(item => item.deliveryDate).filter(Boolean).filter(value => this._localDateKey(value) >= todayKey);
     const dates = [...mailDates, ...packageDates].sort((a, b) => new Date(a) - new Date(b));
     const nextDelivery = dates[0] ? this.api.formatDate(dates[0]) : '—';
+    const nextPackage = [...packages]
+      .filter(item => item.deliveryDate || item.deliveryWindowFrom || item.deliveryWindowTo)
+      .sort((a, b) => {
+        const left = Date.parse(a.deliveryWindowFrom || a.deliveryDate || a.createdAt || '') || Number.MAX_SAFE_INTEGER;
+        const right = Date.parse(b.deliveryWindowFrom || b.deliveryDate || b.createdAt || '') || Number.MAX_SAFE_INTEGER;
+        return left - right;
+      })[0] || null;
+    const packageDeliveryDate = nextPackage?.deliveryDate || nextPackage?.deliveryWindowFrom || nextPackage?.deliveryWindowTo || null;
+    const packageDeliveryWindow = nextPackage?.deliveryWindow
+      || this.api.formatWindow(nextPackage?.deliveryWindowFrom, nextPackage?.deliveryWindowTo)
+      || '';
     const updated = snapshot.updatedAt
       ? new Intl.DateTimeFormat(this.homey.i18n.getLanguage() === 'nl' ? 'nl-NL' : 'en-GB', { timeZone: this.homey.clock.getTimezone(), dateStyle: 'short', timeStyle: 'short' }).format(new Date(snapshot.updatedAt))
       : '—';
@@ -260,6 +279,8 @@ class PostNLDevice extends Homey.Device {
       postnl_mail_count: currentMail.length,
       postnl_package_count: packages.length,
       postnl_next_delivery: nextDelivery,
+      postnl_delivery_date: packageDeliveryDate ? this.api.formatDateDMY(packageDeliveryDate) : '—',
+      postnl_delivery_window: packageDeliveryWindow || '—',
       // Status is intentionally connection-only. Detailed Mijn PostNL availability
       // remains available to the widget/API diagnostics instead of this device tile.
       postnl_status: this.homey.app.getConnectionLabel(Boolean(connected && !error)),
