@@ -1,8 +1,8 @@
 ## 0.2.2 — Package widget details & timing
-- Added and hardened a Life360-inspired detail popup on every package row, including touch, mouse and keyboard activation.
+- Rebuilt the package detail popup to use the same proven modal behaviour as the PostNL mail widget, with a visible close button and reliable row click/keyboard activation.
 - The popup shows carrier logo, localized status, sender, tracking number, delivery date, delivery window, latest event, last update and carrier-specific details when available.
 - DHL widget data now exposes richer event/detail metadata for the popup.
-- Package rows now consistently show `DD-MM` plus the best relevant time: the delivery window for active shipments when available, otherwise the status-event/update time (including delivered and announced shipments).
+- Package rows now consistently show `DD-MM-YYYY` plus the best relevant time: the delivery window for active shipments when available, otherwise the status-event/update time (including delivered and announced shipments).
 - Fixed DHL package rows so the delivery date is shown together with the delivery window.
 - Matched the MyParcel Packages header font size, weight and light/dark text colour to the PostNL mail widget.
 - Added a Track & Trace button for carriers that provide a tracking URL, including a DHL fallback URL.
