@@ -25,8 +25,8 @@ h1{margin:0 0 0 auto;color:#77767b;font-size:18px;font-weight:600;white-space:no
 .detail{font-size:11px;color:var(--muted)}
 .badge{display:block;max-width:120px;padding:5px 8px;border-radius:999px;background:var(--pill);color:var(--pill-text);font-size:10px;font-weight:800;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .state{display:grid;place-items:center;height:100%;padding:20px;text-align:center;color:var(--title)}
-.dialog-backdrop{position:fixed;inset:0;z-index:9999;display:none;place-items:center;padding:14px;background:var(--backdrop);backdrop-filter:blur(4px);pointer-events:auto}
-.dialog-backdrop.open{display:grid}
+.modal{position:fixed;inset:0;z-index:9999;display:none;place-items:center;padding:18px;background:#000c;pointer-events:auto}
+.modal.open{display:grid}
 .dialog{position:relative;width:min(350px,100%);max-height:calc(100vh - 28px);overflow:auto;border-radius:24px;background:var(--dialog);color:var(--primary);box-shadow:0 18px 50px #071e164f;text-align:start}
 .close{position:absolute;top:10px;inset-inline-end:10px;z-index:2;display:grid;place-items:center;width:34px;height:34px;border:0;border-radius:50%;background:#ffffffde;color:#26332e;font-size:22px;line-height:1;cursor:pointer;box-shadow:0 1px 6px #0001}
 .popup-hero{display:flex;align-items:center;gap:14px;padding:19px 54px 16px 18px;background:linear-gradient(140deg,#e3f2ec,#f8fbfa)}
@@ -65,7 +65,7 @@ h1{margin:0 0 0 auto;color:#77767b;font-size:18px;font-weight:600;white-space:no
 <header><img class="app" src="icon.svg"><h1 id="title">MyParcel Packages</h1></header>
 <section id="c"><div class="state">Loading…</div></section>
 </main>
-<div id="backdrop" class="dialog-backdrop"><section id="dialog" class="dialog" role="dialog" aria-modal="true"></section></div>
+<div id="modal" class="modal" role="dialog" aria-modal="true"><section id="dialog" class="dialog"><button id="close" class="close" type="button" aria-label="Close">×</button><div id="dialogContent"></div></section></div>
 <script>
 function localizePackageStatus(value){
  const raw=String(value||'').trim(),k=raw.toLowerCase().replace(/[\s./-]+/g,'_');
@@ -111,28 +111,29 @@ function timeHM(value,timeZone){
 function dateTime(value,locale,timeZone){if(!value)return'';const d=new Date(value);if(Number.isNaN(d.getTime()))return String(value);try{return new Intl.DateTimeFormat(locale,{timeZone,dateStyle:'short',timeStyle:'short'}).format(d)}catch(_){return String(value)}}
 function text(v){return String(v??'').trim()}
 function onHomeyReady(Homey){
- const c=document.getElementById('c'),title=document.getElementById('title'),backdrop=document.getElementById('backdrop'),dialog=document.getElementById('dialog');
+ const c=document.getElementById('c'),title=document.getElementById('title'),modal=document.getElementById('modal'),dialog=document.getElementById('dialog'),dialogContent=document.getElementById('dialogContent'),closeButton=document.getElementById('close');
  let cfg={locale:'en',timeZone:'UTC'},labels=i18n.en,packages=[];
  const el=(tag,cls,value)=>{const n=document.createElement(tag);if(cls)n.className=cls;if(value!==undefined)n.textContent=value;return n};
  function showDetailRow(list,label,value){value=text(value);if(!value)return;const row=el('div','detail-row');row.append(el('span','detail-label',label),el('strong','detail-value',value));list.append(row)}
  function stat(label,value){value=text(value);if(!value)return null;const n=el('div','stat');n.append(el('span','',label),el('strong','',value));return n}
  function openUrl(url){if(!url)return;try{if(typeof Homey.openURL==='function')return Homey.openURL(url)}catch(_){}try{window.open(url,'_blank','noopener,noreferrer')}catch(_){}}
+ function closePopup(){modal.classList.remove('open');dialogContent.replaceChildren()}
  function openPopup(p){
-  Homey.hapticFeedback?.();
-  const close=el('button','close','×');close.type='button';close.setAttribute('aria-label',labels.close);close.onclick=()=>{backdrop.classList.remove('open')};
+  try{Homey.hapticFeedback?.()}catch(_){}
+  closeButton.setAttribute('aria-label',labels.close);
   const hero=el('div','popup-hero'),logo=el('div','popup-logo'),img=document.createElement('img');img.src=p.carrierLogo||'icon.svg';img.alt=text(p.carrier);logo.append(img);hero.append(logo);
   const identity=el('div','identity'),name=text(p.sender||p.title||p.tracking||p.carrier||labels.details);identity.append(el('strong','popup-name',name),el('span','carrier-chip',text(p.carrier)));hero.append(identity);
   const status=el('div','popup-status');status.append(el('span','status-label',labels.status),el('p','status-value',text(p.status)||'—'));if(p.tracking)status.append(el('p','tracking-sub',`${labels.tracking}: ${p.tracking}`));
-  const stats=el('div','stats');const dd=dateDMY(p.deliveryDate,cfg.timeZone),dw=text(p.deliveryWindow);const sd=stat(labels.deliveryDate,dd),sw=stat(labels.deliveryWindow,dw);if(sd)stats.append(sd);if(sw)stats.append(sw);
+  const stats=el('div','stats');const dd=dateDMY(p.deliveryDate||p.deliveryWindowFrom||p.eventAt||p.updatedAt,cfg.timeZone),dw=text(p.deliveryWindow);const sd=stat(labels.deliveryDate,dd),sw=stat(labels.deliveryWindow,dw);if(sd)stats.append(sd);if(sw)stats.append(sw);
   const list=el('div','detail-list');showDetailRow(list,labels.sender,p.sender);showDetailRow(list,labels.receiver,p.receiver);showDetailRow(list,labels.account,p.account);showDetailRow(list,labels.service,p.service);showDetailRow(list,labels.deliveryPoint,p.deliveryPoint);showDetailRow(list,labels.accessPoint,p.accessPoint);showDetailRow(list,labels.product,p.product);showDetailRow(list,labels.weight,p.weight);showDetailRow(list,labels.partner,p.partner);showDetailRow(list,labels.shipmentType,p.shipmentType);showDetailRow(list,labels.direction,p.direction);showDetailRow(list,labels.from,p.shipFrom);showDetailRow(list,labels.to,p.shipTo);showDetailRow(list,labels.lastEvent,p.lastEvent);showDetailRow(list,labels.updated,dateTime(p.updatedAt,cfg.locale,cfg.timeZone));
   const actions=el('div','popup-actions'),track=el('button','track',labels.track);track.type='button';track.hidden=!p.detailsUrl;track.onclick=()=>openUrl(p.detailsUrl);actions.append(track);
-  dialog.replaceChildren(close,hero,status);if(stats.children.length)dialog.append(stats);if(list.children.length)dialog.append(list);if(p.detailsUrl)dialog.append(actions);backdrop.classList.add('open');
+  dialogContent.replaceChildren(hero,status);if(stats.children.length)dialogContent.append(stats);if(list.children.length)dialogContent.append(list);if(p.detailsUrl)dialogContent.append(actions);modal.classList.add('open');
  }
  function rowSummary(p){
   const window=text(p.deliveryWindow);
-  const deliveryDay=dateDM(p.deliveryDate||p.deliveryWindowFrom||p.updatedAt,cfg.timeZone);
+  const deliveryDay=dateDMY(p.deliveryDate||p.deliveryWindowFrom||p.updatedAt,cfg.timeZone);
   const eventValue=p.lastEventAt||p.eventAt||(p.delivered?p.deliveryDate:'')||p.updatedAt||p.createdAt||p.deliveryDate;
-  const eventDay=dateDM(eventValue||p.deliveryDate,cfg.timeZone)||deliveryDay;
+  const eventDay=dateDMY(eventValue||p.deliveryDate,cfg.timeZone)||deliveryDay;
   const eventTime=timeHM(eventValue,cfg.timeZone);
   if(!p.delivered&&window&&window!=='-')return [deliveryDay,window].filter(Boolean).join(' · ');
   const event=[eventDay,eventTime].filter(Boolean).join(' · ');
@@ -141,11 +142,11 @@ function onHomeyReady(Homey){
  function render(){
   if(!packages.length){c.innerHTML='<div class="state">'+esc(labels.empty)+'</div>';return}
   const list=el('div','list');
-  for(const p of packages){const row=el('article','p');row.tabIndex=0;row.setAttribute('role','button');row.setAttribute('aria-label',`${text(p.sender||p.title||p.tracking||p.carrier)} – ${text(p.status)}`);const carrier=el('div','carrier'),img=document.createElement('img');img.src=p.carrierLogo||'icon.svg';img.alt=text(p.carrier);carrier.append(img);const meta=el('div','meta');const sender=el('div','sender',text(p.sender||p.title||p.tracking||p.carrier));const cname=el('div','carriername',text(p.carrier));const detail=el('div','detail',rowSummary(p));meta.append(sender,cname,detail);const badge=el('div','badge',text(p.status)||'—');badge.title=text(p.status);row.append(carrier,meta,badge);let lastOpen=0;const open=()=>{const now=Date.now();if(now-lastOpen<250)return;lastOpen=now;openPopup(p)};row.addEventListener('click',open);row.addEventListener('pointerup',e=>{if(e.pointerType==='touch'){e.preventDefault();open()}});row.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();open()}});list.append(row)}
+  for(const p of packages){const row=el('article','p');row.tabIndex=0;row.setAttribute('role','button');row.setAttribute('aria-label',`${text(p.sender||p.title||p.tracking||p.carrier)} – ${text(p.status)}`);const carrier=el('div','carrier'),img=document.createElement('img');img.src=p.carrierLogo||'icon.svg';img.alt=text(p.carrier);carrier.append(img);const meta=el('div','meta');const sender=el('div','sender',text(p.sender||p.title||p.tracking||p.carrier));const cname=el('div','carriername',text(p.carrier));const detail=el('div','detail',rowSummary(p));meta.append(sender,cname,detail);const badge=el('div','badge',text(p.status)||'—');badge.title=text(p.status);row.append(carrier,meta,badge);row.addEventListener('click',()=>openPopup(p));row.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openPopup(p)}});list.append(row)}
   c.replaceChildren(list);
  }
  (async()=>{try{const deviceIds=Homey.getDeviceIds();const path='/?deviceIds='+encodeURIComponent(deviceIds.join(','));const x=await Homey.api('GET',path,{});cfg.locale=L(x.locale);cfg.timeZone=x.timeZone||'UTC';labels=i18n[cfg.locale]||i18n.en;document.documentElement.dir=cfg.locale==='ar'?'rtl':'ltr';title.textContent=labels.title;if(!deviceIds.length||!x.selectedDeviceCount){c.innerHTML='<div class="state">'+esc(labels.select)+'</div>';return}packages=Array.isArray(x.packages)?x.packages:[];render()}catch(e){c.innerHTML='<div class="state">'+esc(e.message||e)+'</div>'}})();
- backdrop.onclick=e=>{if(e.target===backdrop)backdrop.classList.remove('open')};document.addEventListener('keydown',e=>{if(e.key==='Escape')backdrop.classList.remove('open')});
+ closeButton.onclick=closePopup;modal.onclick=e=>{if(e.target===modal)closePopup()};document.addEventListener('keydown',e=>{if(e.key==='Escape')closePopup()});
  Homey.ready();
 }
 </script>
