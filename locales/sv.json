@@ -1,0 +1,73 @@
+{
+  "pair": {
+    "email": "E-postadress",
+    "password": "Lösenord",
+    "connect": "Anslut konto",
+    "title": "Add My PostNL",
+    "subtitle": "Connect each device to one PostNL account.",
+    "language_marker": "en"
+  },
+  "widget": {
+    "loading": "Laddar…",
+    "none": "Inga paket hittades.",
+    "shipment": "DHL-försändelse",
+    "unknown": "Okänd",
+    "active": "Aktiv",
+    "delivered": "Levererat",
+    "offline": "Offline"
+  },
+  "errors": {
+    "not_authenticated": "DHL-kontot är inte anslutet."
+  },
+  "status": {
+    "no_active": "Inga aktiva försändelser"
+  },
+  "device": {
+    "name": "My PostNL"
+  },
+  "carrier": {
+    "pending": "Account API not configured"
+  },
+  "ups": {
+    "pair": {
+      "country": "Land",
+      "language": "Språk",
+      "account_title": "UPS-konto",
+      "account_intro": "Logga först in på UPS och klistra sedan in din autentiserade UPS-sessionstoken. MyParcel sparar inte ditt UPS-lösenord.",
+      "session_token": "UPS-sessionstoken",
+      "connect": "Anslut UPS",
+      "manual_title": "Manuell reservlösning",
+      "manual_intro": "Om sessionsimport inte är tillgänglig, lägg till UPS-spårningsnummer, ett per rad.",
+      "tracking_numbers": "Spårningsnummer",
+      "add_tracking": "Lägg till spårningsnummer",
+      "missing_token": "Ange en UPS-sessionstoken.",
+      "missing_tracking": "Ange minst ett UPS-spårningsnummer.",
+      "callback": "UPS-inloggningscallback",
+      "callback_intro": "Logga in på UPS med UPS Token Helper och klistra in hela ups://login-callbacken.",
+      "connect_callback": "Anslut UPS"
+    }
+  },
+  "common_status": {
+    "connected": "Ansluten",
+    "disconnected": "Frånkopplad",
+    "no_packages": "Inga paket",
+    "unknown": "Okänd"
+  },
+  "package_status": {
+    "delivered": "Levererat",
+    "transit": "På väg",
+    "out": "Ute för leverans",
+    "announced": "Föranmält",
+    "accepted": "Mottaget av transportören",
+    "picked": "Upphämtat",
+    "ready": "Redo för upphämtning",
+    "attempt": "Leveransförsök gjort",
+    "delayed": "Försenat",
+    "cancelled": "Avbrutet",
+    "returned": "Returnerat",
+    "returning": "Retur på väg",
+    "customs": "Tullhantering",
+    "exception": "Leveransproblem",
+    "unknown": "Okänd status"
+  }
+}

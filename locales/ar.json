@@ -1,0 +1,73 @@
+{
+  "pair": {
+    "email": "عنوان البريد الإلكتروني",
+    "password": "كلمة المرور",
+    "connect": "ربط الحساب",
+    "title": "Add My PostNL",
+    "subtitle": "Connect each device to one PostNL account.",
+    "language_marker": "en"
+  },
+  "widget": {
+    "loading": "جارٍ التحميل…",
+    "none": "لم يتم العثور على طرود.",
+    "shipment": "شحنة DHL",
+    "unknown": "غير معروف",
+    "active": "نشط",
+    "delivered": "تم التسليم",
+    "offline": "غير متصل"
+  },
+  "errors": {
+    "not_authenticated": "حساب DHL غير متصل."
+  },
+  "status": {
+    "no_active": "لا توجد شحنات نشطة"
+  },
+  "device": {
+    "name": "My PostNL"
+  },
+  "carrier": {
+    "pending": "Account API not configured"
+  },
+  "ups": {
+    "pair": {
+      "country": "البلد",
+      "language": "اللغة",
+      "account_title": "حساب UPS",
+      "account_intro": "سجّل الدخول إلى UPS أولاً، ثم الصق رمز جلسة UPS الموثّق. لا يحفظ MyParcel كلمة مرور UPS الخاصة بك.",
+      "session_token": "رمز جلسة UPS",
+      "connect": "ربط UPS",
+      "manual_title": "خيار يدوي احتياطي",
+      "manual_intro": "إذا تعذر استيراد جلسة الحساب، أضف أرقام تتبع UPS، رقماً واحداً في كل سطر.",
+      "tracking_numbers": "أرقام التتبع",
+      "add_tracking": "إضافة أرقام التتبع",
+      "missing_token": "أدخل رمز جلسة UPS.",
+      "missing_tracking": "أدخل رقم تتبع UPS واحداً على الأقل.",
+      "callback": "رد اتصال تسجيل دخول UPS",
+      "callback_intro": "سجّل الدخول إلى UPS باستخدام UPS Token Helper ثم الصق رد ups://login كاملاً.",
+      "connect_callback": "ربط UPS"
+    }
+  },
+  "common_status": {
+    "connected": "متصل",
+    "disconnected": "غير متصل",
+    "no_packages": "لا توجد طرود",
+    "unknown": "غير معروف"
+  },
+  "package_status": {
+    "delivered": "تم التسليم",
+    "transit": "قيد النقل",
+    "out": "خرج للتسليم",
+    "announced": "تم التسجيل",
+    "accepted": "استلمتها شركة الشحن",
+    "picked": "تم الاستلام",
+    "ready": "جاهز للاستلام",
+    "attempt": "تمت محاولة التسليم",
+    "delayed": "متأخر",
+    "cancelled": "ملغى",
+    "returned": "تم الإرجاع",
+    "returning": "الإرجاع قيد النقل",
+    "customs": "قيد المعالجة الجمركية",
+    "exception": "مشكلة في التسليم",
+    "unknown": "حالة غير معروفة"
+  }
+}

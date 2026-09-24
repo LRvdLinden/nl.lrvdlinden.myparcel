@@ -1,0 +1,41 @@
+{
+  "name": {
+    "en": "InPost UK",
+    "nl": "InPost UK",
+    "de": "InPost UK",
+    "fr": "InPost UK",
+    "it": "InPost UK",
+    "sv": "InPost UK",
+    "no": "InPost UK",
+    "es": "InPost UK",
+    "da": "InPost UK",
+    "ru": "InPost UK",
+    "pl": "InPost UK",
+    "ko": "InPost UK",
+    "ar": "InPost UK"
+  },
+  "class": "sensor",
+  "capabilities": [
+    "inpost_uk_parcel_count",
+    "inpost_uk_status",
+    "myparcel_connection_status",
+    "inpost_uk_last_update"
+  ],
+  "platforms": [
+    "local"
+  ],
+  "images": {
+    "small": "/drivers/inpost-uk/assets/images/small.png",
+    "large": "/drivers/inpost-uk/assets/images/large.png"
+  },
+  "pair": [
+    {
+      "id": "login"
+    }
+  ],
+  "repair": [
+    {
+      "id": "repair"
+    }
+  ]
+}

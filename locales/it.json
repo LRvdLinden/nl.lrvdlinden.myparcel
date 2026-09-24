@@ -1,0 +1,73 @@
+{
+  "pair": {
+    "email": "Indirizzo e-mail",
+    "password": "Password",
+    "connect": "Collega account",
+    "title": "Add My PostNL",
+    "subtitle": "Connect each device to one PostNL account.",
+    "language_marker": "en"
+  },
+  "widget": {
+    "loading": "Caricamento…",
+    "none": "Nessun pacco trovato.",
+    "shipment": "Spedizione DHL",
+    "unknown": "Sconosciuto",
+    "active": "Attivo",
+    "delivered": "Consegnato",
+    "offline": "Offline"
+  },
+  "errors": {
+    "not_authenticated": "L’account DHL non è collegato."
+  },
+  "status": {
+    "no_active": "Nessuna spedizione attiva"
+  },
+  "device": {
+    "name": "My PostNL"
+  },
+  "carrier": {
+    "pending": "Account API not configured"
+  },
+  "ups": {
+    "pair": {
+      "country": "Paese",
+      "language": "Lingua",
+      "account_title": "Account UPS",
+      "account_intro": "Accedi prima a UPS, quindi incolla il token di sessione UPS autenticato. MyParcel non memorizza la password UPS.",
+      "session_token": "Token sessione UPS",
+      "connect": "Collega UPS",
+      "manual_title": "Alternativa manuale",
+      "manual_intro": "Se l’importazione della sessione non è disponibile, aggiungi i numeri di tracciamento UPS, uno per riga.",
+      "tracking_numbers": "Numeri di tracciamento",
+      "add_tracking": "Aggiungi numeri",
+      "missing_token": "Inserisci un token di sessione UPS.",
+      "missing_tracking": "Inserisci almeno un numero di tracciamento UPS.",
+      "callback": "Callback di accesso UPS",
+      "callback_intro": "Accedi a UPS con UPS Token Helper e incolla il callback ups://login completo.",
+      "connect_callback": "Collega UPS"
+    }
+  },
+  "common_status": {
+    "connected": "Connesso",
+    "disconnected": "Disconnesso",
+    "no_packages": "Nessun pacco",
+    "unknown": "Sconosciuto"
+  },
+  "package_status": {
+    "delivered": "Consegnato",
+    "transit": "In transito",
+    "out": "In consegna",
+    "announced": "Annunciato",
+    "accepted": "Preso in carico dal corriere",
+    "picked": "Ritirato",
+    "ready": "Pronto per il ritiro",
+    "attempt": "Tentativo di consegna effettuato",
+    "delayed": "In ritardo",
+    "cancelled": "Annullato",
+    "returned": "Restituito",
+    "returning": "Reso in transito",
+    "customs": "Sdoganamento",
+    "exception": "Problema di consegna",
+    "unknown": "Stato sconosciuto"
+  }
+}

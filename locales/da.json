@@ -1,0 +1,73 @@
+{
+  "pair": {
+    "email": "E-mailadresse",
+    "password": "Adgangskode",
+    "connect": "Forbind konto",
+    "title": "Add My PostNL",
+    "subtitle": "Connect each device to one PostNL account.",
+    "language_marker": "en"
+  },
+  "widget": {
+    "loading": "Indlæser…",
+    "none": "Ingen pakker fundet.",
+    "shipment": "DHL-forsendelse",
+    "unknown": "Ukendt",
+    "active": "Aktiv",
+    "delivered": "Leveret",
+    "offline": "Offline"
+  },
+  "errors": {
+    "not_authenticated": "DHL-kontoen er ikke forbundet."
+  },
+  "status": {
+    "no_active": "Ingen aktive forsendelser"
+  },
+  "device": {
+    "name": "My PostNL"
+  },
+  "carrier": {
+    "pending": "Account API not configured"
+  },
+  "ups": {
+    "pair": {
+      "country": "Land",
+      "language": "Sprog",
+      "account_title": "UPS-konto",
+      "account_intro": "Log først ind hos UPS, og indsæt derefter dit godkendte UPS-sessionstoken. MyParcel gemmer ikke din UPS-adgangskode.",
+      "session_token": "UPS-sessionstoken",
+      "connect": "Forbind UPS",
+      "manual_title": "Manuel reserve",
+      "manual_intro": "Hvis import af kontosession ikke er tilgængelig, tilføj UPS-sporingsnumre, ét pr. linje.",
+      "tracking_numbers": "Sporingsnumre",
+      "add_tracking": "Tilføj sporingsnumre",
+      "missing_token": "Indtast et UPS-sessionstoken.",
+      "missing_tracking": "Indtast mindst ét UPS-sporingsnummer.",
+      "callback": "UPS-login-callback",
+      "callback_intro": "Log ind på UPS med UPS Token Helper og indsæt hele ups://login-callbacket.",
+      "connect_callback": "Forbind UPS"
+    }
+  },
+  "common_status": {
+    "connected": "Forbundet",
+    "disconnected": "Afbrudt",
+    "no_packages": "Ingen pakker",
+    "unknown": "Ukendt"
+  },
+  "package_status": {
+    "delivered": "Leveret",
+    "transit": "Undervejs",
+    "out": "Ude til levering",
+    "announced": "Anmeldt",
+    "accepted": "Modtaget af transportøren",
+    "picked": "Afhentet",
+    "ready": "Klar til afhentning",
+    "attempt": "Leveringsforsøg udført",
+    "delayed": "Forsinket",
+    "cancelled": "Annulleret",
+    "returned": "Returneret",
+    "returning": "Retur undervejs",
+    "customs": "Toldbehandling",
+    "exception": "Leveringsproblem",
+    "unknown": "Ukendt status"
+  }
+}

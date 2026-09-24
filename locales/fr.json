@@ -1,0 +1,73 @@
+{
+  "pair": {
+    "email": "Adresse e-mail",
+    "password": "Mot de passe",
+    "connect": "Connecter le compte",
+    "title": "Add My PostNL",
+    "subtitle": "Connect each device to one PostNL account.",
+    "language_marker": "en"
+  },
+  "widget": {
+    "loading": "Chargement…",
+    "none": "Aucun colis trouvé.",
+    "shipment": "Envoi DHL",
+    "unknown": "Inconnu",
+    "active": "Actif",
+    "delivered": "Livré",
+    "offline": "Hors ligne"
+  },
+  "errors": {
+    "not_authenticated": "Le compte DHL n’est pas connecté."
+  },
+  "status": {
+    "no_active": "Aucun envoi actif"
+  },
+  "device": {
+    "name": "My PostNL"
+  },
+  "carrier": {
+    "pending": "Account API not configured"
+  },
+  "ups": {
+    "pair": {
+      "country": "Pays",
+      "language": "Langue",
+      "account_title": "Compte UPS",
+      "account_intro": "Connectez-vous d’abord à UPS, puis collez votre jeton de session UPS authentifié. MyParcel ne stocke pas votre mot de passe UPS.",
+      "session_token": "Jeton de session UPS",
+      "connect": "Connecter UPS",
+      "manual_title": "Solution manuelle",
+      "manual_intro": "Si l’import de session n’est pas disponible, ajoutez des numéros de suivi UPS, un par ligne.",
+      "tracking_numbers": "Numéros de suivi",
+      "add_tracking": "Ajouter les numéros",
+      "missing_token": "Saisissez un jeton de session UPS.",
+      "missing_tracking": "Saisissez au moins un numéro de suivi UPS.",
+      "callback": "Callback de connexion UPS",
+      "callback_intro": "Connectez-vous à UPS avec UPS Token Helper et collez le callback ups://login complet.",
+      "connect_callback": "Connecter UPS"
+    }
+  },
+  "common_status": {
+    "connected": "Connecté",
+    "disconnected": "Déconnecté",
+    "no_packages": "Aucun colis",
+    "unknown": "Inconnu"
+  },
+  "package_status": {
+    "delivered": "Livré",
+    "transit": "En transit",
+    "out": "En cours de livraison",
+    "announced": "Annoncé",
+    "accepted": "Pris en charge par le transporteur",
+    "picked": "Collecté",
+    "ready": "Prêt à être retiré",
+    "attempt": "Tentative de livraison effectuée",
+    "delayed": "Retardé",
+    "cancelled": "Annulé",
+    "returned": "Retourné",
+    "returning": "Retour en cours",
+    "customs": "Traitement douanier",
+    "exception": "Problème de livraison",
+    "unknown": "Statut inconnu"
+  }
+}

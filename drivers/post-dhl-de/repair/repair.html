@@ -1,0 +1,4 @@
+<!doctype html><html><head><meta charset="utf-8"><script src="/homey.js" data-origin="settings"></script><style>body{font-family:system-ui;padding:18px}button,input{width:100%;box-sizing:border-box;margin:8px 0;padding:12px}p{line-height:1.4}</style></head><body>
+<h2>Post & DHL Germany</h2><p id="txt">Open de officiële DHL-login. Log in en kopieer na de redirect de volledige URL uit de adresbalk terug naar dit scherm.</p>
+<button id="open">Open DHL login</button><input id="cb" placeholder="https://app.dhl.de/android-dhl-parcel#state=...&code=..."><button id="go">Koppelen</button>
+<script>Homey.ready();let url='';document.getElementById('open').onclick=async()=>{const r=await Homey.emit('get_auth_url');url=r.url;window.open(url,'_blank')};document.getElementById('go').onclick=async()=>{try{const r=await Homey.emit('repair',{callback:document.getElementById('cb').value});Homey.done()}catch(e){Homey.alert(e.message||String(e),'error')}};</script></body></html>

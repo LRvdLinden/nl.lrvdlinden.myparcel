@@ -1,0 +1,73 @@
+{
+  "pair": {
+    "email": "Электронная почта",
+    "password": "Пароль",
+    "connect": "Подключить аккаунт",
+    "title": "Add My PostNL",
+    "subtitle": "Connect each device to one PostNL account.",
+    "language_marker": "en"
+  },
+  "widget": {
+    "loading": "Загрузка…",
+    "none": "Посылки не найдены.",
+    "shipment": "Отправление DHL",
+    "unknown": "Неизвестно",
+    "active": "Активно",
+    "delivered": "Доставлено",
+    "offline": "Не в сети"
+  },
+  "errors": {
+    "not_authenticated": "Аккаунт DHL не подключён."
+  },
+  "status": {
+    "no_active": "Нет активных отправлений"
+  },
+  "device": {
+    "name": "My PostNL"
+  },
+  "carrier": {
+    "pending": "Account API not configured"
+  },
+  "ups": {
+    "pair": {
+      "country": "Страна",
+      "language": "Язык",
+      "account_title": "Аккаунт UPS",
+      "account_intro": "Сначала войдите в UPS, затем вставьте токен авторизованной сессии UPS. MyParcel не хранит ваш пароль UPS.",
+      "session_token": "Токен сессии UPS",
+      "connect": "Подключить UPS",
+      "manual_title": "Ручной вариант",
+      "manual_intro": "Если импорт сессии недоступен, добавьте номера отслеживания UPS, по одному в строке.",
+      "tracking_numbers": "Номера отслеживания",
+      "add_tracking": "Добавить номера",
+      "missing_token": "Введите токен сессии UPS.",
+      "missing_tracking": "Введите хотя бы один номер отслеживания UPS.",
+      "callback": "Callback входа UPS",
+      "callback_intro": "Войдите в UPS через UPS Token Helper и вставьте полный callback ups://login.",
+      "connect_callback": "Подключить UPS"
+    }
+  },
+  "common_status": {
+    "connected": "Подключено",
+    "disconnected": "Отключено",
+    "no_packages": "Нет посылок",
+    "unknown": "Неизвестно"
+  },
+  "package_status": {
+    "delivered": "Доставлено",
+    "transit": "В пути",
+    "out": "Передано на доставку",
+    "announced": "Зарегистрировано",
+    "accepted": "Принято перевозчиком",
+    "picked": "Получено перевозчиком",
+    "ready": "Готово к получению",
+    "attempt": "Попытка доставки выполнена",
+    "delayed": "Задерживается",
+    "cancelled": "Отменено",
+    "returned": "Возвращено",
+    "returning": "Возврат в пути",
+    "customs": "Таможенное оформление",
+    "exception": "Проблема с доставкой",
+    "unknown": "Статус неизвестен"
+  }
+}

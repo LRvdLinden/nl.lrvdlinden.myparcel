@@ -1,0 +1,41 @@
+{
+  "name": {
+    "en": "DPD",
+    "nl": "DPD",
+    "de": "DPD",
+    "fr": "DPD",
+    "it": "DPD",
+    "sv": "DPD",
+    "no": "DPD",
+    "es": "DPD",
+    "da": "DPD",
+    "ru": "DPD",
+    "pl": "DPD",
+    "ko": "DPD",
+    "ar": "DPD"
+  },
+  "class": "sensor",
+  "capabilities": [
+    "dpd_parcel_count",
+    "dpd_status",
+    "myparcel_connection_status",
+    "dpd_last_update"
+  ],
+  "platforms": [
+    "local"
+  ],
+  "images": {
+    "small": "/drivers/dpd/assets/images/small.png",
+    "large": "/drivers/dpd/assets/images/large.png"
+  },
+  "pair": [
+    {
+      "id": "login"
+    }
+  ],
+  "repair": [
+    {
+      "id": "repair"
+    }
+  ]
+}

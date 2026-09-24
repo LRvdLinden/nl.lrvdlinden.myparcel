@@ -1,0 +1,73 @@
+{
+  "pair": {
+    "email": "E-Mail-Adresse",
+    "password": "Passwort",
+    "connect": "Konto verbinden",
+    "title": "Add My PostNL",
+    "subtitle": "Connect each device to one PostNL account.",
+    "language_marker": "en"
+  },
+  "widget": {
+    "loading": "Laden…",
+    "none": "Keine Pakete gefunden.",
+    "shipment": "DHL-Sendung",
+    "unknown": "Unbekannt",
+    "active": "Aktiv",
+    "delivered": "Zugestellt",
+    "offline": "Offline"
+  },
+  "errors": {
+    "not_authenticated": "DHL-Konto ist nicht verbunden."
+  },
+  "status": {
+    "no_active": "Keine aktiven Sendungen"
+  },
+  "device": {
+    "name": "My PostNL"
+  },
+  "carrier": {
+    "pending": "Account API not configured"
+  },
+  "ups": {
+    "pair": {
+      "country": "Land",
+      "language": "Sprache",
+      "account_title": "UPS-Konto",
+      "account_intro": "Melden Sie sich zuerst bei UPS an und fügen Sie anschließend Ihr authentifiziertes UPS-Sitzungstoken ein. MyParcel speichert Ihr UPS-Passwort nicht.",
+      "session_token": "UPS-Sitzungstoken",
+      "connect": "UPS verbinden",
+      "manual_title": "Manuelle Alternative",
+      "manual_intro": "Wenn der Import der Kontositzung nicht verfügbar ist, fügen Sie UPS-Sendungsnummern hinzu. Eine pro Zeile.",
+      "tracking_numbers": "Sendungsnummern",
+      "add_tracking": "Sendungsnummern hinzufügen",
+      "missing_token": "Geben Sie ein UPS-Sitzungstoken ein.",
+      "missing_tracking": "Geben Sie mindestens eine UPS-Sendungsnummer ein.",
+      "callback": "UPS-Anmelde-Callback",
+      "callback_intro": "Melden Sie sich mit UPS Token Helper bei UPS an und fügen Sie den vollständigen ups://login-Callback ein.",
+      "connect_callback": "UPS verbinden"
+    }
+  },
+  "common_status": {
+    "connected": "Verbunden",
+    "disconnected": "Nicht verbunden",
+    "no_packages": "Keine Pakete",
+    "unknown": "Unbekannt"
+  },
+  "package_status": {
+    "delivered": "Zugestellt",
+    "transit": "Unterwegs",
+    "out": "In Zustellung",
+    "announced": "Angekündigt",
+    "accepted": "Vom Versanddienstleister übernommen",
+    "picked": "Abgeholt",
+    "ready": "Abholbereit",
+    "attempt": "Zustellversuch erfolgt",
+    "delayed": "Verspätet",
+    "cancelled": "Storniert",
+    "returned": "Zurückgesendet",
+    "returning": "Rücksendung unterwegs",
+    "customs": "Zollabfertigung",
+    "exception": "Zustellproblem",
+    "unknown": "Status unbekannt"
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "name": {
+    "en": "bpost",
+    "nl": "bpost",
+    "de": "bpost",
+    "fr": "bpost",
+    "it": "bpost",
+    "sv": "bpost",
+    "no": "bpost",
+    "es": "bpost",
+    "da": "bpost",
+    "ru": "bpost",
+    "pl": "bpost",
+    "ko": "bpost",
+    "ar": "bpost"
+  },
+  "class": "sensor",
+  "capabilities": [
+    "bpost_parcel_count",
+    "bpost_total_count",
+    "bpost_status",
+    "bpost_tracking",
+    "bpost_sender",
+    "bpost_delivery_date",
+    "bpost_delivery_window",
+    "bpost_delivery_point",
+    "bpost_weight",
+    "bpost_product",
+    "bpost_partner",
+    "bpost_last_event",
+    "bpost_account_status",
+    "bpost_last_update"
+  ],
+  "platforms": [
+    "local"
+  ],
+  "images": {
+    "small": "/drivers/bpost/assets/images/small.png",
+    "large": "/drivers/bpost/assets/images/large.png"
+  },
+  "pair": [
+    {
+      "id": "login"
+    }
+  ],
+  "repair": [
+    {
+      "id": "repair"
+    }
+  ],
+  "settings": [
+    {
+      "id": "account_email",
+      "type": "text",
+      "label": {
+        "en": "My bpost e-mail",
+        "nl": "My bpost e-mail"
+      },
+      "value": ""
+    },
+    {
+      "id": "account_password",
+      "type": "password",
+      "label": {
+        "en": "My bpost password",
+        "nl": "My bpost-wachtwoord"
+      },
+      "value": ""
+    },
+    {
+      "id": "tracking_numbers_json",
+      "type": "text",
+      "label": {
+        "en": "Manual fallback shipments",
+        "nl": "Handmatige fallback-zendingen"
+      },
+      "value": "[]"
+    }
+  ]
+}

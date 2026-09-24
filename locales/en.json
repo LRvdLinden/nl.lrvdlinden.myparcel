@@ -1,0 +1,73 @@
+{
+  "pair": {
+    "email": "Email address",
+    "password": "Password",
+    "connect": "Connect account",
+    "title": "Add My PostNL",
+    "subtitle": "Connect each device to one PostNL account.",
+    "language_marker": "en"
+  },
+  "widget": {
+    "loading": "Loading…",
+    "none": "No parcels found.",
+    "shipment": "DHL shipment",
+    "unknown": "Unknown",
+    "active": "Active",
+    "delivered": "Delivered",
+    "offline": "Offline"
+  },
+  "errors": {
+    "not_authenticated": "DHL account is not connected."
+  },
+  "status": {
+    "no_active": "No active shipments"
+  },
+  "device": {
+    "name": "My PostNL"
+  },
+  "carrier": {
+    "pending": "Account API not configured"
+  },
+  "ups": {
+    "pair": {
+      "country": "Country",
+      "language": "Language",
+      "account_title": "UPS account",
+      "account_intro": "Sign in to UPS first and paste your authenticated UPS session token. MyParcel does not store your UPS password.",
+      "session_token": "UPS session token",
+      "connect": "Connect UPS",
+      "manual_title": "Manual fallback",
+      "manual_intro": "If account-session import is unavailable, add UPS tracking numbers. One tracking number per line.",
+      "tracking_numbers": "Tracking numbers",
+      "add_tracking": "Add tracking numbers",
+      "missing_token": "Enter a UPS session token.",
+      "missing_tracking": "Enter at least one UPS tracking number.",
+      "callback": "UPS login callback",
+      "callback_intro": "Sign in to UPS with UPS Token Helper and paste the complete ups://login callback.",
+      "connect_callback": "Connect UPS"
+    }
+  },
+  "common_status": {
+    "connected": "Connected",
+    "disconnected": "Disconnected",
+    "no_packages": "No packages",
+    "unknown": "Unknown"
+  },
+  "package_status": {
+    "delivered": "Delivered",
+    "transit": "In transit",
+    "out": "Out for delivery",
+    "announced": "Announced",
+    "accepted": "Accepted by carrier",
+    "picked": "Picked up",
+    "ready": "Ready for pickup",
+    "attempt": "Delivery attempted",
+    "delayed": "Delayed",
+    "cancelled": "Cancelled",
+    "returned": "Returned",
+    "returning": "Returning",
+    "customs": "Customs processing",
+    "exception": "Delivery issue",
+    "unknown": "Unknown status"
+  }
+}

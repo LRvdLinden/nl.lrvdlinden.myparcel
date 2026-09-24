@@ -1,0 +1,17 @@
+{
+  "name": "nl.lrvdlinden.myparcel",
+  "version": "0.2.2",
+  "private": true,
+  "main": "app.js",
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "homey": "^3.0.0"
+  },
+  "description": "PostNL, DHL Parcel, DPD, UPS, Budbee and Homerr / Vinted Go in one Homey app",
+  "scripts": {
+    "lint": "find . -path './node_modules' -prune -o -path './.homeybuild' -prune -o -name '*.js' -type f -print0 | xargs -0 -n1 node -c"
+  }
+}

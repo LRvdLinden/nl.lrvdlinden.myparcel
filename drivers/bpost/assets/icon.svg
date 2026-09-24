@@ -1,0 +1,64 @@
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 141.9 100.2" style="enable-background:new 0 0 141.9 100.2;" xml:space="preserve">
+ <style type="text/css">
+  .st0{clip-path:url(#SVGID_2_);fill:url(#SVGID_3_);}
+	.st1{clip-path:url(#SVGID_5_);fill:url(#SVGID_6_);}
+ </style>
+ <metadata>
+  
+   
+   
+   
+   
+  
+ </metadata>
+ <g>
+  <g>
+   <defs>
+    <path id="SVGID_1_" d="M108.9,10c-12.8,28-42.8,56.7-66.9,64c-24.2,7.3-33.2-9.5-20.3-37.6L9,40.2c-19.8,42.9-6,68.6,30.9,57.5&#xA;&#x9;&#x9;&#x9;&#x9;c36.8-11.2,82.4-55,101.9-97.6L108.9,10z">
+    </path>
+   </defs>
+   <clipPath id="SVGID_2_">
+    <use href="#SVGID_1_" style="overflow:visible;">
+    </use>
+   </clipPath>
+   <linearGradient id="SVGID_3_" gradientUnits="userSpaceOnUse" x1="155.7005" y1="279.7987" x2="157.8692" y2="279.7987" gradientTransform="matrix(62.2664 -43.5994 -43.5994 -62.2664 2511.4272 24305.707)">
+    <stop offset="0" style="stop-color:#A11007">
+    </stop>
+    <stop offset="0.2127" style="stop-color:#B50D10">
+    </stop>
+    <stop offset="0.5496" style="stop-color:#CF091B">
+    </stop>
+    <stop offset="0.75" style="stop-color:#D9071F">
+    </stop>
+    <stop offset="1" style="stop-color:#D9071F">
+    </stop>
+   </linearGradient>
+   <polyline class="st0" points="91.6,-71.7 193,73 39.4,180.5 -61.9,35.8">
+   </polyline>
+  </g>
+  <g>
+   <defs>
+    <path id="SVGID_4_" d="M27.6,34.5c-6.6,14.3-2,22.9,10.3,19.2C50.2,50,65.5,35.4,72,21.1L27.6,34.5z">
+    </path>
+   </defs>
+   <clipPath id="SVGID_5_">
+    <use xlink:href="#SVGID_4_" style="overflow:visible;">
+    </use>
+   </clipPath>
+   <linearGradient id="SVGID_6_" gradientUnits="userSpaceOnUse" x1="141.6062" y1="293.6071" x2="143.7749" y2="293.6071" gradientTransform="matrix(20.8263 -14.5828 -14.5828 -20.8263 1359.4675 8232.6982)">
+    <stop offset="0" style="stop-color:#A11007">
+    </stop>
+    <stop offset="0.2127" style="stop-color:#B50D10">
+    </stop>
+    <stop offset="0.5496" style="stop-color:#CF091B">
+    </stop>
+    <stop offset="0.75" style="stop-color:#D9071F">
+    </stop>
+    <stop offset="1" style="stop-color:#D9071F">
+    </stop>
+   </linearGradient>
+   <polygon class="st1" points="3.9,33.1 55.2,-2.9 89.1,45.5 37.8,81.4">
+   </polygon>
+  </g>
+ </g>
+</svg>

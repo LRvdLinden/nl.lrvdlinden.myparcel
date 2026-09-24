@@ -1,1 +1,14 @@
-MyParcel for Homey combines PostNL and DHL Parcel in one app. Add a PostNL device or DHL Parcel device with the original pairing flows. The PostNL Mail widget shows mail items from all PostNL devices. The MyParcel Packages widget combines packages from every PostNL and DHL Parcel device and shows the carrier logo for each shipment.
+MyParcel brings supported parcel carriers together in Homey. View your parcels in one place with Homey devices, Flows and widgets.
+
+Supported countries and carriers
+
+- 🇳🇱 Netherlands: PostNL, DHL, DPD, Budbee, Homerr / Vinted Go, FedEx and GLS.
+- 🇧🇪 Belgium: bpost.
+- 🇬🇧 United Kingdom: InPost UK.
+- 🇩🇪 Germany: Post & DHL.
+- 🗺️ International: UPS.
+
+Installation
+
+For carrier-specific installation and account-linking instructions, see the MyParcel Community topic:
+https://community.homey.app/t/app-pro-myparcel/159800

@@ -1,0 +1,27 @@
+{
+  "id": "deutsche-post-poststukken",
+  "name": {
+    "en": "Deutsche Post Mail",
+    "nl": "Deutsche Post Poststukken",
+    "de": "Deutsche Post Briefankündigung"
+  },
+  "height": 250,
+  "api": {
+    "getData": {
+      "method": "GET",
+      "path": "/"
+    },
+    "sync": {
+      "method": "POST",
+      "path": "/sync"
+    }
+  },
+  "devices": {
+    "type": "app",
+    "singular": true,
+    "filter": {
+      "capabilities": "dhl_de_mail_count"
+    }
+  },
+  "settings": []
+}

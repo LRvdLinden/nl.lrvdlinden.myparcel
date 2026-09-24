@@ -1,0 +1,41 @@
+{
+  "name": {
+    "en": "FedEx",
+    "nl": "FedEx",
+    "de": "FedEx",
+    "fr": "FedEx",
+    "it": "FedEx",
+    "sv": "FedEx",
+    "no": "FedEx",
+    "es": "FedEx",
+    "da": "FedEx",
+    "ru": "FedEx",
+    "pl": "FedEx",
+    "ko": "FedEx",
+    "ar": "FedEx"
+  },
+  "class": "sensor",
+  "capabilities": [
+    "fedex_parcel_count",
+    "fedex_status",
+    "myparcel_connection_status",
+    "fedex_last_update"
+  ],
+  "platforms": [
+    "local"
+  ],
+  "images": {
+    "small": "/drivers/fedex/assets/images/small.png",
+    "large": "/drivers/fedex/assets/images/large.png"
+  },
+  "pair": [
+    {
+      "id": "login"
+    }
+  ],
+  "repair": [
+    {
+      "id": "repair"
+    }
+  ]
+}

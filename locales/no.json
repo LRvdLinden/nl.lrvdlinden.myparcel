@@ -1,0 +1,73 @@
+{
+  "pair": {
+    "email": "E-postadresse",
+    "password": "Passord",
+    "connect": "Koble til konto",
+    "title": "Add My PostNL",
+    "subtitle": "Connect each device to one PostNL account.",
+    "language_marker": "en"
+  },
+  "widget": {
+    "loading": "Laster…",
+    "none": "Ingen pakker funnet.",
+    "shipment": "DHL-forsendelse",
+    "unknown": "Ukjent",
+    "active": "Aktiv",
+    "delivered": "Levert",
+    "offline": "Offline"
+  },
+  "errors": {
+    "not_authenticated": "DHL-kontoen er ikke tilkoblet."
+  },
+  "status": {
+    "no_active": "Ingen aktive forsendelser"
+  },
+  "device": {
+    "name": "My PostNL"
+  },
+  "carrier": {
+    "pending": "Account API not configured"
+  },
+  "ups": {
+    "pair": {
+      "country": "Land",
+      "language": "Språk",
+      "account_title": "UPS-konto",
+      "account_intro": "Logg først inn hos UPS, og lim deretter inn ditt autentiserte UPS-øktstoken. MyParcel lagrer ikke UPS-passordet ditt.",
+      "session_token": "UPS-øktstoken",
+      "connect": "Koble til UPS",
+      "manual_title": "Manuell reserve",
+      "manual_intro": "Hvis import av kontoøkt ikke er tilgjengelig, legg til UPS-sporingsnumre, ett per linje.",
+      "tracking_numbers": "Sporingsnumre",
+      "add_tracking": "Legg til sporingsnumre",
+      "missing_token": "Angi et UPS-øktstoken.",
+      "missing_tracking": "Angi minst ett UPS-sporingsnummer.",
+      "callback": "UPS-påloggingscallback",
+      "callback_intro": "Logg inn på UPS med UPS Token Helper og lim inn hele ups://login-callbacken.",
+      "connect_callback": "Koble til UPS"
+    }
+  },
+  "common_status": {
+    "connected": "Tilkoblet",
+    "disconnected": "Frakoblet",
+    "no_packages": "Ingen pakker",
+    "unknown": "Ukjent"
+  },
+  "package_status": {
+    "delivered": "Levert",
+    "transit": "Underveis",
+    "out": "Ute for levering",
+    "announced": "Varslet",
+    "accepted": "Mottatt av transportøren",
+    "picked": "Hentet",
+    "ready": "Klar for henting",
+    "attempt": "Leveringsforsøk utført",
+    "delayed": "Forsinket",
+    "cancelled": "Kansellert",
+    "returned": "Returnert",
+    "returning": "Retur underveis",
+    "customs": "Tollbehandling",
+    "exception": "Leveringsproblem",
+    "unknown": "Ukjent status"
+  }
+}

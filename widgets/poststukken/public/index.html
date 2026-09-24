@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <style>
+    *{box-sizing:border-box}
+    html,body{width:100%;height:100%;margin:0;overflow:hidden;background:transparent;color:#232323;font:14px/1.25 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+    .card{display:grid;grid-template-rows:52px minmax(0,1fr);width:100%;height:100%;overflow:hidden;border-radius:17px;background:#f4f4f5;box-shadow:0 1px 1px #0000000d}
+    header{display:flex;align-items:center;padding:0 18px;border-bottom:1px solid #dedee0;background:#fafafa}
+    .app-icon{display:block;width:36px;height:36px;object-fit:contain}
+    h1{margin:0 0 0 auto;color:#77767b;font-size:18px;font-weight:600;white-space:nowrap}
+    #content{min-width:0;min-height:0;overflow:hidden}
+    .track{display:flex;align-items:stretch;gap:12px;width:100%;height:100%;padding:12px 14px 11px;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x proximity;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch;touch-action:pan-x;scrollbar-width:none}
+    .track::-webkit-scrollbar{display:none}
+    .mail{flex:0 0 146px;display:grid;grid-template-rows:minmax(0,1fr) 31px;gap:7px;min-width:0;scroll-snap-align:start;cursor:pointer}
+    .scan{display:grid;place-items:center;min-height:0;overflow:hidden;padding:7px;border-radius:9px;background:#e6e6e8}
+    .scan img{display:block;width:100%;height:100%;object-fit:contain;border-radius:3px;background:#fff;box-shadow:0 1px 4px #0003}
+    .placeholder{display:grid;place-items:center;width:100%;height:100%;color:#aaa9ad;font-size:30px}
+    .date{justify-self:center;align-self:start;max-width:100%;overflow:hidden;padding:4px 13px 5px;border-radius:999px;background:#d9d9db;color:#454449;font-size:15px;line-height:20px;font-weight:800;text-overflow:ellipsis;white-space:nowrap}
+    .state{display:grid;place-items:center;height:100%;padding:20px;color:#77767b;text-align:center}
+    .error{color:#b32632}
+    .modal{position:fixed;inset:0;z-index:20;display:none;place-items:center;padding:18px;background:#000c}
+    .modal.open{display:grid}
+    .modal img{display:block;max-width:100%;max-height:100%;border-radius:10px;background:#fff;box-shadow:0 14px 46px #0009;object-fit:contain}
+    .modal button{position:absolute;top:14px;right:14px;width:36px;height:36px;border:0;border-radius:50%;background:#1d1d1fd9;color:#fff;font-size:24px;cursor:pointer}
+    @media(max-width:350px){header{padding-inline:14px}.mail{flex-basis:132px}.date{font-size:14px;padding-inline:10px}}
+    @media(prefers-color-scheme:dark){html,body{color:#f3f3f4}.card{background:#2d2d2f;box-shadow:none}header{border-color:#3b3b3d;background:#29292b}h1{color:#aaa9ad}.scan{background:#1d1d1f}.date{background:#57575a;color:#fff}.state{color:#aaa9ad}}
+  </style>
+<style>:dir(rtl){direction:rtl;text-align:right}</style></head>
+<body>
+  <main class="card">
+    <header><img class="app-icon" src="icon.svg" alt="PostNL"><h1 id="title">Mijn Post</h1></header>
+    <section id="content"><div class="state">Post ophalen…</div></section>
+  </main>
+  <div id="modal" class="modal" role="dialog" aria-modal="true"><button id="close" type="button" aria-label="Sluiten">×</button><img id="modalImage" alt="Poststuk"></div>
+  <script>
+    const content=document.getElementById('content');
+    const title=document.getElementById('title');
+    const modal=document.getElementById('modal');
+    const modalImage=document.getElementById('modalImage');
+    const words={
+      nl:{title:'Mijn Post',loading:'Post ophalen…',empty:'Er wordt momenteel geen post verwacht.',login:'Koppel eerst je PostNL-account.',unavailable:'Mijn Post is tijdelijk niet beschikbaar.'},
+      en:{title:'My Post',loading:'Loading mail…',empty:'No mail is currently expected.',login:'Connect your PostNL account first.',unavailable:'My Post is temporarily unavailable.'}
+    };
+    function langOf(v){return String(v||'nl').toLowerCase().split('-')[0]==='nl'?'nl':'en'}
+    function dateLabel(value,lang,timeZone){const d=new Date(value);if(Number.isNaN(d.getTime()))return '—';const parts=new Intl.DateTimeFormat('en-GB',{day:'numeric',month:'numeric',timeZone}).formatToParts(d);const day=parts.find(p=>p.type==='day')?.value||String(d.getDate());const month=Number(parts.find(p=>p.type==='month')?.value||d.getMonth()+1)-1;const months=lang==='nl'?['jan','feb','mrt','apr','mei','jun','jul','aug','sept','okt','nov','dec']:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];return `${day} ${months[month]||''}`.trim()}
+    function openImage(src,alt){if(!src)return;modalImage.src=src;modalImage.alt=alt||'Poststuk';modal.classList.add('open')}
+    function closeImage(){modal.classList.remove('open');modalImage.removeAttribute('src')}
+    document.getElementById('close').onclick=closeImage;modal.onclick=e=>{if(e.target===modal)closeImage()};document.addEventListener('keydown',e=>{if(e.key==='Escape')closeImage()});
+    function render(data){
+      const lang=langOf(data.locale),t=words[lang];title.textContent=t.title;
+      if(!data.authenticated){content.innerHTML=`<div class="state">${t.login}</div>`;return}
+      if(!data.letters?.length){const msg=data.mailApiStatus==='temporarily_unavailable'?t.unavailable:t.empty;content.innerHTML=`<div class="state${data.mailApiStatus==='temporarily_unavailable'?' error':''}">${msg}</div>`;return}
+      const track=document.createElement('div');track.className='track';
+      for(const item of data.letters){
+        const article=document.createElement('article');article.className='mail';
+        const scan=document.createElement('div');scan.className='scan';
+        const src=item.imageData||item.imageUrl||'';
+        if(src){const img=document.createElement('img');img.src=src;img.alt=`Post ${dateLabel(item.deliveryDate||item.archivedAt,lang,data.timeZone)}`;scan.appendChild(img);article.addEventListener('click',()=>openImage(src,img.alt))}
+        else{const p=document.createElement('div');p.className='placeholder';p.textContent='✉';scan.appendChild(p);article.style.cursor='default'}
+        const date=document.createElement('div');date.className='date';date.textContent=dateLabel(item.deliveryDate||item.archivedAt,lang,data.timeZone);
+        article.append(scan,date);track.appendChild(article)
+      }
+      track.addEventListener('wheel',e=>{if(track.scrollWidth<=track.clientWidth)return;if(Math.abs(e.deltaY)>Math.abs(e.deltaX)){e.preventDefault();track.scrollLeft+=e.deltaY}},{passive:false});
+      content.replaceChildren(track)
+    }
+    async function load(){content.innerHTML=`<div class="state">${words.nl.loading}</div>`;try{render(await Homey.api('GET','/?deviceId='+encodeURIComponent((Homey.getDeviceIds()||[])[0]||''),{}))}catch(e){content.innerHTML=`<div class="state error">${String(e.message||e)}</div>`}}
+    async function onHomeyReady(Homey){await load();Homey.ready()}
+  </script>
+</body>
+</html>

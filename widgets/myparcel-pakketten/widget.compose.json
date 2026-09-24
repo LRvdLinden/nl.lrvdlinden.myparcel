@@ -19,12 +19,20 @@
   "transparent": false,
   "settings": [],
   "api": {
-    "getData": { "method": "GET", "path": "/" },
-    "refresh": { "method": "POST", "path": "/refresh" }
+    "getData": {
+      "method": "GET",
+      "path": "/"
+    },
+    "refresh": {
+      "method": "POST",
+      "path": "/refresh"
+    }
   },
   "devices": {
     "type": "app",
     "singular": false,
-    "filter": { "capabilities": "postnl_package_count|dhl_parcel_count" }
+    "filter": {
+      "capabilities": "postnl_package_count|dhl_parcel_count|dpd_parcel_count|ups_parcel_count|budbee_parcel_count|homerr_parcel_count|fedex_parcel_count|gls_parcel_count|inpost_uk_parcel_count|bpost_parcel_count|royal_mail_parcel_count"
+    }
   }
 }

@@ -1,0 +1,41 @@
+{
+  "name": {
+    "en": "Homerr",
+    "nl": "Homerr",
+    "de": "Homerr",
+    "fr": "Homerr",
+    "it": "Homerr",
+    "sv": "Homerr",
+    "no": "Homerr",
+    "es": "Homerr",
+    "da": "Homerr",
+    "ru": "Homerr",
+    "pl": "Homerr",
+    "ko": "Homerr",
+    "ar": "Homerr"
+  },
+  "class": "sensor",
+  "capabilities": [
+    "homerr_parcel_count",
+    "homerr_status",
+    "myparcel_connection_status",
+    "homerr_last_update"
+  ],
+  "platforms": [
+    "local"
+  ],
+  "images": {
+    "small": "/drivers/homerr/assets/images/small.png",
+    "large": "/drivers/homerr/assets/images/large.png"
+  },
+  "pair": [
+    {
+      "id": "login"
+    }
+  ],
+  "repair": [
+    {
+      "id": "repair"
+    }
+  ]
+}

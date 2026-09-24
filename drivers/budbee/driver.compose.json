@@ -1,0 +1,41 @@
+{
+  "name": {
+    "en": "Budbee",
+    "nl": "Budbee",
+    "de": "Budbee",
+    "fr": "Budbee",
+    "it": "Budbee",
+    "sv": "Budbee",
+    "no": "Budbee",
+    "es": "Budbee",
+    "da": "Budbee",
+    "ru": "Budbee",
+    "pl": "Budbee",
+    "ko": "Budbee",
+    "ar": "Budbee"
+  },
+  "class": "sensor",
+  "capabilities": [
+    "budbee_parcel_count",
+    "budbee_status",
+    "myparcel_connection_status",
+    "budbee_last_update"
+  ],
+  "platforms": [
+    "local"
+  ],
+  "images": {
+    "small": "/drivers/budbee/assets/images/small.png",
+    "large": "/drivers/budbee/assets/images/large.png"
+  },
+  "pair": [
+    {
+      "id": "login"
+    }
+  ],
+  "repair": [
+    {
+      "id": "repair"
+    }
+  ]
+}

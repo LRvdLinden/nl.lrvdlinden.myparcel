@@ -1,1 +1,14 @@
-MyParcel voor Homey combineert PostNL en DHL Parcel in één app. Voeg een PostNL-device of DHL Parcel-device toe met de bestaande koppelmethodes. De widget PostNL Poststukken toont poststukken van alle PostNL-devices. De widget MyParcel Pakketten combineert pakketten van alle PostNL- en DHL Parcel-devices en toont per zending het logo van de vervoerder.
+MyParcel brengt ondersteunde pakketvervoerders samen in Homey. Bekijk je pakketten op één plek met Homey-apparaten, Flows en widgets.
+
+Ondersteunde landen en vervoerders
+
+- 🇳🇱 Nederland: PostNL, DHL, DPD, Budbee, Homerr / Vinted Go, FedEx en GLS.
+- 🇧🇪 België: bpost.
+- 🇬🇧 Verenigd Koninkrijk: InPost UK.
+- 🇩🇪 Duitsland: Post & DHL.
+- 🗺️ Internationaal: UPS.
+
+Installatie
+
+Voor installatie- en koppelinstructies per vervoerder, zie het MyParcel Community-topic:
+https://community.homey.app/t/app-pro-myparcel/159800

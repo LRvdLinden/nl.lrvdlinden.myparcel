@@ -1,0 +1,73 @@
+{
+  "pair": {
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "connect": "Conectar cuenta",
+    "title": "Add My PostNL",
+    "subtitle": "Connect each device to one PostNL account.",
+    "language_marker": "en"
+  },
+  "widget": {
+    "loading": "Cargando…",
+    "none": "No se encontraron paquetes.",
+    "shipment": "Envío DHL",
+    "unknown": "Desconocido",
+    "active": "Activo",
+    "delivered": "Entregado",
+    "offline": "Sin conexión"
+  },
+  "errors": {
+    "not_authenticated": "La cuenta DHL no está conectada."
+  },
+  "status": {
+    "no_active": "No hay envíos activos"
+  },
+  "device": {
+    "name": "My PostNL"
+  },
+  "carrier": {
+    "pending": "Account API not configured"
+  },
+  "ups": {
+    "pair": {
+      "country": "País",
+      "language": "Idioma",
+      "account_title": "Cuenta UPS",
+      "account_intro": "Inicia sesión primero en UPS y pega tu token de sesión UPS autenticado. MyParcel no almacena tu contraseña de UPS.",
+      "session_token": "Token de sesión UPS",
+      "connect": "Conectar UPS",
+      "manual_title": "Alternativa manual",
+      "manual_intro": "Si la importación de sesión no está disponible, añade números de seguimiento UPS, uno por línea.",
+      "tracking_numbers": "Números de seguimiento",
+      "add_tracking": "Añadir números",
+      "missing_token": "Introduce un token de sesión UPS.",
+      "missing_tracking": "Introduce al menos un número de seguimiento UPS.",
+      "callback": "Callback de inicio de sesión UPS",
+      "callback_intro": "Inicia sesión en UPS con UPS Token Helper y pega el callback ups://login completo.",
+      "connect_callback": "Conectar UPS"
+    }
+  },
+  "common_status": {
+    "connected": "Conectado",
+    "disconnected": "Desconectado",
+    "no_packages": "Sin paquetes",
+    "unknown": "Desconocido"
+  },
+  "package_status": {
+    "delivered": "Entregado",
+    "transit": "En tránsito",
+    "out": "En reparto",
+    "announced": "Anunciado",
+    "accepted": "Recibido por el transportista",
+    "picked": "Recogido",
+    "ready": "Listo para recoger",
+    "attempt": "Intento de entrega realizado",
+    "delayed": "Retrasado",
+    "cancelled": "Cancelado",
+    "returned": "Devuelto",
+    "returning": "Devolución en tránsito",
+    "customs": "Tramitación aduanera",
+    "exception": "Problema de entrega",
+    "unknown": "Estado desconocido"
+  }
+}

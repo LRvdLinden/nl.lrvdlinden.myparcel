@@ -1,0 +1,25 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><style>:dir(rtl){direction:rtl;text-align:right}</style></head><body class="homey-widget-full"><header class="homey-header">
+  <div style="text-align:center;margin-bottom:var(--homey-su-4);">
+    <img src="../../../drivers/ups/icon.svg" alt="UPS" style="max-width:120px;max-height:72px;">
+  </div>
+</header>
+<div class="homey-form-group"><label class="homey-form-label" data-i18n="ups.pair.country">Country</label><select id="country" class="homey-form-select">
+      <option value="NL">Netherlands</option><option value="BE">Belgium</option>
+      <option value="DE">Germany</option><option value="FR">France</option>
+      <option value="GB">United Kingdom</option><option value="US">United States</option>
+      <option value="CA">Canada</option><option value="IT">Italy</option>
+      <option value="ES">Spain</option><option value="SE">Sweden</option>
+      <option value="NO">Norway</option><option value="DK">Denmark</option>
+      <option value="PL">Poland</option>
+    </select></div>
+<div class="homey-form-group"><label class="homey-form-label" data-i18n="ups.pair.language">Language</label><select id="language" class="homey-form-select">
+      <option value="nl">Nederlands</option><option value="en">English</option>
+      <option value="de">Deutsch</option><option value="fr">Français</option>
+      <option value="it">Italiano</option><option value="es">Español</option>
+      <option value="sv">Svenska</option><option value="no">Norsk</option>
+      <option value="da">Dansk</option><option value="pl">Polski</option>
+    </select></div>
+<fieldset class="homey-form-fieldset"><legend class="homey-form-legend">UPS Token Helper 0.1.5</legend><p class="homey-form-description" data-i18n="ups.pair.callback_intro">Sign in to UPS with UPS Token Helper 0.1.5 and paste the captured UPS login data. Log in to UPS, open the UPS dashboard, wait until the helper reports that the PPC web session is ready, then paste the web_session pairing value here.</p>
+<div class="homey-form-group"><label class="homey-form-label" data-i18n="ups.pair.callback">UPS login callback</label><textarea id="callback" class="homey-form-textarea" rows="4" autocomplete="off"></textarea></div><button id="connect" class="homey-button-primary-full" data-i18n="ups.pair.connect_callback">Connect UPS</button></fieldset>
+<fieldset class="homey-form-fieldset"><legend class="homey-form-legend" data-i18n="ups.pair.manual_title">Manual fallback</legend><div class="homey-form-group"><label class="homey-form-label" data-i18n="ups.pair.tracking_numbers">Tracking numbers</label><textarea id="tracking" class="homey-form-textarea" rows="4"></textarea></div><button id="manual" class="homey-button-secondary-full" data-i18n="ups.pair.add_tracking">Add tracking numbers</button></fieldset>
+<script>const defaults={NL:'nl',BE:'nl',DE:'de',FR:'fr',GB:'en',US:'en',CA:'en',IT:'it',ES:'es',SE:'sv',NO:'no',DK:'da',PL:'pl'};country.onchange=()=>language.value=defaults[country.value]||'en';connect.onclick=async()=>{connect.disabled=true;try{const r=await Homey.emit('connect_callback',{callback:callback.value.trim(),countryCode:country.value,language:language.value});Homey.done()}catch(e){Homey.alert(e.message||String(e));connect.disabled=false}};manual.onclick=async()=>{const numbers=tracking.value.split(/\r?\n|,/).map(v=>v.trim()).filter(Boolean);if(!numbers.length)return Homey.alert(Homey.__('ups.pair.missing_tracking'));manual.disabled=true;try{const r=await Homey.emit('connect_manual',{trackingNumbers:numbers,countryCode:country.value,language:language.value});Homey.done()}catch(e){Homey.alert(e.message||String(e));manual.disabled=false}};</script></body></html>

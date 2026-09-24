@@ -1,0 +1,99 @@
+{
+  "name": {
+    "en": "GLS",
+    "nl": "GLS",
+    "de": "GLS",
+    "fr": "GLS",
+    "it": "GLS",
+    "sv": "GLS",
+    "no": "GLS",
+    "es": "GLS",
+    "da": "GLS",
+    "ru": "GLS",
+    "pl": "GLS",
+    "ko": "GLS",
+    "ar": "GLS"
+  },
+  "class": "sensor",
+  "capabilities": [
+    "gls_parcel_count",
+    "gls_status",
+    "myparcel_connection_status",
+    "gls_last_update"
+  ],
+  "platforms": [
+    "local"
+  ],
+  "images": {
+    "small": "/drivers/gls/assets/images/small.png",
+    "large": "/drivers/gls/assets/images/large.png"
+  },
+  "pair": [
+    {
+      "id": "login"
+    }
+  ],
+  "repair": [
+    {
+      "id": "repair"
+    }
+  ],
+  "settings": [
+    {
+      "id": "username",
+      "type": "text",
+      "label": {
+        "en": "MyGLS username",
+        "nl": "MyGLS gebruikersnaam"
+      },
+      "value": ""
+    },
+    {
+      "id": "password",
+      "type": "password",
+      "label": {
+        "en": "MyGLS password",
+        "nl": "MyGLS wachtwoord"
+      },
+      "value": ""
+    },
+    {
+      "id": "subscription_key",
+      "type": "password",
+      "label": {
+        "en": "API subscription key",
+        "nl": "API subscription key"
+      },
+      "value": ""
+    },
+    {
+      "id": "parcel_list_url",
+      "type": "text",
+      "label": {
+        "en": "Parcel-list endpoint",
+        "nl": "Pakketlijst-endpoint"
+      },
+      "value": ""
+    },
+    {
+      "id": "track_url_template",
+      "type": "text",
+      "label": {
+        "en": "Parcel-details endpoint",
+        "nl": "Pakketdetails-endpoint"
+      },
+      "value": ""
+    },
+    {
+      "id": "discovery_days",
+      "type": "number",
+      "label": {
+        "en": "Automatic discovery days",
+        "nl": "Dagen automatisch zoeken"
+      },
+      "value": 21,
+      "min": 1,
+      "max": 90
+    }
+  ]
+}

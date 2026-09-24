@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 180">
+<g fill="none" stroke="#00CDB5" stroke-width="18" stroke-linecap="round" stroke-linejoin="round">
+ <path d="M55 136V88c0-37 27-64 64-64 36 0 63 27 63 64s-27 64-63 64H55Z"/>
+ <circle cx="119" cy="88" r="14"/>
+ <path d="M119 24v-12"/>
+</g><path fill="#B9E631" d="M55 136h43L55 109Z"/>
+<text x="205" y="116" font-family="Arial,Helvetica,sans-serif" font-size="72" font-weight="800" fill="#00CDB5">HOMERR</text></svg>

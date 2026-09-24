@@ -15,16 +15,23 @@
     "ko": "PostNL 우편물",
     "ar": "بريد PostNL"
   },
-  "height": 280,
-  "transparent": false,
-  "settings": [],
+  "height": 250,
   "api": {
-    "getData": { "method": "GET", "path": "/" },
-    "sync": { "method": "POST", "path": "/sync" }
+    "getData": {
+      "method": "GET",
+      "path": "/"
+    },
+    "sync": {
+      "method": "POST",
+      "path": "/sync"
+    }
   },
   "devices": {
     "type": "app",
     "singular": true,
-    "filter": { "capabilities": "postnl_mail_count" }
-  }
+    "filter": {
+      "capabilities": "postnl_mail_count"
+    }
+  },
+  "settings": []
 }

@@ -1,0 +1,63 @@
+{
+  "name": {
+    "en": "Royal Mail",
+    "nl": "Royal Mail",
+    "de": "Royal Mail",
+    "fr": "Royal Mail",
+    "it": "Royal Mail",
+    "sv": "Royal Mail",
+    "no": "Royal Mail",
+    "es": "Royal Mail",
+    "da": "Royal Mail",
+    "ru": "Royal Mail",
+    "pl": "Royal Mail",
+    "ko": "Royal Mail",
+    "ar": "Royal Mail"
+  },
+  "class": "sensor",
+  "capabilities": [
+    "royal_mail_parcel_count",
+    "royal_mail_status",
+    "myparcel_connection_status",
+    "royal_mail_last_update"
+  ],
+  "platforms": [
+    "local"
+  ],
+  "images": {
+    "small": "/drivers/royal-mail/assets/images/small.png",
+    "large": "/drivers/royal-mail/assets/images/large.png"
+  },
+  "settings": [
+    {
+      "id": "api_key",
+      "type": "password",
+      "label": {
+        "en": "Click & Drop API key",
+        "nl": "Click & Drop API-sleutel"
+      },
+      "value": ""
+    },
+    {
+      "id": "discovery_days",
+      "type": "number",
+      "label": {
+        "en": "Order history (days)",
+        "nl": "Orderhistorie (dagen)"
+      },
+      "value": 30,
+      "min": 1,
+      "max": 90
+    }
+  ],
+  "pair": [
+    {
+      "id": "login"
+    }
+  ],
+  "repair": [
+    {
+      "id": "repair"
+    }
+  ]
+}

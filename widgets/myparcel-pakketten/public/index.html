@@ -1,0 +1,130 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+:root{color-scheme:light dark;--brand:#105945;--brand-soft:#e6f3ee;--card:#f4f4f5;--header:#fafafa;--border:#dedee0;--row:#fff;--carrier:#f3f3f4;--primary:#232323;--secondary:#747378;--muted:#97969b;--title:#77767b;--pill:#e8f5ea;--pill-text:#1f3023;--dialog:#fff;--stat:#f4f8f6;--backdrop:#10231d70}
+*{box-sizing:border-box}
+html,body{width:100%;height:100%;margin:0;overflow:hidden;background:transparent;color:var(--primary);font:14px/1.28 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+button{font:inherit}
+.card{display:grid;grid-template-rows:52px minmax(0,1fr);height:100%;border-radius:17px;overflow:hidden;background:var(--card);color:var(--primary)}
+header{display:flex;align-items:center;padding:0 18px;border-bottom:1px solid var(--border);background:var(--header)}
+.app{width:36px;height:36px;object-fit:contain}
+h1{margin:0 0 0 auto;color:var(--title);font-size:18px;font-weight:600;white-space:nowrap}
+#c{overflow-y:auto;padding:10px 12px;color:var(--primary)}
+.list{display:grid;gap:8px}
+.p{display:grid;width:100%;grid-template-columns:54px minmax(0,1fr) minmax(70px,120px);gap:10px;align-items:center;padding:8px 10px;border:1px solid var(--border);border-radius:11px;background:var(--row);color:var(--primary);text-align:start;cursor:pointer}
+.p:active{transform:scale(.992)}
+.p:focus-visible{outline:3px solid color-mix(in srgb,var(--brand) 45%,transparent);outline-offset:1px}
+.carrier{display:grid;place-items:center;width:54px;height:42px;border-radius:9px;background:var(--carrier)}
+.carrier img{display:block;max-width:44px;max-height:30px;object-fit:contain}
+.meta{min-width:0;color:var(--primary)}
+.sender{color:var(--primary);font-weight:750;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.carriername,.detail{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--secondary);font-size:12px}
+.detail{font-size:11px;color:var(--muted)}
+.badge{display:block;max-width:120px;padding:5px 8px;border-radius:999px;background:var(--pill);color:var(--pill-text);font-size:10px;font-weight:800;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.state{display:grid;place-items:center;height:100%;padding:20px;text-align:center;color:var(--title)}
+.dialog-backdrop{position:fixed;inset:0;z-index:20;display:grid;place-items:center;padding:14px;background:var(--backdrop);backdrop-filter:blur(4px)}
+.dialog-backdrop[hidden]{display:none}
+.dialog{position:relative;width:min(350px,100%);max-height:calc(100vh - 28px);overflow:auto;border-radius:24px;background:var(--dialog);color:var(--primary);box-shadow:0 18px 50px #071e164f;text-align:start}
+.close{position:absolute;top:10px;inset-inline-end:10px;z-index:2;display:grid;place-items:center;width:34px;height:34px;border:0;border-radius:50%;background:#ffffffde;color:#26332e;font-size:22px;line-height:1;cursor:pointer;box-shadow:0 1px 6px #0001}
+.popup-hero{display:flex;align-items:center;gap:14px;padding:19px 54px 16px 18px;background:linear-gradient(140deg,#e3f2ec,#f8fbfa)}
+.popup-logo{display:grid;place-items:center;flex:0 0 auto;width:72px;height:64px;border-radius:18px;background:#fff;box-shadow:0 0 0 4px #ffffffa8,0 4px 14px #173c2e1c}
+.popup-logo img{display:block;max-width:58px;max-height:40px;object-fit:contain}
+.identity{min-width:0}
+.popup-name{display:block;font-size:20px;line-height:1.15;overflow-wrap:anywhere}
+.carrier-chip{display:inline-block;margin-top:7px;padding:3px 9px;border-radius:20px;background:#fff;color:var(--brand);font-size:11px;font-weight:750}
+.popup-status{padding:14px 18px 10px}
+.status-label{display:block;margin-bottom:4px;color:var(--brand);font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.03em}
+.status-value{margin:0;font-size:17px;font-weight:800;overflow-wrap:anywhere}
+.tracking-sub{margin:5px 0 0;color:var(--secondary);font-size:12px;overflow-wrap:anywhere}
+.stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;padding:0 18px 10px}
+.stat{min-width:0;padding:9px 11px;border-radius:13px;background:var(--stat)}
+.stat span,.detail-label{display:block;color:var(--secondary);font-size:10px}
+.stat strong{display:block;margin-top:3px;font-size:15px;overflow-wrap:anywhere}
+.detail-list{display:grid;gap:0;padding:0 18px 8px}
+.detail-row{display:grid;grid-template-columns:minmax(92px,38%) minmax(0,1fr);gap:10px;padding:8px 0;border-top:1px solid var(--border)}
+.detail-value{min-width:0;color:var(--primary);font-size:12px;font-weight:650;overflow-wrap:anywhere;text-align:end}
+.popup-actions{display:grid;grid-template-columns:1fr;gap:8px;padding:10px 18px 16px;border-top:1px solid var(--border)}
+.track{min-height:42px;border:0;border-radius:14px;padding:10px 14px;background:var(--brand);color:#fff;font-weight:800;cursor:pointer}
+.track[hidden]{display:none}
+@media(prefers-color-scheme:dark){
+ :root{--card:#202022;--header:#29292b;--border:#424244;--row:#343436;--carrier:#252527;--primary:#f4f4f5;--secondary:#c4c3c7;--muted:#aaa9ad;--title:#d3d2d5;--pill:#23432b;--pill-text:#eef8f0;--dialog:#292b2a;--stat:#323a36;--backdrop:#07110d99;--brand-soft:#244137}
+ .popup-hero{background:linear-gradient(140deg,#264638,#2b3330)}
+ .popup-logo{background:#f7f7f7;box-shadow:0 0 0 4px #325444}
+ .carrier-chip{background:#344d43;color:#b9e8d6}
+ .status-label{color:#9ed9c3}
+ .close{background:#3d4642;color:#fff}
+}
+</style>
+</head>
+<body>
+<main class="card">
+<header><img class="app" src="icon.svg"><h1 id="title">MyParcel Packages</h1></header>
+<section id="c"><div class="state">Loading…</div></section>
+</main>
+<div id="backdrop" class="dialog-backdrop" hidden><section id="dialog" class="dialog" role="dialog" aria-modal="true"></section></div>
+<script>
+function localizePackageStatus(value){
+ const raw=String(value||'').trim(),k=raw.toLowerCase().replace(/[\s./-]+/g,'_');
+ const nl={delivered:'Bezorgd',delivered_to_recipient:'Bezorgd',parcel_delivered:'Bezorgd',in_delivery:'Onderweg',in_transit:'Onderweg',transit:'Onderweg',out_for_delivery:'Onderweg voor bezorging',announced:'Aangemeld',registered:'Aangemeld',pre_transit:'Aangemeld',information_received:'Aangemeld',label_created:'Aangemeld',created:'Aangemeld',accepted:'Ontvangen door vervoerder',picked_up:'Opgehaald',ready_for_pickup:'Klaar om op te halen',available_for_pickup:'Klaar om op te halen',at_pickup_point:'Klaar om op te halen',delivery_attempted:'Bezorgpoging gedaan',delayed:'Vertraagd',exception:'Probleem met bezorging',cancelled:'Geannuleerd',canceled:'Geannuleerd',returned:'Retour',returning:'Retour onderweg'};
+ return nl[k]||raw.replace(/_/g,' ').replace(/\b\w/g,c=>c.toUpperCase());
+}
+const i18n={
+ en:{title:'MyParcel Packages',empty:'No packages found.',select:'Select one or more package devices for this widget.',details:'Package details',status:'Status',sender:'Sender',tracking:'Tracking number',deliveryDate:'Delivery date',deliveryWindow:'Delivery window',updated:'Last update',account:'Account',receiver:'Receiver',service:'Service',deliveryPoint:'Delivery point',weight:'Weight',product:'Product',partner:'Partner',lastEvent:'Last event',from:'From',to:'To',accessPoint:'Access point',shipmentType:'Shipment type',direction:'Direction',track:'Track & Trace',close:'Close'},
+ nl:{title:'MyParcel Pakketten',empty:'Geen pakketten gevonden.',select:'Selecteer één of meer pakketdiensten voor deze widget.',details:'Pakketdetails',status:'Status',sender:'Afzender',tracking:'Trackingnummer',deliveryDate:'Bezorgdatum',deliveryWindow:'Bezorgvenster',updated:'Laatste update',account:'Account',receiver:'Ontvanger',service:'Service',deliveryPoint:'Bezorgpunt',weight:'Gewicht',product:'Product',partner:'Partner',lastEvent:'Laatste gebeurtenis',from:'Van',to:'Naar',accessPoint:'Afhaalpunt',shipmentType:'Type zending',direction:'Richting',track:'Track & Trace',close:'Sluiten'},
+ de:{title:'MyParcel Pakete',empty:'Keine Pakete gefunden.',select:'Wähle ein oder mehrere Paketgeräte für dieses Widget.',details:'Paketdetails',status:'Status',sender:'Absender',tracking:'Sendungsnummer',deliveryDate:'Zustelldatum',deliveryWindow:'Zustellzeitfenster',updated:'Letzte Aktualisierung',account:'Konto',receiver:'Empfänger',service:'Service',deliveryPoint:'Zustellort',weight:'Gewicht',product:'Produkt',partner:'Partner',lastEvent:'Letztes Ereignis',from:'Von',to:'Nach',accessPoint:'Abholpunkt',shipmentType:'Sendungsart',direction:'Richtung',track:'Sendung verfolgen',close:'Schließen'},
+ fr:{title:'Colis MyParcel',empty:'Aucun colis trouvé.',select:'Sélectionnez un ou plusieurs appareils de colis pour ce widget.',details:'Détails du colis',status:'Statut',sender:'Expéditeur',tracking:'Numéro de suivi',deliveryDate:'Date de livraison',deliveryWindow:'Créneau de livraison',updated:'Dernière mise à jour',account:'Compte',receiver:'Destinataire',service:'Service',deliveryPoint:'Point de livraison',weight:'Poids',product:'Produit',partner:'Partenaire',lastEvent:'Dernier événement',from:'De',to:'Vers',accessPoint:'Point relais',shipmentType:'Type d’envoi',direction:'Direction',track:'Suivre le colis',close:'Fermer'},
+ it:{title:'Pacchi MyParcel',empty:'Nessun pacco trovato.',select:'Seleziona uno o più dispositivi pacchi per questo widget.',details:'Dettagli pacco',status:'Stato',sender:'Mittente',tracking:'Numero di tracciamento',deliveryDate:'Data di consegna',deliveryWindow:'Finestra di consegna',updated:'Ultimo aggiornamento',account:'Account',receiver:'Destinatario',service:'Servizio',deliveryPoint:'Punto di consegna',weight:'Peso',product:'Prodotto',partner:'Partner',lastEvent:'Ultimo evento',from:'Da',to:'A',accessPoint:'Punto di ritiro',shipmentType:'Tipo di spedizione',direction:'Direzione',track:'Traccia spedizione',close:'Chiudi'},
+ sv:{title:'MyParcel-paket',empty:'Inga paket hittades.',select:'Välj en eller flera paketenheter för widgeten.',details:'Paketdetaljer',status:'Status',sender:'Avsändare',tracking:'Spårningsnummer',deliveryDate:'Leveransdatum',deliveryWindow:'Leveransfönster',updated:'Senaste uppdatering',account:'Konto',receiver:'Mottagare',service:'Tjänst',deliveryPoint:'Leveranspunkt',weight:'Vikt',product:'Produkt',partner:'Partner',lastEvent:'Senaste händelse',from:'Från',to:'Till',accessPoint:'Utlämningsställe',shipmentType:'Försändelsetyp',direction:'Riktning',track:'Spåra paket',close:'Stäng'},
+ no:{title:'MyParcel-pakker',empty:'Ingen pakker funnet.',select:'Velg én eller flere pakkeenheter for widgeten.',details:'Pakkedetaljer',status:'Status',sender:'Avsender',tracking:'Sporingsnummer',deliveryDate:'Leveringsdato',deliveryWindow:'Leveringsvindu',updated:'Sist oppdatert',account:'Konto',receiver:'Mottaker',service:'Tjeneste',deliveryPoint:'Leveringspunkt',weight:'Vekt',product:'Produkt',partner:'Partner',lastEvent:'Siste hendelse',from:'Fra',to:'Til',accessPoint:'Hentested',shipmentType:'Forsendelsestype',direction:'Retning',track:'Spor pakke',close:'Lukk'},
+ es:{title:'Paquetes MyParcel',empty:'No se encontraron paquetes.',select:'Selecciona uno o más dispositivos de paquetes para este widget.',details:'Detalles del paquete',status:'Estado',sender:'Remitente',tracking:'Número de seguimiento',deliveryDate:'Fecha de entrega',deliveryWindow:'Franja de entrega',updated:'Última actualización',account:'Cuenta',receiver:'Destinatario',service:'Servicio',deliveryPoint:'Punto de entrega',weight:'Peso',product:'Producto',partner:'Socio',lastEvent:'Último evento',from:'Desde',to:'Hasta',accessPoint:'Punto de recogida',shipmentType:'Tipo de envío',direction:'Dirección',track:'Seguimiento',close:'Cerrar'},
+ da:{title:'MyParcel-pakker',empty:'Ingen pakker fundet.',select:'Vælg en eller flere pakkeenheder til denne widget.',details:'Pakkedetaljer',status:'Status',sender:'Afsender',tracking:'Sporingsnummer',deliveryDate:'Leveringsdato',deliveryWindow:'Leveringsvindue',updated:'Seneste opdatering',account:'Konto',receiver:'Modtager',service:'Service',deliveryPoint:'Leveringssted',weight:'Vægt',product:'Produkt',partner:'Partner',lastEvent:'Seneste hændelse',from:'Fra',to:'Til',accessPoint:'Afhentningssted',shipmentType:'Forsendelsestype',direction:'Retning',track:'Spor pakke',close:'Luk'},
+ ru:{title:'Посылки MyParcel',empty:'Посылки не найдены.',select:'Выберите одно или несколько устройств доставки для этого виджета.',details:'Детали посылки',status:'Статус',sender:'Отправитель',tracking:'Номер отслеживания',deliveryDate:'Дата доставки',deliveryWindow:'Интервал доставки',updated:'Последнее обновление',account:'Аккаунт',receiver:'Получатель',service:'Сервис',deliveryPoint:'Пункт доставки',weight:'Вес',product:'Продукт',partner:'Партнёр',lastEvent:'Последнее событие',from:'Откуда',to:'Куда',accessPoint:'Пункт выдачи',shipmentType:'Тип отправления',direction:'Направление',track:'Отследить',close:'Закрыть'},
+ pl:{title:'Paczki MyParcel',empty:'Nie znaleziono paczek.',select:'Wybierz jedno lub więcej urządzeń paczkowych dla tego widżetu.',details:'Szczegóły paczki',status:'Status',sender:'Nadawca',tracking:'Numer śledzenia',deliveryDate:'Data dostawy',deliveryWindow:'Okno dostawy',updated:'Ostatnia aktualizacja',account:'Konto',receiver:'Odbiorca',service:'Usługa',deliveryPoint:'Punkt dostawy',weight:'Waga',product:'Produkt',partner:'Partner',lastEvent:'Ostatnie zdarzenie',from:'Od',to:'Do',accessPoint:'Punkt odbioru',shipmentType:'Typ przesyłki',direction:'Kierunek',track:'Śledź przesyłkę',close:'Zamknij'},
+ ko:{title:'MyParcel 택배',empty:'택배가 없습니다.',select:'이 위젯에 사용할 하나 이상의 택배 기기를 선택하세요.',details:'택배 상세 정보',status:'상태',sender:'발송인',tracking:'운송장 번호',deliveryDate:'배송 날짜',deliveryWindow:'배송 시간대',updated:'마지막 업데이트',account:'계정',receiver:'수령인',service:'서비스',deliveryPoint:'배송 지점',weight:'무게',product:'상품',partner:'파트너',lastEvent:'마지막 이벤트',from:'출발지',to:'도착지',accessPoint:'수령 지점',shipmentType:'배송 유형',direction:'방향',track:'배송 조회',close:'닫기'},
+ ar:{title:'طرود MyParcel',empty:'لم يتم العثور على طرود.',select:'اختر جهاز طرود واحدًا أو أكثر لهذه الأداة.',details:'تفاصيل الطرد',status:'الحالة',sender:'المرسل',tracking:'رقم التتبع',deliveryDate:'تاريخ التسليم',deliveryWindow:'نافذة التسليم',updated:'آخر تحديث',account:'الحساب',receiver:'المستلم',service:'الخدمة',deliveryPoint:'نقطة التسليم',weight:'الوزن',product:'المنتج',partner:'الشريك',lastEvent:'آخر حدث',from:'من',to:'إلى',accessPoint:'نقطة الاستلام',shipmentType:'نوع الشحنة',direction:'الاتجاه',track:'تتبع الشحنة',close:'إغلاق'}
+};
+function L(v){v=String(v||'en').split('-')[0];return i18n[v]?v:'en'}
+function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]))}
+function dateDMY(value,timeZone){
+ const raw=String(value||'').trim(); if(!raw)return'';
+ let m=raw.match(/^(\d{4})-(\d{2})-(\d{2})(?:$|[T\s])/); if(m&&raw.length<=10)return `${m[3]}-${m[2]}-${m[1]}`;
+ m=raw.match(/^(\d{2})[-/.](\d{2})[-/.](\d{4})$/); if(m)return `${m[1]}-${m[2]}-${m[3]}`;
+ const d=new Date(raw); if(Number.isNaN(d.getTime()))return raw;
+ try{const parts=new Intl.DateTimeFormat('en-GB',{timeZone,day:'2-digit',month:'2-digit',year:'numeric'}).formatToParts(d);const get=t=>parts.find(p=>p.type===t)?.value||'';return `${get('day')}-${get('month')}-${get('year')}`;}catch(_){return raw;}
+}
+function dateTime(value,locale,timeZone){if(!value)return'';const d=new Date(value);if(Number.isNaN(d.getTime()))return String(value);try{return new Intl.DateTimeFormat(locale,{timeZone,dateStyle:'short',timeStyle:'short'}).format(d)}catch(_){return String(value)}}
+function text(v){return String(v??'').trim()}
+function onHomeyReady(Homey){
+ const c=document.getElementById('c'),title=document.getElementById('title'),backdrop=document.getElementById('backdrop'),dialog=document.getElementById('dialog');
+ let cfg={locale:'en',timeZone:'UTC'},labels=i18n.en,packages=[];
+ const el=(tag,cls,value)=>{const n=document.createElement(tag);if(cls)n.className=cls;if(value!==undefined)n.textContent=value;return n};
+ function showDetailRow(list,label,value){value=text(value);if(!value)return;const row=el('div','detail-row');row.append(el('span','detail-label',label),el('strong','detail-value',value));list.append(row)}
+ function stat(label,value){value=text(value);if(!value)return null;const n=el('div','stat');n.append(el('span','',label),el('strong','',value));return n}
+ function openUrl(url){if(!url)return;try{if(typeof Homey.openURL==='function')return Homey.openURL(url)}catch(_){}try{window.open(url,'_blank','noopener,noreferrer')}catch(_){}}
+ function openPopup(p){
+  Homey.hapticFeedback?.();
+  const close=el('button','close','×');close.type='button';close.setAttribute('aria-label',labels.close);close.onclick=()=>{backdrop.hidden=true};
+  const hero=el('div','popup-hero'),logo=el('div','popup-logo'),img=document.createElement('img');img.src=p.carrierLogo||'icon.svg';img.alt=text(p.carrier);logo.append(img);hero.append(logo);
+  const identity=el('div','identity'),name=text(p.sender||p.title||p.tracking||p.carrier||labels.details);identity.append(el('strong','popup-name',name),el('span','carrier-chip',text(p.carrier)));hero.append(identity);
+  const status=el('div','popup-status');status.append(el('span','status-label',labels.status),el('p','status-value',text(p.status)||'—'));if(p.tracking)status.append(el('p','tracking-sub',`${labels.tracking}: ${p.tracking}`));
+  const stats=el('div','stats');const dd=dateDMY(p.deliveryDate,cfg.timeZone),dw=text(p.deliveryWindow);const sd=stat(labels.deliveryDate,dd),sw=stat(labels.deliveryWindow,dw);if(sd)stats.append(sd);if(sw)stats.append(sw);
+  const list=el('div','detail-list');showDetailRow(list,labels.sender,p.sender);showDetailRow(list,labels.receiver,p.receiver);showDetailRow(list,labels.account,p.account);showDetailRow(list,labels.service,p.service);showDetailRow(list,labels.deliveryPoint,p.deliveryPoint);showDetailRow(list,labels.accessPoint,p.accessPoint);showDetailRow(list,labels.product,p.product);showDetailRow(list,labels.weight,p.weight);showDetailRow(list,labels.partner,p.partner);showDetailRow(list,labels.shipmentType,p.shipmentType);showDetailRow(list,labels.direction,p.direction);showDetailRow(list,labels.from,p.shipFrom);showDetailRow(list,labels.to,p.shipTo);showDetailRow(list,labels.lastEvent,p.lastEvent);showDetailRow(list,labels.updated,dateTime(p.updatedAt,cfg.locale,cfg.timeZone));
+  const actions=el('div','popup-actions'),track=el('button','track',labels.track);track.type='button';track.hidden=!p.detailsUrl;track.onclick=()=>openUrl(p.detailsUrl);actions.append(track);
+  dialog.replaceChildren(close,hero,status);if(stats.children.length)dialog.append(stats);if(list.children.length)dialog.append(list);if(p.detailsUrl)dialog.append(actions);backdrop.hidden=false;
+ }
+ function render(){
+  if(!packages.length){c.innerHTML='<div class="state">'+esc(labels.empty)+'</div>';return}
+  const list=el('div','list');
+  for(const p of packages){const row=el('button','p');row.type='button';const carrier=el('div','carrier'),img=document.createElement('img');img.src=p.carrierLogo||'icon.svg';img.alt=text(p.carrier);carrier.append(img);const meta=el('div','meta');const sender=el('div','sender',text(p.sender||p.title||p.tracking||p.carrier));const cname=el('div','carriername',text(p.carrier));const dd=dateDMY(p.deliveryDate,cfg.timeZone);const moment=[dd,text(p.deliveryWindow)].filter(Boolean).join(' · ');const detail=el('div','detail',moment||text(p.tracking));meta.append(sender,cname,detail);const badge=el('div','badge',text(p.status)||'—');badge.title=text(p.status);row.append(carrier,meta,badge);row.onclick=()=>openPopup(p);list.append(row)}
+  c.replaceChildren(list);
+ }
+ (async()=>{try{const deviceIds=Homey.getDeviceIds();const path='/?deviceIds='+encodeURIComponent(deviceIds.join(','));const x=await Homey.api('GET',path,{});cfg.locale=L(x.locale);cfg.timeZone=x.timeZone||'UTC';labels=i18n[cfg.locale]||i18n.en;document.documentElement.dir=cfg.locale==='ar'?'rtl':'ltr';title.textContent=labels.title;if(!deviceIds.length||!x.selectedDeviceCount){c.innerHTML='<div class="state">'+esc(labels.select)+'</div>';return}packages=Array.isArray(x.packages)?x.packages:[];render()}catch(e){c.innerHTML='<div class="state">'+esc(e.message||e)+'</div>'}})();
+ backdrop.onclick=e=>{if(e.target===backdrop)backdrop.hidden=true};document.addEventListener('keydown',e=>{if(e.key==='Escape')backdrop.hidden=true});
+ Homey.ready();
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+{
+  "name": {
+    "en": "PostNL",
+    "nl": "PostNL",
+    "de": "PostNL",
+    "fr": "PostNL",
+    "it": "PostNL",
+    "sv": "PostNL",
+    "no": "PostNL",
+    "es": "PostNL",
+    "da": "PostNL",
+    "ru": "PostNL",
+    "pl": "PostNL",
+    "ko": "PostNL",
+    "ar": "PostNL"
+  },
+  "class": "sensor",
+  "capabilities": [
+    "postnl_mail_expected",
+    "postnl_mail_count",
+    "postnl_package_count",
+    "postnl_next_delivery",
+    "postnl_status",
+    "postnl_last_update"
+  ],
+  "platforms": [
+    "local"
+  ],
+  "images": {
+    "small": "/drivers/postnl/assets/images/small.png",
+    "large": "/drivers/postnl/assets/images/large.png"
+  },
+  "pair": [
+    {
+      "id": "login_postnl"
+    }
+  ],
+  "repair": [
+    {
+      "id": "repair_login"
+    }
+  ]
+}

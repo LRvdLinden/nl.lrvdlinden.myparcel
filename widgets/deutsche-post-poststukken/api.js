@@ -1,0 +1,3 @@
+'use strict';
+function getDevice(homey,id){const d=homey.drivers.getDriver('post-dhl-de').getDevices().find(x=>x.getId()===id);if(!d)throw new Error('Post & DHL Germany device not found.');return d}
+module.exports={async getData({homey,query}){const d=getDevice(homey,query?.deviceId),x=d.getWidgetData();return{authenticated:x.authenticated,mailApiStatus:x.mailStatus,mailApiError:x.mailStatus==='endpoint_pending'?'Briefankündigung endpoint must still be captured from the current Post & DHL app.':null,letters:x.letters||[],locale:homey.i18n.getLanguage(),timeZone:homey.clock.getTimezone()}},async sync({homey,body}){await getDevice(homey,body?.deviceId).refresh(true);return{ok:true}}};

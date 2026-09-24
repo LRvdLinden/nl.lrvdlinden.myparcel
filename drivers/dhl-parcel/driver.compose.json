@@ -1,0 +1,45 @@
+{
+  "name": {
+    "en": "DHL",
+    "nl": "DHL",
+    "de": "DHL",
+    "fr": "DHL",
+    "it": "DHL",
+    "sv": "DHL",
+    "no": "DHL",
+    "es": "DHL",
+    "da": "DHL",
+    "ru": "DHL",
+    "pl": "DHL",
+    "ko": "DHL",
+    "ar": "DHL"
+  },
+  "class": "sensor",
+  "capabilities": [
+    "dhl_parcel_count",
+    "dhl_status",
+    "dhl_tracking_number",
+    "dhl_sender",
+    "dhl_delivery_date",
+    "dhl_delivery_window",
+    "myparcel_connection_status",
+    "dhl_last_update"
+  ],
+  "platforms": [
+    "local"
+  ],
+  "images": {
+    "small": "/drivers/dhl-parcel/assets/images/small.png",
+    "large": "/drivers/dhl-parcel/assets/images/large.png"
+  },
+  "pair": [
+    {
+      "id": "login_dhl"
+    }
+  ],
+  "repair": [
+    {
+      "id": "repair_login"
+    }
+  ]
+}

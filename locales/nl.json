@@ -1,0 +1,73 @@
+{
+  "pair": {
+    "email": "E-mailadres",
+    "password": "Wachtwoord",
+    "connect": "Account koppelen",
+    "title": "Add My PostNL",
+    "subtitle": "Connect each device to one PostNL account.",
+    "language_marker": "en"
+  },
+  "widget": {
+    "loading": "Laden…",
+    "none": "Geen pakketten gevonden.",
+    "shipment": "DHL-zending",
+    "unknown": "Onbekend",
+    "active": "Actief",
+    "delivered": "Bezorgd",
+    "offline": "Offline"
+  },
+  "errors": {
+    "not_authenticated": "DHL-account is niet gekoppeld."
+  },
+  "status": {
+    "no_active": "Geen actieve zendingen"
+  },
+  "device": {
+    "name": "My PostNL"
+  },
+  "carrier": {
+    "pending": "Account API not configured"
+  },
+  "ups": {
+    "pair": {
+      "country": "Land",
+      "language": "Taal",
+      "account_title": "UPS-account",
+      "account_intro": "Log eerst in bij UPS en plak daarna je geauthenticeerde UPS-sessietoken. MyParcel bewaart je UPS-wachtwoord niet.",
+      "session_token": "UPS-sessietoken",
+      "connect": "UPS koppelen",
+      "manual_title": "Handmatige fallback",
+      "manual_intro": "Als accountsessie-import niet beschikbaar is, voeg je UPS-trackingnummers toe. Eén trackingnummer per regel.",
+      "tracking_numbers": "Trackingnummers",
+      "add_tracking": "Trackingnummers toevoegen",
+      "missing_token": "Vul een UPS-sessietoken in.",
+      "missing_tracking": "Vul minimaal één UPS-trackingnummer in.",
+      "callback": "UPS-login-callback",
+      "callback_intro": "Log in bij UPS met UPS Token Helper en plak de volledige ups://login-callback.",
+      "connect_callback": "UPS koppelen"
+    }
+  },
+  "common_status": {
+    "connected": "Verbonden",
+    "disconnected": "Niet verbonden",
+    "no_packages": "Geen pakketten",
+    "unknown": "Onbekend"
+  },
+  "package_status": {
+    "delivered": "Bezorgd",
+    "transit": "Onderweg",
+    "out": "Onderweg voor bezorging",
+    "announced": "Aangemeld",
+    "accepted": "Ontvangen door vervoerder",
+    "picked": "Opgehaald",
+    "ready": "Klaar om op te halen",
+    "attempt": "Bezorgpoging gedaan",
+    "delayed": "Vertraagd",
+    "cancelled": "Geannuleerd",
+    "returned": "Retour",
+    "returning": "Retour onderweg",
+    "customs": "Douaneafhandeling",
+    "exception": "Probleem met bezorging",
+    "unknown": "Status onbekend"
+  }
+}

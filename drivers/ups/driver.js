@@ -1,79 +1,9 @@
 'use strict';
-const Homey = require('homey');
-const crypto = require('crypto');
-const { UpsApi } = require('../../lib/ups-api');
-
-function extractCode(value) {
-  const text = String(value || '').trim();
-  try { const u = new URL(text); return { code: u.searchParams.get('code') || '', state: u.searchParams.get('state') || '' }; }
-  catch (_) { return { code: text, state: '' }; }
-}
-function parseTracking(value) {
-  return [...new Set(String(value || '').split(/[\s,;]+/).map(x => x.trim().toUpperCase()).filter(Boolean))];
-}
-
-module.exports = class UpsDriver extends Homey.Driver {
-  async onInit() {
-    this.homey.flow.getConditionCard('ups_packages_underway').registerRunListener(async ({ device }) => (device.getCapabilityValue('ups_parcel_count') || 0) > 0);
-    this.homey.flow.getActionCard('ups_refresh').registerRunListener(async ({ device }) => device.refresh(true));
-  }
-
-  async onPair(session) {
-    let pending = null;
-    session.setHandler('prepare_auth', async data => {
-      const clientId = String(data.clientId || '').trim();
-      const clientSecret = String(data.clientSecret || '').trim();
-      const redirectUri = String(data.redirectUri || '').trim();
-      if (!clientId || !clientSecret || !redirectUri) throw new Error('Client ID, Client Secret and Redirect URI are required.');
-      const state = crypto.randomBytes(18).toString('hex');
-      const api = new UpsApi({ clientId, clientSecret, redirectUri });
-      pending = { clientId, clientSecret, redirectUri, state, tracking: parseTracking(data.trackingNumbers) };
-      return { url: api.authorizationUrl(state), state };
-    });
-    session.setHandler('finish_auth', async data => {
-      if (!pending) throw new Error('Start the UPS login first.');
-      const parsed = extractCode(data.callback || data.code);
-      if (!parsed.code) throw new Error('No UPS authorization code found in the callback.');
-      if (parsed.state && parsed.state !== pending.state) throw new Error('UPS OAuth state does not match. Start the login again.');
-      const api = new UpsApi(pending);
-      const tokens = await api.exchangeCode(parsed.code);
-      const id = `ups-${crypto.createHash('sha1').update(`${pending.clientId}:${Date.now()}`).digest('hex').slice(0, 16)}`;
-      return { device: {
-        name: 'UPS My Choice',
-        data: { id },
-        settings: {
-          client_id: pending.clientId,
-          client_secret: pending.clientSecret,
-          redirect_uri: pending.redirectUri,
-          access_token: tokens.access_token,
-          refresh_token: tokens.refresh_token || '',
-          tracking_numbers_json: JSON.stringify(pending.tracking),
-        },
-        capabilities: ['ups_parcel_count', 'ups_status', 'ups_last_update'],
-      }};
-    });
-  }
-
-  async onRepair(session) {
-    let pending = null;
-    session.setHandler('prepare_auth', async data => {
-      const d = session.getDevice(); const s = d.getSettings();
-      const clientId = String(data.clientId || s.client_id || '').trim();
-      const clientSecret = String(data.clientSecret || s.client_secret || '').trim();
-      const redirectUri = String(data.redirectUri || s.redirect_uri || '').trim();
-      if (!clientId || !clientSecret || !redirectUri) throw new Error('Client ID, Client Secret and Redirect URI are required.');
-      const state = crypto.randomBytes(18).toString('hex');
-      pending = { clientId, clientSecret, redirectUri, state, tracking: parseTracking(data.trackingNumbers || JSON.parse(s.tracking_numbers_json || '[]').join('\n')) };
-      return { url: new UpsApi(pending).authorizationUrl(state), state };
-    });
-    session.setHandler('finish_auth', async data => {
-      if (!pending) throw new Error('Start the UPS login first.');
-      const parsed = extractCode(data.callback || data.code);
-      if (!parsed.code) throw new Error('No UPS authorization code found.');
-      if (parsed.state && parsed.state !== pending.state) throw new Error('UPS OAuth state does not match.');
-      const api = new UpsApi(pending); const tokens = await api.exchangeCode(parsed.code); const d = session.getDevice();
-      await d.setSettings({ client_id: pending.clientId, client_secret: pending.clientSecret, redirect_uri: pending.redirectUri, access_token: tokens.access_token, refresh_token: tokens.refresh_token || '', tracking_numbers_json: JSON.stringify(pending.tracking) });
-      await d.setAvailable(); await d.refresh(true); return true;
-    });
-  }
+const Homey=require('homey');const crypto=require('crypto');const {parseCallback}=require('../../lib/ups-api');
+function loc(l,c){return `${String(l||'en').toLowerCase()}_${String(c||'US').toUpperCase()}`}
+function hid(s){return crypto.createHash('sha1').update(s).digest('hex').slice(0,20)}
+module.exports=class UpsDriver extends Homey.Driver{
+ async onInit(){this.homey.flow.getConditionCard('ups_packages_underway').registerRunListener(async({device})=>(device.getCapabilityValue('ups_parcel_count')||0)>0);this.homey.flow.getConditionCard('ups_account_connected').registerRunListener(async({device})=>device.getCapabilityValue('ups_account_status')==='Connected');this.homey.flow.getActionCard('ups_refresh').registerRunListener(async({device})=>device.refresh(true))}
+ async onPair(s){s.setHandler('connect_callback',async({callback,countryCode,language})=>{const c=parseCallback(callback),locale=loc(language,countryCode);if(c.mode!=='web_session')throw new Error('Use UPS Token Helper 0.1.5 or newer and paste the web_session pairing value.');return{device:{name:'UPS',data:{id:`ups-oidc-${hid(c.state+countryCode)}`},settings:{country_code:countryCode,locale,login_callback:c.raw,oauth_code:'',oauth_state:'',authentication_token:'',refresh_token:'',ups_session_bundle:JSON.stringify(c.bundle),tracking_numbers_json:'[]'},capabilities:["ups_parcel_count", "ups_total_count", "ups_status", "ups_tracking", "ups_sender", "ups_delivery_date", "ups_delivery_window", "ups_service", "ups_ship_from", "ups_ship_to", "ups_access_point", "ups_last_event", "ups_country", "ups_locale", "ups_account_status", "ups_last_update"]}}});s.setHandler('connect_manual',async({trackingNumbers,countryCode,language})=>{const a=[...new Set((trackingNumbers||[]).map(String).map(x=>x.trim()).filter(Boolean))];if(!a.length)throw new Error('Enter at least one UPS tracking number.');return{device:{name:'UPS',data:{id:`ups-manual-${hid(a.join('|'))}`},settings:{country_code:countryCode,locale:loc(language,countryCode),login_callback:'',oauth_code:'',oauth_state:'',authentication_token:'',refresh_token:'',tracking_numbers_json:JSON.stringify(a)},capabilities:["ups_parcel_count", "ups_total_count", "ups_status", "ups_tracking", "ups_sender", "ups_delivery_date", "ups_delivery_window", "ups_service", "ups_ship_from", "ups_ship_to", "ups_access_point", "ups_last_event", "ups_country", "ups_locale", "ups_account_status", "ups_last_update"]}}})}
+ async onRepair(s){s.setHandler('connect_callback',async({callback,countryCode,language})=>{const c=parseCallback(callback),d=s.getDevice();if(c.mode!=='web_session')throw new Error('Use UPS Token Helper 0.1.5 or newer.');await d.setSettings({country_code:countryCode,locale:loc(language,countryCode),login_callback:c.raw,oauth_code:'',oauth_state:'',authentication_token:'',refresh_token:'',ups_session_bundle:JSON.stringify(c.bundle),tracking_numbers_json:'[]'});await d.refresh(true);return true})}
 };

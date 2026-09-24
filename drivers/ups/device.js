@@ -1,39 +1,31 @@
+const localizePackageStatus = require('../../lib/status-i18n.js');
 'use strict';
-const Homey = require('homey');
-const { UpsApi } = require('../../lib/ups-api');
-
-function trackingNumbers(settings) { try { const a = JSON.parse(settings.tracking_numbers_json || '[]'); return Array.isArray(a) ? a : []; } catch (_) { return []; } }
-function activityOf(pkg) { const a = pkg?.activity; return Array.isArray(a) && a.length ? a[0] : {}; }
-function parseShipment(data, fallbackTracking) {
-  const ship = data?.trackResponse?.shipment?.[0] || data?.shipment?.[0] || data?.shipment || {};
-  const pkg = (Array.isArray(ship.package) ? ship.package[0] : ship.package) || {};
-  const act = activityOf(pkg);
-  const status = pkg.currentStatus?.description || act.status?.description || ship.currentStatus?.description || 'Connected';
-  const tracking = pkg.trackingNumber || ship.inquiryNumber || fallbackTracking;
-  const deliveryDate = pkg.deliveryDate?.[0]?.date || pkg.deliveryTime?.endTime || '';
-  const delivered = /delivered|bezorgd|zugestellt|livré|consegnato|entregado/i.test(String(status));
-  return { id: tracking, tracking, sender: ship.shipmentAddress?.find?.(x => x.type === 'SHIPPER')?.name || 'UPS', status: String(status), deliveryDate, deliveryWindow: pkg.deliveryTime ? `${pkg.deliveryTime.startTime || ''}${pkg.deliveryTime.endTime ? ` - ${pkg.deliveryTime.endTime}` : ''}` : '', updatedAt: new Date().toISOString(), delivered, detailsUrl: `https://www.ups.com/track?tracknum=${encodeURIComponent(tracking)}` };
+const Homey=require('homey');const {UpsApi}=require('../../lib/ups-api');
+function pick(o,...ks){for(const k of ks){const v=o?.[k];if(v!==undefined&&v!==null&&v!=='')return v}return''}
+function text(v){if(!v)return'';if(typeof v==='string'||typeof v==='number')return String(v);return String(pick(v,'description','name','value','code')||'')}
+function arrayFrom(d){const candidates=[d?.response?.shipments,d?.response?.packages,d?.shipments,d?.packages,d?.trackList,d?.response?.trackList,d?.data?.shipments,d?.data?.packages,d?.response,d?.data,d];return candidates.find(Array.isArray)||[]}
+function norm(x){
+ const pkg=Array.isArray(x?.package)?x.package[0]:x?.package||x,acts=Array.isArray(pkg?.activity)?pkg.activity:[],a=acts[0]||{},tracking=String(pick(pkg,'trackingNumber','trackingNbr','inquiryNumber')||pick(x,'trackingNumber','inquiryNumber')||''),status=text(pick(pkg,'currentStatus','status')||pick(a,'status')||pick(x,'status'))||'Unknown';
+ const addr=(v)=>{if(!v)return'';if(typeof v==='string')return v;return [pick(v,'city','town'),pick(v,'stateProvinceCode','countryCode')].filter(Boolean).join(', ')};
+ const shipFrom=addr(pick(x,'shipFrom','shipperAddress','origin')),shipTo=addr(pick(x,'shipTo','shipToAddress','destination')),service=text(pick(x,'service','serviceLevel')||pick(pkg,'service'));
+ const dd=Array.isArray(pkg?.deliveryDate)?pkg.deliveryDate[0]:pkg?.deliveryDate||{},dt=pick(dd,'date')||pick(pkg,'scheduledDeliveryDate','estimatedDeliveryDate'),win=pkg?.deliveryTime||{},ap=pick(pkg,'accessPoint','upsAccessPoint','alternateDeliveryLocation')||{};
+ return{id:tracking,tracking,sender:String(pick(x,'shipperName','senderName')||pick(x?.shipper,'name')||'UPS'),status,deliveryDate:String(dt||''),deliveryWindow:[pick(win,'startTime','beginTime'),pick(win,'endTime')].filter(Boolean).join(' - '),service,shipFrom,shipTo,accessPoint:text(ap)||addr(ap?.address),lastEvent:text(pick(a,'status'))||status,updatedAt:String(pick(a,'date','gmtDate')||new Date().toISOString()),delivered:/delivered|bezorgd|zugestellt|livré|consegnato|entregado/i.test(status),detailsUrl:tracking?`https://www.ups.com/track?tracknum=${encodeURIComponent(tracking)}`:''}
 }
-module.exports = class UpsDevice extends Homey.Device {
-  async onInit() { this._packages = []; this._timer = this.homey.setInterval(() => this.refresh(false), 15 * 60 * 1000); this.homey.setTimeout(() => this.refresh(true), 3000); }
-  async onDeleted() { if (this._timer) this.homey.clearInterval(this._timer); }
-  async notifyAuth() { if (this.getStoreValue('authExpiredNotified') === true) return; await this.homey.notifications.createNotification({ excerpt: `Reconnect UPS – the credentials for ${this.getName()} have expired. Repair the UPS device.` }).catch(() => {}); await this.setStoreValue('authExpiredNotified', true); }
-  async refresh() {
-    const s = this.getSettings(); const nums = trackingNumbers(s);
-    const api = new UpsApi({ clientId: s.client_id, clientSecret: s.client_secret, redirectUri: s.redirect_uri, accessToken: s.access_token, refreshToken: s.refresh_token });
-    try {
-      const rows = [];
-      for (const n of nums) { try { rows.push(parseShipment(await api.track(n), n)); } catch (e) { if ([400, 401, 403].includes(e.status)) throw e; this.error(`UPS ${n}:`, e); } }
-      if (api.accessToken !== s.access_token || api.refreshToken !== s.refresh_token) await this.setSettings({ access_token: api.accessToken, refresh_token: api.refreshToken });
-      const previous=new Map((this._packages||[]).map(x=>[x.tracking,x])); this._packages = rows; for(const p of rows){const old=previous.get(p.tracking);const tokens={tracking:p.tracking||'',status:p.status||''};if(!old)await this.homey.flow.getDeviceTriggerCard('ups_new_package').trigger(this,tokens,{}).catch(()=>{});else if(old.status!==p.status)await this.homey.flow.getDeviceTriggerCard('ups_status_changed').trigger(this,{...tokens,previous_status:old.status||''},{}).catch(()=>{})}
-      await this.setCapabilityValue('ups_parcel_count', rows.filter(x => !x.delivered).length);
-      await this.setCapabilityValue('ups_status', rows[0]?.status || (nums.length ? 'Connected' : 'Connected – add tracking numbers during repair'));
-      await this.setCapabilityValue('ups_last_update', new Date().toISOString());
-      await this.setStoreValue('authExpiredNotified', false); await this.setAvailable(); return true;
-    } catch (e) {
-      if ([400, 401, 403].includes(e.status) || /oauth|token|auth|credential/i.test(e.message)) { await this.notifyAuth(); await this.setUnavailable('UPS authorization expired').catch(() => {}); }
-      this.error(e); return false;
-    }
-  }
-  getWidgetData() { return { parcels: this._packages || [], authenticated: this.getStoreValue('authExpiredNotified') !== true, carrier: 'ups' }; }
+module.exports=class UpsDevice extends Homey.Device{
+ async onInit(){this._packages=[];this._timer=this.homey.setInterval(()=>this.refresh(false),5*60*1000);this.homey.setTimeout(()=>this.refresh(true),3000)}
+ async onDeleted(){if(this._timer)this.homey.clearInterval(this._timer)}
+ async notifyAuth(){if(this.getStoreValue('upsAuthNotice'))return;await this.homey.notifications.createNotification({excerpt:`Reconnect UPS – the UPS account for ${this.getName()} must be signed in again.`}).catch(()=>{});await this.setStoreValue('upsAuthNotice',true)}
+ async refresh(){const s=this.getSettings(),manual=(()=>{try{return JSON.parse(s.tracking_numbers_json||'[]')}catch(_){return[]}})(),sessionBundle=(()=>{try{return JSON.parse(s.ups_session_bundle||'null')}catch(_){return null}})(),api=new UpsApi({sessionBundle});
+  try{let d;
+   if(sessionBundle){d=await api.incoming()}
+   else if(manual.length){throw Object.assign(new Error('Reconnect UPS with UPS Token Helper 0.1.5 to use automatic package data.'),{status:422})}
+   else throw Object.assign(new Error('UPS is not connected. Pair again with UPS Token Helper 0.1.5.'),{status:422});
+   const rows=arrayFrom(d).map(norm).filter(x=>x.tracking);
+   const old=new Map((this._packages||[]).map(x=>[x.tracking,x]));this._packages=rows;
+   for(const p of rows){const prev=old.get(p.tracking),t=this.tokens(p);if(!prev)await this.homey.flow.getDeviceTriggerCard('ups_new_package').trigger(this,t,{}).catch(()=>{});else if(prev.status!==p.status)await this.homey.flow.getDeviceTriggerCard('ups_status_changed').trigger(this,{...t,previous_status:localizePackageStatus(this.homey,prev.status)||''},{}).catch(()=>{});if(p.delivered&&prev&&!prev.delivered)await this.homey.flow.getDeviceTriggerCard('ups_delivered').trigger(this,t,{}).catch(()=>{})}
+   const active=rows.filter(x=>!x.delivered),n=active[0]||rows[0]||{},vals={ups_parcel_count:active.length,ups_total_count:rows.length,ups_status:n.status?localizePackageStatus(this.homey,n.status):'No packages',ups_tracking:n.tracking||'',ups_sender:n.sender||'',ups_delivery_date:n.deliveryDate||'',ups_delivery_window:n.deliveryWindow||'',ups_service:n.service||'',ups_ship_from:n.shipFrom||'',ups_ship_to:n.shipTo||'',ups_access_point:n.accessPoint||'',ups_last_event:n.lastEvent||'',ups_country:s.country_code||'',ups_locale:s.locale||'',ups_account_status:this.homey.app.getConnectionLabel(true),ups_last_update:new Intl.DateTimeFormat(this.homey.i18n.getLanguage()==='nl'?'nl-NL':'en-GB',{timeZone:this.homey.clock.getTimezone(),dateStyle:'short',timeStyle:'short'}).format(new Date())};
+   for(const[k,v]of Object.entries(vals))if(this.hasCapability(k))await this.setCapabilityValue(k,v);await this.setStoreValue('upsAuthNotice',false);await this.setAvailable();return true
+  }catch(e){this.error('UPS refresh failed',{message:e.message,status:localizePackageStatus(this.homey, e.status),path:e.path,body:e.body});const auth=[400,401,403,419,440].includes(e.status),status=e.status===422?'Session unavailable':auth?`Session expired (${e.status})`:e.status?`UPS HTTP ${e.status}`:'UPS connection error';if(this.hasCapability('ups_account_status'))await this.setCapabilityValue('ups_account_status',this.homey.app.getConnectionLabel(false)).catch(()=>{});if(auth){await this.notifyAuth();await this.setUnavailable(`UPS login expired (${e.status})`).catch(()=>{})}else await this.setAvailable().catch(()=>{});return false}}
+ tokens(p){return{tracking:p.tracking||'',status:localizePackageStatus(this.homey, p.status)||'',sender:p.sender||'',delivery_date:p.deliveryDate||'',delivery_window:p.deliveryWindow||'',service:p.service||'',ship_from:p.shipFrom||'',ship_to:p.shipTo||'',access_point:p.accessPoint||'',last_event:p.lastEvent||''}}
+ getWidgetData(){return{parcels:this._packages||[],authenticated:this.getStoreValue('upsAuthNotice')!==true,carrier:'ups'}}
 };

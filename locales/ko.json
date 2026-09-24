@@ -1,0 +1,73 @@
+{
+  "pair": {
+    "email": "이메일 주소",
+    "password": "비밀번호",
+    "connect": "계정 연결",
+    "title": "Add My PostNL",
+    "subtitle": "Connect each device to one PostNL account.",
+    "language_marker": "en"
+  },
+  "widget": {
+    "loading": "불러오는 중…",
+    "none": "소포를 찾을 수 없습니다.",
+    "shipment": "DHL 배송",
+    "unknown": "알 수 없음",
+    "active": "진행 중",
+    "delivered": "배송 완료",
+    "offline": "오프라인"
+  },
+  "errors": {
+    "not_authenticated": "DHL 계정이 연결되지 않았습니다."
+  },
+  "status": {
+    "no_active": "활성 배송 없음"
+  },
+  "device": {
+    "name": "My PostNL"
+  },
+  "carrier": {
+    "pending": "Account API not configured"
+  },
+  "ups": {
+    "pair": {
+      "country": "국가",
+      "language": "언어",
+      "account_title": "UPS 계정",
+      "account_intro": "먼저 UPS에 로그인한 후 인증된 UPS 세션 토큰을 붙여넣으세요. MyParcel은 UPS 비밀번호를 저장하지 않습니다.",
+      "session_token": "UPS 세션 토큰",
+      "connect": "UPS 연결",
+      "manual_title": "수동 대체 방법",
+      "manual_intro": "계정 세션 가져오기를 사용할 수 없는 경우 UPS 운송장 번호를 한 줄에 하나씩 추가하세요.",
+      "tracking_numbers": "운송장 번호",
+      "add_tracking": "운송장 번호 추가",
+      "missing_token": "UPS 세션 토큰을 입력하세요.",
+      "missing_tracking": "UPS 운송장 번호를 하나 이상 입력하세요.",
+      "callback": "UPS 로그인 콜백",
+      "callback_intro": "UPS Token Helper로 UPS에 로그인한 뒤 전체 ups://login 콜백을 붙여넣으세요.",
+      "connect_callback": "UPS 연결"
+    }
+  },
+  "common_status": {
+    "connected": "연결됨",
+    "disconnected": "연결 안 됨",
+    "no_packages": "소포 없음",
+    "unknown": "알 수 없음"
+  },
+  "package_status": {
+    "delivered": "배송 완료",
+    "transit": "배송 중",
+    "out": "배달 출발",
+    "announced": "접수됨",
+    "accepted": "운송사 인수",
+    "picked": "수거됨",
+    "ready": "수령 가능",
+    "attempt": "배송 시도 완료",
+    "delayed": "지연됨",
+    "cancelled": "취소됨",
+    "returned": "반송됨",
+    "returning": "반송 중",
+    "customs": "통관 처리 중",
+    "exception": "배송 문제",
+    "unknown": "알 수 없는 상태"
+  }
+}

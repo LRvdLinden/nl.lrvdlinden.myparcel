@@ -1,0 +1,45 @@
+{
+  "name": {
+    "en": "Post & DHL Germany",
+    "nl": "Post & DHL Germany",
+    "fr": "Post & DHL Germany",
+    "it": "Post & DHL Germany",
+    "sv": "Post & DHL Germany",
+    "no": "Post & DHL Germany",
+    "es": "Post & DHL Germany",
+    "da": "Post & DHL Germany",
+    "ru": "Post & DHL Germany",
+    "pl": "Post & DHL Germany",
+    "ko": "Post & DHL Germany",
+    "ar": "Post & DHL Germany",
+    "de": "Post & DHL Deutschland"
+  },
+  "class": "sensor",
+  "capabilities": [
+    "dhl_de_parcel_count",
+    "dhl_de_mail_count",
+    "dhl_de_status",
+    "dhl_de_next_delivery",
+    "dhl_de_postnumber",
+    "dhl_de_account_status",
+    "dhl_de_mail_status",
+    "dhl_de_last_update"
+  ],
+  "platforms": [
+    "local"
+  ],
+  "images": {
+    "small": "/drivers/post-dhl-de/assets/images/small.png",
+    "large": "/drivers/post-dhl-de/assets/images/large.png"
+  },
+  "pair": [
+    {
+      "id": "login"
+    }
+  ],
+  "repair": [
+    {
+      "id": "repair"
+    }
+  ]
+}

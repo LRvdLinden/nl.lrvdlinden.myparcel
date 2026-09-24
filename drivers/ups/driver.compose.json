@@ -1,0 +1,136 @@
+{
+  "name": {
+    "en": "UPS",
+    "nl": "UPS",
+    "de": "UPS",
+    "fr": "UPS",
+    "it": "UPS",
+    "sv": "UPS",
+    "no": "UPS",
+    "es": "UPS",
+    "da": "UPS",
+    "ru": "UPS",
+    "pl": "UPS",
+    "ko": "UPS",
+    "ar": "UPS"
+  },
+  "class": "sensor",
+  "capabilities": [
+    "ups_parcel_count",
+    "ups_total_count",
+    "ups_status",
+    "ups_tracking",
+    "ups_sender",
+    "ups_delivery_date",
+    "ups_delivery_window",
+    "ups_service",
+    "ups_ship_from",
+    "ups_ship_to",
+    "ups_access_point",
+    "ups_last_event",
+    "ups_country",
+    "ups_locale",
+    "ups_account_status",
+    "ups_last_update"
+  ],
+  "platforms": [
+    "local"
+  ],
+  "images": {
+    "small": "/drivers/ups/assets/images/small.png",
+    "large": "/drivers/ups/assets/images/large.png"
+  },
+  "pair": [
+    {
+      "id": "login"
+    }
+  ],
+  "repair": [
+    {
+      "id": "repair"
+    }
+  ],
+  "settings": [
+    {
+      "id": "country_code",
+      "type": "text",
+      "label": {
+        "en": "Country code",
+        "nl": "Landcode"
+      },
+      "value": "NL"
+    },
+    {
+      "id": "locale",
+      "type": "text",
+      "label": {
+        "en": "UPS locale",
+        "nl": "UPS-locale"
+      },
+      "value": "nl_NL"
+    },
+    {
+      "id": "login_callback",
+      "type": "password",
+      "label": {
+        "en": "UPS login callback",
+        "nl": "UPS-login-callback"
+      },
+      "value": ""
+    },
+    {
+      "id": "oauth_code",
+      "type": "password",
+      "label": {
+        "en": "UPS authorization code",
+        "nl": "UPS-autorisatiecode"
+      },
+      "value": ""
+    },
+    {
+      "id": "oauth_state",
+      "type": "password",
+      "label": {
+        "en": "UPS OAuth state",
+        "nl": "UPS OAuth-state"
+      },
+      "value": ""
+    },
+    {
+      "id": "authentication_token",
+      "type": "password",
+      "label": {
+        "en": "UPS access/session token",
+        "nl": "UPS access-/sessietoken"
+      },
+      "value": ""
+    },
+    {
+      "id": "refresh_token",
+      "type": "password",
+      "label": {
+        "en": "UPS refresh token",
+        "nl": "UPS-refresh-token"
+      },
+      "value": ""
+    },
+    {
+      "id": "tracking_numbers_json",
+      "type": "text",
+      "label": {
+        "en": "Manual fallback tracking numbers",
+        "nl": "Handmatige fallback-trackingnummers"
+      },
+      "value": "[]"
+    },
+    {
+      "id": "ups_session_bundle",
+      "type": "password",
+      "label": {
+        "en": "UPS web session",
+        "nl": "UPS-websessie"
+      },
+      "value": ""
+    }
+  ]
+}

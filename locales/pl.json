@@ -1,0 +1,73 @@
+{
+  "pair": {
+    "email": "Adres e-mail",
+    "password": "Hasło",
+    "connect": "Połącz konto",
+    "title": "Add My PostNL",
+    "subtitle": "Connect each device to one PostNL account.",
+    "language_marker": "en"
+  },
+  "widget": {
+    "loading": "Ładowanie…",
+    "none": "Nie znaleziono paczek.",
+    "shipment": "Przesyłka DHL",
+    "unknown": "Nieznany",
+    "active": "Aktywna",
+    "delivered": "Dostarczono",
+    "offline": "Offline"
+  },
+  "errors": {
+    "not_authenticated": "Konto DHL nie jest połączone."
+  },
+  "status": {
+    "no_active": "Brak aktywnych przesyłek"
+  },
+  "device": {
+    "name": "My PostNL"
+  },
+  "carrier": {
+    "pending": "Account API not configured"
+  },
+  "ups": {
+    "pair": {
+      "country": "Kraj",
+      "language": "Język",
+      "account_title": "Konto UPS",
+      "account_intro": "Najpierw zaloguj się do UPS, a następnie wklej uwierzytelniony token sesji UPS. MyParcel nie przechowuje hasła UPS.",
+      "session_token": "Token sesji UPS",
+      "connect": "Połącz UPS",
+      "manual_title": "Opcja ręczna",
+      "manual_intro": "Jeśli import sesji konta jest niedostępny, dodaj numery śledzenia UPS, po jednym w wierszu.",
+      "tracking_numbers": "Numery śledzenia",
+      "add_tracking": "Dodaj numery",
+      "missing_token": "Wprowadź token sesji UPS.",
+      "missing_tracking": "Wprowadź co najmniej jeden numer śledzenia UPS.",
+      "callback": "Callback logowania UPS",
+      "callback_intro": "Zaloguj się do UPS przez UPS Token Helper i wklej pełny callback ups://login.",
+      "connect_callback": "Połącz UPS"
+    }
+  },
+  "common_status": {
+    "connected": "Połączono",
+    "disconnected": "Rozłączono",
+    "no_packages": "Brak paczek",
+    "unknown": "Nieznany"
+  },
+  "package_status": {
+    "delivered": "Doręczono",
+    "transit": "W drodze",
+    "out": "W doręczeniu",
+    "announced": "Zgłoszono",
+    "accepted": "Przyjęto przez przewoźnika",
+    "picked": "Odebrano",
+    "ready": "Gotowe do odbioru",
+    "attempt": "Podjęto próbę doręczenia",
+    "delayed": "Opóźnione",
+    "cancelled": "Anulowane",
+    "returned": "Zwrócono",
+    "returning": "Zwrot w drodze",
+    "customs": "Odprawa celna",
+    "exception": "Problem z doręczeniem",
+    "unknown": "Nieznany status"
+  }
+}

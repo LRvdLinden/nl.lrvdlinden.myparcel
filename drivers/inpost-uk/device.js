@@ -1,0 +1,13 @@
+const localizePackageStatus = require('../../lib/status-i18n.js');
+'use strict';
+const Homey=require('homey');const {InPostUkApi}=require('../../lib/inpost-uk-api');
+function codes(s){try{const a=JSON.parse(s.tracking_numbers_json||'[]');return Array.isArray(a)?a:[]}catch(_){return[]}}
+function pick(o,...k){for(const x of k)if(o&&o[x]!=null&&o[x]!=='')return o[x];return''}
+function events(p){return Array.isArray(p?.tracking_details)?p.tracking_details:Array.isArray(p?.events)?p.events:Array.isArray(p?.trackingEvents)?p.trackingEvents:[]}
+module.exports=class InPostUkDevice extends Homey.Device{
+ async onInit(){this._packages=[];this._timer=this.homey.setInterval(()=>this.refresh(false),15*60*1000);this.homey.setTimeout(()=>this.refresh(true),3000)}
+ async onDeleted(){if(this._timer)this.homey.clearInterval(this._timer)}
+ async refresh(){const api=new InPostUkApi(),rows=[];for(const code of codes(this.getSettings()))try{const p=await api.parcel(code);if(!p)continue;const ev=events(p),last=ev[ev.length-1]||{};const status=String(pick(p,'status','status_name','parcelStatus')||pick(last,'status','event','description')||'In transit');const delivered=/delivered|collected|received/i.test(status);const updated=pick(last,'datetime','date','timestamp')||pick(p,'updated_at','updatedAt')||new Date().toISOString();rows.push({id:code,tracking:code,sender:pick(p,'merchant_name','merchantName','sender')||'InPost UK',status,deliveryDate:pick(p,'estimated_delivery_date','estimatedDeliveryDate'),deliveryWindow:'',updatedAt:updated,delivered,detailsUrl:`https://inpost.co.uk/tracking?parcelNumber=${encodeURIComponent(code)}`})}catch(e){this.error(`InPost UK ${code}:`,e)}
+ const old=new Map((this._packages||[]).map(x=>[x.tracking,x]));this._packages=rows;for(const p of rows){const x=old.get(p.tracking),t={tracking:p.tracking,status:localizePackageStatus(this.homey, p.status)};if(!x)await this.homey.flow.getDeviceTriggerCard('inpost_uk_new_package').trigger(this,t,{}).catch(()=>{});else if(x.status!==p.status)await this.homey.flow.getDeviceTriggerCard('inpost_uk_status_changed').trigger(this,{...t,previous_status:localizePackageStatus(this.homey,x.status)||''},{}).catch(()=>{})}await this.setCapabilityValue('inpost_uk_parcel_count',rows.filter(x=>!x.delivered).length);await this.setCapabilityValue('inpost_uk_status',rows[0]?.status?localizePackageStatus(this.homey,rows[0].status):'Connected');await this.setCapabilityValue('inpost_uk_last_update',new Date().toISOString());await this.setAvailable();return true}
+ getWidgetData(){return{parcels:this._packages||[],authenticated:true,carrier:'inpost-uk'}}
+};
