@@ -46,9 +46,6 @@ h1{margin:0 0 0 auto;color:#77767b;font-size:18px;font-weight:600;white-space:no
 .detail-list{display:grid;gap:0;padding:0 18px 8px}
 .detail-row{display:grid;grid-template-columns:minmax(92px,38%) minmax(0,1fr);gap:10px;padding:8px 0;border-top:1px solid var(--border)}
 .detail-value{min-width:0;color:var(--primary);font-size:12px;font-weight:650;overflow-wrap:anywhere;text-align:end}
-.popup-actions{display:grid;grid-template-columns:1fr;gap:8px;padding:10px 18px 16px;border-top:1px solid var(--border)}
-.track{min-height:42px;border:0;border-radius:14px;padding:10px 14px;background:var(--brand);color:#fff;font-weight:800;cursor:pointer}
-.track[hidden]{display:none}
 @media(prefers-color-scheme:dark){
  :root{--card:#202022;--header:#29292b;--border:#424244;--row:#343436;--carrier:#252527;--primary:#f4f4f5;--secondary:#c4c3c7;--muted:#aaa9ad;--title:#d3d2d5;--pill:#23432b;--pill-text:#eef8f0;--dialog:#292b2a;--stat:#323a36;--backdrop:#07110d99;--brand-soft:#244137}
  h1{color:#aaa9ad}
@@ -116,7 +113,6 @@ function onHomeyReady(Homey){
  const el=(tag,cls,value)=>{const n=document.createElement(tag);if(cls)n.className=cls;if(value!==undefined)n.textContent=value;return n};
  function showDetailRow(list,label,value){value=text(value);if(!value)return;const row=el('div','detail-row');row.append(el('span','detail-label',label),el('strong','detail-value',value));list.append(row)}
  function stat(label,value){value=text(value);if(!value)return null;const n=el('div','stat');n.append(el('span','',label),el('strong','',value));return n}
- function openUrl(url){if(!url)return;try{if(typeof Homey.openURL==='function')return Homey.openURL(url)}catch(_){}try{window.open(url,'_blank','noopener,noreferrer')}catch(_){}}
  function closePopup(){modal.classList.remove('open');dialogContent.replaceChildren()}
  function openPopup(p){
   try{Homey.hapticFeedback?.()}catch(_){}
@@ -126,8 +122,7 @@ function onHomeyReady(Homey){
   const status=el('div','popup-status');status.append(el('span','status-label',labels.status),el('p','status-value',text(p.status)||'—'));if(p.tracking)status.append(el('p','tracking-sub',`${labels.tracking}: ${p.tracking}`));
   const stats=el('div','stats');const dd=dateDMY(p.deliveryDate||p.deliveryWindowFrom||p.eventAt||p.updatedAt,cfg.timeZone),dw=text(p.deliveryWindow);const sd=stat(labels.deliveryDate,dd),sw=stat(labels.deliveryWindow,dw);if(sd)stats.append(sd);if(sw)stats.append(sw);
   const list=el('div','detail-list');showDetailRow(list,labels.sender,p.sender);showDetailRow(list,labels.receiver,p.receiver);showDetailRow(list,labels.account,p.account);showDetailRow(list,labels.service,p.service);showDetailRow(list,labels.deliveryPoint,p.deliveryPoint);showDetailRow(list,labels.accessPoint,p.accessPoint);showDetailRow(list,labels.product,p.product);showDetailRow(list,labels.weight,p.weight);showDetailRow(list,labels.partner,p.partner);showDetailRow(list,labels.shipmentType,p.shipmentType);showDetailRow(list,labels.direction,p.direction);showDetailRow(list,labels.from,p.shipFrom);showDetailRow(list,labels.to,p.shipTo);showDetailRow(list,labels.lastEvent,p.lastEvent);showDetailRow(list,labels.updated,dateTime(p.updatedAt,cfg.locale,cfg.timeZone));
-  const actions=el('div','popup-actions'),track=el('button','track',labels.track);track.type='button';track.hidden=!p.detailsUrl;track.onclick=()=>openUrl(p.detailsUrl);actions.append(track);
-  dialogContent.replaceChildren(hero,status);if(stats.children.length)dialogContent.append(stats);if(list.children.length)dialogContent.append(list);if(p.detailsUrl)dialogContent.append(actions);modal.classList.add('open');
+  dialogContent.replaceChildren(hero,status);if(stats.children.length)dialogContent.append(stats);if(list.children.length)dialogContent.append(list);modal.classList.add('open');
  }
  function rowSummary(p){
   const window=text(p.deliveryWindow);
