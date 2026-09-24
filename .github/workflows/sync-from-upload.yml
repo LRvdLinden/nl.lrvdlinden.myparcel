@@ -3,7 +3,7 @@ on:
   push:
     branches: [main]
     paths:
-      - '.sync/latest/READY'
+      - '.sync/v021/READY'
 permissions:
   contents: write
 jobs:
@@ -17,7 +17,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          cat .sync/latest/part* | base64 --decode > /tmp/myparcel.tar.xz
+          cat .sync/v021/part* | base64 --decode > /tmp/myparcel.tar.xz
           xz -t /tmp/myparcel.tar.xz
           find . -mindepth 1 -maxdepth 1 ! -name .git ! -name .sync -exec rm -rf {} +
           tar -xJf /tmp/myparcel.tar.xz -C .
