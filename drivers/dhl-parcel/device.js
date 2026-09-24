@@ -259,7 +259,7 @@ module.exports = class DHLParcelDevice extends Homey.Device {
       status: String(parcel?.status || parcel?.category || 'UNKNOWN'), deliveryDate: String(parcel?.deliveryDate || ''),
       deliveryWindow: this._formatDeliveryWindow(parcel), deliveryWindowFrom: String(parcel?.deliveryWindowFrom || ''), deliveryWindowTo: String(parcel?.deliveryWindowTo || ''),
       updatedAt: String(parcel?.updatedAt || ''), delivered: Boolean(parcel?.delivered), detailsUrl: String(parcel?.detailsUrl || ''),
-      service: String(parcel?.service || ''), deliveryPoint: String(parcel?.deliveryPoint || ''), lastEvent: String(parcel?.lastEvent || ''),
+      service: String(parcel?.service || ''), deliveryPoint: String(parcel?.deliveryPoint || ''), lastEvent: String(parcel?.lastEvent || ''), lastEventAt: String(parcel?.lastEventAt || parcel?.updatedAt || ''),
       receiver: String(parcel?.receiver || ''), weight: String(parcel?.weight || ''), product: String(parcel?.product || ''), partner: String(parcel?.partner || ''),
       accessPoint: String(parcel?.accessPoint || ''), shipmentType: String(parcel?.shipmentType || ''), direction: String(parcel?.direction || ''),
       shipFrom: String(parcel?.shipFrom || ''), shipTo: String(parcel?.shipTo || ''),
