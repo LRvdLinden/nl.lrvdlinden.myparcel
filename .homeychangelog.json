@@ -1,102 +1,11 @@
 {
   "0.1.1": {
     "en": "Added Homerr, real DPD sign-in, UPS OAuth sign-in, functional Budbee tracking, carrier-branded pairing and multi-carrier widget improvements.",
-    "nl": "Homerr toegevoegd, echte DPD-login, UPS OAuth-login, werkende Budbee-tracking, pairing met vervoerderslogo’s en verbeteringen aan de multi-carrier widget."
+    "nl": "Homerr toegevoegd, echte DPD-login, UPS OAuth-login, werkende Budbee-tracking, carrier-branding bij koppelen en verbeteringen aan de multi-carrier widget."
   },
   "0.1.2": {
-    "en": "Change driver images"
-  },
-  "0.1.3": {
-    "en": "Fixed the Budbee icon and improved both widgets: correct app icon, newest-first package sorting, status pill and PostNL device selection.",
-    "nl": "Budbee-icoon gefixt en beide widgets verbeterd: juist app-icoon, pakketten nieuwste eerst, statusbalk en PostNL-devicekeuze."
-  },
-  "0.1.4": {
-    "en": "Improved widget light/dark mode, added real coloured carrier logos to all pairing and repair pages, and centered the Homerr driver image.",
-    "nl": "Light/dark-modus van beide widgets verbeterd, echte gekleurde vervoerderslogo’s toegevoegd aan alle pairing/repair-pagina’s en de Homerr-driverafbeelding gecentreerd."
-  },
-  "0.1.5": {
-    "en": "Added FedEx and GLS / MyGLS and fixed the package widget device selector and branded header icon.",
-    "nl": "FedEx en GLS / MyGLS toegevoegd en de devicekeuze en het gekleurde headericoon van de pakketwidget gefixt."
-  },
-  "0.1.6": {
-    "en": "Fixed the GLS driver icon so it renders correctly in the Homey driver picker.",
-    "nl": "GLS-drivericoon gefixt zodat deze correct zichtbaar is in de Homey-driverkeuze."
-  },
-  "0.1.7": {
-    "en": "Restored the proven PostNL mail widget and fixed upcoming-mail and next-delivery device values.",
-    "nl": "De bewezen PostNL-poststukkenwidget hersteld en de waarden voor verwachte post en volgende bezorging gecorrigeerd."
-  },
-  "0.1.8": {
-    "en": "Fixed the immediate ManagerDashboards startup crash by restoring the required empty settings array for the PostNL Mail widget.",
-    "nl": "Directe ManagerDashboards-startcrash opgelost door de vereiste lege settings-array van de PostNL Poststukken-widget te herstellen."
-  },
-  "0.1.9": {
-    "en": "Added InPost UK and Belgian bpost integrations, package widget support and updated country/carrier documentation.",
-    "nl": "InPost UK en Belgische bpost toegevoegd, inclusief pakketwidget-ondersteuning en bijgewerkte landen-/vervoerdersdocumentatie."
-  },
-  "0.1.10": {
-    "en": "Added Royal Mail with automatic official Click & Drop API account integration and MyParcel Packages widget support. Updated MyParcel app artwork.",
-    "nl": "Royal Mail toegevoegd met automatische officiële Click & Drop API-accountkoppeling en ondersteuning in de MyParcel Pakketten-widget. MyParcel app-afbeeldingen bijgewerkt."
-  },
-  "0.1.11": {
-    "en": "Reworked bpost with direct My bpost account pairing, automatic parcel sync, richer capabilities and Flow cards.",
-    "nl": "bpost vernieuwd met directe My bpost-accountkoppeling, automatische pakketsynchronisatie, uitgebreidere capabilities en Flow-kaarten."
-  },
-  "0.1.12": {
-    "en": "Fixed bpost account integration using the proven bpost.be SAML web login and automatic receiving-parcel discovery.",
-    "nl": "bpost-accountkoppeling gefixt met de bewezen bpost.be SAML-weblogin en automatische detectie van ontvangen pakketten."
-  },
-  "0.1.13": {
-    "en": "UPS reworked as an international UPS/My Choice account integration with automatic package discovery and richer Homey data.",
-    "nl": "UPS vernieuwd als internationale UPS/My Choice-accountintegratie met automatische pakketdetectie en uitgebreidere Homey-data."
-  },
-  "0.1.14": {
-    "en": "Fixed UPS pairing and rebuilt UPS pair/repair pages with native Homey form components.",
-    "nl": "UPS-koppeling hersteld en UPS pair/repair-pagina's opnieuw opgebouwd met native Homey-formuliercomponenten."
-  },
-  "0.1.15": {
-    "en": "Added the UPS carrier logo and completed an app-wide internationalization audit for all Homey-supported languages.",
-    "nl": "UPS-carrierlogo toegevoegd en de volledige app gecontroleerd op internationalisatie voor alle door Homey ondersteunde talen."
-  },
-  "0.1.16": {
-    "en": "UPS pairing now understands UPS Token Helper web_oidc callbacks and stores code/state correctly.",
-    "nl": "UPS-pairing verwerkt nu UPS Token Helper web_oidc-callbacks en slaat code/state correct op."
-  },
-  "0.1.17": {
-    "en": "Improved UPS web-login diagnostics and prepared reusable browser-session capture.",
-    "nl": "UPS-weblogindiagnostiek verbeterd en herbruikbare browsersessie-opname voorbereid."
-  },
-  "0.1.18": {
-    "en": "UPS web OIDC callbacks are no longer treated as reusable authentication; improved session status and manual fallback.",
-    "nl": "UPS web-OIDC-callbacks worden niet langer als herbruikbare authenticatie behandeld; sessiestatus en handmatige fallback verbeterd."
-  },
-  "0.1.19": {
-    "en": "Added UPS PPC browser-session support for automatic My Choice package retrieval.",
-    "nl": "UPS PPC-browsersessieondersteuning toegevoegd voor automatische My Choice-pakketgegevens."
-  },
-  "0.1.20": {
-    "en": "Improved UPS PPC session refresh, cookie handling and detailed connection-status reporting.",
-    "nl": "UPS PPC-sessieverversing, cookieverwerking en gedetailleerde verbindingsstatus verbeterd."
-  },
-  "0.1.21": {
-    "en": "Fixed UPS PPC POST requests and automatic package retrieval. UPS last update now uses the same localized Homey date/time format as PostNL.",
-    "nl": "UPS PPC POST-requests en automatische pakketgegevens gefixt. Laatste update gebruikt nu dezelfde gelokaliseerde Homey-datum/tijdnotatie als PostNL."
-  },
-  "0.1.22": {
-    "en": "Added Post & DHL Germany with account OAuth, automatic DHL package retrieval, MyParcel Packages integration and a dedicated Deutsche Post Mail widget prepared for Briefankündigung. Fixed Homey publish validation for its read-only custom capabilities.",
-    "nl": "Post & DHL Duitsland toegevoegd met account-OAuth, automatische DHL-pakketgegevens, integratie in MyParcel Pakketten en een aparte Deutsche Post Poststukken-widget voorbereid voor Briefankündigung. Homey publish-validatie voor de read-only custom capabilities gefixt."
-  },
-  "0.1.23": {
-    "en": "PostNL live mail completed: full rolling 21-day mail widget history, current-only capabilities and Flow tokens, current camera image with fallback and future-only next delivery. Translation and readable status wording audited. Carrier package status codes are normalized to readable widget statuses. Package statuses are now localized in widgets, device capabilities and Flow tokens in all 13 supported languages.",
-    "nl": "PostNL actuele post afgerond: volledige rollende 21-dagenhistorie in de poststukken-widget, alleen actuele capabilities en Flow-tokens, actuele camera-afbeelding met fallback en alleen huidige/toekomstige volgende bezorging. Vertalingen en leesbare statusteksten gecontroleerd. Pakketstatussen van alle vervoerders worden in de widget consequent als Nederlandse termen weergegeven, zoals Bezorgd, Onderweg en Aangemeld. Pakketstatussen worden nu in widgets, apparaat-capabilities en Flow-tokens in alle 13 ondersteunde talen vertaald."
-  },
-  "0.1.24": {
-    "en": "Updated the app title for Homey Store requirements, aligned README files with PostNL, and expanded Store tags with all supported MyParcel carriers.",
-    "nl": "App-titel aangepast aan de Homey Store-eisen, README-bestanden in lijn gebracht met PostNL en Store-tags uitgebreid met alle ondersteunde MyParcel-vervoerders."
-  },
-  "0.1.25": {
-    "en": "Updated the app subtitle and simplified README files with a clear supported-carriers overview and Community topic for installation instructions.",
-    "nl": "App-subtitel bijgewerkt en README-bestanden korter gemaakt met een duidelijk overzicht van ondersteunde vervoerders en een verwijzing naar het Community-topic voor installatie-instructies."
+    "en": "Changed driver images.",
+    "nl": "Driver-afbeeldingen aangepast."
   },
   "0.2.0": {
     "en": "First beta release of MyParcel, bringing supported parcel carriers together in Homey with devices, Flows, widgets and localized package statuses.",
@@ -107,7 +16,7 @@
     "nl": "App-brede pakketstatusvertaling en DHL Parcel-bezorgdatum/-venster gefixt, inclusief omzetting naar de Homey-tijdzone. Verbindingsstatus is op alle apparaten gelijk benoemd en vertaald, met Flow-tokens en Timeline-meldingen bij een verbroken koppeling."
   },
   "0.2.2": {
-    "en": "Improved the package detail popup, removed its Track & Trace button, and added PostNL delivery date/window capabilities and Flow-token support.",
-    "nl": "Pakketdetail-popup verbeterd, Track & Trace-knop verwijderd en PostNL-bezorgdatum/-venster toegevoegd als capabilities en Flow-tokens."
+    "en": "Improved the package detail popup: all labels and package statuses are localized in all supported languages, latest events use the same status translation as device capabilities, Track & Trace action removed, and PostNL delivery date/window capabilities and Flow tokens added.",
+    "nl": "Pakketdetail-popup verbeterd: alle labels en pakketstatussen zijn vertaald in alle ondersteunde talen, laatste gebeurtenissen gebruiken dezelfde statusvertaling als device-capabilities, Track & Trace is verwijderd en PostNL-bezorgdatum/-venster zijn toegevoegd als capabilities en Flow-tokens."
   }
 }
