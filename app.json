@@ -75,6 +75,8 @@
         "postnl_mail_count",
         "postnl_package_count",
         "postnl_next_delivery",
+        "postnl_delivery_date",
+        "postnl_delivery_window",
         "postnl_status",
         "postnl_last_update"
       ],
@@ -2517,6 +2519,50 @@
       "setable": false,
       "insights": true,
       "icon": "/assets/calendar.svg"
+    },
+    "postnl_delivery_date": {
+      "type": "string",
+      "title": {
+        "en": "Delivery date",
+        "nl": "Bezorgdatum",
+        "de": "Zustelldatum",
+        "fr": "Date de livraison",
+        "it": "Data di consegna",
+        "sv": "Leveransdatum",
+        "no": "Leveringsdato",
+        "es": "Fecha de entrega",
+        "da": "Leveringsdato",
+        "ru": "Дата доставки",
+        "pl": "Data dostawy",
+        "ko": "배송 날짜",
+        "ar": "تاريخ التسليم"
+      },
+      "getable": true,
+      "setable": false,
+      "insights": false,
+      "icon": "/assets/calendar.svg"
+    },
+    "postnl_delivery_window": {
+      "type": "string",
+      "title": {
+        "en": "Delivery window",
+        "nl": "Bezorgvenster",
+        "de": "Zustellzeitfenster",
+        "fr": "Créneau de livraison",
+        "it": "Finestra di consegna",
+        "sv": "Leveransfönster",
+        "no": "Leveringsvindu",
+        "es": "Franja de entrega",
+        "da": "Leveringsvindue",
+        "ru": "Интервал доставки",
+        "pl": "Okno dostawy",
+        "ko": "배송 시간대",
+        "ar": "نافذة التسليم"
+      },
+      "getable": true,
+      "setable": false,
+      "insights": false,
+      "icon": "/assets/capabilities/delivery.svg"
     }
   },
   "flow": {
@@ -2847,17 +2893,17 @@
             "title": {
               "en": "Delivery date",
               "nl": "Bezorgdatum",
-              "de": "Delivery date",
-              "fr": "Delivery date",
-              "it": "Delivery date",
-              "sv": "Delivery date",
-              "no": "Delivery date",
-              "es": "Delivery date",
-              "da": "Delivery date",
-              "ru": "Delivery date",
-              "pl": "Delivery date",
-              "ko": "Delivery date",
-              "ar": "Delivery date"
+              "de": "Zustelldatum",
+              "fr": "Date de livraison",
+              "it": "Data di consegna",
+              "sv": "Leveransdatum",
+              "no": "Leveringsdato",
+              "es": "Fecha de entrega",
+              "da": "Leveringsdato",
+              "ru": "Дата доставки",
+              "pl": "Data dostawy",
+              "ko": "배송 날짜",
+              "ar": "تاريخ التسليم"
             }
           },
           {
@@ -2866,17 +2912,17 @@
             "title": {
               "en": "Delivery window",
               "nl": "Bezorgvenster",
-              "de": "Delivery window",
-              "fr": "Delivery window",
-              "it": "Delivery window",
-              "sv": "Delivery window",
-              "no": "Delivery window",
-              "es": "Delivery window",
-              "da": "Delivery window",
-              "ru": "Delivery window",
-              "pl": "Delivery window",
-              "ko": "Delivery window",
-              "ar": "Delivery window"
+              "de": "Zustellzeitfenster",
+              "fr": "Créneau de livraison",
+              "it": "Finestra di consegna",
+              "sv": "Leveransfönster",
+              "no": "Leveringsvindu",
+              "es": "Franja de entrega",
+              "da": "Leveringsvindue",
+              "ru": "Интервал доставки",
+              "pl": "Okno dostawy",
+              "ko": "배송 시간대",
+              "ar": "نافذة التسليم"
             }
           },
           {
@@ -3254,17 +3300,17 @@
             "title": {
               "en": "Delivery date",
               "nl": "Bezorgdatum",
-              "de": "Delivery date",
-              "fr": "Delivery date",
-              "it": "Delivery date",
-              "sv": "Delivery date",
-              "no": "Delivery date",
-              "es": "Delivery date",
-              "da": "Delivery date",
-              "ru": "Delivery date",
-              "pl": "Delivery date",
-              "ko": "Delivery date",
-              "ar": "Delivery date"
+              "de": "Zustelldatum",
+              "fr": "Date de livraison",
+              "it": "Data di consegna",
+              "sv": "Leveransdatum",
+              "no": "Leveringsdato",
+              "es": "Fecha de entrega",
+              "da": "Leveringsdato",
+              "ru": "Дата доставки",
+              "pl": "Data dostawy",
+              "ko": "배송 날짜",
+              "ar": "تاريخ التسليم"
             }
           },
           {
@@ -3273,17 +3319,17 @@
             "title": {
               "en": "Delivery window",
               "nl": "Bezorgvenster",
-              "de": "Delivery window",
-              "fr": "Delivery window",
-              "it": "Delivery window",
-              "sv": "Delivery window",
-              "no": "Delivery window",
-              "es": "Delivery window",
-              "da": "Delivery window",
-              "ru": "Delivery window",
-              "pl": "Delivery window",
-              "ko": "Delivery window",
-              "ar": "Delivery window"
+              "de": "Zustellzeitfenster",
+              "fr": "Créneau de livraison",
+              "it": "Finestra di consegna",
+              "sv": "Leveransfönster",
+              "no": "Leveringsvindu",
+              "es": "Franja de entrega",
+              "da": "Leveringsvindue",
+              "ru": "Интервал доставки",
+              "pl": "Okno dostawy",
+              "ko": "배송 시간대",
+              "ar": "نافذة التسليم"
             }
           },
           {
