@@ -1,5 +1,6 @@
 'use strict';
 const Homey = require('homey');
+const localizePackageStatus = require('./lib/status-i18n.js');
 
 const DRIVER_IDS = [
   'postnl', 'dhl-parcel', 'dpd', 'ups', 'budbee', 'homerr',
@@ -19,6 +20,17 @@ const CARRIER_NAMES = {
   bpost: 'bpost',
   'royal-mail': 'Royal Mail',
   'post-dhl-de': 'Post & DHL Germany',
+};
+
+const DELIVERY_WINDOW_FLOWS = {
+  postnl: { trigger: 'postnl_delivery_window_changed', condition: 'postnl_delivery_window_known' },
+  'dhl-parcel': { trigger: 'dhl_delivery_window_changed', condition: 'dhl_delivery_window_known' },
+  dpd: { trigger: 'dpd_delivery_window_changed', condition: 'dpd_delivery_window_known' },
+  ups: { trigger: 'ups_delivery_window_changed', condition: 'ups_delivery_window_known' },
+  budbee: { trigger: 'budbee_delivery_window_changed', condition: 'budbee_delivery_window_known' },
+  gls: { trigger: 'gls_delivery_window_changed', condition: 'gls_delivery_window_known' },
+  bpost: { trigger: 'bpost_delivery_window_changed', condition: 'bpost_delivery_window_known' },
+  'post-dhl-de': { trigger: 'dhl_de_delivery_window_changed', condition: 'dhl_de_delivery_window_known' },
 };
 
 const CONNECTION_CAPABILITIES = {
@@ -63,11 +75,20 @@ const DISCONNECTED_MESSAGES = {
 module.exports = class MyParcelApp extends Homey.App {
   async onInit() {
     this._connectionStatusChanged = this.homey.flow.getDeviceTriggerCard('connection_status_changed');
+    this._deliveryWindowTriggers = {};
+    for (const [driverId, cards] of Object.entries(DELIVERY_WINDOW_FLOWS)) {
+      this._deliveryWindowTriggers[driverId] = this.homey.flow.getDeviceTriggerCard(cards.trigger);
+      this.homey.flow.getConditionCard(cards.condition).registerRunListener(async args => {
+        return this._hasKnownDeliveryWindow(args.device, driverId);
+      });
+    }
     this._postInterval = this.homey.setInterval(() => this.syncPostNL('interval'), 5 * 60 * 1000);
     this._midnightInterval = this.homey.setInterval(() => this._midnightCheck(), 60 * 1000);
     this._connectionInterval = this.homey.setInterval(() => this.syncConnectionStates().catch(error => this.error(error)), 10 * 1000);
+    this._deliveryWindowInterval = this.homey.setInterval(() => this.syncDeliveryWindows().catch(error => this.error(error)), 10 * 1000);
     this.homey.setTimeout(() => this.syncPostNL('startup'), 10 * 1000);
     this.homey.setTimeout(() => this.syncConnectionStates().catch(error => this.error(error)), 5 * 1000);
+    this.homey.setTimeout(() => this.syncDeliveryWindows().catch(error => this.error(error)), 8 * 1000);
     this.log(`MyParcel ${Homey.manifest.version} initialized`);
   }
 
@@ -75,6 +96,7 @@ module.exports = class MyParcelApp extends Homey.App {
     if (this._postInterval) this.homey.clearInterval(this._postInterval);
     if (this._midnightInterval) this.homey.clearInterval(this._midnightInterval);
     if (this._connectionInterval) this.homey.clearInterval(this._connectionInterval);
+    if (this._deliveryWindowInterval) this.homey.clearInterval(this._deliveryWindowInterval);
   }
 
   getConnectionLabel(connected) {
@@ -179,6 +201,118 @@ module.exports = class MyParcelApp extends Homey.App {
       let devices = [];
       try { devices = this.homey.drivers.getDriver(driverId).getDevices(); } catch (_) { continue; }
       for (const device of devices) await this._syncConnectionState(driverId, device);
+    }
+  }
+
+  _deliveryWindowParcels(device) {
+    try {
+      const data = device?.getWidgetData?.() || {};
+      const rows = Array.isArray(data.parcels) ? data.parcels : (Array.isArray(data.packages) ? data.packages : []);
+      return rows.filter(parcel => parcel && typeof parcel === 'object');
+    } catch (_) { return []; }
+  }
+
+  _parcelIsDelivered(parcel) {
+    if (parcel?.delivered === true) return true;
+    const status = String(parcel?.status || parcel?.category || '');
+    return /delivered|bezorgd|zugestellt|livré|consegnato|levererad|levert|entregado|leveret|доставлен|dostarcz|배송\s*완료|تم\s*التسليم/i.test(status);
+  }
+
+  _windowParts(parcel) {
+    const explicitStart = String(parcel?.deliveryWindowFrom || parcel?.windowStart || '').trim();
+    const explicitEnd = String(parcel?.deliveryWindowTo || parcel?.windowEnd || '').trim();
+    const raw = String(parcel?.deliveryWindow || '').trim();
+    if (explicitStart || explicitEnd) return { start: explicitStart, end: explicitEnd, raw };
+    const parts = raw.split(/\s+[–—-]\s+/).map(value => value.trim()).filter(Boolean);
+    return { start: parts[0] || '', end: parts[1] || '', raw };
+  }
+
+  _formatHomeyTime(value) {
+    const text = String(value || '').trim();
+    if (!text) return '';
+    const date = new Date(text);
+    if (!Number.isNaN(date.getTime()) && /(?:Z|[+-]\d{2}:?\d{2})$/i.test(text)) {
+      return new Intl.DateTimeFormat('en-GB', {
+        timeZone: this.homey.clock.getTimezone(), hour: '2-digit', minute: '2-digit', hour12: false,
+      }).format(date);
+    }
+    const match = text.match(/(?:T|\s)(\d{2}:\d{2})(?::\d{2})?/i) || text.match(/^(\d{2}:\d{2})(?::\d{2})?$/);
+    return match ? match[1] : text;
+  }
+
+  _formatDeliveryDate(value) {
+    const text = String(value || '').trim();
+    if (!text) return '';
+    const isoDay = text.match(/^(\d{4})-(\d{2})-(\d{2})(?:$|T|\s)/);
+    if (isoDay && !/(?:Z|[+-]\d{2}:?\d{2})$/i.test(text)) return `${isoDay[3]}-${isoDay[2]}-${isoDay[1]}`;
+    const date = new Date(text);
+    if (Number.isNaN(date.getTime())) return text;
+    const parts = new Intl.DateTimeFormat('en-GB', {
+      timeZone: this.homey.clock.getTimezone(), day: '2-digit', month: '2-digit', year: 'numeric',
+    }).formatToParts(date);
+    const get = type => parts.find(part => part.type === type)?.value || '';
+    return `${get('day')}-${get('month')}-${get('year')}`;
+  }
+
+  _normalizeWindow(parcel) {
+    const { start, end, raw } = this._windowParts(parcel);
+    const startTime = this._formatHomeyTime(start);
+    const endTime = this._formatHomeyTime(end);
+    let window = '';
+    if (startTime && endTime) window = startTime === endTime ? startTime : `${startTime} - ${endTime}`;
+    else if (startTime || endTime) window = startTime || endTime;
+    else window = raw ? this._formatHomeyTime(raw) : '';
+    const deliveryDate = this._formatDeliveryDate(parcel?.deliveryDate || start || end || '');
+    return { window: String(window || '').trim(), start: startTime, end: endTime, deliveryDate };
+  }
+
+  _hasKnownDeliveryWindow(device, driverId) {
+    if (!device || !DELIVERY_WINDOW_FLOWS[driverId]) return false;
+    return this._deliveryWindowParcels(device).some(parcel => {
+      if (this._parcelIsDelivered(parcel)) return false;
+      return Boolean(this._normalizeWindow(parcel).window);
+    });
+  }
+
+  _deliveryWindowTokens(driverId, parcel) {
+    const normalized = this._normalizeWindow(parcel);
+    return {
+      carrier: CARRIER_NAMES[driverId] || driverId,
+      tracking: String(parcel?.tracking || parcel?.barcode || parcel?.id || parcel?.key || ''),
+      sender: String(parcel?.sender || parcel?.title || ''),
+      delivery_date: normalized.deliveryDate,
+      delivery_window: normalized.window,
+      window_start: normalized.start,
+      window_end: normalized.end,
+      status: localizePackageStatus(this.homey, parcel?.status || parcel?.category || '') || '',
+    };
+  }
+
+  async _syncDeviceDeliveryWindows(driverId, device) {
+    const parcels = this._deliveryWindowParcels(device).filter(parcel => !this._parcelIsDelivered(parcel));
+    const previous = device.getStoreValue?.('myparcel_delivery_window_state_v1');
+    const current = {};
+    const trigger = this._deliveryWindowTriggers?.[driverId];
+
+    for (const parcel of parcels) {
+      const tokens = this._deliveryWindowTokens(driverId, parcel);
+      if (!tokens.delivery_window) continue;
+      const key = tokens.tracking || String(parcel?.id || parcel?.key || parcel?.sender || 'parcel');
+      const signature = `${tokens.delivery_date}|${tokens.delivery_window}`;
+      current[key] = signature;
+      if (previous && previous[key] !== signature && trigger) {
+        await trigger.trigger(device, tokens, {}).catch(error => this.error(`[Delivery window trigger] ${driverId}`, error));
+      }
+    }
+
+    await device.setStoreValue?.('myparcel_delivery_window_state_v1', current).catch(() => {});
+  }
+
+  async syncDeliveryWindows() {
+    for (const driverId of Object.keys(DELIVERY_WINDOW_FLOWS)) {
+      let devices = [];
+      try { devices = this.homey.drivers.getDriver(driverId).getDevices(); } catch (_) { continue; }
+      for (const device of devices) await this._syncDeviceDeliveryWindows(driverId, device);
     }
   }
 
