@@ -107,7 +107,11 @@
     "nl": "App-brede pakketstatusvertaling en DHL Parcel-bezorgdatum/-venster gefixt, inclusief omzetting naar de Homey-tijdzone. Verbindingsstatus is op alle apparaten gelijk benoemd en vertaald, met Flow-tokens en Timeline-meldingen bij een verbroken koppeling."
   },
   "0.2.2": {
-    "en": "Improved the package widget and delivery data, and added device Flow trigger/condition cards for known or changed delivery windows in all supported languages.",
-    "nl": "Pakketwidget en bezorggegevens verbeterd en device Flow-trigger/conditiekaarten toegevoegd voor bekende of gewijzigde bezorgvensters in alle ondersteunde talen."
+    "en": "Improved the package widget and parcel details with a localized popup, consistent delivery dates/windows, PostNL delivery capabilities and richer DHL delivery information.",
+    "nl": "Pakketwidget en pakketdetails verbeterd met een vertaalde popup, consistente bezorgdatums/-vensters, PostNL-bezorgcapabilities en uitgebreidere DHL-bezorginformatie."
+  },
+  "0.2.3": {
+    "en": "Added device Flow trigger and invertible condition cards for known or changed delivery windows, with useful parcel tokens and translations in all supported languages.",
+    "nl": "Device Flow-trigger en omkeerbare conditiekaarten toegevoegd voor bekende of gewijzigde bezorgvensters, met bruikbare pakkettokens en vertalingen in alle ondersteunde talen."
   }
 }
