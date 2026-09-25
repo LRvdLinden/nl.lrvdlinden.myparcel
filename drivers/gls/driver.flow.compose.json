@@ -1,0 +1,199 @@
+{
+  "triggers": [
+    {
+      "id": "gls_delivery_window_changed",
+      "highlight": true,
+      "title": {
+        "en": "Delivery window available or changed",
+        "nl": "Bezorgvenster bekend of gewijzigd",
+        "de": "Zustellzeitfenster verfügbar oder geändert",
+        "fr": "Créneau de livraison disponible ou modifié",
+        "it": "Finestra di consegna disponibile o modificata",
+        "sv": "Leveransfönster tillgängligt eller ändrat",
+        "no": "Leveringsvindu tilgjengelig eller endret",
+        "es": "Franja de entrega disponible o modificada",
+        "da": "Leveringsvindue tilgængeligt eller ændret",
+        "ru": "Интервал доставки доступен или изменён",
+        "pl": "Okno dostawy dostępne lub zmienione",
+        "ko": "배송 시간대가 확인되었거나 변경됨",
+        "ar": "أصبحت نافذة التسليم معروفة أو تم تغييرها"
+      },
+      "args": [],
+      "tokens": [
+        {
+          "name": "carrier",
+          "type": "string",
+          "title": {
+            "en": "Carrier",
+            "nl": "Vervoerder",
+            "de": "Paketdienst",
+            "fr": "Transporteur",
+            "it": "Corriere",
+            "sv": "Transportör",
+            "no": "Transportør",
+            "es": "Transportista",
+            "da": "Transportør",
+            "ru": "Перевозчик",
+            "pl": "Przewoźnik",
+            "ko": "배송사",
+            "ar": "شركة الشحن"
+          }
+        },
+        {
+          "name": "tracking",
+          "type": "string",
+          "title": {
+            "en": "Tracking number",
+            "nl": "Trackingnummer",
+            "de": "Sendungsnummer",
+            "fr": "Numéro de suivi",
+            "it": "Numero di tracciamento",
+            "sv": "Spårningsnummer",
+            "no": "Sporingsnummer",
+            "es": "Número de seguimiento",
+            "da": "Sporingsnummer",
+            "ru": "Номер отслеживания",
+            "pl": "Numer śledzenia",
+            "ko": "운송장 번호",
+            "ar": "رقم التتبع"
+          }
+        },
+        {
+          "name": "sender",
+          "type": "string",
+          "title": {
+            "en": "Sender",
+            "nl": "Afzender",
+            "de": "Absender",
+            "fr": "Expéditeur",
+            "it": "Mittente",
+            "sv": "Avsändare",
+            "no": "Avsender",
+            "es": "Remitente",
+            "da": "Afsender",
+            "ru": "Отправитель",
+            "pl": "Nadawca",
+            "ko": "발송인",
+            "ar": "المرسل"
+          }
+        },
+        {
+          "name": "delivery_date",
+          "type": "string",
+          "title": {
+            "en": "Delivery date",
+            "nl": "Bezorgdatum",
+            "de": "Zustelldatum",
+            "fr": "Date de livraison",
+            "it": "Data di consegna",
+            "sv": "Leveransdatum",
+            "no": "Leveringsdato",
+            "es": "Fecha de entrega",
+            "da": "Leveringsdato",
+            "ru": "Дата доставки",
+            "pl": "Data dostawy",
+            "ko": "배송 날짜",
+            "ar": "تاريخ التسليم"
+          }
+        },
+        {
+          "name": "delivery_window",
+          "type": "string",
+          "title": {
+            "en": "Delivery window",
+            "nl": "Bezorgvenster",
+            "de": "Zustellzeitfenster",
+            "fr": "Créneau de livraison",
+            "it": "Finestra di consegna",
+            "sv": "Leveransfönster",
+            "no": "Leveringsvindu",
+            "es": "Franja de entrega",
+            "da": "Leveringsvindue",
+            "ru": "Интервал доставки",
+            "pl": "Okno dostawy",
+            "ko": "배송 시간대",
+            "ar": "نافذة التسليم"
+          }
+        },
+        {
+          "name": "window_start",
+          "type": "string",
+          "title": {
+            "en": "Delivery window start",
+            "nl": "Start bezorgvenster",
+            "de": "Beginn des Zustellzeitfensters",
+            "fr": "Début du créneau de livraison",
+            "it": "Inizio finestra di consegna",
+            "sv": "Start för leveransfönster",
+            "no": "Start på leveringsvindu",
+            "es": "Inicio de la franja de entrega",
+            "da": "Start på leveringsvindue",
+            "ru": "Начало интервала доставки",
+            "pl": "Początek okna dostawy",
+            "ko": "배송 시간대 시작",
+            "ar": "بداية نافذة التسليم"
+          }
+        },
+        {
+          "name": "window_end",
+          "type": "string",
+          "title": {
+            "en": "Delivery window end",
+            "nl": "Einde bezorgvenster",
+            "de": "Ende des Zustellzeitfensters",
+            "fr": "Fin du créneau de livraison",
+            "it": "Fine finestra di consegna",
+            "sv": "Slut för leveransfönster",
+            "no": "Slutt på leveringsvindu",
+            "es": "Fin de la franja de entrega",
+            "da": "Slut på leveringsvindue",
+            "ru": "Конец интервала доставки",
+            "pl": "Koniec okna dostawy",
+            "ko": "배송 시간대 종료",
+            "ar": "نهاية نافذة التسليم"
+          }
+        },
+        {
+          "name": "status",
+          "type": "string",
+          "title": {
+            "en": "Status",
+            "nl": "Status",
+            "de": "Status",
+            "fr": "Statut",
+            "it": "Stato",
+            "sv": "Status",
+            "no": "Status",
+            "es": "Estado",
+            "da": "Status",
+            "ru": "Статус",
+            "pl": "Status",
+            "ko": "상태",
+            "ar": "الحالة"
+          }
+        }
+      ]
+    }
+  ],
+  "conditions": [
+    {
+      "id": "gls_delivery_window_known",
+      "title": {
+        "en": "Delivery window !{{is|isn't}} known",
+        "nl": "Bezorgvenster !{{is|is niet}} bekend",
+        "de": "Zustellzeitfenster !{{ist|ist nicht}} bekannt",
+        "fr": "Le créneau de livraison !{{est|n’est pas}} connu",
+        "it": "La finestra di consegna !{{è|non è}} nota",
+        "sv": "Leveransfönster !{{är|är inte}} känt",
+        "no": "Leveringsvindu !{{er|er ikke}} kjent",
+        "es": "La franja de entrega !{{es|no es}} conocida",
+        "da": "Leveringsvindue !{{er|er ikke}} kendt",
+        "ru": "Интервал доставки !{{известен|неизвестен}}",
+        "pl": "Okno dostawy !{{jest|nie jest}} znane",
+        "ko": "배송 시간대가 !{{확인됨|확인되지 않음}}",
+        "ar": "نافذة التسليم !{{معروفة|غير معروفة}}"
+      },
+      "args": []
+    }
+  ]
+}
