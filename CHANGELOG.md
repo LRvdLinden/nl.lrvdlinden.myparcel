@@ -1,3 +1,10 @@
+## 0.2.3 — Delivery window Flow cards
+- Added device-specific **Delivery window available or changed** trigger cards for supported carrier devices that expose delivery-window data.
+- Added invertible **Delivery window is known** condition cards for the same supported carrier devices.
+- Delivery-window triggers only fire when a window becomes available for the first time or actually changes, not on every poll.
+- Added Flow tokens for carrier, tracking number, sender, delivery date, delivery window, window start, window end and localized status.
+- Added full translations for the new Flow cards and tokens in all 13 supported MyParcel languages: EN, NL, DE, FR, IT, SV, NO, ES, DA, RU, PL, KO and AR.
+
 ## 0.2.2 — Package widget details & timing
 - Rebuilt the package detail popup to use the same proven modal behaviour as the PostNL mail widget, with a visible close button and reliable row click/keyboard activation.
 - The popup shows carrier logo, localized status, sender, tracking number, delivery date, delivery window, latest event, last update and carrier-specific details when available.
