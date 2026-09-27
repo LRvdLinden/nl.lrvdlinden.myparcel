@@ -4,6 +4,12 @@
 - Delivery-window triggers only fire when a window becomes available for the first time or actually changes, not on every poll.
 - Added Flow tokens for carrier, tracking number, sender, delivery date, delivery window, window start, window end and localized status.
 - Added full translations for the new Flow cards and tokens in all 13 supported MyParcel languages: EN, NL, DE, FR, IT, SV, NO, ES, DA, RU, PL, KO and AR.
+- Expanded DPD with the richer per-parcel detail endpoint for receiver, weight, dimensions and parcel-event data.
+- Added DPD Follow My Parcel delivery-window enrichment so precise same-day delivery windows are used when DPD exposes them.
+- Added DPD capabilities for total parcels, tracking number, sender, receiver, delivery date/window, delivery point, weight, dimensions, delivery type, last event and direction.
+- Expanded DPD new-package and status-change Flow tokens and added dedicated **Delivery information updated** and **Package delivered** triggers.
+- Fixed DPD out-for-delivery statuses so they are no longer incorrectly treated as already delivered.
+- Expanded the package popup with parcel dimensions when a carrier provides them.
 
 ## 0.2.2 — Package widget details & timing
 - Rebuilt the package detail popup to use the same proven modal behaviour as the PostNL mail widget, with a visible close button and reliable row click/keyboard activation.
