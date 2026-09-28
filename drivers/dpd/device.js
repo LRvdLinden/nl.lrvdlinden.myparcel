@@ -182,6 +182,14 @@ module.exports = class DpdDevice extends Homey.Device {
     return `${get('day')}-${get('month')}-${get('year')}`;
   }
 
+  _formatDateTime(value) {
+    const date = new Date(value);
+    if (Number.isNaN(date.getTime())) return String(value || '-');
+    return new Intl.DateTimeFormat(this.homey.i18n.getLanguage() || 'en', {
+      timeZone: this.homey.clock.getTimezone(), dateStyle: 'short', timeStyle: 'medium',
+    }).format(date);
+  }
+
   _window(source, fmp) {
     const fmpDate = fmp?.deliveryDate || '';
     const range = fmp?.timeRange && typeof fmp.timeRange === 'object' ? fmp.timeRange : {};
@@ -365,7 +373,7 @@ module.exports = class DpdDevice extends Homey.Device {
         dpd_delivery_type: next.shipmentType || '',
         dpd_last_event: next.lastEvent ? (localizePackageStatus(this.homey, next.lastEvent) || next.lastEvent) : '',
         dpd_direction: next.direction || '',
-        dpd_last_update: new Date().toISOString(),
+        dpd_last_update: this._formatDateTime(new Date()),
       };
       for (const [capability, value] of Object.entries(values)) {
         if (this.hasCapability(capability)) await this.setCapabilityValue(capability, value).catch(error => this.error(capability, error));
