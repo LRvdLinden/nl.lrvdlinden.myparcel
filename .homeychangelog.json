@@ -111,7 +111,7 @@
     "nl": "Pakketwidget en pakketdetails verbeterd met een vertaalde popup, consistente bezorgdatums/-vensters, PostNL-bezorgcapabilities en uitgebreidere DHL-bezorginformatie."
   },
   "0.2.3": {
-    "en": "Added delivery-window Flow cards and significantly expanded DPD with detailed parcel data, precise Follow My Parcel windows, richer capabilities/Flow tokens and delivered/update triggers.",
-    "nl": "Bezorgvenster-Flowkaarten toegevoegd en DPD flink uitgebreid met gedetailleerde pakketdata, nauwkeurige Follow My Parcel-vensters, extra capabilities/Flow-tokens en bezorgd/update-triggers."
+    "en": "Added delivery-window Flow cards, expanded DPD with verified parcel details, and fixed DPD Status so connection state is only shown in Connection status.",
+    "nl": "Bezorgvenster-Flowkaarten toegevoegd, DPD uitgebreid met geverifieerde pakketdetails en DPD Status gefixt zodat verbindingsstatus alleen onder Verbindingsstatus staat."
   }
 }
