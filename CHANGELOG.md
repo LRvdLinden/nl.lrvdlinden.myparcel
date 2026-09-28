@@ -5,6 +5,7 @@
 - Added Flow tokens for carrier, tracking number, sender, delivery date, delivery window, window start, window end and localized status.
 - Added full translations for the new Flow cards and tokens in all 13 supported MyParcel languages: EN, NL, DE, FR, IT, SV, NO, ES, DA, RU, PL, KO and AR.
 - Expanded DPD with the richer per-parcel detail endpoint for receiver, weight, dimensions and parcel-event data.
+- DPD enrichment only uses fields verified on the current myDPD list, detail and Follow My Parcel endpoints; speculative aliases/fields are not exposed.
 - Added DPD Follow My Parcel delivery-window enrichment so precise same-day delivery windows are used when DPD exposes them.
 - Added DPD capabilities for total parcels, tracking number, sender, receiver, delivery date/window, delivery point, weight, dimensions, delivery type, last event and direction.
 - Expanded DPD new-package and status-change Flow tokens and added dedicated **Delivery information updated** and **Package delivered** triggers.
