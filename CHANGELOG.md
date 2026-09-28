@@ -10,6 +10,7 @@
 - Added DPD capabilities for total parcels, tracking number, sender, receiver, delivery date/window, delivery point, weight, dimensions, delivery type, last event and direction.
 - Expanded DPD new-package and status-change Flow tokens and added dedicated **Delivery information updated** and **Package delivered** triggers.
 - Fixed DPD out-for-delivery statuses so they are no longer incorrectly treated as already delivered.
+- Fixed the DPD **Status** capability so it only shows parcel status; connection state remains exclusively in **Connection status**. When no parcel status is available, it shows `—`.
 - Expanded the package popup with parcel dimensions when a carrier provides them.
 
 ## 0.2.2 — Package widget details & timing
