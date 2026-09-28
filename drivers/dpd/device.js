@@ -77,45 +77,32 @@ const AUTH_MESSAGES = {
 };
 
 function arr(value) { return Array.isArray(value) ? value : []; }
-function pick(object, ...keys) {
-  for (const key of keys) {
-    const value = object?.[key];
-    if (value !== undefined && value !== null && value !== '') return value;
-  }
-  return '';
-}
-function objText(value) {
-  if (value === undefined || value === null) return '';
-  if (typeof value === 'string' || typeof value === 'number') return String(value);
-  return String(pick(value, 'name', 'description', 'label', 'text', 'value', 'code') || '');
-}
-function trackingOf(parcel, fallback = '') {
-  return String(pick(parcel, 'parcelNumber', 'parcelNo', 'barcode', 'trackingNumber', 'id') || fallback);
+function trackingOf(parcel) {
+  return typeof parcel?.parcelNumber === 'string' || typeof parcel?.parcelNumber === 'number'
+    ? String(parcel.parcelNumber)
+    : '';
 }
 function statusOf(parcel) {
-  const raw = pick(parcel, 'statusDescription', 'parcelStatus') || parcel?.status || '';
-  return objText(raw) || 'UNKNOWN';
+  const description = parcel?.status?.description;
+  return description ? String(description) : 'UNKNOWN';
 }
 function eventTimestamp(event) {
-  const direct = pick(event, 'dateTime', 'timestamp', 'eventDateAndTime', 'createdAt');
-  if (direct) return String(direct);
-  const date = pick(event, 'date', 'eventDate');
-  const time = pick(event, 'time', 'eventTime');
-  return date ? `${date}${time ? `T${time}` : ''}` : '';
+  if (!event || typeof event !== 'object' || !event.date || !event.time) return '';
+  return `${event.date}T${event.time}`;
 }
 function latestEvent(events) {
-  const rows = arr(events).filter(item => item && typeof item === 'object');
+  const rows = arr(events).filter(item => item && typeof item === 'object' && item.date && item.time);
   if (!rows.length) return null;
   return [...rows].sort((left, right) => {
     const a = Date.parse(eventTimestamp(left)) || 0;
     const b = Date.parse(eventTimestamp(right)) || 0;
     return b - a;
-  })[0] || rows.at(-1);
+  })[0] || null;
 }
 function fmpHashcode(parcel) {
-  const actions = parcel?.availableActions || {};
-  const rows = arr(actions.FOLLOW_MY_PARCEL || actions.followMyParcel);
-  return String(rows[0]?.hashcode || rows[0]?.hashCode || '');
+  const rows = arr(parcel?.availableActions?.FOLLOW_MY_PARCEL);
+  const hashcode = rows[0]?.hashcode;
+  return typeof hashcode === 'string' ? hashcode : '';
 }
 function isoDay(value) {
   const match = String(value || '').match(/^(\d{4}-\d{2}-\d{2})/);
@@ -133,22 +120,16 @@ function fullWindowPoint(date, time) {
 }
 function dimensionsText(value) {
   if (!value || typeof value !== 'object') return '';
-  const length = pick(value, 'length', 'Length');
-  const width = pick(value, 'width', 'Width');
-  const height = pick(value, 'height', 'Height');
-  if (length === '' || width === '' || height === '') return objText(value);
+  const length = value.length;
+  const width = value.width;
+  const height = value.height;
+  if (![length, width, height].every(item => item !== undefined && item !== null && item !== '')) return '';
   return `${length} x ${width} x ${height} cm`;
 }
 function weightText(value) {
   if (value === undefined || value === null || value === '') return '';
-  if (typeof value === 'object') {
-    const amount = pick(value, 'value', 'weight', 'amount');
-    const unit = pick(value, 'unit', 'unitOfMeasure');
-    return amount === '' ? '' : `${amount}${unit ? ` ${unit}` : ' kg'}`;
-  }
-  const text = String(value).trim();
-  if (!text) return '';
-  return /[a-z]/i.test(text) ? text : `${text} kg`;
+  const amount = Number(value);
+  return Number.isFinite(amount) ? `${amount} kg` : '';
 }
 
 module.exports = class DpdDevice extends Homey.Device {
@@ -184,7 +165,7 @@ module.exports = class DpdDevice extends Homey.Device {
 
   _deliveryType(raw) {
     const key = String(raw || '').toUpperCase();
-    return DELIVERY_TYPE_TEXT[this._language()][key] || objText(raw);
+    return DELIVERY_TYPE_TEXT[this._language()][key] || String(raw || '');
   }
 
   _formatDate(value) {
@@ -202,31 +183,16 @@ module.exports = class DpdDevice extends Homey.Device {
   }
 
   _window(source, fmp) {
-    const fmpDate = pick(fmp, 'deliveryDate', 'date');
-    const range = fmp?.timeRange || fmp?.deliveryTimeRange || {};
-    let date = String(fmpDate || pick(source, 'deliveryDate', 'plannedDeliveryDate', 'expectedDeliveryDate') || '');
-    let from = pick(range, 'from', 'start') || pick(source, 'deliveryTimeFrom', 'deliveryWindowFrom');
-    let to = pick(range, 'to', 'end') || pick(source, 'deliveryTimeTo', 'deliveryWindowTo');
-
-    const legacy = pick(source, 'deliveryTimeRange', 'deliveryWindow');
-    if ((!from || !to) && legacy && typeof legacy === 'object') {
-      from = from || pick(legacy, 'from', 'start');
-      to = to || pick(legacy, 'to', 'end');
-    }
-    if ((!from || !to) && typeof legacy === 'string') {
-      const parts = legacy.split(/\s+[–—-]\s+/).map(item => item.trim()).filter(Boolean);
-      if (parts.length > 1) {
-        from = from || parts[0];
-        to = to || parts[1];
-      }
-    }
-
-    if (!date) date = isoDay(from) || isoDay(to);
+    const fmpDate = fmp?.deliveryDate || '';
+    const range = fmp?.timeRange && typeof fmp.timeRange === 'object' ? fmp.timeRange : {};
+    const date = String(fmpDate || source?.deliveryDate || '');
+    const from = range.from || source?.deliveryTimeFrom || '';
+    const to = range.to || source?.deliveryTimeTo || '';
     const start = fullWindowPoint(date, from);
     const end = fullWindowPoint(date, to);
     const startTime = clock(from || start);
     const endTime = clock(to || end);
-    const window = startTime && endTime ? `${startTime} - ${endTime}` : (startTime || endTime || (typeof legacy === 'string' ? legacy : ''));
+    const window = startTime && endTime ? `${startTime} - ${endTime}` : '';
     return { date, start, end, window };
   }
 
@@ -245,60 +211,61 @@ module.exports = class DpdDevice extends Homey.Device {
     return detail || cached || null;
   }
 
-  async _normalize(api, source, outgoing, index, previous) {
-    const tracking = trackingOf(source, String(index));
+  async _normalize(api, source, outgoing, previous) {
+    const tracking = trackingOf(source);
+    if (!tracking) return null;
+
     const status = statusOf(source);
     const detail = await this._details(api, source, outgoing, previous?.status);
     const hashcode = fmpHashcode(source);
     const fmp = hashcode ? await api.fmpDeliveryWindow(hashcode) : null;
     const window = this._window(source, fmp);
-    const detailEvent = latestEvent(detail?.parcelEvents || detail?.events);
-    const statusBlock = source?.status && typeof source.status === 'object' ? source.status : {};
-    const statusMoment = pick(statusBlock, 'eventDateAndTime', 'timestamp');
-    const lastEventAt = eventTimestamp(detailEvent) || String(statusMoment || pick(source, 'lastEventAt', 'updatedAt') || '');
-    const eventCode = String(pick(detailEvent || {}, 'eventType', 'code') || '').toUpperCase();
-    const lastEvent = DPD_EVENT_STATUS[eventCode] || objText(pick(detailEvent || {}, 'eventTypeText', 'description', 'status')) || status;
-    const deliveryTypeRaw = pick(statusBlock, 'deliveryType') || pick(source, 'deliveryType');
-    const isParcelShop = String(deliveryTypeRaw || '').toUpperCase() === 'PARCELSHOP';
-    const detailReceiver = objText(detail?.receiver);
-    const deliveryPoint = isParcelShop
-      ? (detailReceiver || objText(pick(detail || {}, 'deliveryPoint', 'pickupPoint')))
-      : objText(pick(detail || {}, 'deliveryPoint', 'pickupPoint'));
-    const receiver = isParcelShop ? '' : (detailReceiver || objText(pick(source, 'receiver', 'recipient', 'recipientName')));
-    const weight = weightText(pick(detail || {}, 'weight') || pick(source, 'weight'));
-    const dimensions = dimensionsText(pick(detail || {}, 'dimensions') || pick(source, 'dimensions'));
-    const canonical = localizePackageStatus.canonicalKey(status);
-    const delivered = canonical === 'delivered';
-    const deliveryDate = String(window.date || (delivered ? isoDay(statusMoment || lastEventAt) : '') || '');
-    const service = objText(pick(source, 'service', 'serviceName', 'parcelService')) || objText(pick(detail || {}, 'service', 'serviceName'));
-    const product = objText(pick(source, 'product', 'productName', 'parcelProduct')) || objText(pick(detail || {}, 'product', 'productName'));
-    const updatedAt = String(lastEventAt || statusMoment || new Date().toISOString());
+
+    const detailEvent = latestEvent(detail?.parcelEvents);
+    const statusMoment = source?.status?.eventDateAndTime ? String(source.status.eventDateAndTime) : '';
+    const lastEventAt = eventTimestamp(detailEvent) || statusMoment;
+    const eventCode = String(detailEvent?.eventType || '').toUpperCase();
+    const lastEvent = DPD_EVENT_STATUS[eventCode]
+      || (detailEvent?.eventTypeText ? String(detailEvent.eventTypeText) : '')
+      || status;
+
+    const deliveryTypeRaw = source?.status?.deliveryType ? String(source.status.deliveryType) : '';
+    const isParcelShop = deliveryTypeRaw.toUpperCase() === 'PARCELSHOP';
+    const detailReceiver = detail?.receiver?.name ? String(detail.receiver.name) : '';
+    const deliveryPoint = isParcelShop ? detailReceiver : '';
+    const receiver = isParcelShop ? '' : detailReceiver;
+    const weight = weightText(detail?.weight);
+    const dimensions = dimensionsText(detail?.dimensions);
+    const delivered = status === 'DELIVERED';
+    const deliveryDate = String(
+      (delivered ? isoDay(statusMoment) : '')
+      || window.date
+      || source?.deliveryDate
+      || ''
+    );
 
     return {
       id: tracking,
       tracking,
-      sender: objText(pick(source, 'sender', 'shipper')) || String(pick(source, 'shipperName', 'senderName') || 'DPD'),
+      sender: source?.senderName ? String(source.senderName) : '',
       receiver,
       status,
       deliveryDate,
-      deliveryWindow: window.window,
-      deliveryWindowFrom: window.start,
-      deliveryWindowTo: window.end,
+      deliveryWindow: delivered ? '' : window.window,
+      deliveryWindowFrom: delivered ? '' : window.start,
+      deliveryWindowTo: delivered ? '' : window.end,
       deliveryPoint,
       weight,
       dimensions,
-      service,
-      product,
       lastEvent,
       lastEventAt,
       eventAt: lastEventAt,
-      updatedAt,
-      createdAt: String(pick(source, 'createdAt', 'creationDate', 'orderDate') || ''),
+      updatedAt: lastEventAt,
+      createdAt: '',
       delivered,
       direction: this._direction(outgoing),
       shipmentType: this._deliveryType(deliveryTypeRaw),
       accessPoint: deliveryPoint,
-      detailsUrl: tracking ? `https://www.dpdgroup.com/nl/mydpd/my-parcels/search?parcelNumber=${encodeURIComponent(tracking)}` : '',
     };
   }
 
@@ -362,14 +329,14 @@ module.exports = class DpdDevice extends Homey.Device {
       const settings = this.getSettings();
       const api = new DpdApi(settings.email, settings.password, settings.bu || 'DPD-NL');
       const data = await api.parcels();
-      const incoming = arr(data.incomingShipments || data.incomingParcels || data.parcels);
-      const outgoing = arr(data.sendingShipments || data.sendingParcels);
+      const incoming = arr(data.incomingShipments);
+      const outgoing = arr(data.sendingShipments);
       const previous = new Map(arr(this._packages).map(parcel => [parcel.tracking, parcel]));
 
       const normalized = await Promise.all([
-        ...incoming.map((source, index) => this._normalize(api, source, false, index, previous.get(trackingOf(source)))),
-        ...outgoing.map((source, index) => this._normalize(api, source, true, incoming.length + index, previous.get(trackingOf(source)))),
-      ]);
+        ...incoming.map(source => this._normalize(api, source, false, previous.get(trackingOf(source)))),
+        ...outgoing.map(source => this._normalize(api, source, true, previous.get(trackingOf(source)))),
+      ]).then(items => items.filter(Boolean));
       normalized.sort((left, right) => {
         if (left.delivered !== right.delivered) return left.delivered ? 1 : -1;
         const a = Date.parse(left.deliveryWindowFrom || left.deliveryDate || left.updatedAt || '') || Number.MAX_SAFE_INTEGER;
