@@ -1,3 +1,9 @@
+## 0.2.4 — DPD data & status improvements
+- Expanded DPD using only verified data returned by the current myDPD list, detail and Follow My Parcel endpoints.
+- Fixed the DPD **Status** capability so it only shows parcel status; connection state remains in **Connection status**.
+- Aligned DPD **Last update** date/time formatting with DHL using the Homey language and configured timezone.
+- Kept the richer DPD parcel details, delivery-window information, capabilities and Flow data from the current beta implementation.
+
 ## 0.2.3 — Delivery window Flow cards
 - Aligned DPD **Last update** date/time formatting with DHL, using the Homey language and configured timezone.
 - Added device-specific **Delivery window available or changed** trigger cards for supported carrier devices that expose delivery-window data.
