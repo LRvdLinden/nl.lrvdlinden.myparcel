@@ -1,4 +1,5 @@
 ## 0.2.3 — Delivery window Flow cards
+- Aligned DPD **Last update** date/time formatting with DHL, using the Homey language and configured timezone.
 - Added device-specific **Delivery window available or changed** trigger cards for supported carrier devices that expose delivery-window data.
 - Added invertible **Delivery window is known** condition cards for the same supported carrier devices.
 - Delivery-window triggers only fire when a window becomes available for the first time or actually changes, not on every poll.
