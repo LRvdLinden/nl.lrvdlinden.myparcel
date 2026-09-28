@@ -353,7 +353,7 @@ module.exports = class DpdDevice extends Homey.Device {
       const values = {
         dpd_parcel_count: active.length,
         dpd_total_count: normalized.length,
-        dpd_status: next.status ? localizePackageStatus(this.homey, next.status) : this.homey.app.getConnectionLabel(true),
+        dpd_status: next.status ? (localizePackageStatus(this.homey, next.status) || next.status) : '—',
         dpd_tracking: next.tracking || '',
         dpd_sender: next.sender || '',
         dpd_receiver: next.receiver || '',
