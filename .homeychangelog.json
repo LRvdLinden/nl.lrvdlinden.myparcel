@@ -113,5 +113,9 @@
   "0.2.3": {
     "en": "Added delivery-window Flow cards, expanded DPD with verified parcel details, and fixed DPD Status so connection state is only shown in Connection status.",
     "nl": "Bezorgvenster-Flowkaarten toegevoegd, DPD uitgebreid met geverifieerde pakketdetails en DPD Status gefixt zodat verbindingsstatus alleen onder Verbindingsstatus staat."
+  },
+  "0.2.4": {
+    "en": "Improved DPD with verified myDPD parcel details, corrected parcel-status handling, and aligned Last update formatting with DHL.",
+    "nl": "DPD verbeterd met geverifieerde myDPD-pakketdetails, correcte pakketstatus en dezelfde Laatste update-opmaak als DHL."
   }
 }
