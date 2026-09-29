@@ -274,9 +274,16 @@ module.exports = class MyParcelApp extends Homey.App {
     });
   }
 
-  _deliveryWindowTokens(driverId, parcel) {
-    const normalized = this._normalizeWindow(parcel);
-    return {
+  async _deliveryWindowTokens(driverId, parcel, device = null) {
+    let normalized = this._normalizeWindow(parcel);
+    if (driverId === 'postnl' && device?.api) {
+      const start = parcel?.deliveryWindowFrom ? device.api.formatTime(parcel.deliveryWindowFrom) : '';
+      const end = parcel?.deliveryWindowTo ? device.api.formatTime(parcel.deliveryWindowTo) : '';
+      const window = String(parcel?.deliveryWindow || device.api.formatWindow(parcel?.deliveryWindowFrom, parcel?.deliveryWindowTo) || '').trim();
+      const deliveryDate = device.api.formatDateDMY(parcel?.deliveryDate || parcel?.deliveryWindowFrom || parcel?.deliveryWindowTo || '');
+      normalized = { window, start, end, deliveryDate };
+    }
+    const tokens = {
       carrier: CARRIER_NAMES[driverId] || driverId,
       tracking: String(parcel?.tracking || parcel?.barcode || parcel?.id || parcel?.key || ''),
       sender: String(parcel?.sender || parcel?.title || ''),
@@ -286,6 +293,17 @@ module.exports = class MyParcelApp extends Homey.App {
       window_end: normalized.end,
       status: localizePackageStatus(this.homey, parcel?.status || parcel?.category || '') || '',
     };
+    if (driverId === 'postnl' && device?.getPackageDeliveryImage) {
+      const packageImage = await device.getPackageDeliveryImage(parcel).catch(() => null);
+      tokens.package_status_text = tokens.status;
+      tokens.package_window_text = tokens.delivery_window;
+      tokens.package_delivery_date = tokens.delivery_date;
+      tokens.package_sender = tokens.sender;
+      tokens.package_tracking = tokens.tracking;
+      tokens.package_image_available = Boolean(packageImage);
+      if (packageImage) tokens.package_image = packageImage;
+    }
+    return tokens;
   }
 
   async _syncDeviceDeliveryWindows(driverId, device) {
@@ -295,7 +313,7 @@ module.exports = class MyParcelApp extends Homey.App {
     const trigger = this._deliveryWindowTriggers?.[driverId];
 
     for (const parcel of parcels) {
-      const tokens = this._deliveryWindowTokens(driverId, parcel);
+      const tokens = await this._deliveryWindowTokens(driverId, parcel, device);
       if (!tokens.delivery_window) continue;
       const key = tokens.tracking || String(parcel?.id || parcel?.key || parcel?.sender || 'parcel');
       const signature = `${tokens.delivery_date}|${tokens.delivery_window}`;
