@@ -117,5 +117,9 @@
   "0.2.4": {
     "en": "Improved DPD with verified myDPD parcel details, corrected parcel-status handling, and aligned Last update formatting with DHL.",
     "nl": "DPD verbeterd met geverifieerde myDPD-pakketdetails, correcte pakketstatus en dezelfde Laatste update-opmaak als DHL."
+  },
+  "0.2.5": {
+    "en": "Fixed PostNL delivery-window times, added a live PostNL package-details widget and My package image, and refreshed the My mail empty-state artwork.",
+    "nl": "PostNL-bezorgvensters gefixt, een live PostNL-pakketdetailswidget en Mijn pakket-afbeelding toegevoegd en de lege Mijn post-afbeelding vernieuwd."
   }
 }
