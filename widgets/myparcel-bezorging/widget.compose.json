@@ -1,0 +1,32 @@
+{
+  "id": "myparcel-bezorging",
+  "name": {
+    "en": "MyParcel Delivery",
+    "nl": "MyParcel Bezorging",
+    "de": "MyParcel Zustellung",
+    "fr": "Livraison MyParcel",
+    "it": "Consegna MyParcel",
+    "sv": "MyParcel Leverans",
+    "no": "MyParcel Levering",
+    "es": "Entrega MyParcel",
+    "da": "MyParcel Levering",
+    "ru": "Доставка MyParcel",
+    "pl": "Dostawa MyParcel",
+    "ko": "MyParcel 배송",
+    "ar": "توصيل MyParcel"
+  },
+  "height": 420,
+  "transparent": false,
+  "settings": [],
+  "api": {
+    "getData": {"method": "GET", "path": "/"},
+    "refresh": {"method": "POST", "path": "/refresh"}
+  },
+  "devices": {
+    "type": "app",
+    "singular": false,
+    "filter": {
+      "capabilities": "postnl_package_count|dhl_parcel_count|dpd_parcel_count|ups_parcel_count|budbee_parcel_count|homerr_parcel_count|fedex_parcel_count|gls_parcel_count|inpost_uk_parcel_count|bpost_parcel_count|royal_mail_parcel_count|dhl_de_parcel_count"
+    }
+  }
+}
