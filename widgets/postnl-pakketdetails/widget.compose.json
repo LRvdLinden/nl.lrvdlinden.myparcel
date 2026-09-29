@@ -1,38 +1,13 @@
 {
-  "id": "postnl-pakketdetails",
-  "name": {
-    "en": "PostNL Package Details",
-    "nl": "PostNL Pakketdetails",
-    "de": "PostNL Paketdetails",
-    "fr": "Détails du colis PostNL",
-    "it": "Dettagli pacco PostNL",
-    "sv": "PostNL paketdetaljer",
-    "no": "PostNL pakkedetaljer",
-    "es": "Detalles del paquete PostNL",
-    "da": "PostNL pakkedetaljer",
-    "ru": "Детали посылки PostNL",
-    "pl": "Szczegóły paczki PostNL",
-    "ko": "PostNL 택배 상세",
-    "ar": "تفاصيل طرد PostNL"
-  },
+  "name": { "en": "My Delivery", "nl": "Mijn Bezorging" },
   "height": 360,
-  "transparent": false,
   "api": {
-    "getData": {
-      "method": "GET",
-      "path": "/"
-    },
-    "refresh": {
-      "method": "POST",
-      "path": "/refresh"
-    }
+    "getData": { "method": "GET", "path": "/" },
+    "sync": { "method": "POST", "path": "/sync" }
   },
   "devices": {
     "type": "app",
     "singular": true,
-    "filter": {
-      "capabilities": "postnl_package_count"
-    }
-  },
-  "settings": []
+    "filter": { "capabilities": "postnl_package_count" }
+  }
 }
