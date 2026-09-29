@@ -1,3 +1,10 @@
+## 0.2.6 — PostNL My Delivery parity
+- Ported the **Mijn Bezorging / My Delivery** widget from PostNL for Homey v1.1.8 into the MyParcel PostNL device.
+- Added the dynamic **Mijn Bezorging** camera image with live delivery-window progress and a no-package fallback.
+- Added **My Delivery** image tokens and package-detail tokens to PostNL package Flow triggers.
+- Updated the **Laatste poststuk / Latest mail item** fallback camera image to the current PostNL v1.1.8 artwork.
+- Kept PostNL package times aligned with the current PostNL integration.
+
 ## 0.2.5 — PostNL delivery window & package details
 - Fixed the PostNL package-details widget getting stuck on the Homey loading spinner.
 - Restored the Mijn Post fallback camera image as PNG and changed the Mijn pakket camera image to a static van image with state text underneath.
