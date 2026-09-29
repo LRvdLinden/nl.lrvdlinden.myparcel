@@ -1,3 +1,9 @@
+## 0.2.5 — PostNL delivery window & package details
+- Fixed PostNL delivery-window times to follow the same wall-clock values shown by the official PostNL app, preventing the two-hour summer-time shift.
+- Added a dedicated **PostNL Package Details** widget with the supplied animated PostNL van, live delivery window, progress and current package information.
+- Added a **My package** Homey image token/camera image for PostNL. It shows the animated van while a package is active and a matching no-package placeholder when there is no active delivery.
+- Replaced the envelope illustration in the **My mail** empty-state image with the supplied PostNL van artwork.
+
 ## 0.2.4 — DPD data & status improvements
 - Expanded DPD using only verified data returned by the current myDPD list, detail and Follow My Parcel endpoints.
 - Fixed the DPD **Status** capability so it only shows parcel status; connection state remains in **Connection status**.
