@@ -7415,7 +7415,22 @@
               "ar": "شركة الشحن"
             }
           }
-        ]
+        ],
+        "titleFormatted": {
+          "en": "Connection status changed for [[device]]",
+          "nl": "Verbindingsstatus is gewijzigd voor [[device]]",
+          "de": "Verbindungsstatus hat sich für [[device]] geändert",
+          "fr": "L’état de connexion a changé pour [[device]]",
+          "it": "Lo stato della connessione è cambiato per [[device]]",
+          "sv": "Anslutningsstatus ändrades för [[device]]",
+          "no": "Tilkoblingsstatus ble endret for [[device]]",
+          "es": "El estado de conexión ha cambiado para [[device]]",
+          "da": "Forbindelsesstatus blev ændret for [[device]]",
+          "ru": "Статус подключения изменён для [[device]]",
+          "pl": "Stan połączenia zmienił się dla [[device]]",
+          "ko": "[[device]]의 연결 상태가 변경됨",
+          "ar": "تغيرت حالة الاتصال لـ [[device]]"
+        }
       },
       {
         "id": "postnl_delivery_window_changed",
