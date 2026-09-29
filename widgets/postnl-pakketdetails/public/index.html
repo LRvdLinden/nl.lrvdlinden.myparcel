@@ -19,16 +19,51 @@ const T={
  ko:{today:'오늘 배송 예정',between:'사이',and:'~',registered:'접수',sorting:'분류',underway:'배송 중',delivered:'배송 완료',empty:'배송 중인 PostNL 택배가 없습니다',updated:'최근 업데이트'},
  ar:{today:'اليوم بين',between:'بين',and:'و',registered:'مسجل',sorting:'الفرز',underway:'في الطريق',delivered:'تم التسليم',empty:'لا توجد طرد PostNL في الطريق',updated:'آخر تحديث'}
 };
-let cfg={locale:'en',timeZone:'UTC'}, deviceId='', vanDataUri='postnl-van.gif'; const card=document.getElementById('card');
+let cfg={locale:'en',timeZone:'UTC'};
+let deviceId='';
+const vanDataUri='postnl-van.gif';
+const card=document.getElementById('card');
 function txt(v){return v==null?'':String(v)}
 function esc(v){return txt(v).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
-function wallTime(v){const m=txt(v).match(/T(\d{2}):(\d{2})/);return m?`${m[1]}:${m[2]}`:''}
-function wallDate(v){const m=txt(v).match(/^(\d{4})-(\d{2})-(\d{2})/);return m?`${m[1]}-${m[2]}-${m[3]}`:''}
-function todayKey(){const parts=new Intl.DateTimeFormat('en-CA',{timeZone:cfg.timeZone,year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date());const g=x=>parts.find(p=>p.type===x)?.value||'';return `${g('year')}-${g('month')}-${g('day')}`}
+function wallTime(v){const m=txt(v).match(/T(\d{2}):(\d{2})/);return m?m[1]+':'+m[2]:''}
+function wallDate(v){const m=txt(v).match(/^(\d{4})-(\d{2})-(\d{2})/);return m?m[1]+'-'+m[2]+'-'+m[3]:''}
+function todayKey(){const parts=new Intl.DateTimeFormat('en-CA',{timeZone:cfg.timeZone,year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date());const g=x=>parts.find(p=>p.type===x)?.value||'';return g('year')+'-'+g('month')+'-'+g('day')}
 function updated(v){if(!v)return '';try{return new Intl.DateTimeFormat(cfg.locale==='nl'?'nl-NL':cfg.locale,{timeZone:cfg.timeZone,dateStyle:'short',timeStyle:'short'}).format(new Date(v))}catch(_){return ''}}
-function phase(p){if(p.delivered)return 4;if(p.deliveryWindowFrom||p.deliveryWindowTo)return 3;const s=txt(p.status).toLowerCase();if(s.includes('sorte'))return 2;return 1}
-function render(data){const L=T[cfg.locale]||T.en,p=data.package;if(!p){card.innerHTML=`<div class="empty"><img src="${vanDataUri}"><strong>${esc(L.empty)}</strong></div>`;return}const from=wallTime(p.deliveryWindowFrom),to=wallTime(p.deliveryWindowTo);const day=wallDate(p.deliveryWindowFrom||p.deliveryDate);let when='';if(from||to){const w=[from,to].filter(Boolean).join(` ${L.and} `);when=(day===todayKey()?L.today:L.between)+' '+w}else when=txt(p.status)||L.underway;const ph=phase(p),pct=[0,0,33,66,100][ph];const labels=[L.registered,L.sorting,L.underway,L.delivered];card.innerHTML=`<div class="head"><img src="postnl.svg"><div class="sender">${esc(p.sender||p.title||p.barcode||'PostNL')}</div></div><div class="when">${esc(when)}</div><div class="truckwrap"><img class="truck" src="${vanDataUri}"></div><div class="track"><div class="line"></div><div class="progress" style="width:${pct}%"></div><div class="dots">${labels.map((_,i)=>`<span class="dot ${i+1<ph?'done':i+1===ph?'active':''}"></span>`).join('')}</div></div><div class="labels">${labels.map(x=>`<span>${esc(x)}</span>`).join('')}</div><div class="status">${esc(p.status||L.underway)}</div><div class="sub">${esc(p.barcode||'')} ${data.updatedAt?' · '+esc(L.updated)+': '+esc(updated(data.updatedAt)):''}</div>`}
+function phase(p){if(p.delivered)return 4;if(p.deliveryWindowFrom||p.deliveryWindowTo)return 3;const st=txt(p.status).toLowerCase();if(st.includes('sorte'))return 2;return 1}
+function render(data){
+ const L=T[cfg.locale]||T.en;
+ const p=data&&data.package;
+ if(!p){card.innerHTML='<div class="empty"><img src="'+vanDataUri+'"><strong>'+esc(L.empty)+'</strong></div>';return}
+ const from=wallTime(p.deliveryWindowFrom),to=wallTime(p.deliveryWindowTo),day=wallDate(p.deliveryWindowFrom||p.deliveryDate);
+ let when='';
+ if(from||to){const w=[from,to].filter(Boolean).join(' '+L.and+' ');when=(day===todayKey()?L.today:L.between)+' '+w}else when=txt(p.status)||L.underway;
+ const ph=phase(p),pct=[0,0,33,66,100][ph],labels=[L.registered,L.sorting,L.underway,L.delivered];
+ card.innerHTML='<div class="head"><img src="postnl.svg"><div class="sender">'+esc(p.sender||p.title||p.barcode||'PostNL')+'</div></div>'+
+  '<div class="when">'+esc(when)+'</div><div class="truckwrap"><img class="truck" src="'+vanDataUri+'"></div>'+
+  '<div class="track"><div class="line"></div><div class="progress" style="width:'+pct+'%"></div><div class="dots">'+labels.map((_,i)=>'<span class="dot '+(i+1<ph?'done':i+1===ph?'active':'')+'"></span>').join('')+'</div></div>'+
+  '<div class="labels">'+labels.map(x=>'<span>'+esc(x)+'</span>').join('')+'</div><div class="status">'+esc(p.status||L.underway)+'</div>'+
+  '<div class="sub">'+esc(p.barcode||'')+(data.updatedAt?' · '+esc(L.updated)+': '+esc(updated(data.updatedAt)):'')+'</div>';
 }
-async function load(force=false){try{let data;if(force)data=await Homey.api('POST','/refresh',{deviceId});else data=await Homey.api('GET','/?deviceId='+encodeURIComponent(deviceId),{});render(data)}catch(e){card.innerHTML=`<div class="empty"><img src="postnl.svg"><strong>${esc(e.message||e)}</strong></div>`}}
-(async()=>{const ids=Homey.getDeviceIds();deviceId=ids[0]||'';if(!deviceId){Homey.ready();return}const data=await Homey.api('GET','/?deviceId='+encodeURIComponent(deviceId),{});cfg.locale=data.locale||'en';cfg.timeZone=data.timeZone||'UTC';vanDataUri='postnl-van.gif';document.documentElement.dir=cfg.locale==='ar'?'rtl':'ltr';render(data);Homey.ready();setInterval(()=>load(false),30000);setInterval(()=>load(true),60000)})().catch(()=>Homey.ready());
+async function fetchData(force){
+ try{
+  return force
+   ? await Homey.api('POST','/refresh',{deviceId})
+   : await Homey.api('GET','/?deviceId='+encodeURIComponent(deviceId),{});
+ }catch(e){
+  const L=T[cfg.locale]||T.en;
+  card.innerHTML='<div class="empty"><img src="postnl.svg"><strong>'+esc(e&&e.message?e.message:L.empty)+'</strong></div>';
+  return null;
+ }
+}
+async function init(){
+ const ids=typeof Homey.getDeviceIds==='function'?Homey.getDeviceIds():[];
+ deviceId=Array.isArray(ids)&&ids.length?ids[0]:'';
+ const data=await fetchData(false);
+ if(!data)return;
+ cfg.locale=data.locale||'en';cfg.timeZone=data.timeZone||'UTC';document.documentElement.dir=cfg.locale==='ar'?'rtl':'ltr';render(data);
+ setInterval(async()=>{const next=await fetchData(false);if(next)render(next)},30000);
+ setInterval(async()=>{await fetchData(true);const next=await fetchData(false);if(next)render(next)},60000);
+}
+Homey.ready();
+init();
 </script></body></html>
