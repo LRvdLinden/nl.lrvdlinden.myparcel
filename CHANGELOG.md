@@ -5,6 +5,11 @@
 - Updated the **Laatste poststuk / Latest mail item** fallback camera image to the current PostNL v1.1.8 artwork.
 - Kept PostNL package times aligned with the current PostNL integration.
 
+- Added the green **MyParcel Delivery** widget for all supported carriers; users can select all package devices or only the carrier devices they want to include.
+- The widget aggregates active deliveries from the selected carriers and shows carrier branding, sender, status, delivery date/window and delivery progress.
+- Added global MyParcel delivery Flow tokens for image, carrier, status, sender, tracking number, delivery date and delivery window.
+- The delivery image token currently uses temporary generic MyParcel artwork so the final delivery-van image can be swapped in later without changing the token logic.
+
 ## 0.2.5 — PostNL delivery window & package details
 - Fixed the PostNL package-details widget getting stuck on the Homey loading spinner.
 - Restored the Mijn Post fallback camera image as PNG and changed the Mijn pakket camera image to a static van image with state text underneath.
