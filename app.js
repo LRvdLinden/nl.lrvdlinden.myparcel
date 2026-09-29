@@ -1,5 +1,7 @@
 'use strict';
 const Homey = require('homey');
+const fs = require('fs');
+const path = require('path');
 const localizePackageStatus = require('./lib/status-i18n.js');
 
 const DRIVER_IDS = [
@@ -56,6 +58,23 @@ const CONNECTION_TEXT = {
   ar: ['متصل', 'غير متصل'],
 };
 
+
+const DELIVERY_TOKEN_TEXT = {
+  en: { image: 'MyParcel delivery image', carrier: 'Delivery carrier', status: 'Delivery status', sender: 'Delivery sender', tracking: 'Delivery tracking number', date: 'Delivery date', window: 'Delivery window' },
+  nl: { image: 'MyParcel bezorging afbeelding', carrier: 'Bezorgvervoerder', status: 'Bezorgstatus', sender: 'Afzender bezorging', tracking: 'Trackingnummer bezorging', date: 'Bezorgdatum', window: 'Bezorgvenster' },
+  de: { image: 'MyParcel Zustellbild', carrier: 'Zustelldienst', status: 'Zustellstatus', sender: 'Absender der Zustellung', tracking: 'Sendungsnummer', date: 'Zustelldatum', window: 'Zustellzeitfenster' },
+  fr: { image: 'Image de livraison MyParcel', carrier: 'Transporteur', status: 'Statut de livraison', sender: 'Expéditeur', tracking: 'Numéro de suivi', date: 'Date de livraison', window: 'Créneau de livraison' },
+  it: { image: 'Immagine consegna MyParcel', carrier: 'Corriere', status: 'Stato consegna', sender: 'Mittente', tracking: 'Numero di tracciamento', date: 'Data di consegna', window: 'Finestra di consegna' },
+  sv: { image: 'MyParcel leveransbild', carrier: 'Transportör', status: 'Leveransstatus', sender: 'Avsändare', tracking: 'Spårningsnummer', date: 'Leveransdatum', window: 'Leveransfönster' },
+  no: { image: 'MyParcel leveringsbilde', carrier: 'Transportør', status: 'Leveringsstatus', sender: 'Avsender', tracking: 'Sporingsnummer', date: 'Leveringsdato', window: 'Leveringsvindu' },
+  es: { image: 'Imagen de entrega MyParcel', carrier: 'Transportista', status: 'Estado de entrega', sender: 'Remitente', tracking: 'Número de seguimiento', date: 'Fecha de entrega', window: 'Franja de entrega' },
+  da: { image: 'MyParcel leveringsbillede', carrier: 'Transportør', status: 'Leveringsstatus', sender: 'Afsender', tracking: 'Sporingsnummer', date: 'Leveringsdato', window: 'Leveringsvindue' },
+  ru: { image: 'Изображение доставки MyParcel', carrier: 'Перевозчик', status: 'Статус доставки', sender: 'Отправитель', tracking: 'Номер отслеживания', date: 'Дата доставки', window: 'Интервал доставки' },
+  pl: { image: 'Obraz dostawy MyParcel', carrier: 'Przewoźnik', status: 'Status dostawy', sender: 'Nadawca', tracking: 'Numer śledzenia', date: 'Data dostawy', window: 'Okno dostawy' },
+  ko: { image: 'MyParcel 배송 이미지', carrier: '배송사', status: '배송 상태', sender: '발송인', tracking: '운송장 번호', date: '배송 날짜', window: '배송 시간대' },
+  ar: { image: 'صورة توصيل MyParcel', carrier: 'شركة الشحن', status: 'حالة التوصيل', sender: 'المرسل', tracking: 'رقم التتبع', date: 'تاريخ التوصيل', window: 'نافذة التوصيل' },
+};
+
 const DISCONNECTED_MESSAGES = {
   en: (carrier, name) => `MyParcel – ${carrier} is not connected for ${name}. Open the device and repair the connection.`,
   nl: (carrier, name) => `MyParcel – ${carrier} is niet verbonden voor ${name}. Open het apparaat en herstel de koppeling.`,
@@ -86,6 +105,9 @@ module.exports = class MyParcelApp extends Homey.App {
     this._midnightInterval = this.homey.setInterval(() => this._midnightCheck(), 60 * 1000);
     this._connectionInterval = this.homey.setInterval(() => this.syncConnectionStates().catch(error => this.error(error)), 10 * 1000);
     this._deliveryWindowInterval = this.homey.setInterval(() => this.syncDeliveryWindows().catch(error => this.error(error)), 10 * 1000);
+    await this._initMyParcelDeliveryTokens();
+    this._myParcelDeliveryTokenInterval = this.homey.setInterval(() => this.syncMyParcelDeliveryTokens().catch(error => this.error(error)), 30 * 1000);
+    this.homey.setTimeout(() => this.syncMyParcelDeliveryTokens().catch(error => this.error(error)), 7 * 1000);
     this.homey.setTimeout(() => this.syncPostNL('startup'), 10 * 1000);
     this.homey.setTimeout(() => this.syncConnectionStates().catch(error => this.error(error)), 5 * 1000);
     this.homey.setTimeout(() => this.syncDeliveryWindows().catch(error => this.error(error)), 8 * 1000);
@@ -97,6 +119,7 @@ module.exports = class MyParcelApp extends Homey.App {
     if (this._midnightInterval) this.homey.clearInterval(this._midnightInterval);
     if (this._connectionInterval) this.homey.clearInterval(this._connectionInterval);
     if (this._deliveryWindowInterval) this.homey.clearInterval(this._deliveryWindowInterval);
+    if (this._myParcelDeliveryTokenInterval) this.homey.clearInterval(this._myParcelDeliveryTokenInterval);
   }
 
   getConnectionLabel(connected) {
@@ -277,10 +300,10 @@ module.exports = class MyParcelApp extends Homey.App {
   async _deliveryWindowTokens(driverId, parcel, device = null) {
     let normalized = this._normalizeWindow(parcel);
     if (driverId === 'postnl' && device?.api) {
-      const start = parcel?.deliveryWindowFrom ? device.api.formatTime(parcel.deliveryWindowFrom) : '';
-      const end = parcel?.deliveryWindowTo ? device.api.formatTime(parcel.deliveryWindowTo) : '';
+      const start = parcel?.deliveryWindowFrom ? device.api.formatDeliveryWindowTime(parcel.deliveryWindowFrom) : '';
+      const end = parcel?.deliveryWindowTo ? device.api.formatDeliveryWindowTime(parcel.deliveryWindowTo) : '';
       const window = String(parcel?.deliveryWindow || device.api.formatWindow(parcel?.deliveryWindowFrom, parcel?.deliveryWindowTo) || '').trim();
-      const deliveryDate = device.api.formatDateDMY(parcel?.deliveryDate || parcel?.deliveryWindowFrom || parcel?.deliveryWindowTo || '');
+      const deliveryDate = device.api.formatDeliveryWindowDateDMY(parcel?.deliveryDate || parcel?.deliveryWindowFrom || parcel?.deliveryWindowTo || '');
       normalized = { window, start, end, deliveryDate };
     }
     const tokens = {
@@ -332,6 +355,91 @@ module.exports = class MyParcelApp extends Homey.App {
       try { devices = this.homey.drivers.getDriver(driverId).getDevices(); } catch (_) { continue; }
       for (const device of devices) await this._syncDeviceDeliveryWindows(driverId, device);
     }
+  }
+
+  async _initMyParcelDeliveryTokens() {
+    const lang = this.homey.i18n.getLanguage();
+    const t = DELIVERY_TOKEN_TEXT[lang] || DELIVERY_TOKEN_TEXT.en;
+    const defs = {
+      image: { id: 'myparcel_delivery_image', type: 'image' },
+      carrier: { id: 'myparcel_delivery_carrier', type: 'string' },
+      status: { id: 'myparcel_delivery_status', type: 'string' },
+      sender: { id: 'myparcel_delivery_sender', type: 'string' },
+      tracking: { id: 'myparcel_delivery_tracking', type: 'string' },
+      date: { id: 'myparcel_delivery_date', type: 'string' },
+      window: { id: 'myparcel_delivery_window', type: 'string' },
+    };
+    this._myParcelDeliveryTokens = {};
+    for (const [key, def] of Object.entries(defs)) {
+      this._myParcelDeliveryTokens[key] = await this.homey.flow.createToken(def.id, { type: def.type, title: t[key] });
+    }
+    this._myParcelDeliveryImageCache = new Map();
+  }
+
+  _allActiveDeliveries() {
+    const rows = [];
+    for (const driverId of DRIVER_IDS) {
+      let devices = [];
+      try { devices = this.homey.drivers.getDriver(driverId).getDevices(); } catch (_) { continue; }
+      for (const device of devices) {
+        const data = device.getWidgetData?.() || {};
+        const parcels = Array.isArray(data.packages) ? data.packages : (Array.isArray(data.parcels) ? data.parcels : []);
+        for (const parcel of parcels) {
+          if (!parcel || this._parcelIsDelivered(parcel)) continue;
+          const normalized = this._normalizeWindow(parcel);
+          rows.push({
+            driverId, device, parcel, normalized,
+            carrier: CARRIER_NAMES[driverId] || driverId,
+            tracking: String(parcel.tracking || parcel.barcode || parcel.shipmentNumber || parcel.id || parcel.key || ''),
+            sender: String(parcel.sender || parcel.title || parcel.sourceDisplayName || ''),
+            status: localizePackageStatus(this.homey, parcel.status || parcel.category || '') || String(parcel.status || ''),
+          });
+        }
+      }
+    }
+    const stamp = row => {
+      for (const value of [row.parcel.deliveryWindowFrom, row.parcel.deliveryDate, row.parcel.updatedAt, row.parcel.createdAt]) {
+        const parsed = Date.parse(value || '');
+        if (Number.isFinite(parsed)) return parsed;
+      }
+      return Number.MAX_SAFE_INTEGER;
+    };
+    return rows.sort((a, b) => stamp(a) - stamp(b));
+  }
+
+  async _getMyParcelDeliveryImage(active) {
+    const lang = DELIVERY_TOKEN_TEXT[this.homey.i18n.getLanguage()] ? this.homey.i18n.getLanguage() : 'en';
+    const key = `${lang}:${active ? 'active' : 'empty'}`;
+    if (this._myParcelDeliveryImageCache?.has(key)) return this._myParcelDeliveryImageCache.get(key);
+    // Temporary generic MyParcel artwork. This is intentionally isolated here so
+    // the final delivery-van image can later be swapped without changing token logic.
+    const filePath = path.join(__dirname, 'assets', 'images', 'large.png');
+    const buffer = await fs.promises.readFile(filePath);
+    const image = await this.homey.images.createImage();
+    image.setStream(async stream => {
+      stream.contentType = 'image/png';
+      stream.filename = `myparcel-delivery-${lang}-${active ? 'active' : 'empty'}.png`;
+      stream.end(buffer);
+      return stream;
+    });
+    this._myParcelDeliveryImageCache?.set(key, image);
+    return image;
+  }
+
+  async syncMyParcelDeliveryTokens() {
+    if (!this._myParcelDeliveryTokens) return;
+    const next = this._allActiveDeliveries()[0] || null;
+    const values = next ? {
+      carrier: next.carrier,
+      status: next.status,
+      sender: next.sender,
+      tracking: next.tracking,
+      date: next.normalized.deliveryDate,
+      window: next.normalized.window,
+    } : { carrier: '', status: '', sender: '', tracking: '', date: '', window: '' };
+    await Promise.all(Object.entries(values).map(([key, value]) => this._myParcelDeliveryTokens[key].setValue(value).catch(error => this.error(`[MyParcel delivery token] ${key}`, error))));
+    const image = await this._getMyParcelDeliveryImage(Boolean(next));
+    await this._myParcelDeliveryTokens.image.setValue(image).catch(error => this.error('[MyParcel delivery token] image', error));
   }
 
   async _midnightCheck() {
