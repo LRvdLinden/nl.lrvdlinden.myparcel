@@ -20,7 +20,7 @@
   },
   "permissions": [],
   "id": "nl.lrvdlinden.MyParcel",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "brandColor": "#105945",
   "name": {
     "en": "MyParcel",
@@ -3411,6 +3411,62 @@
               "ko": "Source account ID",
               "ar": "Source account ID"
             }
+          },
+          {
+            "name": "package_status_text",
+            "type": "string",
+            "title": {
+              "en": "Package status",
+              "nl": "Pakketstatus"
+            }
+          },
+          {
+            "name": "package_window_text",
+            "type": "string",
+            "title": {
+              "en": "Delivery window text",
+              "nl": "Tekst bezorgvenster"
+            }
+          },
+          {
+            "name": "package_delivery_date",
+            "type": "string",
+            "title": {
+              "en": "Package delivery date",
+              "nl": "Bezorgdatum pakket"
+            }
+          },
+          {
+            "name": "package_sender",
+            "type": "string",
+            "title": {
+              "en": "Package sender",
+              "nl": "Afzender pakket"
+            }
+          },
+          {
+            "name": "package_tracking",
+            "type": "string",
+            "title": {
+              "en": "Package tracking number",
+              "nl": "Trackingnummer pakket"
+            }
+          },
+          {
+            "name": "package_image_available",
+            "type": "boolean",
+            "title": {
+              "en": "My delivery image available",
+              "nl": "Afbeelding Mijn Bezorging beschikbaar"
+            }
+          },
+          {
+            "name": "package_image",
+            "type": "image",
+            "title": {
+              "en": "My delivery image",
+              "nl": "Afbeelding Mijn Bezorging"
+            }
           }
         ]
       },
@@ -3817,6 +3873,62 @@
               "pl": "Source account ID",
               "ko": "Source account ID",
               "ar": "Source account ID"
+            }
+          },
+          {
+            "name": "package_status_text",
+            "type": "string",
+            "title": {
+              "en": "Package status",
+              "nl": "Pakketstatus"
+            }
+          },
+          {
+            "name": "package_window_text",
+            "type": "string",
+            "title": {
+              "en": "Delivery window text",
+              "nl": "Tekst bezorgvenster"
+            }
+          },
+          {
+            "name": "package_delivery_date",
+            "type": "string",
+            "title": {
+              "en": "Package delivery date",
+              "nl": "Bezorgdatum pakket"
+            }
+          },
+          {
+            "name": "package_sender",
+            "type": "string",
+            "title": {
+              "en": "Package sender",
+              "nl": "Afzender pakket"
+            }
+          },
+          {
+            "name": "package_tracking",
+            "type": "string",
+            "title": {
+              "en": "Package tracking number",
+              "nl": "Trackingnummer pakket"
+            }
+          },
+          {
+            "name": "package_image_available",
+            "type": "boolean",
+            "title": {
+              "en": "My delivery image available",
+              "nl": "Afbeelding Mijn Bezorging beschikbaar"
+            }
+          },
+          {
+            "name": "package_image",
+            "type": "image",
+            "title": {
+              "en": "My delivery image",
+              "nl": "Afbeelding Mijn Bezorging"
             }
           }
         ]
@@ -7482,6 +7594,62 @@
               "ko": "상태",
               "ar": "الحالة"
             }
+          },
+          {
+            "name": "package_status_text",
+            "type": "string",
+            "title": {
+              "en": "Package status",
+              "nl": "Pakketstatus"
+            }
+          },
+          {
+            "name": "package_window_text",
+            "type": "string",
+            "title": {
+              "en": "Delivery window text",
+              "nl": "Tekst bezorgvenster"
+            }
+          },
+          {
+            "name": "package_delivery_date",
+            "type": "string",
+            "title": {
+              "en": "Package delivery date",
+              "nl": "Bezorgdatum pakket"
+            }
+          },
+          {
+            "name": "package_sender",
+            "type": "string",
+            "title": {
+              "en": "Package sender",
+              "nl": "Afzender pakket"
+            }
+          },
+          {
+            "name": "package_tracking",
+            "type": "string",
+            "title": {
+              "en": "Package tracking number",
+              "nl": "Trackingnummer pakket"
+            }
+          },
+          {
+            "name": "package_image_available",
+            "type": "boolean",
+            "title": {
+              "en": "My delivery image available",
+              "nl": "Afbeelding Mijn Bezorging beschikbaar"
+            }
+          },
+          {
+            "name": "package_image",
+            "type": "image",
+            "title": {
+              "en": "My delivery image",
+              "nl": "Afbeelding Mijn Bezorging"
+            }
           }
         ]
       },
@@ -10192,30 +10360,18 @@
     "postnl-pakketdetails": {
       "id": "postnl-pakketdetails",
       "name": {
-        "en": "PostNL Package Details",
-        "nl": "PostNL Pakketdetails",
-        "de": "PostNL Paketdetails",
-        "fr": "Détails du colis PostNL",
-        "it": "Dettagli pacco PostNL",
-        "sv": "PostNL paketdetaljer",
-        "no": "PostNL pakkedetaljer",
-        "es": "Detalles del paquete PostNL",
-        "da": "PostNL pakkedetaljer",
-        "ru": "Детали посылки PostNL",
-        "pl": "Szczegóły paczki PostNL",
-        "ko": "PostNL 택배 상세",
-        "ar": "تفاصيل طرد PostNL"
+        "en": "My Delivery",
+        "nl": "Mijn Bezorging"
       },
       "height": 360,
-      "transparent": false,
       "api": {
         "getData": {
           "method": "GET",
           "path": "/"
         },
-        "refresh": {
+        "sync": {
           "method": "POST",
-          "path": "/refresh"
+          "path": "/sync"
         }
       },
       "devices": {
