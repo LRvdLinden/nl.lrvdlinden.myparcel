@@ -216,40 +216,21 @@ class PostNLDevice extends Homey.Device {
     return image;
   }
 
-  _postnlPlaceholderSvg(text, vanBuffer) {
-    const safe = String(text || '').replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&apos;' }[char]));
-    const vanDataUri = `data:image/gif;base64,${vanBuffer.toString('base64')}`;
-    return Buffer.from(`<svg xmlns="http://www.w3.org/2000/svg" width="800" height="450" viewBox="0 0 800 450"><rect width="800" height="450" fill="white"/><image href="${vanDataUri}" x="250" y="65" width="300" height="190" preserveAspectRatio="xMidYMid meet"/><text x="400" y="330" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="24" fill="#111">${safe}</text></svg>`);
-  }
-
-  async _getPostNLVanBuffer() {
-    if (!this._postnlVanBuffer) {
-      const filePath = path.join(__dirname, '..', '..', 'assets', 'postnl-van.gif');
-      this._postnlVanBuffer = await fs.promises.readFile(filePath);
-    }
-    return this._postnlVanBuffer;
-  }
-
   async getPackageImage(hasActivePackage = false) {
     const language = this.homey.i18n.getLanguage() === 'nl' ? 'nl' : 'en';
     const cacheKey = `package-image:${hasActivePackage ? 'active' : 'empty'}:${language}`;
     if (this._packageImageCache.has(cacheKey)) return this._packageImageCache.get(cacheKey);
 
-    const vanBuffer = await this._getPostNLVanBuffer();
-    let buffer = vanBuffer;
-    let contentType = 'image/gif';
-    let fileName = 'postnl-package-active.gif';
-    if (!hasActivePackage) {
-      const text = language === 'nl' ? 'Er is geen pakket onderweg' : 'There is no package on the way';
-      buffer = this._postnlPlaceholderSvg(text, vanBuffer);
-      contentType = 'image/svg+xml';
-      fileName = `postnl-package-empty-${language}.svg`;
-    }
+    // Homey camera/image capabilities are rendered as a still image. Use the first
+    // frame of the supplied van animation with a clear text state underneath.
+    const state = hasActivePackage ? 'active' : 'empty';
+    const filePath = path.join(__dirname, '..', '..', 'assets', `postnl-package-${state}-${language}.png`);
+    const buffer = await fs.promises.readFile(filePath);
     if (!buffer?.length) throw new Error('PostNL package image is empty');
     const image = await this.homey.images.createImage();
     image.setStream(async stream => {
-      stream.contentType = contentType;
-      stream.filename = fileName;
+      stream.contentType = 'image/png';
+      stream.filename = `postnl-package-${state}-${language}.png`;
       stream.end(buffer);
       return stream;
     });
@@ -262,15 +243,13 @@ class PostNLDevice extends Homey.Device {
     const cacheKey = `no-mail-placeholder:${language}`;
     if (this._letterImageCache.has(cacheKey)) return this._letterImageCache.get(cacheKey);
 
-    const text = language === 'nl'
-      ? 'Via PostNL is er geen post naar je onderweg'
-      : 'There is no mail from PostNL on its way to you';
-    const vanBuffer = await this._getPostNLVanBuffer();
-    const buffer = this._postnlPlaceholderSvg(text, vanBuffer);
+    const filePath = path.join(__dirname, '..', '..', 'assets', `no-mail-${language}.png`);
+    const buffer = await fs.promises.readFile(filePath);
+    if (!buffer?.length) throw new Error('PostNL fallback image is empty');
     const image = await this.homey.images.createImage();
     image.setStream(async stream => {
-      stream.contentType = 'image/svg+xml';
-      stream.filename = `postnl-no-mail-${language}.svg`;
+      stream.contentType = 'image/png';
+      stream.filename = `postnl-no-mail-${language}.png`;
       stream.end(buffer);
       return stream;
     });
