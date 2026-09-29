@@ -1,7 +1,8 @@
 'use strict';
 
 function getDevice(homey, id) {
-  const device = homey.drivers.getDriver('postnl').getDevices().find(item => item.getId() === id);
+  const devices = homey.drivers.getDriver('postnl').getDevices();
+  const device = id ? devices.find(item => String(item.getId()) === String(id)) : devices[0];
   if (!device) throw new Error('PostNL device not found.');
   return device;
 }
