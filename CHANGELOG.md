@@ -1,4 +1,6 @@
 ## 0.2.5 — PostNL delivery window & package details
+- Fixed the PostNL package-details widget getting stuck on the Homey loading spinner.
+- Restored the Mijn Post fallback camera image as PNG and changed the Mijn pakket camera image to a static van image with state text underneath.
 - Fixed PostNL delivery-window times to follow the same wall-clock values shown by the official PostNL app, preventing the two-hour summer-time shift.
 - Added a dedicated **PostNL Package Details** widget with the supplied animated PostNL van, live delivery window, progress and current package information.
 - Added a **My package** Homey image token/camera image for PostNL. It shows the animated van while a package is active and a matching no-package placeholder when there is no active delivery.
