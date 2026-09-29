@@ -121,5 +121,9 @@
   "0.2.5": {
     "en": "Fixed PostNL delivery-window times, added a live PostNL package-details widget and My package image, and refreshed the My mail empty-state artwork.",
     "nl": "PostNL-bezorgvensters gefixt, een live PostNL-pakketdetailswidget en Mijn pakket-afbeelding toegevoegd en de lege Mijn post-afbeelding vernieuwd."
+  },
+  "0.2.6": {
+    "en": "Updated the PostNL device with the My Delivery widget, live delivery camera/image token, and the latest My Post camera fallback from PostNL v1.1.8.",
+    "nl": "PostNL-device bijgewerkt met de Mijn Bezorging-widget, live bezorgcamera/image-token en de nieuwste Mijn Post-camera fallback uit PostNL v1.1.8."
   }
 }
