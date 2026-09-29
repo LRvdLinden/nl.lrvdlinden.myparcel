@@ -2,13 +2,14 @@ const localizePackageStatus = require('../../lib/status-i18n.js');
 'use strict';
 
 const Homey = require('homey');
-const fs = require('fs');
-const path = require('path');
+const PostNLPackageImage = require('../../lib/postnl-package-image');
 const PostNLApi = require('../../lib/postnl-api');
 
 class PostNLDevice extends Homey.Device {
   async onInit() {
     this._latestMailImageId = null;
+    this._latestPackageImageState = null;
+    this._packageImageCache = new Map();
     this._letterImageCache = new Map();
     this._syncing = null;
     this._storage = {
@@ -144,9 +145,9 @@ class PostNLDevice extends Homey.Device {
     return {
       id: parcel.id || '', sender: parcel.sender || '', receiver: parcel.receiver || '',
       title: parcel.title || parcel.sender || parcel.barcode || 'PostNL', barcode: parcel.barcode || '', status: localizePackageStatus(this.homey, parcel.status) || '',
-      delivery_date: parcel.deliveryDate ? this.api.formatDateDMY(parcel.deliveryDate) : '', delivery_window: parcel.deliveryWindow || '',
-      delivery_window_from: parcel.deliveryWindowFrom ? this.api.formatTime(parcel.deliveryWindowFrom) : '',
-      delivery_window_to: parcel.deliveryWindowTo ? this.api.formatTime(parcel.deliveryWindowTo) : '',
+      delivery_date: parcel.deliveryDate ? this.api.formatDeliveryWindowDateDMY(parcel.deliveryDate) : '', delivery_window: parcel.deliveryWindow || '',
+      delivery_window_from: parcel.deliveryWindowFrom ? this.api.formatDeliveryWindowTime(parcel.deliveryWindowFrom) : '',
+      delivery_window_to: parcel.deliveryWindowTo ? this.api.formatDeliveryWindowTime(parcel.deliveryWindowTo) : '',
       delivery_window_type: parcel.deliveryWindowType || '', details_url: parcel.detailsUrl || '', shipment_type: parcel.shipmentType || '',
       delivery_address_type: parcel.deliveryAddressType || '', direction: parcel.direction || '',
       created_at: parcel.createdAt ? this.api.formatDateTime(parcel.createdAt) : '',
@@ -214,19 +215,54 @@ class PostNLDevice extends Homey.Device {
     return image;
   }
 
+  _postnlPlaceholderSvg(text) {
+    const safe = String(text || '').replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&apos;' }[char]));
+    return Buffer.from(`<svg xmlns="http://www.w3.org/2000/svg" width="800" height="450" viewBox="0 0 800 450"><rect width="800" height="450" fill="white"/><image href="${PostNLPackageImage.dataUri}" x="250" y="65" width="300" height="190" preserveAspectRatio="xMidYMid meet"/><text x="400" y="330" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="24" fill="#111">${safe}</text></svg>`);
+  }
+
+  async getPackageImage(hasActivePackage = false) {
+    const language = this.homey.i18n.getLanguage() === 'nl' ? 'nl' : 'en';
+    const cacheKey = `package-image:${hasActivePackage ? 'active' : 'empty'}:${language}`;
+    if (this._packageImageCache.has(cacheKey)) return this._packageImageCache.get(cacheKey);
+
+    let buffer;
+    let contentType;
+    let fileName;
+    if (hasActivePackage) {
+      buffer = PostNLPackageImage.buffer();
+      contentType = 'image/gif';
+      fileName = 'postnl-package-active.gif';
+    } else {
+      fileName = `postnl-package-empty-${language}.svg`;
+      const text = language === 'nl' ? 'Er is geen pakket onderweg' : 'There is no package on the way';
+      buffer = this._postnlPlaceholderSvg(text);
+      contentType = 'image/svg+xml';
+    }
+    if (!buffer?.length) throw new Error('PostNL package image is empty');
+    const image = await this.homey.images.createImage();
+    image.setStream(async stream => {
+      stream.contentType = contentType;
+      stream.filename = fileName;
+      stream.end(buffer);
+      return stream;
+    });
+    this._packageImageCache.set(cacheKey, image);
+    return image;
+  }
+
   async getNoMailPlaceholderImage() {
     const language = this.homey.i18n.getLanguage() === 'nl' ? 'nl' : 'en';
     const cacheKey = `no-mail-placeholder:${language}`;
     if (this._letterImageCache.has(cacheKey)) return this._letterImageCache.get(cacheKey);
 
-    const filePath = path.join(__dirname, '..', '..', 'assets', `no-mail-${language}.png`);
-    const buffer = await fs.promises.readFile(filePath);
-    if (!buffer?.length) throw new Error('PostNL fallback image is empty');
-
+    const text = language === 'nl'
+      ? 'Via PostNL is er geen post naar je onderweg'
+      : 'There is no mail from PostNL on its way to you';
+    const buffer = this._postnlPlaceholderSvg(text);
     const image = await this.homey.images.createImage();
     image.setStream(async stream => {
-      stream.contentType = 'image/png';
-      stream.filename = `postnl-no-mail-${language}.png`;
+      stream.contentType = 'image/svg+xml';
+      stream.filename = `postnl-no-mail-${language}.svg`;
       stream.end(buffer);
       return stream;
     });
@@ -279,7 +315,7 @@ class PostNLDevice extends Homey.Device {
       postnl_mail_count: currentMail.length,
       postnl_package_count: packages.length,
       postnl_next_delivery: nextDelivery,
-      postnl_delivery_date: packageDeliveryDate ? this.api.formatDateDMY(packageDeliveryDate) : '—',
+      postnl_delivery_date: packageDeliveryDate ? this.api.formatDeliveryWindowDateDMY(packageDeliveryDate) : '—',
       postnl_delivery_window: packageDeliveryWindow || '—',
       // Status is intentionally connection-only. Detailed Mijn PostNL availability
       // remains available to the widget/API diagnostics instead of this device tile.
@@ -308,6 +344,19 @@ class PostNLDevice extends Homey.Device {
           await this.setCameraImage('latest_mail_item', imageTitle, image);
           this._latestMailImageId = placeholderId;
         }
+      }
+    }
+    // Expose a second Homey image token for My Package. While a parcel is active
+    // it uses the supplied animated PostNL van; otherwise it shows a matching
+    // no-package placeholder, just like the mail image token.
+    const hasActivePackage = packages.length > 0;
+    const packageImageState = `${hasActivePackage ? 'active' : 'empty'}:${language}`;
+    if (this._latestPackageImageState !== packageImageState) {
+      const image = await this.getPackageImage(hasActivePackage).catch(() => null);
+      if (image) {
+        const packageTitle = language === 'nl' ? 'Mijn pakket' : 'My package';
+        await this.setCameraImage('latest_package', packageTitle, image);
+        this._latestPackageImageState = packageImageState;
       }
     }
     if (error) await this.setUnavailable(error.message).catch(this.error);
