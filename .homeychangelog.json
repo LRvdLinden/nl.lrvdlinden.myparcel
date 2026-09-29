@@ -123,7 +123,7 @@
     "nl": "PostNL-bezorgvensters gefixt, een live PostNL-pakketdetailswidget en Mijn pakket-afbeelding toegevoegd en de lege Mijn post-afbeelding vernieuwd."
   },
   "0.2.6": {
-    "en": "Updated the PostNL device with the My Delivery widget, live delivery camera/image token, and the latest My Post camera fallback from PostNL v1.1.8.",
-    "nl": "PostNL-device bijgewerkt met de Mijn Bezorging-widget, live bezorgcamera/image-token en de nieuwste Mijn Post-camera fallback uit PostNL v1.1.8."
+    "en": "Updated PostNL delivery features and added the green MyParcel Delivery widget with multi-carrier selection plus global delivery image and data tokens.",
+    "nl": "PostNL-bezorgfuncties bijgewerkt en de groene MyParcel Bezorging-widget toegevoegd met selectie van meerdere vervoerders plus globale bezorgafbeelding- en datatokens."
   }
 }
