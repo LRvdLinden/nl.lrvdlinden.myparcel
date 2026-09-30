@@ -255,6 +255,7 @@ module.exports = class DpdDevice extends Homey.Device {
     return {
       id: tracking,
       tracking,
+      reference: String(source?.reference || source?.parcelReference || source?.customerReference || ''),
       sender: source?.senderName ? String(source.senderName) : '',
       receiver,
       status,
