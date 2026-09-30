@@ -4,6 +4,11 @@ on:
     branches: [main]
     paths:
       - '.github/workflows/build-myparcel-package.yml'
+      - 'app.js'
+      - 'drivers/ampere/**'
+      - 'lib/bol-session.js'
+      - 'app.json'
+      - '.homeychangelog.json'
 permissions:
   contents: read
 jobs:
