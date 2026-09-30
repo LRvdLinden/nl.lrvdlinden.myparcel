@@ -24,13 +24,15 @@ function toParcel(o) {
   const name = first(recipient,'name','fullName','companyName');
   const created = first(o,'createdDateTime','createdOn','createdAt','orderDate','despatchDate');
   const delivered = /delivered|cancelled|canceled|despatched by other courier/i.test(status);
+  const updatedAt = first(o,'updatedDateTime','updatedAt','modifiedDateTime') || created || new Date().toISOString();
   return {
-    id, tracking,
-    sender: name ? `Royal Mail • ${name}` : 'Royal Mail',
+    id, tracking, reference: id,
+    sender: 'Royal Mail', receiver: String(name || ''),
     status,
     deliveryDate: first(o,'despatchDate','plannedDespatchDate','shippingDate') || '',
     deliveryWindow: '',
-    updatedAt: first(o,'updatedDateTime','updatedAt','modifiedDateTime') || created || new Date().toISOString(),
+    createdAt: String(created || ''),
+    lastEvent: status, lastEventAt: String(updatedAt), updatedAt,
     delivered,
     detailsUrl: tracking ? `https://www.royalmail.com/track-your-item#/tracking-results/${encodeURIComponent(tracking)}` : '',
   };
