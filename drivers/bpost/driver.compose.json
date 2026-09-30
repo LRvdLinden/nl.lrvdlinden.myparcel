@@ -54,7 +54,18 @@
       "type": "text",
       "label": {
         "en": "My bpost e-mail",
-        "nl": "My bpost e-mail"
+        "nl": "My bpost e-mail",
+        "de": "My bpost-E-Mail",
+        "fr": "E-mail My bpost",
+        "it": "E-mail My bpost",
+        "sv": "My bpost-e-post",
+        "no": "My bpost-e-post",
+        "es": "Correo electrónico de My bpost",
+        "da": "My bpost-e-mail",
+        "ru": "Эл. почта My bpost",
+        "pl": "E-mail My bpost",
+        "ko": "My bpost 이메일",
+        "ar": "بريد My bpost الإلكتروني"
       },
       "value": ""
     },
@@ -63,7 +74,18 @@
       "type": "password",
       "label": {
         "en": "My bpost password",
-        "nl": "My bpost-wachtwoord"
+        "nl": "My bpost-wachtwoord",
+        "de": "My bpost-Passwort",
+        "fr": "Mot de passe My bpost",
+        "it": "Password My bpost",
+        "sv": "My bpost-lösenord",
+        "no": "My bpost-passord",
+        "es": "Contraseña de My bpost",
+        "da": "My bpost-adgangskode",
+        "ru": "Пароль My bpost",
+        "pl": "Hasło My bpost",
+        "ko": "My bpost 비밀번호",
+        "ar": "كلمة مرور My bpost"
       },
       "value": ""
     },
@@ -72,7 +94,18 @@
       "type": "text",
       "label": {
         "en": "Manual fallback shipments",
-        "nl": "Handmatige fallback-zendingen"
+        "nl": "Handmatige fallback-zendingen",
+        "de": "Manuelle Ersatzsendungen",
+        "fr": "Expéditions de secours manuelles",
+        "it": "Spedizioni di fallback manuali",
+        "sv": "Manuella reservförsändelser",
+        "no": "Manuelle reserveforsendelser",
+        "es": "Envíos alternativos manuales",
+        "da": "Manuelle reserveforsendelser",
+        "ru": "Резервные отправления вручную",
+        "pl": "Ręczne zapasowe przesyłki",
+        "ko": "수동 대체 배송",
+        "ar": "شحنات احتياطية يدوية"
       },
       "value": "[]"
     }
