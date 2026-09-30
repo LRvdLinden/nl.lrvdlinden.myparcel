@@ -5,6 +5,9 @@ const { BolSessionClient } = require('../../lib/bol-session');
 
 module.exports = class AmpereDevice extends Homey.Device {
   async onInit() {
+    for (const capability of ['ampere_parcel_count', 'ampere_status', 'myparcel_connection_status', 'ampere_last_update']) {
+      if (!this.hasCapability(capability)) await this.addCapability(capability);
+    }
     this._parcels = this.getStoreValue('ampere_snapshot') || [];
     this._refreshing = null;
     this._timer = this.homey.setInterval(() => this.refresh(false).catch(error => this.error(error)), 10 * 60 * 1000);
