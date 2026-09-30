@@ -3,7 +3,17 @@
   "name": {
     "en": "Deutsche Post Mail",
     "nl": "Deutsche Post Poststukken",
-    "de": "Deutsche Post Briefankündigung"
+    "de": "Deutsche Post Briefankündigung",
+    "fr": "Courrier Deutsche Post",
+    "it": "Posta Deutsche Post",
+    "sv": "Deutsche Post-försändelser",
+    "no": "Deutsche Post-post",
+    "es": "Correo de Deutsche Post",
+    "da": "Deutsche Post-post",
+    "ru": "Почта Deutsche Post",
+    "pl": "Przesyłki Deutsche Post",
+    "ko": "Deutsche Post 우편물",
+    "ar": "بريد Deutsche Post"
   },
   "height": 250,
   "api": {
