@@ -258,7 +258,18 @@
           "type": "text",
           "label": {
             "en": "Country code",
-            "nl": "Landcode"
+            "nl": "Landcode",
+            "de": "Ländercode",
+            "fr": "Code pays",
+            "it": "Codice paese",
+            "sv": "Landskod",
+            "no": "Landskode",
+            "es": "Código de país",
+            "da": "Landekode",
+            "ru": "Код страны",
+            "pl": "Kod kraju",
+            "ko": "국가 코드",
+            "ar": "رمز الدولة"
           },
           "value": "NL"
         },
@@ -267,7 +278,18 @@
           "type": "text",
           "label": {
             "en": "UPS locale",
-            "nl": "UPS-locale"
+            "nl": "UPS-locale",
+            "de": "UPS-Gebietsschema",
+            "fr": "Paramètre régional UPS",
+            "it": "Impostazioni locali UPS",
+            "sv": "UPS-språk/region",
+            "no": "UPS-språk/region",
+            "es": "Configuración regional de UPS",
+            "da": "UPS-sprog/område",
+            "ru": "Локаль UPS",
+            "pl": "Ustawienia regionalne UPS",
+            "ko": "UPS 로캘",
+            "ar": "إعدادات UPS المحلية"
           },
           "value": "nl_NL"
         },
@@ -276,7 +298,18 @@
           "type": "password",
           "label": {
             "en": "UPS login callback",
-            "nl": "UPS-login-callback"
+            "nl": "UPS-login-callback",
+            "de": "UPS-Anmelde-Callback",
+            "fr": "Rappel de connexion UPS",
+            "it": "Callback di accesso UPS",
+            "sv": "UPS-inloggningsåteranrop",
+            "no": "UPS-påloggingscallback",
+            "es": "Callback de inicio de sesión de UPS",
+            "da": "UPS-login-callback",
+            "ru": "Callback входа UPS",
+            "pl": "Callback logowania UPS",
+            "ko": "UPS 로그인 콜백",
+            "ar": "رد استدعاء تسجيل دخول UPS"
           },
           "value": ""
         },
@@ -285,7 +318,18 @@
           "type": "password",
           "label": {
             "en": "UPS authorization code",
-            "nl": "UPS-autorisatiecode"
+            "nl": "UPS-autorisatiecode",
+            "de": "UPS-Autorisierungscode",
+            "fr": "Code d’autorisation UPS",
+            "it": "Codice di autorizzazione UPS",
+            "sv": "UPS-auktoriseringskod",
+            "no": "UPS-autorisasjonskode",
+            "es": "Código de autorización de UPS",
+            "da": "UPS-autorisationskode",
+            "ru": "Код авторизации UPS",
+            "pl": "Kod autoryzacyjny UPS",
+            "ko": "UPS 인증 코드",
+            "ar": "رمز تفويض UPS"
           },
           "value": ""
         },
@@ -294,7 +338,18 @@
           "type": "password",
           "label": {
             "en": "UPS OAuth state",
-            "nl": "UPS OAuth-state"
+            "nl": "UPS OAuth-state",
+            "de": "UPS-OAuth-Status",
+            "fr": "État OAuth UPS",
+            "it": "Stato OAuth UPS",
+            "sv": "UPS OAuth-status",
+            "no": "UPS OAuth-tilstand",
+            "es": "Estado OAuth de UPS",
+            "da": "UPS OAuth-tilstand",
+            "ru": "Состояние OAuth UPS",
+            "pl": "Stan OAuth UPS",
+            "ko": "UPS OAuth 상태",
+            "ar": "حالة OAuth لـ UPS"
           },
           "value": ""
         },
@@ -303,7 +358,18 @@
           "type": "password",
           "label": {
             "en": "UPS access/session token",
-            "nl": "UPS access-/sessietoken"
+            "nl": "UPS access-/sessietoken",
+            "de": "UPS-Zugriffs-/Sitzungstoken",
+            "fr": "Jeton d’accès/de session UPS",
+            "it": "Token di accesso/sessione UPS",
+            "sv": "UPS åtkomst-/sessionstoken",
+            "no": "UPS tilgangs-/sesjonstoken",
+            "es": "Token de acceso/sesión de UPS",
+            "da": "UPS-adgangs-/sessionstoken",
+            "ru": "Токен доступа/сеанса UPS",
+            "pl": "Token dostępu/sesji UPS",
+            "ko": "UPS 액세스/세션 토큰",
+            "ar": "رمز وصول/جلسة UPS"
           },
           "value": ""
         },
@@ -312,7 +378,18 @@
           "type": "password",
           "label": {
             "en": "UPS refresh token",
-            "nl": "UPS-refresh-token"
+            "nl": "UPS-refresh-token",
+            "de": "UPS-Aktualisierungstoken",
+            "fr": "Jeton d’actualisation UPS",
+            "it": "Token di aggiornamento UPS",
+            "sv": "UPS-uppdateringstoken",
+            "no": "UPS-oppdateringstoken",
+            "es": "Token de actualización de UPS",
+            "da": "UPS-opdateringstoken",
+            "ru": "Токен обновления UPS",
+            "pl": "Token odświeżania UPS",
+            "ko": "UPS 새로고침 토큰",
+            "ar": "رمز تحديث UPS"
           },
           "value": ""
         },
@@ -321,7 +398,18 @@
           "type": "text",
           "label": {
             "en": "Manual fallback tracking numbers",
-            "nl": "Handmatige fallback-trackingnummers"
+            "nl": "Handmatige fallback-trackingnummers",
+            "de": "Manuelle Ersatz-Trackingnummern",
+            "fr": "Numéros de suivi de secours manuels",
+            "it": "Numeri di tracciamento di fallback manuali",
+            "sv": "Manuella reservspårningsnummer",
+            "no": "Manuelle reservesporingsnumre",
+            "es": "Números de seguimiento alternativos manuales",
+            "da": "Manuelle reserve-sporingsnumre",
+            "ru": "Резервные номера отслеживания вручную",
+            "pl": "Ręczne zapasowe numery śledzenia",
+            "ko": "수동 대체 운송장 번호",
+            "ar": "أرقام تتبع احتياطية يدوية"
           },
           "value": "[]"
         },
@@ -330,7 +418,18 @@
           "type": "password",
           "label": {
             "en": "UPS web session",
-            "nl": "UPS-websessie"
+            "nl": "UPS-websessie",
+            "de": "UPS-Websitzung",
+            "fr": "Session web UPS",
+            "it": "Sessione web UPS",
+            "sv": "UPS-webbsession",
+            "no": "UPS-nettøkt",
+            "es": "Sesión web de UPS",
+            "da": "UPS-websession",
+            "ru": "Веб-сессия UPS",
+            "pl": "Sesja internetowa UPS",
+            "ko": "UPS 웹 세션",
+            "ar": "جلسة ويب UPS"
           },
           "value": ""
         }
@@ -3417,7 +3516,18 @@
             "type": "string",
             "title": {
               "en": "Package status",
-              "nl": "Pakketstatus"
+              "nl": "Pakketstatus",
+              "de": "Paketstatus",
+              "fr": "Statut du colis",
+              "it": "Stato del pacco",
+              "sv": "Paketstatus",
+              "no": "Pakkestatus",
+              "es": "Estado del paquete",
+              "da": "Pakkestatus",
+              "ru": "Статус посылки",
+              "pl": "Status paczki",
+              "ko": "소포 상태",
+              "ar": "حالة الطرد"
             }
           },
           {
@@ -3425,7 +3535,18 @@
             "type": "string",
             "title": {
               "en": "Delivery window text",
-              "nl": "Tekst bezorgvenster"
+              "nl": "Tekst bezorgvenster",
+              "de": "Text des Zustellfensters",
+              "fr": "Texte du créneau de livraison",
+              "it": "Testo della finestra di consegna",
+              "sv": "Text för leveransfönster",
+              "no": "Tekst for leveringsvindu",
+              "es": "Texto de la ventana de entrega",
+              "da": "Tekst for leveringsvindue",
+              "ru": "Текст окна доставки",
+              "pl": "Tekst okna dostawy",
+              "ko": "배송 시간대 텍스트",
+              "ar": "نص نافذة التسليم"
             }
           },
           {
@@ -3433,7 +3554,18 @@
             "type": "string",
             "title": {
               "en": "Package delivery date",
-              "nl": "Bezorgdatum pakket"
+              "nl": "Bezorgdatum pakket",
+              "de": "Paket-Zustelldatum",
+              "fr": "Date de livraison du colis",
+              "it": "Data di consegna del pacco",
+              "sv": "Paketets leveransdatum",
+              "no": "Pakkens leveringsdato",
+              "es": "Fecha de entrega del paquete",
+              "da": "Pakkens leveringsdato",
+              "ru": "Дата доставки посылки",
+              "pl": "Data dostawy paczki",
+              "ko": "소포 배송일",
+              "ar": "تاريخ تسليم الطرد"
             }
           },
           {
@@ -3441,7 +3573,18 @@
             "type": "string",
             "title": {
               "en": "Package sender",
-              "nl": "Afzender pakket"
+              "nl": "Afzender pakket",
+              "de": "Paket-Absender",
+              "fr": "Expéditeur du colis",
+              "it": "Mittente del pacco",
+              "sv": "Paketavsändare",
+              "no": "Pakkeavsender",
+              "es": "Remitente del paquete",
+              "da": "Pakkeafsender",
+              "ru": "Отправитель посылки",
+              "pl": "Nadawca paczki",
+              "ko": "소포 발송인",
+              "ar": "مرسل الطرد"
             }
           },
           {
@@ -3449,7 +3592,18 @@
             "type": "string",
             "title": {
               "en": "Package tracking number",
-              "nl": "Trackingnummer pakket"
+              "nl": "Trackingnummer pakket",
+              "de": "Paket-Trackingnummer",
+              "fr": "Numéro de suivi du colis",
+              "it": "Numero di tracciamento del pacco",
+              "sv": "Paketets spårningsnummer",
+              "no": "Pakkens sporingsnummer",
+              "es": "Número de seguimiento del paquete",
+              "da": "Pakkens sporingsnummer",
+              "ru": "Номер отслеживания посылки",
+              "pl": "Numer śledzenia paczki",
+              "ko": "소포 운송장 번호",
+              "ar": "رقم تتبع الطرد"
             }
           },
           {
@@ -3457,7 +3611,18 @@
             "type": "boolean",
             "title": {
               "en": "My delivery image available",
-              "nl": "Afbeelding Mijn Bezorging beschikbaar"
+              "nl": "Afbeelding Mijn Bezorging beschikbaar",
+              "de": "Bild „Meine Zustellung“ verfügbar",
+              "fr": "Image « Ma livraison » disponible",
+              "it": "Immagine “La mia consegna” disponibile",
+              "sv": "Bild för Min leverans tillgänglig",
+              "no": "Bilde for Min levering tilgjengelig",
+              "es": "Imagen de Mi entrega disponible",
+              "da": "Billede for Min levering tilgængeligt",
+              "ru": "Изображение «Моя доставка» доступно",
+              "pl": "Obraz „Moja dostawa” dostępny",
+              "ko": "내 배송 이미지 사용 가능",
+              "ar": "صورة «توصيلي» متاحة"
             }
           },
           {
@@ -3465,7 +3630,18 @@
             "type": "image",
             "title": {
               "en": "My delivery image",
-              "nl": "Afbeelding Mijn Bezorging"
+              "nl": "Afbeelding Mijn Bezorging",
+              "de": "Bild „Meine Zustellung“",
+              "fr": "Image « Ma livraison »",
+              "it": "Immagine “La mia consegna”",
+              "sv": "Bild för Min leverans",
+              "no": "Bilde for Min levering",
+              "es": "Imagen de Mi entrega",
+              "da": "Billede for Min levering",
+              "ru": "Изображение «Моя доставка»",
+              "pl": "Obraz „Moja dostawa”",
+              "ko": "내 배송 이미지",
+              "ar": "صورة «توصيلي»"
             }
           }
         ]
@@ -3880,7 +4056,18 @@
             "type": "string",
             "title": {
               "en": "Package status",
-              "nl": "Pakketstatus"
+              "nl": "Pakketstatus",
+              "de": "Paketstatus",
+              "fr": "Statut du colis",
+              "it": "Stato del pacco",
+              "sv": "Paketstatus",
+              "no": "Pakkestatus",
+              "es": "Estado del paquete",
+              "da": "Pakkestatus",
+              "ru": "Статус посылки",
+              "pl": "Status paczki",
+              "ko": "소포 상태",
+              "ar": "حالة الطرد"
             }
           },
           {
@@ -3888,7 +4075,18 @@
             "type": "string",
             "title": {
               "en": "Delivery window text",
-              "nl": "Tekst bezorgvenster"
+              "nl": "Tekst bezorgvenster",
+              "de": "Text des Zustellfensters",
+              "fr": "Texte du créneau de livraison",
+              "it": "Testo della finestra di consegna",
+              "sv": "Text för leveransfönster",
+              "no": "Tekst for leveringsvindu",
+              "es": "Texto de la ventana de entrega",
+              "da": "Tekst for leveringsvindue",
+              "ru": "Текст окна доставки",
+              "pl": "Tekst okna dostawy",
+              "ko": "배송 시간대 텍스트",
+              "ar": "نص نافذة التسليم"
             }
           },
           {
@@ -3896,7 +4094,18 @@
             "type": "string",
             "title": {
               "en": "Package delivery date",
-              "nl": "Bezorgdatum pakket"
+              "nl": "Bezorgdatum pakket",
+              "de": "Paket-Zustelldatum",
+              "fr": "Date de livraison du colis",
+              "it": "Data di consegna del pacco",
+              "sv": "Paketets leveransdatum",
+              "no": "Pakkens leveringsdato",
+              "es": "Fecha de entrega del paquete",
+              "da": "Pakkens leveringsdato",
+              "ru": "Дата доставки посылки",
+              "pl": "Data dostawy paczki",
+              "ko": "소포 배송일",
+              "ar": "تاريخ تسليم الطرد"
             }
           },
           {
@@ -3904,7 +4113,18 @@
             "type": "string",
             "title": {
               "en": "Package sender",
-              "nl": "Afzender pakket"
+              "nl": "Afzender pakket",
+              "de": "Paket-Absender",
+              "fr": "Expéditeur du colis",
+              "it": "Mittente del pacco",
+              "sv": "Paketavsändare",
+              "no": "Pakkeavsender",
+              "es": "Remitente del paquete",
+              "da": "Pakkeafsender",
+              "ru": "Отправитель посылки",
+              "pl": "Nadawca paczki",
+              "ko": "소포 발송인",
+              "ar": "مرسل الطرد"
             }
           },
           {
@@ -3912,7 +4132,18 @@
             "type": "string",
             "title": {
               "en": "Package tracking number",
-              "nl": "Trackingnummer pakket"
+              "nl": "Trackingnummer pakket",
+              "de": "Paket-Trackingnummer",
+              "fr": "Numéro de suivi du colis",
+              "it": "Numero di tracciamento del pacco",
+              "sv": "Paketets spårningsnummer",
+              "no": "Pakkens sporingsnummer",
+              "es": "Número de seguimiento del paquete",
+              "da": "Pakkens sporingsnummer",
+              "ru": "Номер отслеживания посылки",
+              "pl": "Numer śledzenia paczki",
+              "ko": "소포 운송장 번호",
+              "ar": "رقم تتبع الطرد"
             }
           },
           {
@@ -3920,7 +4151,18 @@
             "type": "boolean",
             "title": {
               "en": "My delivery image available",
-              "nl": "Afbeelding Mijn Bezorging beschikbaar"
+              "nl": "Afbeelding Mijn Bezorging beschikbaar",
+              "de": "Bild „Meine Zustellung“ verfügbar",
+              "fr": "Image « Ma livraison » disponible",
+              "it": "Immagine “La mia consegna” disponibile",
+              "sv": "Bild för Min leverans tillgänglig",
+              "no": "Bilde for Min levering tilgjengelig",
+              "es": "Imagen de Mi entrega disponible",
+              "da": "Billede for Min levering tilgængeligt",
+              "ru": "Изображение «Моя доставка» доступно",
+              "pl": "Obraz „Moja dostawa” dostępny",
+              "ko": "내 배송 이미지 사용 가능",
+              "ar": "صورة «توصيلي» متاحة"
             }
           },
           {
@@ -3928,7 +4170,18 @@
             "type": "image",
             "title": {
               "en": "My delivery image",
-              "nl": "Afbeelding Mijn Bezorging"
+              "nl": "Afbeelding Mijn Bezorging",
+              "de": "Bild „Meine Zustellung“",
+              "fr": "Image « Ma livraison »",
+              "it": "Immagine “La mia consegna”",
+              "sv": "Bild för Min leverans",
+              "no": "Bilde for Min levering",
+              "es": "Imagen de Mi entrega",
+              "da": "Billede for Min levering",
+              "ru": "Изображение «Моя доставка»",
+              "pl": "Obraz „Moja dostawa”",
+              "ko": "내 배송 이미지",
+              "ar": "صورة «توصيلي»"
             }
           }
         ]
@@ -7615,7 +7868,18 @@
             "type": "string",
             "title": {
               "en": "Package status",
-              "nl": "Pakketstatus"
+              "nl": "Pakketstatus",
+              "de": "Paketstatus",
+              "fr": "Statut du colis",
+              "it": "Stato del pacco",
+              "sv": "Paketstatus",
+              "no": "Pakkestatus",
+              "es": "Estado del paquete",
+              "da": "Pakkestatus",
+              "ru": "Статус посылки",
+              "pl": "Status paczki",
+              "ko": "소포 상태",
+              "ar": "حالة الطرد"
             }
           },
           {
@@ -7623,7 +7887,18 @@
             "type": "string",
             "title": {
               "en": "Delivery window text",
-              "nl": "Tekst bezorgvenster"
+              "nl": "Tekst bezorgvenster",
+              "de": "Text des Zustellfensters",
+              "fr": "Texte du créneau de livraison",
+              "it": "Testo della finestra di consegna",
+              "sv": "Text för leveransfönster",
+              "no": "Tekst for leveringsvindu",
+              "es": "Texto de la ventana de entrega",
+              "da": "Tekst for leveringsvindue",
+              "ru": "Текст окна доставки",
+              "pl": "Tekst okna dostawy",
+              "ko": "배송 시간대 텍스트",
+              "ar": "نص نافذة التسليم"
             }
           },
           {
@@ -7631,7 +7906,18 @@
             "type": "string",
             "title": {
               "en": "Package delivery date",
-              "nl": "Bezorgdatum pakket"
+              "nl": "Bezorgdatum pakket",
+              "de": "Paket-Zustelldatum",
+              "fr": "Date de livraison du colis",
+              "it": "Data di consegna del pacco",
+              "sv": "Paketets leveransdatum",
+              "no": "Pakkens leveringsdato",
+              "es": "Fecha de entrega del paquete",
+              "da": "Pakkens leveringsdato",
+              "ru": "Дата доставки посылки",
+              "pl": "Data dostawy paczki",
+              "ko": "소포 배송일",
+              "ar": "تاريخ تسليم الطرد"
             }
           },
           {
@@ -7639,7 +7925,18 @@
             "type": "string",
             "title": {
               "en": "Package sender",
-              "nl": "Afzender pakket"
+              "nl": "Afzender pakket",
+              "de": "Paket-Absender",
+              "fr": "Expéditeur du colis",
+              "it": "Mittente del pacco",
+              "sv": "Paketavsändare",
+              "no": "Pakkeavsender",
+              "es": "Remitente del paquete",
+              "da": "Pakkeafsender",
+              "ru": "Отправитель посылки",
+              "pl": "Nadawca paczki",
+              "ko": "소포 발송인",
+              "ar": "مرسل الطرد"
             }
           },
           {
@@ -7647,7 +7944,18 @@
             "type": "string",
             "title": {
               "en": "Package tracking number",
-              "nl": "Trackingnummer pakket"
+              "nl": "Trackingnummer pakket",
+              "de": "Paket-Trackingnummer",
+              "fr": "Numéro de suivi du colis",
+              "it": "Numero di tracciamento del pacco",
+              "sv": "Paketets spårningsnummer",
+              "no": "Pakkens sporingsnummer",
+              "es": "Número de seguimiento del paquete",
+              "da": "Pakkens sporingsnummer",
+              "ru": "Номер отслеживания посылки",
+              "pl": "Numer śledzenia paczki",
+              "ko": "소포 운송장 번호",
+              "ar": "رقم تتبع الطرد"
             }
           },
           {
@@ -7655,7 +7963,18 @@
             "type": "boolean",
             "title": {
               "en": "My delivery image available",
-              "nl": "Afbeelding Mijn Bezorging beschikbaar"
+              "nl": "Afbeelding Mijn Bezorging beschikbaar",
+              "de": "Bild „Meine Zustellung“ verfügbar",
+              "fr": "Image « Ma livraison » disponible",
+              "it": "Immagine “La mia consegna” disponibile",
+              "sv": "Bild för Min leverans tillgänglig",
+              "no": "Bilde for Min levering tilgjengelig",
+              "es": "Imagen de Mi entrega disponible",
+              "da": "Billede for Min levering tilgængeligt",
+              "ru": "Изображение «Моя доставка» доступно",
+              "pl": "Obraz „Moja dostawa” dostępny",
+              "ko": "내 배송 이미지 사용 가능",
+              "ar": "صورة «توصيلي» متاحة"
             }
           },
           {
@@ -7663,7 +7982,18 @@
             "type": "image",
             "title": {
               "en": "My delivery image",
-              "nl": "Afbeelding Mijn Bezorging"
+              "nl": "Afbeelding Mijn Bezorging",
+              "de": "Bild „Meine Zustellung“",
+              "fr": "Image « Ma livraison »",
+              "it": "Immagine “La mia consegna”",
+              "sv": "Bild för Min leverans",
+              "no": "Bilde for Min levering",
+              "es": "Imagen de Mi entrega",
+              "da": "Billede for Min levering",
+              "ru": "Изображение «Моя доставка»",
+              "pl": "Obraz „Moja dostawa”",
+              "ko": "내 배송 이미지",
+              "ar": "صورة «توصيلي»"
             }
           }
         ]
@@ -10350,7 +10680,17 @@
       "name": {
         "en": "Deutsche Post Mail",
         "nl": "Deutsche Post Poststukken",
-        "de": "Deutsche Post Briefankündigung"
+        "de": "Deutsche Post Briefankündigung",
+        "fr": "Courrier Deutsche Post",
+        "it": "Posta Deutsche Post",
+        "sv": "Deutsche Post-försändelser",
+        "no": "Deutsche Post-post",
+        "es": "Correo de Deutsche Post",
+        "da": "Deutsche Post-post",
+        "ru": "Почта Deutsche Post",
+        "pl": "Przesyłki Deutsche Post",
+        "ko": "Deutsche Post 우편물",
+        "ar": "بريد Deutsche Post"
       },
       "height": 250,
       "api": {
@@ -10376,7 +10716,18 @@
       "id": "postnl-pakketdetails",
       "name": {
         "en": "My Delivery",
-        "nl": "Mijn Bezorging"
+        "nl": "Mijn Bezorging",
+        "de": "Meine Zustellung",
+        "fr": "Ma livraison",
+        "it": "La mia consegna",
+        "sv": "Min leverans",
+        "no": "Min levering",
+        "es": "Mi entrega",
+        "da": "Min levering",
+        "ru": "Моя доставка",
+        "pl": "Moja dostawa",
+        "ko": "내 배송",
+        "ar": "توصيلي"
       },
       "height": 360,
       "api": {
