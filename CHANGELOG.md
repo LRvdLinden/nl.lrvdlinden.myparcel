@@ -3,6 +3,7 @@
 - DHL, DPD, UPS, Budbee, Homerr / Vinted Go, FedEx, GLS, bpost, InPost UK, Royal Mail and Post & DHL Germany now preserve additional verified delivery, event, reference and carrier fields where available.
 - MyParcel Packages now shows the additional carrier-provided details in its package popup when those values are present.
 - Missing carrier data remains empty; MyParcel does not synthesize delivery windows, events, weights or other shipment information.
+- Completed all 13 supported translations for Flow cards, Flow tokens, carrier settings and widget names, including the expanded PostNL Flow data.
 
 ## 0.2.6 — PostNL My Delivery parity
 - Fixed the **MyParcel Delivery** widget startup so Homey no longer remains on the loading spinner.
