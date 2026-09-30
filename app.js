@@ -224,10 +224,13 @@ module.exports = class MyParcelApp extends Homey.App {
     if (this._syncConnectionBusy) return;
     this._syncConnectionBusy = true;
     try {
-    for (const driverId of DRIVER_IDS) {
-      let devices = [];
-      try { devices = this.homey.drivers.getDriver(driverId).getDevices(); } catch (_) { continue; }
-      for (const device of devices) await this._syncConnectionState(driverId, device);
+      for (const driverId of DRIVER_IDS) {
+        let devices = [];
+        try { devices = this.homey.drivers.getDriver(driverId).getDevices(); } catch (_) { continue; }
+        for (const device of devices) await this._syncConnectionState(driverId, device);
+      }
+    } finally {
+      this._syncConnectionBusy = false;
     }
   }
 
