@@ -23,10 +23,10 @@ module.exports={
     const tracking=str(parcel.tracking,parcel.barcode,parcel.shipmentNumber,parcel.id);
     return {
      carrier,carrierId,carrierLogo:carrierId==='dhl-de'?'dhl.svg':`${carrierId}.svg`,account:device.getName(),deviceId:device.getId(),
-     tracking,status:localizePackageStatus(homey,parcel.status||''),sender:str(parcel.sender,parcel.title,parcel.sourceDisplayName),receiver:str(parcel.receiver),
+     tracking,reference:str(parcel.reference),status:localizePackageStatus(homey,parcel.status||''),sender:str(parcel.sender,parcel.title,parcel.sourceDisplayName),receiver:str(parcel.receiver),
      deliveryDate:str(parcel.deliveryDate,parcel.deliveryWindowFrom),deliveryWindow:str(parcel.deliveryWindow),deliveryWindowFrom:str(parcel.deliveryWindowFrom),deliveryWindowTo:str(parcel.deliveryWindowTo),
      updatedAt:str(parcel.updatedAt,parcel.createdAt),createdAt:str(parcel.createdAt),eventAt:str(parcel.lastEventAt,parcel.eventAt,parcel.delivered?parcel.deliveryDate:'',parcel.updatedAt,parcel.createdAt),lastEventAt:str(parcel.lastEventAt,parcel.eventAt,parcel.delivered?parcel.deliveryDate:'',parcel.updatedAt,parcel.createdAt),
-     service:str(parcel.service),deliveryPoint:str(parcel.deliveryPoint),weight:str(parcel.weight),dimensions:str(parcel.dimensions),product:str(parcel.product),partner:str(parcel.partner),lastEvent:localizePackageStatus(homey,str(parcel.lastEvent,parcel.status)),
+     service:str(parcel.service),deliveryPoint:str(parcel.deliveryPoint),weight:str(parcel.weight),dimensions:str(parcel.dimensions),product:str(parcel.product),partner:str(parcel.partner),lastEvent:localizePackageStatus(homey,str(parcel.lastEvent,parcel.status)),carrierState:str(parcel.carrierState),carrierResolution:str(parcel.carrierResolution),
      shipFrom:str(parcel.shipFrom),shipTo:str(parcel.shipTo),accessPoint:str(parcel.accessPoint),shipmentType:str(parcel.shipmentType),direction:str(parcel.direction),
      title:str(parcel.title),delivered:Boolean(parcel.delivered),
     };
