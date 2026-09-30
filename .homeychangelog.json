@@ -125,5 +125,9 @@
   "0.2.6": {
     "en": "Updated PostNL delivery features and added the green MyParcel Delivery widget with multi-carrier selection plus global delivery image and data tokens.",
     "nl": "PostNL-bezorgfuncties bijgewerkt en de groene MyParcel Bezorging-widget toegevoegd met selectie van meerdere vervoerders plus globale bezorgafbeelding- en datatokens."
+  },
+  "0.2.7": {
+    "en": "Expanded carrier-specific parcel data without inventing missing values. MyParcel now preserves and shows more fields actually returned by DHL, DPD, UPS, Budbee, Homerr/Vinted Go, FedEx, GLS, bpost, InPost UK, Royal Mail and Post & DHL Germany.",
+    "nl": "Carrier-specifieke pakketdata uitgebreid zonder ontbrekende waarden te verzinnen. MyParcel bewaart en toont nu meer velden die daadwerkelijk worden teruggegeven door DHL, DPD, UPS, Budbee, Homerr/Vinted Go, FedEx, GLS, bpost, InPost UK, Royal Mail en Post & DHL Duitsland."
   }
 }
