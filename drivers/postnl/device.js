@@ -5,7 +5,7 @@ const fs = require('fs');
 const path = require('path');
 const PostNLApi = require('../../lib/postnl-api');
 const localizePackageStatus = require('../../lib/status-i18n.js');
-const { renderDeliveryCard, renderNoPackageCard, hhmm } = require('../../lib/delivery-image');
+const { renderDeliveryCard, renderNoPackageCard, loadDeliveryVan, hhmm } = require('../../lib/delivery-image');
 
 class PostNLDevice extends Homey.Device {
   async onInit() {
@@ -304,27 +304,46 @@ class PostNLDevice extends Homey.Device {
     this._activePackageForImage = activePackage || null;
     const language = this.homey.i18n.getLanguage() === 'nl' ? 'nl' : 'en';
     if (!activePackage) {
-      this._packageImageBuffer = renderNoPackageCard(language);
+      this._packageImageBuffer = renderNoPackageCard({ language, vanPng: loadDeliveryVan() });
       return this._packageImageBuffer;
     }
+
     const from = this._parseLocalOrZonedParts(activePackage.deliveryWindowFrom);
     const to = this._parseLocalOrZonedParts(activePackage.deliveryWindowTo);
-    let progress = 0, windowStartPct = 0.25, windowEndPct = 0.75, timelineStart = '', timelineMid = '', timelineEnd = '';
+    let progress = 0;
+    let windowStartPct = 0.25;
+    let windowEndPct = 0.75;
+    let timelineStart = '';
+    let timelineMid = '';
+    let timelineEnd = '';
     if (from && to) {
-      const displayStart = from.minutes - 60, displayEnd = to.minutes + 60, spanMinutes = Math.max(1, displayEnd - displayStart);
+      const displayStart = from.minutes - 60;
+      const displayEnd = to.minutes + 60;
+      const spanMinutes = Math.max(1, displayEnd - displayStart);
       windowStartPct = (from.minutes - displayStart) / spanMinutes;
       windowEndPct = (to.minutes - displayStart) / spanMinutes;
-      timelineStart = hhmm(displayStart); timelineMid = hhmm(Math.round((displayStart + displayEnd) / 2)); timelineEnd = hhmm(displayEnd);
+      timelineStart = hhmm(displayStart);
+      timelineMid = hhmm(Math.round((displayStart + displayEnd) / 2));
+      timelineEnd = hhmm(displayEnd);
       const now = this._nowLocalParts();
       if (now.date < from.date) progress = 0;
       else if (now.date > from.date) progress = 1;
-      else progress = Math.max(0, Math.min(1, (now.seconds - displayStart * 60) / Math.max(1, (displayEnd - displayStart) * 60)));
+      else {
+        const startSeconds = displayStart * 60;
+        const endSeconds = displayEnd * 60;
+        progress = Math.max(0, Math.min(1, (now.seconds - startSeconds) / Math.max(1, endSeconds - startSeconds)));
+      }
     }
+
     const status = localizePackageStatus(this.homey, activePackage.status) || '';
     const sender = activePackage.sender || activePackage.title || activePackage.sourceDisplayName || 'PostNL';
     const tracking = activePackage.barcode || activePackage.id || '';
     const headline = this._deliveryHeadline(activePackage, language);
-    this._packageImageBuffer = renderDeliveryCard({ sender, status, headline, tracking, progress, windowStartPct, windowEndPct, timelineStart, timelineMid, timelineEnd });
+    const vanPng = loadDeliveryVan();
+    this._packageImageBuffer = renderDeliveryCard({
+      sender, status, headline, tracking, progress, windowStartPct, windowEndPct,
+      timelineStart, timelineMid, timelineEnd, vanPng,
+    });
     return this._packageImageBuffer;
   }
 
@@ -334,27 +353,23 @@ class PostNLDevice extends Homey.Device {
     return image;
   }
 
-  async getPackageVanImage() { return this.getPackageDeliveryImage(this._selectActivePackage()); }
-  async getNoPackagePlaceholderImage() { return this.getPackageDeliveryImage(null); }
-
   async getLetterImage(letter) {
     if (!letter?.imageData || !String(letter.imageData).startsWith('data:')) return null;
     const cacheKey = `${letter.id || 'mail'}:${letter.imageData.length}`;
     if (this._letterImageCache.has(cacheKey)) return this._letterImageCache.get(cacheKey);
     const match = String(letter.imageData).match(/^data:([^;]+);base64,(.+)$/s);
     if (!match) return null;
-    const mime = match[1] || 'image/jpeg';
-    const base64 = match[2];
-    if (!base64) return null;
+    const buffer = Buffer.from(match[2], 'base64');
+    if (!buffer.length) return null;
     const image = await this.homey.images.createImage();
     image.setStream(async stream => {
-      stream.contentType = mime;
+      stream.contentType = match[1] || 'image/jpeg';
       stream.filename = `postnl-${String(letter.id || 'mail').replace(/[^a-zA-Z0-9_-]/g, '_')}.jpg`;
-      stream.end(Buffer.from(base64, 'base64'));
+      stream.end(buffer);
       return stream;
     });
     this._letterImageCache.set(cacheKey, image);
-    while (this._letterImageCache.size > 6) this._letterImageCache.delete(this._letterImageCache.keys().next().value);
+    if (this._letterImageCache.size > 25) this._letterImageCache.delete(this._letterImageCache.keys().next().value);
     return image;
   }
 
@@ -375,6 +390,41 @@ class PostNLDevice extends Homey.Device {
       return stream;
     });
     this._letterImageCache.set(cacheKey, image);
+    return image;
+  }
+
+  async _imageFromFile(cache, cacheKey, filePath, contentType, filename) {
+    if (cache.has(cacheKey)) return cache.get(cacheKey);
+    const buffer = await fs.promises.readFile(filePath);
+    if (!buffer?.length) throw new Error(`PostNL image is empty: ${filename}`);
+    const image = await this.homey.images.createImage();
+    image.setStream(async stream => {
+      stream.contentType = contentType;
+      stream.filename = filename;
+      stream.end(buffer);
+      return stream;
+    });
+    cache.set(cacheKey, image);
+    return image;
+  }
+
+  async getPackageVanImage() {
+    return this.getPackageDeliveryImage(this._selectActivePackage());
+  }
+
+  async getNoPackagePlaceholderImage() {
+    const language = this.homey.i18n.getLanguage() === 'nl' ? 'nl' : 'en';
+    const cacheKey = `no-package:${language}`;
+    if (this._packageImageCache.has(cacheKey)) return this._packageImageCache.get(cacheKey);
+    const buffer = renderNoPackageCard({ language, vanPng: loadDeliveryVan() });
+    const image = await this.homey.images.createImage();
+    image.setStream(async stream => {
+      stream.contentType = 'image/png';
+      stream.filename = `postnl-no-package-${language}.png`;
+      stream.end(buffer);
+      return stream;
+    });
+    this._packageImageCache.set(cacheKey, image);
     return image;
   }
 
