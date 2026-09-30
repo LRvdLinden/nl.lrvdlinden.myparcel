@@ -5,7 +5,18 @@
       "highlight": true,
       "title": {
         "en": "New mail is expected",
-        "nl": "Er is nieuwe post onderweg"
+        "nl": "Er is nieuwe post onderweg",
+        "de": "Neue Briefpost wird erwartet",
+        "fr": "Du nouveau courrier est attendu",
+        "it": "È prevista nuova posta",
+        "sv": "Ny post väntas",
+        "no": "Ny post er ventet",
+        "es": "Se espera correo nuevo",
+        "da": "Der forventes ny post",
+        "ru": "Ожидается новая почта",
+        "pl": "Oczekiwana jest nowa poczta",
+        "ko": "새 우편물이 도착할 예정입니다",
+        "ar": "من المتوقع وصول بريد جديد"
       },
       "args": [],
       "tokens": [
@@ -14,7 +25,18 @@
           "type": "number",
           "title": {
             "en": "Number of mail items",
-            "nl": "Aantal poststukken"
+            "nl": "Aantal poststukken",
+            "de": "Anzahl der Briefsendungen",
+            "fr": "Nombre de courriers",
+            "it": "Numero di invii postali",
+            "sv": "Antal postförsändelser",
+            "no": "Antall postforsendelser",
+            "es": "Número de envíos postales",
+            "da": "Antal postforsendelser",
+            "ru": "Количество почтовых отправлений",
+            "pl": "Liczba przesyłek pocztowych",
+            "ko": "우편물 수",
+            "ar": "عدد مواد البريد"
           }
         },
         {
@@ -22,7 +44,18 @@
           "type": "string",
           "title": {
             "en": "Mail item ID",
-            "nl": "Poststuk-ID"
+            "nl": "Poststuk-ID",
+            "de": "Briefsendungs-ID",
+            "fr": "ID du courrier",
+            "it": "ID invio postale",
+            "sv": "Postförsändelse-ID",
+            "no": "Postforsendelses-ID",
+            "es": "ID del envío postal",
+            "da": "Postforsendelses-id",
+            "ru": "ID почтового отправления",
+            "pl": "ID przesyłki pocztowej",
+            "ko": "우편물 ID",
+            "ar": "معرّف مادة البريد"
           }
         },
         {
@@ -30,7 +63,18 @@
           "type": "string",
           "title": {
             "en": "Mail item",
-            "nl": "Poststuk"
+            "nl": "Poststuk",
+            "de": "Briefsendung",
+            "fr": "Courrier",
+            "it": "Invio postale",
+            "sv": "Postförsändelse",
+            "no": "Postforsendelse",
+            "es": "Envío postal",
+            "da": "Postforsendelse",
+            "ru": "Почтовое отправление",
+            "pl": "Przesyłka pocztowa",
+            "ko": "우편물",
+            "ar": "مادة بريد"
           }
         },
         {
@@ -38,7 +82,18 @@
           "type": "string",
           "title": {
             "en": "Sender (if available)",
-            "nl": "Afzender (indien beschikbaar)"
+            "nl": "Afzender (indien beschikbaar)",
+            "de": "Absender (falls verfügbar)",
+            "fr": "Expéditeur (si disponible)",
+            "it": "Mittente (se disponibile)",
+            "sv": "Avsändare (om tillgänglig)",
+            "no": "Avsender (hvis tilgjengelig)",
+            "es": "Remitente (si está disponible)",
+            "da": "Afsender (hvis tilgængelig)",
+            "ru": "Отправитель (если доступно)",
+            "pl": "Nadawca (jeśli dostępny)",
+            "ko": "발송인(가능한 경우)",
+            "ar": "المرسل (إن توفر)"
           }
         },
         {
@@ -46,7 +101,18 @@
           "type": "string",
           "title": {
             "en": "Delivery date",
-            "nl": "Bezorgdatum"
+            "nl": "Bezorgdatum",
+            "de": "Zustelldatum",
+            "fr": "Date de livraison",
+            "it": "Data di consegna",
+            "sv": "Leveransdatum",
+            "no": "Leveringsdato",
+            "es": "Fecha de entrega",
+            "da": "Leveringsdato",
+            "ru": "Дата доставки",
+            "pl": "Data dostawy",
+            "ko": "배송일",
+            "ar": "تاريخ التسليم"
           }
         },
         {
@@ -54,7 +120,18 @@
           "type": "boolean",
           "title": {
             "en": "Unread",
-            "nl": "Ongelezen"
+            "nl": "Ongelezen",
+            "de": "Ungelesen",
+            "fr": "Non lu",
+            "it": "Non letto",
+            "sv": "Oläst",
+            "no": "Ulest",
+            "es": "No leído",
+            "da": "Ulæst",
+            "ru": "Непрочитано",
+            "pl": "Nieprzeczytane",
+            "ko": "읽지 않음",
+            "ar": "غير مقروء"
           }
         },
         {
@@ -62,7 +139,18 @@
           "type": "boolean",
           "title": {
             "en": "Image available",
-            "nl": "Afbeelding beschikbaar"
+            "nl": "Afbeelding beschikbaar",
+            "de": "Bild verfügbar",
+            "fr": "Image disponible",
+            "it": "Immagine disponibile",
+            "sv": "Bild tillgänglig",
+            "no": "Bilde tilgjengelig",
+            "es": "Imagen disponible",
+            "da": "Billede tilgængeligt",
+            "ru": "Изображение доступно",
+            "pl": "Obraz dostępny",
+            "ko": "이미지 사용 가능",
+            "ar": "الصورة متاحة"
           }
         },
         {
@@ -70,7 +158,18 @@
           "type": "image",
           "title": {
             "en": "Mail item image",
-            "nl": "Afbeelding poststuk"
+            "nl": "Afbeelding poststuk",
+            "de": "Bild der Briefsendung",
+            "fr": "Image du courrier",
+            "it": "Immagine dell’invio postale",
+            "sv": "Bild på postförsändelse",
+            "no": "Bilde av postforsendelse",
+            "es": "Imagen del envío postal",
+            "da": "Billede af postforsendelse",
+            "ru": "Изображение почтового отправления",
+            "pl": "Obraz przesyłki pocztowej",
+            "ko": "우편물 이미지",
+            "ar": "صورة مادة البريد"
           }
         }
       ]
@@ -80,7 +179,18 @@
       "highlight": true,
       "title": {
         "en": "A new parcel was found",
-        "nl": "Er is een nieuw pakket gevonden"
+        "nl": "Er is een nieuw pakket gevonden",
+        "de": "Ein neues Paket wurde gefunden",
+        "fr": "Un nouveau colis a été trouvé",
+        "it": "È stato trovato un nuovo pacco",
+        "sv": "Ett nytt paket hittades",
+        "no": "En ny pakke ble funnet",
+        "es": "Se encontró un paquete nuevo",
+        "da": "En ny pakke blev fundet",
+        "ru": "Найдена новая посылка",
+        "pl": "Znaleziono nową paczkę",
+        "ko": "새 소포를 찾았습니다",
+        "ar": "تم العثور على طرد جديد"
       },
       "args": [],
       "tokens": [
@@ -89,7 +199,18 @@
           "type": "string",
           "title": {
             "en": "Shipment ID",
-            "nl": "Zending-ID"
+            "nl": "Zending-ID",
+            "de": "Sendungs-ID",
+            "fr": "ID d’expédition",
+            "it": "ID spedizione",
+            "sv": "Försändelse-ID",
+            "no": "Forsendelses-ID",
+            "es": "ID del envío",
+            "da": "Forsendelses-id",
+            "ru": "ID отправления",
+            "pl": "ID przesyłki",
+            "ko": "배송 ID",
+            "ar": "معرّف الشحنة"
           }
         },
         {
@@ -97,7 +218,18 @@
           "type": "string",
           "title": {
             "en": "Sender",
-            "nl": "Afzender"
+            "nl": "Afzender",
+            "de": "Absender",
+            "fr": "Expéditeur",
+            "it": "Mittente",
+            "sv": "Avsändare",
+            "no": "Avsender",
+            "es": "Remitente",
+            "da": "Afsender",
+            "ru": "Отправитель",
+            "pl": "Nadawca",
+            "ko": "발송인",
+            "ar": "المرسل"
           }
         },
         {
@@ -105,7 +237,18 @@
           "type": "string",
           "title": {
             "en": "Receiver",
-            "nl": "Ontvanger"
+            "nl": "Ontvanger",
+            "de": "Empfänger",
+            "fr": "Destinataire",
+            "it": "Destinatario",
+            "sv": "Mottagare",
+            "no": "Mottaker",
+            "es": "Destinatario",
+            "da": "Modtager",
+            "ru": "Получатель",
+            "pl": "Odbiorca",
+            "ko": "수령인",
+            "ar": "المستلم"
           }
         },
         {
@@ -113,7 +256,18 @@
           "type": "string",
           "title": {
             "en": "Parcel",
-            "nl": "Pakket"
+            "nl": "Pakket",
+            "de": "Paket",
+            "fr": "Colis",
+            "it": "Pacco",
+            "sv": "Paket",
+            "no": "Pakke",
+            "es": "Paquete",
+            "da": "Pakke",
+            "ru": "Посылка",
+            "pl": "Paczka",
+            "ko": "소포",
+            "ar": "الطرد"
           }
         },
         {
@@ -121,7 +275,18 @@
           "type": "string",
           "title": {
             "en": "Barcode",
-            "nl": "Barcode"
+            "nl": "Barcode",
+            "de": "Barcode",
+            "fr": "Code-barres",
+            "it": "Codice a barre",
+            "sv": "Streckkod",
+            "no": "Strekkode",
+            "es": "Código de barras",
+            "da": "Stregkode",
+            "ru": "Штрихкод",
+            "pl": "Kod kreskowy",
+            "ko": "바코드",
+            "ar": "الباركود"
           }
         },
         {
@@ -129,7 +294,18 @@
           "type": "string",
           "title": {
             "en": "Status",
-            "nl": "Status"
+            "nl": "Status",
+            "de": "Status",
+            "fr": "Statut",
+            "it": "Stato",
+            "sv": "Status",
+            "no": "Status",
+            "es": "Estado",
+            "da": "Status",
+            "ru": "Статус",
+            "pl": "Status",
+            "ko": "상태",
+            "ar": "الحالة"
           }
         },
         {
@@ -175,7 +351,18 @@
           "type": "string",
           "title": {
             "en": "Delivery window from",
-            "nl": "Bezorgvenster vanaf"
+            "nl": "Bezorgvenster vanaf",
+            "de": "Zustellfenster ab",
+            "fr": "Créneau de livraison à partir de",
+            "it": "Finestra di consegna da",
+            "sv": "Leveransfönster från",
+            "no": "Leveringsvindu fra",
+            "es": "Ventana de entrega desde",
+            "da": "Leveringsvindue fra",
+            "ru": "Окно доставки с",
+            "pl": "Okno dostawy od",
+            "ko": "배송 시간대 시작",
+            "ar": "نافذة التسليم من"
           }
         },
         {
@@ -183,7 +370,18 @@
           "type": "string",
           "title": {
             "en": "Delivery window to",
-            "nl": "Bezorgvenster tot"
+            "nl": "Bezorgvenster tot",
+            "de": "Zustellfenster bis",
+            "fr": "Créneau de livraison jusqu’à",
+            "it": "Finestra di consegna fino a",
+            "sv": "Leveransfönster till",
+            "no": "Leveringsvindu til",
+            "es": "Ventana de entrega hasta",
+            "da": "Leveringsvindue til",
+            "ru": "Окно доставки до",
+            "pl": "Okno dostawy do",
+            "ko": "배송 시간대 종료",
+            "ar": "نافذة التسليم إلى"
           }
         },
         {
@@ -191,7 +389,18 @@
           "type": "string",
           "title": {
             "en": "Delivery window type",
-            "nl": "Type bezorgvenster"
+            "nl": "Type bezorgvenster",
+            "de": "Typ des Zustellfensters",
+            "fr": "Type de créneau de livraison",
+            "it": "Tipo di finestra di consegna",
+            "sv": "Typ av leveransfönster",
+            "no": "Type leveringsvindu",
+            "es": "Tipo de ventana de entrega",
+            "da": "Type leveringsvindue",
+            "ru": "Тип окна доставки",
+            "pl": "Typ okna dostawy",
+            "ko": "배송 시간대 유형",
+            "ar": "نوع نافذة التسليم"
           }
         },
         {
@@ -199,7 +408,18 @@
           "type": "string",
           "title": {
             "en": "Tracking URL",
-            "nl": "Tracking-URL"
+            "nl": "Tracking-URL",
+            "de": "Tracking-URL",
+            "fr": "URL de suivi",
+            "it": "URL di tracciamento",
+            "sv": "Spårnings-URL",
+            "no": "Sporings-URL",
+            "es": "URL de seguimiento",
+            "da": "Sporings-URL",
+            "ru": "URL отслеживания",
+            "pl": "URL śledzenia",
+            "ko": "추적 URL",
+            "ar": "رابط التتبع"
           }
         },
         {
@@ -207,7 +427,18 @@
           "type": "string",
           "title": {
             "en": "Shipment type",
-            "nl": "Zendingstype"
+            "nl": "Zendingstype",
+            "de": "Sendungstyp",
+            "fr": "Type d’expédition",
+            "it": "Tipo di spedizione",
+            "sv": "Försändelsetyp",
+            "no": "Forsendelsestype",
+            "es": "Tipo de envío",
+            "da": "Forsendelsestype",
+            "ru": "Тип отправления",
+            "pl": "Typ przesyłki",
+            "ko": "배송 유형",
+            "ar": "نوع الشحنة"
           }
         },
         {
@@ -215,7 +446,18 @@
           "type": "string",
           "title": {
             "en": "Delivery address type",
-            "nl": "Type bezorgadres"
+            "nl": "Type bezorgadres",
+            "de": "Typ der Zustelladresse",
+            "fr": "Type d’adresse de livraison",
+            "it": "Tipo di indirizzo di consegna",
+            "sv": "Typ av leveransadress",
+            "no": "Type leveringsadresse",
+            "es": "Tipo de dirección de entrega",
+            "da": "Type leveringsadresse",
+            "ru": "Тип адреса доставки",
+            "pl": "Typ adresu dostawy",
+            "ko": "배송 주소 유형",
+            "ar": "نوع عنوان التسليم"
           }
         },
         {
@@ -223,7 +465,18 @@
           "type": "string",
           "title": {
             "en": "Direction",
-            "nl": "Richting"
+            "nl": "Richting",
+            "de": "Richtung",
+            "fr": "Direction",
+            "it": "Direzione",
+            "sv": "Riktning",
+            "no": "Retning",
+            "es": "Dirección",
+            "da": "Retning",
+            "ru": "Направление",
+            "pl": "Kierunek",
+            "ko": "방향",
+            "ar": "الاتجاه"
           }
         },
         {
@@ -231,7 +484,18 @@
           "type": "string",
           "title": {
             "en": "Created at",
-            "nl": "Aangemaakt op"
+            "nl": "Aangemaakt op",
+            "de": "Erstellt am",
+            "fr": "Créé le",
+            "it": "Creato il",
+            "sv": "Skapad",
+            "no": "Opprettet",
+            "es": "Creado el",
+            "da": "Oprettet",
+            "ru": "Создано",
+            "pl": "Utworzono",
+            "ko": "생성 시각",
+            "ar": "تم الإنشاء في"
           }
         },
         {
@@ -239,7 +503,18 @@
           "type": "boolean",
           "title": {
             "en": "Delivered",
-            "nl": "Bezorgd"
+            "nl": "Bezorgd",
+            "de": "Zugestellt",
+            "fr": "Livré",
+            "it": "Consegnato",
+            "sv": "Levererad",
+            "no": "Levert",
+            "es": "Entregado",
+            "da": "Leveret",
+            "ru": "Доставлено",
+            "pl": "Doręczono",
+            "ko": "배송 완료",
+            "ar": "تم التسليم"
           }
         },
         {
@@ -247,7 +522,18 @@
           "type": "string",
           "title": {
             "en": "Shared from",
-            "nl": "Gedeeld via"
+            "nl": "Gedeeld via",
+            "de": "Geteilt über",
+            "fr": "Partagé depuis",
+            "it": "Condiviso da",
+            "sv": "Delad från",
+            "no": "Delt fra",
+            "es": "Compartido desde",
+            "da": "Delt fra",
+            "ru": "Источник общего доступа",
+            "pl": "Udostępniono z",
+            "ko": "공유 출처",
+            "ar": "تمت المشاركة من"
           }
         },
         {
@@ -255,7 +541,18 @@
           "type": "string",
           "title": {
             "en": "Source account ID",
-            "nl": "Bronaccount-ID"
+            "nl": "Bronaccount-ID",
+            "de": "Quellkonto-ID",
+            "fr": "ID du compte source",
+            "it": "ID account di origine",
+            "sv": "Källkonto-ID",
+            "no": "Kildekonto-ID",
+            "es": "ID de cuenta de origen",
+            "da": "Kildekonto-id",
+            "ru": "ID исходного аккаунта",
+            "pl": "ID konta źródłowego",
+            "ko": "소스 계정 ID",
+            "ar": "معرّف الحساب المصدر"
           }
         },
         {
@@ -263,7 +560,18 @@
           "type": "string",
           "title": {
             "en": "Package status",
-            "nl": "Pakketstatus"
+            "nl": "Pakketstatus",
+            "de": "Paketstatus",
+            "fr": "Statut du colis",
+            "it": "Stato del pacco",
+            "sv": "Paketstatus",
+            "no": "Pakkestatus",
+            "es": "Estado del paquete",
+            "da": "Pakkestatus",
+            "ru": "Статус посылки",
+            "pl": "Status paczki",
+            "ko": "소포 상태",
+            "ar": "حالة الطرد"
           }
         },
         {
@@ -271,7 +579,18 @@
           "type": "string",
           "title": {
             "en": "Delivery window text",
-            "nl": "Tekst bezorgvenster"
+            "nl": "Tekst bezorgvenster",
+            "de": "Text des Zustellfensters",
+            "fr": "Texte du créneau de livraison",
+            "it": "Testo della finestra di consegna",
+            "sv": "Text för leveransfönster",
+            "no": "Tekst for leveringsvindu",
+            "es": "Texto de la ventana de entrega",
+            "da": "Tekst for leveringsvindue",
+            "ru": "Текст окна доставки",
+            "pl": "Tekst okna dostawy",
+            "ko": "배송 시간대 텍스트",
+            "ar": "نص نافذة التسليم"
           }
         },
         {
@@ -279,7 +598,18 @@
           "type": "string",
           "title": {
             "en": "Package delivery date",
-            "nl": "Bezorgdatum pakket"
+            "nl": "Bezorgdatum pakket",
+            "de": "Paket-Zustelldatum",
+            "fr": "Date de livraison du colis",
+            "it": "Data di consegna del pacco",
+            "sv": "Paketets leveransdatum",
+            "no": "Pakkens leveringsdato",
+            "es": "Fecha de entrega del paquete",
+            "da": "Pakkens leveringsdato",
+            "ru": "Дата доставки посылки",
+            "pl": "Data dostawy paczki",
+            "ko": "소포 배송일",
+            "ar": "تاريخ تسليم الطرد"
           }
         },
         {
@@ -287,7 +617,18 @@
           "type": "string",
           "title": {
             "en": "Package sender",
-            "nl": "Afzender pakket"
+            "nl": "Afzender pakket",
+            "de": "Paket-Absender",
+            "fr": "Expéditeur du colis",
+            "it": "Mittente del pacco",
+            "sv": "Paketavsändare",
+            "no": "Pakkeavsender",
+            "es": "Remitente del paquete",
+            "da": "Pakkeafsender",
+            "ru": "Отправитель посылки",
+            "pl": "Nadawca paczki",
+            "ko": "소포 발송인",
+            "ar": "مرسل الطرد"
           }
         },
         {
@@ -295,7 +636,18 @@
           "type": "string",
           "title": {
             "en": "Package tracking number",
-            "nl": "Trackingnummer pakket"
+            "nl": "Trackingnummer pakket",
+            "de": "Paket-Trackingnummer",
+            "fr": "Numéro de suivi du colis",
+            "it": "Numero di tracciamento del pacco",
+            "sv": "Paketets spårningsnummer",
+            "no": "Pakkens sporingsnummer",
+            "es": "Número de seguimiento del paquete",
+            "da": "Pakkens sporingsnummer",
+            "ru": "Номер отслеживания посылки",
+            "pl": "Numer śledzenia paczki",
+            "ko": "소포 운송장 번호",
+            "ar": "رقم تتبع الطرد"
           }
         },
         {
@@ -303,7 +655,18 @@
           "type": "boolean",
           "title": {
             "en": "My delivery image available",
-            "nl": "Afbeelding Mijn Bezorging beschikbaar"
+            "nl": "Afbeelding Mijn Bezorging beschikbaar",
+            "de": "Bild „Meine Zustellung“ verfügbar",
+            "fr": "Image « Ma livraison » disponible",
+            "it": "Immagine “La mia consegna” disponibile",
+            "sv": "Bild för Min leverans tillgänglig",
+            "no": "Bilde for Min levering tilgjengelig",
+            "es": "Imagen de Mi entrega disponible",
+            "da": "Billede for Min levering tilgængeligt",
+            "ru": "Изображение «Моя доставка» доступно",
+            "pl": "Obraz „Moja dostawa” dostępny",
+            "ko": "내 배송 이미지 사용 가능",
+            "ar": "صورة «توصيلي» متاحة"
           }
         },
         {
@@ -311,7 +674,18 @@
           "type": "image",
           "title": {
             "en": "My delivery image",
-            "nl": "Afbeelding Mijn Bezorging"
+            "nl": "Afbeelding Mijn Bezorging",
+            "de": "Bild „Meine Zustellung“",
+            "fr": "Image « Ma livraison »",
+            "it": "Immagine “La mia consegna”",
+            "sv": "Bild för Min leverans",
+            "no": "Bilde for Min levering",
+            "es": "Imagen de Mi entrega",
+            "da": "Billede for Min levering",
+            "ru": "Изображение «Моя доставка»",
+            "pl": "Obraz „Moja dostawa”",
+            "ko": "내 배송 이미지",
+            "ar": "صورة «توصيلي»"
           }
         }
       ]
@@ -320,7 +694,18 @@
       "id": "package_status_changed",
       "title": {
         "en": "A parcel status changed",
-        "nl": "De status van een pakket is gewijzigd"
+        "nl": "De status van een pakket is gewijzigd",
+        "de": "Der Status eines Pakets hat sich geändert",
+        "fr": "Le statut d’un colis a changé",
+        "it": "Lo stato di un pacco è cambiato",
+        "sv": "Statusen för ett paket ändrades",
+        "no": "Statusen til en pakke ble endret",
+        "es": "El estado de un paquete cambió",
+        "da": "Status for en pakke blev ændret",
+        "ru": "Статус посылки изменился",
+        "pl": "Status paczki uległ zmianie",
+        "ko": "소포 상태가 변경되었습니다",
+        "ar": "تغيرت حالة طرد"
       },
       "args": [],
       "tokens": [
@@ -329,7 +714,18 @@
           "type": "string",
           "title": {
             "en": "Previous status",
-            "nl": "Vorige status"
+            "nl": "Vorige status",
+            "de": "Vorheriger Status",
+            "fr": "Statut précédent",
+            "it": "Stato precedente",
+            "sv": "Föregående status",
+            "no": "Forrige status",
+            "es": "Estado anterior",
+            "da": "Forrige status",
+            "ru": "Предыдущий статус",
+            "pl": "Poprzedni status",
+            "ko": "이전 상태",
+            "ar": "الحالة السابقة"
           }
         },
         {
@@ -337,7 +733,18 @@
           "type": "string",
           "title": {
             "en": "Shipment ID",
-            "nl": "Zending-ID"
+            "nl": "Zending-ID",
+            "de": "Sendungs-ID",
+            "fr": "ID d’expédition",
+            "it": "ID spedizione",
+            "sv": "Försändelse-ID",
+            "no": "Forsendelses-ID",
+            "es": "ID del envío",
+            "da": "Forsendelses-id",
+            "ru": "ID отправления",
+            "pl": "ID przesyłki",
+            "ko": "배송 ID",
+            "ar": "معرّف الشحنة"
           }
         },
         {
@@ -345,7 +752,18 @@
           "type": "string",
           "title": {
             "en": "Sender",
-            "nl": "Afzender"
+            "nl": "Afzender",
+            "de": "Absender",
+            "fr": "Expéditeur",
+            "it": "Mittente",
+            "sv": "Avsändare",
+            "no": "Avsender",
+            "es": "Remitente",
+            "da": "Afsender",
+            "ru": "Отправитель",
+            "pl": "Nadawca",
+            "ko": "발송인",
+            "ar": "المرسل"
           }
         },
         {
@@ -353,7 +771,18 @@
           "type": "string",
           "title": {
             "en": "Receiver",
-            "nl": "Ontvanger"
+            "nl": "Ontvanger",
+            "de": "Empfänger",
+            "fr": "Destinataire",
+            "it": "Destinatario",
+            "sv": "Mottagare",
+            "no": "Mottaker",
+            "es": "Destinatario",
+            "da": "Modtager",
+            "ru": "Получатель",
+            "pl": "Odbiorca",
+            "ko": "수령인",
+            "ar": "المستلم"
           }
         },
         {
@@ -361,7 +790,18 @@
           "type": "string",
           "title": {
             "en": "Parcel",
-            "nl": "Pakket"
+            "nl": "Pakket",
+            "de": "Paket",
+            "fr": "Colis",
+            "it": "Pacco",
+            "sv": "Paket",
+            "no": "Pakke",
+            "es": "Paquete",
+            "da": "Pakke",
+            "ru": "Посылка",
+            "pl": "Paczka",
+            "ko": "소포",
+            "ar": "الطرد"
           }
         },
         {
@@ -369,7 +809,18 @@
           "type": "string",
           "title": {
             "en": "Barcode",
-            "nl": "Barcode"
+            "nl": "Barcode",
+            "de": "Barcode",
+            "fr": "Code-barres",
+            "it": "Codice a barre",
+            "sv": "Streckkod",
+            "no": "Strekkode",
+            "es": "Código de barras",
+            "da": "Stregkode",
+            "ru": "Штрихкод",
+            "pl": "Kod kreskowy",
+            "ko": "바코드",
+            "ar": "الباركود"
           }
         },
         {
@@ -377,7 +828,18 @@
           "type": "string",
           "title": {
             "en": "Status",
-            "nl": "Status"
+            "nl": "Status",
+            "de": "Status",
+            "fr": "Statut",
+            "it": "Stato",
+            "sv": "Status",
+            "no": "Status",
+            "es": "Estado",
+            "da": "Status",
+            "ru": "Статус",
+            "pl": "Status",
+            "ko": "상태",
+            "ar": "الحالة"
           }
         },
         {
@@ -423,7 +885,18 @@
           "type": "string",
           "title": {
             "en": "Delivery window from",
-            "nl": "Bezorgvenster vanaf"
+            "nl": "Bezorgvenster vanaf",
+            "de": "Zustellfenster ab",
+            "fr": "Créneau de livraison à partir de",
+            "it": "Finestra di consegna da",
+            "sv": "Leveransfönster från",
+            "no": "Leveringsvindu fra",
+            "es": "Ventana de entrega desde",
+            "da": "Leveringsvindue fra",
+            "ru": "Окно доставки с",
+            "pl": "Okno dostawy od",
+            "ko": "배송 시간대 시작",
+            "ar": "نافذة التسليم من"
           }
         },
         {
@@ -431,7 +904,18 @@
           "type": "string",
           "title": {
             "en": "Delivery window to",
-            "nl": "Bezorgvenster tot"
+            "nl": "Bezorgvenster tot",
+            "de": "Zustellfenster bis",
+            "fr": "Créneau de livraison jusqu’à",
+            "it": "Finestra di consegna fino a",
+            "sv": "Leveransfönster till",
+            "no": "Leveringsvindu til",
+            "es": "Ventana de entrega hasta",
+            "da": "Leveringsvindue til",
+            "ru": "Окно доставки до",
+            "pl": "Okno dostawy do",
+            "ko": "배송 시간대 종료",
+            "ar": "نافذة التسليم إلى"
           }
         },
         {
@@ -439,7 +923,18 @@
           "type": "string",
           "title": {
             "en": "Delivery window type",
-            "nl": "Type bezorgvenster"
+            "nl": "Type bezorgvenster",
+            "de": "Typ des Zustellfensters",
+            "fr": "Type de créneau de livraison",
+            "it": "Tipo di finestra di consegna",
+            "sv": "Typ av leveransfönster",
+            "no": "Type leveringsvindu",
+            "es": "Tipo de ventana de entrega",
+            "da": "Type leveringsvindue",
+            "ru": "Тип окна доставки",
+            "pl": "Typ okna dostawy",
+            "ko": "배송 시간대 유형",
+            "ar": "نوع نافذة التسليم"
           }
         },
         {
@@ -447,7 +942,18 @@
           "type": "string",
           "title": {
             "en": "Tracking URL",
-            "nl": "Tracking-URL"
+            "nl": "Tracking-URL",
+            "de": "Tracking-URL",
+            "fr": "URL de suivi",
+            "it": "URL di tracciamento",
+            "sv": "Spårnings-URL",
+            "no": "Sporings-URL",
+            "es": "URL de seguimiento",
+            "da": "Sporings-URL",
+            "ru": "URL отслеживания",
+            "pl": "URL śledzenia",
+            "ko": "추적 URL",
+            "ar": "رابط التتبع"
           }
         },
         {
@@ -455,7 +961,18 @@
           "type": "string",
           "title": {
             "en": "Shipment type",
-            "nl": "Zendingstype"
+            "nl": "Zendingstype",
+            "de": "Sendungstyp",
+            "fr": "Type d’expédition",
+            "it": "Tipo di spedizione",
+            "sv": "Försändelsetyp",
+            "no": "Forsendelsestype",
+            "es": "Tipo de envío",
+            "da": "Forsendelsestype",
+            "ru": "Тип отправления",
+            "pl": "Typ przesyłki",
+            "ko": "배송 유형",
+            "ar": "نوع الشحنة"
           }
         },
         {
@@ -463,7 +980,18 @@
           "type": "string",
           "title": {
             "en": "Delivery address type",
-            "nl": "Type bezorgadres"
+            "nl": "Type bezorgadres",
+            "de": "Typ der Zustelladresse",
+            "fr": "Type d’adresse de livraison",
+            "it": "Tipo di indirizzo di consegna",
+            "sv": "Typ av leveransadress",
+            "no": "Type leveringsadresse",
+            "es": "Tipo de dirección de entrega",
+            "da": "Type leveringsadresse",
+            "ru": "Тип адреса доставки",
+            "pl": "Typ adresu dostawy",
+            "ko": "배송 주소 유형",
+            "ar": "نوع عنوان التسليم"
           }
         },
         {
@@ -471,7 +999,18 @@
           "type": "string",
           "title": {
             "en": "Direction",
-            "nl": "Richting"
+            "nl": "Richting",
+            "de": "Richtung",
+            "fr": "Direction",
+            "it": "Direzione",
+            "sv": "Riktning",
+            "no": "Retning",
+            "es": "Dirección",
+            "da": "Retning",
+            "ru": "Направление",
+            "pl": "Kierunek",
+            "ko": "방향",
+            "ar": "الاتجاه"
           }
         },
         {
@@ -479,7 +1018,18 @@
           "type": "string",
           "title": {
             "en": "Created at",
-            "nl": "Aangemaakt op"
+            "nl": "Aangemaakt op",
+            "de": "Erstellt am",
+            "fr": "Créé le",
+            "it": "Creato il",
+            "sv": "Skapad",
+            "no": "Opprettet",
+            "es": "Creado el",
+            "da": "Oprettet",
+            "ru": "Создано",
+            "pl": "Utworzono",
+            "ko": "생성 시각",
+            "ar": "تم الإنشاء في"
           }
         },
         {
@@ -487,7 +1037,18 @@
           "type": "boolean",
           "title": {
             "en": "Delivered",
-            "nl": "Bezorgd"
+            "nl": "Bezorgd",
+            "de": "Zugestellt",
+            "fr": "Livré",
+            "it": "Consegnato",
+            "sv": "Levererad",
+            "no": "Levert",
+            "es": "Entregado",
+            "da": "Leveret",
+            "ru": "Доставлено",
+            "pl": "Doręczono",
+            "ko": "배송 완료",
+            "ar": "تم التسليم"
           }
         },
         {
@@ -495,7 +1056,18 @@
           "type": "string",
           "title": {
             "en": "Shared from",
-            "nl": "Gedeeld via"
+            "nl": "Gedeeld via",
+            "de": "Geteilt über",
+            "fr": "Partagé depuis",
+            "it": "Condiviso da",
+            "sv": "Delad från",
+            "no": "Delt fra",
+            "es": "Compartido desde",
+            "da": "Delt fra",
+            "ru": "Источник общего доступа",
+            "pl": "Udostępniono z",
+            "ko": "공유 출처",
+            "ar": "تمت المشاركة من"
           }
         },
         {
@@ -503,7 +1075,18 @@
           "type": "string",
           "title": {
             "en": "Source account ID",
-            "nl": "Bronaccount-ID"
+            "nl": "Bronaccount-ID",
+            "de": "Quellkonto-ID",
+            "fr": "ID du compte source",
+            "it": "ID account di origine",
+            "sv": "Källkonto-ID",
+            "no": "Kildekonto-ID",
+            "es": "ID de cuenta de origen",
+            "da": "Kildekonto-id",
+            "ru": "ID исходного аккаунта",
+            "pl": "ID konta źródłowego",
+            "ko": "소스 계정 ID",
+            "ar": "معرّف الحساب المصدر"
           }
         },
         {
@@ -511,7 +1094,18 @@
           "type": "string",
           "title": {
             "en": "Package status",
-            "nl": "Pakketstatus"
+            "nl": "Pakketstatus",
+            "de": "Paketstatus",
+            "fr": "Statut du colis",
+            "it": "Stato del pacco",
+            "sv": "Paketstatus",
+            "no": "Pakkestatus",
+            "es": "Estado del paquete",
+            "da": "Pakkestatus",
+            "ru": "Статус посылки",
+            "pl": "Status paczki",
+            "ko": "소포 상태",
+            "ar": "حالة الطرد"
           }
         },
         {
@@ -519,7 +1113,18 @@
           "type": "string",
           "title": {
             "en": "Delivery window text",
-            "nl": "Tekst bezorgvenster"
+            "nl": "Tekst bezorgvenster",
+            "de": "Text des Zustellfensters",
+            "fr": "Texte du créneau de livraison",
+            "it": "Testo della finestra di consegna",
+            "sv": "Text för leveransfönster",
+            "no": "Tekst for leveringsvindu",
+            "es": "Texto de la ventana de entrega",
+            "da": "Tekst for leveringsvindue",
+            "ru": "Текст окна доставки",
+            "pl": "Tekst okna dostawy",
+            "ko": "배송 시간대 텍스트",
+            "ar": "نص نافذة التسليم"
           }
         },
         {
@@ -527,7 +1132,18 @@
           "type": "string",
           "title": {
             "en": "Package delivery date",
-            "nl": "Bezorgdatum pakket"
+            "nl": "Bezorgdatum pakket",
+            "de": "Paket-Zustelldatum",
+            "fr": "Date de livraison du colis",
+            "it": "Data di consegna del pacco",
+            "sv": "Paketets leveransdatum",
+            "no": "Pakkens leveringsdato",
+            "es": "Fecha de entrega del paquete",
+            "da": "Pakkens leveringsdato",
+            "ru": "Дата доставки посылки",
+            "pl": "Data dostawy paczki",
+            "ko": "소포 배송일",
+            "ar": "تاريخ تسليم الطرد"
           }
         },
         {
@@ -535,7 +1151,18 @@
           "type": "string",
           "title": {
             "en": "Package sender",
-            "nl": "Afzender pakket"
+            "nl": "Afzender pakket",
+            "de": "Paket-Absender",
+            "fr": "Expéditeur du colis",
+            "it": "Mittente del pacco",
+            "sv": "Paketavsändare",
+            "no": "Pakkeavsender",
+            "es": "Remitente del paquete",
+            "da": "Pakkeafsender",
+            "ru": "Отправитель посылки",
+            "pl": "Nadawca paczki",
+            "ko": "소포 발송인",
+            "ar": "مرسل الطرد"
           }
         },
         {
@@ -543,7 +1170,18 @@
           "type": "string",
           "title": {
             "en": "Package tracking number",
-            "nl": "Trackingnummer pakket"
+            "nl": "Trackingnummer pakket",
+            "de": "Paket-Trackingnummer",
+            "fr": "Numéro de suivi du colis",
+            "it": "Numero di tracciamento del pacco",
+            "sv": "Paketets spårningsnummer",
+            "no": "Pakkens sporingsnummer",
+            "es": "Número de seguimiento del paquete",
+            "da": "Pakkens sporingsnummer",
+            "ru": "Номер отслеживания посылки",
+            "pl": "Numer śledzenia paczki",
+            "ko": "소포 운송장 번호",
+            "ar": "رقم تتبع الطرد"
           }
         },
         {
@@ -551,7 +1189,18 @@
           "type": "boolean",
           "title": {
             "en": "My delivery image available",
-            "nl": "Afbeelding Mijn Bezorging beschikbaar"
+            "nl": "Afbeelding Mijn Bezorging beschikbaar",
+            "de": "Bild „Meine Zustellung“ verfügbar",
+            "fr": "Image « Ma livraison » disponible",
+            "it": "Immagine “La mia consegna” disponibile",
+            "sv": "Bild för Min leverans tillgänglig",
+            "no": "Bilde for Min levering tilgjengelig",
+            "es": "Imagen de Mi entrega disponible",
+            "da": "Billede for Min levering tilgængeligt",
+            "ru": "Изображение «Моя доставка» доступно",
+            "pl": "Obraz „Moja dostawa” dostępny",
+            "ko": "내 배송 이미지 사용 가능",
+            "ar": "صورة «توصيلي» متاحة"
           }
         },
         {
@@ -559,7 +1208,18 @@
           "type": "image",
           "title": {
             "en": "My delivery image",
-            "nl": "Afbeelding Mijn Bezorging"
+            "nl": "Afbeelding Mijn Bezorging",
+            "de": "Bild „Meine Zustellung“",
+            "fr": "Image « Ma livraison »",
+            "it": "Immagine “La mia consegna”",
+            "sv": "Bild för Min leverans",
+            "no": "Bilde for Min levering",
+            "es": "Imagen de Mi entrega",
+            "da": "Billede for Min levering",
+            "ru": "Изображение «Моя доставка»",
+            "pl": "Obraz „Moja dostawa”",
+            "ko": "내 배송 이미지",
+            "ar": "صورة «توصيلي»"
           }
         }
       ]
@@ -568,7 +1228,18 @@
       "id": "sync_failed",
       "title": {
         "en": "PostNL synchronization failed",
-        "nl": "PostNL-synchronisatie is mislukt"
+        "nl": "PostNL-synchronisatie is mislukt",
+        "de": "PostNL-Synchronisierung fehlgeschlagen",
+        "fr": "Échec de la synchronisation PostNL",
+        "it": "Sincronizzazione PostNL non riuscita",
+        "sv": "PostNL-synkronisering misslyckades",
+        "no": "PostNL-synkronisering mislyktes",
+        "es": "Falló la sincronización de PostNL",
+        "da": "PostNL-synkronisering mislykkedes",
+        "ru": "Синхронизация PostNL не удалась",
+        "pl": "Synchronizacja PostNL nie powiodła się",
+        "ko": "PostNL 동기화 실패",
+        "ar": "فشلت مزامنة PostNL"
       },
       "args": [],
       "tokens": [
@@ -577,7 +1248,18 @@
           "type": "string",
           "title": {
             "en": "Error",
-            "nl": "Foutmelding"
+            "nl": "Foutmelding",
+            "de": "Fehler",
+            "fr": "Erreur",
+            "it": "Errore",
+            "sv": "Fel",
+            "no": "Feil",
+            "es": "Error",
+            "da": "Fejl",
+            "ru": "Ошибка",
+            "pl": "Błąd",
+            "ko": "오류",
+            "ar": "خطأ"
           }
         }
       ]
@@ -586,7 +1268,18 @@
       "id": "login_expired",
       "title": {
         "en": "The PostNL login expired",
-        "nl": "De PostNL-aanmelding is verlopen"
+        "nl": "De PostNL-aanmelding is verlopen",
+        "de": "Die PostNL-Anmeldung ist abgelaufen",
+        "fr": "La connexion PostNL a expiré",
+        "it": "L’accesso PostNL è scaduto",
+        "sv": "PostNL-inloggningen har gått ut",
+        "no": "PostNL-påloggingen har utløpt",
+        "es": "El inicio de sesión de PostNL ha caducado",
+        "da": "PostNL-login er udløbet",
+        "ru": "Срок входа PostNL истёк",
+        "pl": "Logowanie PostNL wygasło",
+        "ko": "PostNL 로그인이 만료되었습니다",
+        "ar": "انتهت صلاحية تسجيل دخول PostNL"
       },
       "args": []
     },
@@ -767,7 +1460,18 @@
           "type": "string",
           "title": {
             "en": "Package status",
-            "nl": "Pakketstatus"
+            "nl": "Pakketstatus",
+            "de": "Paketstatus",
+            "fr": "Statut du colis",
+            "it": "Stato del pacco",
+            "sv": "Paketstatus",
+            "no": "Pakkestatus",
+            "es": "Estado del paquete",
+            "da": "Pakkestatus",
+            "ru": "Статус посылки",
+            "pl": "Status paczki",
+            "ko": "소포 상태",
+            "ar": "حالة الطرد"
           }
         },
         {
@@ -775,7 +1479,18 @@
           "type": "string",
           "title": {
             "en": "Delivery window text",
-            "nl": "Tekst bezorgvenster"
+            "nl": "Tekst bezorgvenster",
+            "de": "Text des Zustellfensters",
+            "fr": "Texte du créneau de livraison",
+            "it": "Testo della finestra di consegna",
+            "sv": "Text för leveransfönster",
+            "no": "Tekst for leveringsvindu",
+            "es": "Texto de la ventana de entrega",
+            "da": "Tekst for leveringsvindue",
+            "ru": "Текст окна доставки",
+            "pl": "Tekst okna dostawy",
+            "ko": "배송 시간대 텍스트",
+            "ar": "نص نافذة التسليم"
           }
         },
         {
@@ -783,7 +1498,18 @@
           "type": "string",
           "title": {
             "en": "Package delivery date",
-            "nl": "Bezorgdatum pakket"
+            "nl": "Bezorgdatum pakket",
+            "de": "Paket-Zustelldatum",
+            "fr": "Date de livraison du colis",
+            "it": "Data di consegna del pacco",
+            "sv": "Paketets leveransdatum",
+            "no": "Pakkens leveringsdato",
+            "es": "Fecha de entrega del paquete",
+            "da": "Pakkens leveringsdato",
+            "ru": "Дата доставки посылки",
+            "pl": "Data dostawy paczki",
+            "ko": "소포 배송일",
+            "ar": "تاريخ تسليم الطرد"
           }
         },
         {
@@ -791,7 +1517,18 @@
           "type": "string",
           "title": {
             "en": "Package sender",
-            "nl": "Afzender pakket"
+            "nl": "Afzender pakket",
+            "de": "Paket-Absender",
+            "fr": "Expéditeur du colis",
+            "it": "Mittente del pacco",
+            "sv": "Paketavsändare",
+            "no": "Pakkeavsender",
+            "es": "Remitente del paquete",
+            "da": "Pakkeafsender",
+            "ru": "Отправитель посылки",
+            "pl": "Nadawca paczki",
+            "ko": "소포 발송인",
+            "ar": "مرسل الطرد"
           }
         },
         {
@@ -799,7 +1536,18 @@
           "type": "string",
           "title": {
             "en": "Package tracking number",
-            "nl": "Trackingnummer pakket"
+            "nl": "Trackingnummer pakket",
+            "de": "Paket-Trackingnummer",
+            "fr": "Numéro de suivi du colis",
+            "it": "Numero di tracciamento del pacco",
+            "sv": "Paketets spårningsnummer",
+            "no": "Pakkens sporingsnummer",
+            "es": "Número de seguimiento del paquete",
+            "da": "Pakkens sporingsnummer",
+            "ru": "Номер отслеживания посылки",
+            "pl": "Numer śledzenia paczki",
+            "ko": "소포 운송장 번호",
+            "ar": "رقم تتبع الطرد"
           }
         },
         {
@@ -807,7 +1555,18 @@
           "type": "boolean",
           "title": {
             "en": "My delivery image available",
-            "nl": "Afbeelding Mijn Bezorging beschikbaar"
+            "nl": "Afbeelding Mijn Bezorging beschikbaar",
+            "de": "Bild „Meine Zustellung“ verfügbar",
+            "fr": "Image « Ma livraison » disponible",
+            "it": "Immagine “La mia consegna” disponibile",
+            "sv": "Bild för Min leverans tillgänglig",
+            "no": "Bilde for Min levering tilgjengelig",
+            "es": "Imagen de Mi entrega disponible",
+            "da": "Billede for Min levering tilgængeligt",
+            "ru": "Изображение «Моя доставка» доступно",
+            "pl": "Obraz „Moja dostawa” dostępny",
+            "ko": "내 배송 이미지 사용 가능",
+            "ar": "صورة «توصيلي» متاحة"
           }
         },
         {
@@ -815,7 +1574,18 @@
           "type": "image",
           "title": {
             "en": "My delivery image",
-            "nl": "Afbeelding Mijn Bezorging"
+            "nl": "Afbeelding Mijn Bezorging",
+            "de": "Bild „Meine Zustellung“",
+            "fr": "Image « Ma livraison »",
+            "it": "Immagine “La mia consegna”",
+            "sv": "Bild för Min leverans",
+            "no": "Bilde for Min levering",
+            "es": "Imagen de Mi entrega",
+            "da": "Billede for Min levering",
+            "ru": "Изображение «Моя доставка»",
+            "pl": "Obraz „Moja dostawa”",
+            "ko": "내 배송 이미지",
+            "ar": "صورة «توصيلي»"
           }
         }
       ]
@@ -826,7 +1596,18 @@
       "id": "mail_expected",
       "title": {
         "en": "Mail is expected",
-        "nl": "Er wordt post verwacht"
+        "nl": "Er wordt post verwacht",
+        "de": "Briefpost wird erwartet",
+        "fr": "Du courrier est attendu",
+        "it": "È prevista posta",
+        "sv": "Post väntas",
+        "no": "Post er ventet",
+        "es": "Se espera correo",
+        "da": "Der forventes post",
+        "ru": "Ожидается почта",
+        "pl": "Oczekiwana jest poczta",
+        "ko": "우편물이 도착할 예정입니다",
+        "ar": "من المتوقع وصول بريد"
       },
       "args": []
     },
@@ -834,7 +1615,18 @@
       "id": "packages_underway",
       "title": {
         "en": "Parcels are underway",
-        "nl": "Er zijn pakketten onderweg"
+        "nl": "Er zijn pakketten onderweg",
+        "de": "Pakete sind unterwegs",
+        "fr": "Des colis sont en route",
+        "it": "Ci sono pacchi in arrivo",
+        "sv": "Paket är på väg",
+        "no": "Pakker er på vei",
+        "es": "Hay paquetes en camino",
+        "da": "Der er pakker på vej",
+        "ru": "Посылки в пути",
+        "pl": "Paczki są w drodze",
+        "ko": "배송 중인 소포가 있습니다",
+        "ar": "هناك طرود في الطريق"
       },
       "args": []
     },
@@ -863,7 +1655,18 @@
       "id": "sync_now",
       "title": {
         "en": "Synchronize PostNL",
-        "nl": "Synchroniseer PostNL"
+        "nl": "Synchroniseer PostNL",
+        "de": "PostNL synchronisieren",
+        "fr": "Synchroniser PostNL",
+        "it": "Sincronizza PostNL",
+        "sv": "Synkronisera PostNL",
+        "no": "Synkroniser PostNL",
+        "es": "Sincronizar PostNL",
+        "da": "Synkroniser PostNL",
+        "ru": "Синхронизировать PostNL",
+        "pl": "Synchronizuj PostNL",
+        "ko": "PostNL 동기화",
+        "ar": "مزامنة PostNL"
       },
       "args": []
     }
