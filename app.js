@@ -6,7 +6,7 @@ const localizePackageStatus = require('./lib/status-i18n.js');
 
 const DRIVER_IDS = [
   'postnl', 'dhl-parcel', 'dpd', 'ups', 'budbee', 'homerr',
-  'fedex', 'gls', 'inpost-uk', 'bpost', 'royal-mail', 'post-dhl-de',
+  'fedex', 'gls', 'inpost-uk', 'bpost', 'royal-mail', 'post-dhl-de', 'ampere',
 ];
 
 const CARRIER_NAMES = {
@@ -22,6 +22,7 @@ const CARRIER_NAMES = {
   bpost: 'bpost',
   'royal-mail': 'Royal Mail',
   'post-dhl-de': 'Post & DHL Germany',
+  ampere: 'Ampère',
 };
 
 const DELIVERY_WINDOW_FLOWS = {
@@ -103,10 +104,10 @@ module.exports = class MyParcelApp extends Homey.App {
     }
     this._postInterval = this.homey.setInterval(() => this.syncPostNL('interval'), 5 * 60 * 1000);
     this._midnightInterval = this.homey.setInterval(() => this._midnightCheck(), 60 * 1000);
-    this._connectionInterval = this.homey.setInterval(() => this.syncConnectionStates().catch(error => this.error(error)), 10 * 1000);
-    this._deliveryWindowInterval = this.homey.setInterval(() => this.syncDeliveryWindows().catch(error => this.error(error)), 10 * 1000);
+    this._connectionInterval = this.homey.setInterval(() => this.syncConnectionStates().catch(error => this.error(error)), 30 * 1000);
+    this._deliveryWindowInterval = this.homey.setInterval(() => this.syncDeliveryWindows().catch(error => this.error(error)), 30 * 1000);
     await this._initMyParcelDeliveryTokens();
-    this._myParcelDeliveryTokenInterval = this.homey.setInterval(() => this.syncMyParcelDeliveryTokens().catch(error => this.error(error)), 30 * 1000);
+    this._myParcelDeliveryTokenInterval = this.homey.setInterval(() => this.syncMyParcelDeliveryTokens().catch(error => this.error(error)), 60 * 1000);
     this.homey.setTimeout(() => this.syncMyParcelDeliveryTokens().catch(error => this.error(error)), 7 * 1000);
     this.homey.setTimeout(() => this.syncPostNL('startup'), 10 * 1000);
     this.homey.setTimeout(() => this.syncConnectionStates().catch(error => this.error(error)), 5 * 1000);
@@ -220,6 +221,9 @@ module.exports = class MyParcelApp extends Homey.App {
   }
 
   async syncConnectionStates() {
+    if (this._syncConnectionBusy) return;
+    this._syncConnectionBusy = true;
+    try {
     for (const driverId of DRIVER_IDS) {
       let devices = [];
       try { devices = this.homey.drivers.getDriver(driverId).getDevices(); } catch (_) { continue; }
@@ -350,10 +354,16 @@ module.exports = class MyParcelApp extends Homey.App {
   }
 
   async syncDeliveryWindows() {
+    if (this._syncDeliveryBusy) return;
+    this._syncDeliveryBusy = true;
+    try {
     for (const driverId of Object.keys(DELIVERY_WINDOW_FLOWS)) {
       let devices = [];
       try { devices = this.homey.drivers.getDriver(driverId).getDevices(); } catch (_) { continue; }
       for (const device of devices) await this._syncDeviceDeliveryWindows(driverId, device);
+    }
+    } finally {
+      this._syncDeliveryBusy = false;
     }
   }
 
@@ -427,7 +437,9 @@ module.exports = class MyParcelApp extends Homey.App {
   }
 
   async syncMyParcelDeliveryTokens() {
-    if (!this._myParcelDeliveryTokens) return;
+    if (!this._myParcelDeliveryTokens || this._syncMyParcelTokensBusy) return;
+    this._syncMyParcelTokensBusy = true;
+    try {
     const next = this._allActiveDeliveries()[0] || null;
     const values = next ? {
       carrier: next.carrier,
@@ -440,6 +452,9 @@ module.exports = class MyParcelApp extends Homey.App {
     await Promise.all(Object.entries(values).map(([key, value]) => this._myParcelDeliveryTokens[key].setValue(value).catch(error => this.error(`[MyParcel delivery token] ${key}`, error))));
     const image = await this._getMyParcelDeliveryImage(Boolean(next));
     await this._myParcelDeliveryTokens.image.setValue(image).catch(error => this.error('[MyParcel delivery token] image', error));
+    } finally {
+      this._syncMyParcelTokensBusy = false;
+    }
   }
 
   async _midnightCheck() {

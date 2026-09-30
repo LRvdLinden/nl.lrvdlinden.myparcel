@@ -1,4 +1,7 @@
 ## 0.2.7 — Carrier data expansion
+- Added Ampère (bol) device groundwork and included Ampère in the MyParcel Packages and MyParcel Delivery widgets.
+- Fixed the Ampère driver icon and aligned its pairing screen with Homey UI conventions.
+- Reduced memory pressure by limiting image/detail caches and preventing overlapping app-wide sync jobs.
 - Expanded carrier-specific parcel data while keeping every field tied to values actually returned by that carrier integration.
 - DHL, DPD, UPS, Budbee, Homerr / Vinted Go, FedEx, GLS, bpost, InPost UK, Royal Mail and Post & DHL Germany now preserve additional verified delivery, event, reference and carrier fields where available.
 - MyParcel Packages now shows the additional carrier-provided details in its package popup when those values are present.

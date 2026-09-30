@@ -215,7 +215,10 @@ module.exports = class DpdDevice extends Homey.Device {
       shipmentBUCode: String(source?.shipmentBUCode || ''),
       parcelType: outgoing ? 'OUTGOING' : 'INCOMING',
     });
-    if (detail) this._detailCache.set(tracking, detail);
+    if (detail) {
+      this._detailCache.set(tracking, detail);
+      while (this._detailCache.size > 20) this._detailCache.delete(this._detailCache.keys().next().value);
+    }
     return detail || cached || null;
   }
 

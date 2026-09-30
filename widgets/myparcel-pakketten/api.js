@@ -9,7 +9,7 @@ function timestamp(item) {
 function selectedIds(value) { if (Array.isArray(value)) return value.map(String).filter(Boolean); if (typeof value !== 'string') return []; return value.split(',').map(item => item.trim()).filter(Boolean); }
 function safeDevices(homey, id) { try { return homey.drivers.getDriver(id).getDevices(); } catch (_) { return []; } }
 function allDevices(homey) {
-  const defs = [['postnl','PostNL','postnl'],['dhl-parcel','DHL','dhl'],['dpd','DPD','dpd'],['ups','UPS','ups'],['budbee','Budbee','budbee'],['homerr','Homerr','homerr'],['fedex','FedEx','fedex'],['gls','GLS','gls'],['inpost-uk','InPost UK','inpost-uk'],['bpost','bpost','bpost'],['royal-mail','Royal Mail','royal-mail'],['post-dhl-de','DHL Germany','dhl-de']];
+  const defs = [['postnl','PostNL','postnl'],['dhl-parcel','DHL','dhl'],['dpd','DPD','dpd'],['ups','UPS','ups'],['budbee','Budbee','budbee'],['homerr','Homerr','homerr'],['fedex','FedEx','fedex'],['gls','GLS','gls'],['inpost-uk','InPost UK','inpost-uk'],['bpost','bpost','bpost'],['royal-mail','Royal Mail','royal-mail'],['post-dhl-de','DHL Germany','dhl-de'],['ampere','Ampère','ampere']];
   return defs.flatMap(([driver,carrier,carrierId]) => safeDevices(homey,driver).map(device => ({driver,carrier,carrierId,device})));
 }
 function selectedDevices(homey, value) { const ids=selectedIds(value),devices=allDevices(homey); if(!ids.length)return[];const wanted=new Set(ids);return devices.filter(({device})=>wanted.has(String(device.getId()))); }
@@ -22,7 +22,7 @@ module.exports={
    packages.push(...list.map(parcel=>{
     const tracking=str(parcel.tracking,parcel.barcode,parcel.shipmentNumber,parcel.id);
     return {
-     carrier,carrierId,carrierLogo:carrierId==='dhl-de'?'dhl.svg':`${carrierId}.svg`,account:device.getName(),deviceId:device.getId(),
+     carrier,carrierId,carrierLogo:carrierId==='dhl-de'?'dhl.svg':carrierId==='ampere'?'ampere.png':`${carrierId}.svg`,account:device.getName(),deviceId:device.getId(),
      tracking,reference:str(parcel.reference),status:localizePackageStatus(homey,parcel.status||''),sender:str(parcel.sender,parcel.title,parcel.sourceDisplayName),receiver:str(parcel.receiver),
      deliveryDate:str(parcel.deliveryDate,parcel.deliveryWindowFrom),deliveryWindow:str(parcel.deliveryWindow),deliveryWindowFrom:str(parcel.deliveryWindowFrom),deliveryWindowTo:str(parcel.deliveryWindowTo),
      updatedAt:str(parcel.updatedAt,parcel.createdAt),createdAt:str(parcel.createdAt),eventAt:str(parcel.lastEventAt,parcel.eventAt,parcel.delivered?parcel.deliveryDate:'',parcel.updatedAt,parcel.createdAt),lastEventAt:str(parcel.lastEventAt,parcel.eventAt,parcel.delivered?parcel.deliveryDate:'',parcel.updatedAt,parcel.createdAt),

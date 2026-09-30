@@ -1,0 +1,41 @@
+{
+  "name": {
+    "en": "Ampère",
+    "nl": "Ampère",
+    "de": "Ampère",
+    "fr": "Ampère",
+    "it": "Ampère",
+    "sv": "Ampère",
+    "no": "Ampère",
+    "es": "Ampère",
+    "da": "Ampère",
+    "ru": "Ampère",
+    "pl": "Ampère",
+    "ko": "Ampère",
+    "ar": "Ampère"
+  },
+  "class": "sensor",
+  "capabilities": [
+    "ampere_parcel_count",
+    "ampere_status",
+    "myparcel_connection_status",
+    "ampere_last_update"
+  ],
+  "platforms": [
+    "local"
+  ],
+  "images": {
+    "small": "/drivers/ampere/assets/images/small.png",
+    "large": "/drivers/ampere/assets/images/large.png"
+  },
+  "pair": [
+    {
+      "id": "login"
+    }
+  ],
+  "repair": [
+    {
+      "id": "repair"
+    }
+  ]
+}

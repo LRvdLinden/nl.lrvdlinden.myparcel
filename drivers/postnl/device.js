@@ -343,17 +343,18 @@ class PostNLDevice extends Homey.Device {
     if (this._letterImageCache.has(cacheKey)) return this._letterImageCache.get(cacheKey);
     const match = String(letter.imageData).match(/^data:([^;]+);base64,(.+)$/s);
     if (!match) return null;
-    const buffer = Buffer.from(match[2], 'base64');
-    if (!buffer.length) return null;
+    const mime = match[1] || 'image/jpeg';
+    const base64 = match[2];
+    if (!base64) return null;
     const image = await this.homey.images.createImage();
     image.setStream(async stream => {
-      stream.contentType = match[1] || 'image/jpeg';
+      stream.contentType = mime;
       stream.filename = `postnl-${String(letter.id || 'mail').replace(/[^a-zA-Z0-9_-]/g, '_')}.jpg`;
-      stream.end(buffer);
+      stream.end(Buffer.from(base64, 'base64'));
       return stream;
     });
     this._letterImageCache.set(cacheKey, image);
-    if (this._letterImageCache.size > 25) this._letterImageCache.delete(this._letterImageCache.keys().next().value);
+    while (this._letterImageCache.size > 6) this._letterImageCache.delete(this._letterImageCache.keys().next().value);
     return image;
   }
 

@@ -32,7 +32,7 @@
     "type": "app",
     "singular": false,
     "filter": {
-      "capabilities": "postnl_package_count|dhl_parcel_count|dpd_parcel_count|ups_parcel_count|budbee_parcel_count|homerr_parcel_count|fedex_parcel_count|gls_parcel_count|inpost_uk_parcel_count|bpost_parcel_count|royal_mail_parcel_count"
+      "capabilities": "postnl_package_count|dhl_parcel_count|dpd_parcel_count|ups_parcel_count|budbee_parcel_count|homerr_parcel_count|fedex_parcel_count|gls_parcel_count|inpost_uk_parcel_count|bpost_parcel_count|royal_mail_parcel_count|ampere_parcel_count"
     }
   }
 }

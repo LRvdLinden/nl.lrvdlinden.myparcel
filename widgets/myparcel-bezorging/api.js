@@ -5,7 +5,7 @@ const DEFS = [
   ['postnl','PostNL','postnl'],['dhl-parcel','DHL','dhl'],['dpd','DPD','dpd'],['ups','UPS','ups'],
   ['budbee','Budbee','budbee'],['homerr','Homerr / Vinted Go','homerr'],['fedex','FedEx','fedex'],
   ['gls','GLS','gls'],['inpost-uk','InPost UK','inpost-uk'],['bpost','bpost','bpost'],
-  ['royal-mail','Royal Mail','royal-mail'],['post-dhl-de','Post & DHL Germany','dhl-de'],
+  ['royal-mail','Royal Mail','royal-mail'],['post-dhl-de','Post & DHL Germany','dhl-de'],['ampere','Ampère','ampere'],
 ];
 function selectedIds(value){if(Array.isArray(value))return value.map(String).filter(Boolean);if(typeof value!=='string')return[];return value.split(',').map(v=>v.trim()).filter(Boolean)}
 function safeDevices(homey,id){try{return homey.drivers.getDriver(id).getDevices()}catch(_){return[]}}
@@ -17,7 +17,7 @@ function time(item){for(const v of [item.deliveryWindowFrom,item.deliveryDate,it
 function normalize(homey,{driver,carrier,carrierId,device},parcel){
  const tracking=str(parcel.tracking,parcel.barcode,parcel.shipmentNumber,parcel.id);
  return {
-  carrier,carrierId,carrierLogo:carrierId==='dhl-de'?'dhl.svg':`${carrierId}.svg`,account:device.getName(),deviceId:device.getId(),driver,
+  carrier,carrierId,carrierLogo:carrierId==='dhl-de'?'dhl.svg':carrierId==='ampere'?'ampere.png':`${carrierId}.svg`,account:device.getName(),deviceId:device.getId(),driver,
   tracking,status:localizePackageStatus(homey,parcel.status||'')||str(parcel.status),sender:str(parcel.sender,parcel.title,parcel.sourceDisplayName),receiver:str(parcel.receiver),
   deliveryDate:str(parcel.deliveryDate,parcel.deliveryWindowFrom),deliveryWindow:str(parcel.deliveryWindow),deliveryWindowFrom:str(parcel.deliveryWindowFrom),deliveryWindowTo:str(parcel.deliveryWindowTo),
   updatedAt:str(parcel.updatedAt,parcel.createdAt),createdAt:str(parcel.createdAt),lastEvent:localizePackageStatus(homey,str(parcel.lastEvent,parcel.status)),

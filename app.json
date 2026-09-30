@@ -1014,6 +1014,48 @@
           "id": "repair"
         }
       ]
+    },
+    {
+      "id": "ampere",
+      "name": {
+        "en": "Ampère",
+        "nl": "Ampère",
+        "de": "Ampère",
+        "fr": "Ampère",
+        "it": "Ampère",
+        "sv": "Ampère",
+        "no": "Ampère",
+        "es": "Ampère",
+        "da": "Ampère",
+        "ru": "Ampère",
+        "pl": "Ampère",
+        "ko": "Ampère",
+        "ar": "Ampère"
+      },
+      "class": "sensor",
+      "capabilities": [
+        "ampere_parcel_count",
+        "ampere_status",
+        "myparcel_connection_status",
+        "ampere_last_update"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "images": {
+        "small": "/drivers/ampere/assets/images/small.png",
+        "large": "/drivers/ampere/assets/images/large.png"
+      },
+      "pair": [
+        {
+          "id": "login"
+        }
+      ],
+      "repair": [
+        {
+          "id": "repair"
+        }
+      ]
     }
   ],
   "capabilities": {
@@ -2940,6 +2982,72 @@
       "setable": false,
       "insights": false,
       "icon": "/assets/capabilities/delivery.svg"
+    },
+    "ampere_parcel_count": {
+      "type": "number",
+      "title": {
+        "en": "Active parcels",
+        "nl": "Actieve pakketten",
+        "de": "Aktive Pakete",
+        "fr": "Colis actifs",
+        "it": "Pacchi attivi",
+        "sv": "Aktiva paket",
+        "no": "Aktive pakker",
+        "es": "Paquetes activos",
+        "da": "Aktive pakker",
+        "ru": "Активные посылки",
+        "pl": "Aktywne paczki",
+        "ko": "활성 소포",
+        "ar": "الطرود النشطة"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/capabilities/package.svg"
+    },
+    "ampere_status": {
+      "type": "string",
+      "title": {
+        "en": "Status",
+        "nl": "Status",
+        "de": "Status",
+        "fr": "Statut",
+        "it": "Stato",
+        "sv": "Status",
+        "no": "Status",
+        "es": "Estado",
+        "da": "Status",
+        "ru": "Статус",
+        "pl": "Status",
+        "ko": "상태",
+        "ar": "الحالة"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/capabilities/status.svg"
+    },
+    "ampere_last_update": {
+      "type": "string",
+      "title": {
+        "en": "Last update",
+        "nl": "Laatste update",
+        "de": "Letzte Aktualisierung",
+        "fr": "Dernière mise à jour",
+        "it": "Ultimo aggiornamento",
+        "sv": "Senaste uppdatering",
+        "no": "Siste oppdatering",
+        "es": "Última actualización",
+        "da": "Seneste opdatering",
+        "ru": "Последнее обновление",
+        "pl": "Ostatnia aktualizacja",
+        "ko": "마지막 업데이트",
+        "ar": "آخر تحديث"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/capabilities/update.svg"
     }
   },
   "flow": {
