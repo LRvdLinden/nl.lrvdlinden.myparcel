@@ -1,4 +1,7 @@
 ## 0.2.7 — Carrier data expansion
+- Ampère now accepts helper 0.3.2 bundles that already contain Ampère tracking links discovered from the authenticated bol.com orders page, so the device no longer depends on an immediate server-side replay of the browser session.
+- Fixed freshly paired Ampère devices becoming unavailable immediately when bol.com redirects or challenges Homey’s first background request; transient live-session failures now keep the paired device available and retry later.
+- Updated Ampère pair/repair instructions to Bol.com Homey Login Helper 0.3.2.
 - Added Ampère (bol) device groundwork and included Ampère in the MyParcel Packages and MyParcel Delivery widgets.
 - Fixed the Ampère driver icon and aligned its pairing screen with Homey UI conventions.
 - Reduced memory pressure by limiting image/detail caches and preventing overlapping app-wide sync jobs.
