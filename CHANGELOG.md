@@ -1,3 +1,9 @@
+## 0.2.7 — Carrier data expansion
+- Expanded carrier-specific parcel data while keeping every field tied to values actually returned by that carrier integration.
+- DHL, DPD, UPS, Budbee, Homerr / Vinted Go, FedEx, GLS, bpost, InPost UK, Royal Mail and Post & DHL Germany now preserve additional verified delivery, event, reference and carrier fields where available.
+- MyParcel Packages now shows the additional carrier-provided details in its package popup when those values are present.
+- Missing carrier data remains empty; MyParcel does not synthesize delivery windows, events, weights or other shipment information.
+
 ## 0.2.6 — PostNL My Delivery parity
 - Fixed the **MyParcel Delivery** widget startup so Homey no longer remains on the loading spinner.
 - Ported the **Mijn Bezorging / My Delivery** widget from PostNL for Homey v1.1.8 into the MyParcel PostNL device.
