@@ -34,7 +34,7 @@ module.exports = class AmpereDevice extends Homey.Device {
   async _authNotice() {
     if (this.getStoreValue('ampereAuthNotice')) return;
     await this.homey.notifications.createNotification({
-      excerpt: 'Reconnect bol.com for Ampère in MyParcel. Open Bol.com Homey Login Helper 0.3.2, sign in again and paste the new session code via Repair.',
+      excerpt: 'Reconnect bol.com for Ampère in MyParcel. Open Bol.com Homey Login Helper 0.3.1, sign in again and paste the new session code via Repair.',
     }).catch(() => {});
     await this.setStoreValue('ampereAuthNotice', true);
   }
@@ -74,7 +74,7 @@ module.exports = class AmpereDevice extends Homey.Device {
           },
         });
 
-        // Helper 0.3.2 places Ampère links discovered in the authenticated
+        // Helper 0.3.1 places Ampère links discovered in the authenticated
         // bol.com orders page directly in the bundle. Use those first. A
         // server-side replay of the consumer browser session is best-effort only.
         const discovery = await client.discoverAmpereUrls({ tolerateAuthFailure: true });
@@ -115,25 +115,19 @@ module.exports = class AmpereDevice extends Homey.Device {
       await this.setStoreValue('ampere_snapshot', parcels);
       await this.setAvailable().catch(() => {});
 
-      // Do not immediately invalidate a helper-verified browser session merely
-      // because Homey's Node fetch is redirected/challenged by bol.com. Only use
-      // that as a reconnect hint after repeated failures and when the helper did
-      // not capture any Ampère URL at all.
-      if (liveAuthError && !urls.size && sessionCode) {
+      // A bol.com consumer browser session may be accepted in Chrome but rejected
+      // when replayed by Homey's Node runtime (anti-bot/login challenge). That is
+      // not proof that the captured session is invalid. Keep the device available
+      // and connected; helper-captured Ampère URLs remain the authoritative source.
+      if (liveAuthError && sessionCode) {
         const failures = Number(this.getStoreValue('ampereLiveAuthFailures') || 0) + 1;
         await this.setStoreValue('ampereLiveAuthFailures', failures);
-        this.log('[AmpereDevice] live bol.com refresh unavailable', failures, liveAuthError.message);
-        if (failures >= 3) {
-          await this._authNotice().catch(() => {});
-          await this.setCapabilityValue('myparcel_connection_status', this.homey.__('common_status.disconnected')).catch(() => {});
-        } else {
-          await this.setCapabilityValue('myparcel_connection_status', this.homey.__('common_status.connected')).catch(() => {});
-        }
+        this.log('[AmpereDevice] live bol.com replay unavailable; keeping verified helper session', failures, liveAuthError.message);
       } else {
         await this.setStoreValue('ampereLiveAuthFailures', 0);
-        await this.setStoreValue('ampereAuthNotice', false);
-        await this.setCapabilityValue('myparcel_connection_status', this.homey.__('common_status.connected')).catch(() => {});
       }
+      await this.setStoreValue('ampereAuthNotice', false);
+      await this.setCapabilityValue('myparcel_connection_status', this.homey.__('common_status.connected')).catch(() => {});
 
       const active = parcels.filter(parcel => !parcel.delivered);
       const latest = active[0] || parcels[0] || null;
@@ -147,7 +141,7 @@ module.exports = class AmpereDevice extends Homey.Device {
       if (invalidConfiguration) {
         await this.setCapabilityValue('myparcel_connection_status', this.homey.__('common_status.disconnected')).catch(() => {});
         await this.setCapabilityValue('ampere_status', this.homey.__('common_status.disconnected')).catch(() => {});
-        await this.setUnavailable('Connect bol.com with Bol.com Homey Login Helper 0.3.2').catch(() => {});
+        await this.setUnavailable('Connect bol.com with Bol.com Homey Login Helper 0.3.1').catch(() => {});
       } else {
         // Keep an already paired device available on transient web/API failures.
         await this.setAvailable().catch(() => {});
