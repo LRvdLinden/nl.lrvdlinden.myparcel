@@ -44,7 +44,18 @@
       "type": "text",
       "label": {
         "en": "MyGLS username",
-        "nl": "MyGLS gebruikersnaam"
+        "nl": "MyGLS gebruikersnaam",
+        "de": "MyGLS-Benutzername",
+        "fr": "Nom d’utilisateur MyGLS",
+        "it": "Nome utente MyGLS",
+        "sv": "MyGLS-användarnamn",
+        "no": "MyGLS-brukernavn",
+        "es": "Nombre de usuario de MyGLS",
+        "da": "MyGLS-brugernavn",
+        "ru": "Имя пользователя MyGLS",
+        "pl": "Nazwa użytkownika MyGLS",
+        "ko": "MyGLS 사용자 이름",
+        "ar": "اسم مستخدم MyGLS"
       },
       "value": ""
     },
@@ -53,7 +64,18 @@
       "type": "password",
       "label": {
         "en": "MyGLS password",
-        "nl": "MyGLS wachtwoord"
+        "nl": "MyGLS wachtwoord",
+        "de": "MyGLS-Passwort",
+        "fr": "Mot de passe MyGLS",
+        "it": "Password MyGLS",
+        "sv": "MyGLS-lösenord",
+        "no": "MyGLS-passord",
+        "es": "Contraseña de MyGLS",
+        "da": "MyGLS-adgangskode",
+        "ru": "Пароль MyGLS",
+        "pl": "Hasło MyGLS",
+        "ko": "MyGLS 비밀번호",
+        "ar": "كلمة مرور MyGLS"
       },
       "value": ""
     },
@@ -62,7 +84,18 @@
       "type": "password",
       "label": {
         "en": "API subscription key",
-        "nl": "API subscription key"
+        "nl": "API subscription key",
+        "de": "API-Abonnementschlüssel",
+        "fr": "Clé d’abonnement API",
+        "it": "Chiave di sottoscrizione API",
+        "sv": "API-prenumerationsnyckel",
+        "no": "API-abonnementsnøkkel",
+        "es": "Clave de suscripción de API",
+        "da": "API-abonnementsnøgle",
+        "ru": "Ключ подписки API",
+        "pl": "Klucz subskrypcji API",
+        "ko": "API 구독 키",
+        "ar": "مفتاح اشتراك API"
       },
       "value": ""
     },
@@ -71,7 +104,18 @@
       "type": "text",
       "label": {
         "en": "Parcel-list endpoint",
-        "nl": "Pakketlijst-endpoint"
+        "nl": "Pakketlijst-endpoint",
+        "de": "Endpunkt für Paketliste",
+        "fr": "Point de terminaison de la liste des colis",
+        "it": "Endpoint elenco pacchi",
+        "sv": "Endpoint för paketlista",
+        "no": "Endepunkt for pakkeliste",
+        "es": "Endpoint de lista de paquetes",
+        "da": "Endpoint til pakkeliste",
+        "ru": "Эндпоинт списка посылок",
+        "pl": "Endpoint listy paczek",
+        "ko": "소포 목록 엔드포인트",
+        "ar": "نقطة نهاية قائمة الطرود"
       },
       "value": ""
     },
@@ -80,7 +124,18 @@
       "type": "text",
       "label": {
         "en": "Parcel-details endpoint",
-        "nl": "Pakketdetails-endpoint"
+        "nl": "Pakketdetails-endpoint",
+        "de": "Endpunkt für Paketdetails",
+        "fr": "Point de terminaison des détails du colis",
+        "it": "Endpoint dettagli pacco",
+        "sv": "Endpoint för paketdetaljer",
+        "no": "Endepunkt for pakkedetaljer",
+        "es": "Endpoint de detalles del paquete",
+        "da": "Endpoint til pakkedetaljer",
+        "ru": "Эндпоинт деталей посылки",
+        "pl": "Endpoint szczegółów paczki",
+        "ko": "소포 상세 엔드포인트",
+        "ar": "نقطة نهاية تفاصيل الطرد"
       },
       "value": ""
     },
@@ -89,7 +144,18 @@
       "type": "number",
       "label": {
         "en": "Automatic discovery days",
-        "nl": "Dagen automatisch zoeken"
+        "nl": "Dagen automatisch zoeken",
+        "de": "Tage für automatische Erkennung",
+        "fr": "Jours de détection automatique",
+        "it": "Giorni di rilevamento automatico",
+        "sv": "Dagar för automatisk identifiering",
+        "no": "Dager for automatisk oppdagelse",
+        "es": "Días de detección automática",
+        "da": "Dage for automatisk registrering",
+        "ru": "Дни автоматического поиска",
+        "pl": "Dni automatycznego wykrywania",
+        "ko": "자동 검색 일수",
+        "ar": "أيام الاكتشاف التلقائي"
       },
       "value": 21,
       "min": 1,
