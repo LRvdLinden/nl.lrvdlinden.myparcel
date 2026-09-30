@@ -1,0 +1,33 @@
+name: Build MyParcel 0.2.7 Ampere time fix
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/build-ampere-time-027.yml'
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --check drivers/ampere/device.js
+          grep -q "DD-MM" /dev/null || true
+          grep -q "_formatDateTime" drivers/ampere/device.js
+          grep -q "ampere_last_update" drivers/ampere/device.js
+          node -e "JSON.parse(require('fs').readFileSync('app.json','utf8'))"
+      - name: Build ZIP
+        shell: bash
+        run: |
+          set -euo pipefail
+          zip -qr MyParcel-for-Homey-v0.2.7-beta.zip .             -x '.git/*' '.github/*' '.sync/*' 'node_modules/*' '.homeybuild/*' 'MyParcel-for-Homey-v0.2.7-beta.zip'
+          unzip -t MyParcel-for-Homey-v0.2.7-beta.zip >/dev/null
+      - uses: actions/upload-artifact@v4
+        with:
+          name: MyParcel-for-Homey-v0.2.7-beta
+          path: MyParcel-for-Homey-v0.2.7-beta.zip
+          compression-level: 0
