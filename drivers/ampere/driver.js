@@ -32,7 +32,7 @@ module.exports = class AmpereDriver extends Homey.Driver {
     session.setHandler('create_ampere', async ({ sessionCode, url }) => {
       const bolSessionBundle = validateSessionCode(sessionCode);
       const trackingUrl = normalizeUrl(url);
-      if (!bolSessionBundle && !trackingUrl) throw new Error('Paste the bol.com session code from helper 0.3.0 or enter an Ampère Track & Trace URL.');
+      if (!bolSessionBundle && !trackingUrl) throw new Error('Paste the bol.com session code from helper 0.3.2 or enter an Ampère Track & Trace URL.');
       return {
         device: {
           name: 'Ampère',
@@ -47,7 +47,7 @@ module.exports = class AmpereDriver extends Homey.Driver {
     session.setHandler('repair_ampere', async ({ sessionCode, url }) => {
       const bolSessionBundle = validateSessionCode(sessionCode);
       const trackingUrl = normalizeUrl(url);
-      if (!bolSessionBundle && !trackingUrl) throw new Error('Paste the bol.com session code from helper 0.3.0 or enter an Ampère Track & Trace URL.');
+      if (!bolSessionBundle && !trackingUrl) throw new Error('Paste the bol.com session code from helper 0.3.2 or enter an Ampère Track & Trace URL.');
       const device = session.getDevice();
       const settings = {};
       if (bolSessionBundle) settings.bol_session_bundle = bolSessionBundle;
