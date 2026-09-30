@@ -1,41 +1,23 @@
 {
-  "name": {
-    "en": "Ampère",
-    "nl": "Ampère",
-    "de": "Ampère",
-    "fr": "Ampère",
-    "it": "Ampère",
-    "sv": "Ampère",
-    "no": "Ampère",
-    "es": "Ampère",
-    "da": "Ampère",
-    "ru": "Ampère",
-    "pl": "Ampère",
-    "ko": "Ampère",
-    "ar": "Ampère"
-  },
+  "name": {"en":"Ampère","nl":"Ampère","de":"Ampère","fr":"Ampère","it":"Ampère","sv":"Ampère","no":"Ampère","es":"Ampère","da":"Ampère","ru":"Ampère","pl":"Ampère","ko":"Ampère","ar":"Ampère"},
   "class": "sensor",
-  "capabilities": [
-    "ampere_parcel_count",
-    "ampere_status",
-    "myparcel_connection_status",
-    "ampere_last_update"
-  ],
-  "platforms": [
-    "local"
-  ],
-  "images": {
-    "small": "/drivers/ampere/assets/images/small.png",
-    "large": "/drivers/ampere/assets/images/large.png"
-  },
-  "pair": [
+  "capabilities": ["ampere_parcel_count","ampere_status","myparcel_connection_status","ampere_last_update"],
+  "platforms": ["local"],
+  "images": {"small":"/drivers/ampere/assets/images/small.png","large":"/drivers/ampere/assets/images/large.png"},
+  "pair": [{"id":"login"}],
+  "repair": [{"id":"repair"}],
+  "settings": [
     {
-      "id": "login"
-    }
-  ],
-  "repair": [
+      "id": "bol_session_bundle",
+      "type": "password",
+      "label": {"en":"bol.com session code","nl":"bol.com-sessiecode","de":"bol.com-Sitzungscode","fr":"Code de session bol.com","it":"Codice sessione bol.com","sv":"bol.com-sessionskod","no":"bol.com-sesjonskode","es":"Código de sesión de bol.com","da":"bol.com-sessionskode","ru":"Код сессии bol.com","pl":"Kod sesji bol.com","ko":"bol.com 세션 코드","ar":"رمز جلسة bol.com"},
+      "value": ""
+    },
     {
-      "id": "repair"
+      "id": "tracking_url",
+      "type": "text",
+      "label": {"en":"Ampère Track & Trace URL (fallback)","nl":"Ampère Track & Trace-URL (fallback)","de":"Ampère Track-&-Trace-URL (Alternative)","fr":"URL Track & Trace Ampère (secours)","it":"URL Track & Trace Ampère (fallback)","sv":"Ampère Track & Trace-URL (reserv)","no":"Ampère Track & Trace-URL (reserve)","es":"URL Track & Trace de Ampère (alternativa)","da":"Ampère Track & Trace-URL (reserve)","ru":"URL Ampère Track & Trace (резерв)","pl":"Adres URL Ampère Track & Trace (awaryjnie)","ko":"Ampère Track & Trace URL (대체)","ar":"رابط Ampère Track & Trace (احتياطي)"},
+      "value": ""
     }
   ]
 }
