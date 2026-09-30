@@ -51,6 +51,23 @@ module.exports = class AmpereDevice extends Homey.Device {
     return String(this.getSetting('bol_session_bundle') || '').trim();
   }
 
+  _formatDateTime(value = new Date()) {
+    const date = value instanceof Date ? value : new Date(value);
+    if (Number.isNaN(date.getTime())) return '';
+    const timeZone = this.homey.clock.getTimezone();
+    const parts = new Intl.DateTimeFormat('en-GB', {
+      timeZone,
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: false,
+    }).formatToParts(date);
+    const get = type => parts.find(part => part.type === type)?.value || '';
+    return `${get('day')}-${get('month')}-${get('year')} ${get('hour')}:${get('minute')}`;
+  }
+
   async refresh(force = false) {
     if (this._refreshing && !force) return this._refreshing;
     this._refreshing = this._refresh().finally(() => { this._refreshing = null; });
@@ -136,7 +153,7 @@ module.exports = class AmpereDevice extends Homey.Device {
       const latest = active[0] || parcels[0] || null;
       await this.setCapabilityValue('ampere_parcel_count', active.length);
       await this.setCapabilityValue('ampere_status', latest?.status || this.homey.__('common_status.connected'));
-      await this.setCapabilityValue('ampere_last_update', new Date().toISOString());
+      await this.setCapabilityValue('ampere_last_update', this._formatDateTime(new Date()));
       return true;
     } catch (error) {
       this.error('[AmpereDevice] refresh failed', error);
