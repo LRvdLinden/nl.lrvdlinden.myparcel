@@ -56,7 +56,18 @@
       "type": "text",
       "label": {
         "en": "Country code",
-        "nl": "Landcode"
+        "nl": "Landcode",
+        "de": "Ländercode",
+        "fr": "Code pays",
+        "it": "Codice paese",
+        "sv": "Landskod",
+        "no": "Landskode",
+        "es": "Código de país",
+        "da": "Landekode",
+        "ru": "Код страны",
+        "pl": "Kod kraju",
+        "ko": "국가 코드",
+        "ar": "رمز الدولة"
       },
       "value": "NL"
     },
@@ -65,7 +76,18 @@
       "type": "text",
       "label": {
         "en": "UPS locale",
-        "nl": "UPS-locale"
+        "nl": "UPS-locale",
+        "de": "UPS-Gebietsschema",
+        "fr": "Paramètre régional UPS",
+        "it": "Impostazioni locali UPS",
+        "sv": "UPS-språk/region",
+        "no": "UPS-språk/region",
+        "es": "Configuración regional de UPS",
+        "da": "UPS-sprog/område",
+        "ru": "Локаль UPS",
+        "pl": "Ustawienia regionalne UPS",
+        "ko": "UPS 로캘",
+        "ar": "إعدادات UPS المحلية"
       },
       "value": "nl_NL"
     },
@@ -74,7 +96,18 @@
       "type": "password",
       "label": {
         "en": "UPS login callback",
-        "nl": "UPS-login-callback"
+        "nl": "UPS-login-callback",
+        "de": "UPS-Anmelde-Callback",
+        "fr": "Rappel de connexion UPS",
+        "it": "Callback di accesso UPS",
+        "sv": "UPS-inloggningsåteranrop",
+        "no": "UPS-påloggingscallback",
+        "es": "Callback de inicio de sesión de UPS",
+        "da": "UPS-login-callback",
+        "ru": "Callback входа UPS",
+        "pl": "Callback logowania UPS",
+        "ko": "UPS 로그인 콜백",
+        "ar": "رد استدعاء تسجيل دخول UPS"
       },
       "value": ""
     },
@@ -83,7 +116,18 @@
       "type": "password",
       "label": {
         "en": "UPS authorization code",
-        "nl": "UPS-autorisatiecode"
+        "nl": "UPS-autorisatiecode",
+        "de": "UPS-Autorisierungscode",
+        "fr": "Code d’autorisation UPS",
+        "it": "Codice di autorizzazione UPS",
+        "sv": "UPS-auktoriseringskod",
+        "no": "UPS-autorisasjonskode",
+        "es": "Código de autorización de UPS",
+        "da": "UPS-autorisationskode",
+        "ru": "Код авторизации UPS",
+        "pl": "Kod autoryzacyjny UPS",
+        "ko": "UPS 인증 코드",
+        "ar": "رمز تفويض UPS"
       },
       "value": ""
     },
@@ -92,7 +136,18 @@
       "type": "password",
       "label": {
         "en": "UPS OAuth state",
-        "nl": "UPS OAuth-state"
+        "nl": "UPS OAuth-state",
+        "de": "UPS-OAuth-Status",
+        "fr": "État OAuth UPS",
+        "it": "Stato OAuth UPS",
+        "sv": "UPS OAuth-status",
+        "no": "UPS OAuth-tilstand",
+        "es": "Estado OAuth de UPS",
+        "da": "UPS OAuth-tilstand",
+        "ru": "Состояние OAuth UPS",
+        "pl": "Stan OAuth UPS",
+        "ko": "UPS OAuth 상태",
+        "ar": "حالة OAuth لـ UPS"
       },
       "value": ""
     },
@@ -101,7 +156,18 @@
       "type": "password",
       "label": {
         "en": "UPS access/session token",
-        "nl": "UPS access-/sessietoken"
+        "nl": "UPS access-/sessietoken",
+        "de": "UPS-Zugriffs-/Sitzungstoken",
+        "fr": "Jeton d’accès/de session UPS",
+        "it": "Token di accesso/sessione UPS",
+        "sv": "UPS åtkomst-/sessionstoken",
+        "no": "UPS tilgangs-/sesjonstoken",
+        "es": "Token de acceso/sesión de UPS",
+        "da": "UPS-adgangs-/sessionstoken",
+        "ru": "Токен доступа/сеанса UPS",
+        "pl": "Token dostępu/sesji UPS",
+        "ko": "UPS 액세스/세션 토큰",
+        "ar": "رمز وصول/جلسة UPS"
       },
       "value": ""
     },
@@ -110,7 +176,18 @@
       "type": "password",
       "label": {
         "en": "UPS refresh token",
-        "nl": "UPS-refresh-token"
+        "nl": "UPS-refresh-token",
+        "de": "UPS-Aktualisierungstoken",
+        "fr": "Jeton d’actualisation UPS",
+        "it": "Token di aggiornamento UPS",
+        "sv": "UPS-uppdateringstoken",
+        "no": "UPS-oppdateringstoken",
+        "es": "Token de actualización de UPS",
+        "da": "UPS-opdateringstoken",
+        "ru": "Токен обновления UPS",
+        "pl": "Token odświeżania UPS",
+        "ko": "UPS 새로고침 토큰",
+        "ar": "رمز تحديث UPS"
       },
       "value": ""
     },
@@ -119,7 +196,18 @@
       "type": "text",
       "label": {
         "en": "Manual fallback tracking numbers",
-        "nl": "Handmatige fallback-trackingnummers"
+        "nl": "Handmatige fallback-trackingnummers",
+        "de": "Manuelle Ersatz-Trackingnummern",
+        "fr": "Numéros de suivi de secours manuels",
+        "it": "Numeri di tracciamento di fallback manuali",
+        "sv": "Manuella reservspårningsnummer",
+        "no": "Manuelle reservesporingsnumre",
+        "es": "Números de seguimiento alternativos manuales",
+        "da": "Manuelle reserve-sporingsnumre",
+        "ru": "Резервные номера отслеживания вручную",
+        "pl": "Ręczne zapasowe numery śledzenia",
+        "ko": "수동 대체 운송장 번호",
+        "ar": "أرقام تتبع احتياطية يدوية"
       },
       "value": "[]"
     },
@@ -128,7 +216,18 @@
       "type": "password",
       "label": {
         "en": "UPS web session",
-        "nl": "UPS-websessie"
+        "nl": "UPS-websessie",
+        "de": "UPS-Websitzung",
+        "fr": "Session web UPS",
+        "it": "Sessione web UPS",
+        "sv": "UPS-webbsession",
+        "no": "UPS-nettøkt",
+        "es": "Sesión web de UPS",
+        "da": "UPS-websession",
+        "ru": "Веб-сессия UPS",
+        "pl": "Sesja internetowa UPS",
+        "ko": "UPS 웹 세션",
+        "ar": "جلسة ويب UPS"
       },
       "value": ""
     }
