@@ -1,1 +1,62 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180"><g fill="none" stroke="#105945" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"><path d="M42 112V66h142v46h48l-15-41h-33"/><path d="M42 112h20m60 0h74m58 0h22"/><circle cx="92" cy="120" r="24"/><circle cx="226" cy="120" r="24"/><path d="M184 71h36l30 41"/></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="green" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0f806b"/>
+      <stop offset="1" stop-color="#105945"/>
+    </linearGradient>
+    <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#9ee7f2"/>
+      <stop offset="1" stop-color="#65c8dc"/>
+    </linearGradient>
+  </defs>
+  <ellipse cx="408" cy="344" rx="285" ry="10" fill="#d8dce2" opacity=".75"/>
+  <path d="M145 118 Q145 96 168 96 H455 Q492 96 520 119
+           L626 207 Q647 224 647 250 V304
+           Q647 323 626 323 H163 Q145 323 145 304 Z"
+        fill="url(#green)"/>
+  <path d="M318 96 H455 Q491 96 520 119
+           L626 207 Q647 224 647 250 V286 H302
+           Q252 280 232 243 Q216 214 223 171
+           Q232 121 273 96 Z"
+        fill="#f7f8f8"/>
+  <rect x="157" y="113" width="170" height="126" rx="12"
+        fill="none" stroke="#08715f" stroke-width="3" opacity=".65"/>
+  <path d="M487 124 H520 L606 204 H487 Q473 204 473 190 V140
+           Q473 124 487 124 Z" fill="url(#glass)"/>
+  <path d="M506 124 L575 188 H540 L487 124 Z" fill="#d9f5f8" opacity=".45"/>
+  <path d="M462 113 V286" fill="none" stroke="#d5dadd" stroke-width="2"/>
+  <rect x="481" y="219" width="25" height="8" rx="4" fill="#071938"/>
+  <path d="M607 204 L641 231 V275 H610 Z" fill="#f7f8f8"/>
+  <path d="M618 231 H647 V249 H613 Q609 240 618 231 Z" fill="#dfe4e8"/>
+  <rect x="636" y="242" width="11" height="11" rx="3" fill="#eef5ff"/>
+  <rect x="145" y="221" width="14" height="50" rx="6" fill="#ff304b"/>
+  <rect x="145" y="239" width="8" height="16" rx="4" fill="#fff"/>
+  <path d="M145 286 H647 V310 Q647 323 628 323 H163 Q145 323 145 305 Z"
+        fill="#071938"/>
+  <path d="M257 122 Q275 103 303 96 H365
+           Q344 122 336 154 Q326 194 344 229
+           Q357 254 390 272 H301
+           Q258 267 239 236 Q223 210 226 175
+           Q230 144 257 122 Z"
+        fill="#fff"/>
+  <g fill="#105945">
+    <rect x="252" y="165" width="35" height="6" rx="3"/>
+    <rect x="265" y="181" width="30" height="6" rx="3"/>
+    <rect x="276" y="197" width="22" height="6" rx="3"/>
+    <polygon points="310,158 340,142 370,158 340,175"/>
+    <polygon points="310,164 337,179 337,214 310,198"/>
+    <polygon points="343,179 370,164 370,198 343,214"/>
+  </g>
+  <text x="250" y="246"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="35" font-weight="700"
+        fill="#105945">MyParcel</text>
+  <g>
+    <circle cx="250" cy="309" r="53" fill="#071938"/>
+    <circle cx="250" cy="309" r="32" fill="#fff"/>
+    <circle cx="250" cy="309" r="14" fill="#cfd4db"/>
+    <circle cx="526" cy="309" r="53" fill="#071938"/>
+    <circle cx="526" cy="309" r="32" fill="#fff"/>
+    <circle cx="526" cy="309" r="14" fill="#cfd4db"/>
+  </g>
+</svg>
