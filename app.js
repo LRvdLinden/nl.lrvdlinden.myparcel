@@ -424,14 +424,12 @@ module.exports = class MyParcelApp extends Homey.App {
     const lang = DELIVERY_TOKEN_TEXT[this.homey.i18n.getLanguage()] ? this.homey.i18n.getLanguage() : 'en';
     const key = `${lang}:${active ? 'active' : 'empty'}`;
     if (this._myParcelDeliveryImageCache?.has(key)) return this._myParcelDeliveryImageCache.get(key);
-    // Temporary generic MyParcel artwork. This is intentionally isolated here so
-    // the final delivery-van image can later be swapped without changing token logic.
-    const filePath = path.join(__dirname, 'assets', 'images', 'large.png');
+    const filePath = path.join(__dirname, 'widgets', 'myparcel-bezorging', 'public', 'van.svg');
     const buffer = await fs.promises.readFile(filePath);
     const image = await this.homey.images.createImage();
     image.setStream(async stream => {
-      stream.contentType = 'image/png';
-      stream.filename = `myparcel-delivery-${lang}-${active ? 'active' : 'empty'}.png`;
+      stream.contentType = 'image/svg+xml';
+      stream.filename = `myparcel-delivery-${lang}-${active ? 'active' : 'empty'}.svg`;
       stream.end(buffer);
       return stream;
     });
