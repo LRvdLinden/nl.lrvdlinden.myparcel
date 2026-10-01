@@ -1,0 +1,81 @@
+name: Package DHL Express Helper 0.1.1
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/package-dhl-express-helper-011.yml'
+permissions:
+  contents: write
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Validate helper
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --check tools/dhl-express-homey-login-helper/background.js
+          node --check tools/dhl-express-homey-login-helper/bridge.js
+          node --check tools/dhl-express-homey-login-helper/content.js
+          node --check tools/dhl-express-homey-login-helper/popup.js
+          node --check tools/dhl-express-homey-login-helper/result.js
+          node -e "const m=require('./tools/dhl-express-homey-login-helper/manifest.json');if(m.version!=='0.1.1')throw new Error('wrong helper version')"
+      - name: Build helper ZIP
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f tools/DHL-Express-Homey-Login-Helper-v0.1.0.zip
+          rm -f tools/DHL-Express-Homey-Login-Helper-v0.1.1.zip
+          (
+            cd tools
+            zip -qr DHL-Express-Homey-Login-Helper-v0.1.1.zip dhl-express-homey-login-helper
+          )
+          unzip -t tools/DHL-Express-Homey-Login-Helper-v0.1.1.zip >/dev/null
+      - name: Validate app
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm ci
+          npx --no-install homey app validate --level debug
+      - name: Rebuild MyParcel 0.3.1 ZIP
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf /tmp/myparcel031
+          mkdir -p /tmp/myparcel031/MyParcel-for-Homey-v0.3.1
+          rsync -a ./ /tmp/myparcel031/MyParcel-for-Homey-v0.3.1/             --exclude '.git/'             --exclude '.github/'             --exclude 'node_modules/'             --exclude '.homeybuild/'             --exclude '__MACOSX/'             --exclude 'MyParcel-for-Homey-v0.3.0.zip'             --exclude 'MyParcel-for-Homey-v0.3.1.zip'
+          rm -f MyParcel-for-Homey-v0.3.1.zip
+          (
+            cd /tmp/myparcel031
+            zip -qr "$GITHUB_WORKSPACE/MyParcel-for-Homey-v0.3.1.zip" MyParcel-for-Homey-v0.3.1
+          )
+          unzip -t MyParcel-for-Homey-v0.3.1.zip >/dev/null
+      - name: Commit packaged helper
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "LRvdLinden"
+          git config user.email "77990847+LRvdLinden@users.noreply.github.com"
+          git rm -f tools/DHL-Express-Homey-Login-Helper-v0.1.0.zip 2>/dev/null || true
+          git add -f tools/DHL-Express-Homey-Login-Helper-v0.1.1.zip
+          git add -f MyParcel-for-Homey-v0.3.1.zip
+          git rm .github/workflows/package-dhl-express-helper-011.yml
+          git commit -m "Package DHL Express Homey Login Helper v0.1.1"
+          git push origin HEAD:main
+      - uses: actions/upload-artifact@v4
+        with:
+          name: DHL-Express-Homey-Login-Helper-v0.1.1
+          path: tools/DHL-Express-Homey-Login-Helper-v0.1.1.zip
+          compression-level: 0
+      - uses: actions/upload-artifact@v4
+        with:
+          name: MyParcel-for-Homey-v0.3.1
+          path: MyParcel-for-Homey-v0.3.1.zip
+          compression-level: 0
