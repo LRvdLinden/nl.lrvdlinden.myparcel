@@ -7,14 +7,15 @@ const KEY='dhlExpressHomeySession011';
 const fresh=()=>({
   schema:'nl.lrvdlinden.myparcel.dhl-express-session',
   version:2,
-  helperVersion:'0.1.2',
+  helperVersion:'0.1.3',
   createdAt:null,
   updatedAt:null,
   lastUrl:'',
   cookies:[],
   storage:{local:{},session:{}},
   requests:[],
-  verifiedAt:null
+  verifiedAt:null,
+  resultShown:false
 });
 
 let state=fresh();
@@ -48,9 +49,15 @@ async function refreshCookies(){
   state.cookies=out;
 }
 
+function isDhlHost(url){
+  try{
+    const host=new URL(String(url||'')).hostname.toLowerCase();
+    return host==='mydhl.express.dhl'||host==='dhlpass.dhl.com'||host.endsWith('.dhl.com')||host.endsWith('.dhl');
+  }catch(_){return false}
+}
 function interesting(url){
-  return /^https:\/\/mydhl\.express\.dhl\//i.test(String(url||'')) &&
-    /shipment|tracking|track|manage|history|list|dashboard|proview|waybill|awb|delivery|event/i.test(String(url||''));
+  return isDhlHost(url) &&
+    /shipment|tracking|track|manage|history|list|dashboard|proview|waybill|awb|delivery|event|piece|consignment/i.test(String(url||''));
 }
 
 function addRequest(row){
@@ -66,8 +73,16 @@ function addRequest(row){
   };
   const key=`${item.method}|${item.url}`;
   const index=state.requests.findIndex(x=>`${x.method}|${x.url}`===key);
-  if(index>=0) state.requests[index]={...state.requests[index],...item};
-  else state.requests.push(item);
+  if(index>=0){
+    const old=state.requests[index]||{};
+    state.requests[index]={
+      ...old,
+      ...item,
+      headers:Object.keys(item.headers||{}).length?item.headers:(old.headers||{}),
+      body:item.body||old.body||'',
+      responseText:item.responseText||old.responseText||''
+    };
+  }else state.requests.push(item);
   state.requests=state.requests.slice(-80);
 }
 
@@ -100,7 +115,7 @@ chrome.webRequest.onBeforeSendHeaders.addListener(details=>{
     addRequest({url:details.url,method:details.method,headers,referer:headers.referer||''});
     await save();
   }).catch(()=>{});
-},{urls:['https://mydhl.express.dhl/*']},['requestHeaders','extraHeaders']);
+},{urls:['https://mydhl.express.dhl/*','https://*.dhl.com/*','https://*.dhl/*']},['requestHeaders','extraHeaders']);
 
 chrome.runtime.onMessage.addListener((message,sender,sendResponse)=>{
   (async()=>{
@@ -130,7 +145,9 @@ chrome.runtime.onMessage.addListener((message,sender,sendResponse)=>{
       await refreshCookies();
       await save();
 
-      if(usable()){
+      if(usable()&&!state.resultShown){
+        state.resultShown=true;
+        await save();
         try{await chrome.tabs.create({url:RESULT_URL});}catch(_){}
       }
       return sendResponse({ok:true});
