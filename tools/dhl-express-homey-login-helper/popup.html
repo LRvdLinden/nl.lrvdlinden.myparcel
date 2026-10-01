@@ -1,25 +1,25 @@
 <!doctype html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <style>
-    body{font:14px system-ui;width:360px;padding:16px}
-    button{width:100%;padding:10px;margin:6px 0;border:0;border-radius:8px;font-weight:700}
-    .login{background:#ffcc00;color:#d40511}
-    .generate{background:#0b6;color:#fff}
-    textarea{width:100%;height:130px;box-sizing:border-box;font:11px monospace;padding:8px}
-    #status{margin-top:8px;line-height:1.35}
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+body{font:14px system-ui;width:360px;padding:16px;color:#111}h3{margin-top:0}
+button{width:100%;padding:10px;margin:6px 0;border:0;border-radius:8px;font-weight:700;cursor:pointer}
+.login{background:#ffcc00;color:#d40511}.secondary{background:#eee}.ready{background:#0b6;color:#fff}
+textarea{width:100%;height:120px;box-sizing:border-box;font:11px monospace;padding:8px}
+#status{margin:8px 0;line-height:1.4}
+</style>
 </head>
 <body>
-  <h3>DHL Express Homey Login Helper</h3>
-  <p>1. Open MyDHL+ login.<br>2. Sign in normally through DHLPass.<br>3. Open <b>Manage Shipments → All Shipments</b> once.<br>4. Return here and generate the Homey code.</p>
-  <button id="start" class="login">Open MyDHL+ login</button>
-  <button id="generate" class="generate">Generate Homey code</button>
-  <textarea id="code" readonly placeholder="DHLEXPRESS1..."></textarea>
-  <button id="copy">Copy code</button>
-  <button id="reset">Reset capture</button>
-  <div id="status"></div>
-  <script src="popup.js"></script>
+<h3>DHL Express Homey Login Helper</h3>
+<p>Sign in normally through DHLPass. After login, open <b>Manage Shipments → All Shipments</b> once. The helper keeps your signed-in MyDHL+ session intact even when this popup is closed.</p>
+<button id="start" class="login">Open MyDHL+ login</button>
+<button id="refresh" class="secondary">Check captured session</button>
+<div id="status">Checking…</div>
+<textarea id="code" readonly placeholder="DHLEXPRESS1..."></textarea>
+<button id="copy" class="ready">Copy Homey session code</button>
+<button id="reset" class="secondary">Reset captured session</button>
+<script src="popup.js"></script>
 </body>
 </html>
