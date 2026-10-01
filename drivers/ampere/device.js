@@ -115,19 +115,15 @@ module.exports = class AmpereDevice extends Homey.Device {
 
       const parcels = [];
       for (const url of [...urls].slice(0, 25)) {
-        if (client) parcels.push(await client.fetchAmpereParcel(url));
-        else parcels.push({
-          id: url,
-          tracking: url.split('/').filter(Boolean).at(-1) || '',
-          sender: 'bol.com',
-          status: 'Ampère',
-          deliveryDate: '',
-          deliveryWindow: '',
-          updatedAt: new Date().toISOString(),
-          detailsUrl: url,
-          delivered: false,
-          carrier: 'ampere',
+        // Every candidate must be verified as an actual Ampère shipment.
+        // This prevents bol.com/PostNL orders from leaking into the Ampère device.
+        const verifier = client || new BolSessionClient({
+          sessionCode: sessionCode || this._sessionCode(),
+          fetchFn: fetch,
+          log: (...args) => this.log(...args),
         });
+        const parcel = await verifier.fetchAmpereParcel(url);
+        if (parcel && parcel.carrier === 'ampere') parcels.push(parcel);
       }
 
       parcels.sort((a, b) => String(b.updatedAt || '').localeCompare(String(a.updatedAt || '')));
