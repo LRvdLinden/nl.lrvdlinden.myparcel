@@ -9,7 +9,7 @@ function timestamp(item) {
 function selectedIds(value) { if (Array.isArray(value)) return value.map(String).filter(Boolean); if (typeof value !== 'string') return []; return value.split(',').map(item => item.trim()).filter(Boolean); }
 function safeDevices(homey, id) { try { return homey.drivers.getDriver(id).getDevices(); } catch (_) { return []; } }
 function allDevices(homey) {
-  const defs = [['postnl','PostNL','postnl'],['dhl-parcel','DHL','dhl'],['dpd','DPD','dpd'],['ups','UPS','ups'],['budbee','Budbee','budbee'],['homerr','Homerr','homerr'],['fedex','FedEx','fedex'],['gls','GLS','gls'],['inpost-uk','InPost UK','inpost-uk'],['bpost','bpost','bpost'],['royal-mail','Royal Mail','royal-mail'],['post-dhl-de','DHL Germany','dhl-de'],['ampere','Ampère','ampere']];
+  const defs = [['postnl','PostNL','postnl'],['dhl-parcel','DHL','dhl'],['dhl-express','DHL Express','dhl-express'],['dpd','DPD','dpd'],['ups','UPS','ups'],['budbee','Budbee','budbee'],['homerr','Homerr','homerr'],['fedex','FedEx','fedex'],['gls','GLS','gls'],['inpost-uk','InPost UK','inpost-uk'],['bpost','bpost','bpost'],['royal-mail','Royal Mail','royal-mail'],['post-dhl-de','DHL Germany','dhl-de'],['ampere','Ampère','ampere']];
   return defs.flatMap(([driver,carrier,carrierId]) => safeDevices(homey,driver).map(device => ({driver,carrier,carrierId,device})));
 }
 function selectedDevices(homey, value) { const ids=selectedIds(value),devices=allDevices(homey); if(!ids.length)return[];const wanted=new Set(ids);return devices.filter(({device})=>wanted.has(String(device.getId()))); }
