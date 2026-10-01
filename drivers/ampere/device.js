@@ -15,7 +15,9 @@ module.exports = class AmpereDevice extends Homey.Device {
       const tracking = String(parcel?.tracking || parcel?.id || '').toUpperCase();
       return parcel?.carrier === 'ampere' && !/^3S[A-Z0-9]{8,}$/.test(tracking);
     });
-    if (this._parcels.length !== stored.length) await this.setStoreValue('ampere_snapshot', this._parcels);
+    if (this._parcels.length !== stored.length) {
+      await this.setStoreValue('ampere_snapshot', this._parcels).catch(error => this.error('Could not clean Ampère snapshot', error));
+    }
 
     this._refreshing = null;
     this._timer = this.homey.setInterval(() => this.refresh(false).catch(error => this.error(error)), 10 * 60 * 1000);
@@ -49,7 +51,9 @@ module.exports = class AmpereDevice extends Homey.Device {
       'ampere_last_update',
     ];
     for (const capability of capabilities) {
-      if (!this.hasCapability(capability)) await this.addCapability(capability);
+      if (!this.hasCapability(capability)) {
+        await this.addCapability(capability).catch(error => this.error(`Could not add ${capability}`, error));
+      }
     }
   }
 
