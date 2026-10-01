@@ -3,6 +3,13 @@
 - The GIF is included **byte-for-byte unchanged**: no re-encoding, sharpening, frame timing changes or other image processing.
 - The widget preserves the GIF's original aspect ratio and only scales it proportionally to fit the available widget space.
 - The empty state with no active parcel continues to use the static PostNL van.
+- Ampère carrier detection is now strict: PostNL 3S shipments and unverified/non-Ampère candidates are removed from the Ampère device.
+- Expanded Ampère capabilities with total parcels, tracking number, sender, delivery date, delivery window, window start/end, delivered state and Track & Trace URL.
+- Added Ampère Flow triggers for new parcels, status changes, delivery information changes, delivery-window changes and delivered parcels.
+- Added rich Ampère Flow tokens: carrier, tracking, sender, status, delivery date/window, window start/end, delivered, Track & Trace URL, active/total parcel counts and last update.
+- Added Ampère Flow conditions for parcels underway, known delivery window, delivered state and connection state, plus a manual refresh action.
+- Existing false-positive PostNL 3S snapshots are cleaned from Ampère automatically after updating.
+
 
 ## 0.2.7 — Carrier data expansion
 - Ampère now accepts helper 0.3.2 bundles that already contain Ampère tracking links discovered from the authenticated bol.com orders page, so the device no longer depends on an immediate server-side replay of the browser session.
