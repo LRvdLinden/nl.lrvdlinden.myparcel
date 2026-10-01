@@ -24,7 +24,11 @@ class PostNLDevice extends Homey.Device {
       unset: key => this.unsetStoreValue(key),
     };
     this.api = new PostNLApi({ homey: this.homey, log: (...args) => this.log(...args), storage: this._storage });
-    this.snapshot = this.getStoreValue('snapshot') || { letters: [], liveLetters: [], packages: [], updatedAt: null };
+    const storedSnapshot = this.getStoreValue('snapshot') || { packages: [], updatedAt: null };
+    this.snapshot = { ...storedSnapshot, letters: [], liveLetters: [] };
+    if ((storedSnapshot.letters || []).length || (storedSnapshot.liveLetters || []).length) {
+      await this.setStoreValue('snapshot', { ...storedSnapshot, letters: [], liveLetters: [] });
+    }
 
     this._flowTriggerNewMail = this.homey.flow.getDeviceTriggerCard('new_mail');
     this._flowTriggerNewPackage = this.homey.flow.getDeviceTriggerCard('new_package');
@@ -55,8 +59,8 @@ class PostNLDevice extends Homey.Device {
   async importLegacyAccount(auth, snapshot) {
     await this.api.replaceAuth(auth);
     if (snapshot) {
-      this.snapshot = snapshot;
-      await this.setStoreValue('snapshot', snapshot);
+      this.snapshot = { ...snapshot, letters: [], liveLetters: [] };
+      await this.setStoreValue('snapshot', { ...snapshot, letters: [], liveLetters: [] });
     }
     await this.setStoreValue('authExpiredNotified', false);
     await this.applySnapshot(this.snapshot, null);
@@ -87,13 +91,11 @@ class PostNLDevice extends Homey.Device {
     const previous = this.snapshot || { letters: [], liveLetters: [], packages: [] };
     try {
       const live = await this.api.fetchAll();
-      const letters = await this.api.archiveLetters(live.letters, previous.letters || []);
-      const archivedById = new Map(letters.map(item => [item.id, item]));
-      // Keep a hydrated copy of only the items currently returned by PostNL.
-      // Capabilities, device image and mail Flow tokens must never use archive-only items.
-      const liveLetters = (live.letters || []).map(item => archivedById.get(item.id) || item);
+      // PostNL mail is live-only. The device mirrors exactly what the MyMail
+      // endpoint returns now and never merges it with previously seen items.
+      const liveLetters = Array.isArray(live.letters) ? live.letters : [];
       const current = {
-        letters,
+        letters: liveLetters,
         liveLetters,
         packages: live.packages,
         updatedAt: new Date().toISOString(),
@@ -103,7 +105,9 @@ class PostNLDevice extends Homey.Device {
         reason,
       };
       this.snapshot = current;
-      await this.setStoreValue('snapshot', current);
+      // Do not persist mail items or scans. Only package/account state survives
+      // an app restart; mail is fetched fresh from PostNL.
+      await this.setStoreValue('snapshot', { ...current, letters: [], liveLetters: [] });
       await this.handleSnapshotChanges(previous, current);
       await this.applySnapshot(current, null);
       await this.setStoreValue('authExpiredNotified', false);
@@ -204,7 +208,9 @@ class PostNLDevice extends Homey.Device {
     const newLetters = currentLiveLetters.filter(item => !oldLetterIds.has(item.id));
     const oldPackages = new Map((previous.packages || []).map(item => [item.id, item]));
 
-    if (newLetters.length) {
+    const coldStart = ['device-init', 'startup', 'repair-login'].includes(String(current.reason || ''))
+      && previousCurrentLetters.length === 0;
+    if (newLetters.length && !coldStart) {
       const newest = [...newLetters].sort((a, b) => new Date(b.deliveryDate || 0) - new Date(a.deliveryDate || 0))[0];
       await this.triggerNewMail(await this._mailTokens(newest, newLetters.length));
     }
@@ -518,8 +524,8 @@ class PostNLDevice extends Homey.Device {
   getWidgetData() {
     return {
       authenticated: this.api.hasCredentials(),
-      // Widget deliberately receives the 21-day archive. Its API sorts newest first.
-      letters: (this.snapshot.letters || []).slice(0, 60),
+      // Widget mirrors the current PostNL MyMail response only.
+      letters: (this.snapshot.liveLetters || []).slice(0, 60),
       packages: (this.snapshot.packages || []).slice(0, 40),
       updatedAt: this.snapshot.updatedAt || null, mailApiStatus: this.snapshot.mailApiStatus || 'unknown', mailApiError: this.snapshot.mailApiError || null,
     };
