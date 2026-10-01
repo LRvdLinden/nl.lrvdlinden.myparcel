@@ -6,7 +6,7 @@ Supported countries and carriers
 - 🇧🇪 Belgium: bpost.
 - 🇬🇧 United Kingdom: InPost UK.
 - 🇩🇪 Germany: Post & DHL.
-- 🗺️ International: UPS.
+- 🗺️ International: UPS and DHL Express.
 
 Installation
 
