@@ -1,0 +1,75 @@
+{
+  "id": "dhl-express",
+  "name": {
+    "en": "DHL Express",
+    "nl": "DHL Express",
+    "de": "DHL Express",
+    "fr": "DHL Express",
+    "it": "DHL Express",
+    "sv": "DHL Express",
+    "no": "DHL Express",
+    "es": "DHL Express",
+    "da": "DHL Express",
+    "ru": "DHL Express",
+    "pl": "DHL Express",
+    "ko": "DHL Express",
+    "ar": "DHL Express"
+  },
+  "class": "sensor",
+  "platforms": [
+    "local"
+  ],
+  "capabilities": [
+    "dhl_express_parcel_count",
+    "dhl_express_total_count",
+    "dhl_express_status",
+    "dhl_express_tracking",
+    "dhl_express_sender",
+    "dhl_express_receiver",
+    "dhl_express_delivery_date",
+    "dhl_express_delivery_window",
+    "dhl_express_service",
+    "dhl_express_origin",
+    "dhl_express_destination",
+    "dhl_express_last_event",
+    "dhl_express_delivered",
+    "myparcel_connection_status",
+    "dhl_express_last_update"
+  ],
+  "pair": [
+    {
+      "id": "login"
+    }
+  ],
+  "repair": [
+    {
+      "id": "repair"
+    }
+  ],
+  "images": {
+    "small": "/drivers/dhl-express/assets/images/small.png",
+    "large": "/drivers/dhl-express/assets/images/large.png"
+  },
+  "settings": [
+    {
+      "id": "session_bundle",
+      "type": "password",
+      "label": {
+        "en": "MyDHL+ web session",
+        "nl": "MyDHL+ websessie",
+        "de": "MyDHL+ web session",
+        "fr": "MyDHL+ web session",
+        "it": "MyDHL+ web session",
+        "sv": "MyDHL+ web session",
+        "no": "MyDHL+ web session",
+        "es": "MyDHL+ web session",
+        "da": "MyDHL+ web session",
+        "ru": "MyDHL+ web session",
+        "pl": "MyDHL+ web session",
+        "ko": "MyDHL+ web session",
+        "ar": "MyDHL+ web session"
+      },
+      "value": ""
+    }
+  ]
+}
