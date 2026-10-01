@@ -67,7 +67,7 @@ jobs:
           git config user.email "77990847+LRvdLinden@users.noreply.github.com"
           git add assets/ampere-logo.png assets/images/xlarge.png assets/images/large.png assets/images/small.png
           git add drivers/ampere/assets/ampere-logo.png drivers/ampere/assets/images/large.png drivers/ampere/assets/images/small.png
-          git add MyParcel-for-Homey-v0.3.0.zip
+          git add -f MyParcel-for-Homey-v0.3.0.zip
           git rm .sync/baseline-patch.zip
           git rm .github/workflows/apply-authoritative-baseline.yml
           git commit -m "Set uploaded MyParcel v0.3.0 ZIP as authoritative baseline"
