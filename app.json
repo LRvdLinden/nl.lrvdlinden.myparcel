@@ -20,7 +20,7 @@
   },
   "permissions": [],
   "id": "nl.lrvdlinden.MyParcel",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "brandColor": "#105945",
   "name": {
     "en": "MyParcel",
@@ -143,6 +143,81 @@
       },
       "platforms": [
         "local"
+      ]
+    },
+    {
+      "id": "dhl-express",
+      "name": {
+        "en": "DHL Express",
+        "nl": "DHL Express",
+        "de": "DHL Express",
+        "fr": "DHL Express",
+        "it": "DHL Express",
+        "sv": "DHL Express",
+        "no": "DHL Express",
+        "es": "DHL Express",
+        "da": "DHL Express",
+        "ru": "DHL Express",
+        "pl": "DHL Express",
+        "ko": "DHL Express",
+        "ar": "DHL Express"
+      },
+      "class": "sensor",
+      "platforms": [
+        "local"
+      ],
+      "capabilities": [
+        "dhl_express_parcel_count",
+        "dhl_express_total_count",
+        "dhl_express_status",
+        "dhl_express_tracking",
+        "dhl_express_sender",
+        "dhl_express_receiver",
+        "dhl_express_delivery_date",
+        "dhl_express_delivery_window",
+        "dhl_express_service",
+        "dhl_express_origin",
+        "dhl_express_destination",
+        "dhl_express_last_event",
+        "dhl_express_delivered",
+        "myparcel_connection_status",
+        "dhl_express_last_update"
+      ],
+      "pair": [
+        {
+          "id": "login"
+        }
+      ],
+      "repair": [
+        {
+          "id": "repair"
+        }
+      ],
+      "images": {
+        "small": "/drivers/dhl-express/assets/images/small.png",
+        "large": "/drivers/dhl-express/assets/images/large.png"
+      },
+      "settings": [
+        {
+          "id": "session_bundle",
+          "type": "password",
+          "label": {
+            "en": "MyDHL+ web session",
+            "nl": "MyDHL+ websessie",
+            "de": "MyDHL+ web session",
+            "fr": "MyDHL+ web session",
+            "it": "MyDHL+ web session",
+            "sv": "MyDHL+ web session",
+            "no": "MyDHL+ web session",
+            "es": "MyDHL+ web session",
+            "da": "MyDHL+ web session",
+            "ru": "MyDHL+ web session",
+            "pl": "MyDHL+ web session",
+            "ko": "MyDHL+ web session",
+            "ar": "MyDHL+ web session"
+          },
+          "value": ""
+        }
       ]
     },
     {
@@ -3306,6 +3381,328 @@
       "uiComponent": "sensor",
       "insights": false,
       "icon": "/assets/capabilities/tracking.svg"
+    },
+    "dhl_express_parcel_count": {
+      "type": "number",
+      "title": {
+        "en": "Active parcels",
+        "nl": "Actieve pakketten",
+        "de": "Active parcels",
+        "fr": "Active parcels",
+        "it": "Active parcels",
+        "sv": "Active parcels",
+        "no": "Active parcels",
+        "es": "Active parcels",
+        "da": "Active parcels",
+        "ru": "Active parcels",
+        "pl": "Active parcels",
+        "ko": "Active parcels",
+        "ar": "Active parcels"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "insights": false,
+      "icon": "/assets/capabilities/package.svg"
+    },
+    "dhl_express_total_count": {
+      "type": "number",
+      "title": {
+        "en": "Total parcels",
+        "nl": "Totaal pakketten",
+        "de": "Total parcels",
+        "fr": "Total parcels",
+        "it": "Total parcels",
+        "sv": "Total parcels",
+        "no": "Total parcels",
+        "es": "Total parcels",
+        "da": "Total parcels",
+        "ru": "Total parcels",
+        "pl": "Total parcels",
+        "ko": "Total parcels",
+        "ar": "Total parcels"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "insights": false,
+      "icon": "/assets/capabilities/package.svg"
+    },
+    "dhl_express_status": {
+      "type": "string",
+      "title": {
+        "en": "Status",
+        "nl": "Status",
+        "de": "Status",
+        "fr": "Status",
+        "it": "Status",
+        "sv": "Status",
+        "no": "Status",
+        "es": "Status",
+        "da": "Status",
+        "ru": "Status",
+        "pl": "Status",
+        "ko": "Status",
+        "ar": "Status"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "insights": false,
+      "icon": "/assets/capabilities/status.svg"
+    },
+    "dhl_express_tracking": {
+      "type": "string",
+      "title": {
+        "en": "Tracking number",
+        "nl": "Trackingnummer",
+        "de": "Tracking number",
+        "fr": "Tracking number",
+        "it": "Tracking number",
+        "sv": "Tracking number",
+        "no": "Tracking number",
+        "es": "Tracking number",
+        "da": "Tracking number",
+        "ru": "Tracking number",
+        "pl": "Tracking number",
+        "ko": "Tracking number",
+        "ar": "Tracking number"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "insights": false,
+      "icon": "/assets/capabilities/tracking.svg"
+    },
+    "dhl_express_sender": {
+      "type": "string",
+      "title": {
+        "en": "Sender",
+        "nl": "Afzender",
+        "de": "Sender",
+        "fr": "Sender",
+        "it": "Sender",
+        "sv": "Sender",
+        "no": "Sender",
+        "es": "Sender",
+        "da": "Sender",
+        "ru": "Sender",
+        "pl": "Sender",
+        "ko": "Sender",
+        "ar": "Sender"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "insights": false,
+      "icon": "/assets/capabilities/sender.svg"
+    },
+    "dhl_express_receiver": {
+      "type": "string",
+      "title": {
+        "en": "Receiver",
+        "nl": "Ontvanger",
+        "de": "Receiver",
+        "fr": "Receiver",
+        "it": "Receiver",
+        "sv": "Receiver",
+        "no": "Receiver",
+        "es": "Receiver",
+        "da": "Receiver",
+        "ru": "Receiver",
+        "pl": "Receiver",
+        "ko": "Receiver",
+        "ar": "Receiver"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "insights": false,
+      "icon": "/assets/capabilities/sender.svg"
+    },
+    "dhl_express_delivery_date": {
+      "type": "string",
+      "title": {
+        "en": "Delivery date",
+        "nl": "Bezorgdatum",
+        "de": "Delivery date",
+        "fr": "Delivery date",
+        "it": "Delivery date",
+        "sv": "Delivery date",
+        "no": "Delivery date",
+        "es": "Delivery date",
+        "da": "Delivery date",
+        "ru": "Delivery date",
+        "pl": "Delivery date",
+        "ko": "Delivery date",
+        "ar": "Delivery date"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "insights": false,
+      "icon": "/assets/capabilities/delivery.svg"
+    },
+    "dhl_express_delivery_window": {
+      "type": "string",
+      "title": {
+        "en": "Delivery window",
+        "nl": "Bezorgvenster",
+        "de": "Delivery window",
+        "fr": "Delivery window",
+        "it": "Delivery window",
+        "sv": "Delivery window",
+        "no": "Delivery window",
+        "es": "Delivery window",
+        "da": "Delivery window",
+        "ru": "Delivery window",
+        "pl": "Delivery window",
+        "ko": "Delivery window",
+        "ar": "Delivery window"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "insights": false,
+      "icon": "/assets/capabilities/delivery.svg"
+    },
+    "dhl_express_service": {
+      "type": "string",
+      "title": {
+        "en": "Service",
+        "nl": "Service",
+        "de": "Service",
+        "fr": "Service",
+        "it": "Service",
+        "sv": "Service",
+        "no": "Service",
+        "es": "Service",
+        "da": "Service",
+        "ru": "Service",
+        "pl": "Service",
+        "ko": "Service",
+        "ar": "Service"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "insights": false,
+      "icon": "/assets/capabilities/package.svg"
+    },
+    "dhl_express_origin": {
+      "type": "string",
+      "title": {
+        "en": "Origin",
+        "nl": "Herkomst",
+        "de": "Origin",
+        "fr": "Origin",
+        "it": "Origin",
+        "sv": "Origin",
+        "no": "Origin",
+        "es": "Origin",
+        "da": "Origin",
+        "ru": "Origin",
+        "pl": "Origin",
+        "ko": "Origin",
+        "ar": "Origin"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "insights": false,
+      "icon": "/assets/capabilities/package.svg"
+    },
+    "dhl_express_destination": {
+      "type": "string",
+      "title": {
+        "en": "Destination",
+        "nl": "Bestemming",
+        "de": "Destination",
+        "fr": "Destination",
+        "it": "Destination",
+        "sv": "Destination",
+        "no": "Destination",
+        "es": "Destination",
+        "da": "Destination",
+        "ru": "Destination",
+        "pl": "Destination",
+        "ko": "Destination",
+        "ar": "Destination"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "insights": false,
+      "icon": "/assets/capabilities/package.svg"
+    },
+    "dhl_express_last_event": {
+      "type": "string",
+      "title": {
+        "en": "Last event",
+        "nl": "Laatste gebeurtenis",
+        "de": "Last event",
+        "fr": "Last event",
+        "it": "Last event",
+        "sv": "Last event",
+        "no": "Last event",
+        "es": "Last event",
+        "da": "Last event",
+        "ru": "Last event",
+        "pl": "Last event",
+        "ko": "Last event",
+        "ar": "Last event"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "insights": false,
+      "icon": "/assets/capabilities/status.svg"
+    },
+    "dhl_express_delivered": {
+      "type": "boolean",
+      "title": {
+        "en": "Delivered",
+        "nl": "Bezorgd",
+        "de": "Delivered",
+        "fr": "Delivered",
+        "it": "Delivered",
+        "sv": "Delivered",
+        "no": "Delivered",
+        "es": "Delivered",
+        "da": "Delivered",
+        "ru": "Delivered",
+        "pl": "Delivered",
+        "ko": "Delivered",
+        "ar": "Delivered"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "insights": false,
+      "icon": "/assets/capabilities/delivery.svg"
+    },
+    "dhl_express_last_update": {
+      "type": "string",
+      "title": {
+        "en": "Last update",
+        "nl": "Laatste update",
+        "de": "Last update",
+        "fr": "Last update",
+        "it": "Last update",
+        "sv": "Last update",
+        "no": "Last update",
+        "es": "Last update",
+        "da": "Last update",
+        "ru": "Last update",
+        "pl": "Last update",
+        "ko": "Last update",
+        "ar": "Last update"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "insights": false,
+      "icon": "/assets/capabilities/update.svg"
     }
   },
   "flow": {
@@ -11525,6 +11922,1275 @@
             }
           }
         ]
+      },
+      {
+        "id": "dhl_express_new_package",
+        "highlight": true,
+        "title": {
+          "en": "New DHL Express parcel found",
+          "nl": "Nieuw DHL Express-pakket gevonden",
+          "de": "New DHL Express parcel found",
+          "fr": "New DHL Express parcel found",
+          "it": "New DHL Express parcel found",
+          "sv": "New DHL Express parcel found",
+          "no": "New DHL Express parcel found",
+          "es": "New DHL Express parcel found",
+          "da": "New DHL Express parcel found",
+          "ru": "New DHL Express parcel found",
+          "pl": "New DHL Express parcel found",
+          "ko": "New DHL Express parcel found",
+          "ar": "New DHL Express parcel found"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=dhl-express"
+          }
+        ],
+        "tokens": [
+          {
+            "name": "carrier",
+            "type": "string",
+            "title": {
+              "en": "Carrier",
+              "nl": "Vervoerder",
+              "de": "Carrier",
+              "fr": "Carrier",
+              "it": "Carrier",
+              "sv": "Carrier",
+              "no": "Carrier",
+              "es": "Carrier",
+              "da": "Carrier",
+              "ru": "Carrier",
+              "pl": "Carrier",
+              "ko": "Carrier",
+              "ar": "Carrier"
+            }
+          },
+          {
+            "name": "tracking",
+            "type": "string",
+            "title": {
+              "en": "Tracking number",
+              "nl": "Trackingnummer",
+              "de": "Tracking number",
+              "fr": "Tracking number",
+              "it": "Tracking number",
+              "sv": "Tracking number",
+              "no": "Tracking number",
+              "es": "Tracking number",
+              "da": "Tracking number",
+              "ru": "Tracking number",
+              "pl": "Tracking number",
+              "ko": "Tracking number",
+              "ar": "Tracking number"
+            }
+          },
+          {
+            "name": "sender",
+            "type": "string",
+            "title": {
+              "en": "Sender",
+              "nl": "Afzender",
+              "de": "Sender",
+              "fr": "Sender",
+              "it": "Sender",
+              "sv": "Sender",
+              "no": "Sender",
+              "es": "Sender",
+              "da": "Sender",
+              "ru": "Sender",
+              "pl": "Sender",
+              "ko": "Sender",
+              "ar": "Sender"
+            }
+          },
+          {
+            "name": "receiver",
+            "type": "string",
+            "title": {
+              "en": "Receiver",
+              "nl": "Ontvanger",
+              "de": "Receiver",
+              "fr": "Receiver",
+              "it": "Receiver",
+              "sv": "Receiver",
+              "no": "Receiver",
+              "es": "Receiver",
+              "da": "Receiver",
+              "ru": "Receiver",
+              "pl": "Receiver",
+              "ko": "Receiver",
+              "ar": "Receiver"
+            }
+          },
+          {
+            "name": "status",
+            "type": "string",
+            "title": {
+              "en": "Status",
+              "nl": "Status",
+              "de": "Status",
+              "fr": "Status",
+              "it": "Status",
+              "sv": "Status",
+              "no": "Status",
+              "es": "Status",
+              "da": "Status",
+              "ru": "Status",
+              "pl": "Status",
+              "ko": "Status",
+              "ar": "Status"
+            }
+          },
+          {
+            "name": "delivery_date",
+            "type": "string",
+            "title": {
+              "en": "Delivery date",
+              "nl": "Bezorgdatum",
+              "de": "Delivery date",
+              "fr": "Delivery date",
+              "it": "Delivery date",
+              "sv": "Delivery date",
+              "no": "Delivery date",
+              "es": "Delivery date",
+              "da": "Delivery date",
+              "ru": "Delivery date",
+              "pl": "Delivery date",
+              "ko": "Delivery date",
+              "ar": "Delivery date"
+            }
+          },
+          {
+            "name": "delivery_window",
+            "type": "string",
+            "title": {
+              "en": "Delivery window",
+              "nl": "Bezorgvenster",
+              "de": "Delivery window",
+              "fr": "Delivery window",
+              "it": "Delivery window",
+              "sv": "Delivery window",
+              "no": "Delivery window",
+              "es": "Delivery window",
+              "da": "Delivery window",
+              "ru": "Delivery window",
+              "pl": "Delivery window",
+              "ko": "Delivery window",
+              "ar": "Delivery window"
+            }
+          },
+          {
+            "name": "service",
+            "type": "string",
+            "title": {
+              "en": "Service",
+              "nl": "Service",
+              "de": "Service",
+              "fr": "Service",
+              "it": "Service",
+              "sv": "Service",
+              "no": "Service",
+              "es": "Service",
+              "da": "Service",
+              "ru": "Service",
+              "pl": "Service",
+              "ko": "Service",
+              "ar": "Service"
+            }
+          },
+          {
+            "name": "origin",
+            "type": "string",
+            "title": {
+              "en": "Origin",
+              "nl": "Herkomst",
+              "de": "Origin",
+              "fr": "Origin",
+              "it": "Origin",
+              "sv": "Origin",
+              "no": "Origin",
+              "es": "Origin",
+              "da": "Origin",
+              "ru": "Origin",
+              "pl": "Origin",
+              "ko": "Origin",
+              "ar": "Origin"
+            }
+          },
+          {
+            "name": "destination",
+            "type": "string",
+            "title": {
+              "en": "Destination",
+              "nl": "Bestemming",
+              "de": "Destination",
+              "fr": "Destination",
+              "it": "Destination",
+              "sv": "Destination",
+              "no": "Destination",
+              "es": "Destination",
+              "da": "Destination",
+              "ru": "Destination",
+              "pl": "Destination",
+              "ko": "Destination",
+              "ar": "Destination"
+            }
+          },
+          {
+            "name": "last_event",
+            "type": "string",
+            "title": {
+              "en": "Last event",
+              "nl": "Laatste gebeurtenis",
+              "de": "Last event",
+              "fr": "Last event",
+              "it": "Last event",
+              "sv": "Last event",
+              "no": "Last event",
+              "es": "Last event",
+              "da": "Last event",
+              "ru": "Last event",
+              "pl": "Last event",
+              "ko": "Last event",
+              "ar": "Last event"
+            }
+          },
+          {
+            "name": "delivered",
+            "type": "boolean",
+            "title": {
+              "en": "Delivered",
+              "nl": "Bezorgd",
+              "de": "Delivered",
+              "fr": "Delivered",
+              "it": "Delivered",
+              "sv": "Delivered",
+              "no": "Delivered",
+              "es": "Delivered",
+              "da": "Delivered",
+              "ru": "Delivered",
+              "pl": "Delivered",
+              "ko": "Delivered",
+              "ar": "Delivered"
+            }
+          },
+          {
+            "name": "active_count",
+            "type": "number",
+            "title": {
+              "en": "Active parcels",
+              "nl": "Actieve pakketten",
+              "de": "Active parcels",
+              "fr": "Active parcels",
+              "it": "Active parcels",
+              "sv": "Active parcels",
+              "no": "Active parcels",
+              "es": "Active parcels",
+              "da": "Active parcels",
+              "ru": "Active parcels",
+              "pl": "Active parcels",
+              "ko": "Active parcels",
+              "ar": "Active parcels"
+            }
+          },
+          {
+            "name": "total_count",
+            "type": "number",
+            "title": {
+              "en": "Total parcels",
+              "nl": "Totaal pakketten",
+              "de": "Total parcels",
+              "fr": "Total parcels",
+              "it": "Total parcels",
+              "sv": "Total parcels",
+              "no": "Total parcels",
+              "es": "Total parcels",
+              "da": "Total parcels",
+              "ru": "Total parcels",
+              "pl": "Total parcels",
+              "ko": "Total parcels",
+              "ar": "Total parcels"
+            }
+          },
+          {
+            "name": "last_update",
+            "type": "string",
+            "title": {
+              "en": "Last update",
+              "nl": "Laatste update",
+              "de": "Last update",
+              "fr": "Last update",
+              "it": "Last update",
+              "sv": "Last update",
+              "no": "Last update",
+              "es": "Last update",
+              "da": "Last update",
+              "ru": "Last update",
+              "pl": "Last update",
+              "ko": "Last update",
+              "ar": "Last update"
+            }
+          }
+        ]
+      },
+      {
+        "id": "dhl_express_status_changed",
+        "title": {
+          "en": "DHL Express parcel status changed",
+          "nl": "Status DHL Express-pakket gewijzigd",
+          "de": "DHL Express parcel status changed",
+          "fr": "DHL Express parcel status changed",
+          "it": "DHL Express parcel status changed",
+          "sv": "DHL Express parcel status changed",
+          "no": "DHL Express parcel status changed",
+          "es": "DHL Express parcel status changed",
+          "da": "DHL Express parcel status changed",
+          "ru": "DHL Express parcel status changed",
+          "pl": "DHL Express parcel status changed",
+          "ko": "DHL Express parcel status changed",
+          "ar": "DHL Express parcel status changed"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=dhl-express"
+          }
+        ],
+        "tokens": [
+          {
+            "name": "previous_status",
+            "type": "string",
+            "title": {
+              "en": "Previous status",
+              "nl": "Vorige status",
+              "de": "Previous status",
+              "fr": "Previous status",
+              "it": "Previous status",
+              "sv": "Previous status",
+              "no": "Previous status",
+              "es": "Previous status",
+              "da": "Previous status",
+              "ru": "Previous status",
+              "pl": "Previous status",
+              "ko": "Previous status",
+              "ar": "Previous status"
+            }
+          },
+          {
+            "name": "carrier",
+            "type": "string",
+            "title": {
+              "en": "Carrier",
+              "nl": "Vervoerder",
+              "de": "Carrier",
+              "fr": "Carrier",
+              "it": "Carrier",
+              "sv": "Carrier",
+              "no": "Carrier",
+              "es": "Carrier",
+              "da": "Carrier",
+              "ru": "Carrier",
+              "pl": "Carrier",
+              "ko": "Carrier",
+              "ar": "Carrier"
+            }
+          },
+          {
+            "name": "tracking",
+            "type": "string",
+            "title": {
+              "en": "Tracking number",
+              "nl": "Trackingnummer",
+              "de": "Tracking number",
+              "fr": "Tracking number",
+              "it": "Tracking number",
+              "sv": "Tracking number",
+              "no": "Tracking number",
+              "es": "Tracking number",
+              "da": "Tracking number",
+              "ru": "Tracking number",
+              "pl": "Tracking number",
+              "ko": "Tracking number",
+              "ar": "Tracking number"
+            }
+          },
+          {
+            "name": "sender",
+            "type": "string",
+            "title": {
+              "en": "Sender",
+              "nl": "Afzender",
+              "de": "Sender",
+              "fr": "Sender",
+              "it": "Sender",
+              "sv": "Sender",
+              "no": "Sender",
+              "es": "Sender",
+              "da": "Sender",
+              "ru": "Sender",
+              "pl": "Sender",
+              "ko": "Sender",
+              "ar": "Sender"
+            }
+          },
+          {
+            "name": "receiver",
+            "type": "string",
+            "title": {
+              "en": "Receiver",
+              "nl": "Ontvanger",
+              "de": "Receiver",
+              "fr": "Receiver",
+              "it": "Receiver",
+              "sv": "Receiver",
+              "no": "Receiver",
+              "es": "Receiver",
+              "da": "Receiver",
+              "ru": "Receiver",
+              "pl": "Receiver",
+              "ko": "Receiver",
+              "ar": "Receiver"
+            }
+          },
+          {
+            "name": "status",
+            "type": "string",
+            "title": {
+              "en": "Status",
+              "nl": "Status",
+              "de": "Status",
+              "fr": "Status",
+              "it": "Status",
+              "sv": "Status",
+              "no": "Status",
+              "es": "Status",
+              "da": "Status",
+              "ru": "Status",
+              "pl": "Status",
+              "ko": "Status",
+              "ar": "Status"
+            }
+          },
+          {
+            "name": "delivery_date",
+            "type": "string",
+            "title": {
+              "en": "Delivery date",
+              "nl": "Bezorgdatum",
+              "de": "Delivery date",
+              "fr": "Delivery date",
+              "it": "Delivery date",
+              "sv": "Delivery date",
+              "no": "Delivery date",
+              "es": "Delivery date",
+              "da": "Delivery date",
+              "ru": "Delivery date",
+              "pl": "Delivery date",
+              "ko": "Delivery date",
+              "ar": "Delivery date"
+            }
+          },
+          {
+            "name": "delivery_window",
+            "type": "string",
+            "title": {
+              "en": "Delivery window",
+              "nl": "Bezorgvenster",
+              "de": "Delivery window",
+              "fr": "Delivery window",
+              "it": "Delivery window",
+              "sv": "Delivery window",
+              "no": "Delivery window",
+              "es": "Delivery window",
+              "da": "Delivery window",
+              "ru": "Delivery window",
+              "pl": "Delivery window",
+              "ko": "Delivery window",
+              "ar": "Delivery window"
+            }
+          },
+          {
+            "name": "service",
+            "type": "string",
+            "title": {
+              "en": "Service",
+              "nl": "Service",
+              "de": "Service",
+              "fr": "Service",
+              "it": "Service",
+              "sv": "Service",
+              "no": "Service",
+              "es": "Service",
+              "da": "Service",
+              "ru": "Service",
+              "pl": "Service",
+              "ko": "Service",
+              "ar": "Service"
+            }
+          },
+          {
+            "name": "origin",
+            "type": "string",
+            "title": {
+              "en": "Origin",
+              "nl": "Herkomst",
+              "de": "Origin",
+              "fr": "Origin",
+              "it": "Origin",
+              "sv": "Origin",
+              "no": "Origin",
+              "es": "Origin",
+              "da": "Origin",
+              "ru": "Origin",
+              "pl": "Origin",
+              "ko": "Origin",
+              "ar": "Origin"
+            }
+          },
+          {
+            "name": "destination",
+            "type": "string",
+            "title": {
+              "en": "Destination",
+              "nl": "Bestemming",
+              "de": "Destination",
+              "fr": "Destination",
+              "it": "Destination",
+              "sv": "Destination",
+              "no": "Destination",
+              "es": "Destination",
+              "da": "Destination",
+              "ru": "Destination",
+              "pl": "Destination",
+              "ko": "Destination",
+              "ar": "Destination"
+            }
+          },
+          {
+            "name": "last_event",
+            "type": "string",
+            "title": {
+              "en": "Last event",
+              "nl": "Laatste gebeurtenis",
+              "de": "Last event",
+              "fr": "Last event",
+              "it": "Last event",
+              "sv": "Last event",
+              "no": "Last event",
+              "es": "Last event",
+              "da": "Last event",
+              "ru": "Last event",
+              "pl": "Last event",
+              "ko": "Last event",
+              "ar": "Last event"
+            }
+          },
+          {
+            "name": "delivered",
+            "type": "boolean",
+            "title": {
+              "en": "Delivered",
+              "nl": "Bezorgd",
+              "de": "Delivered",
+              "fr": "Delivered",
+              "it": "Delivered",
+              "sv": "Delivered",
+              "no": "Delivered",
+              "es": "Delivered",
+              "da": "Delivered",
+              "ru": "Delivered",
+              "pl": "Delivered",
+              "ko": "Delivered",
+              "ar": "Delivered"
+            }
+          },
+          {
+            "name": "active_count",
+            "type": "number",
+            "title": {
+              "en": "Active parcels",
+              "nl": "Actieve pakketten",
+              "de": "Active parcels",
+              "fr": "Active parcels",
+              "it": "Active parcels",
+              "sv": "Active parcels",
+              "no": "Active parcels",
+              "es": "Active parcels",
+              "da": "Active parcels",
+              "ru": "Active parcels",
+              "pl": "Active parcels",
+              "ko": "Active parcels",
+              "ar": "Active parcels"
+            }
+          },
+          {
+            "name": "total_count",
+            "type": "number",
+            "title": {
+              "en": "Total parcels",
+              "nl": "Totaal pakketten",
+              "de": "Total parcels",
+              "fr": "Total parcels",
+              "it": "Total parcels",
+              "sv": "Total parcels",
+              "no": "Total parcels",
+              "es": "Total parcels",
+              "da": "Total parcels",
+              "ru": "Total parcels",
+              "pl": "Total parcels",
+              "ko": "Total parcels",
+              "ar": "Total parcels"
+            }
+          },
+          {
+            "name": "last_update",
+            "type": "string",
+            "title": {
+              "en": "Last update",
+              "nl": "Laatste update",
+              "de": "Last update",
+              "fr": "Last update",
+              "it": "Last update",
+              "sv": "Last update",
+              "no": "Last update",
+              "es": "Last update",
+              "da": "Last update",
+              "ru": "Last update",
+              "pl": "Last update",
+              "ko": "Last update",
+              "ar": "Last update"
+            }
+          }
+        ]
+      },
+      {
+        "id": "dhl_express_delivery_updated",
+        "title": {
+          "en": "DHL Express delivery information updated",
+          "nl": "DHL Express-bezorginformatie bijgewerkt",
+          "de": "DHL Express delivery information updated",
+          "fr": "DHL Express delivery information updated",
+          "it": "DHL Express delivery information updated",
+          "sv": "DHL Express delivery information updated",
+          "no": "DHL Express delivery information updated",
+          "es": "DHL Express delivery information updated",
+          "da": "DHL Express delivery information updated",
+          "ru": "DHL Express delivery information updated",
+          "pl": "DHL Express delivery information updated",
+          "ko": "DHL Express delivery information updated",
+          "ar": "DHL Express delivery information updated"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=dhl-express"
+          }
+        ],
+        "tokens": [
+          {
+            "name": "carrier",
+            "type": "string",
+            "title": {
+              "en": "Carrier",
+              "nl": "Vervoerder",
+              "de": "Carrier",
+              "fr": "Carrier",
+              "it": "Carrier",
+              "sv": "Carrier",
+              "no": "Carrier",
+              "es": "Carrier",
+              "da": "Carrier",
+              "ru": "Carrier",
+              "pl": "Carrier",
+              "ko": "Carrier",
+              "ar": "Carrier"
+            }
+          },
+          {
+            "name": "tracking",
+            "type": "string",
+            "title": {
+              "en": "Tracking number",
+              "nl": "Trackingnummer",
+              "de": "Tracking number",
+              "fr": "Tracking number",
+              "it": "Tracking number",
+              "sv": "Tracking number",
+              "no": "Tracking number",
+              "es": "Tracking number",
+              "da": "Tracking number",
+              "ru": "Tracking number",
+              "pl": "Tracking number",
+              "ko": "Tracking number",
+              "ar": "Tracking number"
+            }
+          },
+          {
+            "name": "sender",
+            "type": "string",
+            "title": {
+              "en": "Sender",
+              "nl": "Afzender",
+              "de": "Sender",
+              "fr": "Sender",
+              "it": "Sender",
+              "sv": "Sender",
+              "no": "Sender",
+              "es": "Sender",
+              "da": "Sender",
+              "ru": "Sender",
+              "pl": "Sender",
+              "ko": "Sender",
+              "ar": "Sender"
+            }
+          },
+          {
+            "name": "receiver",
+            "type": "string",
+            "title": {
+              "en": "Receiver",
+              "nl": "Ontvanger",
+              "de": "Receiver",
+              "fr": "Receiver",
+              "it": "Receiver",
+              "sv": "Receiver",
+              "no": "Receiver",
+              "es": "Receiver",
+              "da": "Receiver",
+              "ru": "Receiver",
+              "pl": "Receiver",
+              "ko": "Receiver",
+              "ar": "Receiver"
+            }
+          },
+          {
+            "name": "status",
+            "type": "string",
+            "title": {
+              "en": "Status",
+              "nl": "Status",
+              "de": "Status",
+              "fr": "Status",
+              "it": "Status",
+              "sv": "Status",
+              "no": "Status",
+              "es": "Status",
+              "da": "Status",
+              "ru": "Status",
+              "pl": "Status",
+              "ko": "Status",
+              "ar": "Status"
+            }
+          },
+          {
+            "name": "delivery_date",
+            "type": "string",
+            "title": {
+              "en": "Delivery date",
+              "nl": "Bezorgdatum",
+              "de": "Delivery date",
+              "fr": "Delivery date",
+              "it": "Delivery date",
+              "sv": "Delivery date",
+              "no": "Delivery date",
+              "es": "Delivery date",
+              "da": "Delivery date",
+              "ru": "Delivery date",
+              "pl": "Delivery date",
+              "ko": "Delivery date",
+              "ar": "Delivery date"
+            }
+          },
+          {
+            "name": "delivery_window",
+            "type": "string",
+            "title": {
+              "en": "Delivery window",
+              "nl": "Bezorgvenster",
+              "de": "Delivery window",
+              "fr": "Delivery window",
+              "it": "Delivery window",
+              "sv": "Delivery window",
+              "no": "Delivery window",
+              "es": "Delivery window",
+              "da": "Delivery window",
+              "ru": "Delivery window",
+              "pl": "Delivery window",
+              "ko": "Delivery window",
+              "ar": "Delivery window"
+            }
+          },
+          {
+            "name": "service",
+            "type": "string",
+            "title": {
+              "en": "Service",
+              "nl": "Service",
+              "de": "Service",
+              "fr": "Service",
+              "it": "Service",
+              "sv": "Service",
+              "no": "Service",
+              "es": "Service",
+              "da": "Service",
+              "ru": "Service",
+              "pl": "Service",
+              "ko": "Service",
+              "ar": "Service"
+            }
+          },
+          {
+            "name": "origin",
+            "type": "string",
+            "title": {
+              "en": "Origin",
+              "nl": "Herkomst",
+              "de": "Origin",
+              "fr": "Origin",
+              "it": "Origin",
+              "sv": "Origin",
+              "no": "Origin",
+              "es": "Origin",
+              "da": "Origin",
+              "ru": "Origin",
+              "pl": "Origin",
+              "ko": "Origin",
+              "ar": "Origin"
+            }
+          },
+          {
+            "name": "destination",
+            "type": "string",
+            "title": {
+              "en": "Destination",
+              "nl": "Bestemming",
+              "de": "Destination",
+              "fr": "Destination",
+              "it": "Destination",
+              "sv": "Destination",
+              "no": "Destination",
+              "es": "Destination",
+              "da": "Destination",
+              "ru": "Destination",
+              "pl": "Destination",
+              "ko": "Destination",
+              "ar": "Destination"
+            }
+          },
+          {
+            "name": "last_event",
+            "type": "string",
+            "title": {
+              "en": "Last event",
+              "nl": "Laatste gebeurtenis",
+              "de": "Last event",
+              "fr": "Last event",
+              "it": "Last event",
+              "sv": "Last event",
+              "no": "Last event",
+              "es": "Last event",
+              "da": "Last event",
+              "ru": "Last event",
+              "pl": "Last event",
+              "ko": "Last event",
+              "ar": "Last event"
+            }
+          },
+          {
+            "name": "delivered",
+            "type": "boolean",
+            "title": {
+              "en": "Delivered",
+              "nl": "Bezorgd",
+              "de": "Delivered",
+              "fr": "Delivered",
+              "it": "Delivered",
+              "sv": "Delivered",
+              "no": "Delivered",
+              "es": "Delivered",
+              "da": "Delivered",
+              "ru": "Delivered",
+              "pl": "Delivered",
+              "ko": "Delivered",
+              "ar": "Delivered"
+            }
+          },
+          {
+            "name": "active_count",
+            "type": "number",
+            "title": {
+              "en": "Active parcels",
+              "nl": "Actieve pakketten",
+              "de": "Active parcels",
+              "fr": "Active parcels",
+              "it": "Active parcels",
+              "sv": "Active parcels",
+              "no": "Active parcels",
+              "es": "Active parcels",
+              "da": "Active parcels",
+              "ru": "Active parcels",
+              "pl": "Active parcels",
+              "ko": "Active parcels",
+              "ar": "Active parcels"
+            }
+          },
+          {
+            "name": "total_count",
+            "type": "number",
+            "title": {
+              "en": "Total parcels",
+              "nl": "Totaal pakketten",
+              "de": "Total parcels",
+              "fr": "Total parcels",
+              "it": "Total parcels",
+              "sv": "Total parcels",
+              "no": "Total parcels",
+              "es": "Total parcels",
+              "da": "Total parcels",
+              "ru": "Total parcels",
+              "pl": "Total parcels",
+              "ko": "Total parcels",
+              "ar": "Total parcels"
+            }
+          },
+          {
+            "name": "last_update",
+            "type": "string",
+            "title": {
+              "en": "Last update",
+              "nl": "Laatste update",
+              "de": "Last update",
+              "fr": "Last update",
+              "it": "Last update",
+              "sv": "Last update",
+              "no": "Last update",
+              "es": "Last update",
+              "da": "Last update",
+              "ru": "Last update",
+              "pl": "Last update",
+              "ko": "Last update",
+              "ar": "Last update"
+            }
+          }
+        ]
+      },
+      {
+        "id": "dhl_express_delivered",
+        "highlight": true,
+        "title": {
+          "en": "DHL Express parcel delivered",
+          "nl": "DHL Express-pakket bezorgd",
+          "de": "DHL Express parcel delivered",
+          "fr": "DHL Express parcel delivered",
+          "it": "DHL Express parcel delivered",
+          "sv": "DHL Express parcel delivered",
+          "no": "DHL Express parcel delivered",
+          "es": "DHL Express parcel delivered",
+          "da": "DHL Express parcel delivered",
+          "ru": "DHL Express parcel delivered",
+          "pl": "DHL Express parcel delivered",
+          "ko": "DHL Express parcel delivered",
+          "ar": "DHL Express parcel delivered"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=dhl-express"
+          }
+        ],
+        "tokens": [
+          {
+            "name": "carrier",
+            "type": "string",
+            "title": {
+              "en": "Carrier",
+              "nl": "Vervoerder",
+              "de": "Carrier",
+              "fr": "Carrier",
+              "it": "Carrier",
+              "sv": "Carrier",
+              "no": "Carrier",
+              "es": "Carrier",
+              "da": "Carrier",
+              "ru": "Carrier",
+              "pl": "Carrier",
+              "ko": "Carrier",
+              "ar": "Carrier"
+            }
+          },
+          {
+            "name": "tracking",
+            "type": "string",
+            "title": {
+              "en": "Tracking number",
+              "nl": "Trackingnummer",
+              "de": "Tracking number",
+              "fr": "Tracking number",
+              "it": "Tracking number",
+              "sv": "Tracking number",
+              "no": "Tracking number",
+              "es": "Tracking number",
+              "da": "Tracking number",
+              "ru": "Tracking number",
+              "pl": "Tracking number",
+              "ko": "Tracking number",
+              "ar": "Tracking number"
+            }
+          },
+          {
+            "name": "sender",
+            "type": "string",
+            "title": {
+              "en": "Sender",
+              "nl": "Afzender",
+              "de": "Sender",
+              "fr": "Sender",
+              "it": "Sender",
+              "sv": "Sender",
+              "no": "Sender",
+              "es": "Sender",
+              "da": "Sender",
+              "ru": "Sender",
+              "pl": "Sender",
+              "ko": "Sender",
+              "ar": "Sender"
+            }
+          },
+          {
+            "name": "receiver",
+            "type": "string",
+            "title": {
+              "en": "Receiver",
+              "nl": "Ontvanger",
+              "de": "Receiver",
+              "fr": "Receiver",
+              "it": "Receiver",
+              "sv": "Receiver",
+              "no": "Receiver",
+              "es": "Receiver",
+              "da": "Receiver",
+              "ru": "Receiver",
+              "pl": "Receiver",
+              "ko": "Receiver",
+              "ar": "Receiver"
+            }
+          },
+          {
+            "name": "status",
+            "type": "string",
+            "title": {
+              "en": "Status",
+              "nl": "Status",
+              "de": "Status",
+              "fr": "Status",
+              "it": "Status",
+              "sv": "Status",
+              "no": "Status",
+              "es": "Status",
+              "da": "Status",
+              "ru": "Status",
+              "pl": "Status",
+              "ko": "Status",
+              "ar": "Status"
+            }
+          },
+          {
+            "name": "delivery_date",
+            "type": "string",
+            "title": {
+              "en": "Delivery date",
+              "nl": "Bezorgdatum",
+              "de": "Delivery date",
+              "fr": "Delivery date",
+              "it": "Delivery date",
+              "sv": "Delivery date",
+              "no": "Delivery date",
+              "es": "Delivery date",
+              "da": "Delivery date",
+              "ru": "Delivery date",
+              "pl": "Delivery date",
+              "ko": "Delivery date",
+              "ar": "Delivery date"
+            }
+          },
+          {
+            "name": "delivery_window",
+            "type": "string",
+            "title": {
+              "en": "Delivery window",
+              "nl": "Bezorgvenster",
+              "de": "Delivery window",
+              "fr": "Delivery window",
+              "it": "Delivery window",
+              "sv": "Delivery window",
+              "no": "Delivery window",
+              "es": "Delivery window",
+              "da": "Delivery window",
+              "ru": "Delivery window",
+              "pl": "Delivery window",
+              "ko": "Delivery window",
+              "ar": "Delivery window"
+            }
+          },
+          {
+            "name": "service",
+            "type": "string",
+            "title": {
+              "en": "Service",
+              "nl": "Service",
+              "de": "Service",
+              "fr": "Service",
+              "it": "Service",
+              "sv": "Service",
+              "no": "Service",
+              "es": "Service",
+              "da": "Service",
+              "ru": "Service",
+              "pl": "Service",
+              "ko": "Service",
+              "ar": "Service"
+            }
+          },
+          {
+            "name": "origin",
+            "type": "string",
+            "title": {
+              "en": "Origin",
+              "nl": "Herkomst",
+              "de": "Origin",
+              "fr": "Origin",
+              "it": "Origin",
+              "sv": "Origin",
+              "no": "Origin",
+              "es": "Origin",
+              "da": "Origin",
+              "ru": "Origin",
+              "pl": "Origin",
+              "ko": "Origin",
+              "ar": "Origin"
+            }
+          },
+          {
+            "name": "destination",
+            "type": "string",
+            "title": {
+              "en": "Destination",
+              "nl": "Bestemming",
+              "de": "Destination",
+              "fr": "Destination",
+              "it": "Destination",
+              "sv": "Destination",
+              "no": "Destination",
+              "es": "Destination",
+              "da": "Destination",
+              "ru": "Destination",
+              "pl": "Destination",
+              "ko": "Destination",
+              "ar": "Destination"
+            }
+          },
+          {
+            "name": "last_event",
+            "type": "string",
+            "title": {
+              "en": "Last event",
+              "nl": "Laatste gebeurtenis",
+              "de": "Last event",
+              "fr": "Last event",
+              "it": "Last event",
+              "sv": "Last event",
+              "no": "Last event",
+              "es": "Last event",
+              "da": "Last event",
+              "ru": "Last event",
+              "pl": "Last event",
+              "ko": "Last event",
+              "ar": "Last event"
+            }
+          },
+          {
+            "name": "delivered",
+            "type": "boolean",
+            "title": {
+              "en": "Delivered",
+              "nl": "Bezorgd",
+              "de": "Delivered",
+              "fr": "Delivered",
+              "it": "Delivered",
+              "sv": "Delivered",
+              "no": "Delivered",
+              "es": "Delivered",
+              "da": "Delivered",
+              "ru": "Delivered",
+              "pl": "Delivered",
+              "ko": "Delivered",
+              "ar": "Delivered"
+            }
+          },
+          {
+            "name": "active_count",
+            "type": "number",
+            "title": {
+              "en": "Active parcels",
+              "nl": "Actieve pakketten",
+              "de": "Active parcels",
+              "fr": "Active parcels",
+              "it": "Active parcels",
+              "sv": "Active parcels",
+              "no": "Active parcels",
+              "es": "Active parcels",
+              "da": "Active parcels",
+              "ru": "Active parcels",
+              "pl": "Active parcels",
+              "ko": "Active parcels",
+              "ar": "Active parcels"
+            }
+          },
+          {
+            "name": "total_count",
+            "type": "number",
+            "title": {
+              "en": "Total parcels",
+              "nl": "Totaal pakketten",
+              "de": "Total parcels",
+              "fr": "Total parcels",
+              "it": "Total parcels",
+              "sv": "Total parcels",
+              "no": "Total parcels",
+              "es": "Total parcels",
+              "da": "Total parcels",
+              "ru": "Total parcels",
+              "pl": "Total parcels",
+              "ko": "Total parcels",
+              "ar": "Total parcels"
+            }
+          },
+          {
+            "name": "last_update",
+            "type": "string",
+            "title": {
+              "en": "Last update",
+              "nl": "Laatste update",
+              "de": "Last update",
+              "fr": "Last update",
+              "it": "Last update",
+              "sv": "Last update",
+              "no": "Last update",
+              "es": "Last update",
+              "da": "Last update",
+              "ru": "Last update",
+              "pl": "Last update",
+              "ko": "Last update",
+              "ar": "Last update"
+            }
+          }
+        ]
       }
     ],
     "conditions": [
@@ -12177,6 +13843,81 @@
             "filter": "driver_id=ampere"
           }
         ]
+      },
+      {
+        "id": "dhl_express_packages_underway",
+        "title": {
+          "en": "DHL Express parcels are underway",
+          "nl": "Er zijn DHL Express-pakketten onderweg",
+          "de": "DHL Express parcels are underway",
+          "fr": "DHL Express parcels are underway",
+          "it": "DHL Express parcels are underway",
+          "sv": "DHL Express parcels are underway",
+          "no": "DHL Express parcels are underway",
+          "es": "DHL Express parcels are underway",
+          "da": "DHL Express parcels are underway",
+          "ru": "DHL Express parcels are underway",
+          "pl": "DHL Express parcels are underway",
+          "ko": "DHL Express parcels are underway",
+          "ar": "DHL Express parcels are underway"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=dhl-express"
+          }
+        ]
+      },
+      {
+        "id": "dhl_express_is_connected",
+        "title": {
+          "en": "DHL Express !{{is|isn't}} connected",
+          "nl": "DHL Express !{{is|is niet}} verbonden",
+          "de": "DHL Express !{{is|isn't}} connected",
+          "fr": "DHL Express !{{is|isn't}} connected",
+          "it": "DHL Express !{{is|isn't}} connected",
+          "sv": "DHL Express !{{is|isn't}} connected",
+          "no": "DHL Express !{{is|isn't}} connected",
+          "es": "DHL Express !{{is|isn't}} connected",
+          "da": "DHL Express !{{is|isn't}} connected",
+          "ru": "DHL Express !{{is|isn't}} connected",
+          "pl": "DHL Express !{{is|isn't}} connected",
+          "ko": "DHL Express !{{is|isn't}} connected",
+          "ar": "DHL Express !{{is|isn't}} connected"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=dhl-express"
+          }
+        ]
+      },
+      {
+        "id": "dhl_express_delivery_window_known",
+        "title": {
+          "en": "DHL Express delivery window !{{is|isn't}} known",
+          "nl": "DHL Express-bezorgvenster !{{is|is niet}} bekend",
+          "de": "DHL Express delivery window !{{is|isn't}} known",
+          "fr": "DHL Express delivery window !{{is|isn't}} known",
+          "it": "DHL Express delivery window !{{is|isn't}} known",
+          "sv": "DHL Express delivery window !{{is|isn't}} known",
+          "no": "DHL Express delivery window !{{is|isn't}} known",
+          "es": "DHL Express delivery window !{{is|isn't}} known",
+          "da": "DHL Express delivery window !{{is|isn't}} known",
+          "ru": "DHL Express delivery window !{{is|isn't}} known",
+          "pl": "DHL Express delivery window !{{is|isn't}} known",
+          "ko": "DHL Express delivery window !{{is|isn't}} known",
+          "ar": "DHL Express delivery window !{{is|isn't}} known"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=dhl-express"
+          }
+        ]
       }
     ],
     "actions": [
@@ -12477,6 +14218,31 @@
             "type": "device",
             "name": "device",
             "filter": "driver_id=ampere"
+          }
+        ]
+      },
+      {
+        "id": "dhl_express_refresh",
+        "title": {
+          "en": "Refresh DHL Express",
+          "nl": "Vernieuw DHL Express",
+          "de": "Refresh DHL Express",
+          "fr": "Refresh DHL Express",
+          "it": "Refresh DHL Express",
+          "sv": "Refresh DHL Express",
+          "no": "Refresh DHL Express",
+          "es": "Refresh DHL Express",
+          "da": "Refresh DHL Express",
+          "ru": "Refresh DHL Express",
+          "pl": "Refresh DHL Express",
+          "ko": "Refresh DHL Express",
+          "ar": "Refresh DHL Express"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=dhl-express"
           }
         ]
       }
