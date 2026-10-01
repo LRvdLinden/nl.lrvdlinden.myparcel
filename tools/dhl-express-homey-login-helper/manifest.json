@@ -1,28 +1,46 @@
 {
   "manifest_version": 3,
   "name": "DHL Express Homey Login Helper",
-  "version": "0.1.0",
-  "description": "Captures your own signed-in MyDHL+ web session for the MyParcel DHL Express device on Homey.",
-  "permissions": ["cookies", "storage", "tabs", "webRequest", "clipboardWrite"],
+  "version": "0.1.1",
+  "description": "Captures and preserves your signed-in MyDHL+ / DHLPass web session for MyParcel on Homey.",
+  "permissions": [
+    "cookies",
+    "storage",
+    "tabs",
+    "webRequest",
+    "clipboardWrite"
+  ],
   "host_permissions": [
     "https://dhlpass.dhl.com/*",
     "https://mydhl.express.dhl/*"
   ],
-  "background": {"service_worker": "background.js"},
+  "background": {
+    "service_worker": "background.js"
+  },
   "action": {
     "default_title": "DHL Express Homey Login Helper",
     "default_popup": "popup.html"
   },
   "content_scripts": [
     {
-      "matches": ["https://mydhl.express.dhl/*"],
-      "js": ["bridge.js"],
+      "matches": [
+        "https://dhlpass.dhl.com/*",
+        "https://mydhl.express.dhl/*"
+      ],
+      "js": [
+        "bridge.js"
+      ],
       "run_at": "document_start",
       "world": "MAIN"
     },
     {
-      "matches": ["https://mydhl.express.dhl/*"],
-      "js": ["content.js"],
+      "matches": [
+        "https://dhlpass.dhl.com/*",
+        "https://mydhl.express.dhl/*"
+      ],
+      "js": [
+        "content.js"
+      ],
       "run_at": "document_start",
       "world": "ISOLATED"
     }
