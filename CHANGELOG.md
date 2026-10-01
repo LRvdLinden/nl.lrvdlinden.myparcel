@@ -1,3 +1,9 @@
+## 0.3.0 — Animated PostNL delivery van
+- **Mijn Bezorging / My Delivery** now shows the supplied animated PostNL delivery van GIF whenever a PostNL parcel is active.
+- The GIF is included **byte-for-byte unchanged**: no re-encoding, sharpening, frame timing changes or other image processing.
+- The widget preserves the GIF's original aspect ratio and only scales it proportionally to fit the available widget space.
+- The empty state with no active parcel continues to use the static PostNL van.
+
 ## 0.2.7 — Carrier data expansion
 - Ampère now accepts helper 0.3.2 bundles that already contain Ampère tracking links discovered from the authenticated bol.com orders page, so the device no longer depends on an immediate server-side replay of the browser session.
 - Fixed freshly paired Ampère devices becoming unavailable immediately when bol.com redirects or challenges Homey’s first background request; transient live-session failures now keep the paired device available and retry later.
