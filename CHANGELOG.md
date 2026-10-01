@@ -1,3 +1,13 @@
+## 0.3.1 — DHL Express
+- Added **DHL Express** as a separate international carrier alongside DHL Parcel.
+- Added MyDHL+ / DHLPass account linking using a reusable signed-in web session.
+- Added automatic DHL Express account shipment discovery; no manual tracking-number list is required as the normal workflow.
+- Added DHL Express capabilities, Flow triggers, conditions, action cards and tokens for the shipment data available from MyDHL+.
+- Added DHL Express support to the MyParcel Packages and MyParcel Delivery widgets.
+- Added DHL Express device artwork with clean `large.png` and `small.png` filenames.
+- DHL Express uses the same `icon.svg` shape as the DHL Parcel device, with separate DHL Express branded device images.
+- Added the existing Bol.com Homey Login Helper to `/tools` on GitHub.
+
 ## 0.3.0 — Animated PostNL delivery van
 - **Mijn Bezorging / My Delivery** now shows the supplied animated PostNL delivery van GIF whenever a PostNL parcel is active.
 - The GIF is included **byte-for-byte unchanged**: no re-encoding, sharpening, frame timing changes or other image processing.
