@@ -93,7 +93,16 @@ class PostNLDevice extends Homey.Device {
       const live = await this.api.fetchAll();
       // PostNL mail is live-only. The device mirrors exactly what the MyMail
       // endpoint returns now and never merges it with previously seen items.
-      const liveLetters = Array.isArray(live.letters) ? live.letters : [];
+      const liveLetters = await Promise.all((Array.isArray(live.letters) ? live.letters : []).map(async item => {
+        if (!item?.imageUrl) return item;
+        try {
+          const imageData = await this.api.fetchImage(item.imageUrl);
+          return { ...item, imageData };
+        } catch (error) {
+          this.log('Live PostNL mail image unavailable', item.id || '', error.message);
+          return item;
+        }
+      }));
       const current = {
         letters: liveLetters,
         liveLetters,
