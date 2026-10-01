@@ -7,7 +7,7 @@ const KEY='dhlExpressHomeySession011';
 const fresh=()=>({
   schema:'nl.lrvdlinden.myparcel.dhl-express-session',
   version:2,
-  helperVersion:'0.1.1',
+  helperVersion:'0.1.2',
   createdAt:null,
   updatedAt:null,
   lastUrl:'',
