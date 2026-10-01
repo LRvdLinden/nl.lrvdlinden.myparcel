@@ -1,0 +1,56 @@
+name: Finalize MyParcel 0.3.0
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/finalize-myparcel-030.yml'
+permissions:
+  contents: write
+jobs:
+  finalize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Restore exact PostNL GIF
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat .sync/postnl-gif/part-*.txt > /tmp/postnl-van.b64
+          base64 --decode /tmp/postnl-van.b64 > widgets/postnl-pakketdetails/public/postnl-van.gif
+          test "$(wc -c < widgets/postnl-pakketdetails/public/postnl-van.gif | tr -d ' ')" = "660705"
+          echo "efcca70ca181a6b98a0077dcaa0455d4255bec7f97b5ea341b22cd1d51ac1f87  widgets/postnl-pakketdetails/public/postnl-van.gif" | sha256sum -c -
+      - name: Validate 0.3.0
+        shell: bash
+        run: |
+          set -euo pipefail
+          node -e "const a=require('./app.json'); const p=require('./package.json'); if(a.version!=='0.3.0'||p.version!=='0.3.0') process.exit(1)"
+          grep -q 'postnl-van.gif' widgets/postnl-pakketdetails/public/index.html
+          grep -q 'animated-van' widgets/postnl-pakketdetails/public/index.html
+          find . -type f -name '*.js' -not -path './node_modules/*' -not -path './.homeybuild/*' -print0 | xargs -0 -n1 node --check
+          node -e "for (const f of ['app.json','package.json','package-lock.json','.homeychangelog.json']) JSON.parse(require('fs').readFileSync(f,'utf8'));"
+      - name: Commit final repository state
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "LRvdLinden"
+          git config user.email "77990847+LRvdLinden@users.noreply.github.com"
+          git add widgets/postnl-pakketdetails/public/postnl-van.gif
+          git rm -r .sync/postnl-gif
+          git rm .github/workflows/finalize-myparcel-030.yml
+          git commit -m "Finalize MyParcel v0.3.0 with original PostNL GIF"
+          git push origin HEAD:main
+      - name: Build MyParcel 0.3.0 ZIP
+        shell: bash
+        run: |
+          set -euo pipefail
+          zip -qr MyParcel-for-Homey-v0.3.0-beta.zip .             -x '.git/*' '.github/*' '.sync/*' 'node_modules/*' '.homeybuild/*' 'MyParcel-for-Homey-v0.3.0-beta.zip'
+          unzip -t MyParcel-for-Homey-v0.3.0-beta.zip >/dev/null
+          echo "ZIP SHA256:"
+          sha256sum MyParcel-for-Homey-v0.3.0-beta.zip
+      - uses: actions/upload-artifact@v4
+        with:
+          name: MyParcel-for-Homey-v0.3.0-beta
+          path: MyParcel-for-Homey-v0.3.0-beta.zip
+          compression-level: 0
