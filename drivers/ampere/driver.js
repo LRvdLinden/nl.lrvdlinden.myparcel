@@ -28,11 +28,23 @@ function makeId(sessionCode, trackingUrl) {
 }
 
 module.exports = class AmpereDriver extends Homey.Driver {
+  async onInit() {
+    this.homey.flow.getConditionCard('ampere_packages_underway').registerRunListener(async ({ device }) => Boolean(device?.hasPackagesUnderway()));
+    this.homey.flow.getConditionCard('ampere_delivery_window_known').registerRunListener(async ({ device }) => Boolean(device?.hasDeliveryWindow()));
+    this.homey.flow.getConditionCard('ampere_is_delivered').registerRunListener(async ({ device }) => Boolean(device?.isLatestDelivered()));
+    this.homey.flow.getConditionCard('ampere_is_connected').registerRunListener(async ({ device }) => Boolean(device?.isConnected()));
+    this.homey.flow.getActionCard('ampere_refresh').registerRunListener(async ({ device }) => {
+      if (!device) throw new Error('No Ampère device selected.');
+      await device.refresh(true);
+      return true;
+    });
+  }
+
   async onPair(session) {
     session.setHandler('create_ampere', async ({ sessionCode, url }) => {
       const bolSessionBundle = validateSessionCode(sessionCode);
       const trackingUrl = normalizeUrl(url);
-      if (!bolSessionBundle && !trackingUrl) throw new Error('Paste the bol.com session code from helper 0.3.2 or enter an Ampère Track & Trace URL.');
+      if (!bolSessionBundle && !trackingUrl) throw new Error('Paste the bol.com session code from helper 0.3.1 or enter an Ampère Track & Trace URL.');
       return {
         device: {
           name: 'Ampère',
@@ -47,7 +59,7 @@ module.exports = class AmpereDriver extends Homey.Driver {
     session.setHandler('repair_ampere', async ({ sessionCode, url }) => {
       const bolSessionBundle = validateSessionCode(sessionCode);
       const trackingUrl = normalizeUrl(url);
-      if (!bolSessionBundle && !trackingUrl) throw new Error('Paste the bol.com session code from helper 0.3.2 or enter an Ampère Track & Trace URL.');
+      if (!bolSessionBundle && !trackingUrl) throw new Error('Paste the bol.com session code from helper 0.3.1 or enter an Ampère Track & Trace URL.');
       const device = session.getDevice();
       const settings = {};
       if (bolSessionBundle) settings.bol_session_bundle = bolSessionBundle;
