@@ -1035,7 +1035,16 @@
       "class": "sensor",
       "capabilities": [
         "ampere_parcel_count",
+        "ampere_total_count",
         "ampere_status",
+        "ampere_tracking",
+        "ampere_sender",
+        "ampere_delivery_date",
+        "ampere_delivery_window",
+        "ampere_window_start",
+        "ampere_window_end",
+        "ampere_delivered",
+        "ampere_details_url",
         "myparcel_connection_status",
         "ampere_last_update"
       ],
@@ -3090,6 +3099,213 @@
       "setable": false,
       "uiComponent": "sensor",
       "icon": "/assets/capabilities/update.svg"
+    },
+    "ampere_total_count": {
+      "type": "number",
+      "title": {
+        "en": "Total parcels",
+        "nl": "Totaal pakketten",
+        "de": "Pakete gesamt",
+        "fr": "Total des colis",
+        "it": "Pacchi totali",
+        "sv": "Totalt antal paket",
+        "no": "Totalt antall pakker",
+        "es": "Paquetes totales",
+        "da": "Pakker i alt",
+        "ru": "Всего посылок",
+        "pl": "Łączna liczba paczek",
+        "ko": "전체 소포",
+        "ar": "إجمالي الطرود"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "insights": false,
+      "icon": "/assets/capabilities/package.svg"
+    },
+    "ampere_tracking": {
+      "type": "string",
+      "title": {
+        "en": "Tracking number",
+        "nl": "Trackingnummer",
+        "de": "Sendungsnummer",
+        "fr": "Numéro de suivi",
+        "it": "Numero di tracciamento",
+        "sv": "Spårningsnummer",
+        "no": "Sporingsnummer",
+        "es": "Número de seguimiento",
+        "da": "Sporingsnummer",
+        "ru": "Номер отслеживания",
+        "pl": "Numer śledzenia",
+        "ko": "운송장 번호",
+        "ar": "رقم التتبع"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "insights": false,
+      "icon": "/assets/capabilities/tracking.svg"
+    },
+    "ampere_sender": {
+      "type": "string",
+      "title": {
+        "en": "Sender",
+        "nl": "Afzender",
+        "de": "Absender",
+        "fr": "Expéditeur",
+        "it": "Mittente",
+        "sv": "Avsändare",
+        "no": "Avsender",
+        "es": "Remitente",
+        "da": "Afsender",
+        "ru": "Отправитель",
+        "pl": "Nadawca",
+        "ko": "발송인",
+        "ar": "المرسل"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "insights": false,
+      "icon": "/assets/capabilities/sender.svg"
+    },
+    "ampere_delivery_date": {
+      "type": "string",
+      "title": {
+        "en": "Delivery date",
+        "nl": "Bezorgdatum",
+        "de": "Zustelldatum",
+        "fr": "Date de livraison",
+        "it": "Data di consegna",
+        "sv": "Leveransdatum",
+        "no": "Leveringsdato",
+        "es": "Fecha de entrega",
+        "da": "Leveringsdato",
+        "ru": "Дата доставки",
+        "pl": "Data dostawy",
+        "ko": "배송 날짜",
+        "ar": "تاريخ التسليم"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "insights": false,
+      "icon": "/assets/capabilities/delivery.svg"
+    },
+    "ampere_delivery_window": {
+      "type": "string",
+      "title": {
+        "en": "Delivery window",
+        "nl": "Bezorgvenster",
+        "de": "Zustellzeitfenster",
+        "fr": "Créneau de livraison",
+        "it": "Finestra di consegna",
+        "sv": "Leveransfönster",
+        "no": "Leveringsvindu",
+        "es": "Franja de entrega",
+        "da": "Leveringsvindue",
+        "ru": "Интервал доставки",
+        "pl": "Okno dostawy",
+        "ko": "배송 시간대",
+        "ar": "نافذة التسليم"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "insights": false,
+      "icon": "/assets/capabilities/delivery.svg"
+    },
+    "ampere_window_start": {
+      "type": "string",
+      "title": {
+        "en": "Delivery window start",
+        "nl": "Start bezorgvenster",
+        "de": "Beginn des Zustellzeitfensters",
+        "fr": "Début du créneau",
+        "it": "Inizio finestra di consegna",
+        "sv": "Start för leveransfönster",
+        "no": "Start på leveringsvindu",
+        "es": "Inicio de la franja de entrega",
+        "da": "Start på leveringsvindue",
+        "ru": "Начало интервала доставки",
+        "pl": "Początek okna dostawy",
+        "ko": "배송 시간대 시작",
+        "ar": "بداية نافذة التسليم"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "insights": false,
+      "icon": "/assets/capabilities/delivery.svg"
+    },
+    "ampere_window_end": {
+      "type": "string",
+      "title": {
+        "en": "Delivery window end",
+        "nl": "Einde bezorgvenster",
+        "de": "Ende des Zustellzeitfensters",
+        "fr": "Fin du créneau",
+        "it": "Fine finestra di consegna",
+        "sv": "Slut för leveransfönster",
+        "no": "Slutt på leveringsvindu",
+        "es": "Fin de la franja de entrega",
+        "da": "Slut på leveringsvindue",
+        "ru": "Конец интервала доставки",
+        "pl": "Koniec okna dostawy",
+        "ko": "배송 시간대 종료",
+        "ar": "نهاية نافذة التسليم"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "insights": false,
+      "icon": "/assets/capabilities/delivery.svg"
+    },
+    "ampere_delivered": {
+      "type": "boolean",
+      "title": {
+        "en": "Delivered",
+        "nl": "Bezorgd",
+        "de": "Zugestellt",
+        "fr": "Livré",
+        "it": "Consegnato",
+        "sv": "Levererad",
+        "no": "Levert",
+        "es": "Entregado",
+        "da": "Leveret",
+        "ru": "Доставлено",
+        "pl": "Dostarczono",
+        "ko": "배송 완료",
+        "ar": "تم التسليم"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "insights": false,
+      "icon": "/assets/capabilities/delivery.svg"
+    },
+    "ampere_details_url": {
+      "type": "string",
+      "title": {
+        "en": "Track & Trace URL",
+        "nl": "Track & Trace-URL",
+        "de": "Track-&-Trace-URL",
+        "fr": "URL de suivi",
+        "it": "URL Track & Trace",
+        "sv": "Spårnings-URL",
+        "no": "Sporings-URL",
+        "es": "URL de seguimiento",
+        "da": "Sporings-URL",
+        "ru": "URL отслеживания",
+        "pl": "Adres URL śledzenia",
+        "ko": "배송 조회 URL",
+        "ar": "رابط التتبع"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "insights": false,
+      "icon": "/assets/capabilities/tracking.svg"
     }
   },
   "flow": {
@@ -9917,6 +10133,1398 @@
             }
           }
         ]
+      },
+      {
+        "id": "ampere_new_package",
+        "highlight": true,
+        "title": {
+          "en": "New Ampère parcel found",
+          "nl": "Nieuw Ampère-pakket gevonden",
+          "de": "Neues Ampère-Paket gefunden",
+          "fr": "Nouveau colis Ampère détecté",
+          "it": "Nuovo pacco Ampère trovato",
+          "sv": "Nytt Ampère-paket hittat",
+          "no": "Ny Ampère-pakke funnet",
+          "es": "Nuevo paquete Ampère encontrado",
+          "da": "Ny Ampère-pakke fundet",
+          "ru": "Найдена новая посылка Ampère",
+          "pl": "Znaleziono nową paczkę Ampère",
+          "ko": "새 Ampère 소포 발견",
+          "ar": "تم العثور على طرد Ampère جديد"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=ampere"
+          }
+        ],
+        "tokens": [
+          {
+            "name": "carrier",
+            "type": "string",
+            "title": {
+              "en": "Carrier",
+              "nl": "Vervoerder",
+              "de": "Paketdienst",
+              "fr": "Transporteur",
+              "it": "Corriere",
+              "sv": "Transportör",
+              "no": "Transportør",
+              "es": "Transportista",
+              "da": "Transportør",
+              "ru": "Перевозчик",
+              "pl": "Przewoźnik",
+              "ko": "배송사",
+              "ar": "شركة الشحن"
+            }
+          },
+          {
+            "name": "tracking",
+            "type": "string",
+            "title": {
+              "en": "Tracking number",
+              "nl": "Trackingnummer",
+              "de": "Sendungsnummer",
+              "fr": "Numéro de suivi",
+              "it": "Numero di tracciamento",
+              "sv": "Spårningsnummer",
+              "no": "Sporingsnummer",
+              "es": "Número de seguimiento",
+              "da": "Sporingsnummer",
+              "ru": "Номер отслеживания",
+              "pl": "Numer śledzenia",
+              "ko": "운송장 번호",
+              "ar": "رقم التتبع"
+            }
+          },
+          {
+            "name": "sender",
+            "type": "string",
+            "title": {
+              "en": "Sender",
+              "nl": "Afzender",
+              "de": "Absender",
+              "fr": "Expéditeur",
+              "it": "Mittente",
+              "sv": "Avsändare",
+              "no": "Avsender",
+              "es": "Remitente",
+              "da": "Afsender",
+              "ru": "Отправитель",
+              "pl": "Nadawca",
+              "ko": "발송인",
+              "ar": "المرسل"
+            }
+          },
+          {
+            "name": "status",
+            "type": "string",
+            "title": {
+              "en": "Status",
+              "nl": "Status",
+              "de": "Status",
+              "fr": "Statut",
+              "it": "Stato",
+              "sv": "Status",
+              "no": "Status",
+              "es": "Estado",
+              "da": "Status",
+              "ru": "Статус",
+              "pl": "Status",
+              "ko": "상태",
+              "ar": "الحالة"
+            }
+          },
+          {
+            "name": "delivery_date",
+            "type": "string",
+            "title": {
+              "en": "Delivery date",
+              "nl": "Bezorgdatum",
+              "de": "Zustelldatum",
+              "fr": "Date de livraison",
+              "it": "Data di consegna",
+              "sv": "Leveransdatum",
+              "no": "Leveringsdato",
+              "es": "Fecha de entrega",
+              "da": "Leveringsdato",
+              "ru": "Дата доставки",
+              "pl": "Data dostawy",
+              "ko": "배송 날짜",
+              "ar": "تاريخ التسليم"
+            }
+          },
+          {
+            "name": "delivery_window",
+            "type": "string",
+            "title": {
+              "en": "Delivery window",
+              "nl": "Bezorgvenster",
+              "de": "Zustellzeitfenster",
+              "fr": "Créneau de livraison",
+              "it": "Finestra di consegna",
+              "sv": "Leveransfönster",
+              "no": "Leveringsvindu",
+              "es": "Franja de entrega",
+              "da": "Leveringsvindue",
+              "ru": "Интервал доставки",
+              "pl": "Okno dostawy",
+              "ko": "배송 시간대",
+              "ar": "نافذة التسليم"
+            }
+          },
+          {
+            "name": "window_start",
+            "type": "string",
+            "title": {
+              "en": "Delivery window start",
+              "nl": "Start bezorgvenster",
+              "de": "Beginn des Zustellzeitfensters",
+              "fr": "Début du créneau",
+              "it": "Inizio finestra di consegna",
+              "sv": "Start för leveransfönster",
+              "no": "Start på leveringsvindu",
+              "es": "Inicio de la franja de entrega",
+              "da": "Start på leveringsvindue",
+              "ru": "Начало интервала доставки",
+              "pl": "Początek okna dostawy",
+              "ko": "배송 시간대 시작",
+              "ar": "بداية نافذة التسليم"
+            }
+          },
+          {
+            "name": "window_end",
+            "type": "string",
+            "title": {
+              "en": "Delivery window end",
+              "nl": "Einde bezorgvenster",
+              "de": "Ende des Zustellzeitfensters",
+              "fr": "Fin du créneau",
+              "it": "Fine finestra di consegna",
+              "sv": "Slut för leveransfönster",
+              "no": "Slutt på leveringsvindu",
+              "es": "Fin de la franja de entrega",
+              "da": "Slut på leveringsvindue",
+              "ru": "Конец интервала доставки",
+              "pl": "Koniec okna dostawy",
+              "ko": "배송 시간대 종료",
+              "ar": "نهاية نافذة التسليم"
+            }
+          },
+          {
+            "name": "delivered",
+            "type": "boolean",
+            "title": {
+              "en": "Delivered",
+              "nl": "Bezorgd",
+              "de": "Zugestellt",
+              "fr": "Livré",
+              "it": "Consegnato",
+              "sv": "Levererad",
+              "no": "Levert",
+              "es": "Entregado",
+              "da": "Leveret",
+              "ru": "Доставлено",
+              "pl": "Dostarczono",
+              "ko": "배송 완료",
+              "ar": "تم التسليم"
+            }
+          },
+          {
+            "name": "track_url",
+            "type": "string",
+            "title": {
+              "en": "Track & Trace URL",
+              "nl": "Track & Trace-URL",
+              "de": "Track-&-Trace-URL",
+              "fr": "URL de suivi",
+              "it": "URL Track & Trace",
+              "sv": "Spårnings-URL",
+              "no": "Sporings-URL",
+              "es": "URL de seguimiento",
+              "da": "Sporings-URL",
+              "ru": "URL отслеживания",
+              "pl": "Adres URL śledzenia",
+              "ko": "배송 조회 URL",
+              "ar": "رابط التتبع"
+            }
+          },
+          {
+            "name": "active_count",
+            "type": "number",
+            "title": {
+              "en": "Active parcels",
+              "nl": "Actieve pakketten",
+              "de": "Aktive Pakete",
+              "fr": "Colis actifs",
+              "it": "Pacchi attivi",
+              "sv": "Aktiva paket",
+              "no": "Aktive pakker",
+              "es": "Paquetes activos",
+              "da": "Aktive pakker",
+              "ru": "Активные посылки",
+              "pl": "Aktywne paczki",
+              "ko": "활성 소포",
+              "ar": "الطرود النشطة"
+            }
+          },
+          {
+            "name": "total_count",
+            "type": "number",
+            "title": {
+              "en": "Total parcels",
+              "nl": "Totaal pakketten",
+              "de": "Pakete gesamt",
+              "fr": "Total des colis",
+              "it": "Pacchi totali",
+              "sv": "Totalt antal paket",
+              "no": "Totalt antall pakker",
+              "es": "Paquetes totales",
+              "da": "Pakker i alt",
+              "ru": "Всего посылок",
+              "pl": "Łączna liczba paczek",
+              "ko": "전체 소포",
+              "ar": "إجمالي الطرود"
+            }
+          },
+          {
+            "name": "last_update",
+            "type": "string",
+            "title": {
+              "en": "Last update",
+              "nl": "Laatste update",
+              "de": "Letzte Aktualisierung",
+              "fr": "Dernière mise à jour",
+              "it": "Ultimo aggiornamento",
+              "sv": "Senaste uppdatering",
+              "no": "Siste oppdatering",
+              "es": "Última actualización",
+              "da": "Seneste opdatering",
+              "ru": "Последнее обновление",
+              "pl": "Ostatnia aktualizacja",
+              "ko": "마지막 업데이트",
+              "ar": "آخر تحديث"
+            }
+          }
+        ]
+      },
+      {
+        "id": "ampere_status_changed",
+        "title": {
+          "en": "Ampère parcel status changed",
+          "nl": "Status van Ampère-pakket gewijzigd",
+          "de": "Status des Ampère-Pakets geändert",
+          "fr": "Statut du colis Ampère modifié",
+          "it": "Stato del pacco Ampère modificato",
+          "sv": "Ampère-paketets status ändrades",
+          "no": "Status for Ampère-pakke endret",
+          "es": "Estado del paquete Ampère cambiado",
+          "da": "Status for Ampère-pakke ændret",
+          "ru": "Статус посылки Ampère изменён",
+          "pl": "Status paczki Ampère zmieniony",
+          "ko": "Ampère 소포 상태 변경됨",
+          "ar": "تم تغيير حالة طرد Ampère"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=ampere"
+          }
+        ],
+        "tokens": [
+          {
+            "name": "previous_status",
+            "type": "string",
+            "title": {
+              "en": "Previous status",
+              "nl": "Vorige status",
+              "de": "Vorheriger Status",
+              "fr": "Statut précédent",
+              "it": "Stato precedente",
+              "sv": "Föregående status",
+              "no": "Forrige status",
+              "es": "Estado anterior",
+              "da": "Forrige status",
+              "ru": "Предыдущий статус",
+              "pl": "Poprzedni status",
+              "ko": "이전 상태",
+              "ar": "الحالة السابقة"
+            }
+          },
+          {
+            "name": "carrier",
+            "type": "string",
+            "title": {
+              "en": "Carrier",
+              "nl": "Vervoerder",
+              "de": "Paketdienst",
+              "fr": "Transporteur",
+              "it": "Corriere",
+              "sv": "Transportör",
+              "no": "Transportør",
+              "es": "Transportista",
+              "da": "Transportør",
+              "ru": "Перевозчик",
+              "pl": "Przewoźnik",
+              "ko": "배송사",
+              "ar": "شركة الشحن"
+            }
+          },
+          {
+            "name": "tracking",
+            "type": "string",
+            "title": {
+              "en": "Tracking number",
+              "nl": "Trackingnummer",
+              "de": "Sendungsnummer",
+              "fr": "Numéro de suivi",
+              "it": "Numero di tracciamento",
+              "sv": "Spårningsnummer",
+              "no": "Sporingsnummer",
+              "es": "Número de seguimiento",
+              "da": "Sporingsnummer",
+              "ru": "Номер отслеживания",
+              "pl": "Numer śledzenia",
+              "ko": "운송장 번호",
+              "ar": "رقم التتبع"
+            }
+          },
+          {
+            "name": "sender",
+            "type": "string",
+            "title": {
+              "en": "Sender",
+              "nl": "Afzender",
+              "de": "Absender",
+              "fr": "Expéditeur",
+              "it": "Mittente",
+              "sv": "Avsändare",
+              "no": "Avsender",
+              "es": "Remitente",
+              "da": "Afsender",
+              "ru": "Отправитель",
+              "pl": "Nadawca",
+              "ko": "발송인",
+              "ar": "المرسل"
+            }
+          },
+          {
+            "name": "status",
+            "type": "string",
+            "title": {
+              "en": "Status",
+              "nl": "Status",
+              "de": "Status",
+              "fr": "Statut",
+              "it": "Stato",
+              "sv": "Status",
+              "no": "Status",
+              "es": "Estado",
+              "da": "Status",
+              "ru": "Статус",
+              "pl": "Status",
+              "ko": "상태",
+              "ar": "الحالة"
+            }
+          },
+          {
+            "name": "delivery_date",
+            "type": "string",
+            "title": {
+              "en": "Delivery date",
+              "nl": "Bezorgdatum",
+              "de": "Zustelldatum",
+              "fr": "Date de livraison",
+              "it": "Data di consegna",
+              "sv": "Leveransdatum",
+              "no": "Leveringsdato",
+              "es": "Fecha de entrega",
+              "da": "Leveringsdato",
+              "ru": "Дата доставки",
+              "pl": "Data dostawy",
+              "ko": "배송 날짜",
+              "ar": "تاريخ التسليم"
+            }
+          },
+          {
+            "name": "delivery_window",
+            "type": "string",
+            "title": {
+              "en": "Delivery window",
+              "nl": "Bezorgvenster",
+              "de": "Zustellzeitfenster",
+              "fr": "Créneau de livraison",
+              "it": "Finestra di consegna",
+              "sv": "Leveransfönster",
+              "no": "Leveringsvindu",
+              "es": "Franja de entrega",
+              "da": "Leveringsvindue",
+              "ru": "Интервал доставки",
+              "pl": "Okno dostawy",
+              "ko": "배송 시간대",
+              "ar": "نافذة التسليم"
+            }
+          },
+          {
+            "name": "window_start",
+            "type": "string",
+            "title": {
+              "en": "Delivery window start",
+              "nl": "Start bezorgvenster",
+              "de": "Beginn des Zustellzeitfensters",
+              "fr": "Début du créneau",
+              "it": "Inizio finestra di consegna",
+              "sv": "Start för leveransfönster",
+              "no": "Start på leveringsvindu",
+              "es": "Inicio de la franja de entrega",
+              "da": "Start på leveringsvindue",
+              "ru": "Начало интервала доставки",
+              "pl": "Początek okna dostawy",
+              "ko": "배송 시간대 시작",
+              "ar": "بداية نافذة التسليم"
+            }
+          },
+          {
+            "name": "window_end",
+            "type": "string",
+            "title": {
+              "en": "Delivery window end",
+              "nl": "Einde bezorgvenster",
+              "de": "Ende des Zustellzeitfensters",
+              "fr": "Fin du créneau",
+              "it": "Fine finestra di consegna",
+              "sv": "Slut för leveransfönster",
+              "no": "Slutt på leveringsvindu",
+              "es": "Fin de la franja de entrega",
+              "da": "Slut på leveringsvindue",
+              "ru": "Конец интервала доставки",
+              "pl": "Koniec okna dostawy",
+              "ko": "배송 시간대 종료",
+              "ar": "نهاية نافذة التسليم"
+            }
+          },
+          {
+            "name": "delivered",
+            "type": "boolean",
+            "title": {
+              "en": "Delivered",
+              "nl": "Bezorgd",
+              "de": "Zugestellt",
+              "fr": "Livré",
+              "it": "Consegnato",
+              "sv": "Levererad",
+              "no": "Levert",
+              "es": "Entregado",
+              "da": "Leveret",
+              "ru": "Доставлено",
+              "pl": "Dostarczono",
+              "ko": "배송 완료",
+              "ar": "تم التسليم"
+            }
+          },
+          {
+            "name": "track_url",
+            "type": "string",
+            "title": {
+              "en": "Track & Trace URL",
+              "nl": "Track & Trace-URL",
+              "de": "Track-&-Trace-URL",
+              "fr": "URL de suivi",
+              "it": "URL Track & Trace",
+              "sv": "Spårnings-URL",
+              "no": "Sporings-URL",
+              "es": "URL de seguimiento",
+              "da": "Sporings-URL",
+              "ru": "URL отслеживания",
+              "pl": "Adres URL śledzenia",
+              "ko": "배송 조회 URL",
+              "ar": "رابط التتبع"
+            }
+          },
+          {
+            "name": "active_count",
+            "type": "number",
+            "title": {
+              "en": "Active parcels",
+              "nl": "Actieve pakketten",
+              "de": "Aktive Pakete",
+              "fr": "Colis actifs",
+              "it": "Pacchi attivi",
+              "sv": "Aktiva paket",
+              "no": "Aktive pakker",
+              "es": "Paquetes activos",
+              "da": "Aktive pakker",
+              "ru": "Активные посылки",
+              "pl": "Aktywne paczki",
+              "ko": "활성 소포",
+              "ar": "الطرود النشطة"
+            }
+          },
+          {
+            "name": "total_count",
+            "type": "number",
+            "title": {
+              "en": "Total parcels",
+              "nl": "Totaal pakketten",
+              "de": "Pakete gesamt",
+              "fr": "Total des colis",
+              "it": "Pacchi totali",
+              "sv": "Totalt antal paket",
+              "no": "Totalt antall pakker",
+              "es": "Paquetes totales",
+              "da": "Pakker i alt",
+              "ru": "Всего посылок",
+              "pl": "Łączna liczba paczek",
+              "ko": "전체 소포",
+              "ar": "إجمالي الطرود"
+            }
+          },
+          {
+            "name": "last_update",
+            "type": "string",
+            "title": {
+              "en": "Last update",
+              "nl": "Laatste update",
+              "de": "Letzte Aktualisierung",
+              "fr": "Dernière mise à jour",
+              "it": "Ultimo aggiornamento",
+              "sv": "Senaste uppdatering",
+              "no": "Siste oppdatering",
+              "es": "Última actualización",
+              "da": "Seneste opdatering",
+              "ru": "Последнее обновление",
+              "pl": "Ostatnia aktualizacja",
+              "ko": "마지막 업데이트",
+              "ar": "آخر تحديث"
+            }
+          }
+        ]
+      },
+      {
+        "id": "ampere_delivery_updated",
+        "title": {
+          "en": "Ampère delivery information updated",
+          "nl": "Ampère-bezorginformatie bijgewerkt",
+          "de": "Ampère-Zustellinformationen aktualisiert",
+          "fr": "Informations de livraison Ampère mises à jour",
+          "it": "Informazioni di consegna Ampère aggiornate",
+          "sv": "Ampère-leveransinformation uppdaterad",
+          "no": "Ampère-leveringsinformasjon oppdatert",
+          "es": "Información de entrega Ampère actualizada",
+          "da": "Ampère-leveringsoplysninger opdateret",
+          "ru": "Информация о доставке Ampère обновлена",
+          "pl": "Informacje o dostawie Ampère zaktualizowane",
+          "ko": "Ampère 배송 정보 업데이트됨",
+          "ar": "تم تحديث معلومات تسليم Ampère"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=ampere"
+          }
+        ],
+        "tokens": [
+          {
+            "name": "carrier",
+            "type": "string",
+            "title": {
+              "en": "Carrier",
+              "nl": "Vervoerder",
+              "de": "Paketdienst",
+              "fr": "Transporteur",
+              "it": "Corriere",
+              "sv": "Transportör",
+              "no": "Transportør",
+              "es": "Transportista",
+              "da": "Transportør",
+              "ru": "Перевозчик",
+              "pl": "Przewoźnik",
+              "ko": "배송사",
+              "ar": "شركة الشحن"
+            }
+          },
+          {
+            "name": "tracking",
+            "type": "string",
+            "title": {
+              "en": "Tracking number",
+              "nl": "Trackingnummer",
+              "de": "Sendungsnummer",
+              "fr": "Numéro de suivi",
+              "it": "Numero di tracciamento",
+              "sv": "Spårningsnummer",
+              "no": "Sporingsnummer",
+              "es": "Número de seguimiento",
+              "da": "Sporingsnummer",
+              "ru": "Номер отслеживания",
+              "pl": "Numer śledzenia",
+              "ko": "운송장 번호",
+              "ar": "رقم التتبع"
+            }
+          },
+          {
+            "name": "sender",
+            "type": "string",
+            "title": {
+              "en": "Sender",
+              "nl": "Afzender",
+              "de": "Absender",
+              "fr": "Expéditeur",
+              "it": "Mittente",
+              "sv": "Avsändare",
+              "no": "Avsender",
+              "es": "Remitente",
+              "da": "Afsender",
+              "ru": "Отправитель",
+              "pl": "Nadawca",
+              "ko": "발송인",
+              "ar": "المرسل"
+            }
+          },
+          {
+            "name": "status",
+            "type": "string",
+            "title": {
+              "en": "Status",
+              "nl": "Status",
+              "de": "Status",
+              "fr": "Statut",
+              "it": "Stato",
+              "sv": "Status",
+              "no": "Status",
+              "es": "Estado",
+              "da": "Status",
+              "ru": "Статус",
+              "pl": "Status",
+              "ko": "상태",
+              "ar": "الحالة"
+            }
+          },
+          {
+            "name": "delivery_date",
+            "type": "string",
+            "title": {
+              "en": "Delivery date",
+              "nl": "Bezorgdatum",
+              "de": "Zustelldatum",
+              "fr": "Date de livraison",
+              "it": "Data di consegna",
+              "sv": "Leveransdatum",
+              "no": "Leveringsdato",
+              "es": "Fecha de entrega",
+              "da": "Leveringsdato",
+              "ru": "Дата доставки",
+              "pl": "Data dostawy",
+              "ko": "배송 날짜",
+              "ar": "تاريخ التسليم"
+            }
+          },
+          {
+            "name": "delivery_window",
+            "type": "string",
+            "title": {
+              "en": "Delivery window",
+              "nl": "Bezorgvenster",
+              "de": "Zustellzeitfenster",
+              "fr": "Créneau de livraison",
+              "it": "Finestra di consegna",
+              "sv": "Leveransfönster",
+              "no": "Leveringsvindu",
+              "es": "Franja de entrega",
+              "da": "Leveringsvindue",
+              "ru": "Интервал доставки",
+              "pl": "Okno dostawy",
+              "ko": "배송 시간대",
+              "ar": "نافذة التسليم"
+            }
+          },
+          {
+            "name": "window_start",
+            "type": "string",
+            "title": {
+              "en": "Delivery window start",
+              "nl": "Start bezorgvenster",
+              "de": "Beginn des Zustellzeitfensters",
+              "fr": "Début du créneau",
+              "it": "Inizio finestra di consegna",
+              "sv": "Start för leveransfönster",
+              "no": "Start på leveringsvindu",
+              "es": "Inicio de la franja de entrega",
+              "da": "Start på leveringsvindue",
+              "ru": "Начало интервала доставки",
+              "pl": "Początek okna dostawy",
+              "ko": "배송 시간대 시작",
+              "ar": "بداية نافذة التسليم"
+            }
+          },
+          {
+            "name": "window_end",
+            "type": "string",
+            "title": {
+              "en": "Delivery window end",
+              "nl": "Einde bezorgvenster",
+              "de": "Ende des Zustellzeitfensters",
+              "fr": "Fin du créneau",
+              "it": "Fine finestra di consegna",
+              "sv": "Slut för leveransfönster",
+              "no": "Slutt på leveringsvindu",
+              "es": "Fin de la franja de entrega",
+              "da": "Slut på leveringsvindue",
+              "ru": "Конец интервала доставки",
+              "pl": "Koniec okna dostawy",
+              "ko": "배송 시간대 종료",
+              "ar": "نهاية نافذة التسليم"
+            }
+          },
+          {
+            "name": "delivered",
+            "type": "boolean",
+            "title": {
+              "en": "Delivered",
+              "nl": "Bezorgd",
+              "de": "Zugestellt",
+              "fr": "Livré",
+              "it": "Consegnato",
+              "sv": "Levererad",
+              "no": "Levert",
+              "es": "Entregado",
+              "da": "Leveret",
+              "ru": "Доставлено",
+              "pl": "Dostarczono",
+              "ko": "배송 완료",
+              "ar": "تم التسليم"
+            }
+          },
+          {
+            "name": "track_url",
+            "type": "string",
+            "title": {
+              "en": "Track & Trace URL",
+              "nl": "Track & Trace-URL",
+              "de": "Track-&-Trace-URL",
+              "fr": "URL de suivi",
+              "it": "URL Track & Trace",
+              "sv": "Spårnings-URL",
+              "no": "Sporings-URL",
+              "es": "URL de seguimiento",
+              "da": "Sporings-URL",
+              "ru": "URL отслеживания",
+              "pl": "Adres URL śledzenia",
+              "ko": "배송 조회 URL",
+              "ar": "رابط التتبع"
+            }
+          },
+          {
+            "name": "active_count",
+            "type": "number",
+            "title": {
+              "en": "Active parcels",
+              "nl": "Actieve pakketten",
+              "de": "Aktive Pakete",
+              "fr": "Colis actifs",
+              "it": "Pacchi attivi",
+              "sv": "Aktiva paket",
+              "no": "Aktive pakker",
+              "es": "Paquetes activos",
+              "da": "Aktive pakker",
+              "ru": "Активные посылки",
+              "pl": "Aktywne paczki",
+              "ko": "활성 소포",
+              "ar": "الطرود النشطة"
+            }
+          },
+          {
+            "name": "total_count",
+            "type": "number",
+            "title": {
+              "en": "Total parcels",
+              "nl": "Totaal pakketten",
+              "de": "Pakete gesamt",
+              "fr": "Total des colis",
+              "it": "Pacchi totali",
+              "sv": "Totalt antal paket",
+              "no": "Totalt antall pakker",
+              "es": "Paquetes totales",
+              "da": "Pakker i alt",
+              "ru": "Всего посылок",
+              "pl": "Łączna liczba paczek",
+              "ko": "전체 소포",
+              "ar": "إجمالي الطرود"
+            }
+          },
+          {
+            "name": "last_update",
+            "type": "string",
+            "title": {
+              "en": "Last update",
+              "nl": "Laatste update",
+              "de": "Letzte Aktualisierung",
+              "fr": "Dernière mise à jour",
+              "it": "Ultimo aggiornamento",
+              "sv": "Senaste uppdatering",
+              "no": "Siste oppdatering",
+              "es": "Última actualización",
+              "da": "Seneste opdatering",
+              "ru": "Последнее обновление",
+              "pl": "Ostatnia aktualizacja",
+              "ko": "마지막 업데이트",
+              "ar": "آخر تحديث"
+            }
+          }
+        ]
+      },
+      {
+        "id": "ampere_delivery_window_changed",
+        "highlight": true,
+        "title": {
+          "en": "Ampère delivery window available or changed",
+          "nl": "Ampère-bezorgvenster bekend of gewijzigd",
+          "de": "Ampère-Zustellzeitfenster verfügbar oder geändert",
+          "fr": "Créneau Ampère disponible ou modifié",
+          "it": "Finestra Ampère disponibile o modificata",
+          "sv": "Ampère-leveransfönster tillgängligt eller ändrat",
+          "no": "Ampère-leveringsvindu tilgjengelig eller endret",
+          "es": "Franja de entrega Ampère disponible o modificada",
+          "da": "Ampère-leveringsvindue tilgængeligt eller ændret",
+          "ru": "Интервал доставки Ampère доступен или изменён",
+          "pl": "Okno dostawy Ampère dostępne lub zmienione",
+          "ko": "Ampère 배송 시간대 확인 또는 변경됨",
+          "ar": "أصبحت نافذة تسليم Ampère معروفة أو تم تغييرها"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=ampere"
+          }
+        ],
+        "tokens": [
+          {
+            "name": "carrier",
+            "type": "string",
+            "title": {
+              "en": "Carrier",
+              "nl": "Vervoerder",
+              "de": "Paketdienst",
+              "fr": "Transporteur",
+              "it": "Corriere",
+              "sv": "Transportör",
+              "no": "Transportør",
+              "es": "Transportista",
+              "da": "Transportør",
+              "ru": "Перевозчик",
+              "pl": "Przewoźnik",
+              "ko": "배송사",
+              "ar": "شركة الشحن"
+            }
+          },
+          {
+            "name": "tracking",
+            "type": "string",
+            "title": {
+              "en": "Tracking number",
+              "nl": "Trackingnummer",
+              "de": "Sendungsnummer",
+              "fr": "Numéro de suivi",
+              "it": "Numero di tracciamento",
+              "sv": "Spårningsnummer",
+              "no": "Sporingsnummer",
+              "es": "Número de seguimiento",
+              "da": "Sporingsnummer",
+              "ru": "Номер отслеживания",
+              "pl": "Numer śledzenia",
+              "ko": "운송장 번호",
+              "ar": "رقم التتبع"
+            }
+          },
+          {
+            "name": "sender",
+            "type": "string",
+            "title": {
+              "en": "Sender",
+              "nl": "Afzender",
+              "de": "Absender",
+              "fr": "Expéditeur",
+              "it": "Mittente",
+              "sv": "Avsändare",
+              "no": "Avsender",
+              "es": "Remitente",
+              "da": "Afsender",
+              "ru": "Отправитель",
+              "pl": "Nadawca",
+              "ko": "발송인",
+              "ar": "المرسل"
+            }
+          },
+          {
+            "name": "status",
+            "type": "string",
+            "title": {
+              "en": "Status",
+              "nl": "Status",
+              "de": "Status",
+              "fr": "Statut",
+              "it": "Stato",
+              "sv": "Status",
+              "no": "Status",
+              "es": "Estado",
+              "da": "Status",
+              "ru": "Статус",
+              "pl": "Status",
+              "ko": "상태",
+              "ar": "الحالة"
+            }
+          },
+          {
+            "name": "delivery_date",
+            "type": "string",
+            "title": {
+              "en": "Delivery date",
+              "nl": "Bezorgdatum",
+              "de": "Zustelldatum",
+              "fr": "Date de livraison",
+              "it": "Data di consegna",
+              "sv": "Leveransdatum",
+              "no": "Leveringsdato",
+              "es": "Fecha de entrega",
+              "da": "Leveringsdato",
+              "ru": "Дата доставки",
+              "pl": "Data dostawy",
+              "ko": "배송 날짜",
+              "ar": "تاريخ التسليم"
+            }
+          },
+          {
+            "name": "delivery_window",
+            "type": "string",
+            "title": {
+              "en": "Delivery window",
+              "nl": "Bezorgvenster",
+              "de": "Zustellzeitfenster",
+              "fr": "Créneau de livraison",
+              "it": "Finestra di consegna",
+              "sv": "Leveransfönster",
+              "no": "Leveringsvindu",
+              "es": "Franja de entrega",
+              "da": "Leveringsvindue",
+              "ru": "Интервал доставки",
+              "pl": "Okno dostawy",
+              "ko": "배송 시간대",
+              "ar": "نافذة التسليم"
+            }
+          },
+          {
+            "name": "window_start",
+            "type": "string",
+            "title": {
+              "en": "Delivery window start",
+              "nl": "Start bezorgvenster",
+              "de": "Beginn des Zustellzeitfensters",
+              "fr": "Début du créneau",
+              "it": "Inizio finestra di consegna",
+              "sv": "Start för leveransfönster",
+              "no": "Start på leveringsvindu",
+              "es": "Inicio de la franja de entrega",
+              "da": "Start på leveringsvindue",
+              "ru": "Начало интервала доставки",
+              "pl": "Początek okna dostawy",
+              "ko": "배송 시간대 시작",
+              "ar": "بداية نافذة التسليم"
+            }
+          },
+          {
+            "name": "window_end",
+            "type": "string",
+            "title": {
+              "en": "Delivery window end",
+              "nl": "Einde bezorgvenster",
+              "de": "Ende des Zustellzeitfensters",
+              "fr": "Fin du créneau",
+              "it": "Fine finestra di consegna",
+              "sv": "Slut för leveransfönster",
+              "no": "Slutt på leveringsvindu",
+              "es": "Fin de la franja de entrega",
+              "da": "Slut på leveringsvindue",
+              "ru": "Конец интервала доставки",
+              "pl": "Koniec okna dostawy",
+              "ko": "배송 시간대 종료",
+              "ar": "نهاية نافذة التسليم"
+            }
+          },
+          {
+            "name": "delivered",
+            "type": "boolean",
+            "title": {
+              "en": "Delivered",
+              "nl": "Bezorgd",
+              "de": "Zugestellt",
+              "fr": "Livré",
+              "it": "Consegnato",
+              "sv": "Levererad",
+              "no": "Levert",
+              "es": "Entregado",
+              "da": "Leveret",
+              "ru": "Доставлено",
+              "pl": "Dostarczono",
+              "ko": "배송 완료",
+              "ar": "تم التسليم"
+            }
+          },
+          {
+            "name": "track_url",
+            "type": "string",
+            "title": {
+              "en": "Track & Trace URL",
+              "nl": "Track & Trace-URL",
+              "de": "Track-&-Trace-URL",
+              "fr": "URL de suivi",
+              "it": "URL Track & Trace",
+              "sv": "Spårnings-URL",
+              "no": "Sporings-URL",
+              "es": "URL de seguimiento",
+              "da": "Sporings-URL",
+              "ru": "URL отслеживания",
+              "pl": "Adres URL śledzenia",
+              "ko": "배송 조회 URL",
+              "ar": "رابط التتبع"
+            }
+          },
+          {
+            "name": "active_count",
+            "type": "number",
+            "title": {
+              "en": "Active parcels",
+              "nl": "Actieve pakketten",
+              "de": "Aktive Pakete",
+              "fr": "Colis actifs",
+              "it": "Pacchi attivi",
+              "sv": "Aktiva paket",
+              "no": "Aktive pakker",
+              "es": "Paquetes activos",
+              "da": "Aktive pakker",
+              "ru": "Активные посылки",
+              "pl": "Aktywne paczki",
+              "ko": "활성 소포",
+              "ar": "الطرود النشطة"
+            }
+          },
+          {
+            "name": "total_count",
+            "type": "number",
+            "title": {
+              "en": "Total parcels",
+              "nl": "Totaal pakketten",
+              "de": "Pakete gesamt",
+              "fr": "Total des colis",
+              "it": "Pacchi totali",
+              "sv": "Totalt antal paket",
+              "no": "Totalt antall pakker",
+              "es": "Paquetes totales",
+              "da": "Pakker i alt",
+              "ru": "Всего посылок",
+              "pl": "Łączna liczba paczek",
+              "ko": "전체 소포",
+              "ar": "إجمالي الطرود"
+            }
+          },
+          {
+            "name": "last_update",
+            "type": "string",
+            "title": {
+              "en": "Last update",
+              "nl": "Laatste update",
+              "de": "Letzte Aktualisierung",
+              "fr": "Dernière mise à jour",
+              "it": "Ultimo aggiornamento",
+              "sv": "Senaste uppdatering",
+              "no": "Siste oppdatering",
+              "es": "Última actualización",
+              "da": "Seneste opdatering",
+              "ru": "Последнее обновление",
+              "pl": "Ostatnia aktualizacja",
+              "ko": "마지막 업데이트",
+              "ar": "آخر تحديث"
+            }
+          }
+        ]
+      },
+      {
+        "id": "ampere_delivered",
+        "highlight": true,
+        "title": {
+          "en": "Ampère parcel delivered",
+          "nl": "Ampère-pakket bezorgd",
+          "de": "Ampère-Paket zugestellt",
+          "fr": "Colis Ampère livré",
+          "it": "Pacco Ampère consegnato",
+          "sv": "Ampère-paket levererat",
+          "no": "Ampère-pakke levert",
+          "es": "Paquete Ampère entregado",
+          "da": "Ampère-pakke leveret",
+          "ru": "Посылка Ampère доставлена",
+          "pl": "Paczka Ampère dostarczona",
+          "ko": "Ampère 소포 배송 완료",
+          "ar": "تم تسليم طرد Ampère"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=ampere"
+          }
+        ],
+        "tokens": [
+          {
+            "name": "carrier",
+            "type": "string",
+            "title": {
+              "en": "Carrier",
+              "nl": "Vervoerder",
+              "de": "Paketdienst",
+              "fr": "Transporteur",
+              "it": "Corriere",
+              "sv": "Transportör",
+              "no": "Transportør",
+              "es": "Transportista",
+              "da": "Transportør",
+              "ru": "Перевозчик",
+              "pl": "Przewoźnik",
+              "ko": "배송사",
+              "ar": "شركة الشحن"
+            }
+          },
+          {
+            "name": "tracking",
+            "type": "string",
+            "title": {
+              "en": "Tracking number",
+              "nl": "Trackingnummer",
+              "de": "Sendungsnummer",
+              "fr": "Numéro de suivi",
+              "it": "Numero di tracciamento",
+              "sv": "Spårningsnummer",
+              "no": "Sporingsnummer",
+              "es": "Número de seguimiento",
+              "da": "Sporingsnummer",
+              "ru": "Номер отслеживания",
+              "pl": "Numer śledzenia",
+              "ko": "운송장 번호",
+              "ar": "رقم التتبع"
+            }
+          },
+          {
+            "name": "sender",
+            "type": "string",
+            "title": {
+              "en": "Sender",
+              "nl": "Afzender",
+              "de": "Absender",
+              "fr": "Expéditeur",
+              "it": "Mittente",
+              "sv": "Avsändare",
+              "no": "Avsender",
+              "es": "Remitente",
+              "da": "Afsender",
+              "ru": "Отправитель",
+              "pl": "Nadawca",
+              "ko": "발송인",
+              "ar": "المرسل"
+            }
+          },
+          {
+            "name": "status",
+            "type": "string",
+            "title": {
+              "en": "Status",
+              "nl": "Status",
+              "de": "Status",
+              "fr": "Statut",
+              "it": "Stato",
+              "sv": "Status",
+              "no": "Status",
+              "es": "Estado",
+              "da": "Status",
+              "ru": "Статус",
+              "pl": "Status",
+              "ko": "상태",
+              "ar": "الحالة"
+            }
+          },
+          {
+            "name": "delivery_date",
+            "type": "string",
+            "title": {
+              "en": "Delivery date",
+              "nl": "Bezorgdatum",
+              "de": "Zustelldatum",
+              "fr": "Date de livraison",
+              "it": "Data di consegna",
+              "sv": "Leveransdatum",
+              "no": "Leveringsdato",
+              "es": "Fecha de entrega",
+              "da": "Leveringsdato",
+              "ru": "Дата доставки",
+              "pl": "Data dostawy",
+              "ko": "배송 날짜",
+              "ar": "تاريخ التسليم"
+            }
+          },
+          {
+            "name": "delivery_window",
+            "type": "string",
+            "title": {
+              "en": "Delivery window",
+              "nl": "Bezorgvenster",
+              "de": "Zustellzeitfenster",
+              "fr": "Créneau de livraison",
+              "it": "Finestra di consegna",
+              "sv": "Leveransfönster",
+              "no": "Leveringsvindu",
+              "es": "Franja de entrega",
+              "da": "Leveringsvindue",
+              "ru": "Интервал доставки",
+              "pl": "Okno dostawy",
+              "ko": "배송 시간대",
+              "ar": "نافذة التسليم"
+            }
+          },
+          {
+            "name": "window_start",
+            "type": "string",
+            "title": {
+              "en": "Delivery window start",
+              "nl": "Start bezorgvenster",
+              "de": "Beginn des Zustellzeitfensters",
+              "fr": "Début du créneau",
+              "it": "Inizio finestra di consegna",
+              "sv": "Start för leveransfönster",
+              "no": "Start på leveringsvindu",
+              "es": "Inicio de la franja de entrega",
+              "da": "Start på leveringsvindue",
+              "ru": "Начало интервала доставки",
+              "pl": "Początek okna dostawy",
+              "ko": "배송 시간대 시작",
+              "ar": "بداية نافذة التسليم"
+            }
+          },
+          {
+            "name": "window_end",
+            "type": "string",
+            "title": {
+              "en": "Delivery window end",
+              "nl": "Einde bezorgvenster",
+              "de": "Ende des Zustellzeitfensters",
+              "fr": "Fin du créneau",
+              "it": "Fine finestra di consegna",
+              "sv": "Slut för leveransfönster",
+              "no": "Slutt på leveringsvindu",
+              "es": "Fin de la franja de entrega",
+              "da": "Slut på leveringsvindue",
+              "ru": "Конец интервала доставки",
+              "pl": "Koniec okna dostawy",
+              "ko": "배송 시간대 종료",
+              "ar": "نهاية نافذة التسليم"
+            }
+          },
+          {
+            "name": "delivered",
+            "type": "boolean",
+            "title": {
+              "en": "Delivered",
+              "nl": "Bezorgd",
+              "de": "Zugestellt",
+              "fr": "Livré",
+              "it": "Consegnato",
+              "sv": "Levererad",
+              "no": "Levert",
+              "es": "Entregado",
+              "da": "Leveret",
+              "ru": "Доставлено",
+              "pl": "Dostarczono",
+              "ko": "배송 완료",
+              "ar": "تم التسليم"
+            }
+          },
+          {
+            "name": "track_url",
+            "type": "string",
+            "title": {
+              "en": "Track & Trace URL",
+              "nl": "Track & Trace-URL",
+              "de": "Track-&-Trace-URL",
+              "fr": "URL de suivi",
+              "it": "URL Track & Trace",
+              "sv": "Spårnings-URL",
+              "no": "Sporings-URL",
+              "es": "URL de seguimiento",
+              "da": "Sporings-URL",
+              "ru": "URL отслеживания",
+              "pl": "Adres URL śledzenia",
+              "ko": "배송 조회 URL",
+              "ar": "رابط التتبع"
+            }
+          },
+          {
+            "name": "active_count",
+            "type": "number",
+            "title": {
+              "en": "Active parcels",
+              "nl": "Actieve pakketten",
+              "de": "Aktive Pakete",
+              "fr": "Colis actifs",
+              "it": "Pacchi attivi",
+              "sv": "Aktiva paket",
+              "no": "Aktive pakker",
+              "es": "Paquetes activos",
+              "da": "Aktive pakker",
+              "ru": "Активные посылки",
+              "pl": "Aktywne paczki",
+              "ko": "활성 소포",
+              "ar": "الطرود النشطة"
+            }
+          },
+          {
+            "name": "total_count",
+            "type": "number",
+            "title": {
+              "en": "Total parcels",
+              "nl": "Totaal pakketten",
+              "de": "Pakete gesamt",
+              "fr": "Total des colis",
+              "it": "Pacchi totali",
+              "sv": "Totalt antal paket",
+              "no": "Totalt antall pakker",
+              "es": "Paquetes totales",
+              "da": "Pakker i alt",
+              "ru": "Всего посылок",
+              "pl": "Łączna liczba paczek",
+              "ko": "전체 소포",
+              "ar": "إجمالي الطرود"
+            }
+          },
+          {
+            "name": "last_update",
+            "type": "string",
+            "title": {
+              "en": "Last update",
+              "nl": "Laatste update",
+              "de": "Letzte Aktualisierung",
+              "fr": "Dernière mise à jour",
+              "it": "Ultimo aggiornamento",
+              "sv": "Senaste uppdatering",
+              "no": "Siste oppdatering",
+              "es": "Última actualización",
+              "da": "Seneste opdatering",
+              "ru": "Последнее обновление",
+              "pl": "Ostatnia aktualizacja",
+              "ko": "마지막 업데이트",
+              "ar": "آخر تحديث"
+            }
+          }
+        ]
       }
     ],
     "conditions": [
@@ -10469,6 +12077,106 @@
             "filter": "driver_id=post-dhl-de"
           }
         ]
+      },
+      {
+        "id": "ampere_packages_underway",
+        "title": {
+          "en": "Ampère parcels are underway",
+          "nl": "Er zijn Ampère-pakketten onderweg",
+          "de": "Ampère-Pakete sind unterwegs",
+          "fr": "Des colis Ampère sont en route",
+          "it": "Ci sono pacchi Ampère in transito",
+          "sv": "Ampère-paket är på väg",
+          "no": "Ampère-pakker er underveis",
+          "es": "Hay paquetes Ampère en camino",
+          "da": "Ampère-pakker er på vej",
+          "ru": "Есть посылки Ampère в пути",
+          "pl": "Paczki Ampère są w drodze",
+          "ko": "Ampère 소포가 배송 중",
+          "ar": "توجد طرود Ampère في الطريق"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=ampere"
+          }
+        ]
+      },
+      {
+        "id": "ampere_delivery_window_known",
+        "title": {
+          "en": "Ampère delivery window !{{is|isn't}} known",
+          "nl": "Ampère-bezorgvenster !{{is|is niet}} bekend",
+          "de": "Ampère-Zustellzeitfenster !{{ist|ist nicht}} bekannt",
+          "fr": "Le créneau Ampère !{{est|n’est pas}} connu",
+          "it": "La finestra Ampère !{{è|non è}} nota",
+          "sv": "Ampère-leveransfönster !{{är|är inte}} känt",
+          "no": "Ampère-leveringsvindu !{{er|er ikke}} kjent",
+          "es": "La franja Ampère !{{es|no es}} conocida",
+          "da": "Ampère-leveringsvindue !{{er|er ikke}} kendt",
+          "ru": "Интервал Ampère !{{известен|неизвестен}}",
+          "pl": "Okno Ampère !{{jest|nie jest}} znane",
+          "ko": "Ampère 배송 시간대가 !{{확인됨|확인되지 않음}}",
+          "ar": "نافذة تسليم Ampère !{{معروفة|غير معروفة}}"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=ampere"
+          }
+        ]
+      },
+      {
+        "id": "ampere_is_delivered",
+        "title": {
+          "en": "Latest Ampère parcel !{{is|isn't}} delivered",
+          "nl": "Laatste Ampère-pakket !{{is|is niet}} bezorgd",
+          "de": "Letztes Ampère-Paket !{{ist|ist nicht}} zugestellt",
+          "fr": "Le dernier colis Ampère !{{est|n’est pas}} livré",
+          "it": "L’ultimo pacco Ampère !{{è|non è}} consegnato",
+          "sv": "Senaste Ampère-paketet !{{är|är inte}} levererat",
+          "no": "Siste Ampère-pakke !{{er|er ikke}} levert",
+          "es": "El último paquete Ampère !{{está|no está}} entregado",
+          "da": "Seneste Ampère-pakke !{{er|er ikke}} leveret",
+          "ru": "Последняя посылка Ampère !{{доставлена|не доставлена}}",
+          "pl": "Ostatnia paczka Ampère !{{jest|nie jest}} dostarczona",
+          "ko": "최신 Ampère 소포가 !{{배송됨|배송되지 않음}}",
+          "ar": "آخر طرد Ampère !{{تم تسليمه|لم يتم تسليمه}}"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=ampere"
+          }
+        ]
+      },
+      {
+        "id": "ampere_is_connected",
+        "title": {
+          "en": "Ampère !{{is|isn't}} connected",
+          "nl": "Ampère !{{is|is niet}} verbonden",
+          "de": "Ampère !{{ist|ist nicht}} verbunden",
+          "fr": "Ampère !{{est|n’est pas}} connecté",
+          "it": "Ampère !{{è|non è}} connesso",
+          "sv": "Ampère !{{är|är inte}} ansluten",
+          "no": "Ampère !{{er|er ikke}} tilkoblet",
+          "es": "Ampère !{{está|no está}} conectado",
+          "da": "Ampère !{{er|er ikke}} forbundet",
+          "ru": "Ampère !{{подключён|не подключён}}",
+          "pl": "Ampère !{{jest|nie jest}} połączony",
+          "ko": "Ampère가 !{{연결됨|연결되지 않음}}",
+          "ar": "Ampère !{{متصل|غير متصل}}"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=ampere"
+          }
+        ]
       }
     ],
     "actions": [
@@ -10744,6 +12452,31 @@
             "type": "device",
             "name": "device",
             "filter": "driver_id=royal-mail"
+          }
+        ]
+      },
+      {
+        "id": "ampere_refresh",
+        "title": {
+          "en": "Refresh Ampère",
+          "nl": "Vernieuw Ampère",
+          "de": "Ampère aktualisieren",
+          "fr": "Actualiser Ampère",
+          "it": "Aggiorna Ampère",
+          "sv": "Uppdatera Ampère",
+          "no": "Oppdater Ampère",
+          "es": "Actualizar Ampère",
+          "da": "Opdater Ampère",
+          "ru": "Обновить Ampère",
+          "pl": "Odśwież Ampère",
+          "ko": "Ampère 새로고침",
+          "ar": "تحديث Ampère"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=ampere"
           }
         ]
       }
