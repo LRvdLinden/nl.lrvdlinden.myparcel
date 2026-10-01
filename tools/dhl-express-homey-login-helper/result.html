@@ -1,25 +1,7 @@
-<!doctype html>
-<html>
-<head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>DHL Express Homey Login Helper</title>
 <style>
-body{font:15px system-ui;max-width:760px;margin:40px auto;padding:0 20px;color:#111}
-.card{border:1px solid #ddd;border-radius:14px;padding:22px}
-h1{margin-top:0}.badge{display:inline-block;background:#0b6;color:#fff;padding:6px 10px;border-radius:999px;font-weight:700}
-textarea{width:100%;height:190px;box-sizing:border-box;margin-top:14px;font:12px monospace;padding:10px}
-button{padding:11px 18px;border:0;border-radius:9px;background:#ffcc00;color:#d40511;font-weight:800;margin-top:10px;cursor:pointer}
-.note{font-size:13px;color:#555}
-</style>
-</head>
-<body>
-<div class="card">
-<h1>DHL Express → Homey</h1>
-<div id="badge" class="badge">Checking MyDHL+ session…</div>
-<p id="detail"></p>
-<textarea id="code" readonly placeholder="DHLEXPRESS1..."></textarea>
-<button id="copy">Copy Homey session code</button>
-<p class="note">Treat this session code like a password. Paste it only into your own MyParcel DHL Express device.</p>
-</div>
-<script src="result.js"></script>
-</body>
-</html>
+body{font-family:Arial,Helvetica,sans-serif;margin:0;background:#f6f6f6;color:#171717}.wrap{max-width:760px;margin:35px auto;background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 5px 30px #0002}.hero{background:#ffcc00;color:#d40511;padding:26px 30px;border-bottom:7px solid #d40511}.brand{font-size:48px;font-weight:900;font-style:italic;letter-spacing:-2px}.express{font-size:18px;font-weight:800;letter-spacing:5px;margin-top:-4px}.hero h1{margin:12px 0 0;font-size:24px;color:#111}.body{padding:28px 30px}.badge{display:inline-block;padding:7px 10px;border-radius:999px;background:#e8fff5;color:#06603f;font-weight:700;margin-bottom:14px}.detail{font-size:14px;line-height:1.55;margin:0 0 16px}textarea{width:100%;height:210px;box-sizing:border-box;border:1px solid #ccc;border-radius:10px;padding:12px;font-family:monospace;font-size:12px;resize:vertical}.btn{margin-top:12px;border:0;border-radius:9px;background:#d40511;color:#fff;padding:12px 18px;font-weight:800;cursor:pointer}.note{font-size:12px;color:#666;margin-top:16px;line-height:1.45}:dir(rtl){direction:rtl;text-align:right}
+</style></head><body><div class="wrap">
+<div class="hero"><div class="brand">DHL</div><div class="express">EXPRESS</div><h1>DHL Express Homey Login Helper</h1></div>
+<div class="body"><div class="badge" id="badge">Checking MyDHL+ session…</div><p class="detail" id="detail"></p><textarea id="code" readonly></textarea><button class="btn" id="copy">Copy Homey session code</button><p class="note">Treat this session code like a password and paste it only into your own MyParcel DHL Express device.</p></div></div>
+<script src="result.js"></script></body></html>
