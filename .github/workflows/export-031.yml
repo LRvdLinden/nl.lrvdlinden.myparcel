@@ -1,0 +1,18 @@
+name: Export MyParcel 0.3.1
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/export-031.yml'
+permissions:
+  contents: read
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/upload-artifact@v4
+        with:
+          name: MyParcel-for-Homey-v0.3.1
+          path: MyParcel-for-Homey-v0.3.1.zip
+          compression-level: 0
