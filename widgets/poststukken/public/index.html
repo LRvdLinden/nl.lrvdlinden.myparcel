@@ -66,7 +66,13 @@
       content.replaceChildren(track)
     }
     async function load(){content.innerHTML=`<div class="state">${words.nl.loading}</div>`;try{render(await Homey.api('GET','/?deviceId='+encodeURIComponent((Homey.getDeviceIds()||[])[0]||''),{}))}catch(e){content.innerHTML=`<div class="state error">${String(e.message||e)}</div>`}}
-    async function onHomeyReady(Homey){await load();Homey.ready()}
+    let refreshTimer=null;
+    async function onHomeyReady(Homey){
+      await load();
+      if(refreshTimer)clearInterval(refreshTimer);
+      refreshTimer=setInterval(()=>{if(!document.hidden)load().catch(()=>{})},60000);
+      Homey.ready();
+    }
   </script>
 </body>
 </html>
