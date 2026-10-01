@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "DHL Express Homey Login Helper",
-  "version": "0.1.1",
-  "description": "Captures and preserves your signed-in MyDHL+ / DHLPass web session for MyParcel on Homey.",
+  "version": "0.1.2",
+  "description": "DHL Express branded helper that captures and preserves your signed-in MyDHL+ / DHLPass web session for MyParcel on Homey.",
   "permissions": [
     "cookies",
     "storage",
@@ -19,7 +19,13 @@
   },
   "action": {
     "default_title": "DHL Express Homey Login Helper",
-    "default_popup": "popup.html"
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
   },
   "content_scripts": [
     {
@@ -44,5 +50,11 @@
       "run_at": "document_start",
       "world": "ISOLATED"
     }
-  ]
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
 }
