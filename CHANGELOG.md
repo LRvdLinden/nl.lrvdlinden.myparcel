@@ -9,6 +9,12 @@
 - Added rich Ampère Flow tokens: carrier, tracking, sender, status, delivery date/window, window start/end, delivered, Track & Trace URL, active/total parcel counts and last update.
 - Added Ampère Flow conditions for parcels underway, known delivery window, delivered state and connection state, plus a manual refresh action.
 - Existing false-positive PostNL 3S snapshots are cleaned from Ampère automatically after updating.
+- Fixed a startup crash path by making Ampère capability migration and Flow-card registration non-fatal.
+- PostNL **Mijn Post / My Post** is now live-only: the 21-day local mail archive is no longer used or persisted.
+- Opening the PostNL mail widget performs a fresh PostNL sync; while visible it refreshes every minute.
+- Mail removed in the official PostNL app disappears from the Homey widget after the next live refresh.
+- PostNL mail scans are fetched live into memory for display/camera/Flow images and are not stored locally.
+
 
 
 ## 0.2.7 — Carrier data expansion
