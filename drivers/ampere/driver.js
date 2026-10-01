@@ -29,11 +29,22 @@ function makeId(sessionCode, trackingUrl) {
 
 module.exports = class AmpereDriver extends Homey.Driver {
   async onInit() {
-    this.homey.flow.getConditionCard('ampere_packages_underway').registerRunListener(async ({ device }) => Boolean(device?.hasPackagesUnderway()));
-    this.homey.flow.getConditionCard('ampere_delivery_window_known').registerRunListener(async ({ device }) => Boolean(device?.hasDeliveryWindow()));
-    this.homey.flow.getConditionCard('ampere_is_delivered').registerRunListener(async ({ device }) => Boolean(device?.isLatestDelivered()));
-    this.homey.flow.getConditionCard('ampere_is_connected').registerRunListener(async ({ device }) => Boolean(device?.isConnected()));
-    this.homey.flow.getActionCard('ampere_refresh').registerRunListener(async ({ device }) => {
+    const safeRegister = (type, id, listener) => {
+      try {
+        const card = type === 'condition'
+          ? this.homey.flow.getConditionCard(id)
+          : this.homey.flow.getActionCard(id);
+        card.registerRunListener(listener);
+      } catch (error) {
+        this.error(`Could not register Ampère Flow card ${id}`, error);
+      }
+    };
+
+    safeRegister('condition', 'ampere_packages_underway', async ({ device }) => Boolean(device?.hasPackagesUnderway()));
+    safeRegister('condition', 'ampere_delivery_window_known', async ({ device }) => Boolean(device?.hasDeliveryWindow()));
+    safeRegister('condition', 'ampere_is_delivered', async ({ device }) => Boolean(device?.isLatestDelivered()));
+    safeRegister('condition', 'ampere_is_connected', async ({ device }) => Boolean(device?.isConnected()));
+    safeRegister('action', 'ampere_refresh', async ({ device }) => {
       if (!device) throw new Error('No Ampère device selected.');
       await device.refresh(true);
       return true;
