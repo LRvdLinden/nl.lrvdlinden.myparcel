@@ -1,0 +1,570 @@
+{
+  "triggers": [
+    {
+      "id": "dhl_express_new_package",
+      "highlight": true,
+      "title": {
+        "en": "New DHL Express parcel found",
+        "nl": "Nieuw DHL Express-pakket gevonden"
+      },
+      "args": [],
+      "tokens": [
+        {
+          "name": "carrier",
+          "type": "string",
+          "title": {
+            "en": "Carrier",
+            "nl": "Vervoerder"
+          }
+        },
+        {
+          "name": "tracking",
+          "type": "string",
+          "title": {
+            "en": "Tracking number",
+            "nl": "Trackingnummer"
+          }
+        },
+        {
+          "name": "sender",
+          "type": "string",
+          "title": {
+            "en": "Sender",
+            "nl": "Afzender"
+          }
+        },
+        {
+          "name": "receiver",
+          "type": "string",
+          "title": {
+            "en": "Receiver",
+            "nl": "Ontvanger"
+          }
+        },
+        {
+          "name": "status",
+          "type": "string",
+          "title": {
+            "en": "Status",
+            "nl": "Status"
+          }
+        },
+        {
+          "name": "delivery_date",
+          "type": "string",
+          "title": {
+            "en": "Delivery date",
+            "nl": "Bezorgdatum"
+          }
+        },
+        {
+          "name": "delivery_window",
+          "type": "string",
+          "title": {
+            "en": "Delivery window",
+            "nl": "Bezorgvenster"
+          }
+        },
+        {
+          "name": "service",
+          "type": "string",
+          "title": {
+            "en": "Service",
+            "nl": "Service"
+          }
+        },
+        {
+          "name": "origin",
+          "type": "string",
+          "title": {
+            "en": "Origin",
+            "nl": "Herkomst"
+          }
+        },
+        {
+          "name": "destination",
+          "type": "string",
+          "title": {
+            "en": "Destination",
+            "nl": "Bestemming"
+          }
+        },
+        {
+          "name": "last_event",
+          "type": "string",
+          "title": {
+            "en": "Last event",
+            "nl": "Laatste gebeurtenis"
+          }
+        },
+        {
+          "name": "delivered",
+          "type": "boolean",
+          "title": {
+            "en": "Delivered",
+            "nl": "Bezorgd"
+          }
+        },
+        {
+          "name": "active_count",
+          "type": "number",
+          "title": {
+            "en": "Active parcels",
+            "nl": "Actieve pakketten"
+          }
+        },
+        {
+          "name": "total_count",
+          "type": "number",
+          "title": {
+            "en": "Total parcels",
+            "nl": "Totaal pakketten"
+          }
+        },
+        {
+          "name": "last_update",
+          "type": "string",
+          "title": {
+            "en": "Last update",
+            "nl": "Laatste update"
+          }
+        }
+      ]
+    },
+    {
+      "id": "dhl_express_status_changed",
+      "title": {
+        "en": "DHL Express parcel status changed",
+        "nl": "Status DHL Express-pakket gewijzigd"
+      },
+      "args": [],
+      "tokens": [
+        {
+          "name": "previous_status",
+          "type": "string",
+          "title": {
+            "en": "Previous status",
+            "nl": "Vorige status"
+          }
+        },
+        {
+          "name": "carrier",
+          "type": "string",
+          "title": {
+            "en": "Carrier",
+            "nl": "Vervoerder"
+          }
+        },
+        {
+          "name": "tracking",
+          "type": "string",
+          "title": {
+            "en": "Tracking number",
+            "nl": "Trackingnummer"
+          }
+        },
+        {
+          "name": "sender",
+          "type": "string",
+          "title": {
+            "en": "Sender",
+            "nl": "Afzender"
+          }
+        },
+        {
+          "name": "receiver",
+          "type": "string",
+          "title": {
+            "en": "Receiver",
+            "nl": "Ontvanger"
+          }
+        },
+        {
+          "name": "status",
+          "type": "string",
+          "title": {
+            "en": "Status",
+            "nl": "Status"
+          }
+        },
+        {
+          "name": "delivery_date",
+          "type": "string",
+          "title": {
+            "en": "Delivery date",
+            "nl": "Bezorgdatum"
+          }
+        },
+        {
+          "name": "delivery_window",
+          "type": "string",
+          "title": {
+            "en": "Delivery window",
+            "nl": "Bezorgvenster"
+          }
+        },
+        {
+          "name": "service",
+          "type": "string",
+          "title": {
+            "en": "Service",
+            "nl": "Service"
+          }
+        },
+        {
+          "name": "origin",
+          "type": "string",
+          "title": {
+            "en": "Origin",
+            "nl": "Herkomst"
+          }
+        },
+        {
+          "name": "destination",
+          "type": "string",
+          "title": {
+            "en": "Destination",
+            "nl": "Bestemming"
+          }
+        },
+        {
+          "name": "last_event",
+          "type": "string",
+          "title": {
+            "en": "Last event",
+            "nl": "Laatste gebeurtenis"
+          }
+        },
+        {
+          "name": "delivered",
+          "type": "boolean",
+          "title": {
+            "en": "Delivered",
+            "nl": "Bezorgd"
+          }
+        },
+        {
+          "name": "active_count",
+          "type": "number",
+          "title": {
+            "en": "Active parcels",
+            "nl": "Actieve pakketten"
+          }
+        },
+        {
+          "name": "total_count",
+          "type": "number",
+          "title": {
+            "en": "Total parcels",
+            "nl": "Totaal pakketten"
+          }
+        },
+        {
+          "name": "last_update",
+          "type": "string",
+          "title": {
+            "en": "Last update",
+            "nl": "Laatste update"
+          }
+        }
+      ]
+    },
+    {
+      "id": "dhl_express_delivery_updated",
+      "title": {
+        "en": "DHL Express delivery information updated",
+        "nl": "DHL Express-bezorginformatie bijgewerkt"
+      },
+      "args": [],
+      "tokens": [
+        {
+          "name": "carrier",
+          "type": "string",
+          "title": {
+            "en": "Carrier",
+            "nl": "Vervoerder"
+          }
+        },
+        {
+          "name": "tracking",
+          "type": "string",
+          "title": {
+            "en": "Tracking number",
+            "nl": "Trackingnummer"
+          }
+        },
+        {
+          "name": "sender",
+          "type": "string",
+          "title": {
+            "en": "Sender",
+            "nl": "Afzender"
+          }
+        },
+        {
+          "name": "receiver",
+          "type": "string",
+          "title": {
+            "en": "Receiver",
+            "nl": "Ontvanger"
+          }
+        },
+        {
+          "name": "status",
+          "type": "string",
+          "title": {
+            "en": "Status",
+            "nl": "Status"
+          }
+        },
+        {
+          "name": "delivery_date",
+          "type": "string",
+          "title": {
+            "en": "Delivery date",
+            "nl": "Bezorgdatum"
+          }
+        },
+        {
+          "name": "delivery_window",
+          "type": "string",
+          "title": {
+            "en": "Delivery window",
+            "nl": "Bezorgvenster"
+          }
+        },
+        {
+          "name": "service",
+          "type": "string",
+          "title": {
+            "en": "Service",
+            "nl": "Service"
+          }
+        },
+        {
+          "name": "origin",
+          "type": "string",
+          "title": {
+            "en": "Origin",
+            "nl": "Herkomst"
+          }
+        },
+        {
+          "name": "destination",
+          "type": "string",
+          "title": {
+            "en": "Destination",
+            "nl": "Bestemming"
+          }
+        },
+        {
+          "name": "last_event",
+          "type": "string",
+          "title": {
+            "en": "Last event",
+            "nl": "Laatste gebeurtenis"
+          }
+        },
+        {
+          "name": "delivered",
+          "type": "boolean",
+          "title": {
+            "en": "Delivered",
+            "nl": "Bezorgd"
+          }
+        },
+        {
+          "name": "active_count",
+          "type": "number",
+          "title": {
+            "en": "Active parcels",
+            "nl": "Actieve pakketten"
+          }
+        },
+        {
+          "name": "total_count",
+          "type": "number",
+          "title": {
+            "en": "Total parcels",
+            "nl": "Totaal pakketten"
+          }
+        },
+        {
+          "name": "last_update",
+          "type": "string",
+          "title": {
+            "en": "Last update",
+            "nl": "Laatste update"
+          }
+        }
+      ]
+    },
+    {
+      "id": "dhl_express_delivered",
+      "highlight": true,
+      "title": {
+        "en": "DHL Express parcel delivered",
+        "nl": "DHL Express-pakket bezorgd"
+      },
+      "args": [],
+      "tokens": [
+        {
+          "name": "carrier",
+          "type": "string",
+          "title": {
+            "en": "Carrier",
+            "nl": "Vervoerder"
+          }
+        },
+        {
+          "name": "tracking",
+          "type": "string",
+          "title": {
+            "en": "Tracking number",
+            "nl": "Trackingnummer"
+          }
+        },
+        {
+          "name": "sender",
+          "type": "string",
+          "title": {
+            "en": "Sender",
+            "nl": "Afzender"
+          }
+        },
+        {
+          "name": "receiver",
+          "type": "string",
+          "title": {
+            "en": "Receiver",
+            "nl": "Ontvanger"
+          }
+        },
+        {
+          "name": "status",
+          "type": "string",
+          "title": {
+            "en": "Status",
+            "nl": "Status"
+          }
+        },
+        {
+          "name": "delivery_date",
+          "type": "string",
+          "title": {
+            "en": "Delivery date",
+            "nl": "Bezorgdatum"
+          }
+        },
+        {
+          "name": "delivery_window",
+          "type": "string",
+          "title": {
+            "en": "Delivery window",
+            "nl": "Bezorgvenster"
+          }
+        },
+        {
+          "name": "service",
+          "type": "string",
+          "title": {
+            "en": "Service",
+            "nl": "Service"
+          }
+        },
+        {
+          "name": "origin",
+          "type": "string",
+          "title": {
+            "en": "Origin",
+            "nl": "Herkomst"
+          }
+        },
+        {
+          "name": "destination",
+          "type": "string",
+          "title": {
+            "en": "Destination",
+            "nl": "Bestemming"
+          }
+        },
+        {
+          "name": "last_event",
+          "type": "string",
+          "title": {
+            "en": "Last event",
+            "nl": "Laatste gebeurtenis"
+          }
+        },
+        {
+          "name": "delivered",
+          "type": "boolean",
+          "title": {
+            "en": "Delivered",
+            "nl": "Bezorgd"
+          }
+        },
+        {
+          "name": "active_count",
+          "type": "number",
+          "title": {
+            "en": "Active parcels",
+            "nl": "Actieve pakketten"
+          }
+        },
+        {
+          "name": "total_count",
+          "type": "number",
+          "title": {
+            "en": "Total parcels",
+            "nl": "Totaal pakketten"
+          }
+        },
+        {
+          "name": "last_update",
+          "type": "string",
+          "title": {
+            "en": "Last update",
+            "nl": "Laatste update"
+          }
+        }
+      ]
+    }
+  ],
+  "conditions": [
+    {
+      "id": "dhl_express_packages_underway",
+      "title": {
+        "en": "DHL Express parcels are underway",
+        "nl": "Er zijn DHL Express-pakketten onderweg"
+      },
+      "args": []
+    },
+    {
+      "id": "dhl_express_is_connected",
+      "title": {
+        "en": "DHL Express is connected",
+        "nl": "DHL Express is verbonden"
+      },
+      "args": []
+    },
+    {
+      "id": "dhl_express_delivery_window_known",
+      "title": {
+        "en": "DHL Express delivery window is known",
+        "nl": "DHL Express-bezorgvenster is bekend"
+      },
+      "args": []
+    }
+  ],
+  "actions": [
+    {
+      "id": "dhl_express_refresh",
+      "title": {
+        "en": "Refresh DHL Express",
+        "nl": "Vernieuw DHL Express"
+      },
+      "args": []
+    }
+  ]
+}
