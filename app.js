@@ -6,12 +6,13 @@ const localizePackageStatus = require('./lib/status-i18n.js');
 
 const DRIVER_IDS = [
   'postnl', 'dhl-parcel', 'dpd', 'ups', 'budbee', 'homerr',
-  'fedex', 'gls', 'inpost-uk', 'bpost', 'royal-mail', 'post-dhl-de', 'ampere',
+  'fedex', 'gls', 'inpost-uk', 'bpost', 'royal-mail', 'post-dhl-de', 'ampere', 'dhl-express',
 ];
 
 const CARRIER_NAMES = {
   postnl: 'PostNL',
   'dhl-parcel': 'DHL',
+  'dhl-express': 'DHL Express',
   dpd: 'DPD',
   ups: 'UPS',
   budbee: 'Budbee',
@@ -28,6 +29,7 @@ const CARRIER_NAMES = {
 const DELIVERY_WINDOW_FLOWS = {
   postnl: { trigger: 'postnl_delivery_window_changed', condition: 'postnl_delivery_window_known' },
   'dhl-parcel': { trigger: 'dhl_delivery_window_changed', condition: 'dhl_delivery_window_known' },
+  'dhl-express': { trigger: 'dhl_express_delivery_updated', condition: 'dhl_express_delivery_window_known' },
   dpd: { trigger: 'dpd_delivery_window_changed', condition: 'dpd_delivery_window_known' },
   ups: { trigger: 'ups_delivery_window_changed', condition: 'ups_delivery_window_known' },
   budbee: { trigger: 'budbee_delivery_window_changed', condition: 'budbee_delivery_window_known' },
@@ -159,6 +161,8 @@ module.exports = class MyParcelApp extends Homey.App {
         return typeof device.hasAccountCredentials === 'function' ? device.hasAccountCredentials() : Boolean(device.api?.hasCredentials?.());
       case 'dhl-parcel':
         return typeof device.hasAccountCredentials === 'function' ? device.hasAccountCredentials() : true;
+      case 'dhl-express':
+        return Boolean(settings.session_bundle);
       case 'ups':
         try { return Boolean(JSON.parse(settings.ups_session_bundle || 'null')); } catch (_) { return false; }
       case 'post-dhl-de':
