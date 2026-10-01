@@ -1,4 +1,4 @@
-DHL Express Homey Login Helper 0.1.1
+DHL Express Homey Login Helper 0.1.2
 
 1. Open chrome://extensions and enable Developer mode.
 2. Remove or disable older DHL Express Homey Login Helper versions.
@@ -13,3 +13,8 @@ DHL Express Homey Login Helper 0.1.1
 The helper stores the signed-in MyDHL+ session context, browser storage and relevant shipment requests. It does not store your DHL password.
 
 Treat the generated Homey session code like a password and use it only in your own Homey.
+
+0.1.2 changes:
+- Full DHL Express yellow/red branding in Chrome, popup and result page.
+- Dedicated 16/32/48/128 px toolbar icons.
+- Session-preserving MyDHL+ logic remains unchanged.
