@@ -2,21 +2,27 @@
 
 const Homey = require('homey');
 const { BolSessionClient } = require('../../lib/bol-session');
+const localizePackageStatus = require('../../lib/status-i18n');
 
 module.exports = class AmpereDevice extends Homey.Device {
   async onInit() {
-    for (const capability of ['ampere_parcel_count', 'ampere_status', 'myparcel_connection_status', 'ampere_last_update']) {
-      if (!this.hasCapability(capability)) await this.addCapability(capability);
-    }
-    this._parcels = this.getStoreValue('ampere_snapshot') || [];
+    await this._ensureCapabilities();
+
+    // Remove stale false positives from earlier 0.2.x/0.3.0 builds immediately.
+    // A Dutch PostNL 3S barcode must never remain inside the Ampère device.
+    const stored = Array.isArray(this.getStoreValue('ampere_snapshot')) ? this.getStoreValue('ampere_snapshot') : [];
+    this._parcels = stored.filter(parcel => {
+      const tracking = String(parcel?.tracking || parcel?.id || '').toUpperCase();
+      return parcel?.carrier === 'ampere' && !/^3S[A-Z0-9]{8,}$/.test(tracking);
+    });
+    if (this._parcels.length !== stored.length) await this.setStoreValue('ampere_snapshot', this._parcels);
+
     this._refreshing = null;
     this._timer = this.homey.setInterval(() => this.refresh(false).catch(error => this.error(error)), 10 * 60 * 1000);
 
-    // A freshly paired helper code has already been verified in the browser.
-    // Do not make the device unavailable before the first Homey-side refresh has
-    // even had a chance to use the helper-captured Ampère URLs.
     if (this._sessionCode() || this._manualUrl()) {
       await this.setAvailable().catch(() => {});
+      await this.setStoreValue('ampereConnected', true);
       await this.setCapabilityValue('myparcel_connection_status', this.homey.__('common_status.connected')).catch(() => {});
     }
     this.homey.setTimeout(() => this.refresh(true).catch(error => this.error(error)), 3000);
@@ -26,10 +32,163 @@ module.exports = class AmpereDevice extends Homey.Device {
     if (this._timer) this.homey.clearInterval(this._timer);
   }
 
+  async _ensureCapabilities() {
+    const capabilities = [
+      'ampere_parcel_count',
+      'ampere_total_count',
+      'ampere_status',
+      'ampere_tracking',
+      'ampere_sender',
+      'ampere_delivery_date',
+      'ampere_delivery_window',
+      'ampere_window_start',
+      'ampere_window_end',
+      'ampere_delivered',
+      'ampere_details_url',
+      'myparcel_connection_status',
+      'ampere_last_update',
+    ];
+    for (const capability of capabilities) {
+      if (!this.hasCapability(capability)) await this.addCapability(capability);
+    }
+  }
+
+  _formatDate(value) {
+    const raw = String(value || '').trim();
+    if (!raw) return '';
+    const dateOnly = raw.match(/^(\d{4})-(\d{2})-(\d{2})/);
+    if (dateOnly && !/[T ]\d{2}:\d{2}/.test(raw)) return `${dateOnly[3]}-${dateOnly[2]}-${dateOnly[1]}`;
+    const date = new Date(raw);
+    if (Number.isNaN(date.getTime())) {
+      if (dateOnly) return `${dateOnly[3]}-${dateOnly[2]}-${dateOnly[1]}`;
+      return raw;
+    }
+    const parts = new Intl.DateTimeFormat('en-GB', {
+      timeZone: this.homey.clock.getTimezone(),
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+    }).formatToParts(date);
+    const get = type => parts.find(part => part.type === type)?.value || '';
+    return `${get('day')}-${get('month')}-${get('year')}`;
+  }
+
+  _formatTime(value) {
+    const raw = String(value || '').trim();
+    if (!raw) return '';
+    const timeOnly = raw.match(/^(\d{1,2}):(\d{2})/);
+    if (timeOnly && !/[T ]/.test(raw)) return `${String(timeOnly[1]).padStart(2, '0')}:${timeOnly[2]}`;
+    const date = new Date(raw);
+    if (Number.isNaN(date.getTime())) return raw;
+    const parts = new Intl.DateTimeFormat('en-GB', {
+      timeZone: this.homey.clock.getTimezone(),
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: false,
+    }).formatToParts(date);
+    const get = type => parts.find(part => part.type === type)?.value || '';
+    return `${get('hour')}:${get('minute')}`;
+  }
+
+  _deliveryWindow(parcel) {
+    if (!parcel) return '';
+    const from = this._formatTime(parcel.deliveryWindowFrom);
+    const to = this._formatTime(parcel.deliveryWindowTo);
+    if (from || to) return [from, to].filter(Boolean).join(' - ');
+    return String(parcel.deliveryWindow || '').trim();
+  }
+
+  _latestParcel() {
+    const parcels = Array.isArray(this._parcels) ? this._parcels : [];
+    return parcels.find(parcel => !parcel.delivered) || parcels[0] || null;
+  }
+
+  _flowTokens(parcel, parcels = this._parcels || []) {
+    const active = parcels.filter(item => !item.delivered);
+    return {
+      carrier: 'Ampère',
+      tracking: String(parcel?.tracking || parcel?.id || ''),
+      sender: String(parcel?.sender || 'bol.com'),
+      status: localizePackageStatus(this.homey, parcel?.status || '') || String(parcel?.status || ''),
+      delivery_date: this._formatDate(parcel?.deliveryDate),
+      delivery_window: this._deliveryWindow(parcel),
+      window_start: this._formatTime(parcel?.deliveryWindowFrom),
+      window_end: this._formatTime(parcel?.deliveryWindowTo),
+      delivered: Boolean(parcel?.delivered),
+      track_url: String(parcel?.detailsUrl || ''),
+      active_count: active.length,
+      total_count: parcels.length,
+      last_update: this._formatDateTime(new Date()),
+    };
+  }
+
+  async _triggerChanges(previous, current) {
+    for (const parcel of current) {
+      const key = String(parcel.tracking || parcel.id || '');
+      const old = previous.get(key);
+      const tokens = this._flowTokens(parcel, current);
+
+      if (!old) {
+        await this.homey.flow.getDeviceTriggerCard('ampere_new_package').trigger(this, tokens, {}).catch(() => {});
+        continue;
+      }
+
+      if (String(old.status || '') !== String(parcel.status || '')) {
+        await this.homey.flow.getDeviceTriggerCard('ampere_status_changed').trigger(this, {
+          previous_status: localizePackageStatus(this.homey, old.status || '') || String(old.status || ''),
+          ...tokens,
+        }, {}).catch(() => {});
+      }
+
+      const deliveryChanged = (
+        String(old.deliveryDate || '') !== String(parcel.deliveryDate || '')
+        || String(old.deliveryWindow || '') !== String(parcel.deliveryWindow || '')
+        || String(old.deliveryWindowFrom || '') !== String(parcel.deliveryWindowFrom || '')
+        || String(old.deliveryWindowTo || '') !== String(parcel.deliveryWindowTo || '')
+      ) && Boolean(parcel.deliveryDate || parcel.deliveryWindow || parcel.deliveryWindowFrom || parcel.deliveryWindowTo);
+
+      if (deliveryChanged) {
+        await this.homey.flow.getDeviceTriggerCard('ampere_delivery_updated').trigger(this, tokens, {}).catch(() => {});
+      }
+
+      const windowChanged = (
+        String(old.deliveryWindow || '') !== String(parcel.deliveryWindow || '')
+        || String(old.deliveryWindowFrom || '') !== String(parcel.deliveryWindowFrom || '')
+        || String(old.deliveryWindowTo || '') !== String(parcel.deliveryWindowTo || '')
+      ) && Boolean(parcel.deliveryWindow || parcel.deliveryWindowFrom || parcel.deliveryWindowTo);
+
+      if (windowChanged) {
+        await this.homey.flow.getDeviceTriggerCard('ampere_delivery_window_changed').trigger(this, tokens, {}).catch(() => {});
+      }
+
+      if (parcel.delivered && !old.delivered) {
+        await this.homey.flow.getDeviceTriggerCard('ampere_delivered').trigger(this, tokens, {}).catch(() => {});
+      }
+    }
+  }
+
+  hasPackagesUnderway() {
+    return (this._parcels || []).some(parcel => !parcel.delivered);
+  }
+
+  hasDeliveryWindow() {
+    const parcel = this._latestParcel();
+    return Boolean(parcel && (parcel.deliveryWindow || parcel.deliveryWindowFrom || parcel.deliveryWindowTo));
+  }
+
+  isLatestDelivered() {
+    return Boolean(this._latestParcel()?.delivered);
+  }
+
+  isConnected() {
+    return this.getStoreValue('ampereConnected') === true;
+  }
+
   async updateSession() {
     await this.setStoreValue('ampereAuthNotice', false);
     await this.setStoreValue('ampereLiveAuthFailures', 0);
     await this.setAvailable().catch(() => {});
+    await this.setStoreValue('ampereConnected', true);
     await this.setCapabilityValue('myparcel_connection_status', this.homey.__('common_status.connected')).catch(() => {});
     return this.refresh(true);
   }
@@ -83,6 +242,7 @@ module.exports = class AmpereDevice extends Homey.Device {
     let liveAuthError = null;
 
     try {
+      const previous = new Map((this._parcels || []).map(parcel => [String(parcel.tracking || parcel.id || ''), parcel]));
       if (sessionCode) {
         configured = true;
         client = new BolSessionClient({
@@ -127,6 +287,7 @@ module.exports = class AmpereDevice extends Homey.Device {
       }
 
       parcels.sort((a, b) => String(b.updatedAt || '').localeCompare(String(a.updatedAt || '')));
+      await this._triggerChanges(previous, parcels);
       this._parcels = parcels;
       await this.setStoreValue('ampere_snapshot', parcels);
       await this.setAvailable().catch(() => {});
@@ -147,14 +308,30 @@ module.exports = class AmpereDevice extends Homey.Device {
 
       const active = parcels.filter(parcel => !parcel.delivered);
       const latest = active[0] || parcels[0] || null;
-      await this.setCapabilityValue('ampere_parcel_count', active.length);
-      await this.setCapabilityValue('ampere_status', latest?.status || this.homey.__('common_status.connected'));
-      await this.setCapabilityValue('ampere_last_update', this._formatDateTime(new Date()));
+      const values = {
+        ampere_parcel_count: active.length,
+        ampere_total_count: parcels.length,
+        ampere_status: latest?.status ? (localizePackageStatus(this.homey, latest.status) || latest.status) : this.homey.__('common_status.connected'),
+        ampere_tracking: String(latest?.tracking || latest?.id || ''),
+        ampere_sender: String(latest?.sender || ''),
+        ampere_delivery_date: this._formatDate(latest?.deliveryDate),
+        ampere_delivery_window: this._deliveryWindow(latest),
+        ampere_window_start: this._formatTime(latest?.deliveryWindowFrom),
+        ampere_window_end: this._formatTime(latest?.deliveryWindowTo),
+        ampere_delivered: Boolean(latest?.delivered),
+        ampere_details_url: String(latest?.detailsUrl || ''),
+        ampere_last_update: this._formatDateTime(new Date()),
+      };
+      for (const [capability, value] of Object.entries(values)) {
+        if (this.hasCapability(capability)) await this.setCapabilityValue(capability, value).catch(error => this.error(capability, error));
+      }
+      await this.setStoreValue('ampereConnected', true);
       return true;
     } catch (error) {
       this.error('[AmpereDevice] refresh failed', error);
       const invalidConfiguration = error?.code === 'AUTH_REAUTH_REQUIRED' && !sessionCode && !manualUrl;
       if (invalidConfiguration) {
+        await this.setStoreValue('ampereConnected', false);
         await this.setCapabilityValue('myparcel_connection_status', this.homey.__('common_status.disconnected')).catch(() => {});
         await this.setCapabilityValue('ampere_status', this.homey.__('common_status.disconnected')).catch(() => {});
         await this.setUnavailable('Connect bol.com with Bol.com Homey Login Helper 0.3.1').catch(() => {});
