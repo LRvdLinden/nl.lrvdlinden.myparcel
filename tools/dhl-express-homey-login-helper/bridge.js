@@ -1,8 +1,15 @@
 (() => {
   'use strict';
-  const MARKER='__DHL_EXPRESS_HOMEY_HELPER_011__';
+  const MARKER='__DHL_EXPRESS_HOMEY_HELPER_013__';
   const MAX=350000;
-  const interesting=url=>/mydhl\.express\.dhl/i.test(String(url||''))&&/shipment|tracking|track|manage|history|list|dashboard|proview|waybill|awb|delivery|event/i.test(String(url||''));
+  const interesting=url=>{
+    try{
+      const u=new URL(String(url||''),location.href);
+      const h=u.hostname.toLowerCase();
+      const dhl=h==='mydhl.express.dhl'||h.endsWith('.dhl.com')||h.endsWith('.dhl');
+      return dhl&&/shipment|tracking|track|manage|history|list|dashboard|proview|waybill|awb|delivery|event|piece|consignment/i.test(u.href);
+    }catch(_){return false}
+  };
   const post=(type,payload={})=>{try{window.postMessage({marker:MARKER,type,payload},'*')}catch(_){}};
   const text=value=>{try{const s=typeof value==='string'?value:JSON.stringify(value);return s.slice(0,MAX)}catch(_){return''}};
 
