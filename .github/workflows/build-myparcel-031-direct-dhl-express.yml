@@ -1,0 +1,91 @@
+name: Build MyParcel 0.3.1 direct DHL Express login
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/build-myparcel-031-direct-dhl-express.yml'
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Validate code
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm ci
+          node --check lib/dhl-express-account.js
+          node --check lib/dhl-express-session.js
+          node --check drivers/dhl-express/driver.js
+          node --check drivers/dhl-express/device.js
+          node --check tools/dhl-express-homey-login-helper/background.js
+          node --check tools/dhl-express-homey-login-helper/bridge.js
+          node --check tools/dhl-express-homey-login-helper/content.js
+          node - <<'NODE'
+          const fs=require('fs');
+          const app=JSON.parse(fs.readFileSync('app.json','utf8'));
+          if(app.version!=='0.3.1') throw new Error('Expected 0.3.1');
+          const driver=app.drivers.find(d=>d.id==='dhl-express');
+          if(!driver) throw new Error('DHL Express driver missing');
+          const pair=fs.readFileSync('drivers/dhl-express/pair/login.html','utf8');
+          if(!pair.includes('login_dhl_express')) throw new Error('Direct login handler missing in pair UI');
+          if(!pair.includes('connect_helper')) throw new Error('Helper fallback missing in pair UI');
+          const source=fs.readFileSync('drivers/dhl-express/driver.js','utf8');
+          if(!source.includes('DHLExpressAccountApi')) throw new Error('Direct DHL Express API missing');
+          NODE
+          npx --no-install homey app validate --level debug
+      - name: Package helper 0.1.3
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f tools/DHL-Express-Homey-Login-Helper-v0.1.2.zip
+          rm -f tools/DHL-Express-Homey-Login-Helper-v0.1.3.zip
+          (
+            cd tools
+            zip -qr DHL-Express-Homey-Login-Helper-v0.1.3.zip dhl-express-homey-login-helper
+          )
+          unzip -t tools/DHL-Express-Homey-Login-Helper-v0.1.3.zip >/dev/null
+      - name: Build MyParcel 0.3.1
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf /tmp/myparcel031
+          mkdir -p /tmp/myparcel031/MyParcel-for-Homey-v0.3.1
+          rsync -a ./ /tmp/myparcel031/MyParcel-for-Homey-v0.3.1/             --exclude '.git/'             --exclude '.github/'             --exclude 'node_modules/'             --exclude '.homeybuild/'             --exclude '__MACOSX/'             --exclude 'MyParcel-for-Homey-v0.3.0.zip'             --exclude 'MyParcel-for-Homey-v0.3.1.zip'
+          rm -f MyParcel-for-Homey-v0.3.1.zip
+          (
+            cd /tmp/myparcel031
+            zip -qr "$GITHUB_WORKSPACE/MyParcel-for-Homey-v0.3.1.zip" MyParcel-for-Homey-v0.3.1
+          )
+          unzip -t MyParcel-for-Homey-v0.3.1.zip >/dev/null
+          sha256sum MyParcel-for-Homey-v0.3.1.zip
+      - name: Commit packaged helper and app
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "LRvdLinden"
+          git config user.email "77990847+LRvdLinden@users.noreply.github.com"
+          git rm -f tools/DHL-Express-Homey-Login-Helper-v0.1.2.zip 2>/dev/null || true
+          git add -f tools/DHL-Express-Homey-Login-Helper-v0.1.3.zip
+          git add -f MyParcel-for-Homey-v0.3.1.zip
+          git rm .github/workflows/build-myparcel-031-direct-dhl-express.yml
+          git commit -m "Build MyParcel 0.3.1 direct DHL Express login test"
+          git push origin HEAD:main
+      - uses: actions/upload-artifact@v4
+        with:
+          name: MyParcel-for-Homey-v0.3.1-direct-dhl-express
+          path: MyParcel-for-Homey-v0.3.1.zip
+          compression-level: 0
+      - uses: actions/upload-artifact@v4
+        with:
+          name: DHL-Express-Homey-Login-Helper-v0.1.3
+          path: tools/DHL-Express-Homey-Login-Helper-v0.1.3.zip
+          compression-level: 0
