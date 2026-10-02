@@ -1,15 +1,38 @@
 'use strict';
 const Homey=require('homey');
 const {DHLExpressSessionClient}=require('../../lib/dhl-express-session');
+const DHLExpressAccountApi=require('../../lib/dhl-express-account');
 const localizePackageStatus=require('../../lib/status-i18n');
 module.exports=class DHLExpressDevice extends Homey.Device{
  async onInit(){
   this._parcels=Array.isArray(this.getStoreValue('snapshot'))?this.getStoreValue('snapshot'):[];
-  this._refreshing=null;this._timer=this.homey.setInterval(()=>this.refresh(false).catch(e=>this.error(e)),10*60*1000);
+  this._refreshing=null;this._directApi=null;
+  this._timer=this.homey.setInterval(()=>this.refresh(false).catch(e=>this.error(e)),10*60*1000);
   this.homey.setTimeout(()=>this.refresh(true).catch(e=>this.error(e)),2500);
  }
  async onDeleted(){if(this._timer)this.homey.clearInterval(this._timer)}
- _code(){return String(this.getSetting('session_bundle')||'').trim()}
+ _mode(){return String(this.getStoreValue('auth_mode')||'').trim()||((this.getStoreValue('email')&&this.getStoreValue('password'))?'direct':'helper')}
+ _code(){return String(this.getStoreValue('session_bundle')||this.getSetting('session_bundle')||'').trim()}
+ _email(){return String(this.getStoreValue('email')||'').trim()}
+ _password(){return String(this.getStoreValue('password')||'')}
+ async updateDirectCredentials(email,password){
+  await this.setStoreValue('auth_mode','direct');
+  await this.setStoreValue('email',String(email||'').trim());
+  await this.setStoreValue('password',String(password||''));
+  await this.setStoreValue('session_bundle','');
+  this._directApi=null;
+  await this.setAvailable().catch(()=>{});
+  return this.refresh(true);
+ }
+ async updateHelperSession(code){
+  await this.setStoreValue('auth_mode','helper');
+  await this.setStoreValue('session_bundle',String(code||'').trim());
+  await this.setStoreValue('email','');
+  await this.setStoreValue('password','');
+  this._directApi=null;
+  await this.setAvailable().catch(()=>{});
+  return this.refresh(true);
+ }
  _fmtDate(v){if(!v)return'';const m=String(v).match(/^(\d{4})-(\d{2})-(\d{2})/);if(m)return`${m[3]}-${m[2]}-${m[1]}`;const d=new Date(v);if(Number.isNaN(d.getTime()))return String(v);return new Intl.DateTimeFormat('en-GB',{timeZone:this.homey.clock.getTimezone(),day:'2-digit',month:'2-digit',year:'numeric'}).format(d).replaceAll('/','-')}
  _fmtTime(v){if(!v)return'';const m=String(v).match(/(?:T|^)(\d{2}:\d{2})/);if(m&&!/(Z|[+-]\d{2}:?\d{2})$/i.test(String(v)))return m[1];const d=new Date(v);if(Number.isNaN(d.getTime()))return String(v);return new Intl.DateTimeFormat('en-GB',{timeZone:this.homey.clock.getTimezone(),hour:'2-digit',minute:'2-digit',hour12:false}).format(d)}
  _window(p){const a=this._fmtTime(p?.deliveryWindowFrom),b=this._fmtTime(p?.deliveryWindowTo);return[a,b].filter(Boolean).join(' - ')||String(p?.deliveryWindow||'')}
@@ -18,9 +41,27 @@ module.exports=class DHLExpressDevice extends Homey.Device{
  _formatNow(){const d=new Date(),tz=this.homey.clock.getTimezone();const parts=new Intl.DateTimeFormat('en-GB',{timeZone:tz,day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit',hour12:false}).formatToParts(d);const g=t=>parts.find(x=>x.type===t)?.value||'';return`${g('day')}-${g('month')}-${g('year')} ${g('hour')}:${g('minute')}`}
  async _trigger(prev,next){for(const p of next){const key=String(p.tracking||p.id||''),old=prev.get(key),tokens=this._tokens(p,next);if(!old){await this.homey.flow.getDeviceTriggerCard('dhl_express_new_package').trigger(this,tokens,{}).catch(()=>{});continue}if(String(old.status||'')!==String(p.status||''))await this.homey.flow.getDeviceTriggerCard('dhl_express_status_changed').trigger(this,{previous_status:String(old.status||''),...tokens},{}).catch(()=>{});const deliveryChanged=['deliveryDate','deliveryWindow','deliveryWindowFrom','deliveryWindowTo'].some(k=>String(old[k]||'')!==String(p[k]||''));if(deliveryChanged)await this.homey.flow.getDeviceTriggerCard('dhl_express_delivery_updated').trigger(this,tokens,{}).catch(()=>{});if(p.delivered&&!old.delivered)await this.homey.flow.getDeviceTriggerCard('dhl_express_delivered').trigger(this,tokens,{}).catch(()=>{})}}
  async refresh(force=false){if(this._refreshing)return this._refreshing;this._refreshing=this._doRefresh(force).finally(()=>{this._refreshing=null});return this._refreshing}
- async _doRefresh(){const code=this._code();if(!code){await this.setStoreValue('connected',false);await this.setCapabilityValue('myparcel_connection_status',this.homey.app.getConnectionLabel(false)).catch(()=>{});return false}try{const prev=new Map((this._parcels||[]).map(p=>[String(p.tracking||p.id||''),p]));const client=new DHLExpressSessionClient({sessionCode:code,fetchFn:fetch,log:(...a)=>this.log(...a)});const parcels=await client.fetchShipments();parcels.sort((a,b)=>String(b.updatedAt||'').localeCompare(String(a.updatedAt||'')));await this._trigger(prev,parcels);this._parcels=parcels;await this.setStoreValue('snapshot',parcels);await this.setStoreValue('connected',true);await this.setAvailable().catch(()=>{});await this.setCapabilityValue('myparcel_connection_status',this.homey.app.getConnectionLabel(true)).catch(()=>{});const active=parcels.filter(p=>!p.delivered),latest=active[0]||parcels[0]||null;const values={dhl_express_parcel_count:active.length,dhl_express_total_count:parcels.length,dhl_express_status:latest?.status||'DHL Express',dhl_express_tracking:String(latest?.tracking||''),dhl_express_sender:String(latest?.sender||''),dhl_express_receiver:String(latest?.receiver||''),dhl_express_delivery_date:this._fmtDate(latest?.deliveryDate),dhl_express_delivery_window:this._window(latest),dhl_express_service:String(latest?.service||''),dhl_express_origin:String(latest?.origin||''),dhl_express_destination:String(latest?.destination||''),dhl_express_last_event:String(latest?.lastEvent||''),dhl_express_delivered:Boolean(latest?.delivered),dhl_express_last_update:this._formatNow()};for(const[k,v]of Object.entries(values))if(this.hasCapability(k))await this.setCapabilityValue(k,v).catch(()=>{});return true}catch(e){this.error('DHL Express refresh',e);if(/session rejected|401|403/i.test(e.message)){await this.setStoreValue('connected',false);await this.setCapabilityValue('myparcel_connection_status',this.homey.app.getConnectionLabel(false)).catch(()=>{})}throw e}}
+ async _doRefresh(){
+  const mode=this._mode(),code=this._code(),email=this._email(),password=this._password();
+  if((mode==='direct'&&(!email||!password))||(mode!=='direct'&&!code)){
+   await this.setStoreValue('connected',false);
+   await this.setCapabilityValue('myparcel_connection_status',this.homey.app.getConnectionLabel(false)).catch(()=>{});
+   return false;
+  }
+  try{
+   const prev=new Map((this._parcels||[]).map(p=>[String(p.tracking||p.id||''),p]));
+   let parcels=[];
+   if(mode==='direct'){
+    if(!this._directApi||this._directApi.email!==email||this._directApi.password!==password){
+      this._directApi=new DHLExpressAccountApi({fetch,email,password,log:(...a)=>this.log('[DHL Express direct]',...a)});
+    }
+    parcels=await this._directApi.getParcels();
+   }else{
+    const client=new DHLExpressSessionClient({sessionCode:code,fetchFn:fetch,log:(...a)=>this.log(...a)});
+    parcels=await client.fetchShipments();
+   }parcels.sort((a,b)=>String(b.updatedAt||'').localeCompare(String(a.updatedAt||'')));await this._trigger(prev,parcels);this._parcels=parcels;await this.setStoreValue('snapshot',parcels);await this.setStoreValue('connected',true);await this.setAvailable().catch(()=>{});await this.setCapabilityValue('myparcel_connection_status',this.homey.app.getConnectionLabel(true)).catch(()=>{});const active=parcels.filter(p=>!p.delivered),latest=active[0]||parcels[0]||null;const values={dhl_express_parcel_count:active.length,dhl_express_total_count:parcels.length,dhl_express_status:latest?.status||'DHL Express',dhl_express_tracking:String(latest?.tracking||''),dhl_express_sender:String(latest?.sender||''),dhl_express_receiver:String(latest?.receiver||''),dhl_express_delivery_date:this._fmtDate(latest?.deliveryDate),dhl_express_delivery_window:this._window(latest),dhl_express_service:String(latest?.service||''),dhl_express_origin:String(latest?.origin||''),dhl_express_destination:String(latest?.destination||''),dhl_express_last_event:String(latest?.lastEvent||''),dhl_express_delivered:Boolean(latest?.delivered),dhl_express_last_update:this._formatNow()};for(const[k,v]of Object.entries(values))if(this.hasCapability(k))await this.setCapabilityValue(k,v).catch(()=>{});return true}catch(e){this.error('DHL Express refresh',e);if(/session rejected|401|403/i.test(e.message)){await this.setStoreValue('connected',false);await this.setCapabilityValue('myparcel_connection_status',this.homey.app.getConnectionLabel(false)).catch(()=>{})}throw e}}
  hasPackagesUnderway(){return(this._parcels||[]).some(p=>!p.delivered)}
  hasDeliveryWindow(){const p=this._last();return Boolean(p&&(p.deliveryWindow||p.deliveryWindowFrom||p.deliveryWindowTo))}
  isConnected(){return this.getStoreValue('connected')===true}
- getWidgetData(){return{parcels:this._parcels||[],authenticated:Boolean(this._code()),updatedAt:new Date().toISOString()}}
+ getWidgetData(){return{parcels:this._parcels||[],authenticated:this._mode()==='direct'?Boolean(this._email()&&this._password()):Boolean(this._code()),updatedAt:new Date().toISOString()}}
 };
