@@ -1,1 +1,41 @@
-<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><style>:dir(rtl){direction:rtl;text-align:right}.logo{text-align:center;margin:8px 0 22px}.logo img{max-width:220px;max-height:90px}.help{line-height:1.45}</style></head><body><div class="logo"><img src="../assets/dhl-express-logo.svg" alt="DHL Express"></div><h2>DHL Express</h2><p class="help">Sign in normally to DHLPass / MyDHL+ with the <b>DHL Express Homey Login Helper</b>. Open <b>Manage Shipments → All Shipments</b> once, then copy the generated MyDHL+ session code and paste it below. This links your MyDHL+ account to this Homey device.</p><div class="homey-form-group"><label class="homey-form-label">MyDHL+ session code</label><textarea id="sessionCode" class="homey-form-textarea" rows="6" autocomplete="off"></textarea></div><button id="connect" class="homey-button-primary-full">Connect DHL Express</button><script>connect.onclick=async()=>{connect.disabled=true;try{const r=await Homey.emit('connect',{sessionCode:sessionCode.value.trim()});await Homey.done()}catch(e){Homey.alert(e.message||String(e));connect.disabled=false}}</script></body></html>
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+body{padding:0 4px 24px}.logo{display:flex;align-items:center;justify-content:center;width:100%;min-height:92px;margin:8px 0 18px}.logo img{display:block;width:auto;max-width:220px;height:auto;max-height:90px;object-fit:contain}.hint{opacity:.72;font-size:12px;line-height:1.45}.status{margin:12px 0;text-align:center;font-size:12px;opacity:.8}.fallback{margin-top:20px;padding-top:16px;border-top:1px solid rgba(127,127,127,.25)}.fallback summary{cursor:pointer;font-weight:700}.hidden{display:none}
+</style></head><body>
+<div class="logo"><img src="../assets/dhl-express-logo.svg" alt="DHL Express"></div>
+<h1 class="homey-title">DHL Express</h1>
+<p class="homey-subtitle">Log rechtstreeks in met je MyDHL+ / DHLPass-account. Dit werkt hetzelfde als de DHL Parcel-koppeling zolang DHLPass geen extra browsercontrole vereist.</p>
+
+<div class="homey-form-group"><label class="homey-form-label" for="email">E-mailadres</label><input id="email" class="homey-form-input" type="email" autocomplete="username"></div>
+<div class="homey-form-group"><label class="homey-form-label" for="password">Wachtwoord</label><input id="password" class="homey-form-input" type="password" autocomplete="current-password"></div>
+<div class="homey-form-group"><label class="homey-form-label" for="otp">Verificatiecode <span class="hint">(alleen invullen als DHLPass daarom vraagt)</span></label><input id="otp" class="homey-form-input" type="text" inputmode="numeric" autocomplete="one-time-code"></div>
+<button id="connect" class="homey-button-primary-full">Account koppelen</button>
+<div id="status" class="status"></div>
+
+<details class="fallback"><summary>Browserhelper gebruiken</summary>
+<p class="hint">Als DHLPass de directe login blokkeert of een interactieve controle vereist, gebruik dan de DHL Express Homey Login Helper en plak hier de DHLEXPRESS1-code.</p>
+<div class="homey-form-group"><label class="homey-form-label" for="sessionCode">MyDHL+ sessiecode</label><textarea id="sessionCode" class="homey-form-textarea" rows="5" autocomplete="off"></textarea></div>
+<button id="connectHelper" class="homey-button-secondary-full">Koppelen met helpercode</button>
+</details>
+
+<script>
+connect.onclick=async()=>{
+ if(!email.value.trim()||!password.value)return Homey.alert('Vul e-mailadres en wachtwoord in.');
+ connect.disabled=true;status.textContent='DHLPass-account controleren…';
+ try{
+  const r=await Homey.emit('login_dhl_express',{email:email.value.trim(),password:password.value,otp:otp.value.trim()});
+  status.textContent='DHL Express opnieuw gekoppeld.';Homey.done();
+ }catch(e){
+  status.textContent='';
+  const msg=e?.message||String(e);
+  Homey.alert(msg);
+ }finally{connect.disabled=false}
+};
+connectHelper.onclick=async()=>{
+ const code=sessionCode.value.trim();if(!code)return Homey.alert('Plak eerst de DHLEXPRESS1-sessiecode.');
+ connectHelper.disabled=true;
+ try{await Homey.emit('connect_helper',{sessionCode:code});Homey.done()}
+ catch(e){Homey.alert(e?.message||String(e))}
+ finally{connectHelper.disabled=false}
+};
+</script></body></html>
