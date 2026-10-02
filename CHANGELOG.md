@@ -1,4 +1,7 @@
 ## 0.3.1 — DHL Express
+- Direct MyDHL+ / DHLPass login is now the primary DHL Express pairing method: enter email address and password directly in Homey, with an optional verification-code field when DHLPass requests one.
+- DHL Express keeps the Chrome helper as a fallback only for browser-only DHLPass challenges.
+- Fixed the DHL Express helper repeatedly opening result tabs and broadened shipment-request capture across DHL hosts.
 - Added **DHL Express** as a separate international carrier alongside DHL Parcel.
 - Added MyDHL+ / DHLPass account linking using a reusable signed-in web session.
 - Added automatic DHL Express account shipment discovery; no manual tracking-number list is required as the normal workflow.
