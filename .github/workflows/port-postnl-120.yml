@@ -1,0 +1,284 @@
+name: Port PostNL 1.1.13 and 1.2.0 into MyParcel
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/port-postnl-120.yml'
+permissions:
+  contents: write
+jobs:
+  port:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Fetch standalone PostNL 1.2.0 reference
+        run: git clone --depth 1 https://github.com/LRvdLinden/nl.lrvdlinden.postnl.git /tmp/postnl
+      - name: Port PostNL implementation
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp lib/postnl-api.js /tmp/myparcel-postnl-api-before.js
+          cp drivers/postnl/device.js /tmp/myparcel-postnl-device-before.js
+
+          # API + delivery image renderer: use the exact current standalone PostNL 1.2.0 implementation.
+          cp /tmp/postnl/lib/postnl-api.js lib/postnl-api.js
+          cp /tmp/postnl/lib/delivery-image.js lib/delivery-image.js
+
+          # 1.2.0 capability artwork, stored in MyParcel's shared capability-assets folder.
+          cp /tmp/postnl/assets/package.svg assets/capabilities/package.svg
+          cp /tmp/postnl/assets/delivery.svg assets/capabilities/delivery.svg
+
+          # Device/driver logic from PostNL 1.2.0, then adapt to MyParcel's postnl driver id
+          # and keep MyParcel's strict live-only mail persistence behaviour.
+          cp /tmp/postnl/drivers/account/device.js drivers/postnl/device.js
+          cp /tmp/postnl/drivers/account/driver.js drivers/postnl/driver.js
+
+          python - <<'PY'
+          from pathlib import Path
+          import json, re
+
+          # ---------------- device.js ----------------
+          p=Path('drivers/postnl/device.js')
+          s=p.read_text()
+          s=s.replace("this.homey.drivers.getDriver('account')", "this.homey.drivers.getDriver('postnl')")
+
+          # Never restore locally saved PostNL mail/scans. Packages/account metadata may persist.
+          old="this.snapshot = this.getStoreValue('snapshot') || { letters: [], liveLetters: [], packages: [], updatedAt: null };"
+          new="""const storedSnapshot = this.getStoreValue('snapshot') || { packages: [], updatedAt: null };\n    this.snapshot = { ...storedSnapshot, letters: [], liveLetters: [] };\n    if ((storedSnapshot.letters || []).length || (storedSnapshot.liveLetters || []).length) {\n      await this.setStoreValue('snapshot', { ...storedSnapshot, letters: [], liveLetters: [] });\n    }"""
+          if old not in s: raise SystemExit('startup snapshot marker missing')
+          s=s.replace(old,new,1)
+
+          # Legacy import also strips mail history.
+          s=s.replace(
+            "this.snapshot = snapshot;\n      await this.setStoreValue('snapshot', snapshot);",
+            "this.snapshot = { ...snapshot, letters: [], liveLetters: [] };\n      await this.setStoreValue('snapshot', { ...snapshot, letters: [], liveLetters: [] });"
+          )
+
+          # Persist only package/account state after a successful live sync.
+          s=s.replace(
+            "this.snapshot = current;\n      await this.setStoreValue('snapshot', current);",
+            "this.snapshot = current;\n      await this.setStoreValue('snapshot', { ...current, letters: [], liveLetters: [] });",
+            1
+          )
+
+          # Same on failure: stale mail must not return after restart.
+          s=s.replace(
+            "await this.setStoreValue('snapshot', failed);",
+            "await this.setStoreValue('snapshot', { ...failed, letters: [], liveLetters: [] });"
+          )
+
+          # Keep MyParcel's one-time Timeline notification for expired credentials.
+          old_device=Path('/tmp/myparcel-postnl-device-before.js').read_text()
+          m=re.search(r"\n  async _notifyAuthExpiredOnce\(\) \{[\s\S]*?\n  \}\n", old_device)
+          if m and '_notifyAuthExpiredOnce()' not in s:
+              insert_at=s.index('\n  _flowDriver()')
+              s=s[:insert_at]+m.group(0)+s[insert_at:]
+          if '_notifyAuthExpiredOnce()' in s:
+              target="await this.triggerLoginExpired().catch(this.error);\n          await this.setStoreValue('loginExpiredFlowNotified', true);"
+              repl="await this.triggerLoginExpired().catch(this.error);\n          await this._notifyAuthExpiredOnce().catch(this.error);\n          await this.setStoreValue('loginExpiredFlowNotified', true);"
+              if target in s: s=s.replace(target,repl,1)
+
+          p.write_text(s)
+
+          # ---------------- driver.js ----------------
+          p=Path('drivers/postnl/driver.js')
+          s=p.read_text().replace("getDriver('account')", "getDriver('postnl')")
+          s=s.replace("name: this.homey.i18n.getLanguage() === 'nl' ? 'Mijn PostNL' : 'My PostNL',", "name: 'PostNL',")
+          s=s.replace("snapshot: { letters: [], liveLetters: [], packages: [], updatedAt: null, account: profile || null, mailApiStatus: 'unknown', mailApiError: null },",
+                      "snapshot: { letters: [], liveLetters: [], packages: [], updatedAt: null, account: profile || null, mailApiStatus: 'unknown', mailApiError: null },\n        authExpiredNotified: false,")
+          p.write_text(s)
+
+          # ---------------- flow compose ----------------
+          cur_path=Path('drivers/postnl/driver.flow.compose.json')
+          ref_path=Path('/tmp/postnl/drivers/account/driver.flow.compose.json')
+          cur=json.loads(cur_path.read_text())
+          ref=json.loads(ref_path.read_text())
+          for section in ('triggers','conditions','actions'):
+              dest=cur.setdefault(section,[])
+              by_id={c.get('id'):c for c in dest}
+              for card in ref.get(section,[]):
+                  cid=card.get('id')
+                  if cid in by_id:
+                      # Keep MyParcel's existing 13-language card title, but merge any new PostNL 1.1.13 tokens.
+                      existing=by_id[cid]
+                      if 'tokens' in card:
+                          old_tokens={t.get('name'):t for t in existing.setdefault('tokens',[])}
+                          for token in card.get('tokens',[]):
+                              if token.get('name') not in old_tokens:
+                                  existing['tokens'].append(token)
+                  else:
+                      dest.append(card)
+          cur_path.write_text(json.dumps(cur,ensure_ascii=False,indent=2)+'\n')
+
+          # ---------------- driver compose ----------------
+          dpath=Path('drivers/postnl/driver.compose.json')
+          driver=json.loads(dpath.read_text())
+          extra=['postnl_package_status','postnl_package_sender','postnl_package_receiver','postnl_package_tracking','postnl_package_event','postnl_package_status_time','postnl_package_delivered','postnl_package_shipment_type']
+          caps=driver.setdefault('capabilities',[])
+          anchor=caps.index('postnl_delivery_window')+1 if 'postnl_delivery_window' in caps else len(caps)
+          for cap in reversed(extra):
+              if cap not in caps: caps.insert(anchor,cap)
+          dpath.write_text(json.dumps(driver,ensure_ascii=False,indent=2)+'\n')
+
+          # ---------------- generated app.json ----------------
+          ap=Path('app.json')
+          app=json.loads(ap.read_text())
+          ref_app=json.loads(Path('/tmp/postnl/app.json').read_text())
+          extra=['postnl_package_status','postnl_package_sender','postnl_package_receiver','postnl_package_tracking','postnl_package_event','postnl_package_status_time','postnl_package_delivered','postnl_package_shipment_type']
+          app_caps=app.setdefault('capabilities',{})
+          for cap in extra:
+              definition=json.loads(json.dumps(ref_app['capabilities'][cap]))
+              icon=definition.get('icon','')
+              if icon=='/assets/package.svg': definition['icon']='/assets/capabilities/package.svg'
+              if icon=='/assets/delivery.svg': definition['icon']='/assets/capabilities/delivery.svg'
+              app_caps[cap]=definition
+          if 'postnl_package_count' in app_caps: app_caps['postnl_package_count']['icon']='/assets/capabilities/package.svg'
+          if 'postnl_delivery_window' in app_caps: app_caps['postnl_delivery_window']['icon']='/assets/capabilities/delivery.svg'
+          for cap in extra:
+              if cap in app_caps and app_caps[cap].get('icon')=='/assets/package.svg':
+                  app_caps[cap]['icon']='/assets/capabilities/package.svg'
+
+          postnl=next(d for d in app['drivers'] if d['id']=='postnl')
+          caps=postnl.setdefault('capabilities',[])
+          anchor=caps.index('postnl_delivery_window')+1 if 'postnl_delivery_window' in caps else len(caps)
+          for cap in reversed(extra):
+              if cap not in caps: caps.insert(anchor,cap)
+
+          # Merge PostNL 1.1.13 Flow cards/tokens into MyParcel app.json while preserving
+          # MyParcel's translations on existing cards.
+          device_arg={'type':'device','name':'device','filter':'driver_id=postnl'}
+          for section in ('triggers','conditions','actions'):
+              dest=app.setdefault('flow',{}).setdefault(section,[])
+              by_id={c.get('id'):c for c in dest}
+              for ref_card in ref_app.get('flow',{}).get(section,[]):
+                  cid=ref_card.get('id')
+                  # These are the cards belonging to the PostNL device.
+                  if cid not in {'new_mail','new_package','delivery_window_known','package_status_changed','sync_failed','login_expired','mail_expected','packages_underway','sync_now'}:
+                      continue
+                  if cid in by_id:
+                      existing=by_id[cid]
+                      if 'tokens' in ref_card:
+                          old_tokens={t.get('name'):t for t in existing.setdefault('tokens',[])}
+                          for token in ref_card.get('tokens',[]):
+                              if token.get('name') not in old_tokens: existing['tokens'].append(token)
+                  else:
+                      card=json.loads(json.dumps(ref_card))
+                      card['args']=[device_arg]
+                      dest.append(card)
+          ap.write_text(json.dumps(app,ensure_ascii=False,indent=2)+'\n')
+
+          # ---------------- widget: full long statuses ----------------
+          wp=Path('widgets/myparcel-pakketten/public/index.html')
+          ws=wp.read_text()
+          ws=ws.replace(
+            '.badge{display:block;max-width:120px;padding:5px 8px;border-radius:999px;background:var(--pill);color:var(--pill-text);font-size:10px;font-weight:800;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}',
+            '.badge{display:block;max-width:140px;padding:5px 8px;border-radius:12px;background:var(--pill);color:var(--pill-text);font-size:10px;font-weight:800;text-align:center;white-space:normal;overflow:visible;text-overflow:clip;overflow-wrap:anywhere;line-height:1.18}'
+          )
+          wp.write_text(ws)
+
+          # ---------------- changelogs, still MyParcel 0.3.1 ----------------
+          cp=Path('CHANGELOG.md')
+          cs=cp.read_text()
+          marker='## 0.3.1 — DHL Express\n'
+          bullets=(
+            '- PostNL device updated with the PostNL 1.1.13 feature set: official full Track & Trace statuses/timeline, status code, latest event/time, richer package capabilities and global Flow tokens while Flow cards remain device-specific.\n'
+            '- PostNL now exposes parcel status, sender, receiver, tracking number, latest event, status time, delivered state and shipment type as device capabilities.\n'
+            '- PostNL package status-change detection now uses the official Track & Trace fingerprint and refreshes a disappearing active parcel once to catch its final delivery status.\n'
+            '- Long PostNL statuses wrap in the MyParcel Packages widget and are fully rendered in the My Delivery camera/image token.\n'
+            '- PostNL 1.2.0 capability artwork applied: package-related capabilities use the package icon and Delivery window uses the delivery icon.\n'
+          )
+          if marker in cs and 'PostNL device updated with the PostNL 1.1.13 feature set' not in cs:
+              cs=cs.replace(marker,marker+bullets)
+          cp.write_text(cs)
+
+          hp=Path('.homeychangelog.json')
+          hc=json.loads(hp.read_text())
+          entry=hc.setdefault('0.3.1',{})
+          additions={
+            'en':' PostNL device parity updated to standalone PostNL 1.1.13/1.2.0: full official Track & Trace statuses and timeline data, richer parcel capabilities, global Flow tokens, improved status-change detection, full long-status display and the updated package/delivery capability icons.',
+            'nl':' PostNL-device gelijkgetrokken met standalone PostNL 1.1.13/1.2.0: volledige officiële Track & Trace-statussen en tijdlijndata, uitgebreidere pakket-capabilities, globale Flow-tokens, verbeterde statuswijzigingsdetectie, volledige weergave van lange statussen en de vernieuwde package/delivery capability-iconen.'
+          }
+          for lang,text in additions.items():
+              entry[lang]=str(entry.get(lang,entry.get('en','')))+text
+          hp.write_text(json.dumps(hc,ensure_ascii=False,indent=2)+'\n')
+          PY
+
+      - name: Validate PostNL parity and app
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm ci
+          node --check lib/postnl-api.js
+          node --check lib/delivery-image.js
+          node --check drivers/postnl/driver.js
+          node --check drivers/postnl/device.js
+          python - <<'PY'
+          import json
+          app=json.load(open('app.json'))
+          assert app['version']=='0.3.1'
+          driver=next(d for d in app['drivers'] if d['id']=='postnl')
+          required=['postnl_package_status','postnl_package_sender','postnl_package_receiver','postnl_package_tracking','postnl_package_event','postnl_package_status_time','postnl_package_delivered','postnl_package_shipment_type']
+          for cap in required:
+              assert cap in driver['capabilities'], cap
+              assert cap in app['capabilities'], cap
+          assert app['capabilities']['postnl_delivery_window']['icon']=='/assets/capabilities/delivery.svg'
+          for cap in ['postnl_package_count']+required:
+              if cap!='postnl_package_status_time': assert app['capabilities'][cap]['icon']=='/assets/capabilities/package.svg', cap
+          ids=[x['id'] for x in app['flow']['triggers']]
+          assert 'delivery_window_known' in ids
+          cond=[x['id'] for x in app['flow']['conditions']]
+          assert 'delivery_window_known' in cond
+          src=open('lib/postnl-api.js').read()
+          for term in ['TRACK_API_URL','statusRaw','statusCode','latestStatusEvent','statusFingerprint','refreshPackageTracking']:
+              assert term in src, term
+          dev=open('drivers/postnl/device.js').read()
+          for term in ['_updateGlobalSnapshotTokens','postnl_package_status','status_raw','status_event_time','_packageStatusFingerprint']:
+              assert term in dev, term
+          drv=open('drivers/postnl/driver.js').read()
+          for term in ['_globalTokenDefinitions','ensureGlobalTokens','updateGlobalTokens','updateGlobalEventTokens']:
+              assert term in drv, term
+          PY
+          npx --no-install homey app validate --level debug
+
+      - name: Build complete MyParcel 0.3.1 ZIP
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf /tmp/myparcel-build
+          mkdir -p /tmp/myparcel-build/MyParcel-for-Homey-v0.3.1
+          rsync -a ./ /tmp/myparcel-build/MyParcel-for-Homey-v0.3.1/ \
+            --exclude '.git/' \
+            --exclude '.github/' \
+            --exclude 'node_modules/' \
+            --exclude '.homeybuild/' \
+            --exclude '__MACOSX/' \
+            --exclude 'MyParcel-for-Homey-v0.3.0.zip' \
+            --exclude 'MyParcel-for-Homey-v0.3.1.zip'
+          rm -f MyParcel-for-Homey-v0.3.1.zip
+          (cd /tmp/myparcel-build && zip -qr "$GITHUB_WORKSPACE/MyParcel-for-Homey-v0.3.1.zip" MyParcel-for-Homey-v0.3.1)
+          unzip -t MyParcel-for-Homey-v0.3.1.zip >/dev/null
+          sha256sum MyParcel-for-Homey-v0.3.1.zip
+
+      - name: Commit PostNL parity update
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "LRvdLinden"
+          git config user.email "77990847+LRvdLinden@users.noreply.github.com"
+          git add lib/postnl-api.js lib/delivery-image.js drivers/postnl/driver.js drivers/postnl/device.js drivers/postnl/driver.compose.json drivers/postnl/driver.flow.compose.json app.json assets/capabilities/package.svg assets/capabilities/delivery.svg widgets/myparcel-pakketten/public/index.html CHANGELOG.md .homeychangelog.json
+          git add -f MyParcel-for-Homey-v0.3.1.zip
+          git rm .github/workflows/port-postnl-120.yml
+          git commit -m "Port PostNL 1.1.13 and 1.2.0 features into MyParcel"
+          git push origin HEAD:main
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: MyParcel-for-Homey-v0.3.1-postnl-120
+          path: MyParcel-for-Homey-v0.3.1.zip
+          compression-level: 0
