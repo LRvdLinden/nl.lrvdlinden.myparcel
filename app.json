@@ -77,6 +77,14 @@
         "postnl_next_delivery",
         "postnl_delivery_date",
         "postnl_delivery_window",
+        "postnl_package_status",
+        "postnl_package_sender",
+        "postnl_package_receiver",
+        "postnl_package_tracking",
+        "postnl_package_event",
+        "postnl_package_status_time",
+        "postnl_package_delivered",
+        "postnl_package_shipment_type",
         "postnl_status",
         "postnl_last_update"
       ],
@@ -1296,7 +1304,7 @@
       "setable": false,
       "decimals": 0,
       "insights": true,
-      "icon": "/assets/package.svg"
+      "icon": "/assets/capabilities/package.svg"
     },
     "postnl_status": {
       "type": "string",
@@ -3703,6 +3711,95 @@
       "uiComponent": "sensor",
       "insights": false,
       "icon": "/assets/capabilities/update.svg"
+    },
+    "postnl_package_status": {
+      "type": "string",
+      "title": {
+        "en": "Parcel status",
+        "nl": "Pakketstatus"
+      },
+      "getable": true,
+      "setable": false,
+      "insights": false,
+      "icon": "/assets/capabilities/package.svg"
+    },
+    "postnl_package_sender": {
+      "type": "string",
+      "title": {
+        "en": "Parcel sender",
+        "nl": "Afzender pakket"
+      },
+      "getable": true,
+      "setable": false,
+      "insights": false,
+      "icon": "/assets/capabilities/package.svg"
+    },
+    "postnl_package_receiver": {
+      "type": "string",
+      "title": {
+        "en": "Parcel receiver",
+        "nl": "Ontvanger pakket"
+      },
+      "getable": true,
+      "setable": false,
+      "insights": false,
+      "icon": "/assets/capabilities/package.svg"
+    },
+    "postnl_package_tracking": {
+      "type": "string",
+      "title": {
+        "en": "Tracking number",
+        "nl": "Trackingnummer"
+      },
+      "getable": true,
+      "setable": false,
+      "insights": false,
+      "icon": "/assets/capabilities/package.svg"
+    },
+    "postnl_package_event": {
+      "type": "string",
+      "title": {
+        "en": "Latest parcel event",
+        "nl": "Laatste pakketgebeurtenis"
+      },
+      "getable": true,
+      "setable": false,
+      "insights": false,
+      "icon": "/assets/capabilities/package.svg"
+    },
+    "postnl_package_status_time": {
+      "type": "string",
+      "title": {
+        "en": "Parcel status time",
+        "nl": "Tijdstip pakketstatus"
+      },
+      "getable": true,
+      "setable": false,
+      "insights": false,
+      "icon": "/assets/clock.svg"
+    },
+    "postnl_package_delivered": {
+      "type": "boolean",
+      "title": {
+        "en": "Parcel delivered",
+        "nl": "Pakket bezorgd"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "insights": true,
+      "icon": "/assets/capabilities/package.svg"
+    },
+    "postnl_package_shipment_type": {
+      "type": "string",
+      "title": {
+        "en": "Shipment type",
+        "nl": "Type zending"
+      },
+      "getable": true,
+      "setable": false,
+      "insights": false,
+      "icon": "/assets/capabilities/package.svg"
     }
   },
   "flow": {
@@ -4406,6 +4503,38 @@
               "ko": "내 배송 이미지",
               "ar": "صورة «توصيلي»"
             }
+          },
+          {
+            "name": "status_raw",
+            "type": "string",
+            "title": {
+              "en": "Official PostNL status",
+              "nl": "Officiële PostNL-status"
+            }
+          },
+          {
+            "name": "status_code",
+            "type": "string",
+            "title": {
+              "en": "Official PostNL status code",
+              "nl": "Officiële PostNL-statuscode"
+            }
+          },
+          {
+            "name": "status_event",
+            "type": "string",
+            "title": {
+              "en": "Latest PostNL event",
+              "nl": "Laatste PostNL-gebeurtenis"
+            }
+          },
+          {
+            "name": "status_event_time",
+            "type": "string",
+            "title": {
+              "en": "Latest status update",
+              "nl": "Laatste statusupdate"
+            }
           }
         ]
       },
@@ -4945,6 +5074,38 @@
               "pl": "Obraz „Moja dostawa”",
               "ko": "내 배송 이미지",
               "ar": "صورة «توصيلي»"
+            }
+          },
+          {
+            "name": "status_raw",
+            "type": "string",
+            "title": {
+              "en": "Official PostNL status",
+              "nl": "Officiële PostNL-status"
+            }
+          },
+          {
+            "name": "status_code",
+            "type": "string",
+            "title": {
+              "en": "Official PostNL status code",
+              "nl": "Officiële PostNL-statuscode"
+            }
+          },
+          {
+            "name": "status_event",
+            "type": "string",
+            "title": {
+              "en": "Latest PostNL event",
+              "nl": "Laatste PostNL-gebeurtenis"
+            }
+          },
+          {
+            "name": "status_event_time",
+            "type": "string",
+            "title": {
+              "en": "Latest status update",
+              "nl": "Laatste statusupdate"
             }
           }
         ]
@@ -13191,6 +13352,263 @@
             }
           }
         ]
+      },
+      {
+        "id": "delivery_window_known",
+        "highlight": true,
+        "title": {
+          "en": "A delivery window became available",
+          "nl": "Er is een bezorgvenster bekend"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=postnl"
+          }
+        ],
+        "tokens": [
+          {
+            "name": "id",
+            "type": "string",
+            "title": {
+              "en": "Shipment ID",
+              "nl": "Zending-ID"
+            }
+          },
+          {
+            "name": "sender",
+            "type": "string",
+            "title": {
+              "en": "Sender",
+              "nl": "Afzender"
+            }
+          },
+          {
+            "name": "receiver",
+            "type": "string",
+            "title": {
+              "en": "Receiver",
+              "nl": "Ontvanger"
+            }
+          },
+          {
+            "name": "title",
+            "type": "string",
+            "title": {
+              "en": "Parcel",
+              "nl": "Pakket"
+            }
+          },
+          {
+            "name": "barcode",
+            "type": "string",
+            "title": {
+              "en": "Barcode",
+              "nl": "Barcode"
+            }
+          },
+          {
+            "name": "status",
+            "type": "string",
+            "title": {
+              "en": "Status",
+              "nl": "Status"
+            }
+          },
+          {
+            "name": "status_raw",
+            "type": "string",
+            "title": {
+              "en": "Official PostNL status",
+              "nl": "Officiële PostNL-status"
+            }
+          },
+          {
+            "name": "status_code",
+            "type": "string",
+            "title": {
+              "en": "Official PostNL status code",
+              "nl": "Officiële PostNL-statuscode"
+            }
+          },
+          {
+            "name": "status_event",
+            "type": "string",
+            "title": {
+              "en": "Latest PostNL event",
+              "nl": "Laatste PostNL-gebeurtenis"
+            }
+          },
+          {
+            "name": "status_event_time",
+            "type": "string",
+            "title": {
+              "en": "Latest status update",
+              "nl": "Laatste statusupdate"
+            }
+          },
+          {
+            "name": "delivery_date",
+            "type": "string",
+            "title": {
+              "en": "Delivery date",
+              "nl": "Bezorgdatum"
+            }
+          },
+          {
+            "name": "delivery_window",
+            "type": "string",
+            "title": {
+              "en": "Delivery window",
+              "nl": "Bezorgvenster"
+            }
+          },
+          {
+            "name": "delivery_window_from",
+            "type": "string",
+            "title": {
+              "en": "Delivery window from",
+              "nl": "Bezorgvenster vanaf"
+            }
+          },
+          {
+            "name": "delivery_window_to",
+            "type": "string",
+            "title": {
+              "en": "Delivery window to",
+              "nl": "Bezorgvenster tot"
+            }
+          },
+          {
+            "name": "delivery_window_type",
+            "type": "string",
+            "title": {
+              "en": "Delivery window type",
+              "nl": "Type bezorgvenster"
+            }
+          },
+          {
+            "name": "details_url",
+            "type": "string",
+            "title": {
+              "en": "Tracking URL",
+              "nl": "Tracking-URL"
+            }
+          },
+          {
+            "name": "shipment_type",
+            "type": "string",
+            "title": {
+              "en": "Shipment type",
+              "nl": "Zendingstype"
+            }
+          },
+          {
+            "name": "delivery_address_type",
+            "type": "string",
+            "title": {
+              "en": "Delivery address type",
+              "nl": "Type bezorgadres"
+            }
+          },
+          {
+            "name": "direction",
+            "type": "string",
+            "title": {
+              "en": "Direction",
+              "nl": "Richting"
+            }
+          },
+          {
+            "name": "created_at",
+            "type": "string",
+            "title": {
+              "en": "Created at",
+              "nl": "Aangemaakt op"
+            }
+          },
+          {
+            "name": "delivered",
+            "type": "boolean",
+            "title": {
+              "en": "Delivered",
+              "nl": "Bezorgd"
+            }
+          },
+          {
+            "name": "shared_from",
+            "type": "string",
+            "title": {
+              "en": "Shared from",
+              "nl": "Gedeeld via"
+            }
+          },
+          {
+            "name": "source_account_id",
+            "type": "string",
+            "title": {
+              "en": "Source account ID",
+              "nl": "Bronaccount-ID"
+            }
+          },
+          {
+            "name": "package_status_text",
+            "type": "string",
+            "title": {
+              "en": "Package status",
+              "nl": "Pakketstatus"
+            }
+          },
+          {
+            "name": "package_window_text",
+            "type": "string",
+            "title": {
+              "en": "Delivery window text",
+              "nl": "Tekst bezorgvenster"
+            }
+          },
+          {
+            "name": "package_delivery_date",
+            "type": "string",
+            "title": {
+              "en": "Package delivery date",
+              "nl": "Bezorgdatum pakket"
+            }
+          },
+          {
+            "name": "package_sender",
+            "type": "string",
+            "title": {
+              "en": "Package sender",
+              "nl": "Afzender pakket"
+            }
+          },
+          {
+            "name": "package_tracking",
+            "type": "string",
+            "title": {
+              "en": "Package tracking number",
+              "nl": "Trackingnummer pakket"
+            }
+          },
+          {
+            "name": "package_image_available",
+            "type": "boolean",
+            "title": {
+              "en": "My delivery image available",
+              "nl": "Afbeelding Mijn Bezorging beschikbaar"
+            }
+          },
+          {
+            "name": "package_image",
+            "type": "image",
+            "title": {
+              "en": "My delivery image",
+              "nl": "Afbeelding Mijn Bezorging"
+            }
+          }
+        ]
       }
     ],
     "conditions": [
@@ -13916,6 +14334,20 @@
             "type": "device",
             "name": "device",
             "filter": "driver_id=dhl-express"
+          }
+        ]
+      },
+      {
+        "id": "delivery_window_known",
+        "title": {
+          "en": "A delivery window is known",
+          "nl": "Er is een bezorgvenster bekend"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=postnl"
           }
         ]
       }

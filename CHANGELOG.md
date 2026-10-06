@@ -1,4 +1,9 @@
 ## 0.3.1 — DHL Express
+- PostNL device updated with the PostNL 1.1.13 feature set: official full Track & Trace statuses/timeline, status code, latest event/time, richer package capabilities and global Flow tokens while Flow cards remain device-specific.
+- PostNL now exposes parcel status, sender, receiver, tracking number, latest event, status time, delivered state and shipment type as device capabilities.
+- PostNL package status-change detection now uses the official Track & Trace fingerprint and refreshes a disappearing active parcel once to catch its final delivery status.
+- Long PostNL statuses wrap in the MyParcel Packages widget and are fully rendered in the My Delivery camera/image token.
+- PostNL 1.2.0 capability artwork applied: package-related capabilities use the package icon and Delivery window uses the delivery icon.
 - Direct MyDHL+ / DHLPass login is now the primary DHL Express pairing method: enter email address and password directly in Homey, with an optional verification-code field when DHLPass requests one.
 - DHL Express keeps the Chrome helper as a fallback only for browser-only DHLPass challenges.
 - Fixed the DHL Express helper repeatedly opening result tabs and broadened shipment-request capture across DHL hosts.

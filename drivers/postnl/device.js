@@ -4,7 +4,7 @@ const Homey = require('homey');
 const fs = require('fs');
 const path = require('path');
 const PostNLApi = require('../../lib/postnl-api');
-const localizePackageStatus = require('../../lib/status-i18n.js');
+const localizePackageStatus = require('../../lib/status-i18n');
 const { renderDeliveryCard, renderNoPackageCard, loadDeliveryVan, hhmm } = require('../../lib/delivery-image');
 
 class PostNLDevice extends Homey.Device {
@@ -30,12 +30,6 @@ class PostNLDevice extends Homey.Device {
       await this.setStoreValue('snapshot', { ...storedSnapshot, letters: [], liveLetters: [] });
     }
 
-    this._flowTriggerNewMail = this.homey.flow.getDeviceTriggerCard('new_mail');
-    this._flowTriggerNewPackage = this.homey.flow.getDeviceTriggerCard('new_package');
-    this._flowTriggerPackageStatusChanged = this.homey.flow.getDeviceTriggerCard('package_status_changed');
-    this._flowTriggerSyncFailed = this.homey.flow.getDeviceTriggerCard('sync_failed');
-    this._flowTriggerLoginExpired = this.homey.flow.getDeviceTriggerCard('login_expired');
-
     await this._ensureCapabilities();
     await this._ensurePackageCameraImage();
     this._startPackageImageRefresh();
@@ -51,7 +45,7 @@ class PostNLDevice extends Homey.Device {
   hasAccountCredentials() { return this.api?.hasCredentials() || Boolean(this.getStoreValue('auth')); }
 
   async _ensureCapabilities() {
-    for (const capability of ['postnl_delivery_date', 'postnl_delivery_window']) {
+    for (const capability of ['postnl_delivery_date', 'postnl_delivery_window', 'postnl_package_status', 'postnl_package_sender', 'postnl_package_receiver', 'postnl_package_tracking', 'postnl_package_event', 'postnl_package_status_time', 'postnl_package_delivered', 'postnl_package_shipment_type']) {
       if (!this.hasCapability(capability)) await this.addCapability(capability);
     }
   }
@@ -62,14 +56,12 @@ class PostNLDevice extends Homey.Device {
       this.snapshot = { ...snapshot, letters: [], liveLetters: [] };
       await this.setStoreValue('snapshot', { ...snapshot, letters: [], liveLetters: [] });
     }
-    await this.setStoreValue('authExpiredNotified', false);
     await this.applySnapshot(this.snapshot, null);
   }
 
   async updateCredentials(auth, profile = null) {
     await this.api.replaceAuth(auth);
     if (profile?.username) await this.setStoreValue('username', profile.username);
-    await this.setStoreValue('authExpiredNotified', false);
     await this.setAvailable().catch(this.error);
     return this.sync({ reason: 'repair-login', force: true });
   }
@@ -91,17 +83,15 @@ class PostNLDevice extends Homey.Device {
     const previous = this.snapshot || { letters: [], liveLetters: [], packages: [] };
     try {
       const live = await this.api.fetchAll();
-      // PostNL mail is live-only. The device mirrors exactly what the MyMail
-      // endpoint returns now and never merges it with previously seen items.
-      const liveLetters = await Promise.all((Array.isArray(live.letters) ? live.letters : []).map(async item => {
-        if (!item?.imageUrl) return item;
-        try {
-          const imageData = await this.api.fetchImage(item.imageUrl);
-          return { ...item, imageData };
-        } catch (error) {
-          this.log('Live PostNL mail image unavailable', item.id || '', error.message);
-          return item;
+      // My Post is live-only: keep only the mail items currently returned by PostNL.
+      // Images are hydrated for the current response only; removed items are not archived locally.
+      const liveLetters = await Promise.all((live.letters || []).map(async item => {
+        const next = { ...item };
+        if (item.imageUrl) {
+          try { next.imageData = await this.api.fetchImage(item.imageUrl); }
+          catch (error) { this.log('Live mail image fetch failed', item.id, error.message); }
         }
+        return next;
       }));
       const current = {
         letters: liveLetters,
@@ -114,28 +104,46 @@ class PostNLDevice extends Homey.Device {
         reason,
       };
       this.snapshot = current;
-      // Do not persist mail items or scans. Only package/account state survives
-      // an app restart; mail is fetched fresh from PostNL.
       await this.setStoreValue('snapshot', { ...current, letters: [], liveLetters: [] });
       await this.handleSnapshotChanges(previous, current);
+      if (current.mailApiStatus === 'temporarily_unavailable') {
+        const previousMailError = String(previous.mailApiError || '');
+        const currentMailError = String(current.mailApiError || 'Mijn PostNL is tijdelijk niet beschikbaar');
+        if (previous.mailApiStatus !== 'temporarily_unavailable' || previousMailError !== currentMailError) {
+          await this.triggerSyncFailed(currentMailError).catch(this.error);
+        }
+      }
+      await this.setStoreValue('loginExpiredFlowNotified', false);
       await this.applySnapshot(current, null);
-      await this.setStoreValue('authExpiredNotified', false);
       return current;
     } catch (error) {
       const authExpired = error?.code === 'AUTH_REAUTH_REQUIRED' || error?.code === 'AUTH_EXPIRED' || [401, 403].includes(Number(error?.statusCode));
       this.error('[PostNLDevice] sync_failed', JSON.stringify({ reason, ...this.api.safeErrorInfo(error), ...this.api.getAuthDiagnostics() }));
       if (authExpired) {
-        const alreadyNotified = this.getStoreValue('authExpiredNotified') === true;
-        if (!alreadyNotified) {
+        const alreadyTriggered = this.getStoreValue('loginExpiredFlowNotified') === true;
+        if (!alreadyTriggered) {
           await this.triggerLoginExpired().catch(this.error);
           await this._notifyAuthExpiredOnce().catch(this.error);
+          await this.setStoreValue('loginExpiredFlowNotified', true);
         }
       }
       await this.triggerSyncFailed(error.message).catch(this.error);
-      await this.applySnapshot(previous, error);
+      // Never expose stale mail when live PostNL retrieval fails.
+      const failed = {
+        ...previous,
+        letters: [],
+        liveLetters: [],
+        updatedAt: new Date().toISOString(),
+        mailApiStatus: 'temporarily_unavailable',
+        mailApiError: error.message || String(error),
+      };
+      this.snapshot = failed;
+      await this.setStoreValue('snapshot', { ...failed, letters: [], liveLetters: [] });
+      await this.applySnapshot(failed, error);
       throw error;
     }
   }
+
 
   async _notifyAuthExpiredOnce() {
     if (this.getStoreValue('authExpiredNotified') === true) return;
@@ -160,22 +168,37 @@ class PostNLDevice extends Homey.Device {
     await this.setStoreValue('authExpiredNotified', true);
   }
 
-  async triggerNewMail(tokens = {}) { return this._flowTriggerNewMail.trigger(this, tokens, {}); }
-  async triggerNewPackage(tokens = {}) { return this._flowTriggerNewPackage.trigger(this, tokens, {}); }
-  async triggerPackageStatusChanged(tokens = {}) { return this._flowTriggerPackageStatusChanged.trigger(this, tokens, {}); }
-  async triggerSyncFailed(message = '') { return this._flowTriggerSyncFailed.trigger(this, { error: String(message || '') }, {}); }
-  async triggerLoginExpired() { return this._flowTriggerLoginExpired.trigger(this, {}, {}); }
+  _flowDriver() {
+    return this.driver || this.homey.drivers.getDriver('postnl');
+  }
+
+  async _triggerDeviceFlow(cardId, tokens = {}, state = {}) {
+    return this._flowDriver().triggerDeviceFlow(cardId, this, tokens, state);
+  }
+
+  async triggerNewMail(tokens = {}) { return this._triggerDeviceFlow('new_mail', tokens); }
+  async triggerNewPackage(tokens = {}) { return this._triggerDeviceFlow('new_package', tokens); }
+  async triggerDeliveryWindowKnown(tokens = {}) { return this._triggerDeviceFlow('delivery_window_known', tokens); }
+  async triggerPackageStatusChanged(tokens = {}) { return this._triggerDeviceFlow('package_status_changed', tokens); }
+  async triggerSyncFailed(message = '') { return this._triggerDeviceFlow('sync_failed', { error: String(message || '') }); }
+  async triggerLoginExpired() { return this._triggerDeviceFlow('login_expired', {}); }
 
   async _packageTokens(parcel = {}) {
     const packageImage = await this.getPackageDeliveryImage(parcel).catch(() => null);
-    const status = localizePackageStatus(this.homey, parcel.status) || '';
+    const status = String(parcel.statusRaw || parcel.latestStatusEvent || parcel.status || localizePackageStatus(this.homey, parcel.status) || '').trim();
     const deliveryDate = parcel.deliveryDate ? this.api.formatDateDMY(parcel.deliveryDate) : '';
     const deliveryWindow = parcel.deliveryWindow || this.api.formatWindow(parcel.deliveryWindowFrom, parcel.deliveryWindowTo) || '';
     const sender = parcel.sender || parcel.title || '';
     const tracking = parcel.barcode || parcel.id || '';
+    const statusRaw = String(parcel.statusRaw || parcel.status || status || '');
+    const statusEventTime = parcel.statusChangedAt ? this.api.formatDateTime(parcel.statusChangedAt) || String(parcel.statusChangedAt) : '';
     const tokens = {
       id: parcel.id || '', sender, receiver: parcel.receiver || '',
       title: parcel.title || parcel.sender || parcel.barcode || 'PostNL', barcode: parcel.barcode || '', status,
+      status_raw: statusRaw,
+      status_code: String(parcel.statusCode || ''),
+      status_event: String(parcel.latestStatusEvent || statusRaw || ''),
+      status_event_time: statusEventTime,
       delivery_date: deliveryDate, delivery_window: deliveryWindow,
       delivery_window_from: parcel.deliveryWindowFrom ? this.api.formatTime(parcel.deliveryWindowFrom) : '',
       delivery_window_to: parcel.deliveryWindowTo ? this.api.formatTime(parcel.deliveryWindowTo) : '',
@@ -200,9 +223,26 @@ class PostNLDevice extends Homey.Device {
     return tokens;
   }
 
+  _hasDeliveryWindow(parcel = {}) {
+    return Boolean(
+      String(parcel.deliveryWindow || '').trim()
+      || String(parcel.deliveryWindowFrom || '').trim()
+      || String(parcel.deliveryWindowTo || '').trim()
+    );
+  }
+
+  _packageStatusFingerprint(parcel = {}) {
+    return String(parcel.statusFingerprint || [
+      parcel.statusRaw || parcel.status || '',
+      parcel.statusCode || '',
+      parcel.statusChangedAt || '',
+      parcel.latestStatusEvent || '',
+      parcel.deliveryWindow || '',
+      parcel.deliveryDate || '',
+    ].join('|'));
+  }
+
   async handleSnapshotChanges(previous = {}, current = {}) {
-    // For upgrades from <=1.1.2, fall back to the old archive list once. This avoids
-    // firing false "new mail" triggers for items that were already known before liveLetters existed.
     const previousLiveLetters = Array.isArray(previous.liveLetters) ? previous.liveLetters : (previous.letters || []);
     const todayKey = this._localDateKey();
     const currentLiveLetters = (current.liveLetters || []).filter(item => {
@@ -217,9 +257,15 @@ class PostNLDevice extends Homey.Device {
     const newLetters = currentLiveLetters.filter(item => !oldLetterIds.has(item.id));
     const oldPackages = new Map((previous.packages || []).map(item => [item.id, item]));
 
-    const coldStart = ['device-init', 'startup', 'repair-login'].includes(String(current.reason || ''))
-      && previousCurrentLetters.length === 0;
-    if (newLetters.length && !coldStart) {
+    // On the first successful sync after install/upgrade, seed a baseline rather
+    // than firing every existing PostNL item as if it had just appeared.
+    if (this.getStoreValue('flowBaselineInitialized') !== true) {
+      await this.setStoreValue('flowBaselineInitialized', true);
+      this.log('[FlowTrigger] baseline initialized; existing mail/parcels suppressed once');
+      return;
+    }
+
+    if (newLetters.length) {
       const newest = [...newLetters].sort((a, b) => new Date(b.deliveryDate || 0) - new Date(a.deliveryDate || 0))[0];
       await this.triggerNewMail(await this._mailTokens(newest, newLetters.length));
     }
@@ -228,12 +274,55 @@ class PostNLDevice extends Homey.Device {
       const tokens = await this._packageTokens(parcel);
       if (!old) await this.triggerNewPackage(tokens);
 
-      if (old && `${old.status}|${old.deliveryWindow}|${old.deliveryDate}` !== `${parcel.status}|${parcel.deliveryWindow}|${parcel.deliveryDate}`) {
-        await this.triggerPackageStatusChanged({ ...tokens, old_status: localizePackageStatus(this.homey, old.status) || '' });
+      const hasWindow = !parcel.delivered && this._hasDeliveryWindow(parcel);
+      const hadWindow = Boolean(old && !old.delivered && this._hasDeliveryWindow(old));
+      if (hasWindow && !hadWindow) await this.triggerDeliveryWindowKnown(tokens);
+
+      if (old && this._packageStatusFingerprint(old) !== this._packageStatusFingerprint(parcel)) {
+        await this.triggerPackageStatusChanged({
+          ...tokens,
+          old_status: String(old.statusRaw || localizePackageStatus(this.homey, old.status) || old.status || ''),
+        });
+      }
+    }
+
+    // A parcel can disappear from the account list immediately after delivery.
+    // Refresh such a previously active parcel once via Track & Trace so the final
+    // official status (for example "Bezorgd") is not missed by the Flow trigger.
+    const currentIds = new Set((current.packages || []).map(item => item.id));
+    for (const old of oldPackages.values()) {
+      if (currentIds.has(old.id) || old.delivered || !old.detailsUrl) continue;
+      try {
+        const refreshed = await this.api.refreshPackageTracking(old);
+        if (this._packageStatusFingerprint(old) !== this._packageStatusFingerprint(refreshed)) {
+          const tokens = await this._packageTokens(refreshed);
+          await this.triggerPackageStatusChanged({
+            ...tokens,
+            old_status: String(old.statusRaw || localizePackageStatus(this.homey, old.status) || old.status || ''),
+          });
+        }
+      } catch (error) {
+        this.log('Final PostNL status refresh failed', old.barcode || old.id, error.message);
       }
     }
   }
 
+
+  async _updateGlobalSnapshotTokens(snapshot = {}) {
+    const letters = Array.isArray(snapshot.liveLetters) ? snapshot.liveLetters : [];
+    const packages = (snapshot.packages || []).filter(item => !item.delivered);
+    const newestMail = [...letters].sort((a, b) => new Date(b.deliveryDate || 0) - new Date(a.deliveryDate || 0))[0] || {};
+    const activePackage = this._selectActivePackage(snapshot) || {};
+    const status = activePackage.id ? String(activePackage.statusRaw || activePackage.latestStatusEvent || activePackage.status || '').trim() : '';
+    const deliveryDate = activePackage.deliveryDate ? this.api.formatDateDMY(activePackage.deliveryDate) : '';
+    const deliveryWindow = activePackage.deliveryWindow || this.api.formatWindow(activePackage.deliveryWindowFrom, activePackage.deliveryWindowTo) || '';
+    const dates = [...letters.map(item => item.deliveryDate).filter(Boolean), ...packages.map(item => item.deliveryDate).filter(Boolean)].sort((a, b) => new Date(a) - new Date(b));
+    const connected = this.api.hasCredentials();
+    await this._flowDriver().updateGlobalTokens(this, {
+      mail_expected: letters.length > 0, mail_count: letters.length, mail_id: newestMail.id || '', mail_title: newestMail.title || '', mail_sender: newestMail.sender || '', mail_date: newestMail.deliveryDate ? this.api.formatDate(newestMail.deliveryDate) : '', mail_unread: Boolean(newestMail.unread),
+      package_count: packages.length, package_id: activePackage.id || '', package_sender: activePackage.sender || activePackage.title || '', package_receiver: activePackage.receiver || '', package_title: activePackage.title || activePackage.sender || activePackage.barcode || '', package_barcode: activePackage.barcode || '', package_status: status, package_status_raw: status, package_status_code: activePackage.statusCode || '', package_status_event: activePackage.latestStatusEvent || status, package_status_event_time: activePackage.statusChangedAt ? (this.api.formatDateTime(activePackage.statusChangedAt) || String(activePackage.statusChangedAt)) : '', package_delivery_date: deliveryDate, package_delivery_window: deliveryWindow, package_delivery_window_from: activePackage.deliveryWindowFrom ? this.api.formatTime(activePackage.deliveryWindowFrom) : '', package_delivery_window_to: activePackage.deliveryWindowTo ? this.api.formatTime(activePackage.deliveryWindowTo) : '', package_delivery_window_type: activePackage.deliveryWindowType || '', package_details_url: activePackage.detailsUrl || '', package_shipment_type: activePackage.shipmentType || '', package_delivery_address_type: activePackage.deliveryAddressType || '', package_direction: activePackage.direction || '', package_created_at: activePackage.createdAt ? this.api.formatDateTime(activePackage.createdAt) : '', package_delivered: Boolean(activePackage.delivered), package_shared_from: activePackage.sourceDisplayName || '', package_source_account_id: activePackage.sourceAccountId || '', package_tracking: activePackage.barcode || activePackage.id || '', next_delivery: dates[0] ? this.api.formatDate(dates[0]) : '', connection_status: connected ? (this.homey.i18n.getLanguage() === 'nl' ? 'Verbonden' : 'Connected') : (this.homey.i18n.getLanguage() === 'nl' ? 'Niet verbonden' : 'Not connected'), last_update: snapshot.updatedAt ? this.api.formatDateTime(snapshot.updatedAt) : '',
+    });
+  }
 
   _parseLocalOrZonedParts(value) {
     const raw = String(value || '').trim();
@@ -242,7 +331,11 @@ class PostNLDevice extends Homey.Device {
     const localMatch = raw.match(/^(\d{4})-(\d{2})-(\d{2})[T\s](\d{2}):(\d{2})/);
     if (localMatch && !hasZone) {
       const [, year, month, day, hour, minute] = localMatch;
-      return { date: `${year}-${month}-${day}`, minutes: Number(hour) * 60 + Number(minute), time: `${hour}:${minute}` };
+      return {
+        date: `${year}-${month}-${day}`,
+        minutes: Number(hour) * 60 + Number(minute),
+        time: `${hour}:${minute}`,
+      };
     }
     const date = new Date(raw);
     if (Number.isNaN(date.getTime())) return null;
@@ -251,7 +344,11 @@ class PostNLDevice extends Homey.Device {
       year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', hour12: false,
     }).formatToParts(date);
     const get = type => parts.find(part => part.type === type)?.value || '';
-    return { date: `${get('year')}-${get('month')}-${get('day')}`, minutes: Number(get('hour')) * 60 + Number(get('minute')), time: `${get('hour')}:${get('minute')}` };
+    return {
+      date: `${get('year')}-${get('month')}-${get('day')}`,
+      minutes: Number(get('hour')) * 60 + Number(get('minute')),
+      time: `${get('hour')}:${get('minute')}`,
+    };
   }
 
   _nowLocalParts() {
@@ -260,8 +357,13 @@ class PostNLDevice extends Homey.Device {
       year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false,
     }).formatToParts(new Date());
     const get = type => parts.find(part => part.type === type)?.value || '0';
-    const hour = Number(get('hour')), minute = Number(get('minute')), second = Number(get('second'));
-    return { date: `${get('year')}-${get('month')}-${get('day')}`, seconds: (hour * 3600) + (minute * 60) + second };
+    const hour = Number(get('hour'));
+    const minute = Number(get('minute'));
+    const second = Number(get('second'));
+    return {
+      date: `${get('year')}-${get('month')}-${get('day')}`,
+      seconds: (hour * 3600) + (minute * 60) + second,
+    };
   }
 
   _deliveryHeadline(parcel = {}, language = 'nl') {
@@ -269,7 +371,8 @@ class PostNLDevice extends Homey.Device {
     const toParts = this._parseLocalOrZonedParts(parcel.deliveryWindowTo);
     const dateKey = fromParts?.date || this._localDateKey(parcel.deliveryDate);
     const todayKey = this._localDateKey();
-    const tomorrow = new Date(); tomorrow.setDate(tomorrow.getDate() + 1);
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
     const tomorrowKey = this._localDateKey(tomorrow);
     if (fromParts?.time && toParts?.time) {
       if (dateKey === todayKey) return language === 'nl' ? `Vandaag tussen ${fromParts.time} en ${toParts.time}` : `Today between ${fromParts.time} and ${toParts.time}`;
@@ -283,11 +386,13 @@ class PostNLDevice extends Homey.Device {
   }
 
   _selectActivePackage(snapshot = this.snapshot) {
-    return [...((snapshot && snapshot.packages) || [])].filter(item => !item.delivered).sort((a, b) => {
-      const left = Date.parse(a.deliveryWindowFrom || a.deliveryDate || a.createdAt || '') || Number.MAX_SAFE_INTEGER;
-      const right = Date.parse(b.deliveryWindowFrom || b.deliveryDate || b.createdAt || '') || Number.MAX_SAFE_INTEGER;
-      return left - right;
-    })[0] || null;
+    return [...((snapshot && snapshot.packages) || [])]
+      .filter(item => !item.delivered)
+      .sort((a, b) => {
+        const left = Date.parse(a.deliveryWindowFrom || a.deliveryDate || a.createdAt || '') || Number.MAX_SAFE_INTEGER;
+        const right = Date.parse(b.deliveryWindowFrom || b.deliveryDate || b.createdAt || '') || Number.MAX_SAFE_INTEGER;
+        return left - right;
+      })[0] || null;
   }
 
   async _ensurePackageCameraImage() {
@@ -350,7 +455,7 @@ class PostNLDevice extends Homey.Device {
       }
     }
 
-    const status = localizePackageStatus(this.homey, activePackage.status) || '';
+    const status = String(activePackage.statusRaw || activePackage.latestStatusEvent || activePackage.status || localizePackageStatus(this.homey, activePackage.status) || '').trim();
     const sender = activePackage.sender || activePackage.title || activePackage.sourceDisplayName || 'PostNL';
     const tracking = activePackage.barcode || activePackage.id || '';
     const headline = this._deliveryHeadline(activePackage, language);
@@ -454,9 +559,7 @@ class PostNLDevice extends Homey.Device {
   }
 
   async applySnapshot(snapshot = {}, error = null) {
-    // Only current PostNL mail drives device capabilities. The archive is widget-only.
-    // Old snapshots do not have liveLetters; in that case wait for the first fresh sync
-    // instead of exposing archived mail as current mail again.
+    // Only mail currently returned by PostNL drives device capabilities and images.
     const letters = Array.isArray(snapshot.liveLetters) ? snapshot.liveLetters : [];
     const packages = (snapshot.packages || []).filter(item => !item.delivered);
     const todayKey = this._localDateKey();
@@ -476,27 +579,22 @@ class PostNLDevice extends Homey.Device {
         return left - right;
       })[0] || null;
     const packageDeliveryDate = nextPackage?.deliveryDate || nextPackage?.deliveryWindowFrom || nextPackage?.deliveryWindowTo || null;
-    const packageDeliveryWindow = nextPackage?.deliveryWindow
-      || this.api.formatWindow(nextPackage?.deliveryWindowFrom, nextPackage?.deliveryWindowTo)
-      || '';
+    const packageDeliveryWindow = nextPackage?.deliveryWindow || this.api.formatWindow(nextPackage?.deliveryWindowFrom, nextPackage?.deliveryWindowTo) || '';
     const updated = snapshot.updatedAt
       ? new Intl.DateTimeFormat(this.homey.i18n.getLanguage() === 'nl' ? 'nl-NL' : 'en-GB', { timeZone: this.homey.clock.getTimezone(), dateStyle: 'short', timeStyle: 'short' }).format(new Date(snapshot.updatedAt))
       : '—';
     const connected = this.api.hasCredentials();
-    const lang = this.homey.i18n.getLanguage();
+    const officialPackageStatus = nextPackage ? String(nextPackage.statusRaw || nextPackage.latestStatusEvent || nextPackage.status || '') : '—';
     const values = {
-      postnl_mail_expected: currentMail.length > 0,
-      postnl_mail_count: currentMail.length,
-      postnl_package_count: packages.length,
-      postnl_next_delivery: nextDelivery,
-      postnl_delivery_date: packageDeliveryDate ? this.api.formatDateDMY(packageDeliveryDate) : '—',
-      postnl_delivery_window: packageDeliveryWindow || '—',
-      postnl_status: this.homey.app.getConnectionLabel(Boolean(connected && !error)),
-      postnl_last_update: updated,
+      postnl_mail_expected: currentMail.length > 0, postnl_mail_count: currentMail.length, postnl_package_count: packages.length, postnl_next_delivery: nextDelivery,
+      postnl_delivery_date: packageDeliveryDate ? this.api.formatDateDMY(packageDeliveryDate) : '—', postnl_delivery_window: packageDeliveryWindow || '—',
+      postnl_package_status: officialPackageStatus, postnl_package_sender: nextPackage ? String(nextPackage.sender || nextPackage.title || nextPackage.sourceDisplayName || '—') : '—', postnl_package_receiver: nextPackage ? String(nextPackage.receiver || '—') : '—', postnl_package_tracking: nextPackage ? String(nextPackage.barcode || nextPackage.id || '—') : '—', postnl_package_event: nextPackage ? String(nextPackage.latestStatusEvent || nextPackage.statusRaw || nextPackage.status || '—') : '—', postnl_package_status_time: nextPackage?.statusChangedAt ? (this.api.formatDateTime(nextPackage.statusChangedAt) || String(nextPackage.statusChangedAt)) : '—', postnl_package_delivered: Boolean(nextPackage?.delivered), postnl_package_shipment_type: nextPackage?.shipmentType || '—',
+      postnl_status: connected ? (this.homey.i18n.getLanguage() === 'nl' ? 'Verbonden' : 'Connected') : (this.homey.i18n.getLanguage() === 'nl' ? 'Niet verbonden' : 'Not connected'), postnl_last_update: updated,
     };
     for (const [capability, value] of Object.entries(values)) if (this.hasCapability(capability)) await this.setCapabilityValue(capability, value).catch(this.error);
 
-    const imageTitle = lang === 'nl' ? 'Laatste poststuk' : 'Latest mail item';
+    const language = this.homey.i18n.getLanguage() === 'nl' ? 'nl' : 'en';
+    const imageTitle = language === 'nl' ? 'Laatste poststuk' : 'Latest mail item';
     const latestWithImage = [...currentMail]
       .sort((a, b) => new Date(b.deliveryDate || 0) - new Date(a.deliveryDate || 0))
       .find(item => item?.imageData);
@@ -508,7 +606,7 @@ class PostNLDevice extends Homey.Device {
       }
     }
     if (!latestWithImage) {
-      const placeholderId = `__no_mail__:${lang}`;
+      const placeholderId = `__no_mail__:${language}`;
       if (this._latestMailImageId !== placeholderId) {
         const image = await this.getNoMailPlaceholderImage().catch(() => null);
         if (image) {
@@ -521,6 +619,8 @@ class PostNLDevice extends Homey.Device {
     this._activePackageForImage = activePackage;
     await this._ensurePackageCameraImage().catch(this.error);
     await this._refreshPackageImageBuffer(true, activePackage).catch(this.error);
+    await this._updateGlobalSnapshotTokens(snapshot).catch(error => this.error('[GlobalToken] snapshot update failed', error));
+
 
     if (error) await this.setUnavailable(error.message).catch(this.error);
     else await this.setAvailable().catch(this.error);
@@ -533,8 +633,9 @@ class PostNLDevice extends Homey.Device {
   getWidgetData() {
     return {
       authenticated: this.api.hasCredentials(),
-      // Widget mirrors the current PostNL MyMail response only.
+      // My Post is live-only; no local mail history is exposed or retained.
       letters: (this.snapshot.liveLetters || []).slice(0, 60),
+      liveLetters: (this.snapshot.liveLetters || []).slice(0, 60),
       packages: (this.snapshot.packages || []).slice(0, 40),
       updatedAt: this.snapshot.updatedAt || null, mailApiStatus: this.snapshot.mailApiStatus || 'unknown', mailApiError: this.snapshot.mailApiError || null,
     };
