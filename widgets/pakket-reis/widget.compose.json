@@ -1,0 +1,20 @@
+{
+  "name": {
+    "en": "Parcel Journey",
+    "nl": "Reis van je pakket"
+  },
+  "height": 420,
+  "api": {
+    "getData": {
+      "method": "GET",
+      "path": "/"
+    }
+  },
+  "devices": {
+    "type": "app",
+    "singular": true,
+    "filter": {
+      "capabilities": "postnl_package_count"
+    }
+  }
+}

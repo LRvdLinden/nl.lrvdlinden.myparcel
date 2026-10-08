@@ -27,7 +27,7 @@
     @media(max-width:350px){header{padding-inline:14px}.mail{flex-basis:132px}.date{font-size:14px;padding-inline:10px}}
     @media(prefers-color-scheme:dark){html,body{color:#f3f3f4}.card{background:#2d2d2f;box-shadow:none}header{border-color:#3b3b3d;background:#29292b}h1{color:#aaa9ad}.scan{background:#1d1d1f}.date{background:#57575a;color:#fff}.state{color:#aaa9ad}}
   </style>
-<style>:dir(rtl){direction:rtl;text-align:right}</style></head>
+</head>
 <body>
   <main class="card">
     <header><img class="app-icon" src="icon.svg" alt="PostNL"><h1 id="title">Mijn Post</h1></header>
@@ -65,14 +65,11 @@
       track.addEventListener('wheel',e=>{if(track.scrollWidth<=track.clientWidth)return;if(Math.abs(e.deltaY)>Math.abs(e.deltaX)){e.preventDefault();track.scrollLeft+=e.deltaY}},{passive:false});
       content.replaceChildren(track)
     }
-    async function load(){content.innerHTML=`<div class="state">${words.nl.loading}</div>`;try{render(await Homey.api('GET','/?deviceId='+encodeURIComponent((Homey.getDeviceIds()||[])[0]||''),{}))}catch(e){content.innerHTML=`<div class="state error">${String(e.message||e)}</div>`}}
-    let refreshTimer=null;
-    async function onHomeyReady(Homey){
-      await load();
-      if(refreshTimer)clearInterval(refreshTimer);
-      refreshTimer=setInterval(()=>{if(!document.hidden)load().catch(()=>{})},60000);
-      Homey.ready();
-    }
+    let refreshTimer=null,syncBusy=false;
+    function deviceId(){return (Homey.getDeviceIds()||[])[0]||''}
+    async function load(showLoading=false){if(showLoading)content.innerHTML=`<div class="state">${words.nl.loading}</div>`;try{render(await Homey.api('GET','/?deviceId='+encodeURIComponent(deviceId()),{}))}catch(e){content.innerHTML=`<div class="state error">${String(e.message||e)}</div>`}}
+    async function refreshLive(){if(syncBusy)return;syncBusy=true;try{await Homey.api('POST','/sync',{deviceId:deviceId()});await load(false)}catch(_){ }finally{syncBusy=false}}
+    async function onHomeyReady(Homey){await load(true);Homey.ready();refreshLive();if(refreshTimer)clearInterval(refreshTimer);refreshTimer=setInterval(refreshLive,60000)}
   </script>
 </body>
 </html>

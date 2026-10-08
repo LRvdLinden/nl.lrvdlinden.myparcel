@@ -24,11 +24,7 @@ class PostNLDevice extends Homey.Device {
       unset: key => this.unsetStoreValue(key),
     };
     this.api = new PostNLApi({ homey: this.homey, log: (...args) => this.log(...args), storage: this._storage });
-    const storedSnapshot = this.getStoreValue('snapshot') || { packages: [], updatedAt: null };
-    this.snapshot = { ...storedSnapshot, letters: [], liveLetters: [] };
-    if ((storedSnapshot.letters || []).length || (storedSnapshot.liveLetters || []).length) {
-      await this.setStoreValue('snapshot', { ...storedSnapshot, letters: [], liveLetters: [] });
-    }
+    this.snapshot = this.getStoreValue('snapshot') || { letters: [], liveLetters: [], packages: [], updatedAt: null };
 
     await this._ensureCapabilities();
     await this._ensurePackageCameraImage();
@@ -45,7 +41,7 @@ class PostNLDevice extends Homey.Device {
   hasAccountCredentials() { return this.api?.hasCredentials() || Boolean(this.getStoreValue('auth')); }
 
   async _ensureCapabilities() {
-    for (const capability of ['postnl_delivery_date', 'postnl_delivery_window', 'postnl_package_status', 'postnl_package_sender', 'postnl_package_receiver', 'postnl_package_tracking', 'postnl_package_event', 'postnl_package_status_time', 'postnl_package_delivered', 'postnl_package_shipment_type', 'postnl_package_weight', 'postnl_package_dimensions', 'postnl_package_history', 'postnl_package_observation_code', 'postnl_package_canonical_status', 'postnl_package_pickup', 'postnl_package_pickup_type']) {
+    for (const capability of ['postnl_delivery_date', 'postnl_delivery_window', 'postnl_package_status', 'postnl_package_sender', 'postnl_package_receiver', 'postnl_package_tracking', 'postnl_package_event', 'postnl_package_status_time', 'postnl_package_delivered', 'postnl_package_shipment_type', 'postnl_package_weight', 'postnl_package_weight_kg', 'postnl_package_dimensions', 'postnl_package_length', 'postnl_package_width', 'postnl_package_height', 'postnl_package_status_history', 'postnl_package_observation_code', 'postnl_package_canonical_status', 'postnl_package_pickup', 'postnl_package_pickup_point']) {
       if (!this.hasCapability(capability)) await this.addCapability(capability);
     }
   }
@@ -53,17 +49,15 @@ class PostNLDevice extends Homey.Device {
   async importLegacyAccount(auth, snapshot) {
     await this.api.replaceAuth(auth);
     if (snapshot) {
-      this.snapshot = { ...snapshot, letters: [], liveLetters: [] };
-      await this.setStoreValue('snapshot', { ...snapshot, letters: [], liveLetters: [] });
+      this.snapshot = snapshot;
+      await this.setStoreValue('snapshot', snapshot);
     }
     await this.applySnapshot(this.snapshot, null);
   }
 
-  async updateCredentials(auth, profile = null, loginUsername = '', loginPassword = '') {
+  async updateCredentials(auth, profile = null) {
     await this.api.replaceAuth(auth);
     if (profile?.username) await this.setStoreValue('username', profile.username);
-    if (loginUsername) await this.setStoreValue('login_username', String(loginUsername).trim());
-    if (loginPassword) await this.setStoreValue('login_password', String(loginPassword));
     await this.setAvailable().catch(this.error);
     return this.sync({ reason: 'repair-login', force: true });
   }
@@ -87,14 +81,17 @@ class PostNLDevice extends Homey.Device {
       const live = await this.api.fetchAll();
       // My Post is live-only: keep only the mail items currently returned by PostNL.
       // Images are hydrated for the current response only; removed items are not archived locally.
-      const liveLetters = await Promise.all((live.letters || []).map(async item => {
+      const liveLetters = [];
+      // Fetch scans sequentially. Promise.all briefly held every JPEG buffer and
+      // every base64 copy at once, which could push Homey over its memory limit.
+      for (const item of (live.letters || []).slice(0, 10)) {
         const next = { ...item };
         if (item.imageUrl) {
           try { next.imageData = await this.api.fetchImage(item.imageUrl); }
           catch (error) { this.log('Live mail image fetch failed', item.id, error.message); }
         }
-        return next;
-      }));
+        liveLetters.push(next);
+      }
       const current = {
         letters: liveLetters,
         liveLetters,
@@ -106,7 +103,15 @@ class PostNLDevice extends Homey.Device {
         reason,
       };
       this.snapshot = current;
-      await this.setStoreValue('snapshot', { ...current, letters: [], liveLetters: [] });
+      // Do not persist base64 scans in Homey's device store. They are fetched
+      // again on the next live sync; keeping them in RAM is enough for widgets.
+      const storedSnapshot = {
+        ...current,
+        letters: (current.letters || []).map(({ imageData, ...item }) => item),
+        liveLetters: (current.liveLetters || []).map(({ imageData, ...item }) => item),
+      };
+      await this.setStoreValue('snapshot', storedSnapshot);
+      this._pruneLetterImageCache(current.liveLetters || []);
       await this.handleSnapshotChanges(previous, current);
       if (current.mailApiStatus === 'temporarily_unavailable') {
         const previousMailError = String(previous.mailApiError || '');
@@ -125,7 +130,6 @@ class PostNLDevice extends Homey.Device {
         const alreadyTriggered = this.getStoreValue('loginExpiredFlowNotified') === true;
         if (!alreadyTriggered) {
           await this.triggerLoginExpired().catch(this.error);
-          await this._notifyAuthExpiredOnce().catch(this.error);
           await this.setStoreValue('loginExpiredFlowNotified', true);
         }
       }
@@ -140,35 +144,12 @@ class PostNLDevice extends Homey.Device {
         mailApiError: error.message || String(error),
       };
       this.snapshot = failed;
-      await this.setStoreValue('snapshot', { ...failed, letters: [], liveLetters: [] });
+      await this.setStoreValue('snapshot', failed);
       await this.applySnapshot(failed, error);
       throw error;
     }
   }
 
-
-  async _notifyAuthExpiredOnce() {
-    if (this.getStoreValue('authExpiredNotified') === true) return;
-    const language = this.homey.i18n.getLanguage();
-    const messages = {
-      nl: `PostNL opnieuw koppelen – De inloggegevens van ${this.getName()} zijn verlopen. Open het betreffende apparaat en koppel je PostNL-account opnieuw.`,
-      de: `PostNL erneut verbinden – Die Anmeldedaten für ${this.getName()} sind abgelaufen. Öffne das Gerät und verbinde dein PostNL-Konto erneut.`,
-      fr: `Reconnecter PostNL – Les identifiants de ${this.getName()} ont expiré. Ouvrez l’appareil et reconnectez votre compte PostNL.`,
-      it: `Ricollega PostNL – Le credenziali di ${this.getName()} sono scadute. Apri il dispositivo e ricollega il tuo account PostNL.`,
-      sv: `Anslut PostNL igen – Inloggningsuppgifterna för ${this.getName()} har gått ut. Öppna enheten och anslut ditt PostNL-konto igen.`,
-      no: `Koble til PostNL på nytt – Påloggingsinformasjonen for ${this.getName()} har utløpt. Åpne enheten og koble til PostNL-kontoen på nytt.`,
-      es: `Volver a conectar PostNL – Las credenciales de ${this.getName()} han caducado. Abre el dispositivo y vuelve a conectar tu cuenta PostNL.`,
-      da: `Forbind PostNL igen – Loginoplysningerne til ${this.getName()} er udløbet. Åbn enheden og forbind din PostNL-konto igen.`,
-      ru: `Повторно подключите PostNL – Учетные данные ${this.getName()} истекли. Откройте устройство и повторно подключите аккаунт PostNL.`,
-      pl: `Połącz PostNL ponownie – Dane logowania dla ${this.getName()} wygasły. Otwórz urządzenie i połącz konto PostNL ponownie.`,
-      ko: `PostNL 다시 연결 – ${this.getName()}의 로그인 정보가 만료되었습니다. 기기를 열고 PostNL 계정을 다시 연결하세요.`,
-      ar: `أعد ربط PostNL – انتهت صلاحية بيانات تسجيل الدخول الخاصة بـ ${this.getName()}. افتح الجهاز وأعد ربط حساب PostNL.`,
-      en: `Reconnect PostNL – The credentials for ${this.getName()} have expired. Open the affected device and reconnect your PostNL account.`,
-    };
-    const excerpt = messages[language] || messages.en;
-    await this.homey.notifications.createNotification({ excerpt });
-    await this.setStoreValue('authExpiredNotified', true);
-  }
 
   _flowDriver() {
     return this.driver || this.homey.drivers.getDriver('postnl');
@@ -182,8 +163,21 @@ class PostNLDevice extends Homey.Device {
   async triggerNewPackage(tokens = {}) { return this._triggerDeviceFlow('new_package', tokens); }
   async triggerDeliveryWindowKnown(tokens = {}) { return this._triggerDeviceFlow('delivery_window_known', tokens); }
   async triggerPackageStatusChanged(tokens = {}) { return this._triggerDeviceFlow('package_status_changed', tokens); }
+  async triggerPackageDelivered(tokens = {}) { return this._triggerDeviceFlow('package_delivered', tokens); }
+  async triggerDeliveryWindowChanged(tokens = {}) { return this._triggerDeviceFlow('delivery_window_changed', tokens); }
+  async triggerPackageEventChanged(tokens = {}) { return this._triggerDeviceFlow('package_event_changed', tokens); }
+  async triggerPackageWeightKnown(tokens = {}) { return this._triggerDeviceFlow('package_weight_known', tokens); }
+  async triggerPackageDimensionsKnown(tokens = {}) { return this._triggerDeviceFlow('package_dimensions_known', tokens); }
   async triggerSyncFailed(message = '') { return this._triggerDeviceFlow('sync_failed', { error: String(message || '') }); }
   async triggerLoginExpired() { return this._triggerDeviceFlow('login_expired', {}); }
+
+  _localizeShipmentType(value) {
+    const raw = String(value || '').trim();
+    if (!raw) return '';
+    const language = this.homey.i18n.getLanguage() === 'nl' ? 'nl' : 'en';
+    if (language === 'nl' && /^parcel$/i.test(raw)) return 'Pakket';
+    return raw;
+  }
 
   async _packageTokens(parcel = {}) {
     const packageImage = await this.getPackageDeliveryImage(parcel).catch(() => null);
@@ -204,20 +198,15 @@ class PostNLDevice extends Homey.Device {
       delivery_date: deliveryDate, delivery_window: deliveryWindow,
       delivery_window_from: parcel.deliveryWindowFrom ? this.api.formatTime(parcel.deliveryWindowFrom) : '',
       delivery_window_to: parcel.deliveryWindowTo ? this.api.formatTime(parcel.deliveryWindowTo) : '',
-      delivery_window_type: parcel.deliveryWindowType || '', details_url: parcel.detailsUrl || '', shipment_type: parcel.shipmentType || '',
+      delivery_window_type: parcel.deliveryWindowType || '', details_url: parcel.detailsUrl || '', shipment_type: this._localizeShipmentType(parcel.shipmentType),
       delivery_address_type: parcel.deliveryAddressType || '', direction: parcel.direction || '',
       created_at: parcel.createdAt ? this.api.formatDateTime(parcel.createdAt) : '',
       delivered: Boolean(parcel.delivered), shared_from: parcel.sourceDisplayName || '', source_account_id: parcel.sourceAccountId || '',
+      weight: String(parcel.weight || ''), weight_kg: Number.isFinite(Number(parcel.weightKg)) ? Number(parcel.weightKg) : 0, dimensions: String(parcel.dimensions || ''),
+      dimension_length: Number.isFinite(Number(parcel.dimensionLengthCm)) ? Number(parcel.dimensionLengthCm) : 0, dimension_width: Number.isFinite(Number(parcel.dimensionWidthCm)) ? Number(parcel.dimensionWidthCm) : 0, dimension_height: Number.isFinite(Number(parcel.dimensionHeightCm)) ? Number(parcel.dimensionHeightCm) : 0,
+      status_history: JSON.stringify(parcel.statusHistory || []), observation_code: String(parcel.observationCode || ''), canonical_status: String(parcel.canonicalStatus || 'unknown'), pickup: Boolean(parcel.pickup), pickup_point: String(parcel.pickupPoint || ''),
       package_status_text: status, package_window_text: deliveryWindow, package_delivery_date: deliveryDate,
-      package_sender: sender, package_tracking: tracking,
-      weight: Number.isFinite(Number(parcel.weightKg)) ? Number(parcel.weightKg) : 0,
-      dimensions: String(parcel.dimensionsText || ''),
-      status_history: String(parcel.statusHistoryText || ''),
-      observation_code: String(parcel.observationCode || ''),
-      canonical_status: String(parcel.canonicalStatus || ''),
-      pickup: Boolean(parcel.pickup),
-      pickup_type: String(parcel.pickupType || parcel.deliveryAddressType || ''),
-      package_image_available: Boolean(packageImage),
+      package_sender: sender, package_tracking: tracking, package_image_available: Boolean(packageImage),
     };
     if (packageImage) tokens.package_image = packageImage;
     return tokens;
@@ -288,11 +277,22 @@ class PostNLDevice extends Homey.Device {
       const hadWindow = Boolean(old && !old.delivered && this._hasDeliveryWindow(old));
       if (hasWindow && !hadWindow) await this.triggerDeliveryWindowKnown(tokens);
 
-      if (old && this._packageStatusFingerprint(old) !== this._packageStatusFingerprint(parcel)) {
-        await this.triggerPackageStatusChanged({
-          ...tokens,
-          old_status: String(old.statusRaw || localizePackageStatus(this.homey, old.status) || old.status || ''),
-        });
+      if (old) {
+        const oldWindow = old.deliveryWindow || this.api.formatWindow(old.deliveryWindowFrom, old.deliveryWindowTo) || '';
+        const newWindow = parcel.deliveryWindow || this.api.formatWindow(parcel.deliveryWindowFrom, parcel.deliveryWindowTo) || '';
+        if (newWindow && oldWindow && newWindow !== oldWindow && !parcel.delivered) await this.triggerDeliveryWindowChanged({ ...tokens, old_delivery_window: oldWindow });
+        const oldEvent = String(old.latestStatusEvent || old.statusRaw || old.status || '');
+        const newEvent = String(parcel.latestStatusEvent || parcel.statusRaw || parcel.status || '');
+        if (newEvent && newEvent !== oldEvent) await this.triggerPackageEventChanged({ ...tokens, old_event: oldEvent });
+        if (!String(old.weight || '').trim() && String(parcel.weight || '').trim()) await this.triggerPackageWeightKnown(tokens);
+        if (!String(old.dimensions || '').trim() && String(parcel.dimensions || '').trim()) await this.triggerPackageDimensionsKnown(tokens);
+        if (!old.delivered && parcel.delivered) await this.triggerPackageDelivered(tokens);
+        if (this._packageStatusFingerprint(old) !== this._packageStatusFingerprint(parcel)) {
+          await this.triggerPackageStatusChanged({
+            ...tokens,
+            old_status: String(old.statusRaw || localizePackageStatus(this.homey, old.status) || old.status || ''),
+          });
+        }
       }
     }
 
@@ -306,6 +306,12 @@ class PostNLDevice extends Homey.Device {
         const refreshed = await this.api.refreshPackageTracking(old);
         if (this._packageStatusFingerprint(old) !== this._packageStatusFingerprint(refreshed)) {
           const tokens = await this._packageTokens(refreshed);
+          const oldEvent = String(old.latestStatusEvent || old.statusRaw || old.status || '');
+          const newEvent = String(refreshed.latestStatusEvent || refreshed.statusRaw || refreshed.status || '');
+          if (newEvent && newEvent !== oldEvent) await this.triggerPackageEventChanged({ ...tokens, old_event: oldEvent });
+          if (!old.delivered && refreshed.delivered) await this.triggerPackageDelivered(tokens);
+          if (!String(old.weight || '').trim() && String(refreshed.weight || '').trim()) await this.triggerPackageWeightKnown(tokens);
+          if (!String(old.dimensions || '').trim() && String(refreshed.dimensions || '').trim()) await this.triggerPackageDimensionsKnown(tokens);
           await this.triggerPackageStatusChanged({
             ...tokens,
             old_status: String(old.statusRaw || localizePackageStatus(this.homey, old.status) || old.status || ''),
@@ -323,14 +329,34 @@ class PostNLDevice extends Homey.Device {
     const packages = (snapshot.packages || []).filter(item => !item.delivered);
     const newestMail = [...letters].sort((a, b) => new Date(b.deliveryDate || 0) - new Date(a.deliveryDate || 0))[0] || {};
     const activePackage = this._selectActivePackage(snapshot) || {};
-    const status = activePackage.id ? String(activePackage.statusRaw || activePackage.latestStatusEvent || activePackage.status || '').trim() : '';
+    const status = activePackage.id ? (localizePackageStatus(this.homey, activePackage.status) || '') : '';
+    const statusRaw = activePackage.id ? String(activePackage.statusRaw || activePackage.latestStatusEvent || activePackage.status || status || '') : '';
     const deliveryDate = activePackage.deliveryDate ? this.api.formatDateDMY(activePackage.deliveryDate) : '';
     const deliveryWindow = activePackage.deliveryWindow || this.api.formatWindow(activePackage.deliveryWindowFrom, activePackage.deliveryWindowTo) || '';
-    const dates = [...letters.map(item => item.deliveryDate).filter(Boolean), ...packages.map(item => item.deliveryDate).filter(Boolean)].sort((a, b) => new Date(a) - new Date(b));
+    const dates = [...letters.map(item => item.deliveryDate).filter(Boolean), ...packages.map(item => item.deliveryDate).filter(Boolean)]
+      .sort((a, b) => new Date(a) - new Date(b));
     const connected = this.api.hasCredentials();
     await this._flowDriver().updateGlobalTokens(this, {
-      mail_expected: letters.length > 0, mail_count: letters.length, mail_id: newestMail.id || '', mail_title: newestMail.title || '', mail_sender: newestMail.sender || '', mail_date: newestMail.deliveryDate ? this.api.formatDate(newestMail.deliveryDate) : '', mail_unread: Boolean(newestMail.unread),
-      package_count: packages.length, package_id: activePackage.id || '', package_sender: activePackage.sender || activePackage.title || '', package_receiver: activePackage.receiver || '', package_title: activePackage.title || activePackage.sender || activePackage.barcode || '', package_barcode: activePackage.barcode || '', package_status: status, package_status_raw: status, package_status_code: activePackage.statusCode || '', package_status_event: activePackage.latestStatusEvent || status, package_status_event_time: activePackage.statusChangedAt ? (this.api.formatDateTime(activePackage.statusChangedAt) || String(activePackage.statusChangedAt)) : '', package_delivery_date: deliveryDate, package_delivery_window: deliveryWindow, package_delivery_window_from: activePackage.deliveryWindowFrom ? this.api.formatTime(activePackage.deliveryWindowFrom) : '', package_delivery_window_to: activePackage.deliveryWindowTo ? this.api.formatTime(activePackage.deliveryWindowTo) : '', package_delivery_window_type: activePackage.deliveryWindowType || '', package_details_url: activePackage.detailsUrl || '', package_shipment_type: activePackage.shipmentType || '', package_delivery_address_type: activePackage.deliveryAddressType || '', package_direction: activePackage.direction || '', package_created_at: activePackage.createdAt ? this.api.formatDateTime(activePackage.createdAt) : '', package_delivered: Boolean(activePackage.delivered), package_shared_from: activePackage.sourceDisplayName || '', package_source_account_id: activePackage.sourceAccountId || '', package_tracking: activePackage.barcode || activePackage.id || '', package_weight: Number.isFinite(Number(activePackage.weightKg)) ? Number(activePackage.weightKg) : 0, package_dimensions: activePackage.dimensionsText || '', package_status_history: activePackage.statusHistoryText || '', package_observation_code: activePackage.observationCode || '', package_canonical_status: activePackage.canonicalStatus || '', package_pickup: Boolean(activePackage.pickup), package_pickup_type: activePackage.pickupType || activePackage.deliveryAddressType || '', next_delivery: dates[0] ? this.api.formatDate(dates[0]) : '', connection_status: connected ? (this.homey.i18n.getLanguage() === 'nl' ? 'Verbonden' : 'Connected') : (this.homey.i18n.getLanguage() === 'nl' ? 'Niet verbonden' : 'Not connected'), last_update: snapshot.updatedAt ? this.api.formatDateTime(snapshot.updatedAt) : '',
+      mail_expected: letters.length > 0, mail_count: letters.length, mail_id: newestMail.id || '',
+      mail_title: newestMail.title || '', mail_sender: newestMail.sender || '',
+      mail_date: newestMail.deliveryDate ? this.api.formatDate(newestMail.deliveryDate) : '', mail_unread: Boolean(newestMail.unread),
+      package_count: packages.length, package_id: activePackage.id || '', package_sender: activePackage.sender || activePackage.title || '',
+      package_receiver: activePackage.receiver || '', package_title: activePackage.title || activePackage.sender || activePackage.barcode || '',
+      package_barcode: activePackage.barcode || '', package_status: status, package_status_raw: statusRaw,
+      package_status_code: activePackage.statusCode || '', package_status_event: activePackage.latestStatusEvent || statusRaw,
+      package_status_event_time: activePackage.statusChangedAt ? (this.api.formatDateTime(activePackage.statusChangedAt) || String(activePackage.statusChangedAt)) : '',
+      package_delivery_date: deliveryDate, package_delivery_window: deliveryWindow,
+      package_delivery_window_from: activePackage.deliveryWindowFrom ? this.api.formatTime(activePackage.deliveryWindowFrom) : '',
+      package_delivery_window_to: activePackage.deliveryWindowTo ? this.api.formatTime(activePackage.deliveryWindowTo) : '',
+      package_delivery_window_type: activePackage.deliveryWindowType || '', package_details_url: activePackage.detailsUrl || '',
+      package_shipment_type: this._localizeShipmentType(activePackage.shipmentType), package_delivery_address_type: activePackage.deliveryAddressType || '',
+      package_direction: activePackage.direction || '', package_created_at: activePackage.createdAt ? this.api.formatDateTime(activePackage.createdAt) : '',
+      package_delivered: Boolean(activePackage.delivered), package_shared_from: activePackage.sourceDisplayName || '',
+      package_source_account_id: activePackage.sourceAccountId || '', package_tracking: activePackage.barcode || activePackage.id || '',
+      package_weight: activePackage.weight || '', package_dimensions: activePackage.dimensions || '',
+      next_delivery: dates[0] ? this.api.formatDate(dates[0]) : '',
+      connection_status: connected ? (this.homey.i18n.getLanguage() === 'nl' ? 'Verbonden' : 'Connected') : (this.homey.i18n.getLanguage() === 'nl' ? 'Niet verbonden' : 'Not connected'),
+      last_update: snapshot.updatedAt ? this.api.formatDateTime(snapshot.updatedAt) : '',
     });
   }
 
@@ -423,10 +449,11 @@ class PostNLDevice extends Homey.Device {
   }
 
   _startPackageImageRefresh() {
+    // Delivery PNG rendering uses several multi-megabyte RGBA buffers. Rebuilding
+    // it every 15 seconds caused unnecessary allocation churn and Homey memory
+    // warnings. applySnapshot() already refreshes it whenever PostNL data changes.
     if (this._packageImageTimer) this.homey.clearInterval(this._packageImageTimer);
-    this._packageImageTimer = this.homey.setInterval(() => {
-      if (this._activePackageForImage) this._refreshPackageImageBuffer().catch(this.error);
-    }, 15000);
+    this._packageImageTimer = null;
   }
 
   async _refreshPackageImageBuffer(force = false, parcel = undefined) {
@@ -499,8 +526,19 @@ class PostNLDevice extends Homey.Device {
       return stream;
     });
     this._letterImageCache.set(cacheKey, image);
-    if (this._letterImageCache.size > 25) this._letterImageCache.delete(this._letterImageCache.keys().next().value);
+    if (this._letterImageCache.size > 6) this._letterImageCache.delete(this._letterImageCache.keys().next().value);
     return image;
+  }
+
+
+  _pruneLetterImageCache(letters = []) {
+    const ids = new Set((letters || []).map(item => String(item?.id || 'mail')));
+    for (const key of this._letterImageCache.keys()) {
+      if (String(key).startsWith('no-mail-placeholder:')) continue;
+      const id = String(key).split(':')[0];
+      if (!ids.has(id)) this._letterImageCache.delete(key);
+    }
+    while (this._letterImageCache.size > 6) this._letterImageCache.delete(this._letterImageCache.keys().next().value);
   }
 
   async getNoMailPlaceholderImage() {
@@ -594,19 +632,42 @@ class PostNLDevice extends Homey.Device {
       ? new Intl.DateTimeFormat(this.homey.i18n.getLanguage() === 'nl' ? 'nl-NL' : 'en-GB', { timeZone: this.homey.clock.getTimezone(), dateStyle: 'short', timeStyle: 'short' }).format(new Date(snapshot.updatedAt))
       : '—';
     const connected = this.api.hasCredentials();
-    const officialPackageStatus = nextPackage ? String(nextPackage.statusRaw || nextPackage.latestStatusEvent || nextPackage.status || '') : '—';
+    const officialPackageStatus = nextPackage
+      ? String(nextPackage.statusRaw || nextPackage.latestStatusEvent || localizePackageStatus(this.homey, nextPackage.status) || nextPackage.status || '')
+      : '—';
+    const packageSender = nextPackage ? String(nextPackage.sender || nextPackage.title || nextPackage.sourceDisplayName || '—') : '—';
+    const packageReceiver = nextPackage ? String(nextPackage.receiver || '—') : '—';
+    const packageTracking = nextPackage ? String(nextPackage.barcode || nextPackage.id || '—') : '—';
+    const packageEvent = nextPackage ? String(nextPackage.latestStatusEvent || nextPackage.statusRaw || localizePackageStatus(this.homey, nextPackage.status) || nextPackage.status || '—') : '—';
+    const packageStatusTime = nextPackage?.statusChangedAt ? (this.api.formatDateTime(nextPackage.statusChangedAt) || String(nextPackage.statusChangedAt)) : '—';
     const values = {
-      postnl_mail_expected: currentMail.length > 0, postnl_mail_count: currentMail.length, postnl_package_count: packages.length, postnl_next_delivery: nextDelivery,
-      postnl_delivery_date: packageDeliveryDate ? this.api.formatDateDMY(packageDeliveryDate) : '—', postnl_delivery_window: packageDeliveryWindow || '—',
-      postnl_package_status: officialPackageStatus, postnl_package_sender: nextPackage ? String(nextPackage.sender || nextPackage.title || nextPackage.sourceDisplayName || '—') : '—', postnl_package_receiver: nextPackage ? String(nextPackage.receiver || '—') : '—', postnl_package_tracking: nextPackage ? String(nextPackage.barcode || nextPackage.id || '—') : '—', postnl_package_event: nextPackage ? String(nextPackage.latestStatusEvent || nextPackage.statusRaw || nextPackage.status || '—') : '—', postnl_package_status_time: nextPackage?.statusChangedAt ? (this.api.formatDateTime(nextPackage.statusChangedAt) || String(nextPackage.statusChangedAt)) : '—', postnl_package_delivered: Boolean(nextPackage?.delivered), postnl_package_shipment_type: nextPackage?.shipmentType || '—',
-      postnl_package_weight: nextPackage && Number.isFinite(Number(nextPackage.weightKg)) ? Number(nextPackage.weightKg) : 0,
-      postnl_package_dimensions: nextPackage?.dimensionsText || '—',
-      postnl_package_history: nextPackage?.statusHistoryText || '—',
+      postnl_mail_expected: currentMail.length > 0,
+      postnl_mail_count: currentMail.length,
+      postnl_package_count: packages.length,
+      postnl_next_delivery: nextDelivery,
+      postnl_delivery_date: packageDeliveryDate ? this.api.formatDateDMY(packageDeliveryDate) : '—',
+      postnl_delivery_window: packageDeliveryWindow || '—',
+      postnl_package_status: officialPackageStatus,
+      postnl_package_sender: packageSender,
+      postnl_package_receiver: packageReceiver,
+      postnl_package_tracking: packageTracking,
+      postnl_package_event: packageEvent,
+      postnl_package_status_time: packageStatusTime,
+      postnl_package_delivered: Boolean(nextPackage?.delivered),
+      postnl_package_shipment_type: nextPackage ? (this._localizeShipmentType(nextPackage.shipmentType) || '—') : '—',
+      postnl_package_weight: nextPackage?.weight || '—',
+      postnl_package_weight_kg: typeof nextPackage?.weightKg === 'number' && Number.isFinite(nextPackage.weightKg) ? nextPackage.weightKg : null,
+      postnl_package_dimensions: nextPackage?.dimensions || '—',
+      postnl_package_length: typeof nextPackage?.dimensionLengthCm === 'number' && Number.isFinite(nextPackage.dimensionLengthCm) ? nextPackage.dimensionLengthCm : null,
+      postnl_package_width: typeof nextPackage?.dimensionWidthCm === 'number' && Number.isFinite(nextPackage.dimensionWidthCm) ? nextPackage.dimensionWidthCm : null,
+      postnl_package_height: typeof nextPackage?.dimensionHeightCm === 'number' && Number.isFinite(nextPackage.dimensionHeightCm) ? nextPackage.dimensionHeightCm : null,
+      postnl_package_status_history: this._formatStatusHistoryCapability(nextPackage?.statusHistory || []),
       postnl_package_observation_code: nextPackage?.observationCode || '—',
-      postnl_package_canonical_status: nextPackage?.canonicalStatus || '—',
+      postnl_package_canonical_status: nextPackage?.canonicalStatus || 'unknown',
       postnl_package_pickup: Boolean(nextPackage?.pickup),
-      postnl_package_pickup_type: nextPackage?.pickupType || nextPackage?.deliveryAddressType || '—',
-      postnl_status: connected ? (this.homey.i18n.getLanguage() === 'nl' ? 'Verbonden' : 'Connected') : (this.homey.i18n.getLanguage() === 'nl' ? 'Niet verbonden' : 'Not connected'), postnl_last_update: updated,
+      postnl_package_pickup_point: nextPackage?.pickupPoint || '—',
+      postnl_status: connected ? (this.homey.i18n.getLanguage() === 'nl' ? 'Verbonden' : 'Connected') : (this.homey.i18n.getLanguage() === 'nl' ? 'Niet verbonden' : 'Not connected'),
+      postnl_last_update: updated,
     };
     for (const [capability, value] of Object.entries(values)) if (this.hasCapability(capability)) await this.setCapabilityValue(capability, value).catch(this.error);
 
@@ -646,6 +707,59 @@ class PostNLDevice extends Homey.Device {
   isMailExpected() { return Boolean(this.getCapabilityValue('postnl_mail_expected')); }
   hasPackagesUnderway() { return Number(this.getCapabilityValue('postnl_package_count') || 0) > 0; }
   hasDeliveryWindowKnown() { return (this.snapshot.packages || []).some(parcel => !parcel.delivered && this._hasDeliveryWindow(parcel)); }
+  isPostNLConnected() { return Boolean(this.api && this.api.hasCredentials()); }
+  currentPackageHasWeight() { const parcel = this._selectActivePackage(); return Boolean(parcel && String(parcel.weight || '').trim()); }
+  currentPackageHasDimensions() { const parcel = this._selectActivePackage(); return Boolean(parcel && String(parcel.dimensions || '').trim()); }
+
+  _formatStatusHistoryCapability(history = []) {
+    const items = Array.isArray(history) ? history.slice(-20) : [];
+    if (!items.length) return '—';
+    const fmt = value => {
+      const raw = String(value || '').trim();
+      if (!raw) return '';
+      const d = new Date(raw);
+      if (Number.isNaN(d.getTime())) return raw;
+      try {
+        return new Intl.DateTimeFormat(this.homey.i18n.getLanguage() === 'nl' ? 'nl-NL' : 'en-GB', {
+          timeZone: this.homey.clock.getTimezone(), day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit', hour12: false,
+        }).format(d);
+      } catch (_) { return raw; }
+    };
+    return items.map(item => {
+      const when = fmt(item.timestamp);
+      const status = String(item.raw_status || item.rawStatus || item.description || item.status || '').trim();
+      const code = String(item.observation_code || item.observationCode || '').trim();
+      return [when, status, code ? `(${code})` : ''].filter(Boolean).join(' · ');
+    }).filter(Boolean).join(' | ');
+  }
+
+  currentPackageStatusIs(expected = '') {
+    const parcel = this._selectActivePackage();
+    if (!parcel) return false;
+    const selected = String(expected || '').trim().toLowerCase();
+    const raw = String(parcel.statusRaw || parcel.latestStatusEvent || localizePackageStatus(this.homey, parcel.status) || parcel.status || '').trim().toLowerCase().replace(/-/g, ' ');
+    const code = String(parcel.observationCode || '').trim().toUpperCase();
+    const canonical = String(parcel.canonicalStatus || '').trim().toLowerCase();
+    const byCode = (...codes) => codes.includes(code);
+    const has = (...parts) => parts.some(part => raw.includes(part));
+    switch (selected) {
+      case 'registered': return byCode('A01','A03','M02') || has('aangemeld','verwacht','nog niet ontvangen','nog niet verwerkt');
+      case 'received': return byCode('B01','C02') || has('ontvangen door postnl','pakket is ontvangen');
+      case 'collected': return byCode('F01') || has('wordt opgehaald','opgehaald bij de afzender');
+      case 'sorting': return byCode('J01','R01','J31','J30','J40') || has('wordt gesorteerd','is gesorteerd','sorteer');
+      case 'in_transit': return canonical === 'in_transit' || byCode('J04','J21','J32','J39','J44','J55','X01','X02','X03','X04','X08','X19','A21','I07') || has('onderweg','transport','land van bestemming','klaar voor verzending');
+      case 'out_for_delivery': return canonical === 'out_for_delivery' || byCode('J05') || has('bezorger is onderweg','wordt vandaag bezorgd','onderweg naar het bezorgadres','onderweg naar de bezorger');
+      case 'delivery_changed': return byCode('G01','G05','K01','T04','A18','A19','A65','J09') || has('bezorgmoment is bijgewerkt','lukt vandaag niet','duurt de bezorging wat langer','herpland');
+      case 'to_pickup_point': return byCode('K70','J21','J39','J55') || (Boolean(parcel.pickup) && canonical !== 'at_pickup_point') || has('naar postnl punt','naar een ander postnl punt','verwacht bij postnl punt');
+      case 'at_pickup_point': return canonical === 'at_pickup_point' || byCode('I08','J02','J12','J23') || has('ligt klaar bij postnl punt','klaar bij postnl punt','pakketautomaat');
+      case 'picked_up': return byCode('I02') || has('afgehaald bij postnl punt','is afgehaald');
+      case 'delivered': return Boolean(parcel.delivered) || canonical === 'delivered' || byCode('A80','I01','I02','I05','I11','I12','Z01') || has('bezorgd','afgeleverd');
+      case 'returning': return canonical === 'returning' || has('retour','teruggestuurd');
+      case 'customs': return byCode('X03','X04','A20','A21') || has('ingeklaard','douane','kosten voor zending','vrijgegeven');
+      case 'unknown': return canonical === 'unknown';
+      default: return raw === selected || canonical === selected || code === selected.toUpperCase();
+    }
+  }
 
   getWidgetData() {
     return {

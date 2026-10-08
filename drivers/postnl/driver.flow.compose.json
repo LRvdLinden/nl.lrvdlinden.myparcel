@@ -5,18 +5,7 @@
       "highlight": true,
       "title": {
         "en": "New mail is expected",
-        "nl": "Er is nieuwe post onderweg",
-        "de": "Neue Briefpost wird erwartet",
-        "fr": "Du nouveau courrier est attendu",
-        "it": "È prevista nuova posta",
-        "sv": "Ny post väntas",
-        "no": "Ny post er ventet",
-        "es": "Se espera correo nuevo",
-        "da": "Der forventes ny post",
-        "ru": "Ожидается новая почта",
-        "pl": "Oczekiwana jest nowa poczta",
-        "ko": "새 우편물이 도착할 예정입니다",
-        "ar": "من المتوقع وصول بريد جديد"
+        "nl": "Er is nieuwe post onderweg"
       },
       "args": [],
       "tokens": [
@@ -25,18 +14,7 @@
           "type": "number",
           "title": {
             "en": "Number of mail items",
-            "nl": "Aantal poststukken",
-            "de": "Anzahl der Briefsendungen",
-            "fr": "Nombre de courriers",
-            "it": "Numero di invii postali",
-            "sv": "Antal postförsändelser",
-            "no": "Antall postforsendelser",
-            "es": "Número de envíos postales",
-            "da": "Antal postforsendelser",
-            "ru": "Количество почтовых отправлений",
-            "pl": "Liczba przesyłek pocztowych",
-            "ko": "우편물 수",
-            "ar": "عدد مواد البريد"
+            "nl": "Aantal poststukken"
           }
         },
         {
@@ -44,18 +22,7 @@
           "type": "string",
           "title": {
             "en": "Mail item ID",
-            "nl": "Poststuk-ID",
-            "de": "Briefsendungs-ID",
-            "fr": "ID du courrier",
-            "it": "ID invio postale",
-            "sv": "Postförsändelse-ID",
-            "no": "Postforsendelses-ID",
-            "es": "ID del envío postal",
-            "da": "Postforsendelses-id",
-            "ru": "ID почтового отправления",
-            "pl": "ID przesyłki pocztowej",
-            "ko": "우편물 ID",
-            "ar": "معرّف مادة البريد"
+            "nl": "Poststuk-ID"
           }
         },
         {
@@ -63,18 +30,7 @@
           "type": "string",
           "title": {
             "en": "Mail item",
-            "nl": "Poststuk",
-            "de": "Briefsendung",
-            "fr": "Courrier",
-            "it": "Invio postale",
-            "sv": "Postförsändelse",
-            "no": "Postforsendelse",
-            "es": "Envío postal",
-            "da": "Postforsendelse",
-            "ru": "Почтовое отправление",
-            "pl": "Przesyłka pocztowa",
-            "ko": "우편물",
-            "ar": "مادة بريد"
+            "nl": "Poststuk"
           }
         },
         {
@@ -82,18 +38,7 @@
           "type": "string",
           "title": {
             "en": "Sender (if available)",
-            "nl": "Afzender (indien beschikbaar)",
-            "de": "Absender (falls verfügbar)",
-            "fr": "Expéditeur (si disponible)",
-            "it": "Mittente (se disponibile)",
-            "sv": "Avsändare (om tillgänglig)",
-            "no": "Avsender (hvis tilgjengelig)",
-            "es": "Remitente (si está disponible)",
-            "da": "Afsender (hvis tilgængelig)",
-            "ru": "Отправитель (если доступно)",
-            "pl": "Nadawca (jeśli dostępny)",
-            "ko": "발송인(가능한 경우)",
-            "ar": "المرسل (إن توفر)"
+            "nl": "Afzender (indien beschikbaar)"
           }
         },
         {
@@ -101,18 +46,7 @@
           "type": "string",
           "title": {
             "en": "Delivery date",
-            "nl": "Bezorgdatum",
-            "de": "Zustelldatum",
-            "fr": "Date de livraison",
-            "it": "Data di consegna",
-            "sv": "Leveransdatum",
-            "no": "Leveringsdato",
-            "es": "Fecha de entrega",
-            "da": "Leveringsdato",
-            "ru": "Дата доставки",
-            "pl": "Data dostawy",
-            "ko": "배송일",
-            "ar": "تاريخ التسليم"
+            "nl": "Bezorgdatum"
           }
         },
         {
@@ -120,18 +54,7 @@
           "type": "boolean",
           "title": {
             "en": "Unread",
-            "nl": "Ongelezen",
-            "de": "Ungelesen",
-            "fr": "Non lu",
-            "it": "Non letto",
-            "sv": "Oläst",
-            "no": "Ulest",
-            "es": "No leído",
-            "da": "Ulæst",
-            "ru": "Непрочитано",
-            "pl": "Nieprzeczytane",
-            "ko": "읽지 않음",
-            "ar": "غير مقروء"
+            "nl": "Ongelezen"
           }
         },
         {
@@ -139,18 +62,7 @@
           "type": "boolean",
           "title": {
             "en": "Image available",
-            "nl": "Afbeelding beschikbaar",
-            "de": "Bild verfügbar",
-            "fr": "Image disponible",
-            "it": "Immagine disponibile",
-            "sv": "Bild tillgänglig",
-            "no": "Bilde tilgjengelig",
-            "es": "Imagen disponible",
-            "da": "Billede tilgængeligt",
-            "ru": "Изображение доступно",
-            "pl": "Obraz dostępny",
-            "ko": "이미지 사용 가능",
-            "ar": "الصورة متاحة"
+            "nl": "Afbeelding beschikbaar"
           }
         },
         {
@@ -158,18 +70,7 @@
           "type": "image",
           "title": {
             "en": "Mail item image",
-            "nl": "Afbeelding poststuk",
-            "de": "Bild der Briefsendung",
-            "fr": "Image du courrier",
-            "it": "Immagine dell’invio postale",
-            "sv": "Bild på postförsändelse",
-            "no": "Bilde av postforsendelse",
-            "es": "Imagen del envío postal",
-            "da": "Billede af postforsendelse",
-            "ru": "Изображение почтового отправления",
-            "pl": "Obraz przesyłki pocztowej",
-            "ko": "우편물 이미지",
-            "ar": "صورة مادة البريد"
+            "nl": "Afbeelding poststuk"
           }
         }
       ]
@@ -179,18 +80,7 @@
       "highlight": true,
       "title": {
         "en": "A new parcel was found",
-        "nl": "Er is een nieuw pakket gevonden",
-        "de": "Ein neues Paket wurde gefunden",
-        "fr": "Un nouveau colis a été trouvé",
-        "it": "È stato trovato un nuovo pacco",
-        "sv": "Ett nytt paket hittades",
-        "no": "En ny pakke ble funnet",
-        "es": "Se encontró un paquete nuevo",
-        "da": "En ny pakke blev fundet",
-        "ru": "Найдена новая посылка",
-        "pl": "Znaleziono nową paczkę",
-        "ko": "새 소포를 찾았습니다",
-        "ar": "تم العثور على طرد جديد"
+        "nl": "Er is een nieuw pakket gevonden"
       },
       "args": [],
       "tokens": [
@@ -199,18 +89,7 @@
           "type": "string",
           "title": {
             "en": "Shipment ID",
-            "nl": "Zending-ID",
-            "de": "Sendungs-ID",
-            "fr": "ID d’expédition",
-            "it": "ID spedizione",
-            "sv": "Försändelse-ID",
-            "no": "Forsendelses-ID",
-            "es": "ID del envío",
-            "da": "Forsendelses-id",
-            "ru": "ID отправления",
-            "pl": "ID przesyłki",
-            "ko": "배송 ID",
-            "ar": "معرّف الشحنة"
+            "nl": "Zending-ID"
           }
         },
         {
@@ -218,18 +97,7 @@
           "type": "string",
           "title": {
             "en": "Sender",
-            "nl": "Afzender",
-            "de": "Absender",
-            "fr": "Expéditeur",
-            "it": "Mittente",
-            "sv": "Avsändare",
-            "no": "Avsender",
-            "es": "Remitente",
-            "da": "Afsender",
-            "ru": "Отправитель",
-            "pl": "Nadawca",
-            "ko": "발송인",
-            "ar": "المرسل"
+            "nl": "Afzender"
           }
         },
         {
@@ -237,18 +105,7 @@
           "type": "string",
           "title": {
             "en": "Receiver",
-            "nl": "Ontvanger",
-            "de": "Empfänger",
-            "fr": "Destinataire",
-            "it": "Destinatario",
-            "sv": "Mottagare",
-            "no": "Mottaker",
-            "es": "Destinatario",
-            "da": "Modtager",
-            "ru": "Получатель",
-            "pl": "Odbiorca",
-            "ko": "수령인",
-            "ar": "المستلم"
+            "nl": "Ontvanger"
           }
         },
         {
@@ -256,18 +113,7 @@
           "type": "string",
           "title": {
             "en": "Parcel",
-            "nl": "Pakket",
-            "de": "Paket",
-            "fr": "Colis",
-            "it": "Pacco",
-            "sv": "Paket",
-            "no": "Pakke",
-            "es": "Paquete",
-            "da": "Pakke",
-            "ru": "Посылка",
-            "pl": "Paczka",
-            "ko": "소포",
-            "ar": "الطرد"
+            "nl": "Pakket"
           }
         },
         {
@@ -275,18 +121,7 @@
           "type": "string",
           "title": {
             "en": "Barcode",
-            "nl": "Barcode",
-            "de": "Barcode",
-            "fr": "Code-barres",
-            "it": "Codice a barre",
-            "sv": "Streckkod",
-            "no": "Strekkode",
-            "es": "Código de barras",
-            "da": "Stregkode",
-            "ru": "Штрихкод",
-            "pl": "Kod kreskowy",
-            "ko": "바코드",
-            "ar": "الباركود"
+            "nl": "Barcode"
           }
         },
         {
@@ -294,398 +129,7 @@
           "type": "string",
           "title": {
             "en": "Status",
-            "nl": "Status",
-            "de": "Status",
-            "fr": "Statut",
-            "it": "Stato",
-            "sv": "Status",
-            "no": "Status",
-            "es": "Estado",
-            "da": "Status",
-            "ru": "Статус",
-            "pl": "Status",
-            "ko": "상태",
-            "ar": "الحالة"
-          }
-        },
-        {
-          "name": "delivery_date",
-          "type": "string",
-          "title": {
-            "en": "Delivery date",
-            "nl": "Bezorgdatum",
-            "de": "Zustelldatum",
-            "fr": "Date de livraison",
-            "it": "Data di consegna",
-            "sv": "Leveransdatum",
-            "no": "Leveringsdato",
-            "es": "Fecha de entrega",
-            "da": "Leveringsdato",
-            "ru": "Дата доставки",
-            "pl": "Data dostawy",
-            "ko": "배송 날짜",
-            "ar": "تاريخ التسليم"
-          }
-        },
-        {
-          "name": "delivery_window",
-          "type": "string",
-          "title": {
-            "en": "Delivery window",
-            "nl": "Bezorgvenster",
-            "de": "Zustellzeitfenster",
-            "fr": "Créneau de livraison",
-            "it": "Finestra di consegna",
-            "sv": "Leveransfönster",
-            "no": "Leveringsvindu",
-            "es": "Franja de entrega",
-            "da": "Leveringsvindue",
-            "ru": "Интервал доставки",
-            "pl": "Okno dostawy",
-            "ko": "배송 시간대",
-            "ar": "نافذة التسليم"
-          }
-        },
-        {
-          "name": "delivery_window_from",
-          "type": "string",
-          "title": {
-            "en": "Delivery window from",
-            "nl": "Bezorgvenster vanaf",
-            "de": "Zustellfenster ab",
-            "fr": "Créneau de livraison à partir de",
-            "it": "Finestra di consegna da",
-            "sv": "Leveransfönster från",
-            "no": "Leveringsvindu fra",
-            "es": "Ventana de entrega desde",
-            "da": "Leveringsvindue fra",
-            "ru": "Окно доставки с",
-            "pl": "Okno dostawy od",
-            "ko": "배송 시간대 시작",
-            "ar": "نافذة التسليم من"
-          }
-        },
-        {
-          "name": "delivery_window_to",
-          "type": "string",
-          "title": {
-            "en": "Delivery window to",
-            "nl": "Bezorgvenster tot",
-            "de": "Zustellfenster bis",
-            "fr": "Créneau de livraison jusqu’à",
-            "it": "Finestra di consegna fino a",
-            "sv": "Leveransfönster till",
-            "no": "Leveringsvindu til",
-            "es": "Ventana de entrega hasta",
-            "da": "Leveringsvindue til",
-            "ru": "Окно доставки до",
-            "pl": "Okno dostawy do",
-            "ko": "배송 시간대 종료",
-            "ar": "نافذة التسليم إلى"
-          }
-        },
-        {
-          "name": "delivery_window_type",
-          "type": "string",
-          "title": {
-            "en": "Delivery window type",
-            "nl": "Type bezorgvenster",
-            "de": "Typ des Zustellfensters",
-            "fr": "Type de créneau de livraison",
-            "it": "Tipo di finestra di consegna",
-            "sv": "Typ av leveransfönster",
-            "no": "Type leveringsvindu",
-            "es": "Tipo de ventana de entrega",
-            "da": "Type leveringsvindue",
-            "ru": "Тип окна доставки",
-            "pl": "Typ okna dostawy",
-            "ko": "배송 시간대 유형",
-            "ar": "نوع نافذة التسليم"
-          }
-        },
-        {
-          "name": "details_url",
-          "type": "string",
-          "title": {
-            "en": "Tracking URL",
-            "nl": "Tracking-URL",
-            "de": "Tracking-URL",
-            "fr": "URL de suivi",
-            "it": "URL di tracciamento",
-            "sv": "Spårnings-URL",
-            "no": "Sporings-URL",
-            "es": "URL de seguimiento",
-            "da": "Sporings-URL",
-            "ru": "URL отслеживания",
-            "pl": "URL śledzenia",
-            "ko": "추적 URL",
-            "ar": "رابط التتبع"
-          }
-        },
-        {
-          "name": "shipment_type",
-          "type": "string",
-          "title": {
-            "en": "Shipment type",
-            "nl": "Zendingstype",
-            "de": "Sendungstyp",
-            "fr": "Type d’expédition",
-            "it": "Tipo di spedizione",
-            "sv": "Försändelsetyp",
-            "no": "Forsendelsestype",
-            "es": "Tipo de envío",
-            "da": "Forsendelsestype",
-            "ru": "Тип отправления",
-            "pl": "Typ przesyłki",
-            "ko": "배송 유형",
-            "ar": "نوع الشحنة"
-          }
-        },
-        {
-          "name": "delivery_address_type",
-          "type": "string",
-          "title": {
-            "en": "Delivery address type",
-            "nl": "Type bezorgadres",
-            "de": "Typ der Zustelladresse",
-            "fr": "Type d’adresse de livraison",
-            "it": "Tipo di indirizzo di consegna",
-            "sv": "Typ av leveransadress",
-            "no": "Type leveringsadresse",
-            "es": "Tipo de dirección de entrega",
-            "da": "Type leveringsadresse",
-            "ru": "Тип адреса доставки",
-            "pl": "Typ adresu dostawy",
-            "ko": "배송 주소 유형",
-            "ar": "نوع عنوان التسليم"
-          }
-        },
-        {
-          "name": "direction",
-          "type": "string",
-          "title": {
-            "en": "Direction",
-            "nl": "Richting",
-            "de": "Richtung",
-            "fr": "Direction",
-            "it": "Direzione",
-            "sv": "Riktning",
-            "no": "Retning",
-            "es": "Dirección",
-            "da": "Retning",
-            "ru": "Направление",
-            "pl": "Kierunek",
-            "ko": "방향",
-            "ar": "الاتجاه"
-          }
-        },
-        {
-          "name": "created_at",
-          "type": "string",
-          "title": {
-            "en": "Created at",
-            "nl": "Aangemaakt op",
-            "de": "Erstellt am",
-            "fr": "Créé le",
-            "it": "Creato il",
-            "sv": "Skapad",
-            "no": "Opprettet",
-            "es": "Creado el",
-            "da": "Oprettet",
-            "ru": "Создано",
-            "pl": "Utworzono",
-            "ko": "생성 시각",
-            "ar": "تم الإنشاء في"
-          }
-        },
-        {
-          "name": "delivered",
-          "type": "boolean",
-          "title": {
-            "en": "Delivered",
-            "nl": "Bezorgd",
-            "de": "Zugestellt",
-            "fr": "Livré",
-            "it": "Consegnato",
-            "sv": "Levererad",
-            "no": "Levert",
-            "es": "Entregado",
-            "da": "Leveret",
-            "ru": "Доставлено",
-            "pl": "Doręczono",
-            "ko": "배송 완료",
-            "ar": "تم التسليم"
-          }
-        },
-        {
-          "name": "shared_from",
-          "type": "string",
-          "title": {
-            "en": "Shared from",
-            "nl": "Gedeeld via",
-            "de": "Geteilt über",
-            "fr": "Partagé depuis",
-            "it": "Condiviso da",
-            "sv": "Delad från",
-            "no": "Delt fra",
-            "es": "Compartido desde",
-            "da": "Delt fra",
-            "ru": "Источник общего доступа",
-            "pl": "Udostępniono z",
-            "ko": "공유 출처",
-            "ar": "تمت المشاركة من"
-          }
-        },
-        {
-          "name": "source_account_id",
-          "type": "string",
-          "title": {
-            "en": "Source account ID",
-            "nl": "Bronaccount-ID",
-            "de": "Quellkonto-ID",
-            "fr": "ID du compte source",
-            "it": "ID account di origine",
-            "sv": "Källkonto-ID",
-            "no": "Kildekonto-ID",
-            "es": "ID de cuenta de origen",
-            "da": "Kildekonto-id",
-            "ru": "ID исходного аккаунта",
-            "pl": "ID konta źródłowego",
-            "ko": "소스 계정 ID",
-            "ar": "معرّف الحساب المصدر"
-          }
-        },
-        {
-          "name": "package_status_text",
-          "type": "string",
-          "title": {
-            "en": "Package status",
-            "nl": "Pakketstatus",
-            "de": "Paketstatus",
-            "fr": "Statut du colis",
-            "it": "Stato del pacco",
-            "sv": "Paketstatus",
-            "no": "Pakkestatus",
-            "es": "Estado del paquete",
-            "da": "Pakkestatus",
-            "ru": "Статус посылки",
-            "pl": "Status paczki",
-            "ko": "소포 상태",
-            "ar": "حالة الطرد"
-          }
-        },
-        {
-          "name": "package_window_text",
-          "type": "string",
-          "title": {
-            "en": "Delivery window text",
-            "nl": "Tekst bezorgvenster",
-            "de": "Text des Zustellfensters",
-            "fr": "Texte du créneau de livraison",
-            "it": "Testo della finestra di consegna",
-            "sv": "Text för leveransfönster",
-            "no": "Tekst for leveringsvindu",
-            "es": "Texto de la ventana de entrega",
-            "da": "Tekst for leveringsvindue",
-            "ru": "Текст окна доставки",
-            "pl": "Tekst okna dostawy",
-            "ko": "배송 시간대 텍스트",
-            "ar": "نص نافذة التسليم"
-          }
-        },
-        {
-          "name": "package_delivery_date",
-          "type": "string",
-          "title": {
-            "en": "Package delivery date",
-            "nl": "Bezorgdatum pakket",
-            "de": "Paket-Zustelldatum",
-            "fr": "Date de livraison du colis",
-            "it": "Data di consegna del pacco",
-            "sv": "Paketets leveransdatum",
-            "no": "Pakkens leveringsdato",
-            "es": "Fecha de entrega del paquete",
-            "da": "Pakkens leveringsdato",
-            "ru": "Дата доставки посылки",
-            "pl": "Data dostawy paczki",
-            "ko": "소포 배송일",
-            "ar": "تاريخ تسليم الطرد"
-          }
-        },
-        {
-          "name": "package_sender",
-          "type": "string",
-          "title": {
-            "en": "Package sender",
-            "nl": "Afzender pakket",
-            "de": "Paket-Absender",
-            "fr": "Expéditeur du colis",
-            "it": "Mittente del pacco",
-            "sv": "Paketavsändare",
-            "no": "Pakkeavsender",
-            "es": "Remitente del paquete",
-            "da": "Pakkeafsender",
-            "ru": "Отправитель посылки",
-            "pl": "Nadawca paczki",
-            "ko": "소포 발송인",
-            "ar": "مرسل الطرد"
-          }
-        },
-        {
-          "name": "package_tracking",
-          "type": "string",
-          "title": {
-            "en": "Package tracking number",
-            "nl": "Trackingnummer pakket",
-            "de": "Paket-Trackingnummer",
-            "fr": "Numéro de suivi du colis",
-            "it": "Numero di tracciamento del pacco",
-            "sv": "Paketets spårningsnummer",
-            "no": "Pakkens sporingsnummer",
-            "es": "Número de seguimiento del paquete",
-            "da": "Pakkens sporingsnummer",
-            "ru": "Номер отслеживания посылки",
-            "pl": "Numer śledzenia paczki",
-            "ko": "소포 운송장 번호",
-            "ar": "رقم تتبع الطرد"
-          }
-        },
-        {
-          "name": "package_image_available",
-          "type": "boolean",
-          "title": {
-            "en": "My delivery image available",
-            "nl": "Afbeelding Mijn Bezorging beschikbaar",
-            "de": "Bild „Meine Zustellung“ verfügbar",
-            "fr": "Image « Ma livraison » disponible",
-            "it": "Immagine “La mia consegna” disponibile",
-            "sv": "Bild för Min leverans tillgänglig",
-            "no": "Bilde for Min levering tilgjengelig",
-            "es": "Imagen de Mi entrega disponible",
-            "da": "Billede for Min levering tilgængeligt",
-            "ru": "Изображение «Моя доставка» доступно",
-            "pl": "Obraz „Moja dostawa” dostępny",
-            "ko": "내 배송 이미지 사용 가능",
-            "ar": "صورة «توصيلي» متاحة"
-          }
-        },
-        {
-          "name": "package_image",
-          "type": "image",
-          "title": {
-            "en": "My delivery image",
-            "nl": "Afbeelding Mijn Bezorging",
-            "de": "Bild „Meine Zustellung“",
-            "fr": "Image « Ma livraison »",
-            "it": "Immagine “La mia consegna”",
-            "sv": "Bild för Min leverans",
-            "no": "Bilde for Min levering",
-            "es": "Imagen de Mi entrega",
-            "da": "Billede for Min levering",
-            "ru": "Изображение «Моя доставка»",
-            "pl": "Obraz „Moja dostawa”",
-            "ko": "내 배송 이미지",
-            "ar": "صورة «توصيلي»"
+            "nl": "Status"
           }
         },
         {
@@ -721,309 +165,11 @@
           }
         },
         {
-          "name": "weight",
-          "type": "number",
-          "title": {
-            "en": "Parcel weight (kg)",
-            "nl": "Gewicht pakket (kg)",
-            "de": "Parcel weight (kg)",
-            "fr": "Parcel weight (kg)",
-            "it": "Parcel weight (kg)",
-            "sv": "Parcel weight (kg)",
-            "no": "Parcel weight (kg)",
-            "es": "Parcel weight (kg)",
-            "da": "Parcel weight (kg)",
-            "ru": "Parcel weight (kg)",
-            "pl": "Parcel weight (kg)",
-            "ko": "Parcel weight (kg)",
-            "ar": "Parcel weight (kg)"
-          }
-        },
-        {
-          "name": "dimensions",
-          "type": "string",
-          "title": {
-            "en": "Parcel dimensions",
-            "nl": "Afmetingen pakket",
-            "de": "Parcel dimensions",
-            "fr": "Parcel dimensions",
-            "it": "Parcel dimensions",
-            "sv": "Parcel dimensions",
-            "no": "Parcel dimensions",
-            "es": "Parcel dimensions",
-            "da": "Parcel dimensions",
-            "ru": "Parcel dimensions",
-            "pl": "Parcel dimensions",
-            "ko": "Parcel dimensions",
-            "ar": "Parcel dimensions"
-          }
-        },
-        {
-          "name": "status_history",
-          "type": "string",
-          "title": {
-            "en": "Parcel status history",
-            "nl": "Statushistorie pakket",
-            "de": "Parcel status history",
-            "fr": "Parcel status history",
-            "it": "Parcel status history",
-            "sv": "Parcel status history",
-            "no": "Parcel status history",
-            "es": "Parcel status history",
-            "da": "Parcel status history",
-            "ru": "Parcel status history",
-            "pl": "Parcel status history",
-            "ko": "Parcel status history",
-            "ar": "Parcel status history"
-          }
-        },
-        {
-          "name": "observation_code",
-          "type": "string",
-          "title": {
-            "en": "PostNL observation code",
-            "nl": "PostNL-observationCode",
-            "de": "PostNL observation code",
-            "fr": "PostNL observation code",
-            "it": "PostNL observation code",
-            "sv": "PostNL observation code",
-            "no": "PostNL observation code",
-            "es": "PostNL observation code",
-            "da": "PostNL observation code",
-            "ru": "PostNL observation code",
-            "pl": "PostNL observation code",
-            "ko": "PostNL observation code",
-            "ar": "PostNL observation code"
-          }
-        },
-        {
-          "name": "canonical_status",
-          "type": "string",
-          "title": {
-            "en": "Canonical parcel status",
-            "nl": "Canonieke pakketstatus",
-            "de": "Canonical parcel status",
-            "fr": "Canonical parcel status",
-            "it": "Canonical parcel status",
-            "sv": "Canonical parcel status",
-            "no": "Canonical parcel status",
-            "es": "Canonical parcel status",
-            "da": "Canonical parcel status",
-            "ru": "Canonical parcel status",
-            "pl": "Canonical parcel status",
-            "ko": "Canonical parcel status",
-            "ar": "Canonical parcel status"
-          }
-        },
-        {
-          "name": "pickup",
-          "type": "boolean",
-          "title": {
-            "en": "Pickup / ServicePoint",
-            "nl": "Afhalen / PostNL-punt",
-            "de": "Pickup / ServicePoint",
-            "fr": "Pickup / ServicePoint",
-            "it": "Pickup / ServicePoint",
-            "sv": "Pickup / ServicePoint",
-            "no": "Pickup / ServicePoint",
-            "es": "Pickup / ServicePoint",
-            "da": "Pickup / ServicePoint",
-            "ru": "Pickup / ServicePoint",
-            "pl": "Pickup / ServicePoint",
-            "ko": "Pickup / ServicePoint",
-            "ar": "Pickup / ServicePoint"
-          }
-        },
-        {
-          "name": "pickup_type",
-          "type": "string",
-          "title": {
-            "en": "Pickup / delivery address type",
-            "nl": "Type afhaal-/bezorgadres",
-            "de": "Pickup / delivery address type",
-            "fr": "Pickup / delivery address type",
-            "it": "Pickup / delivery address type",
-            "sv": "Pickup / delivery address type",
-            "no": "Pickup / delivery address type",
-            "es": "Pickup / delivery address type",
-            "da": "Pickup / delivery address type",
-            "ru": "Pickup / delivery address type",
-            "pl": "Pickup / delivery address type",
-            "ko": "Pickup / delivery address type",
-            "ar": "Pickup / delivery address type"
-          }
-        }
-      ]
-    },
-    {
-      "id": "package_status_changed",
-      "title": {
-        "en": "A parcel status changed",
-        "nl": "De status van een pakket is gewijzigd",
-        "de": "Der Status eines Pakets hat sich geändert",
-        "fr": "Le statut d’un colis a changé",
-        "it": "Lo stato di un pacco è cambiato",
-        "sv": "Statusen för ett paket ändrades",
-        "no": "Statusen til en pakke ble endret",
-        "es": "El estado de un paquete cambió",
-        "da": "Status for en pakke blev ændret",
-        "ru": "Статус посылки изменился",
-        "pl": "Status paczki uległ zmianie",
-        "ko": "소포 상태가 변경되었습니다",
-        "ar": "تغيرت حالة طرد"
-      },
-      "args": [],
-      "tokens": [
-        {
-          "name": "old_status",
-          "type": "string",
-          "title": {
-            "en": "Previous status",
-            "nl": "Vorige status",
-            "de": "Vorheriger Status",
-            "fr": "Statut précédent",
-            "it": "Stato precedente",
-            "sv": "Föregående status",
-            "no": "Forrige status",
-            "es": "Estado anterior",
-            "da": "Forrige status",
-            "ru": "Предыдущий статус",
-            "pl": "Poprzedni status",
-            "ko": "이전 상태",
-            "ar": "الحالة السابقة"
-          }
-        },
-        {
-          "name": "id",
-          "type": "string",
-          "title": {
-            "en": "Shipment ID",
-            "nl": "Zending-ID",
-            "de": "Sendungs-ID",
-            "fr": "ID d’expédition",
-            "it": "ID spedizione",
-            "sv": "Försändelse-ID",
-            "no": "Forsendelses-ID",
-            "es": "ID del envío",
-            "da": "Forsendelses-id",
-            "ru": "ID отправления",
-            "pl": "ID przesyłki",
-            "ko": "배송 ID",
-            "ar": "معرّف الشحنة"
-          }
-        },
-        {
-          "name": "sender",
-          "type": "string",
-          "title": {
-            "en": "Sender",
-            "nl": "Afzender",
-            "de": "Absender",
-            "fr": "Expéditeur",
-            "it": "Mittente",
-            "sv": "Avsändare",
-            "no": "Avsender",
-            "es": "Remitente",
-            "da": "Afsender",
-            "ru": "Отправитель",
-            "pl": "Nadawca",
-            "ko": "발송인",
-            "ar": "المرسل"
-          }
-        },
-        {
-          "name": "receiver",
-          "type": "string",
-          "title": {
-            "en": "Receiver",
-            "nl": "Ontvanger",
-            "de": "Empfänger",
-            "fr": "Destinataire",
-            "it": "Destinatario",
-            "sv": "Mottagare",
-            "no": "Mottaker",
-            "es": "Destinatario",
-            "da": "Modtager",
-            "ru": "Получатель",
-            "pl": "Odbiorca",
-            "ko": "수령인",
-            "ar": "المستلم"
-          }
-        },
-        {
-          "name": "title",
-          "type": "string",
-          "title": {
-            "en": "Parcel",
-            "nl": "Pakket",
-            "de": "Paket",
-            "fr": "Colis",
-            "it": "Pacco",
-            "sv": "Paket",
-            "no": "Pakke",
-            "es": "Paquete",
-            "da": "Pakke",
-            "ru": "Посылка",
-            "pl": "Paczka",
-            "ko": "소포",
-            "ar": "الطرد"
-          }
-        },
-        {
-          "name": "barcode",
-          "type": "string",
-          "title": {
-            "en": "Barcode",
-            "nl": "Barcode",
-            "de": "Barcode",
-            "fr": "Code-barres",
-            "it": "Codice a barre",
-            "sv": "Streckkod",
-            "no": "Strekkode",
-            "es": "Código de barras",
-            "da": "Stregkode",
-            "ru": "Штрихкод",
-            "pl": "Kod kreskowy",
-            "ko": "바코드",
-            "ar": "الباركود"
-          }
-        },
-        {
-          "name": "status",
-          "type": "string",
-          "title": {
-            "en": "Status",
-            "nl": "Status",
-            "de": "Status",
-            "fr": "Statut",
-            "it": "Stato",
-            "sv": "Status",
-            "no": "Status",
-            "es": "Estado",
-            "da": "Status",
-            "ru": "Статус",
-            "pl": "Status",
-            "ko": "상태",
-            "ar": "الحالة"
-          }
-        },
-        {
           "name": "delivery_date",
           "type": "string",
           "title": {
             "en": "Delivery date",
-            "nl": "Bezorgdatum",
-            "de": "Zustelldatum",
-            "fr": "Date de livraison",
-            "it": "Data di consegna",
-            "sv": "Leveransdatum",
-            "no": "Leveringsdato",
-            "es": "Fecha de entrega",
-            "da": "Leveringsdato",
-            "ru": "Дата доставки",
-            "pl": "Data dostawy",
-            "ko": "배송 날짜",
-            "ar": "تاريخ التسليم"
+            "nl": "Bezorgdatum"
           }
         },
         {
@@ -1031,18 +177,7 @@
           "type": "string",
           "title": {
             "en": "Delivery window",
-            "nl": "Bezorgvenster",
-            "de": "Zustellzeitfenster",
-            "fr": "Créneau de livraison",
-            "it": "Finestra di consegna",
-            "sv": "Leveransfönster",
-            "no": "Leveringsvindu",
-            "es": "Franja de entrega",
-            "da": "Leveringsvindue",
-            "ru": "Интервал доставки",
-            "pl": "Okno dostawy",
-            "ko": "배송 시간대",
-            "ar": "نافذة التسليم"
+            "nl": "Bezorgvenster"
           }
         },
         {
@@ -1050,18 +185,7 @@
           "type": "string",
           "title": {
             "en": "Delivery window from",
-            "nl": "Bezorgvenster vanaf",
-            "de": "Zustellfenster ab",
-            "fr": "Créneau de livraison à partir de",
-            "it": "Finestra di consegna da",
-            "sv": "Leveransfönster från",
-            "no": "Leveringsvindu fra",
-            "es": "Ventana de entrega desde",
-            "da": "Leveringsvindue fra",
-            "ru": "Окно доставки с",
-            "pl": "Okno dostawy od",
-            "ko": "배송 시간대 시작",
-            "ar": "نافذة التسليم من"
+            "nl": "Bezorgvenster vanaf"
           }
         },
         {
@@ -1069,18 +193,7 @@
           "type": "string",
           "title": {
             "en": "Delivery window to",
-            "nl": "Bezorgvenster tot",
-            "de": "Zustellfenster bis",
-            "fr": "Créneau de livraison jusqu’à",
-            "it": "Finestra di consegna fino a",
-            "sv": "Leveransfönster till",
-            "no": "Leveringsvindu til",
-            "es": "Ventana de entrega hasta",
-            "da": "Leveringsvindue til",
-            "ru": "Окно доставки до",
-            "pl": "Okno dostawy do",
-            "ko": "배송 시간대 종료",
-            "ar": "نافذة التسليم إلى"
+            "nl": "Bezorgvenster tot"
           }
         },
         {
@@ -1088,18 +201,7 @@
           "type": "string",
           "title": {
             "en": "Delivery window type",
-            "nl": "Type bezorgvenster",
-            "de": "Typ des Zustellfensters",
-            "fr": "Type de créneau de livraison",
-            "it": "Tipo di finestra di consegna",
-            "sv": "Typ av leveransfönster",
-            "no": "Type leveringsvindu",
-            "es": "Tipo de ventana de entrega",
-            "da": "Type leveringsvindue",
-            "ru": "Тип окна доставки",
-            "pl": "Typ okna dostawy",
-            "ko": "배송 시간대 유형",
-            "ar": "نوع نافذة التسليم"
+            "nl": "Type bezorgvenster"
           }
         },
         {
@@ -1107,18 +209,7 @@
           "type": "string",
           "title": {
             "en": "Tracking URL",
-            "nl": "Tracking-URL",
-            "de": "Tracking-URL",
-            "fr": "URL de suivi",
-            "it": "URL di tracciamento",
-            "sv": "Spårnings-URL",
-            "no": "Sporings-URL",
-            "es": "URL de seguimiento",
-            "da": "Sporings-URL",
-            "ru": "URL отслеживания",
-            "pl": "URL śledzenia",
-            "ko": "추적 URL",
-            "ar": "رابط التتبع"
+            "nl": "Tracking-URL"
           }
         },
         {
@@ -1126,18 +217,7 @@
           "type": "string",
           "title": {
             "en": "Shipment type",
-            "nl": "Zendingstype",
-            "de": "Sendungstyp",
-            "fr": "Type d’expédition",
-            "it": "Tipo di spedizione",
-            "sv": "Försändelsetyp",
-            "no": "Forsendelsestype",
-            "es": "Tipo de envío",
-            "da": "Forsendelsestype",
-            "ru": "Тип отправления",
-            "pl": "Typ przesyłki",
-            "ko": "배송 유형",
-            "ar": "نوع الشحنة"
+            "nl": "Zendingstype"
           }
         },
         {
@@ -1145,18 +225,7 @@
           "type": "string",
           "title": {
             "en": "Delivery address type",
-            "nl": "Type bezorgadres",
-            "de": "Typ der Zustelladresse",
-            "fr": "Type d’adresse de livraison",
-            "it": "Tipo di indirizzo di consegna",
-            "sv": "Typ av leveransadress",
-            "no": "Type leveringsadresse",
-            "es": "Tipo de dirección de entrega",
-            "da": "Type leveringsadresse",
-            "ru": "Тип адреса доставки",
-            "pl": "Typ adresu dostawy",
-            "ko": "배송 주소 유형",
-            "ar": "نوع عنوان التسليم"
+            "nl": "Type bezorgadres"
           }
         },
         {
@@ -1164,18 +233,7 @@
           "type": "string",
           "title": {
             "en": "Direction",
-            "nl": "Richting",
-            "de": "Richtung",
-            "fr": "Direction",
-            "it": "Direzione",
-            "sv": "Riktning",
-            "no": "Retning",
-            "es": "Dirección",
-            "da": "Retning",
-            "ru": "Направление",
-            "pl": "Kierunek",
-            "ko": "방향",
-            "ar": "الاتجاه"
+            "nl": "Richting"
           }
         },
         {
@@ -1183,18 +241,7 @@
           "type": "string",
           "title": {
             "en": "Created at",
-            "nl": "Aangemaakt op",
-            "de": "Erstellt am",
-            "fr": "Créé le",
-            "it": "Creato il",
-            "sv": "Skapad",
-            "no": "Opprettet",
-            "es": "Creado el",
-            "da": "Oprettet",
-            "ru": "Создано",
-            "pl": "Utworzono",
-            "ko": "생성 시각",
-            "ar": "تم الإنشاء في"
+            "nl": "Aangemaakt op"
           }
         },
         {
@@ -1202,18 +249,7 @@
           "type": "boolean",
           "title": {
             "en": "Delivered",
-            "nl": "Bezorgd",
-            "de": "Zugestellt",
-            "fr": "Livré",
-            "it": "Consegnato",
-            "sv": "Levererad",
-            "no": "Levert",
-            "es": "Entregado",
-            "da": "Leveret",
-            "ru": "Доставлено",
-            "pl": "Doręczono",
-            "ko": "배송 완료",
-            "ar": "تم التسليم"
+            "nl": "Bezorgd"
           }
         },
         {
@@ -1221,18 +257,7 @@
           "type": "string",
           "title": {
             "en": "Shared from",
-            "nl": "Gedeeld via",
-            "de": "Geteilt über",
-            "fr": "Partagé depuis",
-            "it": "Condiviso da",
-            "sv": "Delad från",
-            "no": "Delt fra",
-            "es": "Compartido desde",
-            "da": "Delt fra",
-            "ru": "Источник общего доступа",
-            "pl": "Udostępniono z",
-            "ko": "공유 출처",
-            "ar": "تمت المشاركة من"
+            "nl": "Gedeeld via"
           }
         },
         {
@@ -1240,18 +265,7 @@
           "type": "string",
           "title": {
             "en": "Source account ID",
-            "nl": "Bronaccount-ID",
-            "de": "Quellkonto-ID",
-            "fr": "ID du compte source",
-            "it": "ID account di origine",
-            "sv": "Källkonto-ID",
-            "no": "Kildekonto-ID",
-            "es": "ID de cuenta de origen",
-            "da": "Kildekonto-id",
-            "ru": "ID исходного аккаунта",
-            "pl": "ID konta źródłowego",
-            "ko": "소스 계정 ID",
-            "ar": "معرّف الحساب المصدر"
+            "nl": "Bronaccount-ID"
           }
         },
         {
@@ -1259,18 +273,7 @@
           "type": "string",
           "title": {
             "en": "Package status",
-            "nl": "Pakketstatus",
-            "de": "Paketstatus",
-            "fr": "Statut du colis",
-            "it": "Stato del pacco",
-            "sv": "Paketstatus",
-            "no": "Pakkestatus",
-            "es": "Estado del paquete",
-            "da": "Pakkestatus",
-            "ru": "Статус посылки",
-            "pl": "Status paczki",
-            "ko": "소포 상태",
-            "ar": "حالة الطرد"
+            "nl": "Pakketstatus"
           }
         },
         {
@@ -1278,18 +281,7 @@
           "type": "string",
           "title": {
             "en": "Delivery window text",
-            "nl": "Tekst bezorgvenster",
-            "de": "Text des Zustellfensters",
-            "fr": "Texte du créneau de livraison",
-            "it": "Testo della finestra di consegna",
-            "sv": "Text för leveransfönster",
-            "no": "Tekst for leveringsvindu",
-            "es": "Texto de la ventana de entrega",
-            "da": "Tekst for leveringsvindue",
-            "ru": "Текст окна доставки",
-            "pl": "Tekst okna dostawy",
-            "ko": "배송 시간대 텍스트",
-            "ar": "نص نافذة التسليم"
+            "nl": "Tekst bezorgvenster"
           }
         },
         {
@@ -1297,18 +289,7 @@
           "type": "string",
           "title": {
             "en": "Package delivery date",
-            "nl": "Bezorgdatum pakket",
-            "de": "Paket-Zustelldatum",
-            "fr": "Date de livraison du colis",
-            "it": "Data di consegna del pacco",
-            "sv": "Paketets leveransdatum",
-            "no": "Pakkens leveringsdato",
-            "es": "Fecha de entrega del paquete",
-            "da": "Pakkens leveringsdato",
-            "ru": "Дата доставки посылки",
-            "pl": "Data dostawy paczki",
-            "ko": "소포 배송일",
-            "ar": "تاريخ تسليم الطرد"
+            "nl": "Bezorgdatum pakket"
           }
         },
         {
@@ -1316,18 +297,7 @@
           "type": "string",
           "title": {
             "en": "Package sender",
-            "nl": "Afzender pakket",
-            "de": "Paket-Absender",
-            "fr": "Expéditeur du colis",
-            "it": "Mittente del pacco",
-            "sv": "Paketavsändare",
-            "no": "Pakkeavsender",
-            "es": "Remitente del paquete",
-            "da": "Pakkeafsender",
-            "ru": "Отправитель посылки",
-            "pl": "Nadawca paczki",
-            "ko": "소포 발송인",
-            "ar": "مرسل الطرد"
+            "nl": "Afzender pakket"
           }
         },
         {
@@ -1335,18 +305,7 @@
           "type": "string",
           "title": {
             "en": "Package tracking number",
-            "nl": "Trackingnummer pakket",
-            "de": "Paket-Trackingnummer",
-            "fr": "Numéro de suivi du colis",
-            "it": "Numero di tracciamento del pacco",
-            "sv": "Paketets spårningsnummer",
-            "no": "Pakkens sporingsnummer",
-            "es": "Número de seguimiento del paquete",
-            "da": "Pakkens sporingsnummer",
-            "ru": "Номер отслеживания посылки",
-            "pl": "Numer śledzenia paczki",
-            "ko": "소포 운송장 번호",
-            "ar": "رقم تتبع الطرد"
+            "nl": "Trackingnummer pakket"
           }
         },
         {
@@ -1354,18 +313,7 @@
           "type": "boolean",
           "title": {
             "en": "My delivery image available",
-            "nl": "Afbeelding Mijn Bezorging beschikbaar",
-            "de": "Bild „Meine Zustellung“ verfügbar",
-            "fr": "Image « Ma livraison » disponible",
-            "it": "Immagine “La mia consegna” disponibile",
-            "sv": "Bild för Min leverans tillgänglig",
-            "no": "Bilde for Min levering tilgjengelig",
-            "es": "Imagen de Mi entrega disponible",
-            "da": "Billede for Min levering tilgængeligt",
-            "ru": "Изображение «Моя доставка» доступно",
-            "pl": "Obraz „Moja dostawa” dostępny",
-            "ko": "내 배송 이미지 사용 가능",
-            "ar": "صورة «توصيلي» متاحة"
+            "nl": "Afbeelding Mijn Bezorging beschikbaar"
           }
         },
         {
@@ -1373,107 +321,63 @@
           "type": "image",
           "title": {
             "en": "My delivery image",
-            "nl": "Afbeelding Mijn Bezorging",
-            "de": "Bild „Meine Zustellung“",
-            "fr": "Image « Ma livraison »",
-            "it": "Immagine “La mia consegna”",
-            "sv": "Bild för Min leverans",
-            "no": "Bilde for Min levering",
-            "es": "Imagen de Mi entrega",
-            "da": "Billede for Min levering",
-            "ru": "Изображение «Моя доставка»",
-            "pl": "Obraz „Moja dostawa”",
-            "ko": "내 배송 이미지",
-            "ar": "صورة «توصيلي»"
-          }
-        },
-        {
-          "name": "status_raw",
-          "type": "string",
-          "title": {
-            "en": "Official PostNL status",
-            "nl": "Officiële PostNL-status"
-          }
-        },
-        {
-          "name": "status_code",
-          "type": "string",
-          "title": {
-            "en": "Official PostNL status code",
-            "nl": "Officiële PostNL-statuscode"
-          }
-        },
-        {
-          "name": "status_event",
-          "type": "string",
-          "title": {
-            "en": "Latest PostNL event",
-            "nl": "Laatste PostNL-gebeurtenis"
-          }
-        },
-        {
-          "name": "status_event_time",
-          "type": "string",
-          "title": {
-            "en": "Latest status update",
-            "nl": "Laatste statusupdate"
+            "nl": "Afbeelding Mijn Bezorging"
           }
         },
         {
           "name": "weight",
-          "type": "number",
+          "type": "string",
           "title": {
-            "en": "Parcel weight (kg)",
-            "nl": "Gewicht pakket (kg)",
-            "de": "Parcel weight (kg)",
-            "fr": "Parcel weight (kg)",
-            "it": "Parcel weight (kg)",
-            "sv": "Parcel weight (kg)",
-            "no": "Parcel weight (kg)",
-            "es": "Parcel weight (kg)",
-            "da": "Parcel weight (kg)",
-            "ru": "Parcel weight (kg)",
-            "pl": "Parcel weight (kg)",
-            "ko": "Parcel weight (kg)",
-            "ar": "Parcel weight (kg)"
+            "en": "Weight",
+            "nl": "Gewicht"
           }
         },
         {
           "name": "dimensions",
           "type": "string",
           "title": {
-            "en": "Parcel dimensions",
-            "nl": "Afmetingen pakket",
-            "de": "Parcel dimensions",
-            "fr": "Parcel dimensions",
-            "it": "Parcel dimensions",
-            "sv": "Parcel dimensions",
-            "no": "Parcel dimensions",
-            "es": "Parcel dimensions",
-            "da": "Parcel dimensions",
-            "ru": "Parcel dimensions",
-            "pl": "Parcel dimensions",
-            "ko": "Parcel dimensions",
-            "ar": "Parcel dimensions"
+            "en": "Dimensions",
+            "nl": "Afmetingen"
+          }
+        },
+        {
+          "name": "weight_kg",
+          "type": "number",
+          "title": {
+            "en": "Parcel weight (kg)",
+            "nl": "Gewicht pakket (kg)"
+          }
+        },
+        {
+          "name": "dimension_length",
+          "type": "number",
+          "title": {
+            "en": "Parcel length (cm)",
+            "nl": "Lengte pakket (cm)"
+          }
+        },
+        {
+          "name": "dimension_width",
+          "type": "number",
+          "title": {
+            "en": "Parcel width (cm)",
+            "nl": "Breedte pakket (cm)"
+          }
+        },
+        {
+          "name": "dimension_height",
+          "type": "number",
+          "title": {
+            "en": "Parcel height (cm)",
+            "nl": "Hoogte pakket (cm)"
           }
         },
         {
           "name": "status_history",
           "type": "string",
           "title": {
-            "en": "Parcel status history",
-            "nl": "Statushistorie pakket",
-            "de": "Parcel status history",
-            "fr": "Parcel status history",
-            "it": "Parcel status history",
-            "sv": "Parcel status history",
-            "no": "Parcel status history",
-            "es": "Parcel status history",
-            "da": "Parcel status history",
-            "ru": "Parcel status history",
-            "pl": "Parcel status history",
-            "ko": "Parcel status history",
-            "ar": "Parcel status history"
+            "en": "Full status history",
+            "nl": "Volledige status-history"
           }
         },
         {
@@ -1481,18 +385,7 @@
           "type": "string",
           "title": {
             "en": "PostNL observation code",
-            "nl": "PostNL-observationCode",
-            "de": "PostNL observation code",
-            "fr": "PostNL observation code",
-            "it": "PostNL observation code",
-            "sv": "PostNL observation code",
-            "no": "PostNL observation code",
-            "es": "PostNL observation code",
-            "da": "PostNL observation code",
-            "ru": "PostNL observation code",
-            "pl": "PostNL observation code",
-            "ko": "PostNL observation code",
-            "ar": "PostNL observation code"
+            "nl": "PostNL observationCode"
           }
         },
         {
@@ -1500,422 +393,23 @@
           "type": "string",
           "title": {
             "en": "Canonical parcel status",
-            "nl": "Canonieke pakketstatus",
-            "de": "Canonical parcel status",
-            "fr": "Canonical parcel status",
-            "it": "Canonical parcel status",
-            "sv": "Canonical parcel status",
-            "no": "Canonical parcel status",
-            "es": "Canonical parcel status",
-            "da": "Canonical parcel status",
-            "ru": "Canonical parcel status",
-            "pl": "Canonical parcel status",
-            "ko": "Canonical parcel status",
-            "ar": "Canonical parcel status"
+            "nl": "Canonieke pakketstatus"
           }
         },
         {
           "name": "pickup",
           "type": "boolean",
           "title": {
-            "en": "Pickup / ServicePoint",
-            "nl": "Afhalen / PostNL-punt",
-            "de": "Pickup / ServicePoint",
-            "fr": "Pickup / ServicePoint",
-            "it": "Pickup / ServicePoint",
-            "sv": "Pickup / ServicePoint",
-            "no": "Pickup / ServicePoint",
-            "es": "Pickup / ServicePoint",
-            "da": "Pickup / ServicePoint",
-            "ru": "Pickup / ServicePoint",
-            "pl": "Pickup / ServicePoint",
-            "ko": "Pickup / ServicePoint",
-            "ar": "Pickup / ServicePoint"
+            "en": "PostNL Point delivery",
+            "nl": "Bezorging bij PostNL-punt"
           }
         },
         {
-          "name": "pickup_type",
+          "name": "pickup_point",
           "type": "string",
           "title": {
-            "en": "Pickup / delivery address type",
-            "nl": "Type afhaal-/bezorgadres",
-            "de": "Pickup / delivery address type",
-            "fr": "Pickup / delivery address type",
-            "it": "Pickup / delivery address type",
-            "sv": "Pickup / delivery address type",
-            "no": "Pickup / delivery address type",
-            "es": "Pickup / delivery address type",
-            "da": "Pickup / delivery address type",
-            "ru": "Pickup / delivery address type",
-            "pl": "Pickup / delivery address type",
-            "ko": "Pickup / delivery address type",
-            "ar": "Pickup / delivery address type"
-          }
-        }
-      ]
-    },
-    {
-      "id": "sync_failed",
-      "title": {
-        "en": "PostNL synchronization failed",
-        "nl": "PostNL-synchronisatie is mislukt",
-        "de": "PostNL-Synchronisierung fehlgeschlagen",
-        "fr": "Échec de la synchronisation PostNL",
-        "it": "Sincronizzazione PostNL non riuscita",
-        "sv": "PostNL-synkronisering misslyckades",
-        "no": "PostNL-synkronisering mislyktes",
-        "es": "Falló la sincronización de PostNL",
-        "da": "PostNL-synkronisering mislykkedes",
-        "ru": "Синхронизация PostNL не удалась",
-        "pl": "Synchronizacja PostNL nie powiodła się",
-        "ko": "PostNL 동기화 실패",
-        "ar": "فشلت مزامنة PostNL"
-      },
-      "args": [],
-      "tokens": [
-        {
-          "name": "error",
-          "type": "string",
-          "title": {
-            "en": "Error",
-            "nl": "Foutmelding",
-            "de": "Fehler",
-            "fr": "Erreur",
-            "it": "Errore",
-            "sv": "Fel",
-            "no": "Feil",
-            "es": "Error",
-            "da": "Fejl",
-            "ru": "Ошибка",
-            "pl": "Błąd",
-            "ko": "오류",
-            "ar": "خطأ"
-          }
-        }
-      ]
-    },
-    {
-      "id": "login_expired",
-      "title": {
-        "en": "The PostNL login expired",
-        "nl": "De PostNL-aanmelding is verlopen",
-        "de": "Die PostNL-Anmeldung ist abgelaufen",
-        "fr": "La connexion PostNL a expiré",
-        "it": "L’accesso PostNL è scaduto",
-        "sv": "PostNL-inloggningen har gått ut",
-        "no": "PostNL-påloggingen har utløpt",
-        "es": "El inicio de sesión de PostNL ha caducado",
-        "da": "PostNL-login er udløbet",
-        "ru": "Срок входа PostNL истёк",
-        "pl": "Logowanie PostNL wygasło",
-        "ko": "PostNL 로그인이 만료되었습니다",
-        "ar": "انتهت صلاحية تسجيل دخول PostNL"
-      },
-      "args": []
-    },
-    {
-      "id": "postnl_delivery_window_changed",
-      "highlight": true,
-      "title": {
-        "en": "Delivery window available or changed",
-        "nl": "Bezorgvenster bekend of gewijzigd",
-        "de": "Zustellzeitfenster verfügbar oder geändert",
-        "fr": "Créneau de livraison disponible ou modifié",
-        "it": "Finestra di consegna disponibile o modificata",
-        "sv": "Leveransfönster tillgängligt eller ändrat",
-        "no": "Leveringsvindu tilgjengelig eller endret",
-        "es": "Franja de entrega disponible o modificada",
-        "da": "Leveringsvindue tilgængeligt eller ændret",
-        "ru": "Интервал доставки доступен или изменён",
-        "pl": "Okno dostawy dostępne lub zmienione",
-        "ko": "배송 시간대가 확인되었거나 변경됨",
-        "ar": "أصبحت نافذة التسليم معروفة أو تم تغييرها"
-      },
-      "args": [],
-      "tokens": [
-        {
-          "name": "carrier",
-          "type": "string",
-          "title": {
-            "en": "Carrier",
-            "nl": "Vervoerder",
-            "de": "Paketdienst",
-            "fr": "Transporteur",
-            "it": "Corriere",
-            "sv": "Transportör",
-            "no": "Transportør",
-            "es": "Transportista",
-            "da": "Transportør",
-            "ru": "Перевозчик",
-            "pl": "Przewoźnik",
-            "ko": "배송사",
-            "ar": "شركة الشحن"
-          }
-        },
-        {
-          "name": "tracking",
-          "type": "string",
-          "title": {
-            "en": "Tracking number",
-            "nl": "Trackingnummer",
-            "de": "Sendungsnummer",
-            "fr": "Numéro de suivi",
-            "it": "Numero di tracciamento",
-            "sv": "Spårningsnummer",
-            "no": "Sporingsnummer",
-            "es": "Número de seguimiento",
-            "da": "Sporingsnummer",
-            "ru": "Номер отслеживания",
-            "pl": "Numer śledzenia",
-            "ko": "운송장 번호",
-            "ar": "رقم التتبع"
-          }
-        },
-        {
-          "name": "sender",
-          "type": "string",
-          "title": {
-            "en": "Sender",
-            "nl": "Afzender",
-            "de": "Absender",
-            "fr": "Expéditeur",
-            "it": "Mittente",
-            "sv": "Avsändare",
-            "no": "Avsender",
-            "es": "Remitente",
-            "da": "Afsender",
-            "ru": "Отправитель",
-            "pl": "Nadawca",
-            "ko": "발송인",
-            "ar": "المرسل"
-          }
-        },
-        {
-          "name": "delivery_date",
-          "type": "string",
-          "title": {
-            "en": "Delivery date",
-            "nl": "Bezorgdatum",
-            "de": "Zustelldatum",
-            "fr": "Date de livraison",
-            "it": "Data di consegna",
-            "sv": "Leveransdatum",
-            "no": "Leveringsdato",
-            "es": "Fecha de entrega",
-            "da": "Leveringsdato",
-            "ru": "Дата доставки",
-            "pl": "Data dostawy",
-            "ko": "배송 날짜",
-            "ar": "تاريخ التسليم"
-          }
-        },
-        {
-          "name": "delivery_window",
-          "type": "string",
-          "title": {
-            "en": "Delivery window",
-            "nl": "Bezorgvenster",
-            "de": "Zustellzeitfenster",
-            "fr": "Créneau de livraison",
-            "it": "Finestra di consegna",
-            "sv": "Leveransfönster",
-            "no": "Leveringsvindu",
-            "es": "Franja de entrega",
-            "da": "Leveringsvindue",
-            "ru": "Интервал доставки",
-            "pl": "Okno dostawy",
-            "ko": "배송 시간대",
-            "ar": "نافذة التسليم"
-          }
-        },
-        {
-          "name": "window_start",
-          "type": "string",
-          "title": {
-            "en": "Delivery window start",
-            "nl": "Start bezorgvenster",
-            "de": "Beginn des Zustellzeitfensters",
-            "fr": "Début du créneau de livraison",
-            "it": "Inizio finestra di consegna",
-            "sv": "Start för leveransfönster",
-            "no": "Start på leveringsvindu",
-            "es": "Inicio de la franja de entrega",
-            "da": "Start på leveringsvindue",
-            "ru": "Начало интервала доставки",
-            "pl": "Początek okna dostawy",
-            "ko": "배송 시간대 시작",
-            "ar": "بداية نافذة التسليم"
-          }
-        },
-        {
-          "name": "window_end",
-          "type": "string",
-          "title": {
-            "en": "Delivery window end",
-            "nl": "Einde bezorgvenster",
-            "de": "Ende des Zustellzeitfensters",
-            "fr": "Fin du créneau de livraison",
-            "it": "Fine finestra di consegna",
-            "sv": "Slut för leveransfönster",
-            "no": "Slutt på leveringsvindu",
-            "es": "Fin de la franja de entrega",
-            "da": "Slut på leveringsvindue",
-            "ru": "Конец интервала доставки",
-            "pl": "Koniec okna dostawy",
-            "ko": "배송 시간대 종료",
-            "ar": "نهاية نافذة التسليم"
-          }
-        },
-        {
-          "name": "status",
-          "type": "string",
-          "title": {
-            "en": "Status",
-            "nl": "Status",
-            "de": "Status",
-            "fr": "Statut",
-            "it": "Stato",
-            "sv": "Status",
-            "no": "Status",
-            "es": "Estado",
-            "da": "Status",
-            "ru": "Статус",
-            "pl": "Status",
-            "ko": "상태",
-            "ar": "الحالة"
-          }
-        },
-        {
-          "name": "package_status_text",
-          "type": "string",
-          "title": {
-            "en": "Package status",
-            "nl": "Pakketstatus",
-            "de": "Paketstatus",
-            "fr": "Statut du colis",
-            "it": "Stato del pacco",
-            "sv": "Paketstatus",
-            "no": "Pakkestatus",
-            "es": "Estado del paquete",
-            "da": "Pakkestatus",
-            "ru": "Статус посылки",
-            "pl": "Status paczki",
-            "ko": "소포 상태",
-            "ar": "حالة الطرد"
-          }
-        },
-        {
-          "name": "package_window_text",
-          "type": "string",
-          "title": {
-            "en": "Delivery window text",
-            "nl": "Tekst bezorgvenster",
-            "de": "Text des Zustellfensters",
-            "fr": "Texte du créneau de livraison",
-            "it": "Testo della finestra di consegna",
-            "sv": "Text för leveransfönster",
-            "no": "Tekst for leveringsvindu",
-            "es": "Texto de la ventana de entrega",
-            "da": "Tekst for leveringsvindue",
-            "ru": "Текст окна доставки",
-            "pl": "Tekst okna dostawy",
-            "ko": "배송 시간대 텍스트",
-            "ar": "نص نافذة التسليم"
-          }
-        },
-        {
-          "name": "package_delivery_date",
-          "type": "string",
-          "title": {
-            "en": "Package delivery date",
-            "nl": "Bezorgdatum pakket",
-            "de": "Paket-Zustelldatum",
-            "fr": "Date de livraison du colis",
-            "it": "Data di consegna del pacco",
-            "sv": "Paketets leveransdatum",
-            "no": "Pakkens leveringsdato",
-            "es": "Fecha de entrega del paquete",
-            "da": "Pakkens leveringsdato",
-            "ru": "Дата доставки посылки",
-            "pl": "Data dostawy paczki",
-            "ko": "소포 배송일",
-            "ar": "تاريخ تسليم الطرد"
-          }
-        },
-        {
-          "name": "package_sender",
-          "type": "string",
-          "title": {
-            "en": "Package sender",
-            "nl": "Afzender pakket",
-            "de": "Paket-Absender",
-            "fr": "Expéditeur du colis",
-            "it": "Mittente del pacco",
-            "sv": "Paketavsändare",
-            "no": "Pakkeavsender",
-            "es": "Remitente del paquete",
-            "da": "Pakkeafsender",
-            "ru": "Отправитель посылки",
-            "pl": "Nadawca paczki",
-            "ko": "소포 발송인",
-            "ar": "مرسل الطرد"
-          }
-        },
-        {
-          "name": "package_tracking",
-          "type": "string",
-          "title": {
-            "en": "Package tracking number",
-            "nl": "Trackingnummer pakket",
-            "de": "Paket-Trackingnummer",
-            "fr": "Numéro de suivi du colis",
-            "it": "Numero di tracciamento del pacco",
-            "sv": "Paketets spårningsnummer",
-            "no": "Pakkens sporingsnummer",
-            "es": "Número de seguimiento del paquete",
-            "da": "Pakkens sporingsnummer",
-            "ru": "Номер отслеживания посылки",
-            "pl": "Numer śledzenia paczki",
-            "ko": "소포 운송장 번호",
-            "ar": "رقم تتبع الطرد"
-          }
-        },
-        {
-          "name": "package_image_available",
-          "type": "boolean",
-          "title": {
-            "en": "My delivery image available",
-            "nl": "Afbeelding Mijn Bezorging beschikbaar",
-            "de": "Bild „Meine Zustellung“ verfügbar",
-            "fr": "Image « Ma livraison » disponible",
-            "it": "Immagine “La mia consegna” disponibile",
-            "sv": "Bild för Min leverans tillgänglig",
-            "no": "Bilde for Min levering tilgjengelig",
-            "es": "Imagen de Mi entrega disponible",
-            "da": "Billede for Min levering tilgængeligt",
-            "ru": "Изображение «Моя доставка» доступно",
-            "pl": "Obraz „Moja dostawa” dostępny",
-            "ko": "내 배송 이미지 사용 가능",
-            "ar": "صورة «توصيلي» متاحة"
-          }
-        },
-        {
-          "name": "package_image",
-          "type": "image",
-          "title": {
-            "en": "My delivery image",
-            "nl": "Afbeelding Mijn Bezorging",
-            "de": "Bild „Meine Zustellung“",
-            "fr": "Image « Ma livraison »",
-            "it": "Immagine “La mia consegna”",
-            "sv": "Bild för Min leverans",
-            "no": "Bilde for Min levering",
-            "es": "Imagen de Mi entrega",
-            "da": "Billede for Min levering",
-            "ru": "Изображение «Моя доставка»",
-            "pl": "Obraz „Moja dostawa”",
-            "ko": "내 배송 이미지",
-            "ar": "صورة «توصيلي»"
+            "en": "PostNL Point",
+            "nl": "PostNL-punt"
           }
         }
       ]
@@ -2171,59 +665,58 @@
         },
         {
           "name": "weight",
-          "type": "number",
+          "type": "string",
           "title": {
-            "en": "Parcel weight (kg)",
-            "nl": "Gewicht pakket (kg)",
-            "de": "Parcel weight (kg)",
-            "fr": "Parcel weight (kg)",
-            "it": "Parcel weight (kg)",
-            "sv": "Parcel weight (kg)",
-            "no": "Parcel weight (kg)",
-            "es": "Parcel weight (kg)",
-            "da": "Parcel weight (kg)",
-            "ru": "Parcel weight (kg)",
-            "pl": "Parcel weight (kg)",
-            "ko": "Parcel weight (kg)",
-            "ar": "Parcel weight (kg)"
+            "en": "Weight",
+            "nl": "Gewicht"
           }
         },
         {
           "name": "dimensions",
           "type": "string",
           "title": {
-            "en": "Parcel dimensions",
-            "nl": "Afmetingen pakket",
-            "de": "Parcel dimensions",
-            "fr": "Parcel dimensions",
-            "it": "Parcel dimensions",
-            "sv": "Parcel dimensions",
-            "no": "Parcel dimensions",
-            "es": "Parcel dimensions",
-            "da": "Parcel dimensions",
-            "ru": "Parcel dimensions",
-            "pl": "Parcel dimensions",
-            "ko": "Parcel dimensions",
-            "ar": "Parcel dimensions"
+            "en": "Dimensions",
+            "nl": "Afmetingen"
+          }
+        },
+        {
+          "name": "weight_kg",
+          "type": "number",
+          "title": {
+            "en": "Parcel weight (kg)",
+            "nl": "Gewicht pakket (kg)"
+          }
+        },
+        {
+          "name": "dimension_length",
+          "type": "number",
+          "title": {
+            "en": "Parcel length (cm)",
+            "nl": "Lengte pakket (cm)"
+          }
+        },
+        {
+          "name": "dimension_width",
+          "type": "number",
+          "title": {
+            "en": "Parcel width (cm)",
+            "nl": "Breedte pakket (cm)"
+          }
+        },
+        {
+          "name": "dimension_height",
+          "type": "number",
+          "title": {
+            "en": "Parcel height (cm)",
+            "nl": "Hoogte pakket (cm)"
           }
         },
         {
           "name": "status_history",
           "type": "string",
           "title": {
-            "en": "Parcel status history",
-            "nl": "Statushistorie pakket",
-            "de": "Parcel status history",
-            "fr": "Parcel status history",
-            "it": "Parcel status history",
-            "sv": "Parcel status history",
-            "no": "Parcel status history",
-            "es": "Parcel status history",
-            "da": "Parcel status history",
-            "ru": "Parcel status history",
-            "pl": "Parcel status history",
-            "ko": "Parcel status history",
-            "ar": "Parcel status history"
+            "en": "Full status history",
+            "nl": "Volledige status-history"
           }
         },
         {
@@ -2231,18 +724,7 @@
           "type": "string",
           "title": {
             "en": "PostNL observation code",
-            "nl": "PostNL-observationCode",
-            "de": "PostNL observation code",
-            "fr": "PostNL observation code",
-            "it": "PostNL observation code",
-            "sv": "PostNL observation code",
-            "no": "PostNL observation code",
-            "es": "PostNL observation code",
-            "da": "PostNL observation code",
-            "ru": "PostNL observation code",
-            "pl": "PostNL observation code",
-            "ko": "PostNL observation code",
-            "ar": "PostNL observation code"
+            "nl": "PostNL observationCode"
           }
         },
         {
@@ -2250,56 +732,2103 @@
           "type": "string",
           "title": {
             "en": "Canonical parcel status",
-            "nl": "Canonieke pakketstatus",
-            "de": "Canonical parcel status",
-            "fr": "Canonical parcel status",
-            "it": "Canonical parcel status",
-            "sv": "Canonical parcel status",
-            "no": "Canonical parcel status",
-            "es": "Canonical parcel status",
-            "da": "Canonical parcel status",
-            "ru": "Canonical parcel status",
-            "pl": "Canonical parcel status",
-            "ko": "Canonical parcel status",
-            "ar": "Canonical parcel status"
+            "nl": "Canonieke pakketstatus"
           }
         },
         {
           "name": "pickup",
           "type": "boolean",
           "title": {
-            "en": "Pickup / ServicePoint",
-            "nl": "Afhalen / PostNL-punt",
-            "de": "Pickup / ServicePoint",
-            "fr": "Pickup / ServicePoint",
-            "it": "Pickup / ServicePoint",
-            "sv": "Pickup / ServicePoint",
-            "no": "Pickup / ServicePoint",
-            "es": "Pickup / ServicePoint",
-            "da": "Pickup / ServicePoint",
-            "ru": "Pickup / ServicePoint",
-            "pl": "Pickup / ServicePoint",
-            "ko": "Pickup / ServicePoint",
-            "ar": "Pickup / ServicePoint"
+            "en": "PostNL Point delivery",
+            "nl": "Bezorging bij PostNL-punt"
           }
         },
         {
-          "name": "pickup_type",
+          "name": "pickup_point",
           "type": "string",
           "title": {
-            "en": "Pickup / delivery address type",
-            "nl": "Type afhaal-/bezorgadres",
-            "de": "Pickup / delivery address type",
-            "fr": "Pickup / delivery address type",
-            "it": "Pickup / delivery address type",
-            "sv": "Pickup / delivery address type",
-            "no": "Pickup / delivery address type",
-            "es": "Pickup / delivery address type",
-            "da": "Pickup / delivery address type",
-            "ru": "Pickup / delivery address type",
-            "pl": "Pickup / delivery address type",
-            "ko": "Pickup / delivery address type",
-            "ar": "Pickup / delivery address type"
+            "en": "PostNL Point",
+            "nl": "PostNL-punt"
+          }
+        }
+      ]
+    },
+    {
+      "id": "package_status_changed",
+      "title": {
+        "en": "A parcel status changed",
+        "nl": "De status van een pakket is gewijzigd"
+      },
+      "args": [],
+      "tokens": [
+        {
+          "name": "old_status",
+          "type": "string",
+          "title": {
+            "en": "Previous status",
+            "nl": "Vorige status"
+          }
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "title": {
+            "en": "Shipment ID",
+            "nl": "Zending-ID"
+          }
+        },
+        {
+          "name": "sender",
+          "type": "string",
+          "title": {
+            "en": "Sender",
+            "nl": "Afzender"
+          }
+        },
+        {
+          "name": "receiver",
+          "type": "string",
+          "title": {
+            "en": "Receiver",
+            "nl": "Ontvanger"
+          }
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "title": {
+            "en": "Parcel",
+            "nl": "Pakket"
+          }
+        },
+        {
+          "name": "barcode",
+          "type": "string",
+          "title": {
+            "en": "Barcode",
+            "nl": "Barcode"
+          }
+        },
+        {
+          "name": "status",
+          "type": "string",
+          "title": {
+            "en": "Status",
+            "nl": "Status"
+          }
+        },
+        {
+          "name": "status_raw",
+          "type": "string",
+          "title": {
+            "en": "Official PostNL status",
+            "nl": "Officiële PostNL-status"
+          }
+        },
+        {
+          "name": "status_code",
+          "type": "string",
+          "title": {
+            "en": "Official PostNL status code",
+            "nl": "Officiële PostNL-statuscode"
+          }
+        },
+        {
+          "name": "status_event",
+          "type": "string",
+          "title": {
+            "en": "Latest PostNL event",
+            "nl": "Laatste PostNL-gebeurtenis"
+          }
+        },
+        {
+          "name": "status_event_time",
+          "type": "string",
+          "title": {
+            "en": "Latest status update",
+            "nl": "Laatste statusupdate"
+          }
+        },
+        {
+          "name": "delivery_date",
+          "type": "string",
+          "title": {
+            "en": "Delivery date",
+            "nl": "Bezorgdatum"
+          }
+        },
+        {
+          "name": "delivery_window",
+          "type": "string",
+          "title": {
+            "en": "Delivery window",
+            "nl": "Bezorgvenster"
+          }
+        },
+        {
+          "name": "delivery_window_from",
+          "type": "string",
+          "title": {
+            "en": "Delivery window from",
+            "nl": "Bezorgvenster vanaf"
+          }
+        },
+        {
+          "name": "delivery_window_to",
+          "type": "string",
+          "title": {
+            "en": "Delivery window to",
+            "nl": "Bezorgvenster tot"
+          }
+        },
+        {
+          "name": "delivery_window_type",
+          "type": "string",
+          "title": {
+            "en": "Delivery window type",
+            "nl": "Type bezorgvenster"
+          }
+        },
+        {
+          "name": "details_url",
+          "type": "string",
+          "title": {
+            "en": "Tracking URL",
+            "nl": "Tracking-URL"
+          }
+        },
+        {
+          "name": "shipment_type",
+          "type": "string",
+          "title": {
+            "en": "Shipment type",
+            "nl": "Zendingstype"
+          }
+        },
+        {
+          "name": "delivery_address_type",
+          "type": "string",
+          "title": {
+            "en": "Delivery address type",
+            "nl": "Type bezorgadres"
+          }
+        },
+        {
+          "name": "direction",
+          "type": "string",
+          "title": {
+            "en": "Direction",
+            "nl": "Richting"
+          }
+        },
+        {
+          "name": "created_at",
+          "type": "string",
+          "title": {
+            "en": "Created at",
+            "nl": "Aangemaakt op"
+          }
+        },
+        {
+          "name": "delivered",
+          "type": "boolean",
+          "title": {
+            "en": "Delivered",
+            "nl": "Bezorgd"
+          }
+        },
+        {
+          "name": "shared_from",
+          "type": "string",
+          "title": {
+            "en": "Shared from",
+            "nl": "Gedeeld via"
+          }
+        },
+        {
+          "name": "source_account_id",
+          "type": "string",
+          "title": {
+            "en": "Source account ID",
+            "nl": "Bronaccount-ID"
+          }
+        },
+        {
+          "name": "package_status_text",
+          "type": "string",
+          "title": {
+            "en": "Package status",
+            "nl": "Pakketstatus"
+          }
+        },
+        {
+          "name": "package_window_text",
+          "type": "string",
+          "title": {
+            "en": "Delivery window text",
+            "nl": "Tekst bezorgvenster"
+          }
+        },
+        {
+          "name": "package_delivery_date",
+          "type": "string",
+          "title": {
+            "en": "Package delivery date",
+            "nl": "Bezorgdatum pakket"
+          }
+        },
+        {
+          "name": "package_sender",
+          "type": "string",
+          "title": {
+            "en": "Package sender",
+            "nl": "Afzender pakket"
+          }
+        },
+        {
+          "name": "package_tracking",
+          "type": "string",
+          "title": {
+            "en": "Package tracking number",
+            "nl": "Trackingnummer pakket"
+          }
+        },
+        {
+          "name": "package_image_available",
+          "type": "boolean",
+          "title": {
+            "en": "My delivery image available",
+            "nl": "Afbeelding Mijn Bezorging beschikbaar"
+          }
+        },
+        {
+          "name": "package_image",
+          "type": "image",
+          "title": {
+            "en": "My delivery image",
+            "nl": "Afbeelding Mijn Bezorging"
+          }
+        },
+        {
+          "name": "weight",
+          "type": "string",
+          "title": {
+            "en": "Weight",
+            "nl": "Gewicht"
+          }
+        },
+        {
+          "name": "dimensions",
+          "type": "string",
+          "title": {
+            "en": "Dimensions",
+            "nl": "Afmetingen"
+          }
+        },
+        {
+          "name": "weight_kg",
+          "type": "number",
+          "title": {
+            "en": "Parcel weight (kg)",
+            "nl": "Gewicht pakket (kg)"
+          }
+        },
+        {
+          "name": "dimension_length",
+          "type": "number",
+          "title": {
+            "en": "Parcel length (cm)",
+            "nl": "Lengte pakket (cm)"
+          }
+        },
+        {
+          "name": "dimension_width",
+          "type": "number",
+          "title": {
+            "en": "Parcel width (cm)",
+            "nl": "Breedte pakket (cm)"
+          }
+        },
+        {
+          "name": "dimension_height",
+          "type": "number",
+          "title": {
+            "en": "Parcel height (cm)",
+            "nl": "Hoogte pakket (cm)"
+          }
+        },
+        {
+          "name": "status_history",
+          "type": "string",
+          "title": {
+            "en": "Full status history",
+            "nl": "Volledige status-history"
+          }
+        },
+        {
+          "name": "observation_code",
+          "type": "string",
+          "title": {
+            "en": "PostNL observation code",
+            "nl": "PostNL observationCode"
+          }
+        },
+        {
+          "name": "canonical_status",
+          "type": "string",
+          "title": {
+            "en": "Canonical parcel status",
+            "nl": "Canonieke pakketstatus"
+          }
+        },
+        {
+          "name": "pickup",
+          "type": "boolean",
+          "title": {
+            "en": "PostNL Point delivery",
+            "nl": "Bezorging bij PostNL-punt"
+          }
+        },
+        {
+          "name": "pickup_point",
+          "type": "string",
+          "title": {
+            "en": "PostNL Point",
+            "nl": "PostNL-punt"
+          }
+        }
+      ]
+    },
+    {
+      "id": "sync_failed",
+      "title": {
+        "en": "PostNL synchronization failed",
+        "nl": "PostNL-synchronisatie is mislukt"
+      },
+      "args": [],
+      "tokens": [
+        {
+          "name": "error",
+          "type": "string",
+          "title": {
+            "en": "Error",
+            "nl": "Foutmelding"
+          }
+        }
+      ]
+    },
+    {
+      "id": "login_expired",
+      "title": {
+        "en": "The PostNL login expired",
+        "nl": "De PostNL-aanmelding is verlopen"
+      },
+      "args": []
+    },
+    {
+      "id": "package_delivered",
+      "title": {
+        "en": "A parcel was delivered",
+        "nl": "Een pakket is bezorgd"
+      },
+      "args": [],
+      "tokens": [
+        {
+          "name": "id",
+          "type": "string",
+          "title": {
+            "en": "Shipment ID",
+            "nl": "Zending-ID"
+          }
+        },
+        {
+          "name": "sender",
+          "type": "string",
+          "title": {
+            "en": "Sender",
+            "nl": "Afzender"
+          }
+        },
+        {
+          "name": "receiver",
+          "type": "string",
+          "title": {
+            "en": "Receiver",
+            "nl": "Ontvanger"
+          }
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "title": {
+            "en": "Parcel",
+            "nl": "Pakket"
+          }
+        },
+        {
+          "name": "barcode",
+          "type": "string",
+          "title": {
+            "en": "Barcode",
+            "nl": "Barcode"
+          }
+        },
+        {
+          "name": "status",
+          "type": "string",
+          "title": {
+            "en": "Status",
+            "nl": "Status"
+          }
+        },
+        {
+          "name": "status_raw",
+          "type": "string",
+          "title": {
+            "en": "Official PostNL status",
+            "nl": "Officiële PostNL-status"
+          }
+        },
+        {
+          "name": "status_code",
+          "type": "string",
+          "title": {
+            "en": "Official PostNL status code",
+            "nl": "Officiële PostNL-statuscode"
+          }
+        },
+        {
+          "name": "status_event",
+          "type": "string",
+          "title": {
+            "en": "Latest PostNL event",
+            "nl": "Laatste PostNL-gebeurtenis"
+          }
+        },
+        {
+          "name": "status_event_time",
+          "type": "string",
+          "title": {
+            "en": "Latest status update",
+            "nl": "Laatste statusupdate"
+          }
+        },
+        {
+          "name": "delivery_date",
+          "type": "string",
+          "title": {
+            "en": "Delivery date",
+            "nl": "Bezorgdatum"
+          }
+        },
+        {
+          "name": "delivery_window",
+          "type": "string",
+          "title": {
+            "en": "Delivery window",
+            "nl": "Bezorgvenster"
+          }
+        },
+        {
+          "name": "delivery_window_from",
+          "type": "string",
+          "title": {
+            "en": "Delivery window from",
+            "nl": "Bezorgvenster vanaf"
+          }
+        },
+        {
+          "name": "delivery_window_to",
+          "type": "string",
+          "title": {
+            "en": "Delivery window to",
+            "nl": "Bezorgvenster tot"
+          }
+        },
+        {
+          "name": "delivery_window_type",
+          "type": "string",
+          "title": {
+            "en": "Delivery window type",
+            "nl": "Type bezorgvenster"
+          }
+        },
+        {
+          "name": "details_url",
+          "type": "string",
+          "title": {
+            "en": "Tracking URL",
+            "nl": "Tracking-URL"
+          }
+        },
+        {
+          "name": "shipment_type",
+          "type": "string",
+          "title": {
+            "en": "Shipment type",
+            "nl": "Zendingstype"
+          }
+        },
+        {
+          "name": "delivery_address_type",
+          "type": "string",
+          "title": {
+            "en": "Delivery address type",
+            "nl": "Type bezorgadres"
+          }
+        },
+        {
+          "name": "direction",
+          "type": "string",
+          "title": {
+            "en": "Direction",
+            "nl": "Richting"
+          }
+        },
+        {
+          "name": "created_at",
+          "type": "string",
+          "title": {
+            "en": "Created at",
+            "nl": "Aangemaakt op"
+          }
+        },
+        {
+          "name": "delivered",
+          "type": "boolean",
+          "title": {
+            "en": "Delivered",
+            "nl": "Bezorgd"
+          }
+        },
+        {
+          "name": "shared_from",
+          "type": "string",
+          "title": {
+            "en": "Shared from",
+            "nl": "Gedeeld via"
+          }
+        },
+        {
+          "name": "source_account_id",
+          "type": "string",
+          "title": {
+            "en": "Source account ID",
+            "nl": "Bronaccount-ID"
+          }
+        },
+        {
+          "name": "package_status_text",
+          "type": "string",
+          "title": {
+            "en": "Package status",
+            "nl": "Pakketstatus"
+          }
+        },
+        {
+          "name": "package_window_text",
+          "type": "string",
+          "title": {
+            "en": "Delivery window text",
+            "nl": "Tekst bezorgvenster"
+          }
+        },
+        {
+          "name": "package_delivery_date",
+          "type": "string",
+          "title": {
+            "en": "Package delivery date",
+            "nl": "Bezorgdatum pakket"
+          }
+        },
+        {
+          "name": "package_sender",
+          "type": "string",
+          "title": {
+            "en": "Package sender",
+            "nl": "Afzender pakket"
+          }
+        },
+        {
+          "name": "package_tracking",
+          "type": "string",
+          "title": {
+            "en": "Package tracking number",
+            "nl": "Trackingnummer pakket"
+          }
+        },
+        {
+          "name": "package_image_available",
+          "type": "boolean",
+          "title": {
+            "en": "My delivery image available",
+            "nl": "Afbeelding Mijn Bezorging beschikbaar"
+          }
+        },
+        {
+          "name": "package_image",
+          "type": "image",
+          "title": {
+            "en": "My delivery image",
+            "nl": "Afbeelding Mijn Bezorging"
+          }
+        },
+        {
+          "name": "weight",
+          "type": "string",
+          "title": {
+            "en": "Weight",
+            "nl": "Gewicht"
+          }
+        },
+        {
+          "name": "dimensions",
+          "type": "string",
+          "title": {
+            "en": "Dimensions",
+            "nl": "Afmetingen"
+          }
+        },
+        {
+          "name": "weight_kg",
+          "type": "number",
+          "title": {
+            "en": "Parcel weight (kg)",
+            "nl": "Gewicht pakket (kg)"
+          }
+        },
+        {
+          "name": "dimension_length",
+          "type": "number",
+          "title": {
+            "en": "Parcel length (cm)",
+            "nl": "Lengte pakket (cm)"
+          }
+        },
+        {
+          "name": "dimension_width",
+          "type": "number",
+          "title": {
+            "en": "Parcel width (cm)",
+            "nl": "Breedte pakket (cm)"
+          }
+        },
+        {
+          "name": "dimension_height",
+          "type": "number",
+          "title": {
+            "en": "Parcel height (cm)",
+            "nl": "Hoogte pakket (cm)"
+          }
+        },
+        {
+          "name": "status_history",
+          "type": "string",
+          "title": {
+            "en": "Full status history",
+            "nl": "Volledige status-history"
+          }
+        },
+        {
+          "name": "observation_code",
+          "type": "string",
+          "title": {
+            "en": "PostNL observation code",
+            "nl": "PostNL observationCode"
+          }
+        },
+        {
+          "name": "canonical_status",
+          "type": "string",
+          "title": {
+            "en": "Canonical parcel status",
+            "nl": "Canonieke pakketstatus"
+          }
+        },
+        {
+          "name": "pickup",
+          "type": "boolean",
+          "title": {
+            "en": "PostNL Point delivery",
+            "nl": "Bezorging bij PostNL-punt"
+          }
+        },
+        {
+          "name": "pickup_point",
+          "type": "string",
+          "title": {
+            "en": "PostNL Point",
+            "nl": "PostNL-punt"
+          }
+        }
+      ],
+      "highlight": true
+    },
+    {
+      "id": "delivery_window_changed",
+      "title": {
+        "en": "A parcel delivery window changed",
+        "nl": "Het bezorgvenster van een pakket is gewijzigd"
+      },
+      "args": [],
+      "tokens": [
+        {
+          "name": "old_delivery_window",
+          "type": "string",
+          "title": {
+            "en": "Previous delivery window",
+            "nl": "Vorig bezorgvenster"
+          }
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "title": {
+            "en": "Shipment ID",
+            "nl": "Zending-ID"
+          }
+        },
+        {
+          "name": "sender",
+          "type": "string",
+          "title": {
+            "en": "Sender",
+            "nl": "Afzender"
+          }
+        },
+        {
+          "name": "receiver",
+          "type": "string",
+          "title": {
+            "en": "Receiver",
+            "nl": "Ontvanger"
+          }
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "title": {
+            "en": "Parcel",
+            "nl": "Pakket"
+          }
+        },
+        {
+          "name": "barcode",
+          "type": "string",
+          "title": {
+            "en": "Barcode",
+            "nl": "Barcode"
+          }
+        },
+        {
+          "name": "status",
+          "type": "string",
+          "title": {
+            "en": "Status",
+            "nl": "Status"
+          }
+        },
+        {
+          "name": "status_raw",
+          "type": "string",
+          "title": {
+            "en": "Official PostNL status",
+            "nl": "Officiële PostNL-status"
+          }
+        },
+        {
+          "name": "status_code",
+          "type": "string",
+          "title": {
+            "en": "Official PostNL status code",
+            "nl": "Officiële PostNL-statuscode"
+          }
+        },
+        {
+          "name": "status_event",
+          "type": "string",
+          "title": {
+            "en": "Latest PostNL event",
+            "nl": "Laatste PostNL-gebeurtenis"
+          }
+        },
+        {
+          "name": "status_event_time",
+          "type": "string",
+          "title": {
+            "en": "Latest status update",
+            "nl": "Laatste statusupdate"
+          }
+        },
+        {
+          "name": "delivery_date",
+          "type": "string",
+          "title": {
+            "en": "Delivery date",
+            "nl": "Bezorgdatum"
+          }
+        },
+        {
+          "name": "delivery_window",
+          "type": "string",
+          "title": {
+            "en": "Delivery window",
+            "nl": "Bezorgvenster"
+          }
+        },
+        {
+          "name": "delivery_window_from",
+          "type": "string",
+          "title": {
+            "en": "Delivery window from",
+            "nl": "Bezorgvenster vanaf"
+          }
+        },
+        {
+          "name": "delivery_window_to",
+          "type": "string",
+          "title": {
+            "en": "Delivery window to",
+            "nl": "Bezorgvenster tot"
+          }
+        },
+        {
+          "name": "delivery_window_type",
+          "type": "string",
+          "title": {
+            "en": "Delivery window type",
+            "nl": "Type bezorgvenster"
+          }
+        },
+        {
+          "name": "details_url",
+          "type": "string",
+          "title": {
+            "en": "Tracking URL",
+            "nl": "Tracking-URL"
+          }
+        },
+        {
+          "name": "shipment_type",
+          "type": "string",
+          "title": {
+            "en": "Shipment type",
+            "nl": "Zendingstype"
+          }
+        },
+        {
+          "name": "delivery_address_type",
+          "type": "string",
+          "title": {
+            "en": "Delivery address type",
+            "nl": "Type bezorgadres"
+          }
+        },
+        {
+          "name": "direction",
+          "type": "string",
+          "title": {
+            "en": "Direction",
+            "nl": "Richting"
+          }
+        },
+        {
+          "name": "created_at",
+          "type": "string",
+          "title": {
+            "en": "Created at",
+            "nl": "Aangemaakt op"
+          }
+        },
+        {
+          "name": "delivered",
+          "type": "boolean",
+          "title": {
+            "en": "Delivered",
+            "nl": "Bezorgd"
+          }
+        },
+        {
+          "name": "shared_from",
+          "type": "string",
+          "title": {
+            "en": "Shared from",
+            "nl": "Gedeeld via"
+          }
+        },
+        {
+          "name": "source_account_id",
+          "type": "string",
+          "title": {
+            "en": "Source account ID",
+            "nl": "Bronaccount-ID"
+          }
+        },
+        {
+          "name": "package_status_text",
+          "type": "string",
+          "title": {
+            "en": "Package status",
+            "nl": "Pakketstatus"
+          }
+        },
+        {
+          "name": "package_window_text",
+          "type": "string",
+          "title": {
+            "en": "Delivery window text",
+            "nl": "Tekst bezorgvenster"
+          }
+        },
+        {
+          "name": "package_delivery_date",
+          "type": "string",
+          "title": {
+            "en": "Package delivery date",
+            "nl": "Bezorgdatum pakket"
+          }
+        },
+        {
+          "name": "package_sender",
+          "type": "string",
+          "title": {
+            "en": "Package sender",
+            "nl": "Afzender pakket"
+          }
+        },
+        {
+          "name": "package_tracking",
+          "type": "string",
+          "title": {
+            "en": "Package tracking number",
+            "nl": "Trackingnummer pakket"
+          }
+        },
+        {
+          "name": "package_image_available",
+          "type": "boolean",
+          "title": {
+            "en": "My delivery image available",
+            "nl": "Afbeelding Mijn Bezorging beschikbaar"
+          }
+        },
+        {
+          "name": "package_image",
+          "type": "image",
+          "title": {
+            "en": "My delivery image",
+            "nl": "Afbeelding Mijn Bezorging"
+          }
+        },
+        {
+          "name": "weight",
+          "type": "string",
+          "title": {
+            "en": "Weight",
+            "nl": "Gewicht"
+          }
+        },
+        {
+          "name": "dimensions",
+          "type": "string",
+          "title": {
+            "en": "Dimensions",
+            "nl": "Afmetingen"
+          }
+        },
+        {
+          "name": "weight_kg",
+          "type": "number",
+          "title": {
+            "en": "Parcel weight (kg)",
+            "nl": "Gewicht pakket (kg)"
+          }
+        },
+        {
+          "name": "dimension_length",
+          "type": "number",
+          "title": {
+            "en": "Parcel length (cm)",
+            "nl": "Lengte pakket (cm)"
+          }
+        },
+        {
+          "name": "dimension_width",
+          "type": "number",
+          "title": {
+            "en": "Parcel width (cm)",
+            "nl": "Breedte pakket (cm)"
+          }
+        },
+        {
+          "name": "dimension_height",
+          "type": "number",
+          "title": {
+            "en": "Parcel height (cm)",
+            "nl": "Hoogte pakket (cm)"
+          }
+        },
+        {
+          "name": "status_history",
+          "type": "string",
+          "title": {
+            "en": "Full status history",
+            "nl": "Volledige status-history"
+          }
+        },
+        {
+          "name": "observation_code",
+          "type": "string",
+          "title": {
+            "en": "PostNL observation code",
+            "nl": "PostNL observationCode"
+          }
+        },
+        {
+          "name": "canonical_status",
+          "type": "string",
+          "title": {
+            "en": "Canonical parcel status",
+            "nl": "Canonieke pakketstatus"
+          }
+        },
+        {
+          "name": "pickup",
+          "type": "boolean",
+          "title": {
+            "en": "PostNL Point delivery",
+            "nl": "Bezorging bij PostNL-punt"
+          }
+        },
+        {
+          "name": "pickup_point",
+          "type": "string",
+          "title": {
+            "en": "PostNL Point",
+            "nl": "PostNL-punt"
+          }
+        }
+      ],
+      "highlight": true
+    },
+    {
+      "id": "package_event_changed",
+      "title": {
+        "en": "A new PostNL parcel event was received",
+        "nl": "Er is een nieuwe PostNL-pakketgebeurtenis"
+      },
+      "args": [],
+      "tokens": [
+        {
+          "name": "old_event",
+          "type": "string",
+          "title": {
+            "en": "Previous PostNL event",
+            "nl": "Vorige PostNL-gebeurtenis"
+          }
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "title": {
+            "en": "Shipment ID",
+            "nl": "Zending-ID"
+          }
+        },
+        {
+          "name": "sender",
+          "type": "string",
+          "title": {
+            "en": "Sender",
+            "nl": "Afzender"
+          }
+        },
+        {
+          "name": "receiver",
+          "type": "string",
+          "title": {
+            "en": "Receiver",
+            "nl": "Ontvanger"
+          }
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "title": {
+            "en": "Parcel",
+            "nl": "Pakket"
+          }
+        },
+        {
+          "name": "barcode",
+          "type": "string",
+          "title": {
+            "en": "Barcode",
+            "nl": "Barcode"
+          }
+        },
+        {
+          "name": "status",
+          "type": "string",
+          "title": {
+            "en": "Status",
+            "nl": "Status"
+          }
+        },
+        {
+          "name": "status_raw",
+          "type": "string",
+          "title": {
+            "en": "Official PostNL status",
+            "nl": "Officiële PostNL-status"
+          }
+        },
+        {
+          "name": "status_code",
+          "type": "string",
+          "title": {
+            "en": "Official PostNL status code",
+            "nl": "Officiële PostNL-statuscode"
+          }
+        },
+        {
+          "name": "status_event",
+          "type": "string",
+          "title": {
+            "en": "Latest PostNL event",
+            "nl": "Laatste PostNL-gebeurtenis"
+          }
+        },
+        {
+          "name": "status_event_time",
+          "type": "string",
+          "title": {
+            "en": "Latest status update",
+            "nl": "Laatste statusupdate"
+          }
+        },
+        {
+          "name": "delivery_date",
+          "type": "string",
+          "title": {
+            "en": "Delivery date",
+            "nl": "Bezorgdatum"
+          }
+        },
+        {
+          "name": "delivery_window",
+          "type": "string",
+          "title": {
+            "en": "Delivery window",
+            "nl": "Bezorgvenster"
+          }
+        },
+        {
+          "name": "delivery_window_from",
+          "type": "string",
+          "title": {
+            "en": "Delivery window from",
+            "nl": "Bezorgvenster vanaf"
+          }
+        },
+        {
+          "name": "delivery_window_to",
+          "type": "string",
+          "title": {
+            "en": "Delivery window to",
+            "nl": "Bezorgvenster tot"
+          }
+        },
+        {
+          "name": "delivery_window_type",
+          "type": "string",
+          "title": {
+            "en": "Delivery window type",
+            "nl": "Type bezorgvenster"
+          }
+        },
+        {
+          "name": "details_url",
+          "type": "string",
+          "title": {
+            "en": "Tracking URL",
+            "nl": "Tracking-URL"
+          }
+        },
+        {
+          "name": "shipment_type",
+          "type": "string",
+          "title": {
+            "en": "Shipment type",
+            "nl": "Zendingstype"
+          }
+        },
+        {
+          "name": "delivery_address_type",
+          "type": "string",
+          "title": {
+            "en": "Delivery address type",
+            "nl": "Type bezorgadres"
+          }
+        },
+        {
+          "name": "direction",
+          "type": "string",
+          "title": {
+            "en": "Direction",
+            "nl": "Richting"
+          }
+        },
+        {
+          "name": "created_at",
+          "type": "string",
+          "title": {
+            "en": "Created at",
+            "nl": "Aangemaakt op"
+          }
+        },
+        {
+          "name": "delivered",
+          "type": "boolean",
+          "title": {
+            "en": "Delivered",
+            "nl": "Bezorgd"
+          }
+        },
+        {
+          "name": "shared_from",
+          "type": "string",
+          "title": {
+            "en": "Shared from",
+            "nl": "Gedeeld via"
+          }
+        },
+        {
+          "name": "source_account_id",
+          "type": "string",
+          "title": {
+            "en": "Source account ID",
+            "nl": "Bronaccount-ID"
+          }
+        },
+        {
+          "name": "package_status_text",
+          "type": "string",
+          "title": {
+            "en": "Package status",
+            "nl": "Pakketstatus"
+          }
+        },
+        {
+          "name": "package_window_text",
+          "type": "string",
+          "title": {
+            "en": "Delivery window text",
+            "nl": "Tekst bezorgvenster"
+          }
+        },
+        {
+          "name": "package_delivery_date",
+          "type": "string",
+          "title": {
+            "en": "Package delivery date",
+            "nl": "Bezorgdatum pakket"
+          }
+        },
+        {
+          "name": "package_sender",
+          "type": "string",
+          "title": {
+            "en": "Package sender",
+            "nl": "Afzender pakket"
+          }
+        },
+        {
+          "name": "package_tracking",
+          "type": "string",
+          "title": {
+            "en": "Package tracking number",
+            "nl": "Trackingnummer pakket"
+          }
+        },
+        {
+          "name": "package_image_available",
+          "type": "boolean",
+          "title": {
+            "en": "My delivery image available",
+            "nl": "Afbeelding Mijn Bezorging beschikbaar"
+          }
+        },
+        {
+          "name": "package_image",
+          "type": "image",
+          "title": {
+            "en": "My delivery image",
+            "nl": "Afbeelding Mijn Bezorging"
+          }
+        },
+        {
+          "name": "weight",
+          "type": "string",
+          "title": {
+            "en": "Weight",
+            "nl": "Gewicht"
+          }
+        },
+        {
+          "name": "dimensions",
+          "type": "string",
+          "title": {
+            "en": "Dimensions",
+            "nl": "Afmetingen"
+          }
+        },
+        {
+          "name": "weight_kg",
+          "type": "number",
+          "title": {
+            "en": "Parcel weight (kg)",
+            "nl": "Gewicht pakket (kg)"
+          }
+        },
+        {
+          "name": "dimension_length",
+          "type": "number",
+          "title": {
+            "en": "Parcel length (cm)",
+            "nl": "Lengte pakket (cm)"
+          }
+        },
+        {
+          "name": "dimension_width",
+          "type": "number",
+          "title": {
+            "en": "Parcel width (cm)",
+            "nl": "Breedte pakket (cm)"
+          }
+        },
+        {
+          "name": "dimension_height",
+          "type": "number",
+          "title": {
+            "en": "Parcel height (cm)",
+            "nl": "Hoogte pakket (cm)"
+          }
+        },
+        {
+          "name": "status_history",
+          "type": "string",
+          "title": {
+            "en": "Full status history",
+            "nl": "Volledige status-history"
+          }
+        },
+        {
+          "name": "observation_code",
+          "type": "string",
+          "title": {
+            "en": "PostNL observation code",
+            "nl": "PostNL observationCode"
+          }
+        },
+        {
+          "name": "canonical_status",
+          "type": "string",
+          "title": {
+            "en": "Canonical parcel status",
+            "nl": "Canonieke pakketstatus"
+          }
+        },
+        {
+          "name": "pickup",
+          "type": "boolean",
+          "title": {
+            "en": "PostNL Point delivery",
+            "nl": "Bezorging bij PostNL-punt"
+          }
+        },
+        {
+          "name": "pickup_point",
+          "type": "string",
+          "title": {
+            "en": "PostNL Point",
+            "nl": "PostNL-punt"
+          }
+        }
+      ]
+    },
+    {
+      "id": "package_weight_known",
+      "title": {
+        "en": "Parcel weight became available",
+        "nl": "Het gewicht van een pakket is bekend"
+      },
+      "args": [],
+      "tokens": [
+        {
+          "name": "id",
+          "type": "string",
+          "title": {
+            "en": "Shipment ID",
+            "nl": "Zending-ID"
+          }
+        },
+        {
+          "name": "sender",
+          "type": "string",
+          "title": {
+            "en": "Sender",
+            "nl": "Afzender"
+          }
+        },
+        {
+          "name": "receiver",
+          "type": "string",
+          "title": {
+            "en": "Receiver",
+            "nl": "Ontvanger"
+          }
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "title": {
+            "en": "Parcel",
+            "nl": "Pakket"
+          }
+        },
+        {
+          "name": "barcode",
+          "type": "string",
+          "title": {
+            "en": "Barcode",
+            "nl": "Barcode"
+          }
+        },
+        {
+          "name": "status",
+          "type": "string",
+          "title": {
+            "en": "Status",
+            "nl": "Status"
+          }
+        },
+        {
+          "name": "status_raw",
+          "type": "string",
+          "title": {
+            "en": "Official PostNL status",
+            "nl": "Officiële PostNL-status"
+          }
+        },
+        {
+          "name": "status_code",
+          "type": "string",
+          "title": {
+            "en": "Official PostNL status code",
+            "nl": "Officiële PostNL-statuscode"
+          }
+        },
+        {
+          "name": "status_event",
+          "type": "string",
+          "title": {
+            "en": "Latest PostNL event",
+            "nl": "Laatste PostNL-gebeurtenis"
+          }
+        },
+        {
+          "name": "status_event_time",
+          "type": "string",
+          "title": {
+            "en": "Latest status update",
+            "nl": "Laatste statusupdate"
+          }
+        },
+        {
+          "name": "delivery_date",
+          "type": "string",
+          "title": {
+            "en": "Delivery date",
+            "nl": "Bezorgdatum"
+          }
+        },
+        {
+          "name": "delivery_window",
+          "type": "string",
+          "title": {
+            "en": "Delivery window",
+            "nl": "Bezorgvenster"
+          }
+        },
+        {
+          "name": "delivery_window_from",
+          "type": "string",
+          "title": {
+            "en": "Delivery window from",
+            "nl": "Bezorgvenster vanaf"
+          }
+        },
+        {
+          "name": "delivery_window_to",
+          "type": "string",
+          "title": {
+            "en": "Delivery window to",
+            "nl": "Bezorgvenster tot"
+          }
+        },
+        {
+          "name": "delivery_window_type",
+          "type": "string",
+          "title": {
+            "en": "Delivery window type",
+            "nl": "Type bezorgvenster"
+          }
+        },
+        {
+          "name": "details_url",
+          "type": "string",
+          "title": {
+            "en": "Tracking URL",
+            "nl": "Tracking-URL"
+          }
+        },
+        {
+          "name": "shipment_type",
+          "type": "string",
+          "title": {
+            "en": "Shipment type",
+            "nl": "Zendingstype"
+          }
+        },
+        {
+          "name": "delivery_address_type",
+          "type": "string",
+          "title": {
+            "en": "Delivery address type",
+            "nl": "Type bezorgadres"
+          }
+        },
+        {
+          "name": "direction",
+          "type": "string",
+          "title": {
+            "en": "Direction",
+            "nl": "Richting"
+          }
+        },
+        {
+          "name": "created_at",
+          "type": "string",
+          "title": {
+            "en": "Created at",
+            "nl": "Aangemaakt op"
+          }
+        },
+        {
+          "name": "delivered",
+          "type": "boolean",
+          "title": {
+            "en": "Delivered",
+            "nl": "Bezorgd"
+          }
+        },
+        {
+          "name": "shared_from",
+          "type": "string",
+          "title": {
+            "en": "Shared from",
+            "nl": "Gedeeld via"
+          }
+        },
+        {
+          "name": "source_account_id",
+          "type": "string",
+          "title": {
+            "en": "Source account ID",
+            "nl": "Bronaccount-ID"
+          }
+        },
+        {
+          "name": "package_status_text",
+          "type": "string",
+          "title": {
+            "en": "Package status",
+            "nl": "Pakketstatus"
+          }
+        },
+        {
+          "name": "package_window_text",
+          "type": "string",
+          "title": {
+            "en": "Delivery window text",
+            "nl": "Tekst bezorgvenster"
+          }
+        },
+        {
+          "name": "package_delivery_date",
+          "type": "string",
+          "title": {
+            "en": "Package delivery date",
+            "nl": "Bezorgdatum pakket"
+          }
+        },
+        {
+          "name": "package_sender",
+          "type": "string",
+          "title": {
+            "en": "Package sender",
+            "nl": "Afzender pakket"
+          }
+        },
+        {
+          "name": "package_tracking",
+          "type": "string",
+          "title": {
+            "en": "Package tracking number",
+            "nl": "Trackingnummer pakket"
+          }
+        },
+        {
+          "name": "package_image_available",
+          "type": "boolean",
+          "title": {
+            "en": "My delivery image available",
+            "nl": "Afbeelding Mijn Bezorging beschikbaar"
+          }
+        },
+        {
+          "name": "package_image",
+          "type": "image",
+          "title": {
+            "en": "My delivery image",
+            "nl": "Afbeelding Mijn Bezorging"
+          }
+        },
+        {
+          "name": "weight",
+          "type": "string",
+          "title": {
+            "en": "Weight",
+            "nl": "Gewicht"
+          }
+        },
+        {
+          "name": "dimensions",
+          "type": "string",
+          "title": {
+            "en": "Dimensions",
+            "nl": "Afmetingen"
+          }
+        },
+        {
+          "name": "weight_kg",
+          "type": "number",
+          "title": {
+            "en": "Parcel weight (kg)",
+            "nl": "Gewicht pakket (kg)"
+          }
+        },
+        {
+          "name": "dimension_length",
+          "type": "number",
+          "title": {
+            "en": "Parcel length (cm)",
+            "nl": "Lengte pakket (cm)"
+          }
+        },
+        {
+          "name": "dimension_width",
+          "type": "number",
+          "title": {
+            "en": "Parcel width (cm)",
+            "nl": "Breedte pakket (cm)"
+          }
+        },
+        {
+          "name": "dimension_height",
+          "type": "number",
+          "title": {
+            "en": "Parcel height (cm)",
+            "nl": "Hoogte pakket (cm)"
+          }
+        },
+        {
+          "name": "status_history",
+          "type": "string",
+          "title": {
+            "en": "Full status history",
+            "nl": "Volledige status-history"
+          }
+        },
+        {
+          "name": "observation_code",
+          "type": "string",
+          "title": {
+            "en": "PostNL observation code",
+            "nl": "PostNL observationCode"
+          }
+        },
+        {
+          "name": "canonical_status",
+          "type": "string",
+          "title": {
+            "en": "Canonical parcel status",
+            "nl": "Canonieke pakketstatus"
+          }
+        },
+        {
+          "name": "pickup",
+          "type": "boolean",
+          "title": {
+            "en": "PostNL Point delivery",
+            "nl": "Bezorging bij PostNL-punt"
+          }
+        },
+        {
+          "name": "pickup_point",
+          "type": "string",
+          "title": {
+            "en": "PostNL Point",
+            "nl": "PostNL-punt"
+          }
+        }
+      ]
+    },
+    {
+      "id": "package_dimensions_known",
+      "title": {
+        "en": "Parcel dimensions became available",
+        "nl": "De afmetingen van een pakket zijn bekend"
+      },
+      "args": [],
+      "tokens": [
+        {
+          "name": "id",
+          "type": "string",
+          "title": {
+            "en": "Shipment ID",
+            "nl": "Zending-ID"
+          }
+        },
+        {
+          "name": "sender",
+          "type": "string",
+          "title": {
+            "en": "Sender",
+            "nl": "Afzender"
+          }
+        },
+        {
+          "name": "receiver",
+          "type": "string",
+          "title": {
+            "en": "Receiver",
+            "nl": "Ontvanger"
+          }
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "title": {
+            "en": "Parcel",
+            "nl": "Pakket"
+          }
+        },
+        {
+          "name": "barcode",
+          "type": "string",
+          "title": {
+            "en": "Barcode",
+            "nl": "Barcode"
+          }
+        },
+        {
+          "name": "status",
+          "type": "string",
+          "title": {
+            "en": "Status",
+            "nl": "Status"
+          }
+        },
+        {
+          "name": "status_raw",
+          "type": "string",
+          "title": {
+            "en": "Official PostNL status",
+            "nl": "Officiële PostNL-status"
+          }
+        },
+        {
+          "name": "status_code",
+          "type": "string",
+          "title": {
+            "en": "Official PostNL status code",
+            "nl": "Officiële PostNL-statuscode"
+          }
+        },
+        {
+          "name": "status_event",
+          "type": "string",
+          "title": {
+            "en": "Latest PostNL event",
+            "nl": "Laatste PostNL-gebeurtenis"
+          }
+        },
+        {
+          "name": "status_event_time",
+          "type": "string",
+          "title": {
+            "en": "Latest status update",
+            "nl": "Laatste statusupdate"
+          }
+        },
+        {
+          "name": "delivery_date",
+          "type": "string",
+          "title": {
+            "en": "Delivery date",
+            "nl": "Bezorgdatum"
+          }
+        },
+        {
+          "name": "delivery_window",
+          "type": "string",
+          "title": {
+            "en": "Delivery window",
+            "nl": "Bezorgvenster"
+          }
+        },
+        {
+          "name": "delivery_window_from",
+          "type": "string",
+          "title": {
+            "en": "Delivery window from",
+            "nl": "Bezorgvenster vanaf"
+          }
+        },
+        {
+          "name": "delivery_window_to",
+          "type": "string",
+          "title": {
+            "en": "Delivery window to",
+            "nl": "Bezorgvenster tot"
+          }
+        },
+        {
+          "name": "delivery_window_type",
+          "type": "string",
+          "title": {
+            "en": "Delivery window type",
+            "nl": "Type bezorgvenster"
+          }
+        },
+        {
+          "name": "details_url",
+          "type": "string",
+          "title": {
+            "en": "Tracking URL",
+            "nl": "Tracking-URL"
+          }
+        },
+        {
+          "name": "shipment_type",
+          "type": "string",
+          "title": {
+            "en": "Shipment type",
+            "nl": "Zendingstype"
+          }
+        },
+        {
+          "name": "delivery_address_type",
+          "type": "string",
+          "title": {
+            "en": "Delivery address type",
+            "nl": "Type bezorgadres"
+          }
+        },
+        {
+          "name": "direction",
+          "type": "string",
+          "title": {
+            "en": "Direction",
+            "nl": "Richting"
+          }
+        },
+        {
+          "name": "created_at",
+          "type": "string",
+          "title": {
+            "en": "Created at",
+            "nl": "Aangemaakt op"
+          }
+        },
+        {
+          "name": "delivered",
+          "type": "boolean",
+          "title": {
+            "en": "Delivered",
+            "nl": "Bezorgd"
+          }
+        },
+        {
+          "name": "shared_from",
+          "type": "string",
+          "title": {
+            "en": "Shared from",
+            "nl": "Gedeeld via"
+          }
+        },
+        {
+          "name": "source_account_id",
+          "type": "string",
+          "title": {
+            "en": "Source account ID",
+            "nl": "Bronaccount-ID"
+          }
+        },
+        {
+          "name": "package_status_text",
+          "type": "string",
+          "title": {
+            "en": "Package status",
+            "nl": "Pakketstatus"
+          }
+        },
+        {
+          "name": "package_window_text",
+          "type": "string",
+          "title": {
+            "en": "Delivery window text",
+            "nl": "Tekst bezorgvenster"
+          }
+        },
+        {
+          "name": "package_delivery_date",
+          "type": "string",
+          "title": {
+            "en": "Package delivery date",
+            "nl": "Bezorgdatum pakket"
+          }
+        },
+        {
+          "name": "package_sender",
+          "type": "string",
+          "title": {
+            "en": "Package sender",
+            "nl": "Afzender pakket"
+          }
+        },
+        {
+          "name": "package_tracking",
+          "type": "string",
+          "title": {
+            "en": "Package tracking number",
+            "nl": "Trackingnummer pakket"
+          }
+        },
+        {
+          "name": "package_image_available",
+          "type": "boolean",
+          "title": {
+            "en": "My delivery image available",
+            "nl": "Afbeelding Mijn Bezorging beschikbaar"
+          }
+        },
+        {
+          "name": "package_image",
+          "type": "image",
+          "title": {
+            "en": "My delivery image",
+            "nl": "Afbeelding Mijn Bezorging"
+          }
+        },
+        {
+          "name": "weight",
+          "type": "string",
+          "title": {
+            "en": "Weight",
+            "nl": "Gewicht"
+          }
+        },
+        {
+          "name": "dimensions",
+          "type": "string",
+          "title": {
+            "en": "Dimensions",
+            "nl": "Afmetingen"
+          }
+        },
+        {
+          "name": "weight_kg",
+          "type": "number",
+          "title": {
+            "en": "Parcel weight (kg)",
+            "nl": "Gewicht pakket (kg)"
+          }
+        },
+        {
+          "name": "dimension_length",
+          "type": "number",
+          "title": {
+            "en": "Parcel length (cm)",
+            "nl": "Lengte pakket (cm)"
+          }
+        },
+        {
+          "name": "dimension_width",
+          "type": "number",
+          "title": {
+            "en": "Parcel width (cm)",
+            "nl": "Breedte pakket (cm)"
+          }
+        },
+        {
+          "name": "dimension_height",
+          "type": "number",
+          "title": {
+            "en": "Parcel height (cm)",
+            "nl": "Hoogte pakket (cm)"
+          }
+        },
+        {
+          "name": "status_history",
+          "type": "string",
+          "title": {
+            "en": "Full status history",
+            "nl": "Volledige status-history"
+          }
+        },
+        {
+          "name": "observation_code",
+          "type": "string",
+          "title": {
+            "en": "PostNL observation code",
+            "nl": "PostNL observationCode"
+          }
+        },
+        {
+          "name": "canonical_status",
+          "type": "string",
+          "title": {
+            "en": "Canonical parcel status",
+            "nl": "Canonieke pakketstatus"
+          }
+        },
+        {
+          "name": "pickup",
+          "type": "boolean",
+          "title": {
+            "en": "PostNL Point delivery",
+            "nl": "Bezorging bij PostNL-punt"
+          }
+        },
+        {
+          "name": "pickup_point",
+          "type": "string",
+          "title": {
+            "en": "PostNL Point",
+            "nl": "PostNL-punt"
           }
         }
       ]
@@ -2309,67 +2838,171 @@
     {
       "id": "mail_expected",
       "title": {
-        "en": "Mail is expected",
-        "nl": "Er wordt post verwacht",
-        "de": "Briefpost wird erwartet",
-        "fr": "Du courrier est attendu",
-        "it": "È prevista posta",
-        "sv": "Post väntas",
-        "no": "Post er ventet",
-        "es": "Se espera correo",
-        "da": "Der forventes post",
-        "ru": "Ожидается почта",
-        "pl": "Oczekiwana jest poczta",
-        "ko": "우편물이 도착할 예정입니다",
-        "ar": "من المتوقع وصول بريد"
+        "en": "Mail !{{is|isn't}} expected",
+        "nl": "Post !{{wordt|wordt niet}} verwacht"
       },
       "args": []
     },
     {
       "id": "packages_underway",
       "title": {
-        "en": "Parcels are underway",
-        "nl": "Er zijn pakketten onderweg",
-        "de": "Pakete sind unterwegs",
-        "fr": "Des colis sont en route",
-        "it": "Ci sono pacchi in arrivo",
-        "sv": "Paket är på väg",
-        "no": "Pakker er på vei",
-        "es": "Hay paquetes en camino",
-        "da": "Der er pakker på vej",
-        "ru": "Посылки в пути",
-        "pl": "Paczki są w drodze",
-        "ko": "배송 중인 소포가 있습니다",
-        "ar": "هناك طرود في الطريق"
-      },
-      "args": []
-    },
-    {
-      "id": "postnl_delivery_window_known",
-      "title": {
-        "en": "Delivery window !{{is|isn't}} known",
-        "nl": "Bezorgvenster !{{is|is niet}} bekend",
-        "de": "Zustellzeitfenster !{{ist|ist nicht}} bekannt",
-        "fr": "Le créneau de livraison !{{est|n’est pas}} connu",
-        "it": "La finestra di consegna !{{è|non è}} nota",
-        "sv": "Leveransfönster !{{är|är inte}} känt",
-        "no": "Leveringsvindu !{{er|er ikke}} kjent",
-        "es": "La franja de entrega !{{es|no es}} conocida",
-        "da": "Leveringsvindue !{{er|er ikke}} kendt",
-        "ru": "Интервал доставки !{{известен|неизвестен}}",
-        "pl": "Okno dostawy !{{jest|nie jest}} znane",
-        "ko": "배송 시간대가 !{{확인됨|확인되지 않음}}",
-        "ar": "نافذة التسليم !{{معروفة|غير معروفة}}"
+        "en": "Parcels !{{are|aren't}} underway",
+        "nl": "Er !{{zijn|zijn geen}} pakketten onderweg"
       },
       "args": []
     },
     {
       "id": "delivery_window_known",
       "title": {
-        "en": "A delivery window is known",
-        "nl": "Er is een bezorgvenster bekend"
+        "en": "A delivery window !{{is|isn't}} known",
+        "nl": "Er !{{is|is geen}} bezorgvenster bekend"
       },
       "args": []
+    },
+    {
+      "id": "postnl_connected",
+      "title": {
+        "en": "PostNL !{{is|isn't}} connected",
+        "nl": "PostNL !{{is|is niet}} verbonden"
+      },
+      "args": []
+    },
+    {
+      "id": "package_has_weight",
+      "title": {
+        "en": "The current parcel !{{has|doesn't have}} weight information",
+        "nl": "Het huidige pakket !{{heeft|heeft geen}} gewichtsinformatie"
+      },
+      "args": []
+    },
+    {
+      "id": "package_has_dimensions",
+      "title": {
+        "en": "The current parcel !{{has|doesn't have}} dimensions",
+        "nl": "Het huidige pakket !{{heeft|heeft geen}} afmetingen"
+      },
+      "args": []
+    },
+    {
+      "id": "package_status_is",
+      "title": {
+        "en": "The current parcel status !{{is|isn't}}",
+        "nl": "De huidige pakketstatus !{{is|is niet}}"
+      },
+      "args": [
+        {
+          "type": "dropdown",
+          "name": "status",
+          "title": {
+            "en": "Parcel status",
+            "nl": "Pakketstatus"
+          },
+          "values": [
+            {
+              "id": "registered",
+              "title": {
+                "nl": "Aangemeld / nog niet ontvangen",
+                "en": "Registered / not received yet"
+              }
+            },
+            {
+              "id": "received",
+              "title": {
+                "nl": "Ontvangen door PostNL",
+                "en": "Received by PostNL"
+              }
+            },
+            {
+              "id": "collected",
+              "title": {
+                "nl": "Pakket wordt opgehaald",
+                "en": "Parcel is being collected"
+              }
+            },
+            {
+              "id": "sorting",
+              "title": {
+                "nl": "Zending wordt/is gesorteerd",
+                "en": "Shipment is being/has been sorted"
+              }
+            },
+            {
+              "id": "in_transit",
+              "title": {
+                "nl": "Onderweg / in transport",
+                "en": "In transit"
+              }
+            },
+            {
+              "id": "out_for_delivery",
+              "title": {
+                "nl": "Bezorger is onderweg",
+                "en": "Courier is on the way"
+              }
+            },
+            {
+              "id": "delivery_changed",
+              "title": {
+                "nl": "Bezorgmoment bijgewerkt / vertraagd",
+                "en": "Delivery time changed / delayed"
+              }
+            },
+            {
+              "id": "to_pickup_point",
+              "title": {
+                "nl": "Onderweg naar PostNL-punt",
+                "en": "On the way to a PostNL Point"
+              }
+            },
+            {
+              "id": "at_pickup_point",
+              "title": {
+                "nl": "Ligt klaar bij PostNL-punt",
+                "en": "Ready at PostNL Point"
+              }
+            },
+            {
+              "id": "picked_up",
+              "title": {
+                "nl": "Afgehaald bij PostNL-punt",
+                "en": "Collected at PostNL Point"
+              }
+            },
+            {
+              "id": "delivered",
+              "title": {
+                "nl": "Bezorgd",
+                "en": "Delivered"
+              }
+            },
+            {
+              "id": "returning",
+              "title": {
+                "nl": "Retour / teruggestuurd",
+                "en": "Returning / returned to sender"
+              }
+            },
+            {
+              "id": "customs",
+              "title": {
+                "nl": "Douane / inklaring",
+                "en": "Customs clearance"
+              }
+            },
+            {
+              "id": "unknown",
+              "title": {
+                "nl": "Onbekende status",
+                "en": "Unknown status"
+              }
+            }
+          ]
+        }
+      ],
+      "titleFormatted": {
+        "en": "The current parcel status !{{is|isn't}} [[status]]",
+        "nl": "De huidige pakketstatus !{{is|is niet}} [[status]]"
+      }
     }
   ],
   "actions": [
@@ -2377,18 +3010,7 @@
       "id": "sync_now",
       "title": {
         "en": "Synchronize PostNL",
-        "nl": "Synchroniseer PostNL",
-        "de": "PostNL synchronisieren",
-        "fr": "Synchroniser PostNL",
-        "it": "Sincronizza PostNL",
-        "sv": "Synkronisera PostNL",
-        "no": "Synkroniser PostNL",
-        "es": "Sincronizar PostNL",
-        "da": "Synkroniser PostNL",
-        "ru": "Синхронизировать PostNL",
-        "pl": "Synchronizuj PostNL",
-        "ko": "PostNL 동기화",
-        "ar": "مزامنة PostNL"
+        "nl": "Synchroniseer PostNL"
       },
       "args": []
     }

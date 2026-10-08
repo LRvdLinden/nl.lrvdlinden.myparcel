@@ -1,0 +1,11 @@
+{
+  "type": "string",
+  "title": {
+    "en": "Tracking number",
+    "nl": "Trackingnummer"
+  },
+  "getable": true,
+  "setable": false,
+  "insights": false,
+  "icon": "/assets/package.svg"
+}
