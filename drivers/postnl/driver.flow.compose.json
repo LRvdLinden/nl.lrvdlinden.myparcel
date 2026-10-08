@@ -719,6 +719,139 @@
             "en": "Latest status update",
             "nl": "Laatste statusupdate"
           }
+        },
+        {
+          "name": "weight",
+          "type": "number",
+          "title": {
+            "en": "Parcel weight (kg)",
+            "nl": "Gewicht pakket (kg)",
+            "de": "Parcel weight (kg)",
+            "fr": "Parcel weight (kg)",
+            "it": "Parcel weight (kg)",
+            "sv": "Parcel weight (kg)",
+            "no": "Parcel weight (kg)",
+            "es": "Parcel weight (kg)",
+            "da": "Parcel weight (kg)",
+            "ru": "Parcel weight (kg)",
+            "pl": "Parcel weight (kg)",
+            "ko": "Parcel weight (kg)",
+            "ar": "Parcel weight (kg)"
+          }
+        },
+        {
+          "name": "dimensions",
+          "type": "string",
+          "title": {
+            "en": "Parcel dimensions",
+            "nl": "Afmetingen pakket",
+            "de": "Parcel dimensions",
+            "fr": "Parcel dimensions",
+            "it": "Parcel dimensions",
+            "sv": "Parcel dimensions",
+            "no": "Parcel dimensions",
+            "es": "Parcel dimensions",
+            "da": "Parcel dimensions",
+            "ru": "Parcel dimensions",
+            "pl": "Parcel dimensions",
+            "ko": "Parcel dimensions",
+            "ar": "Parcel dimensions"
+          }
+        },
+        {
+          "name": "status_history",
+          "type": "string",
+          "title": {
+            "en": "Parcel status history",
+            "nl": "Statushistorie pakket",
+            "de": "Parcel status history",
+            "fr": "Parcel status history",
+            "it": "Parcel status history",
+            "sv": "Parcel status history",
+            "no": "Parcel status history",
+            "es": "Parcel status history",
+            "da": "Parcel status history",
+            "ru": "Parcel status history",
+            "pl": "Parcel status history",
+            "ko": "Parcel status history",
+            "ar": "Parcel status history"
+          }
+        },
+        {
+          "name": "observation_code",
+          "type": "string",
+          "title": {
+            "en": "PostNL observation code",
+            "nl": "PostNL-observationCode",
+            "de": "PostNL observation code",
+            "fr": "PostNL observation code",
+            "it": "PostNL observation code",
+            "sv": "PostNL observation code",
+            "no": "PostNL observation code",
+            "es": "PostNL observation code",
+            "da": "PostNL observation code",
+            "ru": "PostNL observation code",
+            "pl": "PostNL observation code",
+            "ko": "PostNL observation code",
+            "ar": "PostNL observation code"
+          }
+        },
+        {
+          "name": "canonical_status",
+          "type": "string",
+          "title": {
+            "en": "Canonical parcel status",
+            "nl": "Canonieke pakketstatus",
+            "de": "Canonical parcel status",
+            "fr": "Canonical parcel status",
+            "it": "Canonical parcel status",
+            "sv": "Canonical parcel status",
+            "no": "Canonical parcel status",
+            "es": "Canonical parcel status",
+            "da": "Canonical parcel status",
+            "ru": "Canonical parcel status",
+            "pl": "Canonical parcel status",
+            "ko": "Canonical parcel status",
+            "ar": "Canonical parcel status"
+          }
+        },
+        {
+          "name": "pickup",
+          "type": "boolean",
+          "title": {
+            "en": "Pickup / ServicePoint",
+            "nl": "Afhalen / PostNL-punt",
+            "de": "Pickup / ServicePoint",
+            "fr": "Pickup / ServicePoint",
+            "it": "Pickup / ServicePoint",
+            "sv": "Pickup / ServicePoint",
+            "no": "Pickup / ServicePoint",
+            "es": "Pickup / ServicePoint",
+            "da": "Pickup / ServicePoint",
+            "ru": "Pickup / ServicePoint",
+            "pl": "Pickup / ServicePoint",
+            "ko": "Pickup / ServicePoint",
+            "ar": "Pickup / ServicePoint"
+          }
+        },
+        {
+          "name": "pickup_type",
+          "type": "string",
+          "title": {
+            "en": "Pickup / delivery address type",
+            "nl": "Type afhaal-/bezorgadres",
+            "de": "Pickup / delivery address type",
+            "fr": "Pickup / delivery address type",
+            "it": "Pickup / delivery address type",
+            "sv": "Pickup / delivery address type",
+            "no": "Pickup / delivery address type",
+            "es": "Pickup / delivery address type",
+            "da": "Pickup / delivery address type",
+            "ru": "Pickup / delivery address type",
+            "pl": "Pickup / delivery address type",
+            "ko": "Pickup / delivery address type",
+            "ar": "Pickup / delivery address type"
+          }
         }
       ]
     },
@@ -1284,6 +1417,139 @@
           "title": {
             "en": "Latest status update",
             "nl": "Laatste statusupdate"
+          }
+        },
+        {
+          "name": "weight",
+          "type": "number",
+          "title": {
+            "en": "Parcel weight (kg)",
+            "nl": "Gewicht pakket (kg)",
+            "de": "Parcel weight (kg)",
+            "fr": "Parcel weight (kg)",
+            "it": "Parcel weight (kg)",
+            "sv": "Parcel weight (kg)",
+            "no": "Parcel weight (kg)",
+            "es": "Parcel weight (kg)",
+            "da": "Parcel weight (kg)",
+            "ru": "Parcel weight (kg)",
+            "pl": "Parcel weight (kg)",
+            "ko": "Parcel weight (kg)",
+            "ar": "Parcel weight (kg)"
+          }
+        },
+        {
+          "name": "dimensions",
+          "type": "string",
+          "title": {
+            "en": "Parcel dimensions",
+            "nl": "Afmetingen pakket",
+            "de": "Parcel dimensions",
+            "fr": "Parcel dimensions",
+            "it": "Parcel dimensions",
+            "sv": "Parcel dimensions",
+            "no": "Parcel dimensions",
+            "es": "Parcel dimensions",
+            "da": "Parcel dimensions",
+            "ru": "Parcel dimensions",
+            "pl": "Parcel dimensions",
+            "ko": "Parcel dimensions",
+            "ar": "Parcel dimensions"
+          }
+        },
+        {
+          "name": "status_history",
+          "type": "string",
+          "title": {
+            "en": "Parcel status history",
+            "nl": "Statushistorie pakket",
+            "de": "Parcel status history",
+            "fr": "Parcel status history",
+            "it": "Parcel status history",
+            "sv": "Parcel status history",
+            "no": "Parcel status history",
+            "es": "Parcel status history",
+            "da": "Parcel status history",
+            "ru": "Parcel status history",
+            "pl": "Parcel status history",
+            "ko": "Parcel status history",
+            "ar": "Parcel status history"
+          }
+        },
+        {
+          "name": "observation_code",
+          "type": "string",
+          "title": {
+            "en": "PostNL observation code",
+            "nl": "PostNL-observationCode",
+            "de": "PostNL observation code",
+            "fr": "PostNL observation code",
+            "it": "PostNL observation code",
+            "sv": "PostNL observation code",
+            "no": "PostNL observation code",
+            "es": "PostNL observation code",
+            "da": "PostNL observation code",
+            "ru": "PostNL observation code",
+            "pl": "PostNL observation code",
+            "ko": "PostNL observation code",
+            "ar": "PostNL observation code"
+          }
+        },
+        {
+          "name": "canonical_status",
+          "type": "string",
+          "title": {
+            "en": "Canonical parcel status",
+            "nl": "Canonieke pakketstatus",
+            "de": "Canonical parcel status",
+            "fr": "Canonical parcel status",
+            "it": "Canonical parcel status",
+            "sv": "Canonical parcel status",
+            "no": "Canonical parcel status",
+            "es": "Canonical parcel status",
+            "da": "Canonical parcel status",
+            "ru": "Canonical parcel status",
+            "pl": "Canonical parcel status",
+            "ko": "Canonical parcel status",
+            "ar": "Canonical parcel status"
+          }
+        },
+        {
+          "name": "pickup",
+          "type": "boolean",
+          "title": {
+            "en": "Pickup / ServicePoint",
+            "nl": "Afhalen / PostNL-punt",
+            "de": "Pickup / ServicePoint",
+            "fr": "Pickup / ServicePoint",
+            "it": "Pickup / ServicePoint",
+            "sv": "Pickup / ServicePoint",
+            "no": "Pickup / ServicePoint",
+            "es": "Pickup / ServicePoint",
+            "da": "Pickup / ServicePoint",
+            "ru": "Pickup / ServicePoint",
+            "pl": "Pickup / ServicePoint",
+            "ko": "Pickup / ServicePoint",
+            "ar": "Pickup / ServicePoint"
+          }
+        },
+        {
+          "name": "pickup_type",
+          "type": "string",
+          "title": {
+            "en": "Pickup / delivery address type",
+            "nl": "Type afhaal-/bezorgadres",
+            "de": "Pickup / delivery address type",
+            "fr": "Pickup / delivery address type",
+            "it": "Pickup / delivery address type",
+            "sv": "Pickup / delivery address type",
+            "no": "Pickup / delivery address type",
+            "es": "Pickup / delivery address type",
+            "da": "Pickup / delivery address type",
+            "ru": "Pickup / delivery address type",
+            "pl": "Pickup / delivery address type",
+            "ko": "Pickup / delivery address type",
+            "ar": "Pickup / delivery address type"
           }
         }
       ]
@@ -1901,6 +2167,139 @@
           "title": {
             "en": "My delivery image",
             "nl": "Afbeelding Mijn Bezorging"
+          }
+        },
+        {
+          "name": "weight",
+          "type": "number",
+          "title": {
+            "en": "Parcel weight (kg)",
+            "nl": "Gewicht pakket (kg)",
+            "de": "Parcel weight (kg)",
+            "fr": "Parcel weight (kg)",
+            "it": "Parcel weight (kg)",
+            "sv": "Parcel weight (kg)",
+            "no": "Parcel weight (kg)",
+            "es": "Parcel weight (kg)",
+            "da": "Parcel weight (kg)",
+            "ru": "Parcel weight (kg)",
+            "pl": "Parcel weight (kg)",
+            "ko": "Parcel weight (kg)",
+            "ar": "Parcel weight (kg)"
+          }
+        },
+        {
+          "name": "dimensions",
+          "type": "string",
+          "title": {
+            "en": "Parcel dimensions",
+            "nl": "Afmetingen pakket",
+            "de": "Parcel dimensions",
+            "fr": "Parcel dimensions",
+            "it": "Parcel dimensions",
+            "sv": "Parcel dimensions",
+            "no": "Parcel dimensions",
+            "es": "Parcel dimensions",
+            "da": "Parcel dimensions",
+            "ru": "Parcel dimensions",
+            "pl": "Parcel dimensions",
+            "ko": "Parcel dimensions",
+            "ar": "Parcel dimensions"
+          }
+        },
+        {
+          "name": "status_history",
+          "type": "string",
+          "title": {
+            "en": "Parcel status history",
+            "nl": "Statushistorie pakket",
+            "de": "Parcel status history",
+            "fr": "Parcel status history",
+            "it": "Parcel status history",
+            "sv": "Parcel status history",
+            "no": "Parcel status history",
+            "es": "Parcel status history",
+            "da": "Parcel status history",
+            "ru": "Parcel status history",
+            "pl": "Parcel status history",
+            "ko": "Parcel status history",
+            "ar": "Parcel status history"
+          }
+        },
+        {
+          "name": "observation_code",
+          "type": "string",
+          "title": {
+            "en": "PostNL observation code",
+            "nl": "PostNL-observationCode",
+            "de": "PostNL observation code",
+            "fr": "PostNL observation code",
+            "it": "PostNL observation code",
+            "sv": "PostNL observation code",
+            "no": "PostNL observation code",
+            "es": "PostNL observation code",
+            "da": "PostNL observation code",
+            "ru": "PostNL observation code",
+            "pl": "PostNL observation code",
+            "ko": "PostNL observation code",
+            "ar": "PostNL observation code"
+          }
+        },
+        {
+          "name": "canonical_status",
+          "type": "string",
+          "title": {
+            "en": "Canonical parcel status",
+            "nl": "Canonieke pakketstatus",
+            "de": "Canonical parcel status",
+            "fr": "Canonical parcel status",
+            "it": "Canonical parcel status",
+            "sv": "Canonical parcel status",
+            "no": "Canonical parcel status",
+            "es": "Canonical parcel status",
+            "da": "Canonical parcel status",
+            "ru": "Canonical parcel status",
+            "pl": "Canonical parcel status",
+            "ko": "Canonical parcel status",
+            "ar": "Canonical parcel status"
+          }
+        },
+        {
+          "name": "pickup",
+          "type": "boolean",
+          "title": {
+            "en": "Pickup / ServicePoint",
+            "nl": "Afhalen / PostNL-punt",
+            "de": "Pickup / ServicePoint",
+            "fr": "Pickup / ServicePoint",
+            "it": "Pickup / ServicePoint",
+            "sv": "Pickup / ServicePoint",
+            "no": "Pickup / ServicePoint",
+            "es": "Pickup / ServicePoint",
+            "da": "Pickup / ServicePoint",
+            "ru": "Pickup / ServicePoint",
+            "pl": "Pickup / ServicePoint",
+            "ko": "Pickup / ServicePoint",
+            "ar": "Pickup / ServicePoint"
+          }
+        },
+        {
+          "name": "pickup_type",
+          "type": "string",
+          "title": {
+            "en": "Pickup / delivery address type",
+            "nl": "Type afhaal-/bezorgadres",
+            "de": "Pickup / delivery address type",
+            "fr": "Pickup / delivery address type",
+            "it": "Pickup / delivery address type",
+            "sv": "Pickup / delivery address type",
+            "no": "Pickup / delivery address type",
+            "es": "Pickup / delivery address type",
+            "da": "Pickup / delivery address type",
+            "ru": "Pickup / delivery address type",
+            "pl": "Pickup / delivery address type",
+            "ko": "Pickup / delivery address type",
+            "ar": "Pickup / delivery address type"
           }
         }
       ]
