@@ -1,4 +1,10 @@
 ## 0.3.1 — DHL Express
+- PostNL enriched with package weight and dimensions from official Track & Trace data.
+- PostNL now exposes the complete status timeline from `analyticsInfo.allObservations`, including the latest `observationCode`.
+- Added an `observationCode`-based canonical PostNL status alongside the original full PostNL status text.
+- Added PostNL ServicePoint/pickup detection as capabilities and Flow tokens.
+- Added PostNL capabilities and Flow tokens for weight, dimensions, full status history, observation code, canonical status and pickup/servicepoint state.
+- Pickup-point name/address details remain unsupported because this PostNL route does not expose them reliably.
 - PostNL device updated with the PostNL 1.1.13 feature set: official full Track & Trace statuses/timeline, status code, latest event/time, richer package capabilities and global Flow tokens while Flow cards remain device-specific.
 - PostNL now exposes parcel status, sender, receiver, tracking number, latest event, status time, delivered state and shipment type as device capabilities.
 - PostNL package status-change detection now uses the official Track & Trace fingerprint and refreshes a disappearing active parcel once to catch its final delivery status.
