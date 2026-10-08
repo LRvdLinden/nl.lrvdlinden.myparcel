@@ -1,0 +1,66 @@
+name: Apply PostNL 1.2.6 parity
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/apply-postnl126-parity.yml'
+permissions:
+  contents: write
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Apply exact PostNL 1.2.6 parity patch
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "adf5ed4926acd3f5ea9dfbdd578fb35415de91abf4ac8a718b1ca584c4856d0f  .sync/postnl126-parity-patch.zip" | sha256sum -c -
+          rm -rf drivers/postnl widgets/poststukken widgets/postnl-pakketdetails widgets/mijn-post widgets/mijn-pakket widgets/pakket-details widgets/pakket-reis
+          rm -f .homeycompose/capabilities/postnl_*.json
+          rm -f lib/postnl-status.js
+          unzip -o .sync/postnl126-parity-patch.zip -d .
+          test "$(sha256sum drivers/postnl/assets/icon.svg | awk '{print $1}')" = "81c34eab987d5690727831f7c81e03a703d4cc00024d60c3ee5a1b879a6729ff"
+          grep -q "login_credentials" drivers/postnl/pair/login_postnl.html
+          grep -q "login_credentials" drivers/postnl/repair/repair_login.html
+          grep -q "getDriver('postnl')" widgets/mijn-pakket/api.js
+      - name: Validate
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm ci
+          find lib drivers/postnl widgets/mijn-post widgets/mijn-pakket widgets/pakket-details widgets/pakket-reis -type f -name '*.js' -print0 | xargs -0 -n1 node --check
+          npx --no-install homey app validate --level debug
+      - name: Build MyParcel 0.3.1 ZIP
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf /tmp/myparcel031
+          mkdir -p /tmp/myparcel031/MyParcel-for-Homey-v0.3.1
+          rsync -a ./ /tmp/myparcel031/MyParcel-for-Homey-v0.3.1/             --exclude '.git/' --exclude '.github/' --exclude '.sync/'             --exclude 'node_modules/' --exclude '.homeybuild/' --exclude '__MACOSX/'             --exclude 'MyParcel-for-Homey-v0.3.0.zip' --exclude 'MyParcel-for-Homey-v0.3.1.zip'
+          rm -f MyParcel-for-Homey-v0.3.1.zip
+          (cd /tmp/myparcel031 && zip -qr "$GITHUB_WORKSPACE/MyParcel-for-Homey-v0.3.1.zip" MyParcel-for-Homey-v0.3.1)
+          unzip -t MyParcel-for-Homey-v0.3.1.zip >/dev/null
+          sha256sum MyParcel-for-Homey-v0.3.1.zip
+      - name: Commit parity state
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "LRvdLinden"
+          git config user.email "77990847+LRvdLinden@users.noreply.github.com"
+          git add -A
+          git add -f MyParcel-for-Homey-v0.3.1.zip
+          git rm .sync/postnl126-parity-patch.zip
+          git rm .github/workflows/apply-postnl126-parity.yml
+          git commit -m "Match MyParcel PostNL device to standalone PostNL v1.2.6"
+          git push origin HEAD:main
+      - uses: actions/upload-artifact@v4
+        with:
+          name: MyParcel-for-Homey-v0.3.1-postnl126-parity
+          path: MyParcel-for-Homey-v0.3.1.zip
+          compression-level: 0
