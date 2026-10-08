@@ -1,0 +1,101 @@
+name: Build MyParcel 0.3.1 HA PostNL Login
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/build-myparcel-031-ha-postnl-login.yml'
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Validate PostNL HA login implementation
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm ci
+          node --check lib/postnl-ha-auth.js
+          node --check lib/postnl-api.js
+          node --check lib/postnl-status.js
+          node --check drivers/postnl/driver.js
+          node --check drivers/postnl/device.js
+
+          node - <<'NODE'
+          const fs=require('fs');
+          const app=JSON.parse(fs.readFileSync('app.json','utf8'));
+          if(app.version!=='0.3.1') throw new Error('Expected MyParcel 0.3.1');
+
+          const pair=fs.readFileSync('drivers/postnl/pair/login_postnl.html','utf8');
+          const repair=fs.readFileSync('drivers/postnl/repair/repair_login.html','utf8');
+          const driver=fs.readFileSync('drivers/postnl/driver.js','utf8');
+          const api=fs.readFileSync('lib/postnl-api.js','utf8');
+          const auth=fs.readFileSync('lib/postnl-ha-auth.js','utf8');
+
+          if(!pair.includes("Homey.emit('login_postnl'")) throw new Error('PostNL pair direct login missing');
+          if(!repair.includes("Homey.emit('login_postnl'")) throw new Error('PostNL repair direct login missing');
+          if(pair.includes('callback-URL') || pair.includes('start_auth')) throw new Error('Old PostNL callback login still present in pair');
+          if(repair.includes('callback-URL') || repair.includes('start_auth')) throw new Error('Old PostNL callback login still present in repair');
+          if(!driver.includes("setHandler('login_postnl'")) throw new Error('PostNL login handler missing');
+          if(!api.includes('loginWithCredentials')) throw new Error('PostNL credential login missing');
+          if(!api.includes('refresh_fallback_relogin_succeeded')) throw new Error('PostNL refresh fallback relogin missing');
+
+          for(const value of [
+            'bd9f1610-b56d-4e05-a09b-f696f05ddade',
+            'dkyxkt9x888ye422mawmf769yfm9y44j',
+            'https://www.postnl.nl/',
+            'openid poa-profiles-api offline_access',
+            '20250910094830574377'
+          ]) {
+            if(!auth.includes(value)) throw new Error('HA PostNL auth constant missing: '+value);
+          }
+          NODE
+
+          npx --no-install homey app validate --level debug
+
+      - name: Build complete MyParcel 0.3.1 ZIP
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf /tmp/myparcel031
+          mkdir -p /tmp/myparcel031/MyParcel-for-Homey-v0.3.1
+          rsync -a ./ /tmp/myparcel031/MyParcel-for-Homey-v0.3.1/             --exclude '.git/'             --exclude '.github/'             --exclude 'node_modules/'             --exclude '.homeybuild/'             --exclude '__MACOSX/'             --exclude 'MyParcel-for-Homey-v0.3.0.zip'             --exclude 'MyParcel-for-Homey-v0.3.1.zip'
+          rm -f MyParcel-for-Homey-v0.3.1.zip
+          (
+            cd /tmp/myparcel031
+            zip -qr "$GITHUB_WORKSPACE/MyParcel-for-Homey-v0.3.1.zip" MyParcel-for-Homey-v0.3.1
+          )
+          unzip -t MyParcel-for-Homey-v0.3.1.zip >/dev/null
+          sha256sum MyParcel-for-Homey-v0.3.1.zip
+
+      - name: Commit validated 0.3.1
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "LRvdLinden"
+          git config user.email "77990847+LRvdLinden@users.noreply.github.com"
+          git add lib/postnl-ha-auth.js lib/postnl-api.js lib/postnl-status.js
+          git add drivers/postnl/driver.js drivers/postnl/device.js
+          git add drivers/postnl/pair/login_postnl.html drivers/postnl/repair/repair_login.html
+          git add drivers/postnl/driver.compose.json drivers/postnl/driver.flow.compose.json
+          git add app.json CHANGELOG.md .homeychangelog.json
+          git add -f MyParcel-for-Homey-v0.3.1.zip
+          git rm .github/workflows/build-myparcel-031-ha-postnl-login.yml
+          git commit -m "Finalize MyParcel 0.3.1 HA-style PostNL login"
+          git push origin HEAD:main
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: MyParcel-for-Homey-v0.3.1-ha-postnl-login
+          path: MyParcel-for-Homey-v0.3.1.zip
+          compression-level: 0
