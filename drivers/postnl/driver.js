@@ -152,15 +152,17 @@ class PostNLDriver extends Homey.Driver {
     return new PostNLApi({ homey: this.homey, log: (...args) => this.log('[PairAuth]', ...args), storage: this._createMemoryStorage() });
   }
 
-  _accountDevice(profile, api) {
-    const username = String(profile?.username || '').trim();
-    if (!username) throw new Error('PostNL did not return an account identifier.');
-    const stable = crypto.createHash('sha256').update(username.toLowerCase()).digest('hex').slice(0, 24);
+  _accountDevice(profile, api, username, password) {
+    const accountUsername = String(profile?.username || username || '').trim();
+    if (!accountUsername) throw new Error('PostNL did not return an account identifier.');
+    const stable = crypto.createHash('sha256').update(accountUsername.toLowerCase()).digest('hex').slice(0, 24);
     return {
       name: 'PostNL',
       data: { id: `postnl-${stable}` },
       store: {
-        username,
+        username: accountUsername,
+        login_username: String(username || '').trim(),
+        login_password: String(password || ''),
         auth: api.exportAuth(),
         snapshot: { letters: [], liveLetters: [], packages: [], updatedAt: null, account: profile || null, mailApiStatus: 'unknown', mailApiError: null },
         authExpiredNotified: false,
@@ -170,23 +172,28 @@ class PostNLDriver extends Homey.Driver {
 
   async onPair(session) {
     const api = this._createPairApi();
-    let profile = null;
-    session.setHandler('start_auth', async () => api.createAuthorization());
-    session.setHandler('complete_auth', async callback => {
-      await api.completeAuthorization(callback);
-      profile = await api.fetchProfile();
-      return { authenticated: true, username: profile?.username || '', device: this._accountDevice(profile, api) };
+    session.setHandler('login_postnl', async ({ username, password } = {}) => {
+      const email = String(username || '').trim();
+      const secret = String(password || '');
+      if (!email || !secret) throw new Error('Vul je PostNL e-mailadres en wachtwoord in.');
+      const profile = await api.loginWithCredentials(email, secret);
+      return {
+        authenticated: true,
+        username: profile?.username || email,
+        device: this._accountDevice(profile, api, email, secret),
+      };
     });
   }
 
   async onRepair(session, device) {
     const api = this._createPairApi();
-    session.setHandler('start_auth', async () => api.createAuthorization());
-    session.setHandler('complete_auth', async callback => {
-      await api.completeAuthorization(callback);
-      const profile = await api.fetchProfile();
-      await device.updateCredentials(api.exportAuth(), profile);
-      return { authenticated: true, username: profile?.username || '' };
+    session.setHandler('login_postnl', async ({ username, password } = {}) => {
+      const email = String(username || '').trim();
+      const secret = String(password || '');
+      if (!email || !secret) throw new Error('Vul je PostNL e-mailadres en wachtwoord in.');
+      const profile = await api.loginWithCredentials(email, secret);
+      await device.updateCredentials(api.exportAuth(), profile, email, secret);
+      return { authenticated: true, username: profile?.username || email };
     });
   }
 }
