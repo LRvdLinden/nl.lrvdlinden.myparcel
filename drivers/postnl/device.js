@@ -59,9 +59,11 @@ class PostNLDevice extends Homey.Device {
     await this.applySnapshot(this.snapshot, null);
   }
 
-  async updateCredentials(auth, profile = null) {
+  async updateCredentials(auth, profile = null, loginUsername = '', loginPassword = '') {
     await this.api.replaceAuth(auth);
     if (profile?.username) await this.setStoreValue('username', profile.username);
+    if (loginUsername) await this.setStoreValue('login_username', String(loginUsername).trim());
+    if (loginPassword) await this.setStoreValue('login_password', String(loginPassword));
     await this.setAvailable().catch(this.error);
     return this.sync({ reason: 'repair-login', force: true });
   }
