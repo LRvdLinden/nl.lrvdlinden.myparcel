@@ -45,7 +45,7 @@ class PostNLDevice extends Homey.Device {
   hasAccountCredentials() { return this.api?.hasCredentials() || Boolean(this.getStoreValue('auth')); }
 
   async _ensureCapabilities() {
-    for (const capability of ['postnl_delivery_date', 'postnl_delivery_window', 'postnl_package_status', 'postnl_package_sender', 'postnl_package_receiver', 'postnl_package_tracking', 'postnl_package_event', 'postnl_package_status_time', 'postnl_package_delivered', 'postnl_package_shipment_type']) {
+    for (const capability of ['postnl_delivery_date', 'postnl_delivery_window', 'postnl_package_status', 'postnl_package_sender', 'postnl_package_receiver', 'postnl_package_tracking', 'postnl_package_event', 'postnl_package_status_time', 'postnl_package_delivered', 'postnl_package_shipment_type', 'postnl_package_weight', 'postnl_package_dimensions', 'postnl_package_history', 'postnl_package_observation_code', 'postnl_package_canonical_status', 'postnl_package_pickup', 'postnl_package_pickup_type']) {
       if (!this.hasCapability(capability)) await this.addCapability(capability);
     }
   }
@@ -207,7 +207,15 @@ class PostNLDevice extends Homey.Device {
       created_at: parcel.createdAt ? this.api.formatDateTime(parcel.createdAt) : '',
       delivered: Boolean(parcel.delivered), shared_from: parcel.sourceDisplayName || '', source_account_id: parcel.sourceAccountId || '',
       package_status_text: status, package_window_text: deliveryWindow, package_delivery_date: deliveryDate,
-      package_sender: sender, package_tracking: tracking, package_image_available: Boolean(packageImage),
+      package_sender: sender, package_tracking: tracking,
+      weight: Number.isFinite(Number(parcel.weightKg)) ? Number(parcel.weightKg) : 0,
+      dimensions: String(parcel.dimensionsText || ''),
+      status_history: String(parcel.statusHistoryText || ''),
+      observation_code: String(parcel.observationCode || ''),
+      canonical_status: String(parcel.canonicalStatus || ''),
+      pickup: Boolean(parcel.pickup),
+      pickup_type: String(parcel.pickupType || parcel.deliveryAddressType || ''),
+      package_image_available: Boolean(packageImage),
     };
     if (packageImage) tokens.package_image = packageImage;
     return tokens;
@@ -320,7 +328,7 @@ class PostNLDevice extends Homey.Device {
     const connected = this.api.hasCredentials();
     await this._flowDriver().updateGlobalTokens(this, {
       mail_expected: letters.length > 0, mail_count: letters.length, mail_id: newestMail.id || '', mail_title: newestMail.title || '', mail_sender: newestMail.sender || '', mail_date: newestMail.deliveryDate ? this.api.formatDate(newestMail.deliveryDate) : '', mail_unread: Boolean(newestMail.unread),
-      package_count: packages.length, package_id: activePackage.id || '', package_sender: activePackage.sender || activePackage.title || '', package_receiver: activePackage.receiver || '', package_title: activePackage.title || activePackage.sender || activePackage.barcode || '', package_barcode: activePackage.barcode || '', package_status: status, package_status_raw: status, package_status_code: activePackage.statusCode || '', package_status_event: activePackage.latestStatusEvent || status, package_status_event_time: activePackage.statusChangedAt ? (this.api.formatDateTime(activePackage.statusChangedAt) || String(activePackage.statusChangedAt)) : '', package_delivery_date: deliveryDate, package_delivery_window: deliveryWindow, package_delivery_window_from: activePackage.deliveryWindowFrom ? this.api.formatTime(activePackage.deliveryWindowFrom) : '', package_delivery_window_to: activePackage.deliveryWindowTo ? this.api.formatTime(activePackage.deliveryWindowTo) : '', package_delivery_window_type: activePackage.deliveryWindowType || '', package_details_url: activePackage.detailsUrl || '', package_shipment_type: activePackage.shipmentType || '', package_delivery_address_type: activePackage.deliveryAddressType || '', package_direction: activePackage.direction || '', package_created_at: activePackage.createdAt ? this.api.formatDateTime(activePackage.createdAt) : '', package_delivered: Boolean(activePackage.delivered), package_shared_from: activePackage.sourceDisplayName || '', package_source_account_id: activePackage.sourceAccountId || '', package_tracking: activePackage.barcode || activePackage.id || '', next_delivery: dates[0] ? this.api.formatDate(dates[0]) : '', connection_status: connected ? (this.homey.i18n.getLanguage() === 'nl' ? 'Verbonden' : 'Connected') : (this.homey.i18n.getLanguage() === 'nl' ? 'Niet verbonden' : 'Not connected'), last_update: snapshot.updatedAt ? this.api.formatDateTime(snapshot.updatedAt) : '',
+      package_count: packages.length, package_id: activePackage.id || '', package_sender: activePackage.sender || activePackage.title || '', package_receiver: activePackage.receiver || '', package_title: activePackage.title || activePackage.sender || activePackage.barcode || '', package_barcode: activePackage.barcode || '', package_status: status, package_status_raw: status, package_status_code: activePackage.statusCode || '', package_status_event: activePackage.latestStatusEvent || status, package_status_event_time: activePackage.statusChangedAt ? (this.api.formatDateTime(activePackage.statusChangedAt) || String(activePackage.statusChangedAt)) : '', package_delivery_date: deliveryDate, package_delivery_window: deliveryWindow, package_delivery_window_from: activePackage.deliveryWindowFrom ? this.api.formatTime(activePackage.deliveryWindowFrom) : '', package_delivery_window_to: activePackage.deliveryWindowTo ? this.api.formatTime(activePackage.deliveryWindowTo) : '', package_delivery_window_type: activePackage.deliveryWindowType || '', package_details_url: activePackage.detailsUrl || '', package_shipment_type: activePackage.shipmentType || '', package_delivery_address_type: activePackage.deliveryAddressType || '', package_direction: activePackage.direction || '', package_created_at: activePackage.createdAt ? this.api.formatDateTime(activePackage.createdAt) : '', package_delivered: Boolean(activePackage.delivered), package_shared_from: activePackage.sourceDisplayName || '', package_source_account_id: activePackage.sourceAccountId || '', package_tracking: activePackage.barcode || activePackage.id || '', package_weight: Number.isFinite(Number(activePackage.weightKg)) ? Number(activePackage.weightKg) : 0, package_dimensions: activePackage.dimensionsText || '', package_status_history: activePackage.statusHistoryText || '', package_observation_code: activePackage.observationCode || '', package_canonical_status: activePackage.canonicalStatus || '', package_pickup: Boolean(activePackage.pickup), package_pickup_type: activePackage.pickupType || activePackage.deliveryAddressType || '', next_delivery: dates[0] ? this.api.formatDate(dates[0]) : '', connection_status: connected ? (this.homey.i18n.getLanguage() === 'nl' ? 'Verbonden' : 'Connected') : (this.homey.i18n.getLanguage() === 'nl' ? 'Niet verbonden' : 'Not connected'), last_update: snapshot.updatedAt ? this.api.formatDateTime(snapshot.updatedAt) : '',
     });
   }
 
@@ -589,6 +597,13 @@ class PostNLDevice extends Homey.Device {
       postnl_mail_expected: currentMail.length > 0, postnl_mail_count: currentMail.length, postnl_package_count: packages.length, postnl_next_delivery: nextDelivery,
       postnl_delivery_date: packageDeliveryDate ? this.api.formatDateDMY(packageDeliveryDate) : '—', postnl_delivery_window: packageDeliveryWindow || '—',
       postnl_package_status: officialPackageStatus, postnl_package_sender: nextPackage ? String(nextPackage.sender || nextPackage.title || nextPackage.sourceDisplayName || '—') : '—', postnl_package_receiver: nextPackage ? String(nextPackage.receiver || '—') : '—', postnl_package_tracking: nextPackage ? String(nextPackage.barcode || nextPackage.id || '—') : '—', postnl_package_event: nextPackage ? String(nextPackage.latestStatusEvent || nextPackage.statusRaw || nextPackage.status || '—') : '—', postnl_package_status_time: nextPackage?.statusChangedAt ? (this.api.formatDateTime(nextPackage.statusChangedAt) || String(nextPackage.statusChangedAt)) : '—', postnl_package_delivered: Boolean(nextPackage?.delivered), postnl_package_shipment_type: nextPackage?.shipmentType || '—',
+      postnl_package_weight: nextPackage && Number.isFinite(Number(nextPackage.weightKg)) ? Number(nextPackage.weightKg) : 0,
+      postnl_package_dimensions: nextPackage?.dimensionsText || '—',
+      postnl_package_history: nextPackage?.statusHistoryText || '—',
+      postnl_package_observation_code: nextPackage?.observationCode || '—',
+      postnl_package_canonical_status: nextPackage?.canonicalStatus || '—',
+      postnl_package_pickup: Boolean(nextPackage?.pickup),
+      postnl_package_pickup_type: nextPackage?.pickupType || nextPackage?.deliveryAddressType || '—',
       postnl_status: connected ? (this.homey.i18n.getLanguage() === 'nl' ? 'Verbonden' : 'Connected') : (this.homey.i18n.getLanguage() === 'nl' ? 'Niet verbonden' : 'Not connected'), postnl_last_update: updated,
     };
     for (const [capability, value] of Object.entries(values)) if (this.hasCapability(capability)) await this.setCapabilityValue(capability, value).catch(this.error);
