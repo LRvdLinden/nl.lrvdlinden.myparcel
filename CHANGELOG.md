@@ -1,4 +1,6 @@
 ## 0.3.1 — DHL Express
+- PostNL pair and repair now use the Home Assistant-style hosted login flow: email/password → PostNL Capture → OIDC access/refresh tokens. The old callback/Chrome-helper login is no longer used for the PostNL device.
+- PostNL stores the account credentials on the device so it can automatically perform a full re-login if token refresh fails, matching the HA integration behaviour.
 - PostNL enriched with package weight and dimensions from official Track & Trace data.
 - PostNL now exposes the complete status timeline from `analyticsInfo.allObservations`, including the latest `observationCode`.
 - Added an `observationCode`-based canonical PostNL status alongside the original full PostNL status text.
