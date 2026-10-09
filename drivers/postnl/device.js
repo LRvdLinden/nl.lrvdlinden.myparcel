@@ -384,6 +384,7 @@ class PostNLDevice extends Homey.Device {
       }
     }
     await this._saveFlowMemory(memory);
+    this._prunePackageImages(current.packages || []);
   }
 
   _flowKey(parcel = {}) {
@@ -602,57 +603,73 @@ class PostNLDevice extends Homey.Device {
   }
 
   /**
-   * Image for one parcel (camera / "latest package" use). Rendered when opened.
+   * One fixed image per parcel while it is in the account. Its PNG is (re)drawn from a copy of the
+   * parcel at every trigger, so a Flow always sees the status of that moment and the token never
+   * points to an image that was already thrown away.
    */
-  async getPackageDeliveryImage(parcel = null) {
-    const target = parcel || this._selectActivePackage();
-    if (!target) return this._ensurePackageCameraImage();
-    const id = String(target.id || target.barcode || 'parcel');
+  async _parcelImageEntry(parcel) {
+    const id = String(parcel.id || parcel.barcode || 'parcel');
     if (!this._parcelImages) this._parcelImages = new Map();
     let entry = this._parcelImages.get(id);
     if (!entry) {
       const image = await this.homey.images.createImage();
-      entry = { image, parcel: target };
+      entry = { image, parcel, buffer: null, usedAt: Date.now() };
+      const fileId = id.replace(/[^a-zA-Z0-9_-]/g, '_');
       image.setStream(async stream => {
-        const buffer = this._renderPackageCard(entry.parcel, { cache: `parcel:${id}` });
+        const buffer = entry.buffer || this._renderPackageCard(entry.parcel, { cache: `parcel:${id}` });
+        if (!buffer?.length) throw new Error('PostNL delivery PNG buffer is empty');
         stream.contentType = 'image/png';
-        stream.filename = `postnl-${id.replace(/[^a-zA-Z0-9_-]/g, '_')}.png`;
+        stream.filename = `postnl-${fileId}.png`;
         stream.end(buffer);
         return stream;
       });
       this._parcelImages.set(id, entry);
-      while (this._parcelImages.size > 8) this._parcelImages.delete(this._parcelImages.keys().next().value);
     }
+    entry.usedAt = Date.now();
+    return entry;
+  }
+
+  /** Image for one parcel (camera / "latest package" use). Rendered when opened. */
+  async getPackageDeliveryImage(parcel = null) {
+    const target = parcel || this._selectActivePackage();
+    if (!target) return this._ensurePackageCameraImage();
+    const entry = await this._parcelImageEntry(target);
     entry.parcel = target;
+    entry.buffer = null;
     return entry.image;
   }
 
   /**
-   * A fresh image for one Flow trigger: drawn right now from a copy of the parcel as it is
-   * at the moment of the trigger (status, window, progress), so a Flow that opens it later
-   * (WhatsApp, notification) never shows an older or another parcel's status.
-   * Only created when a card really fires; at most 8 are kept.
+   * Image for a Flow trigger: the parcel's own image, drawn right now with the current status,
+   * window and progress. Falls back to the "My Delivery" image so the token is never empty.
    */
   async createTriggerPackageImage(parcel) {
-    if (!parcel) return null;
-    const snapshot = JSON.parse(JSON.stringify(parcel));
-    const buffer = this._renderPackageCard(snapshot, { cache: 'trigger' });
-    if (!buffer?.length) return null;
-    const id = String(snapshot.barcode || snapshot.id || 'parcel').replace(/[^a-zA-Z0-9_-]/g, '_');
-    const image = await this.homey.images.createImage();
-    image.setStream(async stream => {
-      stream.contentType = 'image/png';
-      stream.filename = `postnl-${id}-${Date.now()}.png`;
-      stream.end(buffer);
-      return stream;
-    });
-    if (!this._triggerImages) this._triggerImages = [];
-    this._triggerImages.push(image);
-    while (this._triggerImages.length > 8) {
-      const oldImage = this._triggerImages.shift();
-      Promise.resolve().then(() => oldImage.unregister?.()).catch(() => {});
+    try {
+      if (!parcel) return await this._ensurePackageCameraImage();
+      const snapshot = JSON.parse(JSON.stringify(parcel));
+      const entry = await this._parcelImageEntry(snapshot);
+      const buffer = this._renderPackageCard(snapshot, { cache: 'trigger' });
+      if (!buffer?.length) throw new Error('empty PNG');
+      entry.parcel = snapshot;
+      entry.buffer = buffer;
+      await Promise.resolve(entry.image.update?.()).catch(() => {});
+      return entry.image;
+    } catch (error) {
+      this.error('Flow image failed, using My Delivery image:', error.message);
+      return this._ensurePackageCameraImage().catch(() => null);
     }
-    return image;
+  }
+
+  /** Release images of parcels that left the account (after a grace period for running Flows). */
+  _prunePackageImages(packages = []) {
+    if (!this._parcelImages?.size) return;
+    const live = new Set((packages || []).map(p => String(p.id || p.barcode || 'parcel')));
+    const cutoff = Date.now() - 3600 * 1000;
+    for (const [id, entry] of this._parcelImages) {
+      if (live.has(id) || entry.usedAt > cutoff) continue;
+      this._parcelImages.delete(id);
+      Promise.resolve().then(() => entry.image.unregister?.()).catch(() => {});
+    }
   }
 
   async getLetterImage(letter) {
