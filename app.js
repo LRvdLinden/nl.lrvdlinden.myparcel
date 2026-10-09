@@ -3,6 +3,7 @@ const Homey = require('homey');
 const fs = require('fs');
 const path = require('path');
 const localizePackageStatus = require('./lib/status-i18n.js');
+const { validatePostcode: validateGlsPostcode } = require('./lib/gls-tracking');
 
 const DRIVER_IDS = [
   'postnl', 'dhl-parcel', 'dpd', 'ups', 'budbee', 'homerr',
@@ -199,7 +200,8 @@ module.exports = class MyParcelApp extends Homey.App {
       case 'fedex':
         return Boolean(settings.client_id && settings.client_secret);
       case 'gls':
-        return Boolean(settings.username && settings.password);
+        return validateGlsPostcode(settings.country || 'NL', settings.postal_code)
+          || Boolean(settings.username && settings.password && settings.subscription_key);
       case 'royal-mail':
         return Boolean(settings.api_key);
       default:

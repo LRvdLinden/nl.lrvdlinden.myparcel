@@ -20,7 +20,7 @@
   },
   "permissions": [],
   "id": "nl.lrvdlinden.MyParcel",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "brandColor": "#105945",
   "name": {
     "en": "MyParcel",
@@ -53,81 +53,6 @@
     "ar": "يجمع MyParcel شركات شحن الطرود المدعومة في Homey"
   },
   "widgets": {
-    "poststukken": {
-      "name": {
-        "en": "My Post",
-        "nl": "Mijn Post",
-        "de": "PostNL Briefsendungen",
-        "fr": "Courrier PostNL",
-        "it": "Posta PostNL",
-        "sv": "PostNL-post",
-        "no": "PostNL-post",
-        "es": "Correo PostNL",
-        "da": "PostNL-post",
-        "ru": "Почта PostNL",
-        "pl": "Przesyłki PostNL",
-        "ko": "PostNL 우편물",
-        "ar": "بريد PostNL"
-      },
-      "height": 250,
-      "api": {
-        "getData": {
-          "method": "GET",
-          "path": "/"
-        },
-        "sync": {
-          "method": "POST",
-          "path": "/sync"
-        }
-      },
-      "devices": {
-        "type": "app",
-        "singular": true,
-        "filter": {
-          "capabilities": "postnl_mail_count"
-        }
-      },
-      "id": "poststukken",
-      "settings": []
-    },
-    "myparcel-pakketten": {
-      "id": "myparcel-pakketten",
-      "name": {
-        "en": "MyParcel Packages",
-        "nl": "MyParcel Pakketten",
-        "de": "MyParcel Pakete",
-        "fr": "Colis MyParcel",
-        "it": "Pacchi MyParcel",
-        "sv": "MyParcel-paket",
-        "no": "MyParcel-pakker",
-        "es": "Paquetes MyParcel",
-        "da": "MyParcel-pakker",
-        "ru": "Посылки MyParcel",
-        "pl": "Paczki MyParcel",
-        "ko": "MyParcel 택배",
-        "ar": "طرود MyParcel"
-      },
-      "height": 360,
-      "transparent": false,
-      "settings": [],
-      "api": {
-        "getData": {
-          "method": "GET",
-          "path": "/"
-        },
-        "refresh": {
-          "method": "POST",
-          "path": "/refresh"
-        }
-      },
-      "devices": {
-        "type": "app",
-        "singular": false,
-        "filter": {
-          "capabilities": "postnl_package_count|dhl_parcel_count|dhl_express_parcel_count|dpd_parcel_count|ups_parcel_count|budbee_parcel_count|homerr_parcel_count|fedex_parcel_count|gls_parcel_count|inpost_uk_parcel_count|bpost_parcel_count|royal_mail_parcel_count|dhl_de_parcel_count|ampere_parcel_count"
-        }
-      }
-    },
     "deutsche-post-poststukken": {
       "id": "deutsche-post-poststukken",
       "name": {
@@ -165,43 +90,6 @@
       },
       "settings": []
     },
-    "postnl-pakketdetails": {
-      "name": {
-        "en": "My Delivery",
-        "nl": "Mijn Bezorging",
-        "de": "Meine Zustellung",
-        "fr": "Ma livraison",
-        "it": "La mia consegna",
-        "sv": "Min leverans",
-        "no": "Min levering",
-        "es": "Mi entrega",
-        "da": "Min levering",
-        "ru": "Моя доставка",
-        "pl": "Moja dostawa",
-        "ko": "내 배송",
-        "ar": "توصيلي"
-      },
-      "height": 360,
-      "api": {
-        "getData": {
-          "method": "GET",
-          "path": "/"
-        },
-        "sync": {
-          "method": "POST",
-          "path": "/sync"
-        }
-      },
-      "devices": {
-        "type": "app",
-        "singular": true,
-        "filter": {
-          "capabilities": "postnl_package_count"
-        }
-      },
-      "id": "postnl-pakketdetails",
-      "settings": []
-    },
     "myparcel-bezorging": {
       "id": "myparcel-bezorging",
       "name": {
@@ -220,6 +108,44 @@
         "ar": "توصيل MyParcel"
       },
       "height": 420,
+      "transparent": false,
+      "settings": [],
+      "api": {
+        "getData": {
+          "method": "GET",
+          "path": "/"
+        },
+        "refresh": {
+          "method": "POST",
+          "path": "/refresh"
+        }
+      },
+      "devices": {
+        "type": "app",
+        "singular": false,
+        "filter": {
+          "capabilities": "postnl_package_count|dhl_parcel_count|dhl_express_parcel_count|dpd_parcel_count|ups_parcel_count|budbee_parcel_count|homerr_parcel_count|fedex_parcel_count|gls_parcel_count|inpost_uk_parcel_count|bpost_parcel_count|royal_mail_parcel_count|dhl_de_parcel_count|ampere_parcel_count"
+        }
+      }
+    },
+    "myparcel-pakketten": {
+      "id": "myparcel-pakketten",
+      "name": {
+        "en": "MyParcel Packages",
+        "nl": "MyParcel Pakketten",
+        "de": "MyParcel Pakete",
+        "fr": "Colis MyParcel",
+        "it": "Pacchi MyParcel",
+        "sv": "MyParcel-paket",
+        "no": "MyParcel-pakker",
+        "es": "Paquetes MyParcel",
+        "da": "MyParcel-pakker",
+        "ru": "Посылки MyParcel",
+        "pl": "Paczki MyParcel",
+        "ko": "MyParcel 택배",
+        "ar": "طرود MyParcel"
+      },
+      "height": 360,
       "transparent": false,
       "settings": [],
       "api": {
@@ -308,6 +234,80 @@
         }
       },
       "id": "postnl-pakket-reis",
+      "settings": []
+    },
+    "postnl-pakketdetails": {
+      "name": {
+        "en": "My Delivery",
+        "nl": "Mijn Bezorging",
+        "de": "Meine Zustellung",
+        "fr": "Ma livraison",
+        "it": "La mia consegna",
+        "sv": "Min leverans",
+        "no": "Min levering",
+        "es": "Mi entrega",
+        "da": "Min levering",
+        "ru": "Моя доставка",
+        "pl": "Moja dostawa",
+        "ko": "내 배송",
+        "ar": "توصيلي"
+      },
+      "height": 360,
+      "api": {
+        "getData": {
+          "method": "GET",
+          "path": "/"
+        },
+        "sync": {
+          "method": "POST",
+          "path": "/sync"
+        }
+      },
+      "devices": {
+        "type": "app",
+        "singular": true,
+        "filter": {
+          "capabilities": "postnl_package_count"
+        }
+      },
+      "id": "postnl-pakketdetails",
+      "settings": []
+    },
+    "poststukken": {
+      "name": {
+        "en": "My Post",
+        "nl": "Mijn Post",
+        "de": "PostNL Briefsendungen",
+        "fr": "Courrier PostNL",
+        "it": "Posta PostNL",
+        "sv": "PostNL-post",
+        "no": "PostNL-post",
+        "es": "Correo PostNL",
+        "da": "PostNL-post",
+        "ru": "Почта PostNL",
+        "pl": "Przesyłki PostNL",
+        "ko": "PostNL 우편물",
+        "ar": "بريد PostNL"
+      },
+      "height": 250,
+      "api": {
+        "getData": {
+          "method": "GET",
+          "path": "/"
+        },
+        "sync": {
+          "method": "POST",
+          "path": "/sync"
+        }
+      },
+      "devices": {
+        "type": "app",
+        "singular": true,
+        "filter": {
+          "capabilities": "postnl_mail_count"
+        }
+      },
+      "id": "poststukken",
       "settings": []
     }
   },
@@ -6954,19 +6954,19 @@
       {
         "id": "gls_new_package",
         "title": {
-          "en": "New GLS package",
+          "en": "New GLS parcel",
           "nl": "Nieuw GLS-pakket",
-          "de": "New GLS package",
-          "fr": "New GLS package",
-          "it": "New GLS package",
-          "sv": "New GLS package",
-          "no": "New GLS package",
-          "es": "New GLS package",
-          "da": "New GLS package",
-          "ru": "New GLS package",
-          "pl": "New GLS package",
-          "ko": "New GLS package",
-          "ar": "New GLS package"
+          "de": "Neues GLS-Paket",
+          "fr": "Nouveau colis GLS",
+          "it": "Nuovo pacco GLS",
+          "sv": "Nytt GLS-paket",
+          "no": "Ny GLS-pakke",
+          "es": "Nuevo paquete GLS",
+          "da": "Ny GLS-pakke",
+          "ru": "Новая посылка GLS",
+          "pl": "Nowa paczka GLS",
+          "ko": "새 GLS 택배",
+          "ar": "طرد GLS جديد"
         },
         "args": [
           {
@@ -6982,18 +6982,19 @@
             "title": {
               "en": "Tracking number",
               "nl": "Trackingnummer",
-              "de": "Tracking number",
-              "fr": "Tracking number",
-              "it": "Tracking number",
-              "sv": "Tracking number",
-              "no": "Tracking number",
-              "es": "Tracking number",
-              "da": "Tracking number",
-              "ru": "Tracking number",
-              "pl": "Tracking number",
-              "ko": "Tracking number",
-              "ar": "Tracking number"
-            }
+              "de": "Sendungsnummer",
+              "fr": "Numéro de suivi",
+              "it": "Numero di tracciamento",
+              "sv": "Spårningsnummer",
+              "no": "Sporingsnummer",
+              "es": "Número de seguimiento",
+              "da": "Sporingsnummer",
+              "ru": "Трек-номер",
+              "pl": "Numer przesyłki",
+              "ko": "운송장 번호",
+              "ar": "رقم التتبع"
+            },
+            "example": "00L1B3BX"
           },
           {
             "name": "status",
@@ -7012,26 +7013,348 @@
               "pl": "Status",
               "ko": "상태",
               "ar": "الحالة"
-            }
+            },
+            "example": "Onderweg voor bezorging"
+          },
+          {
+            "name": "status_code",
+            "type": "string",
+            "title": {
+              "en": "Status code",
+              "nl": "Statuscode",
+              "de": "Statuscode",
+              "fr": "Code de statut",
+              "it": "Codice di stato",
+              "sv": "Statuskod",
+              "no": "Statuskode",
+              "es": "Código de estado",
+              "da": "Statuskode",
+              "ru": "Код статуса",
+              "pl": "Kod statusu",
+              "ko": "상태 코드",
+              "ar": "رمز الحالة"
+            },
+            "example": "out_for_delivery"
+          },
+          {
+            "name": "raw_status",
+            "type": "string",
+            "title": {
+              "en": "GLS status text",
+              "nl": "GLS-statustekst",
+              "de": "GLS-Statustext",
+              "fr": "Texte de statut GLS",
+              "it": "Testo di stato GLS",
+              "sv": "GLS-statustext",
+              "no": "GLS-statustekst",
+              "es": "Texto de estado de GLS",
+              "da": "GLS-statustekst",
+              "ru": "Текст статуса GLS",
+              "pl": "Tekst statusu GLS",
+              "ko": "GLS 상태 텍스트",
+              "ar": "نص حالة GLS"
+            },
+            "example": "Onderweg - geladen voor aflevering"
+          },
+          {
+            "name": "sender",
+            "type": "string",
+            "title": {
+              "en": "Sender",
+              "nl": "Afzender",
+              "de": "Absender",
+              "fr": "Expéditeur",
+              "it": "Mittente",
+              "sv": "Avsändare",
+              "no": "Avsender",
+              "es": "Remitente",
+              "da": "Afsender",
+              "ru": "Отправитель",
+              "pl": "Nadawca",
+              "ko": "발송인",
+              "ar": "المرسل"
+            },
+            "example": "Webshop B.V."
+          },
+          {
+            "name": "receiver",
+            "type": "string",
+            "title": {
+              "en": "Recipient",
+              "nl": "Ontvanger",
+              "de": "Empfänger",
+              "fr": "Destinataire",
+              "it": "Destinatario",
+              "sv": "Mottagare",
+              "no": "Mottaker",
+              "es": "Destinatario",
+              "da": "Modtager",
+              "ru": "Получатель",
+              "pl": "Odbiorca",
+              "ko": "수령인",
+              "ar": "المستلم"
+            },
+            "example": "J. Jansen"
+          },
+          {
+            "name": "delivery_date",
+            "type": "string",
+            "title": {
+              "en": "Delivery date",
+              "nl": "Bezorgdatum",
+              "de": "Zustelldatum",
+              "fr": "Date de livraison",
+              "it": "Data di consegna",
+              "sv": "Leveransdatum",
+              "no": "Leveringsdato",
+              "es": "Fecha de entrega",
+              "da": "Leveringsdato",
+              "ru": "Дата доставки",
+              "pl": "Data dostawy",
+              "ko": "배송 날짜",
+              "ar": "تاريخ التوصيل"
+            },
+            "example": "09-10-2026"
+          },
+          {
+            "name": "delivery_window",
+            "type": "string",
+            "title": {
+              "en": "Delivery window",
+              "nl": "Bezorgvenster",
+              "de": "Zustellzeitfenster",
+              "fr": "Créneau de livraison",
+              "it": "Finestra di consegna",
+              "sv": "Leveransfönster",
+              "no": "Leveringsvindu",
+              "es": "Franja de entrega",
+              "da": "Leveringsvindue",
+              "ru": "Интервал доставки",
+              "pl": "Okno dostawy",
+              "ko": "배송 시간대",
+              "ar": "نافذة التوصيل"
+            },
+            "example": "13:00 - 15:00"
+          },
+          {
+            "name": "window_start",
+            "type": "string",
+            "title": {
+              "en": "Window start",
+              "nl": "Begin venster",
+              "de": "Beginn Zeitfenster",
+              "fr": "Début du créneau",
+              "it": "Inizio finestra",
+              "sv": "Fönstrets start",
+              "no": "Start vindu",
+              "es": "Inicio de franja",
+              "da": "Start på vindue",
+              "ru": "Начало интервала",
+              "pl": "Początek okna",
+              "ko": "시간대 시작",
+              "ar": "بداية النافذة"
+            },
+            "example": "13:00"
+          },
+          {
+            "name": "window_end",
+            "type": "string",
+            "title": {
+              "en": "Window end",
+              "nl": "Einde venster",
+              "de": "Ende Zeitfenster",
+              "fr": "Fin du créneau",
+              "it": "Fine finestra",
+              "sv": "Fönstrets slut",
+              "no": "Slutt vindu",
+              "es": "Fin de franja",
+              "da": "Slut på vindue",
+              "ru": "Конец интервала",
+              "pl": "Koniec okna",
+              "ko": "시간대 종료",
+              "ar": "نهاية النافذة"
+            },
+            "example": "15:00"
+          },
+          {
+            "name": "pickup_point",
+            "type": "string",
+            "title": {
+              "en": "ParcelShop",
+              "nl": "ParcelShop",
+              "de": "PaketShop",
+              "fr": "Point relais",
+              "it": "Punto di ritiro",
+              "sv": "Utlämningsställe",
+              "no": "Hentested",
+              "es": "Punto de recogida",
+              "da": "Pakkeshop",
+              "ru": "Пункт выдачи",
+              "pl": "Punkt odbioru",
+              "ko": "픽업 지점",
+              "ar": "نقطة الاستلام"
+            },
+            "example": "GLS ParcelShop Centrum"
+          },
+          {
+            "name": "weight",
+            "type": "string",
+            "title": {
+              "en": "Weight",
+              "nl": "Gewicht",
+              "de": "Gewicht",
+              "fr": "Poids",
+              "it": "Peso",
+              "sv": "Vikt",
+              "no": "Vekt",
+              "es": "Peso",
+              "da": "Vægt",
+              "ru": "Вес",
+              "pl": "Waga",
+              "ko": "무게",
+              "ar": "الوزن"
+            },
+            "example": "1.2 kg"
+          },
+          {
+            "name": "dimensions",
+            "type": "string",
+            "title": {
+              "en": "Dimensions",
+              "nl": "Afmetingen",
+              "de": "Abmessungen",
+              "fr": "Dimensions",
+              "it": "Dimensioni",
+              "sv": "Mått",
+              "no": "Mål",
+              "es": "Dimensiones",
+              "da": "Mål",
+              "ru": "Размеры",
+              "pl": "Wymiary",
+              "ko": "크기",
+              "ar": "الأبعاد"
+            },
+            "example": "34 x 25 x 5 cm"
+          },
+          {
+            "name": "delivered_at",
+            "type": "string",
+            "title": {
+              "en": "Delivered at",
+              "nl": "Bezorgd op",
+              "de": "Zugestellt am",
+              "fr": "Livré le",
+              "it": "Consegnato il",
+              "sv": "Levererad",
+              "no": "Levert",
+              "es": "Entregado el",
+              "da": "Leveret",
+              "ru": "Доставлена",
+              "pl": "Doręczona",
+              "ko": "배송 완료 시각",
+              "ar": "وقت التسليم"
+            },
+            "example": "09-10-2026 13:12"
+          },
+          {
+            "name": "last_event_time",
+            "type": "string",
+            "title": {
+              "en": "Last event time",
+              "nl": "Tijd laatste gebeurtenis",
+              "de": "Zeitpunkt letztes Ereignis",
+              "fr": "Heure du dernier événement",
+              "it": "Ora ultimo evento",
+              "sv": "Tid för senaste händelse",
+              "no": "Tid for siste hendelse",
+              "es": "Hora del último evento",
+              "da": "Tidspunkt for seneste hændelse",
+              "ru": "Время последнего события",
+              "pl": "Czas ostatniego zdarzenia",
+              "ko": "마지막 이벤트 시각",
+              "ar": "وقت آخر حدث"
+            },
+            "example": "09-10-2026 08:46"
+          },
+          {
+            "name": "history",
+            "type": "string",
+            "title": {
+              "en": "Status history",
+              "nl": "Statusgeschiedenis",
+              "de": "Statusverlauf",
+              "fr": "Historique des statuts",
+              "it": "Cronologia stati",
+              "sv": "Statushistorik",
+              "no": "Statushistorikk",
+              "es": "Historial de estados",
+              "da": "Statushistorik",
+              "ru": "История статусов",
+              "pl": "Historia statusów",
+              "ko": "상태 기록",
+              "ar": "سجل الحالات"
+            },
+            "example": "08:46 Onderweg - geladen voor aflevering"
+          },
+          {
+            "name": "url",
+            "type": "string",
+            "title": {
+              "en": "Tracking link",
+              "nl": "Trackinglink",
+              "de": "Link zur Sendungsverfolgung",
+              "fr": "Lien de suivi",
+              "it": "Link di tracciamento",
+              "sv": "Spårningslänk",
+              "no": "Sporingslenke",
+              "es": "Enlace de seguimiento",
+              "da": "Sporingslink",
+              "ru": "Ссылка для отслеживания",
+              "pl": "Link do śledzenia",
+              "ko": "추적 링크",
+              "ar": "رابط التتبع"
+            },
+            "example": "https://www.gls-info.nl/tracking?trackid=00L1B3BX&zipcode=1234AB"
+          },
+          {
+            "name": "country",
+            "type": "string",
+            "title": {
+              "en": "Country",
+              "nl": "Land",
+              "de": "Land",
+              "fr": "Pays",
+              "it": "Paese",
+              "sv": "Land",
+              "no": "Land",
+              "es": "País",
+              "da": "Land",
+              "ru": "Страна",
+              "pl": "Kraj",
+              "ko": "국가",
+              "ar": "الدولة"
+            },
+            "example": "NL"
           }
-        ]
+        ],
+        "highlight": true
       },
       {
         "id": "gls_status_changed",
         "title": {
-          "en": "GLS package status changed",
-          "nl": "GLS-pakketstatus gewijzigd",
-          "de": "GLS package status changed",
-          "fr": "GLS package status changed",
-          "it": "GLS package status changed",
-          "sv": "GLS package status changed",
-          "no": "GLS package status changed",
-          "es": "GLS package status changed",
-          "da": "GLS package status changed",
-          "ru": "GLS package status changed",
-          "pl": "GLS package status changed",
-          "ko": "GLS package status changed",
-          "ar": "GLS package status changed"
+          "en": "GLS parcel status changed",
+          "nl": "Status GLS-pakket gewijzigd",
+          "de": "Status des GLS-Pakets geändert",
+          "fr": "Statut du colis GLS modifié",
+          "it": "Stato del pacco GLS cambiato",
+          "sv": "Status för GLS-paket ändrad",
+          "no": "Status for GLS-pakke endret",
+          "es": "Estado del paquete GLS cambiado",
+          "da": "Status for GLS-pakke ændret",
+          "ru": "Статус посылки GLS изменился",
+          "pl": "Zmienił się status paczki GLS",
+          "ko": "GLS 택배 상태 변경됨",
+          "ar": "تغيّرت حالة طرد GLS"
         },
         "args": [
           {
@@ -7047,18 +7370,19 @@
             "title": {
               "en": "Tracking number",
               "nl": "Trackingnummer",
-              "de": "Tracking number",
-              "fr": "Tracking number",
-              "it": "Tracking number",
-              "sv": "Tracking number",
-              "no": "Tracking number",
-              "es": "Tracking number",
-              "da": "Tracking number",
-              "ru": "Tracking number",
-              "pl": "Tracking number",
-              "ko": "Tracking number",
-              "ar": "Tracking number"
-            }
+              "de": "Sendungsnummer",
+              "fr": "Numéro de suivi",
+              "it": "Numero di tracciamento",
+              "sv": "Spårningsnummer",
+              "no": "Sporingsnummer",
+              "es": "Número de seguimiento",
+              "da": "Sporingsnummer",
+              "ru": "Трек-номер",
+              "pl": "Numer przesyłki",
+              "ko": "운송장 번호",
+              "ar": "رقم التتبع"
+            },
+            "example": "00L1B3BX"
           },
           {
             "name": "status",
@@ -7077,7 +7401,328 @@
               "pl": "Status",
               "ko": "상태",
               "ar": "الحالة"
-            }
+            },
+            "example": "Onderweg voor bezorging"
+          },
+          {
+            "name": "status_code",
+            "type": "string",
+            "title": {
+              "en": "Status code",
+              "nl": "Statuscode",
+              "de": "Statuscode",
+              "fr": "Code de statut",
+              "it": "Codice di stato",
+              "sv": "Statuskod",
+              "no": "Statuskode",
+              "es": "Código de estado",
+              "da": "Statuskode",
+              "ru": "Код статуса",
+              "pl": "Kod statusu",
+              "ko": "상태 코드",
+              "ar": "رمز الحالة"
+            },
+            "example": "out_for_delivery"
+          },
+          {
+            "name": "raw_status",
+            "type": "string",
+            "title": {
+              "en": "GLS status text",
+              "nl": "GLS-statustekst",
+              "de": "GLS-Statustext",
+              "fr": "Texte de statut GLS",
+              "it": "Testo di stato GLS",
+              "sv": "GLS-statustext",
+              "no": "GLS-statustekst",
+              "es": "Texto de estado de GLS",
+              "da": "GLS-statustekst",
+              "ru": "Текст статуса GLS",
+              "pl": "Tekst statusu GLS",
+              "ko": "GLS 상태 텍스트",
+              "ar": "نص حالة GLS"
+            },
+            "example": "Onderweg - geladen voor aflevering"
+          },
+          {
+            "name": "sender",
+            "type": "string",
+            "title": {
+              "en": "Sender",
+              "nl": "Afzender",
+              "de": "Absender",
+              "fr": "Expéditeur",
+              "it": "Mittente",
+              "sv": "Avsändare",
+              "no": "Avsender",
+              "es": "Remitente",
+              "da": "Afsender",
+              "ru": "Отправитель",
+              "pl": "Nadawca",
+              "ko": "발송인",
+              "ar": "المرسل"
+            },
+            "example": "Webshop B.V."
+          },
+          {
+            "name": "receiver",
+            "type": "string",
+            "title": {
+              "en": "Recipient",
+              "nl": "Ontvanger",
+              "de": "Empfänger",
+              "fr": "Destinataire",
+              "it": "Destinatario",
+              "sv": "Mottagare",
+              "no": "Mottaker",
+              "es": "Destinatario",
+              "da": "Modtager",
+              "ru": "Получатель",
+              "pl": "Odbiorca",
+              "ko": "수령인",
+              "ar": "المستلم"
+            },
+            "example": "J. Jansen"
+          },
+          {
+            "name": "delivery_date",
+            "type": "string",
+            "title": {
+              "en": "Delivery date",
+              "nl": "Bezorgdatum",
+              "de": "Zustelldatum",
+              "fr": "Date de livraison",
+              "it": "Data di consegna",
+              "sv": "Leveransdatum",
+              "no": "Leveringsdato",
+              "es": "Fecha de entrega",
+              "da": "Leveringsdato",
+              "ru": "Дата доставки",
+              "pl": "Data dostawy",
+              "ko": "배송 날짜",
+              "ar": "تاريخ التوصيل"
+            },
+            "example": "09-10-2026"
+          },
+          {
+            "name": "delivery_window",
+            "type": "string",
+            "title": {
+              "en": "Delivery window",
+              "nl": "Bezorgvenster",
+              "de": "Zustellzeitfenster",
+              "fr": "Créneau de livraison",
+              "it": "Finestra di consegna",
+              "sv": "Leveransfönster",
+              "no": "Leveringsvindu",
+              "es": "Franja de entrega",
+              "da": "Leveringsvindue",
+              "ru": "Интервал доставки",
+              "pl": "Okno dostawy",
+              "ko": "배송 시간대",
+              "ar": "نافذة التوصيل"
+            },
+            "example": "13:00 - 15:00"
+          },
+          {
+            "name": "window_start",
+            "type": "string",
+            "title": {
+              "en": "Window start",
+              "nl": "Begin venster",
+              "de": "Beginn Zeitfenster",
+              "fr": "Début du créneau",
+              "it": "Inizio finestra",
+              "sv": "Fönstrets start",
+              "no": "Start vindu",
+              "es": "Inicio de franja",
+              "da": "Start på vindue",
+              "ru": "Начало интервала",
+              "pl": "Początek okna",
+              "ko": "시간대 시작",
+              "ar": "بداية النافذة"
+            },
+            "example": "13:00"
+          },
+          {
+            "name": "window_end",
+            "type": "string",
+            "title": {
+              "en": "Window end",
+              "nl": "Einde venster",
+              "de": "Ende Zeitfenster",
+              "fr": "Fin du créneau",
+              "it": "Fine finestra",
+              "sv": "Fönstrets slut",
+              "no": "Slutt vindu",
+              "es": "Fin de franja",
+              "da": "Slut på vindue",
+              "ru": "Конец интервала",
+              "pl": "Koniec okna",
+              "ko": "시간대 종료",
+              "ar": "نهاية النافذة"
+            },
+            "example": "15:00"
+          },
+          {
+            "name": "pickup_point",
+            "type": "string",
+            "title": {
+              "en": "ParcelShop",
+              "nl": "ParcelShop",
+              "de": "PaketShop",
+              "fr": "Point relais",
+              "it": "Punto di ritiro",
+              "sv": "Utlämningsställe",
+              "no": "Hentested",
+              "es": "Punto de recogida",
+              "da": "Pakkeshop",
+              "ru": "Пункт выдачи",
+              "pl": "Punkt odbioru",
+              "ko": "픽업 지점",
+              "ar": "نقطة الاستلام"
+            },
+            "example": "GLS ParcelShop Centrum"
+          },
+          {
+            "name": "weight",
+            "type": "string",
+            "title": {
+              "en": "Weight",
+              "nl": "Gewicht",
+              "de": "Gewicht",
+              "fr": "Poids",
+              "it": "Peso",
+              "sv": "Vikt",
+              "no": "Vekt",
+              "es": "Peso",
+              "da": "Vægt",
+              "ru": "Вес",
+              "pl": "Waga",
+              "ko": "무게",
+              "ar": "الوزن"
+            },
+            "example": "1.2 kg"
+          },
+          {
+            "name": "dimensions",
+            "type": "string",
+            "title": {
+              "en": "Dimensions",
+              "nl": "Afmetingen",
+              "de": "Abmessungen",
+              "fr": "Dimensions",
+              "it": "Dimensioni",
+              "sv": "Mått",
+              "no": "Mål",
+              "es": "Dimensiones",
+              "da": "Mål",
+              "ru": "Размеры",
+              "pl": "Wymiary",
+              "ko": "크기",
+              "ar": "الأبعاد"
+            },
+            "example": "34 x 25 x 5 cm"
+          },
+          {
+            "name": "delivered_at",
+            "type": "string",
+            "title": {
+              "en": "Delivered at",
+              "nl": "Bezorgd op",
+              "de": "Zugestellt am",
+              "fr": "Livré le",
+              "it": "Consegnato il",
+              "sv": "Levererad",
+              "no": "Levert",
+              "es": "Entregado el",
+              "da": "Leveret",
+              "ru": "Доставлена",
+              "pl": "Doręczona",
+              "ko": "배송 완료 시각",
+              "ar": "وقت التسليم"
+            },
+            "example": "09-10-2026 13:12"
+          },
+          {
+            "name": "last_event_time",
+            "type": "string",
+            "title": {
+              "en": "Last event time",
+              "nl": "Tijd laatste gebeurtenis",
+              "de": "Zeitpunkt letztes Ereignis",
+              "fr": "Heure du dernier événement",
+              "it": "Ora ultimo evento",
+              "sv": "Tid för senaste händelse",
+              "no": "Tid for siste hendelse",
+              "es": "Hora del último evento",
+              "da": "Tidspunkt for seneste hændelse",
+              "ru": "Время последнего события",
+              "pl": "Czas ostatniego zdarzenia",
+              "ko": "마지막 이벤트 시각",
+              "ar": "وقت آخر حدث"
+            },
+            "example": "09-10-2026 08:46"
+          },
+          {
+            "name": "history",
+            "type": "string",
+            "title": {
+              "en": "Status history",
+              "nl": "Statusgeschiedenis",
+              "de": "Statusverlauf",
+              "fr": "Historique des statuts",
+              "it": "Cronologia stati",
+              "sv": "Statushistorik",
+              "no": "Statushistorikk",
+              "es": "Historial de estados",
+              "da": "Statushistorik",
+              "ru": "История статусов",
+              "pl": "Historia statusów",
+              "ko": "상태 기록",
+              "ar": "سجل الحالات"
+            },
+            "example": "08:46 Onderweg - geladen voor aflevering"
+          },
+          {
+            "name": "url",
+            "type": "string",
+            "title": {
+              "en": "Tracking link",
+              "nl": "Trackinglink",
+              "de": "Link zur Sendungsverfolgung",
+              "fr": "Lien de suivi",
+              "it": "Link di tracciamento",
+              "sv": "Spårningslänk",
+              "no": "Sporingslenke",
+              "es": "Enlace de seguimiento",
+              "da": "Sporingslink",
+              "ru": "Ссылка для отслеживания",
+              "pl": "Link do śledzenia",
+              "ko": "추적 링크",
+              "ar": "رابط التتبع"
+            },
+            "example": "https://www.gls-info.nl/tracking?trackid=00L1B3BX&zipcode=1234AB"
+          },
+          {
+            "name": "country",
+            "type": "string",
+            "title": {
+              "en": "Country",
+              "nl": "Land",
+              "de": "Land",
+              "fr": "Pays",
+              "it": "Paese",
+              "sv": "Land",
+              "no": "Land",
+              "es": "País",
+              "da": "Land",
+              "ru": "Страна",
+              "pl": "Kraj",
+              "ko": "국가",
+              "ar": "الدولة"
+            },
+            "example": "NL"
           },
           {
             "name": "previous_status",
@@ -7085,20 +7730,833 @@
             "title": {
               "en": "Previous status",
               "nl": "Vorige status",
-              "de": "Previous status",
-              "fr": "Previous status",
-              "it": "Previous status",
-              "sv": "Previous status",
-              "no": "Previous status",
-              "es": "Previous status",
-              "da": "Previous status",
-              "ru": "Previous status",
-              "pl": "Previous status",
-              "ko": "Previous status",
-              "ar": "Previous status"
+              "de": "Vorheriger Status",
+              "fr": "Statut précédent",
+              "it": "Stato precedente",
+              "sv": "Föregående status",
+              "no": "Forrige status",
+              "es": "Estado anterior",
+              "da": "Forrige status",
+              "ru": "Предыдущий статус",
+              "pl": "Poprzedni status",
+              "ko": "이전 상태",
+              "ar": "الحالة السابقة"
+            }
+          },
+          {
+            "name": "old_status_code",
+            "type": "string",
+            "title": {
+              "en": "Previous status code",
+              "nl": "Vorige statuscode",
+              "de": "Vorheriger Statuscode",
+              "fr": "Code de statut précédent",
+              "it": "Codice di stato precedente",
+              "sv": "Föregående statuskod",
+              "no": "Forrige statuskode",
+              "es": "Código de estado anterior",
+              "da": "Forrige statuskode",
+              "ru": "Предыдущий код статуса",
+              "pl": "Poprzedni kod statusu",
+              "ko": "이전 상태 코드",
+              "ar": "رمز الحالة السابقة"
             }
           }
         ]
+      },
+      {
+        "id": "gls_package_event_changed",
+        "title": {
+          "en": "New GLS tracking event",
+          "nl": "Nieuwe GLS-trackinggebeurtenis",
+          "de": "Neues GLS-Sendungsereignis",
+          "fr": "Nouvel événement de suivi GLS",
+          "it": "Nuovo evento di tracciamento GLS",
+          "sv": "Ny GLS-spårningshändelse",
+          "no": "Ny GLS-sporingshendelse",
+          "es": "Nuevo evento de seguimiento GLS",
+          "da": "Ny GLS-sporingshændelse",
+          "ru": "Новое событие отслеживания GLS",
+          "pl": "Nowe zdarzenie śledzenia GLS",
+          "ko": "새 GLS 추적 이벤트",
+          "ar": "حدث تتبع GLS جديد"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=gls"
+          }
+        ],
+        "tokens": [
+          {
+            "name": "tracking",
+            "type": "string",
+            "title": {
+              "en": "Tracking number",
+              "nl": "Trackingnummer",
+              "de": "Sendungsnummer",
+              "fr": "Numéro de suivi",
+              "it": "Numero di tracciamento",
+              "sv": "Spårningsnummer",
+              "no": "Sporingsnummer",
+              "es": "Número de seguimiento",
+              "da": "Sporingsnummer",
+              "ru": "Трек-номер",
+              "pl": "Numer przesyłki",
+              "ko": "운송장 번호",
+              "ar": "رقم التتبع"
+            },
+            "example": "00L1B3BX"
+          },
+          {
+            "name": "status",
+            "type": "string",
+            "title": {
+              "en": "Status",
+              "nl": "Status",
+              "de": "Status",
+              "fr": "Statut",
+              "it": "Stato",
+              "sv": "Status",
+              "no": "Status",
+              "es": "Estado",
+              "da": "Status",
+              "ru": "Статус",
+              "pl": "Status",
+              "ko": "상태",
+              "ar": "الحالة"
+            },
+            "example": "Onderweg voor bezorging"
+          },
+          {
+            "name": "status_code",
+            "type": "string",
+            "title": {
+              "en": "Status code",
+              "nl": "Statuscode",
+              "de": "Statuscode",
+              "fr": "Code de statut",
+              "it": "Codice di stato",
+              "sv": "Statuskod",
+              "no": "Statuskode",
+              "es": "Código de estado",
+              "da": "Statuskode",
+              "ru": "Код статуса",
+              "pl": "Kod statusu",
+              "ko": "상태 코드",
+              "ar": "رمز الحالة"
+            },
+            "example": "out_for_delivery"
+          },
+          {
+            "name": "raw_status",
+            "type": "string",
+            "title": {
+              "en": "GLS status text",
+              "nl": "GLS-statustekst",
+              "de": "GLS-Statustext",
+              "fr": "Texte de statut GLS",
+              "it": "Testo di stato GLS",
+              "sv": "GLS-statustext",
+              "no": "GLS-statustekst",
+              "es": "Texto de estado de GLS",
+              "da": "GLS-statustekst",
+              "ru": "Текст статуса GLS",
+              "pl": "Tekst statusu GLS",
+              "ko": "GLS 상태 텍스트",
+              "ar": "نص حالة GLS"
+            },
+            "example": "Onderweg - geladen voor aflevering"
+          },
+          {
+            "name": "sender",
+            "type": "string",
+            "title": {
+              "en": "Sender",
+              "nl": "Afzender",
+              "de": "Absender",
+              "fr": "Expéditeur",
+              "it": "Mittente",
+              "sv": "Avsändare",
+              "no": "Avsender",
+              "es": "Remitente",
+              "da": "Afsender",
+              "ru": "Отправитель",
+              "pl": "Nadawca",
+              "ko": "발송인",
+              "ar": "المرسل"
+            },
+            "example": "Webshop B.V."
+          },
+          {
+            "name": "receiver",
+            "type": "string",
+            "title": {
+              "en": "Recipient",
+              "nl": "Ontvanger",
+              "de": "Empfänger",
+              "fr": "Destinataire",
+              "it": "Destinatario",
+              "sv": "Mottagare",
+              "no": "Mottaker",
+              "es": "Destinatario",
+              "da": "Modtager",
+              "ru": "Получатель",
+              "pl": "Odbiorca",
+              "ko": "수령인",
+              "ar": "المستلم"
+            },
+            "example": "J. Jansen"
+          },
+          {
+            "name": "delivery_date",
+            "type": "string",
+            "title": {
+              "en": "Delivery date",
+              "nl": "Bezorgdatum",
+              "de": "Zustelldatum",
+              "fr": "Date de livraison",
+              "it": "Data di consegna",
+              "sv": "Leveransdatum",
+              "no": "Leveringsdato",
+              "es": "Fecha de entrega",
+              "da": "Leveringsdato",
+              "ru": "Дата доставки",
+              "pl": "Data dostawy",
+              "ko": "배송 날짜",
+              "ar": "تاريخ التوصيل"
+            },
+            "example": "09-10-2026"
+          },
+          {
+            "name": "delivery_window",
+            "type": "string",
+            "title": {
+              "en": "Delivery window",
+              "nl": "Bezorgvenster",
+              "de": "Zustellzeitfenster",
+              "fr": "Créneau de livraison",
+              "it": "Finestra di consegna",
+              "sv": "Leveransfönster",
+              "no": "Leveringsvindu",
+              "es": "Franja de entrega",
+              "da": "Leveringsvindue",
+              "ru": "Интервал доставки",
+              "pl": "Okno dostawy",
+              "ko": "배송 시간대",
+              "ar": "نافذة التوصيل"
+            },
+            "example": "13:00 - 15:00"
+          },
+          {
+            "name": "window_start",
+            "type": "string",
+            "title": {
+              "en": "Window start",
+              "nl": "Begin venster",
+              "de": "Beginn Zeitfenster",
+              "fr": "Début du créneau",
+              "it": "Inizio finestra",
+              "sv": "Fönstrets start",
+              "no": "Start vindu",
+              "es": "Inicio de franja",
+              "da": "Start på vindue",
+              "ru": "Начало интервала",
+              "pl": "Początek okna",
+              "ko": "시간대 시작",
+              "ar": "بداية النافذة"
+            },
+            "example": "13:00"
+          },
+          {
+            "name": "window_end",
+            "type": "string",
+            "title": {
+              "en": "Window end",
+              "nl": "Einde venster",
+              "de": "Ende Zeitfenster",
+              "fr": "Fin du créneau",
+              "it": "Fine finestra",
+              "sv": "Fönstrets slut",
+              "no": "Slutt vindu",
+              "es": "Fin de franja",
+              "da": "Slut på vindue",
+              "ru": "Конец интервала",
+              "pl": "Koniec okna",
+              "ko": "시간대 종료",
+              "ar": "نهاية النافذة"
+            },
+            "example": "15:00"
+          },
+          {
+            "name": "pickup_point",
+            "type": "string",
+            "title": {
+              "en": "ParcelShop",
+              "nl": "ParcelShop",
+              "de": "PaketShop",
+              "fr": "Point relais",
+              "it": "Punto di ritiro",
+              "sv": "Utlämningsställe",
+              "no": "Hentested",
+              "es": "Punto de recogida",
+              "da": "Pakkeshop",
+              "ru": "Пункт выдачи",
+              "pl": "Punkt odbioru",
+              "ko": "픽업 지점",
+              "ar": "نقطة الاستلام"
+            },
+            "example": "GLS ParcelShop Centrum"
+          },
+          {
+            "name": "weight",
+            "type": "string",
+            "title": {
+              "en": "Weight",
+              "nl": "Gewicht",
+              "de": "Gewicht",
+              "fr": "Poids",
+              "it": "Peso",
+              "sv": "Vikt",
+              "no": "Vekt",
+              "es": "Peso",
+              "da": "Vægt",
+              "ru": "Вес",
+              "pl": "Waga",
+              "ko": "무게",
+              "ar": "الوزن"
+            },
+            "example": "1.2 kg"
+          },
+          {
+            "name": "dimensions",
+            "type": "string",
+            "title": {
+              "en": "Dimensions",
+              "nl": "Afmetingen",
+              "de": "Abmessungen",
+              "fr": "Dimensions",
+              "it": "Dimensioni",
+              "sv": "Mått",
+              "no": "Mål",
+              "es": "Dimensiones",
+              "da": "Mål",
+              "ru": "Размеры",
+              "pl": "Wymiary",
+              "ko": "크기",
+              "ar": "الأبعاد"
+            },
+            "example": "34 x 25 x 5 cm"
+          },
+          {
+            "name": "delivered_at",
+            "type": "string",
+            "title": {
+              "en": "Delivered at",
+              "nl": "Bezorgd op",
+              "de": "Zugestellt am",
+              "fr": "Livré le",
+              "it": "Consegnato il",
+              "sv": "Levererad",
+              "no": "Levert",
+              "es": "Entregado el",
+              "da": "Leveret",
+              "ru": "Доставлена",
+              "pl": "Doręczona",
+              "ko": "배송 완료 시각",
+              "ar": "وقت التسليم"
+            },
+            "example": "09-10-2026 13:12"
+          },
+          {
+            "name": "last_event_time",
+            "type": "string",
+            "title": {
+              "en": "Last event time",
+              "nl": "Tijd laatste gebeurtenis",
+              "de": "Zeitpunkt letztes Ereignis",
+              "fr": "Heure du dernier événement",
+              "it": "Ora ultimo evento",
+              "sv": "Tid för senaste händelse",
+              "no": "Tid for siste hendelse",
+              "es": "Hora del último evento",
+              "da": "Tidspunkt for seneste hændelse",
+              "ru": "Время последнего события",
+              "pl": "Czas ostatniego zdarzenia",
+              "ko": "마지막 이벤트 시각",
+              "ar": "وقت آخر حدث"
+            },
+            "example": "09-10-2026 08:46"
+          },
+          {
+            "name": "history",
+            "type": "string",
+            "title": {
+              "en": "Status history",
+              "nl": "Statusgeschiedenis",
+              "de": "Statusverlauf",
+              "fr": "Historique des statuts",
+              "it": "Cronologia stati",
+              "sv": "Statushistorik",
+              "no": "Statushistorikk",
+              "es": "Historial de estados",
+              "da": "Statushistorik",
+              "ru": "История статусов",
+              "pl": "Historia statusów",
+              "ko": "상태 기록",
+              "ar": "سجل الحالات"
+            },
+            "example": "08:46 Onderweg - geladen voor aflevering"
+          },
+          {
+            "name": "url",
+            "type": "string",
+            "title": {
+              "en": "Tracking link",
+              "nl": "Trackinglink",
+              "de": "Link zur Sendungsverfolgung",
+              "fr": "Lien de suivi",
+              "it": "Link di tracciamento",
+              "sv": "Spårningslänk",
+              "no": "Sporingslenke",
+              "es": "Enlace de seguimiento",
+              "da": "Sporingslink",
+              "ru": "Ссылка для отслеживания",
+              "pl": "Link do śledzenia",
+              "ko": "추적 링크",
+              "ar": "رابط التتبع"
+            },
+            "example": "https://www.gls-info.nl/tracking?trackid=00L1B3BX&zipcode=1234AB"
+          },
+          {
+            "name": "country",
+            "type": "string",
+            "title": {
+              "en": "Country",
+              "nl": "Land",
+              "de": "Land",
+              "fr": "Pays",
+              "it": "Paese",
+              "sv": "Land",
+              "no": "Land",
+              "es": "País",
+              "da": "Land",
+              "ru": "Страна",
+              "pl": "Kraj",
+              "ko": "국가",
+              "ar": "الدولة"
+            },
+            "example": "NL"
+          },
+          {
+            "name": "old_event",
+            "type": "string",
+            "title": {
+              "en": "Previous GLS status text",
+              "nl": "Vorige GLS-statustekst",
+              "de": "Vorheriger GLS-Statustext",
+              "fr": "Texte de statut GLS précédent",
+              "it": "Testo di stato GLS precedente",
+              "sv": "Föregående GLS-statustext",
+              "no": "Forrige GLS-statustekst",
+              "es": "Texto de estado de GLS anterior",
+              "da": "Forrige GLS-statustekst",
+              "ru": "Предыдущий текст статуса GLS",
+              "pl": "Poprzedni tekst statusu GLS",
+              "ko": "이전 GLS 상태 텍스트",
+              "ar": "نص حالة GLS السابق"
+            }
+          }
+        ]
+      },
+      {
+        "id": "gls_out_for_delivery",
+        "title": {
+          "en": "GLS parcel out for delivery",
+          "nl": "GLS-pakket onderweg voor bezorging",
+          "de": "GLS-Paket in Zustellung",
+          "fr": "Colis GLS en cours de livraison",
+          "it": "Pacco GLS in consegna",
+          "sv": "GLS-paket ute för leverans",
+          "no": "GLS-pakke ute for levering",
+          "es": "Paquete GLS en reparto",
+          "da": "GLS-pakke ude til levering",
+          "ru": "Посылка GLS передана курьеру",
+          "pl": "Paczka GLS w doręczeniu",
+          "ko": "GLS 택배 배송 출발",
+          "ar": "طرد GLS خرج للتوصيل"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=gls"
+          }
+        ],
+        "tokens": [
+          {
+            "name": "tracking",
+            "type": "string",
+            "title": {
+              "en": "Tracking number",
+              "nl": "Trackingnummer",
+              "de": "Sendungsnummer",
+              "fr": "Numéro de suivi",
+              "it": "Numero di tracciamento",
+              "sv": "Spårningsnummer",
+              "no": "Sporingsnummer",
+              "es": "Número de seguimiento",
+              "da": "Sporingsnummer",
+              "ru": "Трек-номер",
+              "pl": "Numer przesyłki",
+              "ko": "운송장 번호",
+              "ar": "رقم التتبع"
+            },
+            "example": "00L1B3BX"
+          },
+          {
+            "name": "status",
+            "type": "string",
+            "title": {
+              "en": "Status",
+              "nl": "Status",
+              "de": "Status",
+              "fr": "Statut",
+              "it": "Stato",
+              "sv": "Status",
+              "no": "Status",
+              "es": "Estado",
+              "da": "Status",
+              "ru": "Статус",
+              "pl": "Status",
+              "ko": "상태",
+              "ar": "الحالة"
+            },
+            "example": "Onderweg voor bezorging"
+          },
+          {
+            "name": "status_code",
+            "type": "string",
+            "title": {
+              "en": "Status code",
+              "nl": "Statuscode",
+              "de": "Statuscode",
+              "fr": "Code de statut",
+              "it": "Codice di stato",
+              "sv": "Statuskod",
+              "no": "Statuskode",
+              "es": "Código de estado",
+              "da": "Statuskode",
+              "ru": "Код статуса",
+              "pl": "Kod statusu",
+              "ko": "상태 코드",
+              "ar": "رمز الحالة"
+            },
+            "example": "out_for_delivery"
+          },
+          {
+            "name": "raw_status",
+            "type": "string",
+            "title": {
+              "en": "GLS status text",
+              "nl": "GLS-statustekst",
+              "de": "GLS-Statustext",
+              "fr": "Texte de statut GLS",
+              "it": "Testo di stato GLS",
+              "sv": "GLS-statustext",
+              "no": "GLS-statustekst",
+              "es": "Texto de estado de GLS",
+              "da": "GLS-statustekst",
+              "ru": "Текст статуса GLS",
+              "pl": "Tekst statusu GLS",
+              "ko": "GLS 상태 텍스트",
+              "ar": "نص حالة GLS"
+            },
+            "example": "Onderweg - geladen voor aflevering"
+          },
+          {
+            "name": "sender",
+            "type": "string",
+            "title": {
+              "en": "Sender",
+              "nl": "Afzender",
+              "de": "Absender",
+              "fr": "Expéditeur",
+              "it": "Mittente",
+              "sv": "Avsändare",
+              "no": "Avsender",
+              "es": "Remitente",
+              "da": "Afsender",
+              "ru": "Отправитель",
+              "pl": "Nadawca",
+              "ko": "발송인",
+              "ar": "المرسل"
+            },
+            "example": "Webshop B.V."
+          },
+          {
+            "name": "receiver",
+            "type": "string",
+            "title": {
+              "en": "Recipient",
+              "nl": "Ontvanger",
+              "de": "Empfänger",
+              "fr": "Destinataire",
+              "it": "Destinatario",
+              "sv": "Mottagare",
+              "no": "Mottaker",
+              "es": "Destinatario",
+              "da": "Modtager",
+              "ru": "Получатель",
+              "pl": "Odbiorca",
+              "ko": "수령인",
+              "ar": "المستلم"
+            },
+            "example": "J. Jansen"
+          },
+          {
+            "name": "delivery_date",
+            "type": "string",
+            "title": {
+              "en": "Delivery date",
+              "nl": "Bezorgdatum",
+              "de": "Zustelldatum",
+              "fr": "Date de livraison",
+              "it": "Data di consegna",
+              "sv": "Leveransdatum",
+              "no": "Leveringsdato",
+              "es": "Fecha de entrega",
+              "da": "Leveringsdato",
+              "ru": "Дата доставки",
+              "pl": "Data dostawy",
+              "ko": "배송 날짜",
+              "ar": "تاريخ التوصيل"
+            },
+            "example": "09-10-2026"
+          },
+          {
+            "name": "delivery_window",
+            "type": "string",
+            "title": {
+              "en": "Delivery window",
+              "nl": "Bezorgvenster",
+              "de": "Zustellzeitfenster",
+              "fr": "Créneau de livraison",
+              "it": "Finestra di consegna",
+              "sv": "Leveransfönster",
+              "no": "Leveringsvindu",
+              "es": "Franja de entrega",
+              "da": "Leveringsvindue",
+              "ru": "Интервал доставки",
+              "pl": "Okno dostawy",
+              "ko": "배송 시간대",
+              "ar": "نافذة التوصيل"
+            },
+            "example": "13:00 - 15:00"
+          },
+          {
+            "name": "window_start",
+            "type": "string",
+            "title": {
+              "en": "Window start",
+              "nl": "Begin venster",
+              "de": "Beginn Zeitfenster",
+              "fr": "Début du créneau",
+              "it": "Inizio finestra",
+              "sv": "Fönstrets start",
+              "no": "Start vindu",
+              "es": "Inicio de franja",
+              "da": "Start på vindue",
+              "ru": "Начало интервала",
+              "pl": "Początek okna",
+              "ko": "시간대 시작",
+              "ar": "بداية النافذة"
+            },
+            "example": "13:00"
+          },
+          {
+            "name": "window_end",
+            "type": "string",
+            "title": {
+              "en": "Window end",
+              "nl": "Einde venster",
+              "de": "Ende Zeitfenster",
+              "fr": "Fin du créneau",
+              "it": "Fine finestra",
+              "sv": "Fönstrets slut",
+              "no": "Slutt vindu",
+              "es": "Fin de franja",
+              "da": "Slut på vindue",
+              "ru": "Конец интервала",
+              "pl": "Koniec okna",
+              "ko": "시간대 종료",
+              "ar": "نهاية النافذة"
+            },
+            "example": "15:00"
+          },
+          {
+            "name": "pickup_point",
+            "type": "string",
+            "title": {
+              "en": "ParcelShop",
+              "nl": "ParcelShop",
+              "de": "PaketShop",
+              "fr": "Point relais",
+              "it": "Punto di ritiro",
+              "sv": "Utlämningsställe",
+              "no": "Hentested",
+              "es": "Punto de recogida",
+              "da": "Pakkeshop",
+              "ru": "Пункт выдачи",
+              "pl": "Punkt odbioru",
+              "ko": "픽업 지점",
+              "ar": "نقطة الاستلام"
+            },
+            "example": "GLS ParcelShop Centrum"
+          },
+          {
+            "name": "weight",
+            "type": "string",
+            "title": {
+              "en": "Weight",
+              "nl": "Gewicht",
+              "de": "Gewicht",
+              "fr": "Poids",
+              "it": "Peso",
+              "sv": "Vikt",
+              "no": "Vekt",
+              "es": "Peso",
+              "da": "Vægt",
+              "ru": "Вес",
+              "pl": "Waga",
+              "ko": "무게",
+              "ar": "الوزن"
+            },
+            "example": "1.2 kg"
+          },
+          {
+            "name": "dimensions",
+            "type": "string",
+            "title": {
+              "en": "Dimensions",
+              "nl": "Afmetingen",
+              "de": "Abmessungen",
+              "fr": "Dimensions",
+              "it": "Dimensioni",
+              "sv": "Mått",
+              "no": "Mål",
+              "es": "Dimensiones",
+              "da": "Mål",
+              "ru": "Размеры",
+              "pl": "Wymiary",
+              "ko": "크기",
+              "ar": "الأبعاد"
+            },
+            "example": "34 x 25 x 5 cm"
+          },
+          {
+            "name": "delivered_at",
+            "type": "string",
+            "title": {
+              "en": "Delivered at",
+              "nl": "Bezorgd op",
+              "de": "Zugestellt am",
+              "fr": "Livré le",
+              "it": "Consegnato il",
+              "sv": "Levererad",
+              "no": "Levert",
+              "es": "Entregado el",
+              "da": "Leveret",
+              "ru": "Доставлена",
+              "pl": "Doręczona",
+              "ko": "배송 완료 시각",
+              "ar": "وقت التسليم"
+            },
+            "example": "09-10-2026 13:12"
+          },
+          {
+            "name": "last_event_time",
+            "type": "string",
+            "title": {
+              "en": "Last event time",
+              "nl": "Tijd laatste gebeurtenis",
+              "de": "Zeitpunkt letztes Ereignis",
+              "fr": "Heure du dernier événement",
+              "it": "Ora ultimo evento",
+              "sv": "Tid för senaste händelse",
+              "no": "Tid for siste hendelse",
+              "es": "Hora del último evento",
+              "da": "Tidspunkt for seneste hændelse",
+              "ru": "Время последнего события",
+              "pl": "Czas ostatniego zdarzenia",
+              "ko": "마지막 이벤트 시각",
+              "ar": "وقت آخر حدث"
+            },
+            "example": "09-10-2026 08:46"
+          },
+          {
+            "name": "history",
+            "type": "string",
+            "title": {
+              "en": "Status history",
+              "nl": "Statusgeschiedenis",
+              "de": "Statusverlauf",
+              "fr": "Historique des statuts",
+              "it": "Cronologia stati",
+              "sv": "Statushistorik",
+              "no": "Statushistorikk",
+              "es": "Historial de estados",
+              "da": "Statushistorik",
+              "ru": "История статусов",
+              "pl": "Historia statusów",
+              "ko": "상태 기록",
+              "ar": "سجل الحالات"
+            },
+            "example": "08:46 Onderweg - geladen voor aflevering"
+          },
+          {
+            "name": "url",
+            "type": "string",
+            "title": {
+              "en": "Tracking link",
+              "nl": "Trackinglink",
+              "de": "Link zur Sendungsverfolgung",
+              "fr": "Lien de suivi",
+              "it": "Link di tracciamento",
+              "sv": "Spårningslänk",
+              "no": "Sporingslenke",
+              "es": "Enlace de seguimiento",
+              "da": "Sporingslink",
+              "ru": "Ссылка для отслеживания",
+              "pl": "Link do śledzenia",
+              "ko": "추적 링크",
+              "ar": "رابط التتبع"
+            },
+            "example": "https://www.gls-info.nl/tracking?trackid=00L1B3BX&zipcode=1234AB"
+          },
+          {
+            "name": "country",
+            "type": "string",
+            "title": {
+              "en": "Country",
+              "nl": "Land",
+              "de": "Land",
+              "fr": "Pays",
+              "it": "Paese",
+              "sv": "Land",
+              "no": "Land",
+              "es": "País",
+              "da": "Land",
+              "ru": "Страна",
+              "pl": "Kraj",
+              "ko": "국가",
+              "ar": "الدولة"
+            },
+            "example": "NL"
+          }
+        ],
+        "highlight": true
       },
       {
         "id": "gls_delivery_window_changed",
@@ -7277,6 +8735,1168 @@
               "ko": "상태",
               "ar": "الحالة"
             }
+          }
+        ]
+      },
+      {
+        "id": "gls_ready_for_pickup",
+        "title": {
+          "en": "GLS parcel ready for pickup",
+          "nl": "GLS-pakket klaar om op te halen",
+          "de": "GLS-Paket abholbereit",
+          "fr": "Colis GLS prêt à être retiré",
+          "it": "Pacco GLS pronto per il ritiro",
+          "sv": "GLS-paket redo att hämtas",
+          "no": "GLS-pakke klar for henting",
+          "es": "Paquete GLS listo para recoger",
+          "da": "GLS-pakke klar til afhentning",
+          "ru": "Посылка GLS готова к выдаче",
+          "pl": "Paczka GLS gotowa do odbioru",
+          "ko": "GLS 택배 픽업 준비 완료",
+          "ar": "طرد GLS جاهز للاستلام"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=gls"
+          }
+        ],
+        "tokens": [
+          {
+            "name": "tracking",
+            "type": "string",
+            "title": {
+              "en": "Tracking number",
+              "nl": "Trackingnummer",
+              "de": "Sendungsnummer",
+              "fr": "Numéro de suivi",
+              "it": "Numero di tracciamento",
+              "sv": "Spårningsnummer",
+              "no": "Sporingsnummer",
+              "es": "Número de seguimiento",
+              "da": "Sporingsnummer",
+              "ru": "Трек-номер",
+              "pl": "Numer przesyłki",
+              "ko": "운송장 번호",
+              "ar": "رقم التتبع"
+            },
+            "example": "00L1B3BX"
+          },
+          {
+            "name": "status",
+            "type": "string",
+            "title": {
+              "en": "Status",
+              "nl": "Status",
+              "de": "Status",
+              "fr": "Statut",
+              "it": "Stato",
+              "sv": "Status",
+              "no": "Status",
+              "es": "Estado",
+              "da": "Status",
+              "ru": "Статус",
+              "pl": "Status",
+              "ko": "상태",
+              "ar": "الحالة"
+            },
+            "example": "Onderweg voor bezorging"
+          },
+          {
+            "name": "status_code",
+            "type": "string",
+            "title": {
+              "en": "Status code",
+              "nl": "Statuscode",
+              "de": "Statuscode",
+              "fr": "Code de statut",
+              "it": "Codice di stato",
+              "sv": "Statuskod",
+              "no": "Statuskode",
+              "es": "Código de estado",
+              "da": "Statuskode",
+              "ru": "Код статуса",
+              "pl": "Kod statusu",
+              "ko": "상태 코드",
+              "ar": "رمز الحالة"
+            },
+            "example": "out_for_delivery"
+          },
+          {
+            "name": "raw_status",
+            "type": "string",
+            "title": {
+              "en": "GLS status text",
+              "nl": "GLS-statustekst",
+              "de": "GLS-Statustext",
+              "fr": "Texte de statut GLS",
+              "it": "Testo di stato GLS",
+              "sv": "GLS-statustext",
+              "no": "GLS-statustekst",
+              "es": "Texto de estado de GLS",
+              "da": "GLS-statustekst",
+              "ru": "Текст статуса GLS",
+              "pl": "Tekst statusu GLS",
+              "ko": "GLS 상태 텍스트",
+              "ar": "نص حالة GLS"
+            },
+            "example": "Onderweg - geladen voor aflevering"
+          },
+          {
+            "name": "sender",
+            "type": "string",
+            "title": {
+              "en": "Sender",
+              "nl": "Afzender",
+              "de": "Absender",
+              "fr": "Expéditeur",
+              "it": "Mittente",
+              "sv": "Avsändare",
+              "no": "Avsender",
+              "es": "Remitente",
+              "da": "Afsender",
+              "ru": "Отправитель",
+              "pl": "Nadawca",
+              "ko": "발송인",
+              "ar": "المرسل"
+            },
+            "example": "Webshop B.V."
+          },
+          {
+            "name": "receiver",
+            "type": "string",
+            "title": {
+              "en": "Recipient",
+              "nl": "Ontvanger",
+              "de": "Empfänger",
+              "fr": "Destinataire",
+              "it": "Destinatario",
+              "sv": "Mottagare",
+              "no": "Mottaker",
+              "es": "Destinatario",
+              "da": "Modtager",
+              "ru": "Получатель",
+              "pl": "Odbiorca",
+              "ko": "수령인",
+              "ar": "المستلم"
+            },
+            "example": "J. Jansen"
+          },
+          {
+            "name": "delivery_date",
+            "type": "string",
+            "title": {
+              "en": "Delivery date",
+              "nl": "Bezorgdatum",
+              "de": "Zustelldatum",
+              "fr": "Date de livraison",
+              "it": "Data di consegna",
+              "sv": "Leveransdatum",
+              "no": "Leveringsdato",
+              "es": "Fecha de entrega",
+              "da": "Leveringsdato",
+              "ru": "Дата доставки",
+              "pl": "Data dostawy",
+              "ko": "배송 날짜",
+              "ar": "تاريخ التوصيل"
+            },
+            "example": "09-10-2026"
+          },
+          {
+            "name": "delivery_window",
+            "type": "string",
+            "title": {
+              "en": "Delivery window",
+              "nl": "Bezorgvenster",
+              "de": "Zustellzeitfenster",
+              "fr": "Créneau de livraison",
+              "it": "Finestra di consegna",
+              "sv": "Leveransfönster",
+              "no": "Leveringsvindu",
+              "es": "Franja de entrega",
+              "da": "Leveringsvindue",
+              "ru": "Интервал доставки",
+              "pl": "Okno dostawy",
+              "ko": "배송 시간대",
+              "ar": "نافذة التوصيل"
+            },
+            "example": "13:00 - 15:00"
+          },
+          {
+            "name": "window_start",
+            "type": "string",
+            "title": {
+              "en": "Window start",
+              "nl": "Begin venster",
+              "de": "Beginn Zeitfenster",
+              "fr": "Début du créneau",
+              "it": "Inizio finestra",
+              "sv": "Fönstrets start",
+              "no": "Start vindu",
+              "es": "Inicio de franja",
+              "da": "Start på vindue",
+              "ru": "Начало интервала",
+              "pl": "Początek okna",
+              "ko": "시간대 시작",
+              "ar": "بداية النافذة"
+            },
+            "example": "13:00"
+          },
+          {
+            "name": "window_end",
+            "type": "string",
+            "title": {
+              "en": "Window end",
+              "nl": "Einde venster",
+              "de": "Ende Zeitfenster",
+              "fr": "Fin du créneau",
+              "it": "Fine finestra",
+              "sv": "Fönstrets slut",
+              "no": "Slutt vindu",
+              "es": "Fin de franja",
+              "da": "Slut på vindue",
+              "ru": "Конец интервала",
+              "pl": "Koniec okna",
+              "ko": "시간대 종료",
+              "ar": "نهاية النافذة"
+            },
+            "example": "15:00"
+          },
+          {
+            "name": "pickup_point",
+            "type": "string",
+            "title": {
+              "en": "ParcelShop",
+              "nl": "ParcelShop",
+              "de": "PaketShop",
+              "fr": "Point relais",
+              "it": "Punto di ritiro",
+              "sv": "Utlämningsställe",
+              "no": "Hentested",
+              "es": "Punto de recogida",
+              "da": "Pakkeshop",
+              "ru": "Пункт выдачи",
+              "pl": "Punkt odbioru",
+              "ko": "픽업 지점",
+              "ar": "نقطة الاستلام"
+            },
+            "example": "GLS ParcelShop Centrum"
+          },
+          {
+            "name": "weight",
+            "type": "string",
+            "title": {
+              "en": "Weight",
+              "nl": "Gewicht",
+              "de": "Gewicht",
+              "fr": "Poids",
+              "it": "Peso",
+              "sv": "Vikt",
+              "no": "Vekt",
+              "es": "Peso",
+              "da": "Vægt",
+              "ru": "Вес",
+              "pl": "Waga",
+              "ko": "무게",
+              "ar": "الوزن"
+            },
+            "example": "1.2 kg"
+          },
+          {
+            "name": "dimensions",
+            "type": "string",
+            "title": {
+              "en": "Dimensions",
+              "nl": "Afmetingen",
+              "de": "Abmessungen",
+              "fr": "Dimensions",
+              "it": "Dimensioni",
+              "sv": "Mått",
+              "no": "Mål",
+              "es": "Dimensiones",
+              "da": "Mål",
+              "ru": "Размеры",
+              "pl": "Wymiary",
+              "ko": "크기",
+              "ar": "الأبعاد"
+            },
+            "example": "34 x 25 x 5 cm"
+          },
+          {
+            "name": "delivered_at",
+            "type": "string",
+            "title": {
+              "en": "Delivered at",
+              "nl": "Bezorgd op",
+              "de": "Zugestellt am",
+              "fr": "Livré le",
+              "it": "Consegnato il",
+              "sv": "Levererad",
+              "no": "Levert",
+              "es": "Entregado el",
+              "da": "Leveret",
+              "ru": "Доставлена",
+              "pl": "Doręczona",
+              "ko": "배송 완료 시각",
+              "ar": "وقت التسليم"
+            },
+            "example": "09-10-2026 13:12"
+          },
+          {
+            "name": "last_event_time",
+            "type": "string",
+            "title": {
+              "en": "Last event time",
+              "nl": "Tijd laatste gebeurtenis",
+              "de": "Zeitpunkt letztes Ereignis",
+              "fr": "Heure du dernier événement",
+              "it": "Ora ultimo evento",
+              "sv": "Tid för senaste händelse",
+              "no": "Tid for siste hendelse",
+              "es": "Hora del último evento",
+              "da": "Tidspunkt for seneste hændelse",
+              "ru": "Время последнего события",
+              "pl": "Czas ostatniego zdarzenia",
+              "ko": "마지막 이벤트 시각",
+              "ar": "وقت آخر حدث"
+            },
+            "example": "09-10-2026 08:46"
+          },
+          {
+            "name": "history",
+            "type": "string",
+            "title": {
+              "en": "Status history",
+              "nl": "Statusgeschiedenis",
+              "de": "Statusverlauf",
+              "fr": "Historique des statuts",
+              "it": "Cronologia stati",
+              "sv": "Statushistorik",
+              "no": "Statushistorikk",
+              "es": "Historial de estados",
+              "da": "Statushistorik",
+              "ru": "История статусов",
+              "pl": "Historia statusów",
+              "ko": "상태 기록",
+              "ar": "سجل الحالات"
+            },
+            "example": "08:46 Onderweg - geladen voor aflevering"
+          },
+          {
+            "name": "url",
+            "type": "string",
+            "title": {
+              "en": "Tracking link",
+              "nl": "Trackinglink",
+              "de": "Link zur Sendungsverfolgung",
+              "fr": "Lien de suivi",
+              "it": "Link di tracciamento",
+              "sv": "Spårningslänk",
+              "no": "Sporingslenke",
+              "es": "Enlace de seguimiento",
+              "da": "Sporingslink",
+              "ru": "Ссылка для отслеживания",
+              "pl": "Link do śledzenia",
+              "ko": "추적 링크",
+              "ar": "رابط التتبع"
+            },
+            "example": "https://www.gls-info.nl/tracking?trackid=00L1B3BX&zipcode=1234AB"
+          },
+          {
+            "name": "country",
+            "type": "string",
+            "title": {
+              "en": "Country",
+              "nl": "Land",
+              "de": "Land",
+              "fr": "Pays",
+              "it": "Paese",
+              "sv": "Land",
+              "no": "Land",
+              "es": "País",
+              "da": "Land",
+              "ru": "Страна",
+              "pl": "Kraj",
+              "ko": "국가",
+              "ar": "الدولة"
+            },
+            "example": "NL"
+          }
+        ]
+      },
+      {
+        "id": "gls_package_delivered",
+        "title": {
+          "en": "GLS parcel delivered",
+          "nl": "GLS-pakket bezorgd",
+          "de": "GLS-Paket zugestellt",
+          "fr": "Colis GLS livré",
+          "it": "Pacco GLS consegnato",
+          "sv": "GLS-paket levererat",
+          "no": "GLS-pakke levert",
+          "es": "Paquete GLS entregado",
+          "da": "GLS-pakke leveret",
+          "ru": "Посылка GLS доставлена",
+          "pl": "Paczka GLS doręczona",
+          "ko": "GLS 택배 배송 완료",
+          "ar": "تم تسليم طرد GLS"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=gls"
+          }
+        ],
+        "tokens": [
+          {
+            "name": "tracking",
+            "type": "string",
+            "title": {
+              "en": "Tracking number",
+              "nl": "Trackingnummer",
+              "de": "Sendungsnummer",
+              "fr": "Numéro de suivi",
+              "it": "Numero di tracciamento",
+              "sv": "Spårningsnummer",
+              "no": "Sporingsnummer",
+              "es": "Número de seguimiento",
+              "da": "Sporingsnummer",
+              "ru": "Трек-номер",
+              "pl": "Numer przesyłki",
+              "ko": "운송장 번호",
+              "ar": "رقم التتبع"
+            },
+            "example": "00L1B3BX"
+          },
+          {
+            "name": "status",
+            "type": "string",
+            "title": {
+              "en": "Status",
+              "nl": "Status",
+              "de": "Status",
+              "fr": "Statut",
+              "it": "Stato",
+              "sv": "Status",
+              "no": "Status",
+              "es": "Estado",
+              "da": "Status",
+              "ru": "Статус",
+              "pl": "Status",
+              "ko": "상태",
+              "ar": "الحالة"
+            },
+            "example": "Onderweg voor bezorging"
+          },
+          {
+            "name": "status_code",
+            "type": "string",
+            "title": {
+              "en": "Status code",
+              "nl": "Statuscode",
+              "de": "Statuscode",
+              "fr": "Code de statut",
+              "it": "Codice di stato",
+              "sv": "Statuskod",
+              "no": "Statuskode",
+              "es": "Código de estado",
+              "da": "Statuskode",
+              "ru": "Код статуса",
+              "pl": "Kod statusu",
+              "ko": "상태 코드",
+              "ar": "رمز الحالة"
+            },
+            "example": "out_for_delivery"
+          },
+          {
+            "name": "raw_status",
+            "type": "string",
+            "title": {
+              "en": "GLS status text",
+              "nl": "GLS-statustekst",
+              "de": "GLS-Statustext",
+              "fr": "Texte de statut GLS",
+              "it": "Testo di stato GLS",
+              "sv": "GLS-statustext",
+              "no": "GLS-statustekst",
+              "es": "Texto de estado de GLS",
+              "da": "GLS-statustekst",
+              "ru": "Текст статуса GLS",
+              "pl": "Tekst statusu GLS",
+              "ko": "GLS 상태 텍스트",
+              "ar": "نص حالة GLS"
+            },
+            "example": "Onderweg - geladen voor aflevering"
+          },
+          {
+            "name": "sender",
+            "type": "string",
+            "title": {
+              "en": "Sender",
+              "nl": "Afzender",
+              "de": "Absender",
+              "fr": "Expéditeur",
+              "it": "Mittente",
+              "sv": "Avsändare",
+              "no": "Avsender",
+              "es": "Remitente",
+              "da": "Afsender",
+              "ru": "Отправитель",
+              "pl": "Nadawca",
+              "ko": "발송인",
+              "ar": "المرسل"
+            },
+            "example": "Webshop B.V."
+          },
+          {
+            "name": "receiver",
+            "type": "string",
+            "title": {
+              "en": "Recipient",
+              "nl": "Ontvanger",
+              "de": "Empfänger",
+              "fr": "Destinataire",
+              "it": "Destinatario",
+              "sv": "Mottagare",
+              "no": "Mottaker",
+              "es": "Destinatario",
+              "da": "Modtager",
+              "ru": "Получатель",
+              "pl": "Odbiorca",
+              "ko": "수령인",
+              "ar": "المستلم"
+            },
+            "example": "J. Jansen"
+          },
+          {
+            "name": "delivery_date",
+            "type": "string",
+            "title": {
+              "en": "Delivery date",
+              "nl": "Bezorgdatum",
+              "de": "Zustelldatum",
+              "fr": "Date de livraison",
+              "it": "Data di consegna",
+              "sv": "Leveransdatum",
+              "no": "Leveringsdato",
+              "es": "Fecha de entrega",
+              "da": "Leveringsdato",
+              "ru": "Дата доставки",
+              "pl": "Data dostawy",
+              "ko": "배송 날짜",
+              "ar": "تاريخ التوصيل"
+            },
+            "example": "09-10-2026"
+          },
+          {
+            "name": "delivery_window",
+            "type": "string",
+            "title": {
+              "en": "Delivery window",
+              "nl": "Bezorgvenster",
+              "de": "Zustellzeitfenster",
+              "fr": "Créneau de livraison",
+              "it": "Finestra di consegna",
+              "sv": "Leveransfönster",
+              "no": "Leveringsvindu",
+              "es": "Franja de entrega",
+              "da": "Leveringsvindue",
+              "ru": "Интервал доставки",
+              "pl": "Okno dostawy",
+              "ko": "배송 시간대",
+              "ar": "نافذة التوصيل"
+            },
+            "example": "13:00 - 15:00"
+          },
+          {
+            "name": "window_start",
+            "type": "string",
+            "title": {
+              "en": "Window start",
+              "nl": "Begin venster",
+              "de": "Beginn Zeitfenster",
+              "fr": "Début du créneau",
+              "it": "Inizio finestra",
+              "sv": "Fönstrets start",
+              "no": "Start vindu",
+              "es": "Inicio de franja",
+              "da": "Start på vindue",
+              "ru": "Начало интервала",
+              "pl": "Początek okna",
+              "ko": "시간대 시작",
+              "ar": "بداية النافذة"
+            },
+            "example": "13:00"
+          },
+          {
+            "name": "window_end",
+            "type": "string",
+            "title": {
+              "en": "Window end",
+              "nl": "Einde venster",
+              "de": "Ende Zeitfenster",
+              "fr": "Fin du créneau",
+              "it": "Fine finestra",
+              "sv": "Fönstrets slut",
+              "no": "Slutt vindu",
+              "es": "Fin de franja",
+              "da": "Slut på vindue",
+              "ru": "Конец интервала",
+              "pl": "Koniec okna",
+              "ko": "시간대 종료",
+              "ar": "نهاية النافذة"
+            },
+            "example": "15:00"
+          },
+          {
+            "name": "pickup_point",
+            "type": "string",
+            "title": {
+              "en": "ParcelShop",
+              "nl": "ParcelShop",
+              "de": "PaketShop",
+              "fr": "Point relais",
+              "it": "Punto di ritiro",
+              "sv": "Utlämningsställe",
+              "no": "Hentested",
+              "es": "Punto de recogida",
+              "da": "Pakkeshop",
+              "ru": "Пункт выдачи",
+              "pl": "Punkt odbioru",
+              "ko": "픽업 지점",
+              "ar": "نقطة الاستلام"
+            },
+            "example": "GLS ParcelShop Centrum"
+          },
+          {
+            "name": "weight",
+            "type": "string",
+            "title": {
+              "en": "Weight",
+              "nl": "Gewicht",
+              "de": "Gewicht",
+              "fr": "Poids",
+              "it": "Peso",
+              "sv": "Vikt",
+              "no": "Vekt",
+              "es": "Peso",
+              "da": "Vægt",
+              "ru": "Вес",
+              "pl": "Waga",
+              "ko": "무게",
+              "ar": "الوزن"
+            },
+            "example": "1.2 kg"
+          },
+          {
+            "name": "dimensions",
+            "type": "string",
+            "title": {
+              "en": "Dimensions",
+              "nl": "Afmetingen",
+              "de": "Abmessungen",
+              "fr": "Dimensions",
+              "it": "Dimensioni",
+              "sv": "Mått",
+              "no": "Mål",
+              "es": "Dimensiones",
+              "da": "Mål",
+              "ru": "Размеры",
+              "pl": "Wymiary",
+              "ko": "크기",
+              "ar": "الأبعاد"
+            },
+            "example": "34 x 25 x 5 cm"
+          },
+          {
+            "name": "delivered_at",
+            "type": "string",
+            "title": {
+              "en": "Delivered at",
+              "nl": "Bezorgd op",
+              "de": "Zugestellt am",
+              "fr": "Livré le",
+              "it": "Consegnato il",
+              "sv": "Levererad",
+              "no": "Levert",
+              "es": "Entregado el",
+              "da": "Leveret",
+              "ru": "Доставлена",
+              "pl": "Doręczona",
+              "ko": "배송 완료 시각",
+              "ar": "وقت التسليم"
+            },
+            "example": "09-10-2026 13:12"
+          },
+          {
+            "name": "last_event_time",
+            "type": "string",
+            "title": {
+              "en": "Last event time",
+              "nl": "Tijd laatste gebeurtenis",
+              "de": "Zeitpunkt letztes Ereignis",
+              "fr": "Heure du dernier événement",
+              "it": "Ora ultimo evento",
+              "sv": "Tid för senaste händelse",
+              "no": "Tid for siste hendelse",
+              "es": "Hora del último evento",
+              "da": "Tidspunkt for seneste hændelse",
+              "ru": "Время последнего события",
+              "pl": "Czas ostatniego zdarzenia",
+              "ko": "마지막 이벤트 시각",
+              "ar": "وقت آخر حدث"
+            },
+            "example": "09-10-2026 08:46"
+          },
+          {
+            "name": "history",
+            "type": "string",
+            "title": {
+              "en": "Status history",
+              "nl": "Statusgeschiedenis",
+              "de": "Statusverlauf",
+              "fr": "Historique des statuts",
+              "it": "Cronologia stati",
+              "sv": "Statushistorik",
+              "no": "Statushistorikk",
+              "es": "Historial de estados",
+              "da": "Statushistorik",
+              "ru": "История статусов",
+              "pl": "Historia statusów",
+              "ko": "상태 기록",
+              "ar": "سجل الحالات"
+            },
+            "example": "08:46 Onderweg - geladen voor aflevering"
+          },
+          {
+            "name": "url",
+            "type": "string",
+            "title": {
+              "en": "Tracking link",
+              "nl": "Trackinglink",
+              "de": "Link zur Sendungsverfolgung",
+              "fr": "Lien de suivi",
+              "it": "Link di tracciamento",
+              "sv": "Spårningslänk",
+              "no": "Sporingslenke",
+              "es": "Enlace de seguimiento",
+              "da": "Sporingslink",
+              "ru": "Ссылка для отслеживания",
+              "pl": "Link do śledzenia",
+              "ko": "추적 링크",
+              "ar": "رابط التتبع"
+            },
+            "example": "https://www.gls-info.nl/tracking?trackid=00L1B3BX&zipcode=1234AB"
+          },
+          {
+            "name": "country",
+            "type": "string",
+            "title": {
+              "en": "Country",
+              "nl": "Land",
+              "de": "Land",
+              "fr": "Pays",
+              "it": "Paese",
+              "sv": "Land",
+              "no": "Land",
+              "es": "País",
+              "da": "Land",
+              "ru": "Страна",
+              "pl": "Kraj",
+              "ko": "국가",
+              "ar": "الدولة"
+            },
+            "example": "NL"
+          }
+        ],
+        "highlight": true
+      },
+      {
+        "id": "gls_package_problem",
+        "title": {
+          "en": "GLS parcel has a problem or is returning",
+          "nl": "Probleem of retour bij GLS-pakket",
+          "de": "Problem oder Rücksendung bei GLS-Paket",
+          "fr": "Problème ou retour d'un colis GLS",
+          "it": "Problema o reso per un pacco GLS",
+          "sv": "Problem eller retur för GLS-paket",
+          "no": "Problem eller retur for GLS-pakke",
+          "es": "Problema o devolución de un paquete GLS",
+          "da": "Problem eller returnering for GLS-pakke",
+          "ru": "Проблема или возврат посылки GLS",
+          "pl": "Problem lub zwrot paczki GLS",
+          "ko": "GLS 택배 문제 또는 반송",
+          "ar": "مشكلة أو إرجاع لطرد GLS"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=gls"
+          }
+        ],
+        "tokens": [
+          {
+            "name": "tracking",
+            "type": "string",
+            "title": {
+              "en": "Tracking number",
+              "nl": "Trackingnummer",
+              "de": "Sendungsnummer",
+              "fr": "Numéro de suivi",
+              "it": "Numero di tracciamento",
+              "sv": "Spårningsnummer",
+              "no": "Sporingsnummer",
+              "es": "Número de seguimiento",
+              "da": "Sporingsnummer",
+              "ru": "Трек-номер",
+              "pl": "Numer przesyłki",
+              "ko": "운송장 번호",
+              "ar": "رقم التتبع"
+            },
+            "example": "00L1B3BX"
+          },
+          {
+            "name": "status",
+            "type": "string",
+            "title": {
+              "en": "Status",
+              "nl": "Status",
+              "de": "Status",
+              "fr": "Statut",
+              "it": "Stato",
+              "sv": "Status",
+              "no": "Status",
+              "es": "Estado",
+              "da": "Status",
+              "ru": "Статус",
+              "pl": "Status",
+              "ko": "상태",
+              "ar": "الحالة"
+            },
+            "example": "Onderweg voor bezorging"
+          },
+          {
+            "name": "status_code",
+            "type": "string",
+            "title": {
+              "en": "Status code",
+              "nl": "Statuscode",
+              "de": "Statuscode",
+              "fr": "Code de statut",
+              "it": "Codice di stato",
+              "sv": "Statuskod",
+              "no": "Statuskode",
+              "es": "Código de estado",
+              "da": "Statuskode",
+              "ru": "Код статуса",
+              "pl": "Kod statusu",
+              "ko": "상태 코드",
+              "ar": "رمز الحالة"
+            },
+            "example": "out_for_delivery"
+          },
+          {
+            "name": "raw_status",
+            "type": "string",
+            "title": {
+              "en": "GLS status text",
+              "nl": "GLS-statustekst",
+              "de": "GLS-Statustext",
+              "fr": "Texte de statut GLS",
+              "it": "Testo di stato GLS",
+              "sv": "GLS-statustext",
+              "no": "GLS-statustekst",
+              "es": "Texto de estado de GLS",
+              "da": "GLS-statustekst",
+              "ru": "Текст статуса GLS",
+              "pl": "Tekst statusu GLS",
+              "ko": "GLS 상태 텍스트",
+              "ar": "نص حالة GLS"
+            },
+            "example": "Onderweg - geladen voor aflevering"
+          },
+          {
+            "name": "sender",
+            "type": "string",
+            "title": {
+              "en": "Sender",
+              "nl": "Afzender",
+              "de": "Absender",
+              "fr": "Expéditeur",
+              "it": "Mittente",
+              "sv": "Avsändare",
+              "no": "Avsender",
+              "es": "Remitente",
+              "da": "Afsender",
+              "ru": "Отправитель",
+              "pl": "Nadawca",
+              "ko": "발송인",
+              "ar": "المرسل"
+            },
+            "example": "Webshop B.V."
+          },
+          {
+            "name": "receiver",
+            "type": "string",
+            "title": {
+              "en": "Recipient",
+              "nl": "Ontvanger",
+              "de": "Empfänger",
+              "fr": "Destinataire",
+              "it": "Destinatario",
+              "sv": "Mottagare",
+              "no": "Mottaker",
+              "es": "Destinatario",
+              "da": "Modtager",
+              "ru": "Получатель",
+              "pl": "Odbiorca",
+              "ko": "수령인",
+              "ar": "المستلم"
+            },
+            "example": "J. Jansen"
+          },
+          {
+            "name": "delivery_date",
+            "type": "string",
+            "title": {
+              "en": "Delivery date",
+              "nl": "Bezorgdatum",
+              "de": "Zustelldatum",
+              "fr": "Date de livraison",
+              "it": "Data di consegna",
+              "sv": "Leveransdatum",
+              "no": "Leveringsdato",
+              "es": "Fecha de entrega",
+              "da": "Leveringsdato",
+              "ru": "Дата доставки",
+              "pl": "Data dostawy",
+              "ko": "배송 날짜",
+              "ar": "تاريخ التوصيل"
+            },
+            "example": "09-10-2026"
+          },
+          {
+            "name": "delivery_window",
+            "type": "string",
+            "title": {
+              "en": "Delivery window",
+              "nl": "Bezorgvenster",
+              "de": "Zustellzeitfenster",
+              "fr": "Créneau de livraison",
+              "it": "Finestra di consegna",
+              "sv": "Leveransfönster",
+              "no": "Leveringsvindu",
+              "es": "Franja de entrega",
+              "da": "Leveringsvindue",
+              "ru": "Интервал доставки",
+              "pl": "Okno dostawy",
+              "ko": "배송 시간대",
+              "ar": "نافذة التوصيل"
+            },
+            "example": "13:00 - 15:00"
+          },
+          {
+            "name": "window_start",
+            "type": "string",
+            "title": {
+              "en": "Window start",
+              "nl": "Begin venster",
+              "de": "Beginn Zeitfenster",
+              "fr": "Début du créneau",
+              "it": "Inizio finestra",
+              "sv": "Fönstrets start",
+              "no": "Start vindu",
+              "es": "Inicio de franja",
+              "da": "Start på vindue",
+              "ru": "Начало интервала",
+              "pl": "Początek okna",
+              "ko": "시간대 시작",
+              "ar": "بداية النافذة"
+            },
+            "example": "13:00"
+          },
+          {
+            "name": "window_end",
+            "type": "string",
+            "title": {
+              "en": "Window end",
+              "nl": "Einde venster",
+              "de": "Ende Zeitfenster",
+              "fr": "Fin du créneau",
+              "it": "Fine finestra",
+              "sv": "Fönstrets slut",
+              "no": "Slutt vindu",
+              "es": "Fin de franja",
+              "da": "Slut på vindue",
+              "ru": "Конец интервала",
+              "pl": "Koniec okna",
+              "ko": "시간대 종료",
+              "ar": "نهاية النافذة"
+            },
+            "example": "15:00"
+          },
+          {
+            "name": "pickup_point",
+            "type": "string",
+            "title": {
+              "en": "ParcelShop",
+              "nl": "ParcelShop",
+              "de": "PaketShop",
+              "fr": "Point relais",
+              "it": "Punto di ritiro",
+              "sv": "Utlämningsställe",
+              "no": "Hentested",
+              "es": "Punto de recogida",
+              "da": "Pakkeshop",
+              "ru": "Пункт выдачи",
+              "pl": "Punkt odbioru",
+              "ko": "픽업 지점",
+              "ar": "نقطة الاستلام"
+            },
+            "example": "GLS ParcelShop Centrum"
+          },
+          {
+            "name": "weight",
+            "type": "string",
+            "title": {
+              "en": "Weight",
+              "nl": "Gewicht",
+              "de": "Gewicht",
+              "fr": "Poids",
+              "it": "Peso",
+              "sv": "Vikt",
+              "no": "Vekt",
+              "es": "Peso",
+              "da": "Vægt",
+              "ru": "Вес",
+              "pl": "Waga",
+              "ko": "무게",
+              "ar": "الوزن"
+            },
+            "example": "1.2 kg"
+          },
+          {
+            "name": "dimensions",
+            "type": "string",
+            "title": {
+              "en": "Dimensions",
+              "nl": "Afmetingen",
+              "de": "Abmessungen",
+              "fr": "Dimensions",
+              "it": "Dimensioni",
+              "sv": "Mått",
+              "no": "Mål",
+              "es": "Dimensiones",
+              "da": "Mål",
+              "ru": "Размеры",
+              "pl": "Wymiary",
+              "ko": "크기",
+              "ar": "الأبعاد"
+            },
+            "example": "34 x 25 x 5 cm"
+          },
+          {
+            "name": "delivered_at",
+            "type": "string",
+            "title": {
+              "en": "Delivered at",
+              "nl": "Bezorgd op",
+              "de": "Zugestellt am",
+              "fr": "Livré le",
+              "it": "Consegnato il",
+              "sv": "Levererad",
+              "no": "Levert",
+              "es": "Entregado el",
+              "da": "Leveret",
+              "ru": "Доставлена",
+              "pl": "Doręczona",
+              "ko": "배송 완료 시각",
+              "ar": "وقت التسليم"
+            },
+            "example": "09-10-2026 13:12"
+          },
+          {
+            "name": "last_event_time",
+            "type": "string",
+            "title": {
+              "en": "Last event time",
+              "nl": "Tijd laatste gebeurtenis",
+              "de": "Zeitpunkt letztes Ereignis",
+              "fr": "Heure du dernier événement",
+              "it": "Ora ultimo evento",
+              "sv": "Tid för senaste händelse",
+              "no": "Tid for siste hendelse",
+              "es": "Hora del último evento",
+              "da": "Tidspunkt for seneste hændelse",
+              "ru": "Время последнего события",
+              "pl": "Czas ostatniego zdarzenia",
+              "ko": "마지막 이벤트 시각",
+              "ar": "وقت آخر حدث"
+            },
+            "example": "09-10-2026 08:46"
+          },
+          {
+            "name": "history",
+            "type": "string",
+            "title": {
+              "en": "Status history",
+              "nl": "Statusgeschiedenis",
+              "de": "Statusverlauf",
+              "fr": "Historique des statuts",
+              "it": "Cronologia stati",
+              "sv": "Statushistorik",
+              "no": "Statushistorikk",
+              "es": "Historial de estados",
+              "da": "Statushistorik",
+              "ru": "История статусов",
+              "pl": "Historia statusów",
+              "ko": "상태 기록",
+              "ar": "سجل الحالات"
+            },
+            "example": "08:46 Onderweg - geladen voor aflevering"
+          },
+          {
+            "name": "url",
+            "type": "string",
+            "title": {
+              "en": "Tracking link",
+              "nl": "Trackinglink",
+              "de": "Link zur Sendungsverfolgung",
+              "fr": "Lien de suivi",
+              "it": "Link di tracciamento",
+              "sv": "Spårningslänk",
+              "no": "Sporingslenke",
+              "es": "Enlace de seguimiento",
+              "da": "Sporingslink",
+              "ru": "Ссылка для отслеживания",
+              "pl": "Link do śledzenia",
+              "ko": "추적 링크",
+              "ar": "رابط التتبع"
+            },
+            "example": "https://www.gls-info.nl/tracking?trackid=00L1B3BX&zipcode=1234AB"
+          },
+          {
+            "name": "country",
+            "type": "string",
+            "title": {
+              "en": "Country",
+              "nl": "Land",
+              "de": "Land",
+              "fr": "Pays",
+              "it": "Paese",
+              "sv": "Land",
+              "no": "Land",
+              "es": "País",
+              "da": "Land",
+              "ru": "Страна",
+              "pl": "Kraj",
+              "ko": "국가",
+              "ar": "الدولة"
+            },
+            "example": "NL"
           }
         ]
       },
@@ -12002,19 +14622,19 @@
       {
         "id": "gls_packages_underway",
         "title": {
-          "en": "GLS packages are underway",
-          "nl": "Er zijn GLS-pakketten onderweg",
-          "de": "GLS packages are underway",
-          "fr": "GLS packages are underway",
-          "it": "GLS packages are underway",
-          "sv": "GLS packages are underway",
-          "no": "GLS packages are underway",
-          "es": "GLS packages are underway",
-          "da": "GLS packages are underway",
-          "ru": "GLS packages are underway",
-          "pl": "GLS packages are underway",
-          "ko": "GLS packages are underway",
-          "ar": "GLS packages are underway"
+          "en": "GLS parcels !{{are|are not}} underway",
+          "nl": "Er !{{zijn|zijn geen}} GLS-pakketten onderweg",
+          "de": "GLS-Pakete !{{sind|sind nicht}} unterwegs",
+          "fr": "Des colis GLS !{{sont|ne sont pas}} en route",
+          "it": "Pacchi GLS !{{sono|non sono}} in viaggio",
+          "sv": "GLS-paket !{{är|är inte}} på väg",
+          "no": "GLS-pakker !{{er|er ikke}} underveis",
+          "es": "Hay paquetes GLS !{{en camino|que no están en camino}}",
+          "da": "GLS-pakker !{{er|er ikke}} undervejs",
+          "ru": "Посылки GLS !{{в пути|не в пути}}",
+          "pl": "Paczki GLS !{{są|nie są}} w drodze",
+          "ko": "GLS 택배가 !{{배송 중|배송 중이 아님}}",
+          "ar": "طرود GLS !{{قيد التوصيل|ليست قيد التوصيل}}"
         },
         "args": [
           {
@@ -12046,6 +14666,409 @@
             "type": "device",
             "name": "device",
             "filter": "driver_id=gls"
+          }
+        ]
+      },
+      {
+        "id": "gls_out_for_delivery_now",
+        "title": {
+          "en": "A GLS parcel !{{is|is not}} out for delivery",
+          "nl": "Er is !{{een|geen}} GLS-pakket onderweg voor bezorging",
+          "de": "Ein GLS-Paket !{{ist|ist nicht}} in Zustellung",
+          "fr": "Un colis GLS !{{est|n’est pas}} en cours de livraison",
+          "it": "Un pacco GLS !{{è|non è}} in consegna",
+          "sv": "Ett GLS-paket !{{är|är inte}} ute för leverans",
+          "no": "En GLS-pakke !{{er|er ikke}} ute for levering",
+          "es": "Un paquete GLS !{{está|no está}} en reparto",
+          "da": "En GLS-pakke !{{er|er ikke}} ude til levering",
+          "ru": "Посылка GLS !{{передана|не передана}} курьеру",
+          "pl": "Paczka GLS !{{jest|nie jest}} w doręczeniu",
+          "ko": "GLS 택배가 !{{배송 출발함|배송 출발하지 않음}}",
+          "ar": "طرد GLS !{{خرج|لم يخرج}} للتوصيل"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=gls"
+          }
+        ]
+      },
+      {
+        "id": "gls_ready_for_pickup_now",
+        "title": {
+          "en": "A GLS parcel !{{is|is not}} ready for pickup",
+          "nl": "Er ligt !{{een|geen}} GLS-pakket klaar om op te halen",
+          "de": "Ein GLS-Paket !{{ist|ist nicht}} abholbereit",
+          "fr": "Un colis GLS !{{est|n’est pas}} prêt à être retiré",
+          "it": "Un pacco GLS !{{è|non è}} pronto per il ritiro",
+          "sv": "Ett GLS-paket !{{är|är inte}} redo att hämtas",
+          "no": "En GLS-pakke !{{er|er ikke}} klar for henting",
+          "es": "Un paquete GLS !{{está|no está}} listo para recoger",
+          "da": "En GLS-pakke !{{er|er ikke}} klar til afhentning",
+          "ru": "Посылка GLS !{{готова|не готова}} к выдаче",
+          "pl": "Paczka GLS !{{jest|nie jest}} gotowa do odbioru",
+          "ko": "GLS 택배가 !{{픽업 준비됨|픽업 준비되지 않음}}",
+          "ar": "طرد GLS !{{جاهز|غير جاهز}} للاستلام"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=gls"
+          }
+        ]
+      },
+      {
+        "id": "gls_any_status_is",
+        "title": {
+          "en": "A GLS parcel !{{has|does not have}} status…",
+          "nl": "Een GLS-pakket !{{heeft|heeft niet}} status…",
+          "de": "Ein GLS-Paket !{{hat|hat nicht}} den Status…",
+          "fr": "Un colis GLS !{{a|n’a pas}} le statut…",
+          "it": "Un pacco GLS !{{ha|non ha}} lo stato…",
+          "sv": "Ett GLS-paket !{{har|har inte}} status…",
+          "no": "En GLS-pakke !{{har|har ikke}} status…",
+          "es": "Un paquete GLS !{{tiene|no tiene}} el estado…",
+          "da": "En GLS-pakke !{{har|har ikke}} status…",
+          "ru": "Посылка GLS !{{имеет|не имеет}} статус…",
+          "pl": "Paczka GLS !{{ma|nie ma}} statusu…",
+          "ko": "GLS 택배 상태가 !{{일치함|일치하지 않음}}…",
+          "ar": "طرد GLS !{{له|ليس له}} الحالة…"
+        },
+        "titleFormatted": {
+          "en": "A GLS parcel !{{has|does not have}} status [[status]]",
+          "nl": "Een GLS-pakket !{{heeft|heeft niet}} status [[status]]",
+          "de": "Ein GLS-Paket !{{hat|hat nicht}} den Status [[status]]",
+          "fr": "Un colis GLS !{{a|n’a pas}} le statut [[status]]",
+          "it": "Un pacco GLS !{{ha|non ha}} lo stato [[status]]",
+          "sv": "Ett GLS-paket !{{har|har inte}} status [[status]]",
+          "no": "En GLS-pakke !{{har|har ikke}} status [[status]]",
+          "es": "Un paquete GLS !{{tiene|no tiene}} el estado [[status]]",
+          "da": "En GLS-pakke !{{har|har ikke}} status [[status]]",
+          "ru": "Посылка GLS !{{имеет|не имеет}} статус [[status]]",
+          "pl": "Paczka GLS !{{ma|nie ma}} statusu [[status]]",
+          "ko": "GLS 택배 상태가 [[status]]와(과) !{{일치함|일치하지 않음}}",
+          "ar": "طرد GLS !{{له|ليس له}} الحالة [[status]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=gls"
+          },
+          {
+            "type": "dropdown",
+            "name": "status",
+            "title": {
+              "en": "Status",
+              "nl": "Status",
+              "de": "Status",
+              "fr": "Statut",
+              "it": "Stato",
+              "sv": "Status",
+              "no": "Status",
+              "es": "Estado",
+              "da": "Status",
+              "ru": "Статус",
+              "pl": "Status",
+              "ko": "상태",
+              "ar": "الحالة"
+            },
+            "values": [
+              {
+                "id": "registered",
+                "label": {
+                  "en": "Registered",
+                  "nl": "Aangemeld",
+                  "de": "Angekündigt",
+                  "fr": "Annoncé",
+                  "it": "Registrato",
+                  "sv": "Registrerad",
+                  "no": "Registrert",
+                  "es": "Registrado",
+                  "da": "Registreret",
+                  "ru": "Зарегистрирована",
+                  "pl": "Zarejestrowana",
+                  "ko": "접수됨",
+                  "ar": "مسجّل"
+                }
+              },
+              {
+                "id": "in_transit",
+                "label": {
+                  "en": "In transit",
+                  "nl": "Onderweg",
+                  "de": "Unterwegs",
+                  "fr": "En transit",
+                  "it": "In transito",
+                  "sv": "På väg",
+                  "no": "Underveis",
+                  "es": "En tránsito",
+                  "da": "Undervejs",
+                  "ru": "В пути",
+                  "pl": "W drodze",
+                  "ko": "배송 중",
+                  "ar": "قيد النقل"
+                }
+              },
+              {
+                "id": "out_for_delivery",
+                "label": {
+                  "en": "Out for delivery",
+                  "nl": "Onderweg voor bezorging",
+                  "de": "In Zustellung",
+                  "fr": "En cours de livraison",
+                  "it": "In consegna",
+                  "sv": "Ute för leverans",
+                  "no": "Ute for levering",
+                  "es": "En reparto",
+                  "da": "Ude til levering",
+                  "ru": "Передана курьеру",
+                  "pl": "W doręczeniu",
+                  "ko": "배송 출발",
+                  "ar": "خرج للتوصيل"
+                }
+              },
+              {
+                "id": "at_pickup_point",
+                "label": {
+                  "en": "Ready for pickup",
+                  "nl": "Klaar om op te halen",
+                  "de": "Abholbereit",
+                  "fr": "Prêt à être retiré",
+                  "it": "Pronto per il ritiro",
+                  "sv": "Redo att hämtas",
+                  "no": "Klar for henting",
+                  "es": "Listo para recoger",
+                  "da": "Klar til afhentning",
+                  "ru": "Готова к выдаче",
+                  "pl": "Gotowa do odbioru",
+                  "ko": "픽업 준비 완료",
+                  "ar": "جاهز للاستلام"
+                }
+              },
+              {
+                "id": "delivered",
+                "label": {
+                  "en": "Delivered",
+                  "nl": "Bezorgd",
+                  "de": "Zugestellt",
+                  "fr": "Livré",
+                  "it": "Consegnato",
+                  "sv": "Levererad",
+                  "no": "Levert",
+                  "es": "Entregado",
+                  "da": "Leveret",
+                  "ru": "Доставлена",
+                  "pl": "Doręczona",
+                  "ko": "배송 완료",
+                  "ar": "تم التسليم"
+                }
+              },
+              {
+                "id": "returning",
+                "label": {
+                  "en": "Returning to sender",
+                  "nl": "Retour naar afzender",
+                  "de": "Rücksendung an Absender",
+                  "fr": "Retour à l'expéditeur",
+                  "it": "In restituzione al mittente",
+                  "sv": "Returneras till avsändaren",
+                  "no": "Returneres til avsender",
+                  "es": "Devolviendo al remitente",
+                  "da": "Returneres til afsender",
+                  "ru": "Возврат отправителю",
+                  "pl": "Zwrot do nadawcy",
+                  "ko": "발송인에게 반송 중",
+                  "ar": "يعود إلى المرسل"
+                }
+              },
+              {
+                "id": "problem",
+                "label": {
+                  "en": "Problem",
+                  "nl": "Probleem",
+                  "de": "Problem",
+                  "fr": "Problème",
+                  "it": "Problema",
+                  "sv": "Problem",
+                  "no": "Problem",
+                  "es": "Problema",
+                  "da": "Problem",
+                  "ru": "Проблема",
+                  "pl": "Problem",
+                  "ko": "문제",
+                  "ar": "مشكلة"
+                }
+              },
+              {
+                "id": "unknown",
+                "label": {
+                  "en": "Not yet known at GLS",
+                  "nl": "Nog niet bekend bij GLS",
+                  "de": "Noch nicht bei GLS bekannt",
+                  "fr": "Pas encore connu chez GLS",
+                  "it": "Non ancora noto a GLS",
+                  "sv": "Ännu inte känt hos GLS",
+                  "no": "Ikke kjent hos GLS ennå",
+                  "es": "Aún no conocido por GLS",
+                  "da": "Endnu ikke kendt hos GLS",
+                  "ru": "Пока неизвестна в GLS",
+                  "pl": "Jeszcze nieznana w GLS",
+                  "ko": "GLS에 아직 등록되지 않음",
+                  "ar": "غير معروف لدى GLS بعد"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "gls_parcel_is_delivered",
+        "title": {
+          "en": "GLS parcel… !{{is|is not}} delivered",
+          "nl": "GLS-pakket… !{{is|is niet}} bezorgd",
+          "de": "GLS-Paket… !{{ist|ist nicht}} zugestellt",
+          "fr": "Le colis GLS… !{{est|n’est pas}} livré",
+          "it": "Il pacco GLS… !{{è|non è}} consegnato",
+          "sv": "GLS-paket… !{{är|är inte}} levererat",
+          "no": "GLS-pakke… !{{er|er ikke}} levert",
+          "es": "El paquete GLS… !{{está|no está}} entregado",
+          "da": "GLS-pakke… !{{er|er ikke}} leveret",
+          "ru": "Посылка GLS… !{{доставлена|не доставлена}}",
+          "pl": "Paczka GLS… !{{jest|nie jest}} doręczona",
+          "ko": "GLS 택배…이(가) !{{배송 완료됨|배송 완료되지 않음}}",
+          "ar": "طرد GLS… !{{تم تسليمه|لم يتم تسليمه}}"
+        },
+        "titleFormatted": {
+          "en": "GLS parcel [[tracking]] !{{is|is not}} delivered",
+          "nl": "GLS-pakket [[tracking]] !{{is|is niet}} bezorgd",
+          "de": "GLS-Paket [[tracking]] !{{ist|ist nicht}} zugestellt",
+          "fr": "Le colis GLS [[tracking]] !{{est|n’est pas}} livré",
+          "it": "Il pacco GLS [[tracking]] !{{è|non è}} consegnato",
+          "sv": "GLS-paket [[tracking]] !{{är|är inte}} levererat",
+          "no": "GLS-pakke [[tracking]] !{{er|er ikke}} levert",
+          "es": "El paquete GLS [[tracking]] !{{está|no está}} entregado",
+          "da": "GLS-pakke [[tracking]] !{{er|er ikke}} leveret",
+          "ru": "Посылка GLS [[tracking]] !{{доставлена|не доставлена}}",
+          "pl": "Paczka GLS [[tracking]] !{{jest|nie jest}} doręczona",
+          "ko": "GLS 택배 [[tracking]]이(가) !{{배송 완료됨|배송 완료되지 않음}}",
+          "ar": "طرد GLS [[tracking]] !{{تم تسليمه|لم يتم تسليمه}}"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=gls"
+          },
+          {
+            "type": "autocomplete",
+            "name": "tracking",
+            "title": {
+              "en": "Tracking number",
+              "nl": "Trackingnummer",
+              "de": "Sendungsnummer",
+              "fr": "Numéro de suivi",
+              "it": "Numero di tracciamento",
+              "sv": "Spårningsnummer",
+              "no": "Sporingsnummer",
+              "es": "Número de seguimiento",
+              "da": "Sporingsnummer",
+              "ru": "Трек-номер",
+              "pl": "Numer przesyłki",
+              "ko": "운송장 번호",
+              "ar": "رقم التتبع"
+            },
+            "placeholder": {
+              "en": "Tracking number",
+              "nl": "Trackingnummer",
+              "de": "Sendungsnummer",
+              "fr": "Numéro de suivi",
+              "it": "Numero di tracciamento",
+              "sv": "Spårningsnummer",
+              "no": "Sporingsnummer",
+              "es": "Número de seguimiento",
+              "da": "Sporingsnummer",
+              "ru": "Трек-номер",
+              "pl": "Numer przesyłki",
+              "ko": "운송장 번호",
+              "ar": "رقم التتبع"
+            }
+          }
+        ]
+      },
+      {
+        "id": "gls_is_tracking",
+        "title": {
+          "en": "GLS parcel… !{{is|is not}} being tracked",
+          "nl": "GLS-pakket… wordt !{{wel|niet}} gevolgd",
+          "de": "GLS-Paket… wird !{{verfolgt|nicht verfolgt}}",
+          "fr": "Le colis GLS… !{{est|n’est pas}} suivi",
+          "it": "Il pacco GLS… !{{è|non è}} monitorato",
+          "sv": "GLS-paket… !{{spåras|spåras inte}}",
+          "no": "GLS-pakke… !{{spores|spores ikke}}",
+          "es": "El paquete GLS… !{{se está|no se está}} siguiendo",
+          "da": "GLS-pakke… !{{spores|spores ikke}}",
+          "ru": "Посылка GLS… !{{отслеживается|не отслеживается}}",
+          "pl": "Paczka GLS… !{{jest|nie jest}} śledzona",
+          "ko": "GLS 택배…을(를) !{{추적 중|추적하지 않음}}",
+          "ar": "طرد GLS… !{{قيد التتبع|ليس قيد التتبع}}"
+        },
+        "titleFormatted": {
+          "en": "GLS parcel [[tracking]] !{{is|is not}} being tracked",
+          "nl": "GLS-pakket [[tracking]] wordt !{{wel|niet}} gevolgd",
+          "de": "GLS-Paket [[tracking]] wird !{{verfolgt|nicht verfolgt}}",
+          "fr": "Le colis GLS [[tracking]] !{{est|n’est pas}} suivi",
+          "it": "Il pacco GLS [[tracking]] !{{è|non è}} monitorato",
+          "sv": "GLS-paket [[tracking]] !{{spåras|spåras inte}}",
+          "no": "GLS-pakke [[tracking]] !{{spores|spores ikke}}",
+          "es": "El paquete GLS [[tracking]] !{{se está|no se está}} siguiendo",
+          "da": "GLS-pakke [[tracking]] !{{spores|spores ikke}}",
+          "ru": "Посылка GLS [[tracking]] !{{отслеживается|не отслеживается}}",
+          "pl": "Paczka GLS [[tracking]] !{{jest|nie jest}} śledzona",
+          "ko": "GLS 택배 [[tracking]]을(를) !{{추적 중|추적하지 않음}}",
+          "ar": "طرد GLS [[tracking]] !{{قيد التتبع|ليس قيد التتبع}}"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=gls"
+          },
+          {
+            "type": "text",
+            "name": "tracking",
+            "title": {
+              "en": "Tracking number",
+              "nl": "Trackingnummer",
+              "de": "Sendungsnummer",
+              "fr": "Numéro de suivi",
+              "it": "Numero di tracciamento",
+              "sv": "Spårningsnummer",
+              "no": "Sporingsnummer",
+              "es": "Número de seguimiento",
+              "da": "Sporingsnummer",
+              "ru": "Трек-номер",
+              "pl": "Numer przesyłki",
+              "ko": "운송장 번호",
+              "ar": "رقم التتبع"
+            },
+            "placeholder": {
+              "en": "Tracking number",
+              "nl": "Trackingnummer",
+              "de": "Sendungsnummer",
+              "fr": "Numéro de suivi",
+              "it": "Numero di tracciamento",
+              "sv": "Spårningsnummer",
+              "no": "Sporingsnummer",
+              "es": "Número de seguimiento",
+              "da": "Sporingsnummer",
+              "ru": "Трек-номер",
+              "pl": "Numer przesyłki",
+              "ko": "운송장 번호",
+              "ar": "رقم التتبع"
+            }
           }
         ]
       },
@@ -12520,17 +15543,205 @@
         "title": {
           "en": "Refresh GLS",
           "nl": "Vernieuw GLS",
-          "de": "Refresh GLS",
-          "fr": "Refresh GLS",
-          "it": "Refresh GLS",
-          "sv": "Refresh GLS",
-          "no": "Refresh GLS",
-          "es": "Refresh GLS",
-          "da": "Refresh GLS",
-          "ru": "Refresh GLS",
-          "pl": "Refresh GLS",
-          "ko": "Refresh GLS",
-          "ar": "Refresh GLS"
+          "de": "GLS aktualisieren",
+          "fr": "Actualiser GLS",
+          "it": "Aggiorna GLS",
+          "sv": "Uppdatera GLS",
+          "no": "Oppdater GLS",
+          "es": "Actualizar GLS",
+          "da": "Opdater GLS",
+          "ru": "Обновить GLS",
+          "pl": "Odśwież GLS",
+          "ko": "GLS 새로고침",
+          "ar": "تحديث GLS"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=gls"
+          }
+        ]
+      },
+      {
+        "id": "gls_track_parcel",
+        "title": {
+          "en": "Track GLS parcel…",
+          "nl": "Volg GLS-pakket…",
+          "de": "GLS-Paket verfolgen…",
+          "fr": "Suivre le colis GLS…",
+          "it": "Monitora il pacco GLS…",
+          "sv": "Spåra GLS-paket…",
+          "no": "Spor GLS-pakke…",
+          "es": "Seguir el paquete GLS…",
+          "da": "Spor GLS-pakke…",
+          "ru": "Отслеживать посылку GLS…",
+          "pl": "Śledź paczkę GLS…",
+          "ko": "GLS 택배 추적…",
+          "ar": "تتبع طرد GLS…"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=gls"
+          },
+          {
+            "type": "text",
+            "name": "tracking",
+            "title": {
+              "en": "Tracking number",
+              "nl": "Trackingnummer",
+              "de": "Sendungsnummer",
+              "fr": "Numéro de suivi",
+              "it": "Numero di tracciamento",
+              "sv": "Spårningsnummer",
+              "no": "Sporingsnummer",
+              "es": "Número de seguimiento",
+              "da": "Sporingsnummer",
+              "ru": "Трек-номер",
+              "pl": "Numer przesyłki",
+              "ko": "운송장 번호",
+              "ar": "رقم التتبع"
+            },
+            "placeholder": {
+              "en": "12345678901 1234AB",
+              "nl": "12345678901 1234AB",
+              "de": "12345678901 1234AB",
+              "fr": "12345678901 1234AB",
+              "it": "12345678901 1234AB",
+              "sv": "12345678901 1234AB",
+              "no": "12345678901 1234AB",
+              "es": "12345678901 1234AB",
+              "da": "12345678901 1234AB",
+              "ru": "12345678901 1234AB",
+              "pl": "12345678901 1234AB",
+              "ko": "12345678901 1234AB",
+              "ar": "12345678901 1234AB"
+            }
+          }
+        ],
+        "titleFormatted": {
+          "en": "Track GLS parcel [[tracking]]",
+          "nl": "Volg GLS-pakket [[tracking]]",
+          "de": "GLS-Paket [[tracking]] verfolgen",
+          "fr": "Suivre le colis GLS [[tracking]]",
+          "it": "Monitora il pacco GLS [[tracking]]",
+          "sv": "Spåra GLS-paket [[tracking]]",
+          "no": "Spor GLS-pakke [[tracking]]",
+          "es": "Seguir el paquete GLS [[tracking]]",
+          "da": "Spor GLS-pakke [[tracking]]",
+          "ru": "Отслеживать посылку GLS [[tracking]]",
+          "pl": "Śledź paczkę GLS [[tracking]]",
+          "ko": "GLS 택배 [[tracking]] 추적",
+          "ar": "تتبع طرد GLS [[tracking]]"
+        },
+        "hint": {
+          "en": "Optionally add a different postal code after the number, e.g. 12345678901 1234AB. Without one, the device postal code is used.",
+          "nl": "Zet eventueel een afwijkende postcode achter het nummer, bijv. 12345678901 1234AB. Zonder postcode wordt de postcode van het apparaat gebruikt.",
+          "de": "Optional eine abweichende Postleitzahl hinter die Nummer setzen, z. B. 12345678901 12345. Ohne PLZ wird die Postleitzahl des Geräts verwendet.",
+          "fr": "Ajoutez éventuellement un autre code postal après le numéro, p. ex. 12345678901 75001. Sinon, le code postal de l’appareil est utilisé.",
+          "it": "Optionally add a different postal code after the number, e.g. 12345678901 1234AB. Without one, the device postal code is used.",
+          "sv": "Optionally add a different postal code after the number, e.g. 12345678901 1234AB. Without one, the device postal code is used.",
+          "no": "Optionally add a different postal code after the number, e.g. 12345678901 1234AB. Without one, the device postal code is used.",
+          "es": "Optionally add a different postal code after the number, e.g. 12345678901 1234AB. Without one, the device postal code is used.",
+          "da": "Optionally add a different postal code after the number, e.g. 12345678901 1234AB. Without one, the device postal code is used.",
+          "ru": "Optionally add a different postal code after the number, e.g. 12345678901 1234AB. Without one, the device postal code is used.",
+          "pl": "Optionally add a different postal code after the number, e.g. 12345678901 1234AB. Without one, the device postal code is used.",
+          "ko": "Optionally add a different postal code after the number, e.g. 12345678901 1234AB. Without one, the device postal code is used.",
+          "ar": "Optionally add a different postal code after the number, e.g. 12345678901 1234AB. Without one, the device postal code is used."
+        }
+      },
+      {
+        "id": "gls_untrack_parcel",
+        "title": {
+          "en": "Stop tracking GLS parcel…",
+          "nl": "Stop met volgen van GLS-pakket…",
+          "de": "Verfolgung von GLS-Paket beenden…",
+          "fr": "Arrêter le suivi du colis GLS…",
+          "it": "Interrompi il monitoraggio del pacco GLS…",
+          "sv": "Sluta spåra GLS-paket…",
+          "no": "Slutt å spore GLS-pakke…",
+          "es": "Dejar de seguir el paquete GLS…",
+          "da": "Stop sporing af GLS-pakke…",
+          "ru": "Прекратить отслеживание посылки GLS…",
+          "pl": "Przestań śledzić paczkę GLS…",
+          "ko": "GLS 택배 추적 중지…",
+          "ar": "إيقاف تتبع طرد GLS…"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=gls"
+          },
+          {
+            "type": "autocomplete",
+            "name": "tracking",
+            "title": {
+              "en": "Tracking number",
+              "nl": "Trackingnummer",
+              "de": "Sendungsnummer",
+              "fr": "Numéro de suivi",
+              "it": "Numero di tracciamento",
+              "sv": "Spårningsnummer",
+              "no": "Sporingsnummer",
+              "es": "Número de seguimiento",
+              "da": "Sporingsnummer",
+              "ru": "Трек-номер",
+              "pl": "Numer przesyłki",
+              "ko": "운송장 번호",
+              "ar": "رقم التتبع"
+            },
+            "placeholder": {
+              "en": "Tracking number",
+              "nl": "Trackingnummer",
+              "de": "Sendungsnummer",
+              "fr": "Numéro de suivi",
+              "it": "Numero di tracciamento",
+              "sv": "Spårningsnummer",
+              "no": "Sporingsnummer",
+              "es": "Número de seguimiento",
+              "da": "Sporingsnummer",
+              "ru": "Трек-номер",
+              "pl": "Numer przesyłki",
+              "ko": "운송장 번호",
+              "ar": "رقم التتبع"
+            }
+          }
+        ],
+        "titleFormatted": {
+          "en": "Stop tracking GLS parcel [[tracking]]",
+          "nl": "Stop met volgen van GLS-pakket [[tracking]]",
+          "de": "Verfolgung von GLS-Paket [[tracking]] beenden",
+          "fr": "Arrêter le suivi du colis GLS [[tracking]]",
+          "it": "Interrompi il monitoraggio del pacco GLS [[tracking]]",
+          "sv": "Sluta spåra GLS-paket [[tracking]]",
+          "no": "Slutt å spore GLS-pakke [[tracking]]",
+          "es": "Dejar de seguir el paquete GLS [[tracking]]",
+          "da": "Stop sporing af GLS-pakke [[tracking]]",
+          "ru": "Прекратить отслеживание посылки GLS [[tracking]]",
+          "pl": "Przestań śledzić paczkę GLS [[tracking]]",
+          "ko": "GLS 택배 [[tracking]] 추적 중지",
+          "ar": "إيقاف تتبع طرد GLS [[tracking]]"
+        }
+      },
+      {
+        "id": "gls_remove_delivered",
+        "title": {
+          "en": "Remove delivered GLS parcels",
+          "nl": "Verwijder bezorgde GLS-pakketten",
+          "de": "Zugestellte GLS-Pakete entfernen",
+          "fr": "Supprimer les colis GLS livrés",
+          "it": "Rimuovi i pacchi GLS consegnati",
+          "sv": "Ta bort levererade GLS-paket",
+          "no": "Fjern leverte GLS-pakker",
+          "es": "Eliminar los paquetes GLS entregados",
+          "da": "Fjern leverede GLS-pakker",
+          "ru": "Удалить доставленные посылки GLS",
+          "pl": "Usuń doręczone paczki GLS",
+          "ko": "배송 완료된 GLS 택배 삭제",
+          "ar": "إزالة طرود GLS المسلَّمة"
         },
         "args": [
           {
@@ -13143,6 +16354,19 @@
       "capabilities": [
         "gls_parcel_count",
         "gls_status",
+        "gls_next_delivery",
+        "gls_delivery_window",
+        "gls_tracking",
+        "gls_sender",
+        "gls_receiver",
+        "gls_last_event",
+        "gls_out_for_delivery_count",
+        "gls_en_route_pickup_count",
+        "gls_pickup_count",
+        "gls_pickup_point",
+        "gls_delivered_count",
+        "gls_weight",
+        "gls_dimensions",
         "myparcel_connection_status",
         "gls_last_update"
       ],
@@ -13165,126 +16389,671 @@
       ],
       "settings": [
         {
-          "id": "username",
-          "type": "text",
+          "type": "group",
           "label": {
-            "en": "MyGLS username",
-            "nl": "MyGLS gebruikersnaam",
-            "de": "MyGLS username",
-            "fr": "MyGLS username",
-            "it": "MyGLS username",
-            "sv": "MyGLS username",
-            "no": "MyGLS username",
-            "es": "MyGLS username",
-            "da": "MyGLS username",
-            "ru": "MyGLS username",
-            "pl": "MyGLS username",
-            "ko": "MyGLS username",
-            "ar": "MyGLS username"
+            "en": "GLS Track & Trace",
+            "nl": "GLS Track & Trace",
+            "de": "GLS Track & Trace",
+            "fr": "GLS Track & Trace",
+            "it": "GLS Track & Trace",
+            "sv": "GLS Track & Trace",
+            "no": "GLS Track & Trace",
+            "es": "GLS Track & Trace",
+            "da": "GLS Track & Trace",
+            "ru": "GLS Track & Trace",
+            "pl": "GLS Track & Trace",
+            "ko": "GLS Track & Trace",
+            "ar": "GLS Track & Trace"
           },
-          "value": ""
+          "children": [
+            {
+              "id": "country",
+              "type": "dropdown",
+              "label": {
+                "en": "Country",
+                "nl": "Land",
+                "de": "Land",
+                "fr": "Pays",
+                "it": "Paese",
+                "sv": "Land",
+                "no": "Land",
+                "es": "País",
+                "da": "Land",
+                "ru": "Страна",
+                "pl": "Kraj",
+                "ko": "국가",
+                "ar": "الدولة"
+              },
+              "value": "NL",
+              "values": [
+                {
+                  "id": "NL",
+                  "label": {
+                    "en": "Netherlands",
+                    "nl": "Nederland",
+                    "de": "Niederlande",
+                    "fr": "Pays-Bas",
+                    "it": "Netherlands",
+                    "sv": "Netherlands",
+                    "no": "Netherlands",
+                    "es": "Netherlands",
+                    "da": "Netherlands",
+                    "ru": "Netherlands",
+                    "pl": "Netherlands",
+                    "ko": "Netherlands",
+                    "ar": "Netherlands"
+                  }
+                },
+                {
+                  "id": "BE",
+                  "label": {
+                    "en": "Belgium",
+                    "nl": "België",
+                    "de": "Belgien",
+                    "fr": "Belgique",
+                    "it": "Belgium",
+                    "sv": "Belgium",
+                    "no": "Belgium",
+                    "es": "Belgium",
+                    "da": "Belgium",
+                    "ru": "Belgium",
+                    "pl": "Belgium",
+                    "ko": "Belgium",
+                    "ar": "Belgium"
+                  }
+                },
+                {
+                  "id": "DE",
+                  "label": {
+                    "en": "Germany",
+                    "nl": "Duitsland",
+                    "de": "Deutschland",
+                    "fr": "Allemagne",
+                    "it": "Germany",
+                    "sv": "Germany",
+                    "no": "Germany",
+                    "es": "Germany",
+                    "da": "Germany",
+                    "ru": "Germany",
+                    "pl": "Germany",
+                    "ko": "Germany",
+                    "ar": "Germany"
+                  }
+                },
+                {
+                  "id": "AT",
+                  "label": {
+                    "en": "Austria",
+                    "nl": "Oostenrijk",
+                    "de": "Österreich",
+                    "fr": "Autriche",
+                    "it": "Austria",
+                    "sv": "Austria",
+                    "no": "Austria",
+                    "es": "Austria",
+                    "da": "Austria",
+                    "ru": "Austria",
+                    "pl": "Austria",
+                    "ko": "Austria",
+                    "ar": "Austria"
+                  }
+                },
+                {
+                  "id": "CH",
+                  "label": {
+                    "en": "Switzerland",
+                    "nl": "Zwitserland",
+                    "de": "Schweiz",
+                    "fr": "Suisse",
+                    "it": "Switzerland",
+                    "sv": "Switzerland",
+                    "no": "Switzerland",
+                    "es": "Switzerland",
+                    "da": "Switzerland",
+                    "ru": "Switzerland",
+                    "pl": "Switzerland",
+                    "ko": "Switzerland",
+                    "ar": "Switzerland"
+                  }
+                },
+                {
+                  "id": "LU",
+                  "label": {
+                    "en": "Luxembourg",
+                    "nl": "Luxemburg",
+                    "de": "Luxemburg",
+                    "fr": "Luxembourg",
+                    "it": "Luxembourg",
+                    "sv": "Luxembourg",
+                    "no": "Luxembourg",
+                    "es": "Luxembourg",
+                    "da": "Luxembourg",
+                    "ru": "Luxembourg",
+                    "pl": "Luxembourg",
+                    "ko": "Luxembourg",
+                    "ar": "Luxembourg"
+                  }
+                },
+                {
+                  "id": "FR",
+                  "label": {
+                    "en": "France",
+                    "nl": "Frankrijk",
+                    "de": "Frankreich",
+                    "fr": "France",
+                    "it": "France",
+                    "sv": "France",
+                    "no": "France",
+                    "es": "France",
+                    "da": "France",
+                    "ru": "France",
+                    "pl": "France",
+                    "ko": "France",
+                    "ar": "France"
+                  }
+                },
+                {
+                  "id": "IT",
+                  "label": {
+                    "en": "Italy",
+                    "nl": "Italië",
+                    "de": "Italien",
+                    "fr": "Italie",
+                    "it": "Italy",
+                    "sv": "Italy",
+                    "no": "Italy",
+                    "es": "Italy",
+                    "da": "Italy",
+                    "ru": "Italy",
+                    "pl": "Italy",
+                    "ko": "Italy",
+                    "ar": "Italy"
+                  }
+                },
+                {
+                  "id": "DK",
+                  "label": {
+                    "en": "Denmark",
+                    "nl": "Denemarken",
+                    "de": "Dänemark",
+                    "fr": "Danemark",
+                    "it": "Denmark",
+                    "sv": "Denmark",
+                    "no": "Denmark",
+                    "es": "Denmark",
+                    "da": "Denmark",
+                    "ru": "Denmark",
+                    "pl": "Denmark",
+                    "ko": "Denmark",
+                    "ar": "Denmark"
+                  }
+                },
+                {
+                  "id": "FI",
+                  "label": {
+                    "en": "Finland",
+                    "nl": "Finland",
+                    "de": "Finnland",
+                    "fr": "Finlande",
+                    "it": "Finland",
+                    "sv": "Finland",
+                    "no": "Finland",
+                    "es": "Finland",
+                    "da": "Finland",
+                    "ru": "Finland",
+                    "pl": "Finland",
+                    "ko": "Finland",
+                    "ar": "Finland"
+                  }
+                },
+                {
+                  "id": "IE",
+                  "label": {
+                    "en": "Ireland",
+                    "nl": "Ierland",
+                    "de": "Irland",
+                    "fr": "Irlande",
+                    "it": "Ireland",
+                    "sv": "Ireland",
+                    "no": "Ireland",
+                    "es": "Ireland",
+                    "da": "Ireland",
+                    "ru": "Ireland",
+                    "pl": "Ireland",
+                    "ko": "Ireland",
+                    "ar": "Ireland"
+                  }
+                },
+                {
+                  "id": "PL",
+                  "label": {
+                    "en": "Poland",
+                    "nl": "Polen",
+                    "de": "Polen",
+                    "fr": "Pologne",
+                    "it": "Poland",
+                    "sv": "Poland",
+                    "no": "Poland",
+                    "es": "Poland",
+                    "da": "Poland",
+                    "ru": "Poland",
+                    "pl": "Poland",
+                    "ko": "Poland",
+                    "ar": "Poland"
+                  }
+                },
+                {
+                  "id": "CZ",
+                  "label": {
+                    "en": "Czech Republic",
+                    "nl": "Tsjechië",
+                    "de": "Tschechien",
+                    "fr": "République tchèque",
+                    "it": "Czech Republic",
+                    "sv": "Czech Republic",
+                    "no": "Czech Republic",
+                    "es": "Czech Republic",
+                    "da": "Czech Republic",
+                    "ru": "Czech Republic",
+                    "pl": "Czech Republic",
+                    "ko": "Czech Republic",
+                    "ar": "Czech Republic"
+                  }
+                },
+                {
+                  "id": "SK",
+                  "label": {
+                    "en": "Slovakia",
+                    "nl": "Slowakije",
+                    "de": "Slowakei",
+                    "fr": "Slovaquie",
+                    "it": "Slovakia",
+                    "sv": "Slovakia",
+                    "no": "Slovakia",
+                    "es": "Slovakia",
+                    "da": "Slovakia",
+                    "ru": "Slovakia",
+                    "pl": "Slovakia",
+                    "ko": "Slovakia",
+                    "ar": "Slovakia"
+                  }
+                },
+                {
+                  "id": "HU",
+                  "label": {
+                    "en": "Hungary",
+                    "nl": "Hongarije",
+                    "de": "Ungarn",
+                    "fr": "Hongrie",
+                    "it": "Hungary",
+                    "sv": "Hungary",
+                    "no": "Hungary",
+                    "es": "Hungary",
+                    "da": "Hungary",
+                    "ru": "Hungary",
+                    "pl": "Hungary",
+                    "ko": "Hungary",
+                    "ar": "Hungary"
+                  }
+                },
+                {
+                  "id": "SI",
+                  "label": {
+                    "en": "Slovenia",
+                    "nl": "Slovenië",
+                    "de": "Slowenien",
+                    "fr": "Slovénie",
+                    "it": "Slovenia",
+                    "sv": "Slovenia",
+                    "no": "Slovenia",
+                    "es": "Slovenia",
+                    "da": "Slovenia",
+                    "ru": "Slovenia",
+                    "pl": "Slovenia",
+                    "ko": "Slovenia",
+                    "ar": "Slovenia"
+                  }
+                },
+                {
+                  "id": "HR",
+                  "label": {
+                    "en": "Croatia",
+                    "nl": "Kroatië",
+                    "de": "Kroatien",
+                    "fr": "Croatie",
+                    "it": "Croatia",
+                    "sv": "Croatia",
+                    "no": "Croatia",
+                    "es": "Croatia",
+                    "da": "Croatia",
+                    "ru": "Croatia",
+                    "pl": "Croatia",
+                    "ko": "Croatia",
+                    "ar": "Croatia"
+                  }
+                },
+                {
+                  "id": "RS",
+                  "label": {
+                    "en": "Serbia",
+                    "nl": "Servië",
+                    "de": "Serbien",
+                    "fr": "Serbie",
+                    "it": "Serbia",
+                    "sv": "Serbia",
+                    "no": "Serbia",
+                    "es": "Serbia",
+                    "da": "Serbia",
+                    "ru": "Serbia",
+                    "pl": "Serbia",
+                    "ko": "Serbia",
+                    "ar": "Serbia"
+                  }
+                },
+                {
+                  "id": "US",
+                  "label": {
+                    "en": "United States",
+                    "nl": "Verenigde Staten",
+                    "de": "Vereinigte Staaten",
+                    "fr": "États-Unis",
+                    "it": "United States",
+                    "sv": "United States",
+                    "no": "United States",
+                    "es": "United States",
+                    "da": "United States",
+                    "ru": "United States",
+                    "pl": "United States",
+                    "ko": "United States",
+                    "ar": "United States"
+                  }
+                },
+                {
+                  "id": "CA",
+                  "label": {
+                    "en": "Canada",
+                    "nl": "Canada",
+                    "de": "Kanada",
+                    "fr": "Canada",
+                    "it": "Canada",
+                    "sv": "Canada",
+                    "no": "Canada",
+                    "es": "Canada",
+                    "da": "Canada",
+                    "ru": "Canada",
+                    "pl": "Canada",
+                    "ko": "Canada",
+                    "ar": "Canada"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "postal_code",
+              "type": "text",
+              "label": {
+                "en": "Delivery postal code",
+                "nl": "Bezorgpostcode",
+                "de": "Zustell-Postleitzahl",
+                "fr": "Code postal de livraison",
+                "it": "CAP di consegna",
+                "sv": "Leveranspostnummer",
+                "no": "Leveringspostnummer",
+                "es": "Código postal de entrega",
+                "da": "Leveringspostnummer",
+                "ru": "Почтовый индекс доставки",
+                "pl": "Kod pocztowy dostawy",
+                "ko": "배송지 우편번호",
+                "ar": "الرمز البريدي للتوصيل"
+              },
+              "hint": {
+                "en": "The postal code your GLS parcels are delivered to. GLS only shares parcel details for the matching postal code.",
+                "nl": "De postcode waar je GLS-pakketten bezorgd worden. GLS geeft alleen pakketgegevens vrij bij de juiste postcode.",
+                "de": "Die Postleitzahl, an die deine GLS-Pakete geliefert werden. GLS gibt Paketdetails nur mit der passenden PLZ frei.",
+                "fr": "Le code postal de livraison de vos colis GLS. GLS ne partage les détails qu’avec le bon code postal.",
+                "it": "The postal code your GLS parcels are delivered to. GLS only shares parcel details for the matching postal code.",
+                "sv": "The postal code your GLS parcels are delivered to. GLS only shares parcel details for the matching postal code.",
+                "no": "The postal code your GLS parcels are delivered to. GLS only shares parcel details for the matching postal code.",
+                "es": "The postal code your GLS parcels are delivered to. GLS only shares parcel details for the matching postal code.",
+                "da": "The postal code your GLS parcels are delivered to. GLS only shares parcel details for the matching postal code.",
+                "ru": "The postal code your GLS parcels are delivered to. GLS only shares parcel details for the matching postal code.",
+                "pl": "The postal code your GLS parcels are delivered to. GLS only shares parcel details for the matching postal code.",
+                "ko": "The postal code your GLS parcels are delivered to. GLS only shares parcel details for the matching postal code.",
+                "ar": "The postal code your GLS parcels are delivered to. GLS only shares parcel details for the matching postal code."
+              },
+              "value": ""
+            },
+            {
+              "id": "tracking_numbers",
+              "type": "textarea",
+              "label": {
+                "en": "Tracking numbers",
+                "nl": "Trackingnummers",
+                "de": "Sendungsnummern",
+                "fr": "Numéros de suivi",
+                "it": "Numeri di tracciamento",
+                "sv": "Spårningsnummer",
+                "no": "Sporingsnumre",
+                "es": "Números de seguimiento",
+                "da": "Sporingsnumre",
+                "ru": "Трек-номера",
+                "pl": "Numery przesyłek",
+                "ko": "운송장 번호",
+                "ar": "أرقام التتبع"
+              },
+              "hint": {
+                "en": "One parcel per line: the long parcel number or the short track ID from the GLS e-mail/SMS. Add a different postal code after the number when needed, e.g. 12345678901 1234AB.",
+                "nl": "Eén pakket per regel: het lange pakketnummer of de korte track-ID uit de GLS-mail/sms. Zet zo nodig een afwijkende postcode achter het nummer, bijv. 12345678901 1234AB.",
+                "de": "Ein Paket pro Zeile: die lange Paketnummer oder die kurze Track-ID aus der GLS-Mail/SMS. Bei Bedarf eine abweichende PLZ hinter die Nummer setzen, z. B. 12345678901 12345.",
+                "fr": "Un colis par ligne : le long numéro de colis ou le court Track ID de l’e-mail/SMS GLS. Ajoutez si besoin un autre code postal après le numéro.",
+                "it": "One parcel per line: the long parcel number or the short track ID from the GLS e-mail/SMS. Add a different postal code after the number when needed, e.g. 12345678901 1234AB.",
+                "sv": "One parcel per line: the long parcel number or the short track ID from the GLS e-mail/SMS. Add a different postal code after the number when needed, e.g. 12345678901 1234AB.",
+                "no": "One parcel per line: the long parcel number or the short track ID from the GLS e-mail/SMS. Add a different postal code after the number when needed, e.g. 12345678901 1234AB.",
+                "es": "One parcel per line: the long parcel number or the short track ID from the GLS e-mail/SMS. Add a different postal code after the number when needed, e.g. 12345678901 1234AB.",
+                "da": "One parcel per line: the long parcel number or the short track ID from the GLS e-mail/SMS. Add a different postal code after the number when needed, e.g. 12345678901 1234AB.",
+                "ru": "One parcel per line: the long parcel number or the short track ID from the GLS e-mail/SMS. Add a different postal code after the number when needed, e.g. 12345678901 1234AB.",
+                "pl": "One parcel per line: the long parcel number or the short track ID from the GLS e-mail/SMS. Add a different postal code after the number when needed, e.g. 12345678901 1234AB.",
+                "ko": "One parcel per line: the long parcel number or the short track ID from the GLS e-mail/SMS. Add a different postal code after the number when needed, e.g. 12345678901 1234AB.",
+                "ar": "One parcel per line: the long parcel number or the short track ID from the GLS e-mail/SMS. Add a different postal code after the number when needed, e.g. 12345678901 1234AB."
+              },
+              "value": ""
+            },
+            {
+              "id": "remove_delivered_after_days",
+              "type": "number",
+              "label": {
+                "en": "Remove delivered parcels after (days)",
+                "nl": "Bezorgde pakketten verwijderen na (dagen)",
+                "de": "Zugestellte Pakete entfernen nach (Tagen)",
+                "fr": "Supprimer les colis livrés après (jours)",
+                "it": "Rimuovi i pacchi consegnati dopo (giorni)",
+                "sv": "Ta bort levererade paket efter (dagar)",
+                "no": "Fjern leverte pakker etter (dager)",
+                "es": "Eliminar paquetes entregados después de (días)",
+                "da": "Fjern leverede pakker efter (dage)",
+                "ru": "Удалять доставленные посылки через (дней)",
+                "pl": "Usuń doręczone paczki po (dniach)",
+                "ko": "배송 완료 택배 삭제 기간(일)",
+                "ar": "إزالة الطرود المسلَّمة بعد (أيام)"
+              },
+              "hint": {
+                "en": "Delivered parcels stay visible for this many days and are then removed from the list. 0 = keep them.",
+                "nl": "Bezorgde pakketten blijven zo veel dagen zichtbaar en worden daarna uit de lijst gehaald. 0 = laten staan.",
+                "de": "Zugestellte Pakete bleiben so viele Tage sichtbar und werden dann aus der Liste entfernt. 0 = behalten.",
+                "fr": "Les colis livrés restent visibles ce nombre de jours, puis sont retirés de la liste. 0 = les conserver.",
+                "it": "Delivered parcels stay visible for this many days and are then removed from the list. 0 = keep them.",
+                "sv": "Delivered parcels stay visible for this many days and are then removed from the list. 0 = keep them.",
+                "no": "Delivered parcels stay visible for this many days and are then removed from the list. 0 = keep them.",
+                "es": "Delivered parcels stay visible for this many days and are then removed from the list. 0 = keep them.",
+                "da": "Delivered parcels stay visible for this many days and are then removed from the list. 0 = keep them.",
+                "ru": "Delivered parcels stay visible for this many days and are then removed from the list. 0 = keep them.",
+                "pl": "Delivered parcels stay visible for this many days and are then removed from the list. 0 = keep them.",
+                "ko": "Delivered parcels stay visible for this many days and are then removed from the list. 0 = keep them.",
+                "ar": "Delivered parcels stay visible for this many days and are then removed from the list. 0 = keep them."
+              },
+              "value": 7,
+              "min": 0,
+              "max": 90,
+              "step": 1
+            }
+          ]
         },
         {
-          "id": "password",
-          "type": "password",
+          "type": "group",
           "label": {
-            "en": "MyGLS password",
-            "nl": "MyGLS wachtwoord",
-            "de": "MyGLS password",
-            "fr": "MyGLS password",
-            "it": "MyGLS password",
-            "sv": "MyGLS password",
-            "no": "MyGLS password",
-            "es": "MyGLS password",
-            "da": "MyGLS password",
-            "ru": "MyGLS password",
-            "pl": "MyGLS password",
-            "ko": "MyGLS password",
-            "ar": "MyGLS password"
+            "en": "MyGLS business account (optional)",
+            "nl": "MyGLS-zakelijk account (optioneel)",
+            "de": "MyGLS-Geschäftskonto (optional)",
+            "fr": "Compte professionnel MyGLS (facultatif)",
+            "it": "MyGLS business account (optional)",
+            "sv": "MyGLS business account (optional)",
+            "no": "MyGLS business account (optional)",
+            "es": "MyGLS business account (optional)",
+            "da": "MyGLS business account (optional)",
+            "ru": "MyGLS business account (optional)",
+            "pl": "MyGLS business account (optional)",
+            "ko": "MyGLS business account (optional)",
+            "ar": "MyGLS business account (optional)"
           },
-          "value": ""
-        },
-        {
-          "id": "subscription_key",
-          "type": "password",
-          "label": {
-            "en": "API subscription key",
-            "nl": "API subscription key",
-            "de": "API subscription key",
-            "fr": "API subscription key",
-            "it": "API subscription key",
-            "sv": "API subscription key",
-            "no": "API subscription key",
-            "es": "API subscription key",
-            "da": "API subscription key",
-            "ru": "API subscription key",
-            "pl": "API subscription key",
-            "ko": "API subscription key",
-            "ar": "API subscription key"
+          "hint": {
+            "en": "Only for GLS ShipIT/API customers: parcels found on the account are added automatically. Leave empty for normal use.",
+            "nl": "Alleen voor GLS ShipIT/API-klanten: pakketten van het account worden automatisch toegevoegd. Laat leeg bij normaal gebruik.",
+            "de": "Nur für GLS ShipIT/API-Kunden: Pakete des Kontos werden automatisch hinzugefügt. Für normale Nutzung leer lassen.",
+            "fr": "Uniquement pour les clients GLS ShipIT/API : les colis du compte sont ajoutés automatiquement. Laisser vide pour un usage normal.",
+            "it": "Only for GLS ShipIT/API customers: parcels found on the account are added automatically. Leave empty for normal use.",
+            "sv": "Only for GLS ShipIT/API customers: parcels found on the account are added automatically. Leave empty for normal use.",
+            "no": "Only for GLS ShipIT/API customers: parcels found on the account are added automatically. Leave empty for normal use.",
+            "es": "Only for GLS ShipIT/API customers: parcels found on the account are added automatically. Leave empty for normal use.",
+            "da": "Only for GLS ShipIT/API customers: parcels found on the account are added automatically. Leave empty for normal use.",
+            "ru": "Only for GLS ShipIT/API customers: parcels found on the account are added automatically. Leave empty for normal use.",
+            "pl": "Only for GLS ShipIT/API customers: parcels found on the account are added automatically. Leave empty for normal use.",
+            "ko": "Only for GLS ShipIT/API customers: parcels found on the account are added automatically. Leave empty for normal use.",
+            "ar": "Only for GLS ShipIT/API customers: parcels found on the account are added automatically. Leave empty for normal use."
           },
-          "value": ""
-        },
-        {
-          "id": "parcel_list_url",
-          "type": "text",
-          "label": {
-            "en": "Parcel-list endpoint",
-            "nl": "Pakketlijst-endpoint",
-            "de": "Parcel-list endpoint",
-            "fr": "Parcel-list endpoint",
-            "it": "Parcel-list endpoint",
-            "sv": "Parcel-list endpoint",
-            "no": "Parcel-list endpoint",
-            "es": "Parcel-list endpoint",
-            "da": "Parcel-list endpoint",
-            "ru": "Parcel-list endpoint",
-            "pl": "Parcel-list endpoint",
-            "ko": "Parcel-list endpoint",
-            "ar": "Parcel-list endpoint"
-          },
-          "value": ""
-        },
-        {
-          "id": "track_url_template",
-          "type": "text",
-          "label": {
-            "en": "Parcel-details endpoint",
-            "nl": "Pakketdetails-endpoint",
-            "de": "Parcel-details endpoint",
-            "fr": "Parcel-details endpoint",
-            "it": "Parcel-details endpoint",
-            "sv": "Parcel-details endpoint",
-            "no": "Parcel-details endpoint",
-            "es": "Parcel-details endpoint",
-            "da": "Parcel-details endpoint",
-            "ru": "Parcel-details endpoint",
-            "pl": "Parcel-details endpoint",
-            "ko": "Parcel-details endpoint",
-            "ar": "Parcel-details endpoint"
-          },
-          "value": ""
-        },
-        {
-          "id": "discovery_days",
-          "type": "number",
-          "label": {
-            "en": "Automatic discovery days",
-            "nl": "Dagen automatisch zoeken",
-            "de": "Automatic discovery days",
-            "fr": "Automatic discovery days",
-            "it": "Automatic discovery days",
-            "sv": "Automatic discovery days",
-            "no": "Automatic discovery days",
-            "es": "Automatic discovery days",
-            "da": "Automatic discovery days",
-            "ru": "Automatic discovery days",
-            "pl": "Automatic discovery days",
-            "ko": "Automatic discovery days",
-            "ar": "Automatic discovery days"
-          },
-          "value": 21,
-          "min": 1,
-          "max": 90
+          "children": [
+            {
+              "id": "username",
+              "type": "text",
+              "label": {
+                "en": "MyGLS username",
+                "nl": "MyGLS gebruikersnaam",
+                "de": "MyGLS username",
+                "fr": "MyGLS username",
+                "it": "MyGLS username",
+                "sv": "MyGLS username",
+                "no": "MyGLS username",
+                "es": "MyGLS username",
+                "da": "MyGLS username",
+                "ru": "MyGLS username",
+                "pl": "MyGLS username",
+                "ko": "MyGLS username",
+                "ar": "MyGLS username"
+              },
+              "value": ""
+            },
+            {
+              "id": "password",
+              "type": "password",
+              "label": {
+                "en": "MyGLS password",
+                "nl": "MyGLS wachtwoord",
+                "de": "MyGLS password",
+                "fr": "MyGLS password",
+                "it": "MyGLS password",
+                "sv": "MyGLS password",
+                "no": "MyGLS password",
+                "es": "MyGLS password",
+                "da": "MyGLS password",
+                "ru": "MyGLS password",
+                "pl": "MyGLS password",
+                "ko": "MyGLS password",
+                "ar": "MyGLS password"
+              },
+              "value": ""
+            },
+            {
+              "id": "subscription_key",
+              "type": "password",
+              "label": {
+                "en": "API subscription key",
+                "nl": "API subscription key",
+                "de": "API subscription key",
+                "fr": "API subscription key",
+                "it": "API subscription key",
+                "sv": "API subscription key",
+                "no": "API subscription key",
+                "es": "API subscription key",
+                "da": "API subscription key",
+                "ru": "API subscription key",
+                "pl": "API subscription key",
+                "ko": "API subscription key",
+                "ar": "API subscription key"
+              },
+              "value": ""
+            },
+            {
+              "id": "parcel_list_url",
+              "type": "text",
+              "label": {
+                "en": "Parcel-list endpoint",
+                "nl": "Pakketlijst-endpoint",
+                "de": "Parcel-list endpoint",
+                "fr": "Parcel-list endpoint",
+                "it": "Parcel-list endpoint",
+                "sv": "Parcel-list endpoint",
+                "no": "Parcel-list endpoint",
+                "es": "Parcel-list endpoint",
+                "da": "Parcel-list endpoint",
+                "ru": "Parcel-list endpoint",
+                "pl": "Parcel-list endpoint",
+                "ko": "Parcel-list endpoint",
+                "ar": "Parcel-list endpoint"
+              },
+              "value": ""
+            },
+            {
+              "id": "track_url_template",
+              "type": "text",
+              "label": {
+                "en": "Parcel-details endpoint",
+                "nl": "Pakketdetails-endpoint",
+                "de": "Parcel-details endpoint",
+                "fr": "Parcel-details endpoint",
+                "it": "Parcel-details endpoint",
+                "sv": "Parcel-details endpoint",
+                "no": "Parcel-details endpoint",
+                "es": "Parcel-details endpoint",
+                "da": "Parcel-details endpoint",
+                "ru": "Parcel-details endpoint",
+                "pl": "Parcel-details endpoint",
+                "ko": "Parcel-details endpoint",
+                "ar": "Parcel-details endpoint"
+              },
+              "value": ""
+            },
+            {
+              "id": "discovery_days",
+              "type": "number",
+              "label": {
+                "en": "Automatic discovery days",
+                "nl": "Dagen automatisch zoeken",
+                "de": "Automatic discovery days",
+                "fr": "Automatic discovery days",
+                "it": "Automatic discovery days",
+                "sv": "Automatic discovery days",
+                "no": "Automatic discovery days",
+                "es": "Automatic discovery days",
+                "da": "Automatic discovery days",
+                "ru": "Automatic discovery days",
+                "pl": "Automatic discovery days",
+                "ko": "Automatic discovery days",
+                "ar": "Automatic discovery days"
+              },
+              "value": 21,
+              "min": 1,
+              "max": 90
+            }
+          ]
         }
       ],
       "id": "gls"
@@ -15500,6 +19269,118 @@
       "insights": true,
       "icon": "/assets/capabilities/status.svg"
     },
+    "gls_delivered_count": {
+      "type": "number",
+      "title": {
+        "en": "Recently delivered",
+        "nl": "Recent bezorgd",
+        "de": "Kürzlich zugestellt",
+        "fr": "Livrés récemment",
+        "it": "Consegnati di recente",
+        "sv": "Nyligen levererade",
+        "no": "Nylig levert",
+        "es": "Entregados recientemente",
+        "da": "For nylig leveret",
+        "ru": "Недавно доставлены",
+        "pl": "Ostatnio doręczone",
+        "ko": "최근 배송 완료",
+        "ar": "تم تسليمها مؤخرًا"
+      },
+      "getable": true,
+      "setable": false,
+      "insights": true,
+      "icon": "/assets/capabilities/package.svg",
+      "decimals": 0
+    },
+    "gls_delivery_window": {
+      "type": "string",
+      "title": {
+        "en": "Delivery window",
+        "nl": "Bezorgvenster",
+        "de": "Zustellzeitfenster",
+        "fr": "Créneau de livraison",
+        "it": "Finestra di consegna",
+        "sv": "Leveransfönster",
+        "no": "Leveringsvindu",
+        "es": "Franja de entrega",
+        "da": "Leveringsvindue",
+        "ru": "Интервал доставки",
+        "pl": "Okno dostawy",
+        "ko": "배송 시간대",
+        "ar": "نافذة التوصيل"
+      },
+      "getable": true,
+      "setable": false,
+      "insights": false,
+      "icon": "/assets/capabilities/delivery.svg"
+    },
+    "gls_dimensions": {
+      "type": "string",
+      "title": {
+        "en": "Dimensions",
+        "nl": "Afmetingen",
+        "de": "Abmessungen",
+        "fr": "Dimensions",
+        "it": "Dimensioni",
+        "sv": "Mått",
+        "no": "Mål",
+        "es": "Dimensiones",
+        "da": "Mål",
+        "ru": "Размеры",
+        "pl": "Wymiary",
+        "ko": "크기",
+        "ar": "الأبعاد"
+      },
+      "getable": true,
+      "setable": false,
+      "insights": false,
+      "icon": "/assets/capabilities/package.svg"
+    },
+    "gls_en_route_pickup_count": {
+      "type": "number",
+      "title": {
+        "en": "En route to ParcelShop",
+        "nl": "Onderweg naar ParcelShop",
+        "de": "Unterwegs zum PaketShop",
+        "fr": "En route vers le point relais",
+        "it": "In viaggio verso il punto di ritiro",
+        "sv": "På väg till utlämningsställe",
+        "no": "På vei til hentested",
+        "es": "En camino al punto de recogida",
+        "da": "På vej til pakkeshop",
+        "ru": "В пути в пункт выдачи",
+        "pl": "W drodze do punktu odbioru",
+        "ko": "픽업 지점으로 이동 중",
+        "ar": "في الطريق إلى نقطة الاستلام"
+      },
+      "getable": true,
+      "setable": false,
+      "insights": true,
+      "icon": "/assets/capabilities/package.svg",
+      "decimals": 0
+    },
+    "gls_last_event": {
+      "type": "string",
+      "title": {
+        "en": "Last event",
+        "nl": "Laatste gebeurtenis",
+        "de": "Letztes Ereignis",
+        "fr": "Dernier événement",
+        "it": "Ultimo evento",
+        "sv": "Senaste händelse",
+        "no": "Siste hendelse",
+        "es": "Último evento",
+        "da": "Seneste hændelse",
+        "ru": "Последнее событие",
+        "pl": "Ostatnie zdarzenie",
+        "ko": "마지막 이벤트",
+        "ar": "آخر حدث"
+      },
+      "getable": true,
+      "setable": false,
+      "insights": false,
+      "icon": "/assets/capabilities/status.svg"
+    },
     "gls_last_update": {
       "type": "string",
       "title": {
@@ -15521,6 +19402,51 @@
       "setable": false,
       "insights": false,
       "icon": "/assets/capabilities/update.svg"
+    },
+    "gls_next_delivery": {
+      "type": "string",
+      "title": {
+        "en": "Next delivery",
+        "nl": "Volgende bezorging",
+        "de": "Nächste Zustellung",
+        "fr": "Prochaine livraison",
+        "it": "Prossima consegna",
+        "sv": "Nästa leverans",
+        "no": "Neste levering",
+        "es": "Próxima entrega",
+        "da": "Næste levering",
+        "ru": "Следующая доставка",
+        "pl": "Następna dostawa",
+        "ko": "다음 배송",
+        "ar": "التوصيل التالي"
+      },
+      "getable": true,
+      "setable": false,
+      "insights": false,
+      "icon": "/assets/capabilities/delivery.svg"
+    },
+    "gls_out_for_delivery_count": {
+      "type": "number",
+      "title": {
+        "en": "Out for delivery",
+        "nl": "Onderweg voor bezorging",
+        "de": "In Zustellung",
+        "fr": "En cours de livraison",
+        "it": "In consegna",
+        "sv": "Ute för leverans",
+        "no": "Ute for levering",
+        "es": "En reparto",
+        "da": "Ude til levering",
+        "ru": "Передана курьеру",
+        "pl": "W doręczeniu",
+        "ko": "배송 출발",
+        "ar": "خرج للتوصيل"
+      },
+      "getable": true,
+      "setable": false,
+      "insights": true,
+      "icon": "/assets/capabilities/delivery.svg",
+      "decimals": 0
     },
     "gls_parcel_count": {
       "type": "number",
@@ -15545,6 +19471,95 @@
       "insights": true,
       "icon": "/assets/capabilities/package.svg"
     },
+    "gls_pickup_count": {
+      "type": "number",
+      "title": {
+        "en": "Ready for pickup",
+        "nl": "Klaar om op te halen",
+        "de": "Abholbereit",
+        "fr": "Prêt à être retiré",
+        "it": "Pronto per il ritiro",
+        "sv": "Redo att hämtas",
+        "no": "Klar for henting",
+        "es": "Listo para recoger",
+        "da": "Klar til afhentning",
+        "ru": "Готова к выдаче",
+        "pl": "Gotowa do odbioru",
+        "ko": "픽업 준비 완료",
+        "ar": "جاهز للاستلام"
+      },
+      "getable": true,
+      "setable": false,
+      "insights": true,
+      "icon": "/assets/capabilities/package.svg",
+      "decimals": 0
+    },
+    "gls_pickup_point": {
+      "type": "string",
+      "title": {
+        "en": "ParcelShop",
+        "nl": "ParcelShop",
+        "de": "PaketShop",
+        "fr": "Point relais",
+        "it": "Punto di ritiro",
+        "sv": "Utlämningsställe",
+        "no": "Hentested",
+        "es": "Punto de recogida",
+        "da": "Pakkeshop",
+        "ru": "Пункт выдачи",
+        "pl": "Punkt odbioru",
+        "ko": "픽업 지점",
+        "ar": "نقطة الاستلام"
+      },
+      "getable": true,
+      "setable": false,
+      "insights": false,
+      "icon": "/assets/capabilities/package.svg"
+    },
+    "gls_receiver": {
+      "type": "string",
+      "title": {
+        "en": "Recipient",
+        "nl": "Ontvanger",
+        "de": "Empfänger",
+        "fr": "Destinataire",
+        "it": "Destinatario",
+        "sv": "Mottagare",
+        "no": "Mottaker",
+        "es": "Destinatario",
+        "da": "Modtager",
+        "ru": "Получатель",
+        "pl": "Odbiorca",
+        "ko": "수령인",
+        "ar": "المستلم"
+      },
+      "getable": true,
+      "setable": false,
+      "insights": false,
+      "icon": "/assets/capabilities/sender.svg"
+    },
+    "gls_sender": {
+      "type": "string",
+      "title": {
+        "en": "Sender",
+        "nl": "Afzender",
+        "de": "Absender",
+        "fr": "Expéditeur",
+        "it": "Mittente",
+        "sv": "Avsändare",
+        "no": "Avsender",
+        "es": "Remitente",
+        "da": "Afsender",
+        "ru": "Отправитель",
+        "pl": "Nadawca",
+        "ko": "발송인",
+        "ar": "المرسل"
+      },
+      "getable": true,
+      "setable": false,
+      "insights": false,
+      "icon": "/assets/capabilities/sender.svg"
+    },
     "gls_status": {
       "type": "string",
       "title": {
@@ -15566,6 +19581,54 @@
       "setable": false,
       "insights": true,
       "icon": "/assets/capabilities/status.svg"
+    },
+    "gls_tracking": {
+      "type": "string",
+      "title": {
+        "en": "Tracking number",
+        "nl": "Trackingnummer",
+        "de": "Sendungsnummer",
+        "fr": "Numéro de suivi",
+        "it": "Numero di tracciamento",
+        "sv": "Spårningsnummer",
+        "no": "Sporingsnummer",
+        "es": "Número de seguimiento",
+        "da": "Sporingsnummer",
+        "ru": "Трек-номер",
+        "pl": "Numer przesyłki",
+        "ko": "운송장 번호",
+        "ar": "رقم التتبع"
+      },
+      "getable": true,
+      "setable": false,
+      "insights": false,
+      "icon": "/assets/capabilities/tracking.svg"
+    },
+    "gls_weight": {
+      "type": "number",
+      "title": {
+        "en": "Weight",
+        "nl": "Gewicht",
+        "de": "Gewicht",
+        "fr": "Poids",
+        "it": "Peso",
+        "sv": "Vikt",
+        "no": "Vekt",
+        "es": "Peso",
+        "da": "Vægt",
+        "ru": "Вес",
+        "pl": "Waga",
+        "ko": "무게",
+        "ar": "الوزن"
+      },
+      "getable": true,
+      "setable": false,
+      "insights": false,
+      "icon": "/assets/capabilities/package.svg",
+      "decimals": 2,
+      "units": {
+        "en": "kg"
+      }
     },
     "homerr_last_update": {
       "type": "string",

@@ -1,3 +1,13 @@
+## 0.3.3 — GLS without account
+- **GLS rebuilt like ha-gls**: no MyGLS account needed anymore. Enter your country, delivery postal code and tracking numbers (one per line, optionally with a different postal code) in the device settings, while pairing, or with a Flow.
+- 20 countries supported through GLS' own public tracking: Netherlands (with weight, dimensions, delivery window, ParcelShop and history), Belgium, Germany, Austria, Switzerland, Luxembourg, France, Italy, Denmark, Finland, Ireland, Poland, Czech Republic, Slovakia, Hungary, Slovenia, Croatia, Serbia, United States and Canada.
+- New capabilities: next delivery, delivery window, tracking number, sender, recipient, last event, out for delivery, en route to ParcelShop, ready for pickup, ParcelShop, recently delivered, weight and dimensions.
+- New Flow triggers: GLS tracking event, out for delivery, ready for pickup, delivered, problem/returning. Every trigger carries all parcel data as tokens (status, status code, GLS text, sender, recipient, date, window, ParcelShop, weight, dimensions, history, link…).
+- New conditions: out for delivery, ready for pickup, a parcel has status…, parcel … is delivered, parcel … is being tracked. New actions: track parcel, stop tracking parcel, remove delivered parcels.
+- Smart polling: every 15 minutes when a delivery is near, every 45 minutes otherwise, quiet at night, paused when nothing is underway. Delivered parcels are not polled again and are removed after a configurable number of days.
+- Triggers fire once per change and never repeat after an app restart; existing parcels are recorded silently on the first sync.
+- Existing GLS devices with a MyGLS business account keep working: account parcels are still discovered automatically.
+
 ## 0.3.2 — PostNL 1.2.7 & stability
 - PostNL integration rebuilt to match PostNL for Homey 1.2.7: direct account login, expanded parcel data and Flow tokens/cards, and PostNL widgets for My Post, My Packages, My Delivery and Parcel Journey.
 - Fixed a crash loop on app start: the app requested non-existent `postnl_delivery_window_*` Flow cards. PostNL delivery-window Flows are handled by the PostNL driver itself; delivery-window card lookups are now fault-tolerant.

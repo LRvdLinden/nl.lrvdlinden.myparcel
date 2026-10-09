@@ -1,0 +1,22 @@
+{
+  "type": "string",
+  "title": {
+    "en": "Delivery window",
+    "nl": "Bezorgvenster",
+    "de": "Zustellzeitfenster",
+    "fr": "Créneau de livraison",
+    "it": "Finestra di consegna",
+    "sv": "Leveransfönster",
+    "no": "Leveringsvindu",
+    "es": "Franja de entrega",
+    "da": "Leveringsvindue",
+    "ru": "Интервал доставки",
+    "pl": "Okno dostawy",
+    "ko": "배송 시간대",
+    "ar": "نافذة التوصيل"
+  },
+  "getable": true,
+  "setable": false,
+  "insights": false,
+  "icon": "/assets/capabilities/delivery.svg"
+}

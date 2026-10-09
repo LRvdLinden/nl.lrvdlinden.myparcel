@@ -1,0 +1,22 @@
+{
+  "type": "string",
+  "title": {
+    "en": "Sender",
+    "nl": "Afzender",
+    "de": "Absender",
+    "fr": "Expéditeur",
+    "it": "Mittente",
+    "sv": "Avsändare",
+    "no": "Avsender",
+    "es": "Remitente",
+    "da": "Afsender",
+    "ru": "Отправитель",
+    "pl": "Nadawca",
+    "ko": "발송인",
+    "ar": "المرسل"
+  },
+  "getable": true,
+  "setable": false,
+  "insights": false,
+  "icon": "/assets/capabilities/sender.svg"
+}

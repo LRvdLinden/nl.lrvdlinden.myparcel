@@ -1,0 +1,22 @@
+{
+  "type": "string",
+  "title": {
+    "en": "Dimensions",
+    "nl": "Afmetingen",
+    "de": "Abmessungen",
+    "fr": "Dimensions",
+    "it": "Dimensioni",
+    "sv": "Mått",
+    "no": "Mål",
+    "es": "Dimensiones",
+    "da": "Mål",
+    "ru": "Размеры",
+    "pl": "Wymiary",
+    "ko": "크기",
+    "ar": "الأبعاد"
+  },
+  "getable": true,
+  "setable": false,
+  "insights": false,
+  "icon": "/assets/capabilities/package.svg"
+}

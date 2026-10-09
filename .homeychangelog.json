@@ -174,5 +174,9 @@
   "0.3.2": {
     "en": "PostNL integration rebuilt to match PostNL for Homey 1.2.7: direct account login, expanded parcel data and Flow tokens/cards, and PostNL widgets for My Post, My Packages, My Delivery and Parcel Journey. Fixed a crash on app start, PostNL no longer repeats triggers for delivered parcels, and a new PostNL device icon.",
     "nl": "PostNL-integratie volledig vernieuwd op basis van PostNL voor Homey 1.2.7: directe accountlogin, uitgebreidere pakketdata en Flow-tokens/-kaarten, plus PostNL-widgets voor Mijn Post, Mijn Pakketten, Mijn Bezorging en Reis van je pakket. Crash bij het opstarten opgelost, PostNL herhaalt geen triggers meer voor bezorgde pakketten en een nieuw PostNL-apparaaticoon."
+  },
+  "0.3.3": {
+    "en": "GLS now works without an account: just a postal code and tracking numbers, in 20 countries, with new capabilities, Flow cards and smart polling.",
+    "nl": "GLS werkt nu zonder account: alleen postcode en trackingnummers, in 20 landen, met nieuwe capabilities, Flow-kaarten en slimme polling."
   }
 }

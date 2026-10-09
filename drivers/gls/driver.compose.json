@@ -18,6 +18,19 @@
   "capabilities": [
     "gls_parcel_count",
     "gls_status",
+    "gls_next_delivery",
+    "gls_delivery_window",
+    "gls_tracking",
+    "gls_sender",
+    "gls_receiver",
+    "gls_last_event",
+    "gls_out_for_delivery_count",
+    "gls_en_route_pickup_count",
+    "gls_pickup_count",
+    "gls_pickup_point",
+    "gls_delivered_count",
+    "gls_weight",
+    "gls_dimensions",
     "myparcel_connection_status",
     "gls_last_update"
   ],
@@ -40,126 +53,671 @@
   ],
   "settings": [
     {
-      "id": "username",
-      "type": "text",
+      "type": "group",
       "label": {
-        "en": "MyGLS username",
-        "nl": "MyGLS gebruikersnaam",
-        "de": "MyGLS username",
-        "fr": "MyGLS username",
-        "it": "MyGLS username",
-        "sv": "MyGLS username",
-        "no": "MyGLS username",
-        "es": "MyGLS username",
-        "da": "MyGLS username",
-        "ru": "MyGLS username",
-        "pl": "MyGLS username",
-        "ko": "MyGLS username",
-        "ar": "MyGLS username"
+        "en": "GLS Track & Trace",
+        "nl": "GLS Track & Trace",
+        "de": "GLS Track & Trace",
+        "fr": "GLS Track & Trace",
+        "it": "GLS Track & Trace",
+        "sv": "GLS Track & Trace",
+        "no": "GLS Track & Trace",
+        "es": "GLS Track & Trace",
+        "da": "GLS Track & Trace",
+        "ru": "GLS Track & Trace",
+        "pl": "GLS Track & Trace",
+        "ko": "GLS Track & Trace",
+        "ar": "GLS Track & Trace"
       },
-      "value": ""
+      "children": [
+        {
+          "id": "country",
+          "type": "dropdown",
+          "label": {
+            "en": "Country",
+            "nl": "Land",
+            "de": "Land",
+            "fr": "Pays",
+            "it": "Paese",
+            "sv": "Land",
+            "no": "Land",
+            "es": "País",
+            "da": "Land",
+            "ru": "Страна",
+            "pl": "Kraj",
+            "ko": "국가",
+            "ar": "الدولة"
+          },
+          "value": "NL",
+          "values": [
+            {
+              "id": "NL",
+              "label": {
+                "en": "Netherlands",
+                "nl": "Nederland",
+                "de": "Niederlande",
+                "fr": "Pays-Bas",
+                "it": "Netherlands",
+                "sv": "Netherlands",
+                "no": "Netherlands",
+                "es": "Netherlands",
+                "da": "Netherlands",
+                "ru": "Netherlands",
+                "pl": "Netherlands",
+                "ko": "Netherlands",
+                "ar": "Netherlands"
+              }
+            },
+            {
+              "id": "BE",
+              "label": {
+                "en": "Belgium",
+                "nl": "België",
+                "de": "Belgien",
+                "fr": "Belgique",
+                "it": "Belgium",
+                "sv": "Belgium",
+                "no": "Belgium",
+                "es": "Belgium",
+                "da": "Belgium",
+                "ru": "Belgium",
+                "pl": "Belgium",
+                "ko": "Belgium",
+                "ar": "Belgium"
+              }
+            },
+            {
+              "id": "DE",
+              "label": {
+                "en": "Germany",
+                "nl": "Duitsland",
+                "de": "Deutschland",
+                "fr": "Allemagne",
+                "it": "Germany",
+                "sv": "Germany",
+                "no": "Germany",
+                "es": "Germany",
+                "da": "Germany",
+                "ru": "Germany",
+                "pl": "Germany",
+                "ko": "Germany",
+                "ar": "Germany"
+              }
+            },
+            {
+              "id": "AT",
+              "label": {
+                "en": "Austria",
+                "nl": "Oostenrijk",
+                "de": "Österreich",
+                "fr": "Autriche",
+                "it": "Austria",
+                "sv": "Austria",
+                "no": "Austria",
+                "es": "Austria",
+                "da": "Austria",
+                "ru": "Austria",
+                "pl": "Austria",
+                "ko": "Austria",
+                "ar": "Austria"
+              }
+            },
+            {
+              "id": "CH",
+              "label": {
+                "en": "Switzerland",
+                "nl": "Zwitserland",
+                "de": "Schweiz",
+                "fr": "Suisse",
+                "it": "Switzerland",
+                "sv": "Switzerland",
+                "no": "Switzerland",
+                "es": "Switzerland",
+                "da": "Switzerland",
+                "ru": "Switzerland",
+                "pl": "Switzerland",
+                "ko": "Switzerland",
+                "ar": "Switzerland"
+              }
+            },
+            {
+              "id": "LU",
+              "label": {
+                "en": "Luxembourg",
+                "nl": "Luxemburg",
+                "de": "Luxemburg",
+                "fr": "Luxembourg",
+                "it": "Luxembourg",
+                "sv": "Luxembourg",
+                "no": "Luxembourg",
+                "es": "Luxembourg",
+                "da": "Luxembourg",
+                "ru": "Luxembourg",
+                "pl": "Luxembourg",
+                "ko": "Luxembourg",
+                "ar": "Luxembourg"
+              }
+            },
+            {
+              "id": "FR",
+              "label": {
+                "en": "France",
+                "nl": "Frankrijk",
+                "de": "Frankreich",
+                "fr": "France",
+                "it": "France",
+                "sv": "France",
+                "no": "France",
+                "es": "France",
+                "da": "France",
+                "ru": "France",
+                "pl": "France",
+                "ko": "France",
+                "ar": "France"
+              }
+            },
+            {
+              "id": "IT",
+              "label": {
+                "en": "Italy",
+                "nl": "Italië",
+                "de": "Italien",
+                "fr": "Italie",
+                "it": "Italy",
+                "sv": "Italy",
+                "no": "Italy",
+                "es": "Italy",
+                "da": "Italy",
+                "ru": "Italy",
+                "pl": "Italy",
+                "ko": "Italy",
+                "ar": "Italy"
+              }
+            },
+            {
+              "id": "DK",
+              "label": {
+                "en": "Denmark",
+                "nl": "Denemarken",
+                "de": "Dänemark",
+                "fr": "Danemark",
+                "it": "Denmark",
+                "sv": "Denmark",
+                "no": "Denmark",
+                "es": "Denmark",
+                "da": "Denmark",
+                "ru": "Denmark",
+                "pl": "Denmark",
+                "ko": "Denmark",
+                "ar": "Denmark"
+              }
+            },
+            {
+              "id": "FI",
+              "label": {
+                "en": "Finland",
+                "nl": "Finland",
+                "de": "Finnland",
+                "fr": "Finlande",
+                "it": "Finland",
+                "sv": "Finland",
+                "no": "Finland",
+                "es": "Finland",
+                "da": "Finland",
+                "ru": "Finland",
+                "pl": "Finland",
+                "ko": "Finland",
+                "ar": "Finland"
+              }
+            },
+            {
+              "id": "IE",
+              "label": {
+                "en": "Ireland",
+                "nl": "Ierland",
+                "de": "Irland",
+                "fr": "Irlande",
+                "it": "Ireland",
+                "sv": "Ireland",
+                "no": "Ireland",
+                "es": "Ireland",
+                "da": "Ireland",
+                "ru": "Ireland",
+                "pl": "Ireland",
+                "ko": "Ireland",
+                "ar": "Ireland"
+              }
+            },
+            {
+              "id": "PL",
+              "label": {
+                "en": "Poland",
+                "nl": "Polen",
+                "de": "Polen",
+                "fr": "Pologne",
+                "it": "Poland",
+                "sv": "Poland",
+                "no": "Poland",
+                "es": "Poland",
+                "da": "Poland",
+                "ru": "Poland",
+                "pl": "Poland",
+                "ko": "Poland",
+                "ar": "Poland"
+              }
+            },
+            {
+              "id": "CZ",
+              "label": {
+                "en": "Czech Republic",
+                "nl": "Tsjechië",
+                "de": "Tschechien",
+                "fr": "République tchèque",
+                "it": "Czech Republic",
+                "sv": "Czech Republic",
+                "no": "Czech Republic",
+                "es": "Czech Republic",
+                "da": "Czech Republic",
+                "ru": "Czech Republic",
+                "pl": "Czech Republic",
+                "ko": "Czech Republic",
+                "ar": "Czech Republic"
+              }
+            },
+            {
+              "id": "SK",
+              "label": {
+                "en": "Slovakia",
+                "nl": "Slowakije",
+                "de": "Slowakei",
+                "fr": "Slovaquie",
+                "it": "Slovakia",
+                "sv": "Slovakia",
+                "no": "Slovakia",
+                "es": "Slovakia",
+                "da": "Slovakia",
+                "ru": "Slovakia",
+                "pl": "Slovakia",
+                "ko": "Slovakia",
+                "ar": "Slovakia"
+              }
+            },
+            {
+              "id": "HU",
+              "label": {
+                "en": "Hungary",
+                "nl": "Hongarije",
+                "de": "Ungarn",
+                "fr": "Hongrie",
+                "it": "Hungary",
+                "sv": "Hungary",
+                "no": "Hungary",
+                "es": "Hungary",
+                "da": "Hungary",
+                "ru": "Hungary",
+                "pl": "Hungary",
+                "ko": "Hungary",
+                "ar": "Hungary"
+              }
+            },
+            {
+              "id": "SI",
+              "label": {
+                "en": "Slovenia",
+                "nl": "Slovenië",
+                "de": "Slowenien",
+                "fr": "Slovénie",
+                "it": "Slovenia",
+                "sv": "Slovenia",
+                "no": "Slovenia",
+                "es": "Slovenia",
+                "da": "Slovenia",
+                "ru": "Slovenia",
+                "pl": "Slovenia",
+                "ko": "Slovenia",
+                "ar": "Slovenia"
+              }
+            },
+            {
+              "id": "HR",
+              "label": {
+                "en": "Croatia",
+                "nl": "Kroatië",
+                "de": "Kroatien",
+                "fr": "Croatie",
+                "it": "Croatia",
+                "sv": "Croatia",
+                "no": "Croatia",
+                "es": "Croatia",
+                "da": "Croatia",
+                "ru": "Croatia",
+                "pl": "Croatia",
+                "ko": "Croatia",
+                "ar": "Croatia"
+              }
+            },
+            {
+              "id": "RS",
+              "label": {
+                "en": "Serbia",
+                "nl": "Servië",
+                "de": "Serbien",
+                "fr": "Serbie",
+                "it": "Serbia",
+                "sv": "Serbia",
+                "no": "Serbia",
+                "es": "Serbia",
+                "da": "Serbia",
+                "ru": "Serbia",
+                "pl": "Serbia",
+                "ko": "Serbia",
+                "ar": "Serbia"
+              }
+            },
+            {
+              "id": "US",
+              "label": {
+                "en": "United States",
+                "nl": "Verenigde Staten",
+                "de": "Vereinigte Staaten",
+                "fr": "États-Unis",
+                "it": "United States",
+                "sv": "United States",
+                "no": "United States",
+                "es": "United States",
+                "da": "United States",
+                "ru": "United States",
+                "pl": "United States",
+                "ko": "United States",
+                "ar": "United States"
+              }
+            },
+            {
+              "id": "CA",
+              "label": {
+                "en": "Canada",
+                "nl": "Canada",
+                "de": "Kanada",
+                "fr": "Canada",
+                "it": "Canada",
+                "sv": "Canada",
+                "no": "Canada",
+                "es": "Canada",
+                "da": "Canada",
+                "ru": "Canada",
+                "pl": "Canada",
+                "ko": "Canada",
+                "ar": "Canada"
+              }
+            }
+          ]
+        },
+        {
+          "id": "postal_code",
+          "type": "text",
+          "label": {
+            "en": "Delivery postal code",
+            "nl": "Bezorgpostcode",
+            "de": "Zustell-Postleitzahl",
+            "fr": "Code postal de livraison",
+            "it": "CAP di consegna",
+            "sv": "Leveranspostnummer",
+            "no": "Leveringspostnummer",
+            "es": "Código postal de entrega",
+            "da": "Leveringspostnummer",
+            "ru": "Почтовый индекс доставки",
+            "pl": "Kod pocztowy dostawy",
+            "ko": "배송지 우편번호",
+            "ar": "الرمز البريدي للتوصيل"
+          },
+          "hint": {
+            "en": "The postal code your GLS parcels are delivered to. GLS only shares parcel details for the matching postal code.",
+            "nl": "De postcode waar je GLS-pakketten bezorgd worden. GLS geeft alleen pakketgegevens vrij bij de juiste postcode.",
+            "de": "Die Postleitzahl, an die deine GLS-Pakete geliefert werden. GLS gibt Paketdetails nur mit der passenden PLZ frei.",
+            "fr": "Le code postal de livraison de vos colis GLS. GLS ne partage les détails qu’avec le bon code postal.",
+            "it": "The postal code your GLS parcels are delivered to. GLS only shares parcel details for the matching postal code.",
+            "sv": "The postal code your GLS parcels are delivered to. GLS only shares parcel details for the matching postal code.",
+            "no": "The postal code your GLS parcels are delivered to. GLS only shares parcel details for the matching postal code.",
+            "es": "The postal code your GLS parcels are delivered to. GLS only shares parcel details for the matching postal code.",
+            "da": "The postal code your GLS parcels are delivered to. GLS only shares parcel details for the matching postal code.",
+            "ru": "The postal code your GLS parcels are delivered to. GLS only shares parcel details for the matching postal code.",
+            "pl": "The postal code your GLS parcels are delivered to. GLS only shares parcel details for the matching postal code.",
+            "ko": "The postal code your GLS parcels are delivered to. GLS only shares parcel details for the matching postal code.",
+            "ar": "The postal code your GLS parcels are delivered to. GLS only shares parcel details for the matching postal code."
+          },
+          "value": ""
+        },
+        {
+          "id": "tracking_numbers",
+          "type": "textarea",
+          "label": {
+            "en": "Tracking numbers",
+            "nl": "Trackingnummers",
+            "de": "Sendungsnummern",
+            "fr": "Numéros de suivi",
+            "it": "Numeri di tracciamento",
+            "sv": "Spårningsnummer",
+            "no": "Sporingsnumre",
+            "es": "Números de seguimiento",
+            "da": "Sporingsnumre",
+            "ru": "Трек-номера",
+            "pl": "Numery przesyłek",
+            "ko": "운송장 번호",
+            "ar": "أرقام التتبع"
+          },
+          "hint": {
+            "en": "One parcel per line: the long parcel number or the short track ID from the GLS e-mail/SMS. Add a different postal code after the number when needed, e.g. 12345678901 1234AB.",
+            "nl": "Eén pakket per regel: het lange pakketnummer of de korte track-ID uit de GLS-mail/sms. Zet zo nodig een afwijkende postcode achter het nummer, bijv. 12345678901 1234AB.",
+            "de": "Ein Paket pro Zeile: die lange Paketnummer oder die kurze Track-ID aus der GLS-Mail/SMS. Bei Bedarf eine abweichende PLZ hinter die Nummer setzen, z. B. 12345678901 12345.",
+            "fr": "Un colis par ligne : le long numéro de colis ou le court Track ID de l’e-mail/SMS GLS. Ajoutez si besoin un autre code postal après le numéro.",
+            "it": "One parcel per line: the long parcel number or the short track ID from the GLS e-mail/SMS. Add a different postal code after the number when needed, e.g. 12345678901 1234AB.",
+            "sv": "One parcel per line: the long parcel number or the short track ID from the GLS e-mail/SMS. Add a different postal code after the number when needed, e.g. 12345678901 1234AB.",
+            "no": "One parcel per line: the long parcel number or the short track ID from the GLS e-mail/SMS. Add a different postal code after the number when needed, e.g. 12345678901 1234AB.",
+            "es": "One parcel per line: the long parcel number or the short track ID from the GLS e-mail/SMS. Add a different postal code after the number when needed, e.g. 12345678901 1234AB.",
+            "da": "One parcel per line: the long parcel number or the short track ID from the GLS e-mail/SMS. Add a different postal code after the number when needed, e.g. 12345678901 1234AB.",
+            "ru": "One parcel per line: the long parcel number or the short track ID from the GLS e-mail/SMS. Add a different postal code after the number when needed, e.g. 12345678901 1234AB.",
+            "pl": "One parcel per line: the long parcel number or the short track ID from the GLS e-mail/SMS. Add a different postal code after the number when needed, e.g. 12345678901 1234AB.",
+            "ko": "One parcel per line: the long parcel number or the short track ID from the GLS e-mail/SMS. Add a different postal code after the number when needed, e.g. 12345678901 1234AB.",
+            "ar": "One parcel per line: the long parcel number or the short track ID from the GLS e-mail/SMS. Add a different postal code after the number when needed, e.g. 12345678901 1234AB."
+          },
+          "value": ""
+        },
+        {
+          "id": "remove_delivered_after_days",
+          "type": "number",
+          "label": {
+            "en": "Remove delivered parcels after (days)",
+            "nl": "Bezorgde pakketten verwijderen na (dagen)",
+            "de": "Zugestellte Pakete entfernen nach (Tagen)",
+            "fr": "Supprimer les colis livrés après (jours)",
+            "it": "Rimuovi i pacchi consegnati dopo (giorni)",
+            "sv": "Ta bort levererade paket efter (dagar)",
+            "no": "Fjern leverte pakker etter (dager)",
+            "es": "Eliminar paquetes entregados después de (días)",
+            "da": "Fjern leverede pakker efter (dage)",
+            "ru": "Удалять доставленные посылки через (дней)",
+            "pl": "Usuń doręczone paczki po (dniach)",
+            "ko": "배송 완료 택배 삭제 기간(일)",
+            "ar": "إزالة الطرود المسلَّمة بعد (أيام)"
+          },
+          "hint": {
+            "en": "Delivered parcels stay visible for this many days and are then removed from the list. 0 = keep them.",
+            "nl": "Bezorgde pakketten blijven zo veel dagen zichtbaar en worden daarna uit de lijst gehaald. 0 = laten staan.",
+            "de": "Zugestellte Pakete bleiben so viele Tage sichtbar und werden dann aus der Liste entfernt. 0 = behalten.",
+            "fr": "Les colis livrés restent visibles ce nombre de jours, puis sont retirés de la liste. 0 = les conserver.",
+            "it": "Delivered parcels stay visible for this many days and are then removed from the list. 0 = keep them.",
+            "sv": "Delivered parcels stay visible for this many days and are then removed from the list. 0 = keep them.",
+            "no": "Delivered parcels stay visible for this many days and are then removed from the list. 0 = keep them.",
+            "es": "Delivered parcels stay visible for this many days and are then removed from the list. 0 = keep them.",
+            "da": "Delivered parcels stay visible for this many days and are then removed from the list. 0 = keep them.",
+            "ru": "Delivered parcels stay visible for this many days and are then removed from the list. 0 = keep them.",
+            "pl": "Delivered parcels stay visible for this many days and are then removed from the list. 0 = keep them.",
+            "ko": "Delivered parcels stay visible for this many days and are then removed from the list. 0 = keep them.",
+            "ar": "Delivered parcels stay visible for this many days and are then removed from the list. 0 = keep them."
+          },
+          "value": 7,
+          "min": 0,
+          "max": 90,
+          "step": 1
+        }
+      ]
     },
     {
-      "id": "password",
-      "type": "password",
+      "type": "group",
       "label": {
-        "en": "MyGLS password",
-        "nl": "MyGLS wachtwoord",
-        "de": "MyGLS password",
-        "fr": "MyGLS password",
-        "it": "MyGLS password",
-        "sv": "MyGLS password",
-        "no": "MyGLS password",
-        "es": "MyGLS password",
-        "da": "MyGLS password",
-        "ru": "MyGLS password",
-        "pl": "MyGLS password",
-        "ko": "MyGLS password",
-        "ar": "MyGLS password"
+        "en": "MyGLS business account (optional)",
+        "nl": "MyGLS-zakelijk account (optioneel)",
+        "de": "MyGLS-Geschäftskonto (optional)",
+        "fr": "Compte professionnel MyGLS (facultatif)",
+        "it": "MyGLS business account (optional)",
+        "sv": "MyGLS business account (optional)",
+        "no": "MyGLS business account (optional)",
+        "es": "MyGLS business account (optional)",
+        "da": "MyGLS business account (optional)",
+        "ru": "MyGLS business account (optional)",
+        "pl": "MyGLS business account (optional)",
+        "ko": "MyGLS business account (optional)",
+        "ar": "MyGLS business account (optional)"
       },
-      "value": ""
-    },
-    {
-      "id": "subscription_key",
-      "type": "password",
-      "label": {
-        "en": "API subscription key",
-        "nl": "API subscription key",
-        "de": "API subscription key",
-        "fr": "API subscription key",
-        "it": "API subscription key",
-        "sv": "API subscription key",
-        "no": "API subscription key",
-        "es": "API subscription key",
-        "da": "API subscription key",
-        "ru": "API subscription key",
-        "pl": "API subscription key",
-        "ko": "API subscription key",
-        "ar": "API subscription key"
+      "hint": {
+        "en": "Only for GLS ShipIT/API customers: parcels found on the account are added automatically. Leave empty for normal use.",
+        "nl": "Alleen voor GLS ShipIT/API-klanten: pakketten van het account worden automatisch toegevoegd. Laat leeg bij normaal gebruik.",
+        "de": "Nur für GLS ShipIT/API-Kunden: Pakete des Kontos werden automatisch hinzugefügt. Für normale Nutzung leer lassen.",
+        "fr": "Uniquement pour les clients GLS ShipIT/API : les colis du compte sont ajoutés automatiquement. Laisser vide pour un usage normal.",
+        "it": "Only for GLS ShipIT/API customers: parcels found on the account are added automatically. Leave empty for normal use.",
+        "sv": "Only for GLS ShipIT/API customers: parcels found on the account are added automatically. Leave empty for normal use.",
+        "no": "Only for GLS ShipIT/API customers: parcels found on the account are added automatically. Leave empty for normal use.",
+        "es": "Only for GLS ShipIT/API customers: parcels found on the account are added automatically. Leave empty for normal use.",
+        "da": "Only for GLS ShipIT/API customers: parcels found on the account are added automatically. Leave empty for normal use.",
+        "ru": "Only for GLS ShipIT/API customers: parcels found on the account are added automatically. Leave empty for normal use.",
+        "pl": "Only for GLS ShipIT/API customers: parcels found on the account are added automatically. Leave empty for normal use.",
+        "ko": "Only for GLS ShipIT/API customers: parcels found on the account are added automatically. Leave empty for normal use.",
+        "ar": "Only for GLS ShipIT/API customers: parcels found on the account are added automatically. Leave empty for normal use."
       },
-      "value": ""
-    },
-    {
-      "id": "parcel_list_url",
-      "type": "text",
-      "label": {
-        "en": "Parcel-list endpoint",
-        "nl": "Pakketlijst-endpoint",
-        "de": "Parcel-list endpoint",
-        "fr": "Parcel-list endpoint",
-        "it": "Parcel-list endpoint",
-        "sv": "Parcel-list endpoint",
-        "no": "Parcel-list endpoint",
-        "es": "Parcel-list endpoint",
-        "da": "Parcel-list endpoint",
-        "ru": "Parcel-list endpoint",
-        "pl": "Parcel-list endpoint",
-        "ko": "Parcel-list endpoint",
-        "ar": "Parcel-list endpoint"
-      },
-      "value": ""
-    },
-    {
-      "id": "track_url_template",
-      "type": "text",
-      "label": {
-        "en": "Parcel-details endpoint",
-        "nl": "Pakketdetails-endpoint",
-        "de": "Parcel-details endpoint",
-        "fr": "Parcel-details endpoint",
-        "it": "Parcel-details endpoint",
-        "sv": "Parcel-details endpoint",
-        "no": "Parcel-details endpoint",
-        "es": "Parcel-details endpoint",
-        "da": "Parcel-details endpoint",
-        "ru": "Parcel-details endpoint",
-        "pl": "Parcel-details endpoint",
-        "ko": "Parcel-details endpoint",
-        "ar": "Parcel-details endpoint"
-      },
-      "value": ""
-    },
-    {
-      "id": "discovery_days",
-      "type": "number",
-      "label": {
-        "en": "Automatic discovery days",
-        "nl": "Dagen automatisch zoeken",
-        "de": "Automatic discovery days",
-        "fr": "Automatic discovery days",
-        "it": "Automatic discovery days",
-        "sv": "Automatic discovery days",
-        "no": "Automatic discovery days",
-        "es": "Automatic discovery days",
-        "da": "Automatic discovery days",
-        "ru": "Automatic discovery days",
-        "pl": "Automatic discovery days",
-        "ko": "Automatic discovery days",
-        "ar": "Automatic discovery days"
-      },
-      "value": 21,
-      "min": 1,
-      "max": 90
+      "children": [
+        {
+          "id": "username",
+          "type": "text",
+          "label": {
+            "en": "MyGLS username",
+            "nl": "MyGLS gebruikersnaam",
+            "de": "MyGLS username",
+            "fr": "MyGLS username",
+            "it": "MyGLS username",
+            "sv": "MyGLS username",
+            "no": "MyGLS username",
+            "es": "MyGLS username",
+            "da": "MyGLS username",
+            "ru": "MyGLS username",
+            "pl": "MyGLS username",
+            "ko": "MyGLS username",
+            "ar": "MyGLS username"
+          },
+          "value": ""
+        },
+        {
+          "id": "password",
+          "type": "password",
+          "label": {
+            "en": "MyGLS password",
+            "nl": "MyGLS wachtwoord",
+            "de": "MyGLS password",
+            "fr": "MyGLS password",
+            "it": "MyGLS password",
+            "sv": "MyGLS password",
+            "no": "MyGLS password",
+            "es": "MyGLS password",
+            "da": "MyGLS password",
+            "ru": "MyGLS password",
+            "pl": "MyGLS password",
+            "ko": "MyGLS password",
+            "ar": "MyGLS password"
+          },
+          "value": ""
+        },
+        {
+          "id": "subscription_key",
+          "type": "password",
+          "label": {
+            "en": "API subscription key",
+            "nl": "API subscription key",
+            "de": "API subscription key",
+            "fr": "API subscription key",
+            "it": "API subscription key",
+            "sv": "API subscription key",
+            "no": "API subscription key",
+            "es": "API subscription key",
+            "da": "API subscription key",
+            "ru": "API subscription key",
+            "pl": "API subscription key",
+            "ko": "API subscription key",
+            "ar": "API subscription key"
+          },
+          "value": ""
+        },
+        {
+          "id": "parcel_list_url",
+          "type": "text",
+          "label": {
+            "en": "Parcel-list endpoint",
+            "nl": "Pakketlijst-endpoint",
+            "de": "Parcel-list endpoint",
+            "fr": "Parcel-list endpoint",
+            "it": "Parcel-list endpoint",
+            "sv": "Parcel-list endpoint",
+            "no": "Parcel-list endpoint",
+            "es": "Parcel-list endpoint",
+            "da": "Parcel-list endpoint",
+            "ru": "Parcel-list endpoint",
+            "pl": "Parcel-list endpoint",
+            "ko": "Parcel-list endpoint",
+            "ar": "Parcel-list endpoint"
+          },
+          "value": ""
+        },
+        {
+          "id": "track_url_template",
+          "type": "text",
+          "label": {
+            "en": "Parcel-details endpoint",
+            "nl": "Pakketdetails-endpoint",
+            "de": "Parcel-details endpoint",
+            "fr": "Parcel-details endpoint",
+            "it": "Parcel-details endpoint",
+            "sv": "Parcel-details endpoint",
+            "no": "Parcel-details endpoint",
+            "es": "Parcel-details endpoint",
+            "da": "Parcel-details endpoint",
+            "ru": "Parcel-details endpoint",
+            "pl": "Parcel-details endpoint",
+            "ko": "Parcel-details endpoint",
+            "ar": "Parcel-details endpoint"
+          },
+          "value": ""
+        },
+        {
+          "id": "discovery_days",
+          "type": "number",
+          "label": {
+            "en": "Automatic discovery days",
+            "nl": "Dagen automatisch zoeken",
+            "de": "Automatic discovery days",
+            "fr": "Automatic discovery days",
+            "it": "Automatic discovery days",
+            "sv": "Automatic discovery days",
+            "no": "Automatic discovery days",
+            "es": "Automatic discovery days",
+            "da": "Automatic discovery days",
+            "ru": "Automatic discovery days",
+            "pl": "Automatic discovery days",
+            "ko": "Automatic discovery days",
+            "ar": "Automatic discovery days"
+          },
+          "value": 21,
+          "min": 1,
+          "max": 90
+        }
+      ]
     }
   ]
 }
