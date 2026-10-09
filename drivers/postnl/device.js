@@ -7,6 +7,9 @@ const PostNLApi = require('../../lib/postnl-api');
 const localizePackageStatus = require('../../lib/status-i18n');
 const { renderDeliveryCard, renderNoPackageCard, loadDeliveryVan, hhmm } = require('../../lib/delivery-image');
 
+const WIDGET_SYNC_MIN_MS = 5 * 60 * 1000;
+const MAX_LIVE_LETTER_IMAGES = 10;
+
 class PostNLDevice extends Homey.Device {
   async onInit() {
     this._latestMailImageId = null;
@@ -64,6 +67,11 @@ class PostNLDevice extends Homey.Device {
 
   async sync({ reason = 'manual', force = false } = {}) {
     if (this._syncing) return this._syncing;
+    // Widgets ask for a refresh every minute per open screen. Serve them the last
+    // snapshot unless it is older than WIDGET_SYNC_MIN_MS.
+    if (/^widget|myparcel-delivery-widget/.test(String(reason)) && Date.now() - (this._lastSyncAt || 0) < WIDGET_SYNC_MIN_MS) {
+      return this.snapshot;
+    }
     this._syncing = this._sync({ reason, force }).finally(() => { this._syncing = null; });
     return this._syncing;
   }
@@ -78,20 +86,30 @@ class PostNLDevice extends Homey.Device {
 
     const previous = this.snapshot || { letters: [], liveLetters: [], packages: [] };
     try {
-      const live = await this.api.fetchAll();
+      const live = await this.api.fetchAll({ previousPackages: previous.packages || [] });
       // My Post is live-only: keep only the mail items currently returned by PostNL.
       // Images are hydrated for the current response only; removed items are not archived locally.
       const liveLetters = [];
       // Fetch scans sequentially. Promise.all briefly held every JPEG buffer and
       // every base64 copy at once, which could push Homey over its memory limit.
-      for (const item of (live.letters || []).slice(0, 10)) {
+      // Scans are only downloaded once per letter and kept in RAM (not in the store).
+      if (!this._letterDataCache) this._letterDataCache = new Map();
+      for (const item of (live.letters || []).slice(0, MAX_LIVE_LETTER_IMAGES)) {
         const next = { ...item };
         if (item.imageUrl) {
-          try { next.imageData = await this.api.fetchImage(item.imageUrl); }
-          catch (error) { this.log('Live mail image fetch failed', item.id, error.message); }
+          const cacheKey = `${item.id}|${item.imageUrl}`;
+          if (this._letterDataCache.has(cacheKey)) next.imageData = this._letterDataCache.get(cacheKey);
+          else {
+            try {
+              next.imageData = await this.api.fetchImage(item.imageUrl);
+              this._letterDataCache.set(cacheKey, next.imageData);
+            } catch (error) { this.log('Live mail image fetch failed', item.id, error.message); }
+          }
         }
         liveLetters.push(next);
       }
+      const liveKeys = new Set(liveLetters.map(item => `${item.id}|${item.imageUrl}`));
+      for (const key of this._letterDataCache.keys()) if (!liveKeys.has(key)) this._letterDataCache.delete(key);
       const current = {
         letters: liveLetters,
         liveLetters,
@@ -111,6 +129,7 @@ class PostNLDevice extends Homey.Device {
         liveLetters: (current.liveLetters || []).map(({ imageData, ...item }) => item),
       };
       await this.setStoreValue('snapshot', storedSnapshot);
+      this._lastSyncAt = Date.now();
       this._pruneLetterImageCache(current.liveLetters || []);
       await this.handleSnapshotChanges(previous, current);
       if (current.mailApiStatus === 'temporarily_unavailable') {
@@ -156,7 +175,13 @@ class PostNLDevice extends Homey.Device {
   }
 
   async _triggerDeviceFlow(cardId, tokens = {}, state = {}) {
-    return this._flowDriver().triggerDeviceFlow(cardId, this, tokens, state);
+    const { __parcel: parcel, ...cleanTokens } = tokens || {};
+    if (parcel && 'package_image_available' in cleanTokens) {
+      const image = await this.getPackageDeliveryImage(parcel).catch(() => null);
+      cleanTokens.package_image_available = Boolean(image);
+      if (image) cleanTokens.package_image = image;
+    }
+    return this._flowDriver().triggerDeviceFlow(cardId, this, cleanTokens, state);
   }
 
   async triggerNewMail(tokens = {}) { return this._triggerDeviceFlow('new_mail', tokens); }
@@ -180,7 +205,9 @@ class PostNLDevice extends Homey.Device {
   }
 
   async _packageTokens(parcel = {}) {
-    const packageImage = await this.getPackageDeliveryImage(parcel).catch(() => null);
+    // No image here: computing tokens for every parcel on every sync must stay cheap.
+    // _triggerDeviceFlow() attaches the (lazily rendered) image when a card fires.
+    const packageImage = null;
     const status = String(parcel.statusRaw || parcel.latestStatusEvent || parcel.status || localizePackageStatus(this.homey, parcel.status) || '').trim();
     const deliveryDate = parcel.deliveryDate ? this.api.formatDateDMY(parcel.deliveryDate) : '';
     const deliveryWindow = parcel.deliveryWindow || this.api.formatWindow(parcel.deliveryWindowFrom, parcel.deliveryWindowTo) || '';
@@ -208,7 +235,7 @@ class PostNLDevice extends Homey.Device {
       package_status_text: status, package_window_text: deliveryWindow, package_delivery_date: deliveryDate,
       package_sender: sender, package_tracking: tracking, package_image_available: Boolean(packageImage),
     };
-    if (packageImage) tokens.package_image = packageImage;
+    Object.defineProperty(tokens, '__parcel', { value: parcel, enumerable: true, configurable: true });
     return tokens;
   }
 
@@ -489,9 +516,10 @@ class PostNLDevice extends Homey.Device {
   async _ensurePackageCameraImage() {
     if (this._packageCameraImage) return this._packageCameraImage;
     this._packageCameraImage = await this.homey.images.createImage();
+    // Rendered lazily: only when Homey actually requests the camera image.
     this._packageCameraImage.setStream(async stream => {
-      if (!this._packageImageBuffer?.length) await this._refreshPackageImageBuffer(true);
-      const buffer = this._packageImageBuffer;
+      const parcel = this._activePackageForImage !== undefined ? this._activePackageForImage : this._selectActivePackage();
+      const buffer = this._renderPackageCard(parcel, { cache: 'camera' });
       if (!buffer?.length) throw new Error('PostNL delivery PNG buffer is empty');
       stream.contentType = 'image/png';
       stream.filename = 'postnl-my-delivery.png';
@@ -504,22 +532,14 @@ class PostNLDevice extends Homey.Device {
   }
 
   _startPackageImageRefresh() {
-    // Delivery PNG rendering uses several multi-megabyte RGBA buffers. Rebuilding
-    // it every 15 seconds caused unnecessary allocation churn and Homey memory
-    // warnings. applySnapshot() already refreshes it whenever PostNL data changes.
+    // The delivery PNG is rendered on demand (see _renderPackageCard); no timer needed.
     if (this._packageImageTimer) this.homey.clearInterval(this._packageImageTimer);
     this._packageImageTimer = null;
   }
 
-  async _refreshPackageImageBuffer(force = false, parcel = undefined) {
-    const activePackage = parcel === undefined ? (this._activePackageForImage || this._selectActivePackage()) : parcel;
-    this._activePackageForImage = activePackage || null;
+  _packageCardOptions(activePackage) {
     const language = this.homey.i18n.getLanguage() === 'nl' ? 'nl' : 'en';
-    if (!activePackage) {
-      this._packageImageBuffer = renderNoPackageCard({ language, vanPng: loadDeliveryVan() });
-      return this._packageImageBuffer;
-    }
-
+    if (!activePackage) return { empty: true, language };
     const from = this._parseLocalOrZonedParts(activePackage.deliveryWindowFrom);
     const to = this._parseLocalOrZonedParts(activePackage.deliveryWindowTo);
     let progress = 0;
@@ -546,23 +566,66 @@ class PostNLDevice extends Homey.Device {
         progress = Math.max(0, Math.min(1, (now.seconds - startSeconds) / Math.max(1, endSeconds - startSeconds)));
       }
     }
-
-    const status = String(activePackage.statusRaw || activePackage.latestStatusEvent || activePackage.status || localizePackageStatus(this.homey, activePackage.status) || '').trim();
-    const sender = activePackage.sender || activePackage.title || activePackage.sourceDisplayName || 'PostNL';
-    const tracking = activePackage.barcode || activePackage.id || '';
-    const headline = this._deliveryHeadline(activePackage, language);
-    const vanPng = loadDeliveryVan();
-    this._packageImageBuffer = renderDeliveryCard({
-      sender, status, headline, tracking, progress, windowStartPct, windowEndPct,
-      timelineStart, timelineMid, timelineEnd, vanPng,
-    });
-    return this._packageImageBuffer;
+    return {
+      sender: activePackage.sender || activePackage.title || activePackage.sourceDisplayName || 'PostNL',
+      status: String(activePackage.statusRaw || activePackage.latestStatusEvent || activePackage.status || localizePackageStatus(this.homey, activePackage.status) || '').trim(),
+      headline: this._deliveryHeadline(activePackage, language),
+      tracking: activePackage.barcode || activePackage.id || '',
+      progress,
+      windowStartPct, windowEndPct, timelineStart, timelineMid, timelineEnd,
+    };
   }
 
+  /** Render (or reuse) the 800x800 delivery card. Identical input -> cached buffer, no new PNG. */
+  _renderPackageCard(activePackage, { cache = 'camera' } = {}) {
+    const options = this._packageCardOptions(activePackage);
+    // Cache key uses the van position in whole percents, so the PNG is redrawn at most
+    // when the van visibly moves; the drawing itself uses the exact position.
+    const key = JSON.stringify({ ...options, progress: Math.round(Number(options.progress || 0) * 100) });
+    if (!this._renderCache) this._renderCache = new Map();
+    const hit = this._renderCache.get(cache);
+    if (hit && hit.key === key) return hit.buffer;
+    const buffer = options.empty
+      ? renderNoPackageCard({ language: options.language, vanPng: loadDeliveryVan() })
+      : renderDeliveryCard({ ...options, vanPng: loadDeliveryVan() });
+    this._renderCache.set(cache, { key, buffer });
+    // Keep at most the camera image plus a few Flow images in memory.
+    while (this._renderCache.size > 4) this._renderCache.delete(this._renderCache.keys().next().value);
+    return buffer;
+  }
+
+  async _refreshPackageImageBuffer(force = false, parcel = undefined) {
+    // Kept for compatibility: marks the active parcel; the PNG itself is rendered on demand.
+    const activePackage = parcel === undefined ? (this._activePackageForImage || this._selectActivePackage()) : parcel;
+    this._activePackageForImage = activePackage || null;
+    return null;
+  }
+
+  /**
+   * Image token for one parcel. The Image object is cheap; the PNG is only drawn
+   * when a Flow (or the Homey app) actually opens the image.
+   */
   async getPackageDeliveryImage(parcel = null) {
-    const image = await this._ensurePackageCameraImage();
-    await this._refreshPackageImageBuffer(true, parcel || this._selectActivePackage());
-    return image;
+    const target = parcel || this._selectActivePackage();
+    if (!target) return this._ensurePackageCameraImage();
+    const id = String(target.id || target.barcode || 'parcel');
+    if (!this._parcelImages) this._parcelImages = new Map();
+    let entry = this._parcelImages.get(id);
+    if (!entry) {
+      const image = await this.homey.images.createImage();
+      entry = { image, parcel: target };
+      image.setStream(async stream => {
+        const buffer = this._renderPackageCard(entry.parcel, { cache: `parcel:${id}` });
+        stream.contentType = 'image/png';
+        stream.filename = `postnl-${id.replace(/[^a-zA-Z0-9_-]/g, '_')}.png`;
+        stream.end(buffer);
+        return stream;
+      });
+      this._parcelImages.set(id, entry);
+      while (this._parcelImages.size > 8) this._parcelImages.delete(this._parcelImages.keys().next().value);
+    }
+    entry.parcel = target;
+    return entry.image;
   }
 
   async getLetterImage(letter) {
@@ -751,7 +814,12 @@ class PostNLDevice extends Homey.Device {
     const activePackage = this._selectActivePackage(snapshot);
     this._activePackageForImage = activePackage;
     await this._ensurePackageCameraImage().catch(this.error);
-    await this._refreshPackageImageBuffer(true, activePackage).catch(this.error);
+    const cardOptions = this._packageCardOptions(activePackage);
+    const cardKey = JSON.stringify({ ...cardOptions, progress: Math.round(Number(cardOptions.progress || 0) * 100) });
+    if (cardKey !== this._lastCameraCardKey) {
+      this._lastCameraCardKey = cardKey;
+      await this._packageCameraImage?.update?.().catch(() => {});
+    }
     await this._updateGlobalSnapshotTokens(snapshot).catch(error => this.error('[GlobalToken] snapshot update failed', error));
 
 

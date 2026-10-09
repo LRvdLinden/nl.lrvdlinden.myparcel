@@ -12,7 +12,7 @@ function safeDevices(homey,id){try{return homey.drivers.getDriver(id).getDevices
 function allDevices(homey){return DEFS.flatMap(([driver,carrier,carrierId])=>safeDevices(homey,driver).map(device=>({driver,carrier,carrierId,device})))}
 function selectedDevices(homey,value){const ids=selectedIds(value),all=allDevices(homey);if(!ids.length)return all;const wanted=new Set(ids);return all.filter(({device})=>wanted.has(String(device.getId())))}
 function str(...values){for(const value of values){if(value===0)return'0';if(value!==undefined&&value!==null&&String(value).trim())return String(value).trim()}return''}
-function delivered(homey,p){if(p?.delivered===true)return true;const s=localizePackageStatus(homey,p?.status||'')||String(p?.status||'');return /delivered|bezorgd|zugestellt|livré|consegnato|levererad|levert|entregado|leveret|доставлен|dostarcz|배송\s*완료|تم\s*التسليم/i.test(s)}
+function delivered(homey,p){if(typeof p?.delivered==='boolean')return p.delivered;const s=localizePackageStatus(homey,p?.status||'')||String(p?.status||'');return /delivered|bezorgd|zugestellt|livré|consegnato|levererad|levert|entregado|leveret|доставлен|dostarcz|배송\s*완료|تم\s*التسليم/i.test(s)}
 function time(item){for(const v of [item.deliveryWindowFrom,item.deliveryDate,item.updatedAt,item.createdAt]){const n=Date.parse(v||'');if(Number.isFinite(n))return n}return Number.MAX_SAFE_INTEGER}
 function normalize(homey,{driver,carrier,carrierId,device},parcel){
  const tracking=str(parcel.tracking,parcel.barcode,parcel.shipmentNumber,parcel.id);
@@ -30,7 +30,9 @@ async function collect(homey,value){
  rows.sort((a,b)=>time(a)-time(b));
  return {devices,rows};
 }
+const WIDGET_REFRESH_MIN_MS=5*60*1000,lastRefresh=new Map();
+function due(device){const id=String(device.getId?.()||'');const last=lastRefresh.get(id)||0;if(Date.now()-last<WIDGET_REFRESH_MIN_MS)return false;lastRefresh.set(id,Date.now());return true}
 module.exports={
  async getData({homey,query}){const {devices,rows}=await collect(homey,query?.deviceIds||query?.deviceId);return{deliveries:rows.slice(0,25),selectedDeviceCount:devices.length,locale:homey.i18n.getLanguage(),timeZone:homey.clock.getTimezone()};},
- async refresh({homey,body}){const {devices}=await collect(homey,body?.deviceIds||body?.deviceId);await Promise.allSettled(devices.map(({driver,device})=>driver==='postnl'?device.sync({reason:'myparcel-delivery-widget',force:true}):device.refresh?.(true)));return{ok:true};},
+ async refresh({homey,body}){const {devices}=await collect(homey,body?.deviceIds||body?.deviceId);await Promise.allSettled(devices.filter(({device})=>due(device)).map(({driver,device})=>driver==='postnl'?device.sync({reason:'myparcel-delivery-widget',force:true}):device.refresh?.(true)));return{ok:true};},
 };

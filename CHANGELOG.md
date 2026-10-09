@@ -6,7 +6,6 @@
 - New DPD Flow cards: tracking event, out for delivery, ready for pickup, problem/returning, sent parcel status changed, sent parcel delivered; conditions out for delivery, ready for pickup, a parcel has status…, parcel … is delivered, sent parcels underway. All triggers now carry status code, DPD status, window start/end, delivered time, history, tracking link and country as extra tokens.
 - DPD triggers fire once per change: no "new parcel" storm on the first sync or after a restart, no repeats when DPD briefly drops, re-lists or flips a parcel, and sent parcels no longer fire the incoming-parcel cards.
 - DPD polling like ha-dpd: 15 minutes near a delivery, 45 minutes otherwise, quiet at night. A network hiccup now shows a warning with the last known data instead of making the device unavailable.
-
 - **GLS rebuilt like ha-gls**: no MyGLS account needed anymore. Enter your country, delivery postal code and tracking numbers (one per line, optionally with a different postal code) in the device settings, while pairing, or with a Flow.
 - 20 countries supported through GLS' own public tracking: Netherlands (with weight, dimensions, delivery window, ParcelShop and history), Belgium, Germany, Austria, Switzerland, Luxembourg, France, Italy, Denmark, Finland, Ireland, Poland, Czech Republic, Slovakia, Hungary, Slovenia, Croatia, Serbia, United States and Canada.
 - New capabilities: next delivery, delivery window, tracking number, sender, recipient, last event, out for delivery, en route to ParcelShop, ready for pickup, ParcelShop, recently delivered, weight and dimensions.
@@ -15,6 +14,12 @@
 - Smart polling: every 15 minutes when a delivery is near, every 45 minutes otherwise, quiet at night, paused when nothing is underway. Delivered parcels are not polled again and are removed after a configurable number of days.
 - Triggers fire once per change and never repeat after an app restart; existing parcels are recorded silently on the first sync.
 - Existing GLS devices with a MyGLS business account keep working: account parcels are still discovered automatically.
+- **Memory**: the PostNL delivery image (800×800 PNG) is now only drawn when someone actually opens it and is reused while nothing changes. Before, it was redrawn for every parcel on every sync and every 30 seconds by the delivery-window check. In a simulated account with 6 active and 120 old parcels over 35 minutes: 333 → 2 PNGs, 7,812 → 59 Track & Trace requests, 620 → 10 mail-scan downloads, 694 KB → 46 KB stored snapshot.
+- PostNL Track & Trace is only fetched for active parcels (max. 3 at a time); delivered parcels reuse their earlier result. Only the 15 most recent delivered PostNL parcels are kept.
+- Mail scans are downloaded once per letter and kept in memory instead of on every sync.
+- Widgets no longer start a full sync every minute per open screen: widget refreshes are limited to once every 5 minutes per device.
+- The decoded fonts of the delivery image are released one minute after the last drawing instead of staying in memory.
+- Fixed: the PostNL status “Je pakket wordt vandaag bezorgd” counted as delivered, so the *Package delivered* Flow could fire while the courier was still on the way.
 
 ## 0.3.2 — PostNL 1.2.7 & stability
 - PostNL integration rebuilt to match PostNL for Homey 1.2.7: direct account login, expanded parcel data and Flow tokens/cards, and PostNL widgets for My Post, My Packages, My Delivery and Parcel Journey.

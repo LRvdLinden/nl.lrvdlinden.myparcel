@@ -14,6 +14,8 @@ function allDevices(homey) {
 }
 function selectedDevices(homey, value) { const ids=selectedIds(value),devices=allDevices(homey); if(!ids.length)return[];const wanted=new Set(ids);return devices.filter(({device})=>wanted.has(String(device.getId()))); }
 function str(...values){for(const value of values){if(value===0)return'0';if(value!==undefined&&value!==null&&String(value).trim())return String(value).trim();}return'';}
+const WIDGET_REFRESH_MIN_MS=5*60*1000,lastRefresh=new Map();
+function due(device){const id=String(device.getId?.()||'');const last=lastRefresh.get(id)||0;if(Date.now()-last<WIDGET_REFRESH_MIN_MS)return false;lastRefresh.set(id,Date.now());return true}
 module.exports={
  async getData({homey,query}){
   const devices=selectedDevices(homey,query?.deviceIds||query?.deviceId),packages=[];
@@ -35,5 +37,5 @@ module.exports={
   packages.sort((a,b)=>timestamp(b)-timestamp(a));
   return {packages:packages.slice(0,100),selectedDeviceCount:devices.length,locale:homey.i18n.getLanguage(),timeZone:homey.clock.getTimezone()};
  },
- async refresh({homey,body}){const devices=selectedDevices(homey,body?.deviceIds||body?.deviceId);await Promise.allSettled(devices.map(({driver,device})=>driver==='postnl'?device.sync({reason:'widget',force:true}):device.refresh(true)));return{ok:true};}
+ async refresh({homey,body}){const devices=selectedDevices(homey,body?.deviceIds||body?.deviceId);await Promise.allSettled(devices.filter(({device})=>due(device)).map(({driver,device})=>driver==='postnl'?device.sync({reason:'widget',force:true}):device.refresh(true)));return{ok:true};}
 };

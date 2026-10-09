@@ -273,7 +273,8 @@ module.exports = class MyParcelApp extends Homey.App {
   }
 
   _parcelIsDelivered(parcel) {
-    if (parcel?.delivered === true) return true;
+    // A carrier's own delivered flag wins: "Je pakket wordt vandaag bezorgd" is not delivered.
+    if (typeof parcel?.delivered === 'boolean') return parcel.delivered;
     const status = String(parcel?.status || parcel?.category || '');
     return /delivered|bezorgd|zugestellt|livré|consegnato|levererad|levert|entregado|leveret|доставлен|dostarcz|배송\s*완료|تم\s*التسليم/i.test(status);
   }
@@ -334,7 +335,7 @@ module.exports = class MyParcelApp extends Homey.App {
     });
   }
 
-  async _deliveryWindowTokens(driverId, parcel, device = null) {
+  async _deliveryWindowTokens(driverId, parcel, device = null, { withImage = true } = {}) {
     let normalized = this._normalizeWindow(parcel);
     if (driverId === 'postnl' && device?.api) {
       const start = parcel?.deliveryWindowFrom ? device.api.formatDeliveryWindowTime(parcel.deliveryWindowFrom) : '';
@@ -354,7 +355,7 @@ module.exports = class MyParcelApp extends Homey.App {
       status: localizePackageStatus(this.homey, parcel?.status || parcel?.category || '') || '',
     };
     if (driverId === 'postnl' && device?.getPackageDeliveryImage) {
-      const packageImage = await device.getPackageDeliveryImage(parcel).catch(() => null);
+      const packageImage = withImage ? await device.getPackageDeliveryImage(parcel).catch(() => null) : null;
       tokens.package_status_text = tokens.status;
       tokens.package_window_text = tokens.delivery_window;
       tokens.package_delivery_date = tokens.delivery_date;
@@ -373,17 +374,22 @@ module.exports = class MyParcelApp extends Homey.App {
     const trigger = this._deliveryWindowTriggers?.[driverId];
 
     for (const parcel of parcels) {
-      const tokens = await this._deliveryWindowTokens(driverId, parcel, device);
+      // Cheap tokens first (no image); the image is only attached when the card fires.
+      const tokens = await this._deliveryWindowTokens(driverId, parcel, device, { withImage: false });
       if (!tokens.delivery_window) continue;
       const key = tokens.tracking || String(parcel?.id || parcel?.key || parcel?.sender || 'parcel');
       const signature = `${tokens.delivery_date}|${tokens.delivery_window}`;
       current[key] = signature;
       if (previous && previous[key] !== signature && trigger) {
-        await trigger.trigger(device, tokens, {}).catch(error => this.error(`[Delivery window trigger] ${driverId}`, error));
+        const full = await this._deliveryWindowTokens(driverId, parcel, device, { withImage: true });
+        await trigger.trigger(device, full, {}).catch(error => this.error(`[Delivery window trigger] ${driverId}`, error));
       }
     }
 
-    await device.setStoreValue?.('myparcel_delivery_window_state_v1', current).catch(() => {});
+    // Runs every 30 s: only write the store when something actually changed.
+    if (JSON.stringify(previous || null) !== JSON.stringify(current)) {
+      await device.setStoreValue?.('myparcel_delivery_window_state_v1', current).catch(() => {});
+    }
   }
 
   async syncDeliveryWindows() {
