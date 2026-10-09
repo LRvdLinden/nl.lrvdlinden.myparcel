@@ -180,11 +180,11 @@
     "nl": "GLS werkt nu zonder account in 20 landen, DPD is vernieuwd voor 19 landen en het geheugengebruik is fors omlaag: de PostNL-bezorgafbeelding wordt alleen getekend als je ernaar kijkt, Track & Trace alleen voor actieve pakketten, en widgets synchroniseren niet meer elke minuut. De MyParcel-widgets tonen nu alle vervoerders, ook GLS en DPD, met juiste statussen en tijdlijn."
   },
   "0.3.4": {
-    "en": "DHL, DHL Express and Post & DHL Germany rebuilt like Home Assistant: DHL status codes, ServicePoint and Packstation pickups, tracking numbers without an account, DHL Express air waybills, new Flow cards, triggers once per change, and all DHL parcels in the MyParcel widgets.",
-    "nl": "DHL, DHL Express en Post & DHL Germany vernieuwd zoals Home Assistant: DHL-statuscodes, ophalen bij ServicePoint en Packstation, trackingnummers zonder account, DHL Express-luchtvrachtbrieven, nieuwe Flow-kaarten, triggers één keer per wijziging en alle DHL-pakketten in de MyParcel-widgets."
+    "en": "DHL, DHL Express and Post & DHL Germany rebuilt: DHL status codes, ServicePoint and Packstation pickups, tracking numbers without an account, DHL Express air waybills, new Flow cards, triggers once per change, and all DHL parcels in the MyParcel widgets.",
+    "nl": "DHL, DHL Express en Post & DHL Germany vernieuwd: DHL-statuscodes, ophalen bij ServicePoint en Packstation, trackingnummers zonder account, DHL Express-luchtvrachtbrieven, nieuwe Flow-kaarten, triggers één keer per wijziging en alle DHL-pakketten in de MyParcel-widgets."
   },
   "0.3.5": {
-    "en": "FedEx, Budbee, Vinted Go, InPost, bpost and Ampère rebuilt like Home Assistant: more parcel data, new capabilities, Flow cards and tokens, triggers once per change, and all of them in the MyParcel widgets.",
-    "nl": "FedEx, Budbee, Vinted Go, InPost, bpost en Ampère vernieuwd zoals Home Assistant: meer pakketgegevens, nieuwe capabilities, Flow-kaarten en tokens, triggers één keer per wijziging en allemaal zichtbaar in de MyParcel-widgets."
+    "en": "FedEx, Budbee, Vinted Go, InPost, bpost and Ampère rebuilt: more parcel data, new capabilities, Flow cards and tokens, triggers once per change, and all of them in the MyParcel widgets.",
+    "nl": "FedEx, Budbee, Vinted Go, InPost, bpost en Ampère vernieuwd: meer pakketgegevens, nieuwe capabilities, Flow-kaarten en tokens, triggers één keer per wijziging en allemaal zichtbaar in de MyParcel-widgets."
   }
 }
