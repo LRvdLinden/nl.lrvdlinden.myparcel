@@ -1,0 +1,23 @@
+{
+  "type": "string",
+  "title": {
+    "en": "Receiver",
+    "nl": "Ontvanger",
+    "de": "Receiver",
+    "fr": "Receiver",
+    "it": "Receiver",
+    "sv": "Receiver",
+    "no": "Receiver",
+    "es": "Receiver",
+    "da": "Receiver",
+    "ru": "Receiver",
+    "pl": "Receiver",
+    "ko": "Receiver",
+    "ar": "Receiver"
+  },
+  "getable": true,
+  "setable": false,
+  "uiComponent": "sensor",
+  "insights": false,
+  "icon": "/assets/capabilities/sender.svg"
+}

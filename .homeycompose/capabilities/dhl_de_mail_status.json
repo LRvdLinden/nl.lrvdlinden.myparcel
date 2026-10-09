@@ -1,0 +1,20 @@
+{
+  "type": "string",
+  "title": {
+    "en": "Letter announcement",
+    "nl": "Briefaankondiging",
+    "de": "Briefankündigung",
+    "fr": "Letter announcement",
+    "it": "Letter announcement",
+    "sv": "Letter announcement",
+    "no": "Letter announcement",
+    "es": "Letter announcement",
+    "da": "Letter announcement",
+    "ru": "Letter announcement",
+    "pl": "Letter announcement",
+    "ko": "Letter announcement",
+    "ar": "Letter announcement"
+  },
+  "getable": true,
+  "setable": false
+}

@@ -33,13 +33,6 @@
     "ups_account_status",
     "ups_last_update"
   ],
-  "platforms": [
-    "local"
-  ],
-  "images": {
-    "small": "/drivers/ups/assets/images/small.png",
-    "large": "/drivers/ups/assets/images/large.png"
-  },
   "pair": [
     {
       "id": "login"
@@ -50,6 +43,13 @@
       "id": "repair"
     }
   ],
+  "platforms": [
+    "local"
+  ],
+  "images": {
+    "small": "/drivers/ups/assets/images/small.png",
+    "large": "/drivers/ups/assets/images/large.png"
+  },
   "settings": [
     {
       "id": "country_code",

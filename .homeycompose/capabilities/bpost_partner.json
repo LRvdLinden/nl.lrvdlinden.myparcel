@@ -1,0 +1,22 @@
+{
+  "type": "string",
+  "title": {
+    "en": "Delivery partner",
+    "nl": "Bezorgpartner",
+    "de": "Delivery partner",
+    "fr": "Delivery partner",
+    "it": "Delivery partner",
+    "sv": "Delivery partner",
+    "no": "Delivery partner",
+    "es": "Delivery partner",
+    "da": "Delivery partner",
+    "ru": "Delivery partner",
+    "pl": "Delivery partner",
+    "ko": "Delivery partner",
+    "ar": "Delivery partner"
+  },
+  "getable": true,
+  "setable": false,
+  "insights": false,
+  "icon": "/assets/capabilities/status.svg"
+}

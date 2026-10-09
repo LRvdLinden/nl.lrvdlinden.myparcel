@@ -1,0 +1,22 @@
+{
+  "type": "string",
+  "title": {
+    "en": "Expected delivery",
+    "nl": "Verwachte bezorging",
+    "de": "Expected delivery",
+    "fr": "Expected delivery",
+    "it": "Expected delivery",
+    "sv": "Expected delivery",
+    "no": "Expected delivery",
+    "es": "Expected delivery",
+    "da": "Expected delivery",
+    "ru": "Expected delivery",
+    "pl": "Expected delivery",
+    "ko": "Expected delivery",
+    "ar": "Expected delivery"
+  },
+  "getable": true,
+  "setable": false,
+  "insights": false,
+  "icon": "/assets/capabilities/update.svg"
+}

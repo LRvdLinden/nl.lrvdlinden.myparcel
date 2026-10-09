@@ -1,0 +1,22 @@
+{
+  "type": "string",
+  "title": {
+    "en": "Product",
+    "nl": "Product",
+    "de": "Product",
+    "fr": "Product",
+    "it": "Product",
+    "sv": "Product",
+    "no": "Product",
+    "es": "Product",
+    "da": "Product",
+    "ru": "Product",
+    "pl": "Product",
+    "ko": "Product",
+    "ar": "Product"
+  },
+  "getable": true,
+  "setable": false,
+  "insights": false,
+  "icon": "/assets/capabilities/package.svg"
+}

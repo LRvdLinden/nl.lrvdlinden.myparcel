@@ -1,0 +1,105 @@
+{
+  "triggers": [
+    {
+      "id": "homerr_package_status_changed",
+      "title": {
+        "en": "Homerr package status changed",
+        "nl": "Homerr package status changed",
+        "de": "Homerr package status changed",
+        "fr": "Homerr package status changed",
+        "it": "Homerr package status changed",
+        "sv": "Homerr package status changed",
+        "no": "Homerr package status changed",
+        "es": "Homerr package status changed",
+        "da": "Homerr package status changed",
+        "ru": "Homerr package status changed",
+        "pl": "Homerr package status changed",
+        "ko": "Homerr package status changed",
+        "ar": "Homerr package status changed"
+      },
+      "args": [],
+      "tokens": [
+        {
+          "name": "status",
+          "type": "string",
+          "title": {
+            "en": "Status",
+            "nl": "Status",
+            "de": "Status",
+            "fr": "Status",
+            "it": "Status",
+            "sv": "Status",
+            "no": "Status",
+            "es": "Status",
+            "da": "Status",
+            "ru": "Status",
+            "pl": "Status",
+            "ko": "Status",
+            "ar": "Status"
+          }
+        },
+        {
+          "name": "tracking",
+          "type": "string",
+          "title": {
+            "en": "Tracking number",
+            "nl": "Tracking number",
+            "de": "Tracking number",
+            "fr": "Tracking number",
+            "it": "Tracking number",
+            "sv": "Tracking number",
+            "no": "Tracking number",
+            "es": "Tracking number",
+            "da": "Tracking number",
+            "ru": "Tracking number",
+            "pl": "Tracking number",
+            "ko": "Tracking number",
+            "ar": "Tracking number"
+          }
+        }
+      ]
+    }
+  ],
+  "conditions": [
+    {
+      "id": "homerr_packages_underway",
+      "title": {
+        "en": "Homerr packages are underway",
+        "nl": "Homerr packages are underway",
+        "de": "Homerr packages are underway",
+        "fr": "Homerr packages are underway",
+        "it": "Homerr packages are underway",
+        "sv": "Homerr packages are underway",
+        "no": "Homerr packages are underway",
+        "es": "Homerr packages are underway",
+        "da": "Homerr packages are underway",
+        "ru": "Homerr packages are underway",
+        "pl": "Homerr packages are underway",
+        "ko": "Homerr packages are underway",
+        "ar": "Homerr packages are underway"
+      },
+      "args": []
+    }
+  ],
+  "actions": [
+    {
+      "id": "homerr_refresh",
+      "title": {
+        "en": "Refresh Homerr packages",
+        "nl": "Refresh Homerr packages",
+        "de": "Refresh Homerr packages",
+        "fr": "Refresh Homerr packages",
+        "it": "Refresh Homerr packages",
+        "sv": "Refresh Homerr packages",
+        "no": "Refresh Homerr packages",
+        "es": "Refresh Homerr packages",
+        "da": "Refresh Homerr packages",
+        "ru": "Refresh Homerr packages",
+        "pl": "Refresh Homerr packages",
+        "ko": "Refresh Homerr packages",
+        "ar": "Refresh Homerr packages"
+      },
+      "args": []
+    }
+  ]
+}

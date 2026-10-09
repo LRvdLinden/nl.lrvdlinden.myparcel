@@ -1,0 +1,23 @@
+{
+  "type": "string",
+  "title": {
+    "en": "Delivery window start",
+    "nl": "Start bezorgvenster",
+    "de": "Beginn des Zustellzeitfensters",
+    "fr": "Début du créneau",
+    "it": "Inizio finestra di consegna",
+    "sv": "Start för leveransfönster",
+    "no": "Start på leveringsvindu",
+    "es": "Inicio de la franja de entrega",
+    "da": "Start på leveringsvindue",
+    "ru": "Начало интервала доставки",
+    "pl": "Początek okna dostawy",
+    "ko": "배송 시간대 시작",
+    "ar": "بداية نافذة التسليم"
+  },
+  "getable": true,
+  "setable": false,
+  "uiComponent": "sensor",
+  "insights": false,
+  "icon": "/assets/capabilities/delivery.svg"
+}

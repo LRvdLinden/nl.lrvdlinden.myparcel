@@ -1,0 +1,22 @@
+{
+  "type": "string",
+  "title": {
+    "en": "Weight",
+    "nl": "Gewicht",
+    "de": "Weight",
+    "fr": "Weight",
+    "it": "Weight",
+    "sv": "Weight",
+    "no": "Weight",
+    "es": "Weight",
+    "da": "Weight",
+    "ru": "Weight",
+    "pl": "Weight",
+    "ko": "Weight",
+    "ar": "Weight"
+  },
+  "getable": true,
+  "setable": false,
+  "insights": false,
+  "icon": "/assets/capabilities/package.svg"
+}

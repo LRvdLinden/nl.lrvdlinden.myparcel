@@ -1,0 +1,23 @@
+{
+  "type": "string",
+  "title": {
+    "en": "Delivery window",
+    "nl": "Bezorgvenster",
+    "de": "Delivery window",
+    "fr": "Delivery window",
+    "it": "Delivery window",
+    "sv": "Delivery window",
+    "no": "Delivery window",
+    "es": "Delivery window",
+    "da": "Delivery window",
+    "ru": "Delivery window",
+    "pl": "Delivery window",
+    "ko": "Delivery window",
+    "ar": "Delivery window"
+  },
+  "getable": true,
+  "setable": false,
+  "uiComponent": "sensor",
+  "insights": false,
+  "icon": "/assets/capabilities/delivery.svg"
+}

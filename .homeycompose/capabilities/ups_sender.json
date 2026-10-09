@@ -1,0 +1,22 @@
+{
+  "type": "string",
+  "title": {
+    "en": "Sender",
+    "nl": "Afzender",
+    "de": "Sender",
+    "fr": "Sender",
+    "it": "Sender",
+    "sv": "Sender",
+    "no": "Sender",
+    "es": "Sender",
+    "da": "Sender",
+    "ru": "Sender",
+    "pl": "Sender",
+    "ko": "Sender",
+    "ar": "Sender"
+  },
+  "getable": true,
+  "setable": false,
+  "insights": false,
+  "icon": "/assets/capabilities/status.svg"
+}

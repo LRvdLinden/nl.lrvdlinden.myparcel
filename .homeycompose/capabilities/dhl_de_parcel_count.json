@@ -1,0 +1,20 @@
+{
+  "type": "number",
+  "title": {
+    "en": "Active packages",
+    "nl": "Actieve pakketten",
+    "de": "Aktive Pakete",
+    "fr": "Active packages",
+    "it": "Active packages",
+    "sv": "Active packages",
+    "no": "Active packages",
+    "es": "Active packages",
+    "da": "Active packages",
+    "ru": "Active packages",
+    "pl": "Active packages",
+    "ko": "Active packages",
+    "ar": "Active packages"
+  },
+  "getable": true,
+  "setable": false
+}

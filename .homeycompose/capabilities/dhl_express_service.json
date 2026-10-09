@@ -1,0 +1,23 @@
+{
+  "type": "string",
+  "title": {
+    "en": "Service",
+    "nl": "Service",
+    "de": "Service",
+    "fr": "Service",
+    "it": "Service",
+    "sv": "Service",
+    "no": "Service",
+    "es": "Service",
+    "da": "Service",
+    "ru": "Service",
+    "pl": "Service",
+    "ko": "Service",
+    "ar": "Service"
+  },
+  "getable": true,
+  "setable": false,
+  "uiComponent": "sensor",
+  "insights": false,
+  "icon": "/assets/capabilities/package.svg"
+}

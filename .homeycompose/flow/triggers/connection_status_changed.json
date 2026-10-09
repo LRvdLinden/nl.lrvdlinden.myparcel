@@ -1,0 +1,98 @@
+{
+  "id": "connection_status_changed",
+  "title": {
+    "en": "Connection status changed",
+    "nl": "Verbindingsstatus is gewijzigd",
+    "de": "Verbindungsstatus hat sich geändert",
+    "fr": "L’état de connexion a changé",
+    "it": "Lo stato della connessione è cambiato",
+    "sv": "Anslutningsstatus ändrades",
+    "no": "Tilkoblingsstatus ble endret",
+    "es": "El estado de conexión ha cambiado",
+    "da": "Forbindelsesstatus blev ændret",
+    "ru": "Статус подключения изменён",
+    "pl": "Stan połączenia zmienił się",
+    "ko": "연결 상태가 변경됨",
+    "ar": "تغيرت حالة الاتصال"
+  },
+  "args": [
+    {
+      "name": "device",
+      "type": "device"
+    }
+  ],
+  "tokens": [
+    {
+      "name": "connected",
+      "type": "boolean",
+      "title": {
+        "en": "Connected",
+        "nl": "Verbonden",
+        "de": "Verbunden",
+        "fr": "Connecté",
+        "it": "Connesso",
+        "sv": "Ansluten",
+        "no": "Tilkoblet",
+        "es": "Conectado",
+        "da": "Forbundet",
+        "ru": "Подключено",
+        "pl": "Połączono",
+        "ko": "연결됨",
+        "ar": "متصل"
+      }
+    },
+    {
+      "name": "connection_status",
+      "type": "string",
+      "title": {
+        "en": "Connection status",
+        "nl": "Verbindingsstatus",
+        "de": "Verbindungsstatus",
+        "fr": "État de connexion",
+        "it": "Stato connessione",
+        "sv": "Anslutningsstatus",
+        "no": "Tilkoblingsstatus",
+        "es": "Estado de conexión",
+        "da": "Forbindelsesstatus",
+        "ru": "Статус подключения",
+        "pl": "Stan połączenia",
+        "ko": "연결 상태",
+        "ar": "حالة الاتصال"
+      }
+    },
+    {
+      "name": "carrier",
+      "type": "string",
+      "title": {
+        "en": "Carrier",
+        "nl": "Vervoerder",
+        "de": "Paketdienst",
+        "fr": "Transporteur",
+        "it": "Corriere",
+        "sv": "Transportör",
+        "no": "Transportør",
+        "es": "Transportista",
+        "da": "Transportør",
+        "ru": "Перевозчик",
+        "pl": "Przewoźnik",
+        "ko": "배송사",
+        "ar": "شركة الشحن"
+      }
+    }
+  ],
+  "titleFormatted": {
+    "en": "Connection status changed for [[device]]",
+    "nl": "Verbindingsstatus is gewijzigd voor [[device]]",
+    "de": "Verbindungsstatus hat sich für [[device]] geändert",
+    "fr": "L’état de connexion a changé pour [[device]]",
+    "it": "Lo stato della connessione è cambiato per [[device]]",
+    "sv": "Anslutningsstatus ändrades för [[device]]",
+    "no": "Tilkoblingsstatus ble endret for [[device]]",
+    "es": "El estado de conexión ha cambiado para [[device]]",
+    "da": "Forbindelsesstatus blev ændret for [[device]]",
+    "ru": "Статус подключения изменён для [[device]]",
+    "pl": "Stan połączenia zmienił się dla [[device]]",
+    "ko": "[[device]]의 연결 상태가 변경됨",
+    "ar": "تغيرت حالة الاتصال لـ [[device]]"
+  }
+}

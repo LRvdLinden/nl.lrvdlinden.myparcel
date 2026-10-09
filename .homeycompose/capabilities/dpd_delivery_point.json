@@ -1,0 +1,22 @@
+{
+  "type": "string",
+  "title": {
+    "en": "Delivery point",
+    "nl": "Bezorgpunt",
+    "de": "Zustellort",
+    "fr": "Point de livraison",
+    "it": "Punto di consegna",
+    "sv": "Leveranspunkt",
+    "no": "Leveringspunkt",
+    "es": "Punto de entrega",
+    "da": "Leveringssted",
+    "ru": "Пункт доставки",
+    "pl": "Punkt dostawy",
+    "ko": "배송 지점",
+    "ar": "نقطة التسليم"
+  },
+  "getable": true,
+  "setable": false,
+  "insights": false,
+  "icon": "/assets/capabilities/delivery.svg"
+}

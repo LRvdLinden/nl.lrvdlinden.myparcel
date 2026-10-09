@@ -1,0 +1,23 @@
+{
+  "type": "number",
+  "title": {
+    "en": "Active parcels",
+    "nl": "Actieve pakketten",
+    "de": "Active parcels",
+    "fr": "Active parcels",
+    "it": "Active parcels",
+    "sv": "Active parcels",
+    "no": "Active parcels",
+    "es": "Active parcels",
+    "da": "Active parcels",
+    "ru": "Active parcels",
+    "pl": "Active parcels",
+    "ko": "Active parcels",
+    "ar": "Active parcels"
+  },
+  "getable": true,
+  "setable": false,
+  "uiComponent": "sensor",
+  "insights": false,
+  "icon": "/assets/capabilities/package.svg"
+}

@@ -1,0 +1,23 @@
+{
+  "type": "number",
+  "title": {
+    "en": "Packages underway",
+    "nl": "Packages underway",
+    "de": "Packages underway",
+    "fr": "Packages underway",
+    "it": "Packages underway",
+    "sv": "Packages underway",
+    "no": "Packages underway",
+    "es": "Packages underway",
+    "da": "Packages underway",
+    "ru": "Packages underway",
+    "pl": "Packages underway",
+    "ko": "Packages underway",
+    "ar": "Packages underway"
+  },
+  "getable": true,
+  "setable": false,
+  "insights": true,
+  "icon": "/assets/package.svg",
+  "decimals": 0
+}

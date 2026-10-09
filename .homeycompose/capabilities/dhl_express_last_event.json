@@ -1,0 +1,23 @@
+{
+  "type": "string",
+  "title": {
+    "en": "Last event",
+    "nl": "Laatste gebeurtenis",
+    "de": "Last event",
+    "fr": "Last event",
+    "it": "Last event",
+    "sv": "Last event",
+    "no": "Last event",
+    "es": "Last event",
+    "da": "Last event",
+    "ru": "Last event",
+    "pl": "Last event",
+    "ko": "Last event",
+    "ar": "Last event"
+  },
+  "getable": true,
+  "setable": false,
+  "uiComponent": "sensor",
+  "insights": false,
+  "icon": "/assets/capabilities/status.svg"
+}

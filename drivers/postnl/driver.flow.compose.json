@@ -2891,112 +2891,16 @@
       },
       "args": [
         {
-          "type": "dropdown",
+          "type": "text",
           "name": "status",
           "title": {
-            "en": "Parcel status",
-            "nl": "Pakketstatus"
+            "en": "Status",
+            "nl": "Status"
           },
-          "values": [
-            {
-              "id": "registered",
-              "title": {
-                "nl": "Aangemeld / nog niet ontvangen",
-                "en": "Registered / not received yet"
-              }
-            },
-            {
-              "id": "received",
-              "title": {
-                "nl": "Ontvangen door PostNL",
-                "en": "Received by PostNL"
-              }
-            },
-            {
-              "id": "collected",
-              "title": {
-                "nl": "Pakket wordt opgehaald",
-                "en": "Parcel is being collected"
-              }
-            },
-            {
-              "id": "sorting",
-              "title": {
-                "nl": "Zending wordt/is gesorteerd",
-                "en": "Shipment is being/has been sorted"
-              }
-            },
-            {
-              "id": "in_transit",
-              "title": {
-                "nl": "Onderweg / in transport",
-                "en": "In transit"
-              }
-            },
-            {
-              "id": "out_for_delivery",
-              "title": {
-                "nl": "Bezorger is onderweg",
-                "en": "Courier is on the way"
-              }
-            },
-            {
-              "id": "delivery_changed",
-              "title": {
-                "nl": "Bezorgmoment bijgewerkt / vertraagd",
-                "en": "Delivery time changed / delayed"
-              }
-            },
-            {
-              "id": "to_pickup_point",
-              "title": {
-                "nl": "Onderweg naar PostNL-punt",
-                "en": "On the way to a PostNL Point"
-              }
-            },
-            {
-              "id": "at_pickup_point",
-              "title": {
-                "nl": "Ligt klaar bij PostNL-punt",
-                "en": "Ready at PostNL Point"
-              }
-            },
-            {
-              "id": "picked_up",
-              "title": {
-                "nl": "Afgehaald bij PostNL-punt",
-                "en": "Collected at PostNL Point"
-              }
-            },
-            {
-              "id": "delivered",
-              "title": {
-                "nl": "Bezorgd",
-                "en": "Delivered"
-              }
-            },
-            {
-              "id": "returning",
-              "title": {
-                "nl": "Retour / teruggestuurd",
-                "en": "Returning / returned to sender"
-              }
-            },
-            {
-              "id": "customs",
-              "title": {
-                "nl": "Douane / inklaring",
-                "en": "Customs clearance"
-              }
-            },
-            {
-              "id": "unknown",
-              "title": {
-                "nl": "Onbekende status",
-                "en": "Unknown status"
-              }
-            }
-          ]
+          "placeholder": {
+            "en": "e.g. Courier is on the way",
+            "nl": "bijv. Bezorger is onderweg"
+          }
         }
       ],
       "titleFormatted": {

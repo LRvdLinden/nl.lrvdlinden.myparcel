@@ -1,0 +1,23 @@
+{
+  "type": "string",
+  "title": {
+    "en": "Tracking number",
+    "nl": "Trackingnummer",
+    "de": "Tracking number",
+    "fr": "Tracking number",
+    "it": "Tracking number",
+    "sv": "Tracking number",
+    "no": "Tracking number",
+    "es": "Tracking number",
+    "da": "Tracking number",
+    "ru": "Tracking number",
+    "pl": "Tracking number",
+    "ko": "Tracking number",
+    "ar": "Tracking number"
+  },
+  "getable": true,
+  "setable": false,
+  "uiComponent": "sensor",
+  "insights": false,
+  "icon": "/assets/capabilities/tracking.svg"
+}

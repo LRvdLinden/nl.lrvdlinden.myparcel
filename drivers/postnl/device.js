@@ -260,6 +260,12 @@ class PostNLDevice extends Homey.Device {
     // than firing every existing PostNL item as if it had just appeared.
     if (this.getStoreValue('flowBaselineInitialized') !== true) {
       await this.setStoreValue('flowBaselineInitialized', true);
+      const seed = this._loadFlowMemory();
+      for (const parcel of current.packages || []) {
+        const key = this._flowKey(parcel);
+        if (key) seed[key] = { firstSeen: Date.now(), lastSeen: Date.now(), deliveredNotified: Boolean(parcel.delivered) };
+      }
+      await this._saveFlowMemory(seed);
       this.log('[FlowTrigger] baseline initialized; existing mail/parcels suppressed once');
       return;
     }
@@ -268,15 +274,34 @@ class PostNLDevice extends Homey.Device {
       const newest = [...newLetters].sort((a, b) => new Date(b.deliveryDate || 0) - new Date(a.deliveryDate || 0))[0];
       await this.triggerNewMail(await this._mailTokens(newest, newLetters.length));
     }
+    const memory = this._loadFlowMemory();
     for (const parcel of current.packages || []) {
+      const key = this._flowKey(parcel);
+      const seen = key ? memory[key] : null;
       const old = oldPackages.get(parcel.id);
+      if (key) memory[key] = { ...(seen || { firstSeen: Date.now() }), lastSeen: Date.now() };
+
+      // Already delivered and already reported (or delivered before we ever saw it):
+      // never fire anything again for this parcel.
+      const alreadyDelivered = Boolean(seen?.deliveredNotified || old?.delivered);
+      if (parcel.delivered && (alreadyDelivered || (!seen && !old))) {
+        if (key) memory[key].deliveredNotified = true;
+        continue;
+      }
+      // Parcel was delivered before, PostNL briefly reports it as "not delivered": ignore.
+      if (!parcel.delivered && seen?.deliveredNotified) continue;
+
       const tokens = await this._packageTokens(parcel);
-      if (!old) await this.triggerNewPackage(tokens);
+      if (!old && !seen) await this.triggerNewPackage(tokens);
 
       const hasWindow = !parcel.delivered && this._hasDeliveryWindow(parcel);
       const hadWindow = Boolean(old && !old.delivered && this._hasDeliveryWindow(old));
       if (hasWindow && !hadWindow) await this.triggerDeliveryWindowKnown(tokens);
 
+      if (!old && parcel.delivered && key && !memory[key].deliveredNotified) {
+        memory[key].deliveredNotified = true;
+        await this.triggerPackageDelivered(tokens);
+      }
       if (old) {
         const oldWindow = old.deliveryWindow || this.api.formatWindow(old.deliveryWindowFrom, old.deliveryWindowTo) || '';
         const newWindow = parcel.deliveryWindow || this.api.formatWindow(parcel.deliveryWindowFrom, parcel.deliveryWindowTo) || '';
@@ -286,7 +311,10 @@ class PostNLDevice extends Homey.Device {
         if (newEvent && newEvent !== oldEvent) await this.triggerPackageEventChanged({ ...tokens, old_event: oldEvent });
         if (!String(old.weight || '').trim() && String(parcel.weight || '').trim()) await this.triggerPackageWeightKnown(tokens);
         if (!String(old.dimensions || '').trim() && String(parcel.dimensions || '').trim()) await this.triggerPackageDimensionsKnown(tokens);
-        if (!old.delivered && parcel.delivered) await this.triggerPackageDelivered(tokens);
+        if (parcel.delivered && key && !memory[key].deliveredNotified) {
+          memory[key].deliveredNotified = true;
+          await this.triggerPackageDelivered(tokens);
+        }
         if (this._packageStatusFingerprint(old) !== this._packageStatusFingerprint(parcel)) {
           await this.triggerPackageStatusChanged({
             ...tokens,
@@ -302,6 +330,10 @@ class PostNLDevice extends Homey.Device {
     const currentIds = new Set((current.packages || []).map(item => item.id));
     for (const old of oldPackages.values()) {
       if (currentIds.has(old.id) || old.delivered || !old.detailsUrl) continue;
+      const key = this._flowKey(old);
+      if (key && memory[key]?.deliveredNotified) continue;
+      if (key && memory[key]?.finalRefreshDone) continue;
+      if (key) memory[key] = { ...(memory[key] || { firstSeen: Date.now() }), lastSeen: Date.now(), finalRefreshDone: true };
       try {
         const refreshed = await this.api.refreshPackageTracking(old);
         if (this._packageStatusFingerprint(old) !== this._packageStatusFingerprint(refreshed)) {
@@ -309,7 +341,10 @@ class PostNLDevice extends Homey.Device {
           const oldEvent = String(old.latestStatusEvent || old.statusRaw || old.status || '');
           const newEvent = String(refreshed.latestStatusEvent || refreshed.statusRaw || refreshed.status || '');
           if (newEvent && newEvent !== oldEvent) await this.triggerPackageEventChanged({ ...tokens, old_event: oldEvent });
-          if (!old.delivered && refreshed.delivered) await this.triggerPackageDelivered(tokens);
+          if (refreshed.delivered && !(key && memory[key]?.deliveredNotified)) {
+            if (key) memory[key].deliveredNotified = true;
+            await this.triggerPackageDelivered(tokens);
+          }
           if (!String(old.weight || '').trim() && String(refreshed.weight || '').trim()) await this.triggerPackageWeightKnown(tokens);
           if (!String(old.dimensions || '').trim() && String(refreshed.dimensions || '').trim()) await this.triggerPackageDimensionsKnown(tokens);
           await this.triggerPackageStatusChanged({
@@ -321,6 +356,26 @@ class PostNLDevice extends Homey.Device {
         this.log('Final PostNL status refresh failed', old.barcode || old.id, error.message);
       }
     }
+    await this._saveFlowMemory(memory);
+  }
+
+  _flowKey(parcel = {}) {
+    return String(parcel.barcode || parcel.id || parcel.key || '').trim().toUpperCase();
+  }
+
+  _loadFlowMemory() {
+    const stored = this.getStoreValue('flowParcelMemory');
+    return stored && typeof stored === 'object' && !Array.isArray(stored) ? { ...stored } : {};
+  }
+
+  async _saveFlowMemory(memory = {}) {
+    // Forget parcels not seen for 45 days so the store stays small.
+    const cutoff = Date.now() - 45 * 24 * 60 * 60 * 1000;
+    const pruned = {};
+    for (const [key, value] of Object.entries(memory)) {
+      if (value && Number(value.lastSeen || 0) >= cutoff) pruned[key] = value;
+    }
+    await this.setStoreValue('flowParcelMemory', pruned).catch(this.error);
   }
 
 
@@ -661,7 +716,7 @@ class PostNLDevice extends Homey.Device {
       postnl_package_length: typeof nextPackage?.dimensionLengthCm === 'number' && Number.isFinite(nextPackage.dimensionLengthCm) ? nextPackage.dimensionLengthCm : null,
       postnl_package_width: typeof nextPackage?.dimensionWidthCm === 'number' && Number.isFinite(nextPackage.dimensionWidthCm) ? nextPackage.dimensionWidthCm : null,
       postnl_package_height: typeof nextPackage?.dimensionHeightCm === 'number' && Number.isFinite(nextPackage.dimensionHeightCm) ? nextPackage.dimensionHeightCm : null,
-      postnl_package_status_history: this._formatStatusHistoryCapability(nextPackage?.statusHistory || []),
+      postnl_package_status_history: JSON.stringify(nextPackage?.statusHistory || []),
       postnl_package_observation_code: nextPackage?.observationCode || '—',
       postnl_package_canonical_status: nextPackage?.canonicalStatus || 'unknown',
       postnl_package_pickup: Boolean(nextPackage?.pickup),
@@ -710,55 +765,11 @@ class PostNLDevice extends Homey.Device {
   isPostNLConnected() { return Boolean(this.api && this.api.hasCredentials()); }
   currentPackageHasWeight() { const parcel = this._selectActivePackage(); return Boolean(parcel && String(parcel.weight || '').trim()); }
   currentPackageHasDimensions() { const parcel = this._selectActivePackage(); return Boolean(parcel && String(parcel.dimensions || '').trim()); }
-
-  _formatStatusHistoryCapability(history = []) {
-    const items = Array.isArray(history) ? history.slice(-20) : [];
-    if (!items.length) return '—';
-    const fmt = value => {
-      const raw = String(value || '').trim();
-      if (!raw) return '';
-      const d = new Date(raw);
-      if (Number.isNaN(d.getTime())) return raw;
-      try {
-        return new Intl.DateTimeFormat(this.homey.i18n.getLanguage() === 'nl' ? 'nl-NL' : 'en-GB', {
-          timeZone: this.homey.clock.getTimezone(), day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit', hour12: false,
-        }).format(d);
-      } catch (_) { return raw; }
-    };
-    return items.map(item => {
-      const when = fmt(item.timestamp);
-      const status = String(item.raw_status || item.rawStatus || item.description || item.status || '').trim();
-      const code = String(item.observation_code || item.observationCode || '').trim();
-      return [when, status, code ? `(${code})` : ''].filter(Boolean).join(' · ');
-    }).filter(Boolean).join(' | ');
-  }
-
   currentPackageStatusIs(expected = '') {
     const parcel = this._selectActivePackage();
     if (!parcel) return false;
-    const selected = String(expected || '').trim().toLowerCase();
-    const raw = String(parcel.statusRaw || parcel.latestStatusEvent || localizePackageStatus(this.homey, parcel.status) || parcel.status || '').trim().toLowerCase().replace(/-/g, ' ');
-    const code = String(parcel.observationCode || '').trim().toUpperCase();
-    const canonical = String(parcel.canonicalStatus || '').trim().toLowerCase();
-    const byCode = (...codes) => codes.includes(code);
-    const has = (...parts) => parts.some(part => raw.includes(part));
-    switch (selected) {
-      case 'registered': return byCode('A01','A03','M02') || has('aangemeld','verwacht','nog niet ontvangen','nog niet verwerkt');
-      case 'received': return byCode('B01','C02') || has('ontvangen door postnl','pakket is ontvangen');
-      case 'collected': return byCode('F01') || has('wordt opgehaald','opgehaald bij de afzender');
-      case 'sorting': return byCode('J01','R01','J31','J30','J40') || has('wordt gesorteerd','is gesorteerd','sorteer');
-      case 'in_transit': return canonical === 'in_transit' || byCode('J04','J21','J32','J39','J44','J55','X01','X02','X03','X04','X08','X19','A21','I07') || has('onderweg','transport','land van bestemming','klaar voor verzending');
-      case 'out_for_delivery': return canonical === 'out_for_delivery' || byCode('J05') || has('bezorger is onderweg','wordt vandaag bezorgd','onderweg naar het bezorgadres','onderweg naar de bezorger');
-      case 'delivery_changed': return byCode('G01','G05','K01','T04','A18','A19','A65','J09') || has('bezorgmoment is bijgewerkt','lukt vandaag niet','duurt de bezorging wat langer','herpland');
-      case 'to_pickup_point': return byCode('K70','J21','J39','J55') || (Boolean(parcel.pickup) && canonical !== 'at_pickup_point') || has('naar postnl punt','naar een ander postnl punt','verwacht bij postnl punt');
-      case 'at_pickup_point': return canonical === 'at_pickup_point' || byCode('I08','J02','J12','J23') || has('ligt klaar bij postnl punt','klaar bij postnl punt','pakketautomaat');
-      case 'picked_up': return byCode('I02') || has('afgehaald bij postnl punt','is afgehaald');
-      case 'delivered': return Boolean(parcel.delivered) || canonical === 'delivered' || byCode('A80','I01','I02','I05','I11','I12','Z01') || has('bezorgd','afgeleverd');
-      case 'returning': return canonical === 'returning' || has('retour','teruggestuurd');
-      case 'customs': return byCode('X03','X04','A20','A21') || has('ingeklaard','douane','kosten voor zending','vrijgegeven');
-      case 'unknown': return canonical === 'unknown';
-      default: return raw === selected || canonical === selected || code === selected.toUpperCase();
-    }
+    const actual = String(parcel.statusRaw || parcel.latestStatusEvent || localizePackageStatus(this.homey, parcel.status) || parcel.status || '').trim().toLocaleLowerCase();
+    return actual === String(expected || '').trim().toLocaleLowerCase();
   }
 
   getWidgetData() {

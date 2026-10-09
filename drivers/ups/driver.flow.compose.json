@@ -1,6 +1,658 @@
 {
   "triggers": [
     {
+      "id": "ups_new_package",
+      "title": {
+        "en": "New UPS package",
+        "nl": "Nieuw UPS-pakket",
+        "de": "New UPS package",
+        "fr": "New UPS package",
+        "it": "New UPS package",
+        "sv": "New UPS package",
+        "no": "New UPS package",
+        "es": "New UPS package",
+        "da": "New UPS package",
+        "ru": "New UPS package",
+        "pl": "New UPS package",
+        "ko": "New UPS package",
+        "ar": "New UPS package"
+      },
+      "args": [],
+      "tokens": [
+        {
+          "name": "tracking",
+          "type": "string",
+          "title": {
+            "en": "Tracking number",
+            "nl": "Trackingnummer",
+            "de": "Tracking number",
+            "fr": "Tracking number",
+            "it": "Tracking number",
+            "sv": "Tracking number",
+            "no": "Tracking number",
+            "es": "Tracking number",
+            "da": "Tracking number",
+            "ru": "Tracking number",
+            "pl": "Tracking number",
+            "ko": "Tracking number",
+            "ar": "Tracking number"
+          }
+        },
+        {
+          "name": "status",
+          "type": "string",
+          "title": {
+            "en": "Status",
+            "nl": "Status",
+            "de": "Status",
+            "fr": "Status",
+            "it": "Status",
+            "sv": "Status",
+            "no": "Status",
+            "es": "Status",
+            "da": "Status",
+            "ru": "Status",
+            "pl": "Status",
+            "ko": "Status",
+            "ar": "Status"
+          }
+        },
+        {
+          "name": "sender",
+          "type": "string",
+          "title": {
+            "en": "Sender",
+            "nl": "Afzender",
+            "de": "Sender",
+            "fr": "Sender",
+            "it": "Sender",
+            "sv": "Sender",
+            "no": "Sender",
+            "es": "Sender",
+            "da": "Sender",
+            "ru": "Sender",
+            "pl": "Sender",
+            "ko": "Sender",
+            "ar": "Sender"
+          }
+        },
+        {
+          "name": "delivery_date",
+          "type": "string",
+          "title": {
+            "en": "Expected delivery",
+            "nl": "Verwachte bezorging",
+            "de": "Expected delivery",
+            "fr": "Expected delivery",
+            "it": "Expected delivery",
+            "sv": "Expected delivery",
+            "no": "Expected delivery",
+            "es": "Expected delivery",
+            "da": "Expected delivery",
+            "ru": "Expected delivery",
+            "pl": "Expected delivery",
+            "ko": "Expected delivery",
+            "ar": "Expected delivery"
+          }
+        },
+        {
+          "name": "delivery_window",
+          "type": "string",
+          "title": {
+            "en": "Delivery window",
+            "nl": "Bezorgvenster",
+            "de": "Delivery window",
+            "fr": "Delivery window",
+            "it": "Delivery window",
+            "sv": "Delivery window",
+            "no": "Delivery window",
+            "es": "Delivery window",
+            "da": "Delivery window",
+            "ru": "Delivery window",
+            "pl": "Delivery window",
+            "ko": "Delivery window",
+            "ar": "Delivery window"
+          }
+        },
+        {
+          "name": "service",
+          "type": "string",
+          "title": {
+            "en": "UPS service",
+            "nl": "UPS-service",
+            "de": "UPS service",
+            "fr": "UPS service",
+            "it": "UPS service",
+            "sv": "UPS service",
+            "no": "UPS service",
+            "es": "UPS service",
+            "da": "UPS service",
+            "ru": "UPS service",
+            "pl": "UPS service",
+            "ko": "UPS service",
+            "ar": "UPS service"
+          }
+        },
+        {
+          "name": "ship_from",
+          "type": "string",
+          "title": {
+            "en": "Ship from",
+            "nl": "Verzonden vanaf",
+            "de": "Ship from",
+            "fr": "Ship from",
+            "it": "Ship from",
+            "sv": "Ship from",
+            "no": "Ship from",
+            "es": "Ship from",
+            "da": "Ship from",
+            "ru": "Ship from",
+            "pl": "Ship from",
+            "ko": "Ship from",
+            "ar": "Ship from"
+          }
+        },
+        {
+          "name": "ship_to",
+          "type": "string",
+          "title": {
+            "en": "Ship to",
+            "nl": "Bestemming",
+            "de": "Ship to",
+            "fr": "Ship to",
+            "it": "Ship to",
+            "sv": "Ship to",
+            "no": "Ship to",
+            "es": "Ship to",
+            "da": "Ship to",
+            "ru": "Ship to",
+            "pl": "Ship to",
+            "ko": "Ship to",
+            "ar": "Ship to"
+          }
+        },
+        {
+          "name": "access_point",
+          "type": "string",
+          "title": {
+            "en": "UPS Access Point",
+            "nl": "UPS Access Point",
+            "de": "UPS Access Point",
+            "fr": "UPS Access Point",
+            "it": "UPS Access Point",
+            "sv": "UPS Access Point",
+            "no": "UPS Access Point",
+            "es": "UPS Access Point",
+            "da": "UPS Access Point",
+            "ru": "UPS Access Point",
+            "pl": "UPS Access Point",
+            "ko": "UPS Access Point",
+            "ar": "UPS Access Point"
+          }
+        },
+        {
+          "name": "last_event",
+          "type": "string",
+          "title": {
+            "en": "Last event",
+            "nl": "Laatste gebeurtenis",
+            "de": "Last event",
+            "fr": "Last event",
+            "it": "Last event",
+            "sv": "Last event",
+            "no": "Last event",
+            "es": "Last event",
+            "da": "Last event",
+            "ru": "Last event",
+            "pl": "Last event",
+            "ko": "Last event",
+            "ar": "Last event"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ups_status_changed",
+      "title": {
+        "en": "UPS package status changed",
+        "nl": "UPS-pakketstatus gewijzigd",
+        "de": "UPS package status changed",
+        "fr": "UPS package status changed",
+        "it": "UPS package status changed",
+        "sv": "UPS package status changed",
+        "no": "UPS package status changed",
+        "es": "UPS package status changed",
+        "da": "UPS package status changed",
+        "ru": "UPS package status changed",
+        "pl": "UPS package status changed",
+        "ko": "UPS package status changed",
+        "ar": "UPS package status changed"
+      },
+      "args": [],
+      "tokens": [
+        {
+          "name": "tracking",
+          "type": "string",
+          "title": {
+            "en": "Tracking number",
+            "nl": "Trackingnummer",
+            "de": "Tracking number",
+            "fr": "Tracking number",
+            "it": "Tracking number",
+            "sv": "Tracking number",
+            "no": "Tracking number",
+            "es": "Tracking number",
+            "da": "Tracking number",
+            "ru": "Tracking number",
+            "pl": "Tracking number",
+            "ko": "Tracking number",
+            "ar": "Tracking number"
+          }
+        },
+        {
+          "name": "status",
+          "type": "string",
+          "title": {
+            "en": "Status",
+            "nl": "Status",
+            "de": "Status",
+            "fr": "Status",
+            "it": "Status",
+            "sv": "Status",
+            "no": "Status",
+            "es": "Status",
+            "da": "Status",
+            "ru": "Status",
+            "pl": "Status",
+            "ko": "Status",
+            "ar": "Status"
+          }
+        },
+        {
+          "name": "sender",
+          "type": "string",
+          "title": {
+            "en": "Sender",
+            "nl": "Afzender",
+            "de": "Sender",
+            "fr": "Sender",
+            "it": "Sender",
+            "sv": "Sender",
+            "no": "Sender",
+            "es": "Sender",
+            "da": "Sender",
+            "ru": "Sender",
+            "pl": "Sender",
+            "ko": "Sender",
+            "ar": "Sender"
+          }
+        },
+        {
+          "name": "delivery_date",
+          "type": "string",
+          "title": {
+            "en": "Expected delivery",
+            "nl": "Verwachte bezorging",
+            "de": "Expected delivery",
+            "fr": "Expected delivery",
+            "it": "Expected delivery",
+            "sv": "Expected delivery",
+            "no": "Expected delivery",
+            "es": "Expected delivery",
+            "da": "Expected delivery",
+            "ru": "Expected delivery",
+            "pl": "Expected delivery",
+            "ko": "Expected delivery",
+            "ar": "Expected delivery"
+          }
+        },
+        {
+          "name": "delivery_window",
+          "type": "string",
+          "title": {
+            "en": "Delivery window",
+            "nl": "Bezorgvenster",
+            "de": "Delivery window",
+            "fr": "Delivery window",
+            "it": "Delivery window",
+            "sv": "Delivery window",
+            "no": "Delivery window",
+            "es": "Delivery window",
+            "da": "Delivery window",
+            "ru": "Delivery window",
+            "pl": "Delivery window",
+            "ko": "Delivery window",
+            "ar": "Delivery window"
+          }
+        },
+        {
+          "name": "service",
+          "type": "string",
+          "title": {
+            "en": "UPS service",
+            "nl": "UPS-service",
+            "de": "UPS service",
+            "fr": "UPS service",
+            "it": "UPS service",
+            "sv": "UPS service",
+            "no": "UPS service",
+            "es": "UPS service",
+            "da": "UPS service",
+            "ru": "UPS service",
+            "pl": "UPS service",
+            "ko": "UPS service",
+            "ar": "UPS service"
+          }
+        },
+        {
+          "name": "ship_from",
+          "type": "string",
+          "title": {
+            "en": "Ship from",
+            "nl": "Verzonden vanaf",
+            "de": "Ship from",
+            "fr": "Ship from",
+            "it": "Ship from",
+            "sv": "Ship from",
+            "no": "Ship from",
+            "es": "Ship from",
+            "da": "Ship from",
+            "ru": "Ship from",
+            "pl": "Ship from",
+            "ko": "Ship from",
+            "ar": "Ship from"
+          }
+        },
+        {
+          "name": "ship_to",
+          "type": "string",
+          "title": {
+            "en": "Ship to",
+            "nl": "Bestemming",
+            "de": "Ship to",
+            "fr": "Ship to",
+            "it": "Ship to",
+            "sv": "Ship to",
+            "no": "Ship to",
+            "es": "Ship to",
+            "da": "Ship to",
+            "ru": "Ship to",
+            "pl": "Ship to",
+            "ko": "Ship to",
+            "ar": "Ship to"
+          }
+        },
+        {
+          "name": "access_point",
+          "type": "string",
+          "title": {
+            "en": "UPS Access Point",
+            "nl": "UPS Access Point",
+            "de": "UPS Access Point",
+            "fr": "UPS Access Point",
+            "it": "UPS Access Point",
+            "sv": "UPS Access Point",
+            "no": "UPS Access Point",
+            "es": "UPS Access Point",
+            "da": "UPS Access Point",
+            "ru": "UPS Access Point",
+            "pl": "UPS Access Point",
+            "ko": "UPS Access Point",
+            "ar": "UPS Access Point"
+          }
+        },
+        {
+          "name": "last_event",
+          "type": "string",
+          "title": {
+            "en": "Last event",
+            "nl": "Laatste gebeurtenis",
+            "de": "Last event",
+            "fr": "Last event",
+            "it": "Last event",
+            "sv": "Last event",
+            "no": "Last event",
+            "es": "Last event",
+            "da": "Last event",
+            "ru": "Last event",
+            "pl": "Last event",
+            "ko": "Last event",
+            "ar": "Last event"
+          }
+        },
+        {
+          "name": "previous_status",
+          "type": "string",
+          "title": {
+            "en": "Previous status",
+            "nl": "Vorige status",
+            "de": "Previous status",
+            "fr": "Previous status",
+            "it": "Previous status",
+            "sv": "Previous status",
+            "no": "Previous status",
+            "es": "Previous status",
+            "da": "Previous status",
+            "ru": "Previous status",
+            "pl": "Previous status",
+            "ko": "Previous status",
+            "ar": "Previous status"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ups_delivered",
+      "title": {
+        "en": "UPS package delivered",
+        "nl": "UPS-pakket bezorgd",
+        "de": "UPS package delivered",
+        "fr": "UPS package delivered",
+        "it": "UPS package delivered",
+        "sv": "UPS package delivered",
+        "no": "UPS package delivered",
+        "es": "UPS package delivered",
+        "da": "UPS package delivered",
+        "ru": "UPS package delivered",
+        "pl": "UPS package delivered",
+        "ko": "UPS package delivered",
+        "ar": "UPS package delivered"
+      },
+      "args": [],
+      "tokens": [
+        {
+          "name": "tracking",
+          "type": "string",
+          "title": {
+            "en": "Tracking number",
+            "nl": "Trackingnummer",
+            "de": "Tracking number",
+            "fr": "Tracking number",
+            "it": "Tracking number",
+            "sv": "Tracking number",
+            "no": "Tracking number",
+            "es": "Tracking number",
+            "da": "Tracking number",
+            "ru": "Tracking number",
+            "pl": "Tracking number",
+            "ko": "Tracking number",
+            "ar": "Tracking number"
+          }
+        },
+        {
+          "name": "status",
+          "type": "string",
+          "title": {
+            "en": "Status",
+            "nl": "Status",
+            "de": "Status",
+            "fr": "Status",
+            "it": "Status",
+            "sv": "Status",
+            "no": "Status",
+            "es": "Status",
+            "da": "Status",
+            "ru": "Status",
+            "pl": "Status",
+            "ko": "Status",
+            "ar": "Status"
+          }
+        },
+        {
+          "name": "sender",
+          "type": "string",
+          "title": {
+            "en": "Sender",
+            "nl": "Afzender",
+            "de": "Sender",
+            "fr": "Sender",
+            "it": "Sender",
+            "sv": "Sender",
+            "no": "Sender",
+            "es": "Sender",
+            "da": "Sender",
+            "ru": "Sender",
+            "pl": "Sender",
+            "ko": "Sender",
+            "ar": "Sender"
+          }
+        },
+        {
+          "name": "delivery_date",
+          "type": "string",
+          "title": {
+            "en": "Expected delivery",
+            "nl": "Verwachte bezorging",
+            "de": "Expected delivery",
+            "fr": "Expected delivery",
+            "it": "Expected delivery",
+            "sv": "Expected delivery",
+            "no": "Expected delivery",
+            "es": "Expected delivery",
+            "da": "Expected delivery",
+            "ru": "Expected delivery",
+            "pl": "Expected delivery",
+            "ko": "Expected delivery",
+            "ar": "Expected delivery"
+          }
+        },
+        {
+          "name": "delivery_window",
+          "type": "string",
+          "title": {
+            "en": "Delivery window",
+            "nl": "Bezorgvenster",
+            "de": "Delivery window",
+            "fr": "Delivery window",
+            "it": "Delivery window",
+            "sv": "Delivery window",
+            "no": "Delivery window",
+            "es": "Delivery window",
+            "da": "Delivery window",
+            "ru": "Delivery window",
+            "pl": "Delivery window",
+            "ko": "Delivery window",
+            "ar": "Delivery window"
+          }
+        },
+        {
+          "name": "service",
+          "type": "string",
+          "title": {
+            "en": "UPS service",
+            "nl": "UPS-service",
+            "de": "UPS service",
+            "fr": "UPS service",
+            "it": "UPS service",
+            "sv": "UPS service",
+            "no": "UPS service",
+            "es": "UPS service",
+            "da": "UPS service",
+            "ru": "UPS service",
+            "pl": "UPS service",
+            "ko": "UPS service",
+            "ar": "UPS service"
+          }
+        },
+        {
+          "name": "ship_from",
+          "type": "string",
+          "title": {
+            "en": "Ship from",
+            "nl": "Verzonden vanaf",
+            "de": "Ship from",
+            "fr": "Ship from",
+            "it": "Ship from",
+            "sv": "Ship from",
+            "no": "Ship from",
+            "es": "Ship from",
+            "da": "Ship from",
+            "ru": "Ship from",
+            "pl": "Ship from",
+            "ko": "Ship from",
+            "ar": "Ship from"
+          }
+        },
+        {
+          "name": "ship_to",
+          "type": "string",
+          "title": {
+            "en": "Ship to",
+            "nl": "Bestemming",
+            "de": "Ship to",
+            "fr": "Ship to",
+            "it": "Ship to",
+            "sv": "Ship to",
+            "no": "Ship to",
+            "es": "Ship to",
+            "da": "Ship to",
+            "ru": "Ship to",
+            "pl": "Ship to",
+            "ko": "Ship to",
+            "ar": "Ship to"
+          }
+        },
+        {
+          "name": "access_point",
+          "type": "string",
+          "title": {
+            "en": "UPS Access Point",
+            "nl": "UPS Access Point",
+            "de": "UPS Access Point",
+            "fr": "UPS Access Point",
+            "it": "UPS Access Point",
+            "sv": "UPS Access Point",
+            "no": "UPS Access Point",
+            "es": "UPS Access Point",
+            "da": "UPS Access Point",
+            "ru": "UPS Access Point",
+            "pl": "UPS Access Point",
+            "ko": "UPS Access Point",
+            "ar": "UPS Access Point"
+          }
+        },
+        {
+          "name": "last_event",
+          "type": "string",
+          "title": {
+            "en": "Last event",
+            "nl": "Laatste gebeurtenis",
+            "de": "Last event",
+            "fr": "Last event",
+            "it": "Last event",
+            "sv": "Last event",
+            "no": "Last event",
+            "es": "Last event",
+            "da": "Last event",
+            "ru": "Last event",
+            "pl": "Last event",
+            "ko": "Last event",
+            "ar": "Last event"
+          }
+        }
+      ]
+    },
+    {
       "id": "ups_delivery_window_changed",
       "highlight": true,
       "title": {
@@ -177,6 +829,44 @@
   ],
   "conditions": [
     {
+      "id": "ups_packages_underway",
+      "title": {
+        "en": "UPS packages are underway",
+        "nl": "Er zijn UPS-pakketten onderweg",
+        "de": "UPS packages are underway",
+        "fr": "UPS packages are underway",
+        "it": "UPS packages are underway",
+        "sv": "UPS packages are underway",
+        "no": "UPS packages are underway",
+        "es": "UPS packages are underway",
+        "da": "UPS packages are underway",
+        "ru": "UPS packages are underway",
+        "pl": "UPS packages are underway",
+        "ko": "UPS packages are underway",
+        "ar": "UPS packages are underway"
+      },
+      "args": []
+    },
+    {
+      "id": "ups_account_connected",
+      "title": {
+        "en": "UPS account is connected",
+        "nl": "UPS-account is gekoppeld",
+        "de": "UPS account is connected",
+        "fr": "UPS account is connected",
+        "it": "UPS account is connected",
+        "sv": "UPS account is connected",
+        "no": "UPS account is connected",
+        "es": "UPS account is connected",
+        "da": "UPS account is connected",
+        "ru": "UPS account is connected",
+        "pl": "UPS account is connected",
+        "ko": "UPS account is connected",
+        "ar": "UPS account is connected"
+      },
+      "args": []
+    },
+    {
       "id": "ups_delivery_window_known",
       "title": {
         "en": "Delivery window !{{is|isn't}} known",
@@ -192,6 +882,27 @@
         "pl": "Okno dostawy !{{jest|nie jest}} znane",
         "ko": "배송 시간대가 !{{확인됨|확인되지 않음}}",
         "ar": "نافذة التسليم !{{معروفة|غير معروفة}}"
+      },
+      "args": []
+    }
+  ],
+  "actions": [
+    {
+      "id": "ups_refresh",
+      "title": {
+        "en": "Refresh UPS",
+        "nl": "Vernieuw UPS",
+        "de": "Refresh UPS",
+        "fr": "Refresh UPS",
+        "it": "Refresh UPS",
+        "sv": "Refresh UPS",
+        "no": "Refresh UPS",
+        "es": "Refresh UPS",
+        "da": "Refresh UPS",
+        "ru": "Refresh UPS",
+        "pl": "Refresh UPS",
+        "ko": "Refresh UPS",
+        "ar": "Refresh UPS"
       },
       "args": []
     }

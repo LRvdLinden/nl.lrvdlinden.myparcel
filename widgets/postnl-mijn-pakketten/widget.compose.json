@@ -1,0 +1,37 @@
+{
+  "name": {
+    "en": "My Packages",
+    "nl": "Mijn Pakketten",
+    "de": "Meine Pakete",
+    "fr": "Mes colis",
+    "it": "I miei pacchi",
+    "sv": "Mina paket",
+    "no": "Mine pakker",
+    "es": "Mis paquetes",
+    "da": "Mine pakker",
+    "ru": "Мои посылки",
+    "pl": "Moje paczki",
+    "ko": "내 택배",
+    "ar": "طرودي"
+  },
+  "height": 360,
+  "api": {
+    "getData": {
+      "method": "GET",
+      "path": "/"
+    },
+    "sync": {
+      "method": "POST",
+      "path": "/sync"
+    }
+  },
+  "devices": {
+    "type": "app",
+    "singular": true,
+    "filter": {
+      "capabilities": "postnl_package_count"
+    }
+  },
+  "id": "postnl-mijn-pakketten",
+  "settings": []
+}

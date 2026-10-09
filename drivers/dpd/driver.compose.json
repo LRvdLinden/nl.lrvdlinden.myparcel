@@ -33,13 +33,6 @@
     "myparcel_connection_status",
     "dpd_last_update"
   ],
-  "platforms": [
-    "local"
-  ],
-  "images": {
-    "small": "/drivers/dpd/assets/images/small.png",
-    "large": "/drivers/dpd/assets/images/large.png"
-  },
   "pair": [
     {
       "id": "login"
@@ -49,5 +42,12 @@
     {
       "id": "repair"
     }
-  ]
+  ],
+  "platforms": [
+    "local"
+  ],
+  "images": {
+    "small": "/drivers/dpd/assets/images/small.png",
+    "large": "/drivers/dpd/assets/images/large.png"
+  }
 }

@@ -1,0 +1,22 @@
+{
+  "type": "string",
+  "title": {
+    "en": "Delivery point",
+    "nl": "Afleverpunt",
+    "de": "Delivery point",
+    "fr": "Delivery point",
+    "it": "Delivery point",
+    "sv": "Delivery point",
+    "no": "Delivery point",
+    "es": "Delivery point",
+    "da": "Delivery point",
+    "ru": "Delivery point",
+    "pl": "Delivery point",
+    "ko": "Delivery point",
+    "ar": "Delivery point"
+  },
+  "getable": true,
+  "setable": false,
+  "insights": false,
+  "icon": "/assets/capabilities/status.svg"
+}

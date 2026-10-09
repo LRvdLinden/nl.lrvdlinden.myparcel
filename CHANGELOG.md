@@ -1,5 +1,11 @@
+## 0.3.2 — PostNL 1.2.7 & stability
+- PostNL integration rebuilt to match PostNL for Homey 1.2.7: direct account login, expanded parcel data and Flow tokens/cards, and PostNL widgets for My Post, My Packages, My Delivery and Parcel Journey.
+- Fixed a crash loop on app start: the app requested non-existent `postnl_delivery_window_*` Flow cards. PostNL delivery-window Flows are handled by the PostNL driver itself; delivery-window card lookups are now fault-tolerant.
+- PostNL no longer fires repeated triggers for delivered parcels: each parcel triggers *Package delivered* only once, also when PostNL briefly drops, re-adds or flips a parcel's status. Already-delivered parcels no longer fire *New package*, status, event, weight or dimension triggers.
+- New PostNL device icon.
+- Restored `widget.compose.json` for all widgets so Homey Compose builds keep every widget.
+
 ## 0.3.1 — DHL Express
-- **PostNL device parity:** PostNL inside MyParcel now uses the same login, repair, API/data handling, capabilities, Flow cards/tokens, package images and four PostNL widgets as the supplied standalone PostNL v1.2.6 build. The existing MyParcel PostNL device `icon.svg` is intentionally preserved.
 - PostNL device updated with the PostNL 1.1.13 feature set: official full Track & Trace statuses/timeline, status code, latest event/time, richer package capabilities and global Flow tokens while Flow cards remain device-specific.
 - PostNL now exposes parcel status, sender, receiver, tracking number, latest event, status time, delivered state and shipment type as device capabilities.
 - PostNL package status-change detection now uses the official Track & Trace fingerprint and refreshes a disappearing active parcel once to catch its final delivery status.

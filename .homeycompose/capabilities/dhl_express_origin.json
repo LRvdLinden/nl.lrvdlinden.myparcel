@@ -1,0 +1,23 @@
+{
+  "type": "string",
+  "title": {
+    "en": "Origin",
+    "nl": "Herkomst",
+    "de": "Origin",
+    "fr": "Origin",
+    "it": "Origin",
+    "sv": "Origin",
+    "no": "Origin",
+    "es": "Origin",
+    "da": "Origin",
+    "ru": "Origin",
+    "pl": "Origin",
+    "ko": "Origin",
+    "ar": "Origin"
+  },
+  "getable": true,
+  "setable": false,
+  "uiComponent": "sensor",
+  "insights": false,
+  "icon": "/assets/capabilities/package.svg"
+}

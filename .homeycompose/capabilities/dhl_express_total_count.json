@@ -1,0 +1,23 @@
+{
+  "type": "number",
+  "title": {
+    "en": "Total parcels",
+    "nl": "Totaal pakketten",
+    "de": "Total parcels",
+    "fr": "Total parcels",
+    "it": "Total parcels",
+    "sv": "Total parcels",
+    "no": "Total parcels",
+    "es": "Total parcels",
+    "da": "Total parcels",
+    "ru": "Total parcels",
+    "pl": "Total parcels",
+    "ko": "Total parcels",
+    "ar": "Total parcels"
+  },
+  "getable": true,
+  "setable": false,
+  "uiComponent": "sensor",
+  "insights": false,
+  "icon": "/assets/capabilities/package.svg"
+}

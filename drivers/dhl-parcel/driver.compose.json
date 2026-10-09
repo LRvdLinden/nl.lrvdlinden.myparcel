@@ -25,13 +25,6 @@
     "myparcel_connection_status",
     "dhl_last_update"
   ],
-  "platforms": [
-    "local"
-  ],
-  "images": {
-    "small": "/drivers/dhl-parcel/assets/images/small.png",
-    "large": "/drivers/dhl-parcel/assets/images/large.png"
-  },
   "pair": [
     {
       "id": "login_dhl"
@@ -41,5 +34,12 @@
     {
       "id": "repair_login"
     }
+  ],
+  "images": {
+    "small": "/drivers/dhl-parcel/assets/images/small.png",
+    "large": "/drivers/dhl-parcel/assets/images/large.png"
+  },
+  "platforms": [
+    "local"
   ]
 }

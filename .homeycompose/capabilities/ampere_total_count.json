@@ -1,0 +1,23 @@
+{
+  "type": "number",
+  "title": {
+    "en": "Total parcels",
+    "nl": "Totaal pakketten",
+    "de": "Pakete gesamt",
+    "fr": "Total des colis",
+    "it": "Pacchi totali",
+    "sv": "Totalt antal paket",
+    "no": "Totalt antall pakker",
+    "es": "Paquetes totales",
+    "da": "Pakker i alt",
+    "ru": "Всего посылок",
+    "pl": "Łączna liczba paczek",
+    "ko": "전체 소포",
+    "ar": "إجمالي الطرود"
+  },
+  "getable": true,
+  "setable": false,
+  "uiComponent": "sensor",
+  "insights": false,
+  "icon": "/assets/capabilities/package.svg"
+}

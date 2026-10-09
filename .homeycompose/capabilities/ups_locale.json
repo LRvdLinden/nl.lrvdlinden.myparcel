@@ -1,0 +1,22 @@
+{
+  "type": "string",
+  "title": {
+    "en": "UPS locale",
+    "nl": "UPS-locale",
+    "de": "UPS locale",
+    "fr": "UPS locale",
+    "it": "UPS locale",
+    "sv": "UPS locale",
+    "no": "UPS locale",
+    "es": "UPS locale",
+    "da": "UPS locale",
+    "ru": "UPS locale",
+    "pl": "UPS locale",
+    "ko": "UPS locale",
+    "ar": "UPS locale"
+  },
+  "getable": true,
+  "setable": false,
+  "insights": false,
+  "icon": "/assets/capabilities/status.svg"
+}

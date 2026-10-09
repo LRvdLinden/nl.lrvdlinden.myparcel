@@ -1,0 +1,22 @@
+{
+  "type": "string",
+  "title": {
+    "en": "UPS Access Point",
+    "nl": "UPS Access Point",
+    "de": "UPS Access Point",
+    "fr": "UPS Access Point",
+    "it": "UPS Access Point",
+    "sv": "UPS Access Point",
+    "no": "UPS Access Point",
+    "es": "UPS Access Point",
+    "da": "UPS Access Point",
+    "ru": "UPS Access Point",
+    "pl": "UPS Access Point",
+    "ko": "UPS Access Point",
+    "ar": "UPS Access Point"
+  },
+  "getable": true,
+  "setable": false,
+  "insights": false,
+  "icon": "/assets/capabilities/status.svg"
+}

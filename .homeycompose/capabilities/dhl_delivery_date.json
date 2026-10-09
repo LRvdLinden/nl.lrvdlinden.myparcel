@@ -1,0 +1,22 @@
+{
+  "type": "string",
+  "title": {
+    "en": "Delivery date",
+    "nl": "Bezorgdatum",
+    "de": "Zustelldatum",
+    "fr": "Date de livraison",
+    "it": "Data di consegna",
+    "sv": "Leveransdatum",
+    "no": "Leveringsdato",
+    "es": "Fecha de entrega",
+    "da": "Leveringsdato",
+    "ru": "Дата доставки",
+    "pl": "Data dostawy",
+    "ko": "배송 날짜",
+    "ar": "تاريخ التسليم"
+  },
+  "getable": true,
+  "setable": false,
+  "insights": true,
+  "icon": "/assets/calendar.svg"
+}

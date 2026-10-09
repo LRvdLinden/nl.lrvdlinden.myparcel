@@ -170,5 +170,9 @@
     "pl": "Dodano DHL Express jako oddzielnego międzynarodowego przewoźnika z połączeniem konta MyDHL+ / DHLPass, automatycznym wykrywaniem przesyłek, rozszerzonymi capabilities i kartami/tokenami Flow, obsługą widżetów i dedykowanymi grafikami DHL Express.",
     "ko": "DHL Express를 별도의 국제 배송사로 추가했습니다. MyDHL+ / DHLPass 계정 연결, 자동 배송 조회, 확장된 capability 및 Flow 카드/토큰, MyParcel 위젯 지원과 전용 DHL Express 기기 이미지를 포함합니다.",
     "ar": "تمت إضافة DHL Express كشركة شحن دولية مستقلة مع ربط حساب MyDHL+ / DHLPass، واكتشاف الشحنات تلقائيًا، وإمكانات وبطاقات/رموز Flow موسعة، ودعم أدوات MyParcel وصور جهاز DHL Express مخصصة."
+  },
+  "0.3.2": {
+    "en": "PostNL integration rebuilt to match PostNL for Homey 1.2.7: direct account login, expanded parcel data and Flow tokens/cards, and PostNL widgets for My Post, My Packages, My Delivery and Parcel Journey. Fixed a crash on app start, PostNL no longer repeats triggers for delivered parcels, and a new PostNL device icon.",
+    "nl": "PostNL-integratie volledig vernieuwd op basis van PostNL voor Homey 1.2.7: directe accountlogin, uitgebreidere pakketdata en Flow-tokens/-kaarten, plus PostNL-widgets voor Mijn Post, Mijn Pakketten, Mijn Bezorging en Reis van je pakket. Crash bij het opstarten opgelost, PostNL herhaalt geen triggers meer voor bezorgde pakketten en een nieuw PostNL-apparaaticoon."
   }
 }

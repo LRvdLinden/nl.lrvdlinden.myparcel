@@ -1,7 +1,18 @@
 {
   "name": {
-    "en": "My PostNL",
-    "nl": "Mijn PostNL"
+    "en": "PostNL",
+    "nl": "PostNL",
+    "de": "PostNL",
+    "fr": "PostNL",
+    "it": "PostNL",
+    "sv": "PostNL",
+    "no": "PostNL",
+    "es": "PostNL",
+    "da": "PostNL",
+    "ru": "PostNL",
+    "pl": "PostNL",
+    "ko": "PostNL",
+    "ar": "PostNL"
   },
   "class": "sensor",
   "capabilities": [
@@ -36,10 +47,6 @@
   "platforms": [
     "local"
   ],
-  "images": {
-    "small": "/drivers/postnl/assets/images/small.png",
-    "large": "/drivers/postnl/assets/images/large.png"
-  },
   "pair": [
     {
       "id": "login_postnl"
@@ -49,5 +56,9 @@
     {
       "id": "repair_login"
     }
-  ]
+  ],
+  "images": {
+    "small": "/drivers/postnl/assets/images/small.png",
+    "large": "/drivers/postnl/assets/images/large.png"
+  }
 }

@@ -27,7 +27,7 @@ const CARRIER_NAMES = {
 };
 
 const DELIVERY_WINDOW_FLOWS = {
-  postnl: { trigger: 'postnl_delivery_window_changed', condition: 'postnl_delivery_window_known' },
+  // PostNL handles its own delivery-window flows in drivers/postnl (delivery_window_known / delivery_window_changed).
   'dhl-parcel': { trigger: 'dhl_delivery_window_changed', condition: 'dhl_delivery_window_known' },
   'dhl-express': { trigger: 'dhl_express_delivery_updated', condition: 'dhl_express_delivery_window_known' },
   dpd: { trigger: 'dpd_delivery_window_changed', condition: 'dpd_delivery_window_known' },
@@ -99,10 +99,18 @@ module.exports = class MyParcelApp extends Homey.App {
     this._connectionStatusChanged = this.homey.flow.getDeviceTriggerCard('connection_status_changed');
     this._deliveryWindowTriggers = {};
     for (const [driverId, cards] of Object.entries(DELIVERY_WINDOW_FLOWS)) {
-      this._deliveryWindowTriggers[driverId] = this.homey.flow.getDeviceTriggerCard(cards.trigger);
-      this.homey.flow.getConditionCard(cards.condition).registerRunListener(async args => {
-        return this._hasKnownDeliveryWindow(args.device, driverId);
-      });
+      try {
+        this._deliveryWindowTriggers[driverId] = this.homey.flow.getDeviceTriggerCard(cards.trigger);
+      } catch (error) {
+        this.error(`[Flow] trigger card ${cards.trigger} not found`, error.message);
+      }
+      try {
+        this.homey.flow.getConditionCard(cards.condition).registerRunListener(async args => {
+          return this._hasKnownDeliveryWindow(args.device, driverId);
+        });
+      } catch (error) {
+        this.error(`[Flow] condition card ${cards.condition} not found`, error.message);
+      }
     }
     this._postInterval = this.homey.setInterval(() => this.syncPostNL('interval'), 5 * 60 * 1000);
     this._midnightInterval = this.homey.setInterval(() => this._midnightCheck(), 60 * 1000);
@@ -111,6 +119,7 @@ module.exports = class MyParcelApp extends Homey.App {
     await this._initMyParcelDeliveryTokens();
     this._myParcelDeliveryTokenInterval = this.homey.setInterval(() => this.syncMyParcelDeliveryTokens().catch(error => this.error(error)), 60 * 1000);
     this.homey.setTimeout(() => this.syncMyParcelDeliveryTokens().catch(error => this.error(error)), 7 * 1000);
+    this.homey.setTimeout(() => this._migrateLegacyPostNLAccount().catch(err => this.error('[PostNL migration]', err)), 3000);
     this.homey.setTimeout(() => this.syncPostNL('startup'), 10 * 1000);
     this.homey.setTimeout(() => this.syncConnectionStates().catch(error => this.error(error)), 5 * 1000);
     this.homey.setTimeout(() => this.syncDeliveryWindows().catch(error => this.error(error)), 8 * 1000);
@@ -137,6 +146,20 @@ module.exports = class MyParcelApp extends Homey.App {
 
   getDHLDevices() {
     try { return this.homey.drivers.getDriver('dhl-parcel').getDevices(); } catch (_) { return []; }
+  }
+
+  async _migrateLegacyPostNLAccount() {
+    const auth = this.homey.settings.get('auth');
+    const snapshot = this.homey.settings.get('snapshot');
+    if (!auth) return;
+    const devices = this.getPostNLDevices();
+    const target = devices.find(device => typeof device.hasAccountCredentials === 'function' && !device.hasAccountCredentials());
+    if (!target || typeof target.importLegacyAccount !== 'function') return;
+    await target.importLegacyAccount(auth, snapshot || null);
+    await this.homey.settings.unset('auth');
+    await this.homey.settings.unset('oauth_pending');
+    await this.homey.settings.unset('snapshot');
+    this.log('[PostNL migration] moved legacy app-level account to device storage');
   }
 
   async syncPostNL(reason = 'manual') {

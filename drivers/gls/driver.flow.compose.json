@@ -1,6 +1,143 @@
 {
   "triggers": [
     {
+      "id": "gls_new_package",
+      "title": {
+        "en": "New GLS package",
+        "nl": "Nieuw GLS-pakket",
+        "de": "New GLS package",
+        "fr": "New GLS package",
+        "it": "New GLS package",
+        "sv": "New GLS package",
+        "no": "New GLS package",
+        "es": "New GLS package",
+        "da": "New GLS package",
+        "ru": "New GLS package",
+        "pl": "New GLS package",
+        "ko": "New GLS package",
+        "ar": "New GLS package"
+      },
+      "args": [],
+      "tokens": [
+        {
+          "name": "tracking",
+          "type": "string",
+          "title": {
+            "en": "Tracking number",
+            "nl": "Trackingnummer",
+            "de": "Tracking number",
+            "fr": "Tracking number",
+            "it": "Tracking number",
+            "sv": "Tracking number",
+            "no": "Tracking number",
+            "es": "Tracking number",
+            "da": "Tracking number",
+            "ru": "Tracking number",
+            "pl": "Tracking number",
+            "ko": "Tracking number",
+            "ar": "Tracking number"
+          }
+        },
+        {
+          "name": "status",
+          "type": "string",
+          "title": {
+            "en": "Status",
+            "nl": "Status",
+            "de": "Status",
+            "fr": "Statut",
+            "it": "Stato",
+            "sv": "Status",
+            "no": "Status",
+            "es": "Estado",
+            "da": "Status",
+            "ru": "Статус",
+            "pl": "Status",
+            "ko": "상태",
+            "ar": "الحالة"
+          }
+        }
+      ]
+    },
+    {
+      "id": "gls_status_changed",
+      "title": {
+        "en": "GLS package status changed",
+        "nl": "GLS-pakketstatus gewijzigd",
+        "de": "GLS package status changed",
+        "fr": "GLS package status changed",
+        "it": "GLS package status changed",
+        "sv": "GLS package status changed",
+        "no": "GLS package status changed",
+        "es": "GLS package status changed",
+        "da": "GLS package status changed",
+        "ru": "GLS package status changed",
+        "pl": "GLS package status changed",
+        "ko": "GLS package status changed",
+        "ar": "GLS package status changed"
+      },
+      "args": [],
+      "tokens": [
+        {
+          "name": "tracking",
+          "type": "string",
+          "title": {
+            "en": "Tracking number",
+            "nl": "Trackingnummer",
+            "de": "Tracking number",
+            "fr": "Tracking number",
+            "it": "Tracking number",
+            "sv": "Tracking number",
+            "no": "Tracking number",
+            "es": "Tracking number",
+            "da": "Tracking number",
+            "ru": "Tracking number",
+            "pl": "Tracking number",
+            "ko": "Tracking number",
+            "ar": "Tracking number"
+          }
+        },
+        {
+          "name": "status",
+          "type": "string",
+          "title": {
+            "en": "Status",
+            "nl": "Status",
+            "de": "Status",
+            "fr": "Statut",
+            "it": "Stato",
+            "sv": "Status",
+            "no": "Status",
+            "es": "Estado",
+            "da": "Status",
+            "ru": "Статус",
+            "pl": "Status",
+            "ko": "상태",
+            "ar": "الحالة"
+          }
+        },
+        {
+          "name": "previous_status",
+          "type": "string",
+          "title": {
+            "en": "Previous status",
+            "nl": "Vorige status",
+            "de": "Previous status",
+            "fr": "Previous status",
+            "it": "Previous status",
+            "sv": "Previous status",
+            "no": "Previous status",
+            "es": "Previous status",
+            "da": "Previous status",
+            "ru": "Previous status",
+            "pl": "Previous status",
+            "ko": "Previous status",
+            "ar": "Previous status"
+          }
+        }
+      ]
+    },
+    {
       "id": "gls_delivery_window_changed",
       "highlight": true,
       "title": {
@@ -177,6 +314,25 @@
   ],
   "conditions": [
     {
+      "id": "gls_packages_underway",
+      "title": {
+        "en": "GLS packages are underway",
+        "nl": "Er zijn GLS-pakketten onderweg",
+        "de": "GLS packages are underway",
+        "fr": "GLS packages are underway",
+        "it": "GLS packages are underway",
+        "sv": "GLS packages are underway",
+        "no": "GLS packages are underway",
+        "es": "GLS packages are underway",
+        "da": "GLS packages are underway",
+        "ru": "GLS packages are underway",
+        "pl": "GLS packages are underway",
+        "ko": "GLS packages are underway",
+        "ar": "GLS packages are underway"
+      },
+      "args": []
+    },
+    {
       "id": "gls_delivery_window_known",
       "title": {
         "en": "Delivery window !{{is|isn't}} known",
@@ -192,6 +348,27 @@
         "pl": "Okno dostawy !{{jest|nie jest}} znane",
         "ko": "배송 시간대가 !{{확인됨|확인되지 않음}}",
         "ar": "نافذة التسليم !{{معروفة|غير معروفة}}"
+      },
+      "args": []
+    }
+  ],
+  "actions": [
+    {
+      "id": "gls_refresh",
+      "title": {
+        "en": "Refresh GLS",
+        "nl": "Vernieuw GLS",
+        "de": "Refresh GLS",
+        "fr": "Refresh GLS",
+        "it": "Refresh GLS",
+        "sv": "Refresh GLS",
+        "no": "Refresh GLS",
+        "es": "Refresh GLS",
+        "da": "Refresh GLS",
+        "ru": "Refresh GLS",
+        "pl": "Refresh GLS",
+        "ko": "Refresh GLS",
+        "ar": "Refresh GLS"
       },
       "args": []
     }

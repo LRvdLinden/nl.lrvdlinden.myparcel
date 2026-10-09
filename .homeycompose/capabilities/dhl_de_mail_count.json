@@ -1,0 +1,20 @@
+{
+  "type": "number",
+  "title": {
+    "en": "Expected mail",
+    "nl": "Verwachte post",
+    "de": "Erwartete Briefe",
+    "fr": "Expected mail",
+    "it": "Expected mail",
+    "sv": "Expected mail",
+    "no": "Expected mail",
+    "es": "Expected mail",
+    "da": "Expected mail",
+    "ru": "Expected mail",
+    "pl": "Expected mail",
+    "ko": "Expected mail",
+    "ar": "Expected mail"
+  },
+  "getable": true,
+  "setable": false
+}

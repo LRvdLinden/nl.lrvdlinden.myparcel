@@ -1,0 +1,22 @@
+{
+  "type": "string",
+  "title": {
+    "en": "Status",
+    "nl": "Status",
+    "de": "Status",
+    "fr": "Statut",
+    "it": "Stato",
+    "sv": "Status",
+    "no": "Status",
+    "es": "Estado",
+    "da": "Status",
+    "ru": "Статус",
+    "pl": "Status",
+    "ko": "상태",
+    "ar": "الحالة"
+  },
+  "getable": true,
+  "setable": false,
+  "uiComponent": "sensor",
+  "icon": "/assets/capabilities/status.svg"
+}

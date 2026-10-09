@@ -1,0 +1,183 @@
+{
+  "triggers": [
+    {
+      "id": "inpost_uk_new_package",
+      "title": {
+        "en": "New InPost UK package",
+        "nl": "Nieuw InPost UK-pakket",
+        "de": "New InPost UK package",
+        "fr": "New InPost UK package",
+        "it": "New InPost UK package",
+        "sv": "New InPost UK package",
+        "no": "New InPost UK package",
+        "es": "New InPost UK package",
+        "da": "New InPost UK package",
+        "ru": "New InPost UK package",
+        "pl": "New InPost UK package",
+        "ko": "New InPost UK package",
+        "ar": "New InPost UK package"
+      },
+      "args": [],
+      "tokens": [
+        {
+          "name": "tracking",
+          "type": "string",
+          "title": {
+            "en": "Tracking number",
+            "nl": "Trackingnummer",
+            "de": "Tracking number",
+            "fr": "Tracking number",
+            "it": "Tracking number",
+            "sv": "Tracking number",
+            "no": "Tracking number",
+            "es": "Tracking number",
+            "da": "Tracking number",
+            "ru": "Tracking number",
+            "pl": "Tracking number",
+            "ko": "Tracking number",
+            "ar": "Tracking number"
+          }
+        },
+        {
+          "name": "status",
+          "type": "string",
+          "title": {
+            "en": "Status",
+            "nl": "Status",
+            "de": "Status",
+            "fr": "Statut",
+            "it": "Stato",
+            "sv": "Status",
+            "no": "Status",
+            "es": "Estado",
+            "da": "Status",
+            "ru": "Статус",
+            "pl": "Status",
+            "ko": "상태",
+            "ar": "الحالة"
+          }
+        }
+      ]
+    },
+    {
+      "id": "inpost_uk_status_changed",
+      "title": {
+        "en": "InPost UK package status changed",
+        "nl": "InPost UK-pakketstatus gewijzigd",
+        "de": "InPost UK package status changed",
+        "fr": "InPost UK package status changed",
+        "it": "InPost UK package status changed",
+        "sv": "InPost UK package status changed",
+        "no": "InPost UK package status changed",
+        "es": "InPost UK package status changed",
+        "da": "InPost UK package status changed",
+        "ru": "InPost UK package status changed",
+        "pl": "InPost UK package status changed",
+        "ko": "InPost UK package status changed",
+        "ar": "InPost UK package status changed"
+      },
+      "args": [],
+      "tokens": [
+        {
+          "name": "tracking",
+          "type": "string",
+          "title": {
+            "en": "Tracking number",
+            "nl": "Trackingnummer",
+            "de": "Tracking number",
+            "fr": "Tracking number",
+            "it": "Tracking number",
+            "sv": "Tracking number",
+            "no": "Tracking number",
+            "es": "Tracking number",
+            "da": "Tracking number",
+            "ru": "Tracking number",
+            "pl": "Tracking number",
+            "ko": "Tracking number",
+            "ar": "Tracking number"
+          }
+        },
+        {
+          "name": "status",
+          "type": "string",
+          "title": {
+            "en": "Status",
+            "nl": "Status",
+            "de": "Status",
+            "fr": "Statut",
+            "it": "Stato",
+            "sv": "Status",
+            "no": "Status",
+            "es": "Estado",
+            "da": "Status",
+            "ru": "Статус",
+            "pl": "Status",
+            "ko": "상태",
+            "ar": "الحالة"
+          }
+        },
+        {
+          "name": "previous_status",
+          "type": "string",
+          "title": {
+            "en": "Previous status",
+            "nl": "Vorige status",
+            "de": "Previous status",
+            "fr": "Previous status",
+            "it": "Previous status",
+            "sv": "Previous status",
+            "no": "Previous status",
+            "es": "Previous status",
+            "da": "Previous status",
+            "ru": "Previous status",
+            "pl": "Previous status",
+            "ko": "Previous status",
+            "ar": "Previous status"
+          }
+        }
+      ]
+    }
+  ],
+  "conditions": [
+    {
+      "id": "inpost_uk_packages_underway",
+      "title": {
+        "en": "InPost UK packages are underway",
+        "nl": "Er zijn InPost UK-pakketten onderweg",
+        "de": "InPost UK packages are underway",
+        "fr": "InPost UK packages are underway",
+        "it": "InPost UK packages are underway",
+        "sv": "InPost UK packages are underway",
+        "no": "InPost UK packages are underway",
+        "es": "InPost UK packages are underway",
+        "da": "InPost UK packages are underway",
+        "ru": "InPost UK packages are underway",
+        "pl": "InPost UK packages are underway",
+        "ko": "InPost UK packages are underway",
+        "ar": "InPost UK packages are underway"
+      },
+      "args": []
+    }
+  ],
+  "actions": [
+    {
+      "id": "inpost_uk_refresh",
+      "title": {
+        "en": "Refresh InPost UK",
+        "nl": "Vernieuw InPost UK",
+        "de": "Refresh InPost UK",
+        "fr": "Refresh InPost UK",
+        "it": "Refresh InPost UK",
+        "sv": "Refresh InPost UK",
+        "no": "Refresh InPost UK",
+        "es": "Refresh InPost UK",
+        "da": "Refresh InPost UK",
+        "ru": "Refresh InPost UK",
+        "pl": "Refresh InPost UK",
+        "ko": "Refresh InPost UK",
+        "ar": "Refresh InPost UK"
+      },
+      "args": []
+    }
+  ]
+}

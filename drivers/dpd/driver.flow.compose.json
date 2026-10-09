@@ -1,6 +1,697 @@
 {
   "triggers": [
     {
+      "id": "dpd_new_package",
+      "title": {
+        "en": "New DPD package",
+        "nl": "Nieuw DPD-pakket",
+        "de": "Neues DPD-Paket",
+        "fr": "Nouveau colis DPD",
+        "it": "Nuovo pacco DPD",
+        "sv": "Nytt DPD-paket",
+        "no": "Ny DPD-pakke",
+        "es": "Nuevo paquete DPD",
+        "da": "Ny DPD-pakke",
+        "ru": "Новая посылка DPD",
+        "pl": "Nowa paczka DPD",
+        "ko": "새 DPD 택배",
+        "ar": "طرد DPD جديد"
+      },
+      "args": [],
+      "tokens": [
+        {
+          "name": "tracking",
+          "type": "string",
+          "title": {
+            "en": "Tracking number",
+            "nl": "Trackingnummer",
+            "de": "Sendungsnummer",
+            "fr": "Numéro de suivi",
+            "it": "Numero di tracciamento",
+            "sv": "Spårningsnummer",
+            "no": "Sporingsnummer",
+            "es": "Número de seguimiento",
+            "da": "Sporingsnummer",
+            "ru": "Номер отслеживания",
+            "pl": "Numer śledzenia",
+            "ko": "운송장 번호",
+            "ar": "رقم التتبع"
+          }
+        },
+        {
+          "name": "status",
+          "type": "string",
+          "title": {
+            "en": "Status",
+            "nl": "Status",
+            "de": "Status",
+            "fr": "Statut",
+            "it": "Stato",
+            "sv": "Status",
+            "no": "Status",
+            "es": "Estado",
+            "da": "Status",
+            "ru": "Статус",
+            "pl": "Status",
+            "ko": "상태",
+            "ar": "الحالة"
+          }
+        },
+        {
+          "name": "sender",
+          "type": "string",
+          "title": {
+            "en": "Sender",
+            "nl": "Afzender",
+            "de": "Absender",
+            "fr": "Expéditeur",
+            "it": "Mittente",
+            "sv": "Avsändare",
+            "no": "Avsender",
+            "es": "Remitente",
+            "da": "Afsender",
+            "ru": "Отправитель",
+            "pl": "Nadawca",
+            "ko": "발송인",
+            "ar": "المرسل"
+          }
+        },
+        {
+          "name": "receiver",
+          "type": "string",
+          "title": {
+            "en": "Receiver",
+            "nl": "Ontvanger",
+            "de": "Empfänger",
+            "fr": "Destinataire",
+            "it": "Destinatario",
+            "sv": "Mottagare",
+            "no": "Mottaker",
+            "es": "Destinatario",
+            "da": "Modtager",
+            "ru": "Получатель",
+            "pl": "Odbiorca",
+            "ko": "수령인",
+            "ar": "المستلم"
+          }
+        },
+        {
+          "name": "delivery_date",
+          "type": "string",
+          "title": {
+            "en": "Delivery date",
+            "nl": "Bezorgdatum",
+            "de": "Zustelldatum",
+            "fr": "Date de livraison",
+            "it": "Data di consegna",
+            "sv": "Leveransdatum",
+            "no": "Leveringsdato",
+            "es": "Fecha de entrega",
+            "da": "Leveringsdato",
+            "ru": "Дата доставки",
+            "pl": "Data dostawy",
+            "ko": "배송 날짜",
+            "ar": "تاريخ التسليم"
+          }
+        },
+        {
+          "name": "delivery_window",
+          "type": "string",
+          "title": {
+            "en": "Delivery window",
+            "nl": "Bezorgvenster",
+            "de": "Zustellzeitfenster",
+            "fr": "Créneau de livraison",
+            "it": "Finestra di consegna",
+            "sv": "Leveransfönster",
+            "no": "Leveringsvindu",
+            "es": "Franja de entrega",
+            "da": "Leveringsvindue",
+            "ru": "Интервал доставки",
+            "pl": "Okno dostawy",
+            "ko": "배송 시간대",
+            "ar": "نافذة التسليم"
+          }
+        },
+        {
+          "name": "delivery_point",
+          "type": "string",
+          "title": {
+            "en": "Delivery point",
+            "nl": "Bezorgpunt",
+            "de": "Zustellort",
+            "fr": "Point de livraison",
+            "it": "Punto di consegna",
+            "sv": "Leveranspunkt",
+            "no": "Leveringspunkt",
+            "es": "Punto de entrega",
+            "da": "Leveringssted",
+            "ru": "Пункт доставки",
+            "pl": "Punkt dostawy",
+            "ko": "배송 지점",
+            "ar": "نقطة التسليم"
+          }
+        },
+        {
+          "name": "weight",
+          "type": "string",
+          "title": {
+            "en": "Weight",
+            "nl": "Gewicht",
+            "de": "Gewicht",
+            "fr": "Poids",
+            "it": "Peso",
+            "sv": "Vikt",
+            "no": "Vekt",
+            "es": "Peso",
+            "da": "Vægt",
+            "ru": "Вес",
+            "pl": "Waga",
+            "ko": "무게",
+            "ar": "الوزن"
+          }
+        },
+        {
+          "name": "dimensions",
+          "type": "string",
+          "title": {
+            "en": "Dimensions",
+            "nl": "Afmetingen",
+            "de": "Abmessungen",
+            "fr": "Dimensions",
+            "it": "Dimensioni",
+            "sv": "Mått",
+            "no": "Mål",
+            "es": "Dimensiones",
+            "da": "Mål",
+            "ru": "Размеры",
+            "pl": "Wymiary",
+            "ko": "크기",
+            "ar": "الأبعاد"
+          }
+        },
+        {
+          "name": "delivery_type",
+          "type": "string",
+          "title": {
+            "en": "Delivery type",
+            "nl": "Type bezorging",
+            "de": "Zustellart",
+            "fr": "Type de livraison",
+            "it": "Tipo di consegna",
+            "sv": "Leveranssätt",
+            "no": "Leveringstype",
+            "es": "Tipo de entrega",
+            "da": "Leveringstype",
+            "ru": "Тип доставки",
+            "pl": "Typ dostawy",
+            "ko": "배송 유형",
+            "ar": "نوع التسليم"
+          }
+        },
+        {
+          "name": "last_event",
+          "type": "string",
+          "title": {
+            "en": "Last event",
+            "nl": "Laatste gebeurtenis",
+            "de": "Letztes Ereignis",
+            "fr": "Dernier événement",
+            "it": "Ultimo evento",
+            "sv": "Senaste händelse",
+            "no": "Siste hendelse",
+            "es": "Último evento",
+            "da": "Seneste hændelse",
+            "ru": "Последнее событие",
+            "pl": "Ostatnie zdarzenie",
+            "ko": "마지막 이벤트",
+            "ar": "آخر حدث"
+          }
+        },
+        {
+          "name": "direction",
+          "type": "string",
+          "title": {
+            "en": "Direction",
+            "nl": "Richting",
+            "de": "Richtung",
+            "fr": "Direction",
+            "it": "Direzione",
+            "sv": "Riktning",
+            "no": "Retning",
+            "es": "Dirección",
+            "da": "Retning",
+            "ru": "Направление",
+            "pl": "Kierunek",
+            "ko": "방향",
+            "ar": "الاتجاه"
+          }
+        }
+      ]
+    },
+    {
+      "id": "dpd_status_changed",
+      "title": {
+        "en": "DPD package status changed",
+        "nl": "DPD-pakketstatus gewijzigd",
+        "de": "DPD-Paketstatus geändert",
+        "fr": "Statut du colis DPD modifié",
+        "it": "Stato del pacco DPD modificato",
+        "sv": "DPD-paketstatus ändrad",
+        "no": "DPD-pakkestatus endret",
+        "es": "Estado del paquete DPD modificado",
+        "da": "DPD-pakkestatus ændret",
+        "ru": "Статус посылки DPD изменён",
+        "pl": "Status paczki DPD zmieniony",
+        "ko": "DPD 택배 상태 변경됨",
+        "ar": "تم تغيير حالة طرد DPD"
+      },
+      "args": [],
+      "tokens": [
+        {
+          "name": "tracking",
+          "type": "string",
+          "title": {
+            "en": "Tracking number",
+            "nl": "Trackingnummer",
+            "de": "Sendungsnummer",
+            "fr": "Numéro de suivi",
+            "it": "Numero di tracciamento",
+            "sv": "Spårningsnummer",
+            "no": "Sporingsnummer",
+            "es": "Número de seguimiento",
+            "da": "Sporingsnummer",
+            "ru": "Номер отслеживания",
+            "pl": "Numer śledzenia",
+            "ko": "운송장 번호",
+            "ar": "رقم التتبع"
+          }
+        },
+        {
+          "name": "status",
+          "type": "string",
+          "title": {
+            "en": "Status",
+            "nl": "Status",
+            "de": "Status",
+            "fr": "Statut",
+            "it": "Stato",
+            "sv": "Status",
+            "no": "Status",
+            "es": "Estado",
+            "da": "Status",
+            "ru": "Статус",
+            "pl": "Status",
+            "ko": "상태",
+            "ar": "الحالة"
+          }
+        },
+        {
+          "name": "previous_status",
+          "type": "string",
+          "title": {
+            "en": "Previous status",
+            "nl": "Vorige status",
+            "de": "Vorheriger Status",
+            "fr": "Statut précédent",
+            "it": "Stato precedente",
+            "sv": "Föregående status",
+            "no": "Forrige status",
+            "es": "Estado anterior",
+            "da": "Forrige status",
+            "ru": "Предыдущий статус",
+            "pl": "Poprzedni status",
+            "ko": "이전 상태",
+            "ar": "الحالة السابقة"
+          }
+        },
+        {
+          "name": "sender",
+          "type": "string",
+          "title": {
+            "en": "Sender",
+            "nl": "Afzender",
+            "de": "Absender",
+            "fr": "Expéditeur",
+            "it": "Mittente",
+            "sv": "Avsändare",
+            "no": "Avsender",
+            "es": "Remitente",
+            "da": "Afsender",
+            "ru": "Отправитель",
+            "pl": "Nadawca",
+            "ko": "발송인",
+            "ar": "المرسل"
+          }
+        },
+        {
+          "name": "receiver",
+          "type": "string",
+          "title": {
+            "en": "Receiver",
+            "nl": "Ontvanger",
+            "de": "Empfänger",
+            "fr": "Destinataire",
+            "it": "Destinatario",
+            "sv": "Mottagare",
+            "no": "Mottaker",
+            "es": "Destinatario",
+            "da": "Modtager",
+            "ru": "Получатель",
+            "pl": "Odbiorca",
+            "ko": "수령인",
+            "ar": "المستلم"
+          }
+        },
+        {
+          "name": "delivery_date",
+          "type": "string",
+          "title": {
+            "en": "Delivery date",
+            "nl": "Bezorgdatum",
+            "de": "Zustelldatum",
+            "fr": "Date de livraison",
+            "it": "Data di consegna",
+            "sv": "Leveransdatum",
+            "no": "Leveringsdato",
+            "es": "Fecha de entrega",
+            "da": "Leveringsdato",
+            "ru": "Дата доставки",
+            "pl": "Data dostawy",
+            "ko": "배송 날짜",
+            "ar": "تاريخ التسليم"
+          }
+        },
+        {
+          "name": "delivery_window",
+          "type": "string",
+          "title": {
+            "en": "Delivery window",
+            "nl": "Bezorgvenster",
+            "de": "Zustellzeitfenster",
+            "fr": "Créneau de livraison",
+            "it": "Finestra di consegna",
+            "sv": "Leveransfönster",
+            "no": "Leveringsvindu",
+            "es": "Franja de entrega",
+            "da": "Leveringsvindue",
+            "ru": "Интервал доставки",
+            "pl": "Okno dostawy",
+            "ko": "배송 시간대",
+            "ar": "نافذة التسليم"
+          }
+        },
+        {
+          "name": "delivery_point",
+          "type": "string",
+          "title": {
+            "en": "Delivery point",
+            "nl": "Bezorgpunt",
+            "de": "Zustellort",
+            "fr": "Point de livraison",
+            "it": "Punto di consegna",
+            "sv": "Leveranspunkt",
+            "no": "Leveringspunkt",
+            "es": "Punto de entrega",
+            "da": "Leveringssted",
+            "ru": "Пункт доставки",
+            "pl": "Punkt dostawy",
+            "ko": "배송 지점",
+            "ar": "نقطة التسليم"
+          }
+        },
+        {
+          "name": "weight",
+          "type": "string",
+          "title": {
+            "en": "Weight",
+            "nl": "Gewicht",
+            "de": "Gewicht",
+            "fr": "Poids",
+            "it": "Peso",
+            "sv": "Vikt",
+            "no": "Vekt",
+            "es": "Peso",
+            "da": "Vægt",
+            "ru": "Вес",
+            "pl": "Waga",
+            "ko": "무게",
+            "ar": "الوزن"
+          }
+        },
+        {
+          "name": "dimensions",
+          "type": "string",
+          "title": {
+            "en": "Dimensions",
+            "nl": "Afmetingen",
+            "de": "Abmessungen",
+            "fr": "Dimensions",
+            "it": "Dimensioni",
+            "sv": "Mått",
+            "no": "Mål",
+            "es": "Dimensiones",
+            "da": "Mål",
+            "ru": "Размеры",
+            "pl": "Wymiary",
+            "ko": "크기",
+            "ar": "الأبعاد"
+          }
+        },
+        {
+          "name": "delivery_type",
+          "type": "string",
+          "title": {
+            "en": "Delivery type",
+            "nl": "Type bezorging",
+            "de": "Zustellart",
+            "fr": "Type de livraison",
+            "it": "Tipo di consegna",
+            "sv": "Leveranssätt",
+            "no": "Leveringstype",
+            "es": "Tipo de entrega",
+            "da": "Leveringstype",
+            "ru": "Тип доставки",
+            "pl": "Typ dostawy",
+            "ko": "배송 유형",
+            "ar": "نوع التسليم"
+          }
+        },
+        {
+          "name": "last_event",
+          "type": "string",
+          "title": {
+            "en": "Last event",
+            "nl": "Laatste gebeurtenis",
+            "de": "Letztes Ereignis",
+            "fr": "Dernier événement",
+            "it": "Ultimo evento",
+            "sv": "Senaste händelse",
+            "no": "Siste hendelse",
+            "es": "Último evento",
+            "da": "Seneste hændelse",
+            "ru": "Последнее событие",
+            "pl": "Ostatnie zdarzenie",
+            "ko": "마지막 이벤트",
+            "ar": "آخر حدث"
+          }
+        },
+        {
+          "name": "direction",
+          "type": "string",
+          "title": {
+            "en": "Direction",
+            "nl": "Richting",
+            "de": "Richtung",
+            "fr": "Direction",
+            "it": "Direzione",
+            "sv": "Riktning",
+            "no": "Retning",
+            "es": "Dirección",
+            "da": "Retning",
+            "ru": "Направление",
+            "pl": "Kierunek",
+            "ko": "방향",
+            "ar": "الاتجاه"
+          }
+        }
+      ]
+    },
+    {
+      "id": "dpd_delivery_window_changed",
+      "highlight": true,
+      "title": {
+        "en": "Delivery window available or changed",
+        "nl": "Bezorgvenster bekend of gewijzigd",
+        "de": "Zustellzeitfenster verfügbar oder geändert",
+        "fr": "Créneau de livraison disponible ou modifié",
+        "it": "Finestra di consegna disponibile o modificata",
+        "sv": "Leveransfönster tillgängligt eller ändrat",
+        "no": "Leveringsvindu tilgjengelig eller endret",
+        "es": "Franja de entrega disponible o modificada",
+        "da": "Leveringsvindue tilgængeligt eller ændret",
+        "ru": "Интервал доставки доступен или изменён",
+        "pl": "Okno dostawy dostępne lub zmienione",
+        "ko": "배송 시간대가 확인되었거나 변경됨",
+        "ar": "أصبحت نافذة التسليم معروفة أو تم تغييرها"
+      },
+      "args": [],
+      "tokens": [
+        {
+          "name": "carrier",
+          "type": "string",
+          "title": {
+            "en": "Carrier",
+            "nl": "Vervoerder",
+            "de": "Paketdienst",
+            "fr": "Transporteur",
+            "it": "Corriere",
+            "sv": "Transportör",
+            "no": "Transportør",
+            "es": "Transportista",
+            "da": "Transportør",
+            "ru": "Перевозчик",
+            "pl": "Przewoźnik",
+            "ko": "배송사",
+            "ar": "شركة الشحن"
+          }
+        },
+        {
+          "name": "tracking",
+          "type": "string",
+          "title": {
+            "en": "Tracking number",
+            "nl": "Trackingnummer",
+            "de": "Sendungsnummer",
+            "fr": "Numéro de suivi",
+            "it": "Numero di tracciamento",
+            "sv": "Spårningsnummer",
+            "no": "Sporingsnummer",
+            "es": "Número de seguimiento",
+            "da": "Sporingsnummer",
+            "ru": "Номер отслеживания",
+            "pl": "Numer śledzenia",
+            "ko": "운송장 번호",
+            "ar": "رقم التتبع"
+          }
+        },
+        {
+          "name": "sender",
+          "type": "string",
+          "title": {
+            "en": "Sender",
+            "nl": "Afzender",
+            "de": "Absender",
+            "fr": "Expéditeur",
+            "it": "Mittente",
+            "sv": "Avsändare",
+            "no": "Avsender",
+            "es": "Remitente",
+            "da": "Afsender",
+            "ru": "Отправитель",
+            "pl": "Nadawca",
+            "ko": "발송인",
+            "ar": "المرسل"
+          }
+        },
+        {
+          "name": "delivery_date",
+          "type": "string",
+          "title": {
+            "en": "Delivery date",
+            "nl": "Bezorgdatum",
+            "de": "Zustelldatum",
+            "fr": "Date de livraison",
+            "it": "Data di consegna",
+            "sv": "Leveransdatum",
+            "no": "Leveringsdato",
+            "es": "Fecha de entrega",
+            "da": "Leveringsdato",
+            "ru": "Дата доставки",
+            "pl": "Data dostawy",
+            "ko": "배송 날짜",
+            "ar": "تاريخ التسليم"
+          }
+        },
+        {
+          "name": "delivery_window",
+          "type": "string",
+          "title": {
+            "en": "Delivery window",
+            "nl": "Bezorgvenster",
+            "de": "Zustellzeitfenster",
+            "fr": "Créneau de livraison",
+            "it": "Finestra di consegna",
+            "sv": "Leveransfönster",
+            "no": "Leveringsvindu",
+            "es": "Franja de entrega",
+            "da": "Leveringsvindue",
+            "ru": "Интервал доставки",
+            "pl": "Okno dostawy",
+            "ko": "배송 시간대",
+            "ar": "نافذة التسليم"
+          }
+        },
+        {
+          "name": "window_start",
+          "type": "string",
+          "title": {
+            "en": "Delivery window start",
+            "nl": "Start bezorgvenster",
+            "de": "Beginn des Zustellzeitfensters",
+            "fr": "Début du créneau de livraison",
+            "it": "Inizio finestra di consegna",
+            "sv": "Start för leveransfönster",
+            "no": "Start på leveringsvindu",
+            "es": "Inicio de la franja de entrega",
+            "da": "Start på leveringsvindue",
+            "ru": "Начало интервала доставки",
+            "pl": "Początek okna dostawy",
+            "ko": "배송 시간대 시작",
+            "ar": "بداية نافذة التسليم"
+          }
+        },
+        {
+          "name": "window_end",
+          "type": "string",
+          "title": {
+            "en": "Delivery window end",
+            "nl": "Einde bezorgvenster",
+            "de": "Ende des Zustellzeitfensters",
+            "fr": "Fin du créneau de livraison",
+            "it": "Fine finestra di consegna",
+            "sv": "Slut för leveransfönster",
+            "no": "Slutt på leveringsvindu",
+            "es": "Fin de la franja de entrega",
+            "da": "Slut på leveringsvindue",
+            "ru": "Конец интервала доставки",
+            "pl": "Koniec okna dostawy",
+            "ko": "배송 시간대 종료",
+            "ar": "نهاية نافذة التسليم"
+          }
+        },
+        {
+          "name": "status",
+          "type": "string",
+          "title": {
+            "en": "Status",
+            "nl": "Status",
+            "de": "Status",
+            "fr": "Statut",
+            "it": "Stato",
+            "sv": "Status",
+            "no": "Status",
+            "es": "Estado",
+            "da": "Status",
+            "ru": "Статус",
+            "pl": "Status",
+            "ko": "상태",
+            "ar": "الحالة"
+          }
+        }
+      ]
+    },
+    {
       "id": "dpd_delivery_updated",
       "title": {
         "en": "DPD delivery information updated",
@@ -497,183 +1188,28 @@
           }
         }
       ]
-    },
-    {
-      "id": "dpd_delivery_window_changed",
-      "highlight": true,
-      "title": {
-        "en": "Delivery window available or changed",
-        "nl": "Bezorgvenster bekend of gewijzigd",
-        "de": "Zustellzeitfenster verfügbar oder geändert",
-        "fr": "Créneau de livraison disponible ou modifié",
-        "it": "Finestra di consegna disponibile o modificata",
-        "sv": "Leveransfönster tillgängligt eller ändrat",
-        "no": "Leveringsvindu tilgjengelig eller endret",
-        "es": "Franja de entrega disponible o modificada",
-        "da": "Leveringsvindue tilgængeligt eller ændret",
-        "ru": "Интервал доставки доступен или изменён",
-        "pl": "Okno dostawy dostępne lub zmienione",
-        "ko": "배송 시간대가 확인되었거나 변경됨",
-        "ar": "أصبحت نافذة التسليم معروفة أو تم تغييرها"
-      },
-      "args": [],
-      "tokens": [
-        {
-          "name": "carrier",
-          "type": "string",
-          "title": {
-            "en": "Carrier",
-            "nl": "Vervoerder",
-            "de": "Paketdienst",
-            "fr": "Transporteur",
-            "it": "Corriere",
-            "sv": "Transportör",
-            "no": "Transportør",
-            "es": "Transportista",
-            "da": "Transportør",
-            "ru": "Перевозчик",
-            "pl": "Przewoźnik",
-            "ko": "배송사",
-            "ar": "شركة الشحن"
-          }
-        },
-        {
-          "name": "tracking",
-          "type": "string",
-          "title": {
-            "en": "Tracking number",
-            "nl": "Trackingnummer",
-            "de": "Sendungsnummer",
-            "fr": "Numéro de suivi",
-            "it": "Numero di tracciamento",
-            "sv": "Spårningsnummer",
-            "no": "Sporingsnummer",
-            "es": "Número de seguimiento",
-            "da": "Sporingsnummer",
-            "ru": "Номер отслеживания",
-            "pl": "Numer śledzenia",
-            "ko": "운송장 번호",
-            "ar": "رقم التتبع"
-          }
-        },
-        {
-          "name": "sender",
-          "type": "string",
-          "title": {
-            "en": "Sender",
-            "nl": "Afzender",
-            "de": "Absender",
-            "fr": "Expéditeur",
-            "it": "Mittente",
-            "sv": "Avsändare",
-            "no": "Avsender",
-            "es": "Remitente",
-            "da": "Afsender",
-            "ru": "Отправитель",
-            "pl": "Nadawca",
-            "ko": "발송인",
-            "ar": "المرسل"
-          }
-        },
-        {
-          "name": "delivery_date",
-          "type": "string",
-          "title": {
-            "en": "Delivery date",
-            "nl": "Bezorgdatum",
-            "de": "Zustelldatum",
-            "fr": "Date de livraison",
-            "it": "Data di consegna",
-            "sv": "Leveransdatum",
-            "no": "Leveringsdato",
-            "es": "Fecha de entrega",
-            "da": "Leveringsdato",
-            "ru": "Дата доставки",
-            "pl": "Data dostawy",
-            "ko": "배송 날짜",
-            "ar": "تاريخ التسليم"
-          }
-        },
-        {
-          "name": "delivery_window",
-          "type": "string",
-          "title": {
-            "en": "Delivery window",
-            "nl": "Bezorgvenster",
-            "de": "Zustellzeitfenster",
-            "fr": "Créneau de livraison",
-            "it": "Finestra di consegna",
-            "sv": "Leveransfönster",
-            "no": "Leveringsvindu",
-            "es": "Franja de entrega",
-            "da": "Leveringsvindue",
-            "ru": "Интервал доставки",
-            "pl": "Okno dostawy",
-            "ko": "배송 시간대",
-            "ar": "نافذة التسليم"
-          }
-        },
-        {
-          "name": "window_start",
-          "type": "string",
-          "title": {
-            "en": "Delivery window start",
-            "nl": "Start bezorgvenster",
-            "de": "Beginn des Zustellzeitfensters",
-            "fr": "Début du créneau de livraison",
-            "it": "Inizio finestra di consegna",
-            "sv": "Start för leveransfönster",
-            "no": "Start på leveringsvindu",
-            "es": "Inicio de la franja de entrega",
-            "da": "Start på leveringsvindue",
-            "ru": "Начало интервала доставки",
-            "pl": "Początek okna dostawy",
-            "ko": "배송 시간대 시작",
-            "ar": "بداية نافذة التسليم"
-          }
-        },
-        {
-          "name": "window_end",
-          "type": "string",
-          "title": {
-            "en": "Delivery window end",
-            "nl": "Einde bezorgvenster",
-            "de": "Ende des Zustellzeitfensters",
-            "fr": "Fin du créneau de livraison",
-            "it": "Fine finestra di consegna",
-            "sv": "Slut för leveransfönster",
-            "no": "Slutt på leveringsvindu",
-            "es": "Fin de la franja de entrega",
-            "da": "Slut på leveringsvindue",
-            "ru": "Конец интервала доставки",
-            "pl": "Koniec okna dostawy",
-            "ko": "배송 시간대 종료",
-            "ar": "نهاية نافذة التسليم"
-          }
-        },
-        {
-          "name": "status",
-          "type": "string",
-          "title": {
-            "en": "Status",
-            "nl": "Status",
-            "de": "Status",
-            "fr": "Statut",
-            "it": "Stato",
-            "sv": "Status",
-            "no": "Status",
-            "es": "Estado",
-            "da": "Status",
-            "ru": "Статус",
-            "pl": "Status",
-            "ko": "상태",
-            "ar": "الحالة"
-          }
-        }
-      ]
     }
   ],
   "conditions": [
+    {
+      "id": "dpd_packages_underway",
+      "title": {
+        "en": "DPD packages are underway",
+        "nl": "Er zijn DPD-pakketten onderweg",
+        "de": "DPD packages are underway",
+        "fr": "DPD packages are underway",
+        "it": "DPD packages are underway",
+        "sv": "DPD packages are underway",
+        "no": "DPD packages are underway",
+        "es": "DPD packages are underway",
+        "da": "DPD packages are underway",
+        "ru": "DPD packages are underway",
+        "pl": "DPD packages are underway",
+        "ko": "DPD packages are underway",
+        "ar": "DPD packages are underway"
+      },
+      "args": []
+    },
     {
       "id": "dpd_delivery_window_known",
       "title": {
@@ -690,6 +1226,27 @@
         "pl": "Okno dostawy !{{jest|nie jest}} znane",
         "ko": "배송 시간대가 !{{확인됨|확인되지 않음}}",
         "ar": "نافذة التسليم !{{معروفة|غير معروفة}}"
+      },
+      "args": []
+    }
+  ],
+  "actions": [
+    {
+      "id": "dpd_refresh",
+      "title": {
+        "en": "Refresh DPD",
+        "nl": "Vernieuw DPD",
+        "de": "Refresh DPD",
+        "fr": "Refresh DPD",
+        "it": "Refresh DPD",
+        "sv": "Refresh DPD",
+        "no": "Refresh DPD",
+        "es": "Refresh DPD",
+        "da": "Refresh DPD",
+        "ru": "Refresh DPD",
+        "pl": "Refresh DPD",
+        "ko": "Refresh DPD",
+        "ar": "Refresh DPD"
       },
       "args": []
     }

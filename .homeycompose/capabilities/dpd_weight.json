@@ -1,0 +1,22 @@
+{
+  "type": "string",
+  "title": {
+    "en": "Weight",
+    "nl": "Gewicht",
+    "de": "Gewicht",
+    "fr": "Poids",
+    "it": "Peso",
+    "sv": "Vikt",
+    "no": "Vekt",
+    "es": "Peso",
+    "da": "Vægt",
+    "ru": "Вес",
+    "pl": "Waga",
+    "ko": "무게",
+    "ar": "الوزن"
+  },
+  "getable": true,
+  "setable": false,
+  "insights": false,
+  "icon": "/assets/capabilities/package.svg"
+}

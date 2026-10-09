@@ -1,0 +1,33 @@
+{
+  "name": {
+    "en": "Parcel Journey",
+    "nl": "Reis van je pakket",
+    "de": "Paketreise",
+    "fr": "Parcours du colis",
+    "it": "Viaggio del pacco",
+    "sv": "Paketets resa",
+    "no": "Pakkens reise",
+    "es": "Viaje del paquete",
+    "da": "Pakkens rejse",
+    "ru": "Путь посылки",
+    "pl": "Droga paczki",
+    "ko": "택배 여정",
+    "ar": "رحلة الطرد"
+  },
+  "height": 420,
+  "api": {
+    "getData": {
+      "method": "GET",
+      "path": "/"
+    }
+  },
+  "devices": {
+    "type": "app",
+    "singular": true,
+    "filter": {
+      "capabilities": "postnl_package_count"
+    }
+  },
+  "id": "postnl-pakket-reis",
+  "settings": []
+}

@@ -1,0 +1,24 @@
+{
+  "type": "number",
+  "title": {
+    "en": "Total packages",
+    "nl": "Totaal pakketten",
+    "de": "Total packages",
+    "fr": "Total packages",
+    "it": "Total packages",
+    "sv": "Total packages",
+    "no": "Total packages",
+    "es": "Total packages",
+    "da": "Total packages",
+    "ru": "Total packages",
+    "pl": "Total packages",
+    "ko": "Total packages",
+    "ar": "Total packages"
+  },
+  "getable": true,
+  "setable": false,
+  "insights": true,
+  "icon": "/assets/capabilities/package.svg",
+  "decimals": 0,
+  "min": 0
+}

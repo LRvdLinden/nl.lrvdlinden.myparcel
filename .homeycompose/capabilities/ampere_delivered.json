@@ -1,0 +1,23 @@
+{
+  "type": "boolean",
+  "title": {
+    "en": "Delivered",
+    "nl": "Bezorgd",
+    "de": "Zugestellt",
+    "fr": "Livré",
+    "it": "Consegnato",
+    "sv": "Levererad",
+    "no": "Levert",
+    "es": "Entregado",
+    "da": "Leveret",
+    "ru": "Доставлено",
+    "pl": "Dostarczono",
+    "ko": "배송 완료",
+    "ar": "تم التسليم"
+  },
+  "getable": true,
+  "setable": false,
+  "uiComponent": "sensor",
+  "insights": false,
+  "icon": "/assets/capabilities/delivery.svg"
+}

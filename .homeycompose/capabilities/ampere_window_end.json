@@ -1,0 +1,23 @@
+{
+  "type": "string",
+  "title": {
+    "en": "Delivery window end",
+    "nl": "Einde bezorgvenster",
+    "de": "Ende des Zustellzeitfensters",
+    "fr": "Fin du créneau",
+    "it": "Fine finestra di consegna",
+    "sv": "Slut för leveransfönster",
+    "no": "Slutt på leveringsvindu",
+    "es": "Fin de la franja de entrega",
+    "da": "Slut på leveringsvindue",
+    "ru": "Конец интервала доставки",
+    "pl": "Koniec okna dostawy",
+    "ko": "배송 시간대 종료",
+    "ar": "نهاية نافذة التسليم"
+  },
+  "getable": true,
+  "setable": false,
+  "uiComponent": "sensor",
+  "insights": false,
+  "icon": "/assets/capabilities/delivery.svg"
+}

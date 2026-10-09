@@ -1,0 +1,23 @@
+{
+  "type": "string",
+  "title": {
+    "en": "Destination",
+    "nl": "Bestemming",
+    "de": "Destination",
+    "fr": "Destination",
+    "it": "Destination",
+    "sv": "Destination",
+    "no": "Destination",
+    "es": "Destination",
+    "da": "Destination",
+    "ru": "Destination",
+    "pl": "Destination",
+    "ko": "Destination",
+    "ar": "Destination"
+  },
+  "getable": true,
+  "setable": false,
+  "uiComponent": "sensor",
+  "insights": false,
+  "icon": "/assets/capabilities/package.svg"
+}

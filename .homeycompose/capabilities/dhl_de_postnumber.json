@@ -1,0 +1,20 @@
+{
+  "type": "string",
+  "title": {
+    "en": "Postnumber",
+    "nl": "Postnummer",
+    "de": "Postnummer",
+    "fr": "Postnumber",
+    "it": "Postnumber",
+    "sv": "Postnumber",
+    "no": "Postnumber",
+    "es": "Postnumber",
+    "da": "Postnumber",
+    "ru": "Postnumber",
+    "pl": "Postnumber",
+    "ko": "Postnumber",
+    "ar": "Postnumber"
+  },
+  "getable": true,
+  "setable": false
+}

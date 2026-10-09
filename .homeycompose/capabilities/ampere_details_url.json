@@ -1,0 +1,23 @@
+{
+  "type": "string",
+  "title": {
+    "en": "Track & Trace URL",
+    "nl": "Track & Trace-URL",
+    "de": "Track-&-Trace-URL",
+    "fr": "URL de suivi",
+    "it": "URL Track & Trace",
+    "sv": "Spårnings-URL",
+    "no": "Sporings-URL",
+    "es": "URL de seguimiento",
+    "da": "Sporings-URL",
+    "ru": "URL отслеживания",
+    "pl": "Adres URL śledzenia",
+    "ko": "배송 조회 URL",
+    "ar": "رابط التتبع"
+  },
+  "getable": true,
+  "setable": false,
+  "uiComponent": "sensor",
+  "insights": false,
+  "icon": "/assets/capabilities/tracking.svg"
+}

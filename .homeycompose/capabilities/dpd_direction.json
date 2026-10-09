@@ -1,0 +1,22 @@
+{
+  "type": "string",
+  "title": {
+    "en": "Direction",
+    "nl": "Richting",
+    "de": "Richtung",
+    "fr": "Direction",
+    "it": "Direzione",
+    "sv": "Riktning",
+    "no": "Retning",
+    "es": "Dirección",
+    "da": "Retning",
+    "ru": "Направление",
+    "pl": "Kierunek",
+    "ko": "방향",
+    "ar": "الاتجاه"
+  },
+  "getable": true,
+  "setable": false,
+  "insights": false,
+  "icon": "/assets/capabilities/delivery.svg"
+}

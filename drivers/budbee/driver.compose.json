@@ -21,13 +21,6 @@
     "myparcel_connection_status",
     "budbee_last_update"
   ],
-  "platforms": [
-    "local"
-  ],
-  "images": {
-    "small": "/drivers/budbee/assets/images/small.png",
-    "large": "/drivers/budbee/assets/images/large.png"
-  },
   "pair": [
     {
       "id": "login"
@@ -37,5 +30,12 @@
     {
       "id": "repair"
     }
-  ]
+  ],
+  "platforms": [
+    "local"
+  ],
+  "images": {
+    "small": "/drivers/budbee/assets/images/small.png",
+    "large": "/drivers/budbee/assets/images/large.png"
+  }
 }

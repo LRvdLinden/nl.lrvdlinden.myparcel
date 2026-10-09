@@ -1,0 +1,22 @@
+{
+  "type": "string",
+  "title": {
+    "en": "UPS service",
+    "nl": "UPS-service",
+    "de": "UPS service",
+    "fr": "UPS service",
+    "it": "UPS service",
+    "sv": "UPS service",
+    "no": "UPS service",
+    "es": "UPS service",
+    "da": "UPS service",
+    "ru": "UPS service",
+    "pl": "UPS service",
+    "ko": "UPS service",
+    "ar": "UPS service"
+  },
+  "getable": true,
+  "setable": false,
+  "insights": false,
+  "icon": "/assets/capabilities/package.svg"
+}

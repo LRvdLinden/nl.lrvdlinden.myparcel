@@ -1,0 +1,22 @@
+{
+  "type": "string",
+  "title": {
+    "en": "Delivery type",
+    "nl": "Type bezorging",
+    "de": "Zustellart",
+    "fr": "Type de livraison",
+    "it": "Tipo di consegna",
+    "sv": "Leveranssätt",
+    "no": "Leveringstype",
+    "es": "Tipo de entrega",
+    "da": "Leveringstype",
+    "ru": "Тип доставки",
+    "pl": "Typ dostawy",
+    "ko": "배송 유형",
+    "ar": "نوع التسليم"
+  },
+  "getable": true,
+  "setable": false,
+  "insights": false,
+  "icon": "/assets/capabilities/delivery.svg"
+}

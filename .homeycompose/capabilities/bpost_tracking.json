@@ -1,0 +1,22 @@
+{
+  "type": "string",
+  "title": {
+    "en": "Next tracking number",
+    "nl": "Volgend trackingnummer",
+    "de": "Next tracking number",
+    "fr": "Next tracking number",
+    "it": "Next tracking number",
+    "sv": "Next tracking number",
+    "no": "Next tracking number",
+    "es": "Next tracking number",
+    "da": "Next tracking number",
+    "ru": "Next tracking number",
+    "pl": "Next tracking number",
+    "ko": "Next tracking number",
+    "ar": "Next tracking number"
+  },
+  "getable": true,
+  "setable": false,
+  "insights": false,
+  "icon": "/assets/capabilities/package.svg"
+}

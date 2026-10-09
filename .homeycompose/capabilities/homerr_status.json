@@ -1,0 +1,22 @@
+{
+  "type": "string",
+  "title": {
+    "en": "Status",
+    "nl": "Status",
+    "de": "Status",
+    "fr": "Status",
+    "it": "Status",
+    "sv": "Status",
+    "no": "Status",
+    "es": "Status",
+    "da": "Status",
+    "ru": "Status",
+    "pl": "Status",
+    "ko": "Status",
+    "ar": "Status"
+  },
+  "getable": true,
+  "setable": false,
+  "insights": true,
+  "icon": "/assets/status.svg"
+}

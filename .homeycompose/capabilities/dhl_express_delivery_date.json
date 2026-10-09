@@ -1,0 +1,23 @@
+{
+  "type": "string",
+  "title": {
+    "en": "Delivery date",
+    "nl": "Bezorgdatum",
+    "de": "Delivery date",
+    "fr": "Delivery date",
+    "it": "Delivery date",
+    "sv": "Delivery date",
+    "no": "Delivery date",
+    "es": "Delivery date",
+    "da": "Delivery date",
+    "ru": "Delivery date",
+    "pl": "Delivery date",
+    "ko": "Delivery date",
+    "ar": "Delivery date"
+  },
+  "getable": true,
+  "setable": false,
+  "uiComponent": "sensor",
+  "insights": false,
+  "icon": "/assets/capabilities/delivery.svg"
+}

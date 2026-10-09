@@ -1,0 +1,20 @@
+{
+  "type": "string",
+  "title": {
+    "en": "Next delivery",
+    "nl": "Volgende bezorging",
+    "de": "Nächste Zustellung",
+    "fr": "Next delivery",
+    "it": "Next delivery",
+    "sv": "Next delivery",
+    "no": "Next delivery",
+    "es": "Next delivery",
+    "da": "Next delivery",
+    "ru": "Next delivery",
+    "pl": "Next delivery",
+    "ko": "Next delivery",
+    "ar": "Next delivery"
+  },
+  "getable": true,
+  "setable": false
+}

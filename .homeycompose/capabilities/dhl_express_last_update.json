@@ -1,0 +1,23 @@
+{
+  "type": "string",
+  "title": {
+    "en": "Last update",
+    "nl": "Laatste update",
+    "de": "Last update",
+    "fr": "Last update",
+    "it": "Last update",
+    "sv": "Last update",
+    "no": "Last update",
+    "es": "Last update",
+    "da": "Last update",
+    "ru": "Last update",
+    "pl": "Last update",
+    "ko": "Last update",
+    "ar": "Last update"
+  },
+  "getable": true,
+  "setable": false,
+  "uiComponent": "sensor",
+  "insights": false,
+  "icon": "/assets/capabilities/update.svg"
+}

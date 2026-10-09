@@ -1,0 +1,183 @@
+{
+  "triggers": [
+    {
+      "id": "royal_mail_new_package",
+      "title": {
+        "en": "New Royal Mail package",
+        "nl": "Nieuw Royal Mail-pakket",
+        "de": "New Royal Mail package",
+        "fr": "New Royal Mail package",
+        "it": "New Royal Mail package",
+        "sv": "New Royal Mail package",
+        "no": "New Royal Mail package",
+        "es": "New Royal Mail package",
+        "da": "New Royal Mail package",
+        "ru": "New Royal Mail package",
+        "pl": "New Royal Mail package",
+        "ko": "New Royal Mail package",
+        "ar": "New Royal Mail package"
+      },
+      "args": [],
+      "tokens": [
+        {
+          "name": "tracking",
+          "type": "string",
+          "title": {
+            "en": "Tracking number",
+            "nl": "Trackingnummer",
+            "de": "Tracking number",
+            "fr": "Tracking number",
+            "it": "Tracking number",
+            "sv": "Tracking number",
+            "no": "Tracking number",
+            "es": "Tracking number",
+            "da": "Tracking number",
+            "ru": "Tracking number",
+            "pl": "Tracking number",
+            "ko": "Tracking number",
+            "ar": "Tracking number"
+          }
+        },
+        {
+          "name": "status",
+          "type": "string",
+          "title": {
+            "en": "Status",
+            "nl": "Status",
+            "de": "Status",
+            "fr": "Statut",
+            "it": "Stato",
+            "sv": "Status",
+            "no": "Status",
+            "es": "Estado",
+            "da": "Status",
+            "ru": "Статус",
+            "pl": "Status",
+            "ko": "상태",
+            "ar": "الحالة"
+          }
+        }
+      ]
+    },
+    {
+      "id": "royal_mail_status_changed",
+      "title": {
+        "en": "Royal Mail package status changed",
+        "nl": "Royal Mail-pakketstatus gewijzigd",
+        "de": "Royal Mail package status changed",
+        "fr": "Royal Mail package status changed",
+        "it": "Royal Mail package status changed",
+        "sv": "Royal Mail package status changed",
+        "no": "Royal Mail package status changed",
+        "es": "Royal Mail package status changed",
+        "da": "Royal Mail package status changed",
+        "ru": "Royal Mail package status changed",
+        "pl": "Royal Mail package status changed",
+        "ko": "Royal Mail package status changed",
+        "ar": "Royal Mail package status changed"
+      },
+      "args": [],
+      "tokens": [
+        {
+          "name": "tracking",
+          "type": "string",
+          "title": {
+            "en": "Tracking number",
+            "nl": "Trackingnummer",
+            "de": "Tracking number",
+            "fr": "Tracking number",
+            "it": "Tracking number",
+            "sv": "Tracking number",
+            "no": "Tracking number",
+            "es": "Tracking number",
+            "da": "Tracking number",
+            "ru": "Tracking number",
+            "pl": "Tracking number",
+            "ko": "Tracking number",
+            "ar": "Tracking number"
+          }
+        },
+        {
+          "name": "status",
+          "type": "string",
+          "title": {
+            "en": "Status",
+            "nl": "Status",
+            "de": "Status",
+            "fr": "Statut",
+            "it": "Stato",
+            "sv": "Status",
+            "no": "Status",
+            "es": "Estado",
+            "da": "Status",
+            "ru": "Статус",
+            "pl": "Status",
+            "ko": "상태",
+            "ar": "الحالة"
+          }
+        },
+        {
+          "name": "previous_status",
+          "type": "string",
+          "title": {
+            "en": "Previous status",
+            "nl": "Vorige status",
+            "de": "Previous status",
+            "fr": "Previous status",
+            "it": "Previous status",
+            "sv": "Previous status",
+            "no": "Previous status",
+            "es": "Previous status",
+            "da": "Previous status",
+            "ru": "Previous status",
+            "pl": "Previous status",
+            "ko": "Previous status",
+            "ar": "Previous status"
+          }
+        }
+      ]
+    }
+  ],
+  "conditions": [
+    {
+      "id": "royal_mail_packages_underway",
+      "title": {
+        "en": "Royal Mail packages are underway",
+        "nl": "Er zijn Royal Mail-pakketten onderweg",
+        "de": "Royal Mail packages are underway",
+        "fr": "Royal Mail packages are underway",
+        "it": "Royal Mail packages are underway",
+        "sv": "Royal Mail packages are underway",
+        "no": "Royal Mail packages are underway",
+        "es": "Royal Mail packages are underway",
+        "da": "Royal Mail packages are underway",
+        "ru": "Royal Mail packages are underway",
+        "pl": "Royal Mail packages are underway",
+        "ko": "Royal Mail packages are underway",
+        "ar": "Royal Mail packages are underway"
+      },
+      "args": []
+    }
+  ],
+  "actions": [
+    {
+      "id": "royal_mail_refresh",
+      "title": {
+        "en": "Refresh Royal Mail",
+        "nl": "Vernieuw Royal Mail",
+        "de": "Refresh Royal Mail",
+        "fr": "Refresh Royal Mail",
+        "it": "Refresh Royal Mail",
+        "sv": "Refresh Royal Mail",
+        "no": "Refresh Royal Mail",
+        "es": "Refresh Royal Mail",
+        "da": "Refresh Royal Mail",
+        "ru": "Refresh Royal Mail",
+        "pl": "Refresh Royal Mail",
+        "ko": "Refresh Royal Mail",
+        "ar": "Refresh Royal Mail"
+      },
+      "args": []
+    }
+  ]
+}

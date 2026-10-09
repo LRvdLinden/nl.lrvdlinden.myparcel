@@ -1,0 +1,23 @@
+{
+  "type": "boolean",
+  "title": {
+    "en": "Delivered",
+    "nl": "Bezorgd",
+    "de": "Delivered",
+    "fr": "Delivered",
+    "it": "Delivered",
+    "sv": "Delivered",
+    "no": "Delivered",
+    "es": "Delivered",
+    "da": "Delivered",
+    "ru": "Delivered",
+    "pl": "Delivered",
+    "ko": "Delivered",
+    "ar": "Delivered"
+  },
+  "getable": true,
+  "setable": false,
+  "uiComponent": "sensor",
+  "insights": false,
+  "icon": "/assets/capabilities/delivery.svg"
+}

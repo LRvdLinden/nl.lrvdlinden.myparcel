@@ -1,0 +1,22 @@
+{
+  "type": "string",
+  "title": {
+    "en": "UPS country",
+    "nl": "UPS-land",
+    "de": "UPS country",
+    "fr": "UPS country",
+    "it": "UPS country",
+    "sv": "UPS country",
+    "no": "UPS country",
+    "es": "UPS country",
+    "da": "UPS country",
+    "ru": "UPS country",
+    "pl": "UPS country",
+    "ko": "UPS country",
+    "ar": "UPS country"
+  },
+  "getable": true,
+  "setable": false,
+  "insights": false,
+  "icon": "/assets/capabilities/status.svg"
+}

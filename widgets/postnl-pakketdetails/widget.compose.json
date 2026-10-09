@@ -1,0 +1,37 @@
+{
+  "name": {
+    "en": "My Delivery",
+    "nl": "Mijn Bezorging",
+    "de": "Meine Zustellung",
+    "fr": "Ma livraison",
+    "it": "La mia consegna",
+    "sv": "Min leverans",
+    "no": "Min levering",
+    "es": "Mi entrega",
+    "da": "Min levering",
+    "ru": "Моя доставка",
+    "pl": "Moja dostawa",
+    "ko": "내 배송",
+    "ar": "توصيلي"
+  },
+  "height": 360,
+  "api": {
+    "getData": {
+      "method": "GET",
+      "path": "/"
+    },
+    "sync": {
+      "method": "POST",
+      "path": "/sync"
+    }
+  },
+  "devices": {
+    "type": "app",
+    "singular": true,
+    "filter": {
+      "capabilities": "postnl_package_count"
+    }
+  },
+  "id": "postnl-pakketdetails",
+  "settings": []
+}

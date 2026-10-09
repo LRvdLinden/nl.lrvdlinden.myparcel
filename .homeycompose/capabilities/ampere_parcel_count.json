@@ -1,0 +1,22 @@
+{
+  "type": "number",
+  "title": {
+    "en": "Active parcels",
+    "nl": "Actieve pakketten",
+    "de": "Aktive Pakete",
+    "fr": "Colis actifs",
+    "it": "Pacchi attivi",
+    "sv": "Aktiva paket",
+    "no": "Aktive pakker",
+    "es": "Paquetes activos",
+    "da": "Aktive pakker",
+    "ru": "Активные посылки",
+    "pl": "Aktywne paczki",
+    "ko": "활성 소포",
+    "ar": "الطرود النشطة"
+  },
+  "getable": true,
+  "setable": false,
+  "uiComponent": "sensor",
+  "icon": "/assets/capabilities/package.svg"
+}

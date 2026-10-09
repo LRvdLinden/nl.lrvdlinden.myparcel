@@ -1,0 +1,22 @@
+{
+  "type": "string",
+  "title": {
+    "en": "Ship from",
+    "nl": "Verzonden vanaf",
+    "de": "Ship from",
+    "fr": "Ship from",
+    "it": "Ship from",
+    "sv": "Ship from",
+    "no": "Ship from",
+    "es": "Ship from",
+    "da": "Ship from",
+    "ru": "Ship from",
+    "pl": "Ship from",
+    "ko": "Ship from",
+    "ar": "Ship from"
+  },
+  "getable": true,
+  "setable": false,
+  "insights": false,
+  "icon": "/assets/capabilities/status.svg"
+}
