@@ -8,6 +8,7 @@
 - New Flow cards on all six devices: new parcel, status changed, tracking event, out for delivery, ready for pickup (where the carrier has pickups), delivered, problem/returning, sent parcels; conditions out for delivery, ready for pickup, a parcel has status…, parcel … is delivered, parcel … is being tracked, sent parcels underway; actions track parcel, stop tracking parcel, remove delivered parcels. Existing cards keep working and get extra tokens (status code, carrier text, window start/end, pickup point, pickup code, weight, dimensions, history, link…).
 - All six devices show up in MyParcel Pakketten and MyParcel Bezorging with translated statuses and the right timeline step.
 - Triggers fire once per change and never repeat after a restart (existing parcels are recorded silently on the first sync after updating); smart polling (15 minutes near a delivery, 45 minutes otherwise, quiet at night); a network hiccup shows a warning with the last known data; delivered parcels stay visible for a configurable number of days.
+- Fixed (PostNL): a parcel Flow could send an image with the previous status, because the image was drawn only when it was opened. Every PostNL parcel trigger (also the delivery-window cards) now gets its own image, drawn at the moment of the trigger with the current status, window and progress; at most 8 are kept.
 - Fixed: a delivered parcel disappeared from the device and widgets right after the next refresh instead of staying visible for the configured number of days (also for DHL).
 
 ## 0.3.4 — DHL like ha-dhl / ha-dhl-nl

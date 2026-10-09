@@ -177,7 +177,7 @@ class PostNLDevice extends Homey.Device {
   async _triggerDeviceFlow(cardId, tokens = {}, state = {}) {
     const { __parcel: parcel, ...cleanTokens } = tokens || {};
     if (parcel && 'package_image_available' in cleanTokens) {
-      const image = await this.getPackageDeliveryImage(parcel).catch(() => null);
+      const image = await this.createTriggerPackageImage(parcel).catch(error => { this.error('Flow image failed', error.message); return null; });
       cleanTokens.package_image_available = Boolean(image);
       if (image) cleanTokens.package_image = image;
     }
@@ -602,8 +602,7 @@ class PostNLDevice extends Homey.Device {
   }
 
   /**
-   * Image token for one parcel. The Image object is cheap; the PNG is only drawn
-   * when a Flow (or the Homey app) actually opens the image.
+   * Image for one parcel (camera / "latest package" use). Rendered when opened.
    */
   async getPackageDeliveryImage(parcel = null) {
     const target = parcel || this._selectActivePackage();
@@ -626,6 +625,34 @@ class PostNLDevice extends Homey.Device {
     }
     entry.parcel = target;
     return entry.image;
+  }
+
+  /**
+   * A fresh image for one Flow trigger: drawn right now from a copy of the parcel as it is
+   * at the moment of the trigger (status, window, progress), so a Flow that opens it later
+   * (WhatsApp, notification) never shows an older or another parcel's status.
+   * Only created when a card really fires; at most 8 are kept.
+   */
+  async createTriggerPackageImage(parcel) {
+    if (!parcel) return null;
+    const snapshot = JSON.parse(JSON.stringify(parcel));
+    const buffer = this._renderPackageCard(snapshot, { cache: 'trigger' });
+    if (!buffer?.length) return null;
+    const id = String(snapshot.barcode || snapshot.id || 'parcel').replace(/[^a-zA-Z0-9_-]/g, '_');
+    const image = await this.homey.images.createImage();
+    image.setStream(async stream => {
+      stream.contentType = 'image/png';
+      stream.filename = `postnl-${id}-${Date.now()}.png`;
+      stream.end(buffer);
+      return stream;
+    });
+    if (!this._triggerImages) this._triggerImages = [];
+    this._triggerImages.push(image);
+    while (this._triggerImages.length > 8) {
+      const oldImage = this._triggerImages.shift();
+      Promise.resolve().then(() => oldImage.unregister?.()).catch(() => {});
+    }
+    return image;
   }
 
   async getLetterImage(letter) {

@@ -356,7 +356,7 @@ module.exports = class MyParcelApp extends Homey.App {
       status: localizePackageStatus(this.homey, parcel?.status || parcel?.category || '') || '',
     };
     if (driverId === 'postnl' && device?.getPackageDeliveryImage) {
-      const packageImage = withImage ? await device.getPackageDeliveryImage(parcel).catch(() => null) : null;
+      const packageImage = withImage ? await (device.createTriggerPackageImage ? device.createTriggerPackageImage(parcel) : device.getPackageDeliveryImage(parcel)).catch(() => null) : null;
       tokens.package_status_text = tokens.status;
       tokens.package_window_text = tokens.delivery_window;
       tokens.package_delivery_date = tokens.delivery_date;
