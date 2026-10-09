@@ -30,7 +30,7 @@ const CARRIER_NAMES = {
 const DELIVERY_WINDOW_FLOWS = {
   // PostNL handles its own delivery-window flows in drivers/postnl (delivery_window_known / delivery_window_changed).
   'dhl-parcel': { trigger: 'dhl_delivery_window_changed', condition: 'dhl_delivery_window_known' },
-  'dhl-express': { trigger: 'dhl_express_delivery_updated', condition: 'dhl_express_delivery_window_known' },
+  // DHL Express fires dhl_express_delivery_updated itself (drivers/dhl-express).
   dpd: { trigger: 'dpd_delivery_window_changed', condition: 'dpd_delivery_window_known' },
   ups: { trigger: 'ups_delivery_window_changed', condition: 'ups_delivery_window_known' },
   budbee: { trigger: 'budbee_delivery_window_changed', condition: 'budbee_delivery_window_known' },
@@ -180,6 +180,7 @@ module.exports = class MyParcelApp extends Homey.App {
 
   _hasUsableConfiguration(driverId, device) {
     const settings = device.getSettings?.() || {};
+    if (typeof device.hasUsableConfiguration === 'function') return device.hasUsableConfiguration();
     switch (driverId) {
       case 'postnl':
         return typeof device.hasAccountCredentials === 'function' ? device.hasAccountCredentials() : Boolean(device.api?.hasCredentials?.());

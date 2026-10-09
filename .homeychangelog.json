@@ -178,5 +178,9 @@
   "0.3.3": {
     "en": "GLS now works without an account in 20 countries, DPD was rebuilt for 19 countries, and memory use dropped sharply: the PostNL delivery image is only drawn when viewed, Track & Trace only for active parcels, and widgets no longer sync every minute. The MyParcel widgets now show all carriers including GLS and DPD, with correct statuses and timeline.",
     "nl": "GLS werkt nu zonder account in 20 landen, DPD is vernieuwd voor 19 landen en het geheugengebruik is fors omlaag: de PostNL-bezorgafbeelding wordt alleen getekend als je ernaar kijkt, Track & Trace alleen voor actieve pakketten, en widgets synchroniseren niet meer elke minuut. De MyParcel-widgets tonen nu alle vervoerders, ook GLS en DPD, met juiste statussen en tijdlijn."
+  },
+  "0.3.4": {
+    "en": "DHL, DHL Express and Post & DHL Germany rebuilt like Home Assistant: DHL status codes, ServicePoint and Packstation pickups, tracking numbers without an account, DHL Express air waybills, new Flow cards, triggers once per change, and all DHL parcels in the MyParcel widgets.",
+    "nl": "DHL, DHL Express en Post & DHL Germany vernieuwd zoals Home Assistant: DHL-statuscodes, ophalen bij ServicePoint en Packstation, trackingnummers zonder account, DHL Express-luchtvrachtbrieven, nieuwe Flow-kaarten, triggers één keer per wijziging en alle DHL-pakketten in de MyParcel-widgets."
   }
 }

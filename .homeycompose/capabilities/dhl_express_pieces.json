@@ -1,0 +1,23 @@
+{
+  "type": "number",
+  "title": {
+    "en": "Pieces",
+    "nl": "Colli",
+    "de": "Packstücke",
+    "fr": "Colis",
+    "it": "Colli",
+    "sv": "Kollin",
+    "no": "Kolli",
+    "es": "Bultos",
+    "da": "Kolli",
+    "ru": "Места",
+    "pl": "Paczki",
+    "ko": "개수",
+    "ar": "القطع"
+  },
+  "getable": true,
+  "setable": false,
+  "insights": false,
+  "icon": "/assets/capabilities/package.svg",
+  "decimals": 0
+}

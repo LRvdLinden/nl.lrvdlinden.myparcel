@@ -1,16 +1,206 @@
-const localizePackageStatus = require('../../lib/status-i18n.js');
 'use strict';
-const Homey=require('homey'),API=require('../../lib/post-dhl-de-api');
-function arr(v){if(Array.isArray(v))return v;if(v&&typeof v==='object'){for(const k of ['shipments','items','currentShipments','sendungen'])if(Array.isArray(v[k]))return v[k]}return[]}
-function first(o,keys){for(const k of keys){const v=k.split('.').reduce((a,x)=>a?.[x],o);if(v!==undefined&&v!==null&&v!=='')return v}return''}
-module.exports=class extends Homey.Device{
- async onInit(){this.snapshot=this.getStoreValue('snapshot')||{parcels:[],letters:[]};await this.apply();this.timer=this.homey.setInterval(()=>this.refresh().catch(this.error),5*60*1000);this.homey.setTimeout(()=>this.refresh().catch(this.error),5000)}
- async onUninit(){if(this.timer)this.homey.clearInterval(this.timer)}
- api(){return new API({accessToken:this.getStoreValue('access_token'),refreshToken:this.getStoreValue('refresh_token'),expiresAt:this.getStoreValue('expires_at')||0})}
- async saveApi(a){await this.setStoreValue('access_token',a.accessToken);await this.setStoreValue('refresh_token',a.refreshToken);await this.setStoreValue('expires_at',a.expiresAt)}
- async updateTokens(t,e){await this.setStoreValue('access_token',t.accessToken);await this.setStoreValue('refresh_token',t.refreshToken);await this.setStoreValue('expires_at',e);await this.refresh(true)}
- normalize(raw){return arr(raw).map((p,i)=>{const id=String(first(p,['id','shipmentId','pieceCode','shipmentNumber'])||i),tracking=String(first(p,['shipmentNumber','pieceCode','id'])||''),status=String(first(p,['status.status','status','statusText','shortStatus'])||''),updatedAt=first(p,['lastUpdate','timestamp','updatedAt'])||new Date().toISOString();return{id,tracking,reference:id,sender:String(first(p,['sender.name','sender','shipper.name','shipper'])||''),status,deliveryDate:first(p,['deliveryDate','delivery.date','expectedDeliveryDate','deliveryTime']),deliveryWindow:String(first(p,['deliveryTimeframe','delivery.window','timeframe'])||''),lastEvent:status,lastEventAt:updatedAt,updatedAt,raw:p}})}
- async refresh(){const a=this.api();try{const [raw,info]=await Promise.all([a.shipments(),a.customer().catch(()=>({}))]);await this.saveApi(a);const parcels=this.normalize(raw),letters=await a.letters();this.snapshot={parcels,letters,updatedAt:new Date().toISOString(),mailStatus:'endpoint_pending'};await this.setStoreValue('snapshot',this.snapshot);if(info.postNumber)await this.setStoreValue('postnumber',info.postNumber);await this.setAvailable();await this.apply();return this.snapshot}catch(e){if([401,403].includes(e.status))await this.setUnavailable('Post & DHL login expired').catch(()=>{});throw e}}
- async apply(){const p=this.snapshot.parcels||[],l=this.snapshot.letters||[],lang=this.homey.i18n.getLanguage(),updated=this.snapshot.updatedAt?new Intl.DateTimeFormat(lang==='nl'?'nl-NL':lang==='de'?'de-DE':'en-GB',{timeZone:this.homey.clock.getTimezone(),dateStyle:'short',timeStyle:'short'}).format(new Date(this.snapshot.updatedAt)):'—';const next=p.map(x=>x.deliveryDate).filter(Boolean).sort()[0]||'—';const vals={dhl_de_parcel_count:p.length,dhl_de_mail_count:l.length,dhl_de_status:p.length?`${p.length} ${lang==='de'?'Pakete':lang==='nl'?'pakketten':'packages'}`:(lang==='de'?'Keine Pakete':lang==='nl'?'Geen pakketten':'No packages'),dhl_de_next_delivery:next,dhl_de_postnumber:this.getStoreValue('postnumber')||'—',dhl_de_account_status:this.homey.app.getConnectionLabel(Boolean(this.getStoreValue('access_token'))),dhl_de_mail_status:lang==='de'?'API-Erfassung erforderlich':lang==='nl'?'API-capture vereist':'API capture required',dhl_de_last_update:updated};for(const[k,v]of Object.entries(vals))if(this.hasCapability(k))await this.setCapabilityValue(k,v).catch(this.error)}
- getWidgetData(){return{parcels:this.snapshot.parcels||[],letters:this.snapshot.letters||[],mailStatus:this.snapshot.mailStatus||'endpoint_pending',authenticated:Boolean(this.getStoreValue('access_token'))}}
+
+const DhlDeviceBase = require('../../lib/dhl-device-base');
+const API = require('../../lib/post-dhl-de-api');
+const { DhlDeSession, DhlDeClient, normalizeDeInbox, normalizeDeApp, deNeedsEnrichment, deIsNotFound } = require('../../lib/dhl-tracking');
+
+function list(value) {
+  if (Array.isArray(value)) return value;
+  if (value && typeof value === 'object') {
+    for (const key of ['shipments', 'items', 'currentShipments', 'sendungen']) if (Array.isArray(value[key])) return value[key];
+  }
+  return [];
+}
+
+const MAIL_STATUS = {
+  en: 'Letter announcement not available', nl: 'Briefaankondiging niet beschikbaar', de: 'Briefankündigung nicht verfügbar',
+  fr: 'Annonce de courrier indisponible', it: 'Avviso lettere non disponibile', es: 'Aviso de cartas no disponible',
 };
+
+/**
+ * Post & DHL Germany – two logins:
+ *  - "app":   the Post & DHL app login (app.dhl.de), works from any country (default for existing devices),
+ *  - "dhlde": the DHL.de login used by ha-dhl (login.dhl.de + www.dhl.de), needs a German IP address;
+ *             also supports extra tracking numbers.
+ * Both are normalised with ha-dhl's DE status logic (progress ladder, Packstation, returns, outgoing).
+ */
+class PostDhlDeDevice extends DhlDeviceBase {
+  static config = {
+    carrier: 'Post & DHL',
+    log: '[Post & DHL]',
+    storePrefix: 'dhl_de',
+    widgetCarrier: 'dhl-de',
+    midMinutes: 30,
+    firstDelay: 5000,
+    capabilities: [
+      'dhl_de_parcel_count', 'dhl_de_status', 'dhl_de_tracking', 'dhl_de_sender', 'dhl_de_delivery_date', 'dhl_de_delivery_window',
+      'dhl_de_next_delivery', 'dhl_de_out_for_delivery_count', 'dhl_de_pickup_count', 'dhl_de_pickup_point', 'dhl_de_delivered_count',
+      'dhl_de_outgoing_count', 'dhl_de_last_event', 'dhl_de_mail_count', 'dhl_de_postnumber', 'dhl_de_account_status',
+      'dhl_de_mail_status', 'dhl_de_last_update',
+    ],
+    caps: {
+      count: 'dhl_de_parcel_count', status: 'dhl_de_status', tracking: 'dhl_de_tracking', sender: 'dhl_de_sender',
+      date: 'dhl_de_delivery_date', window: 'dhl_de_delivery_window', next: 'dhl_de_next_delivery',
+      outCount: 'dhl_de_out_for_delivery_count', pickupCount: 'dhl_de_pickup_count', pickupPoint: 'dhl_de_pickup_point',
+      deliveredCount: 'dhl_de_delivered_count', outgoingCount: 'dhl_de_outgoing_count', lastEvent: 'dhl_de_last_event',
+      lastUpdate: 'dhl_de_last_update', receiver: null, total: null, enRouteCount: null,
+    },
+    cards: {
+      newPackage: 'dhl_de_new_package',
+      statusChanged: 'dhl_de_status_changed',
+      delivered: 'dhl_de_delivered',
+      outForDelivery: 'dhl_de_out_for_delivery',
+      readyForPickup: 'dhl_de_ready_for_pickup',
+      problem: 'dhl_de_package_problem',
+      eventChanged: 'dhl_de_package_event_changed',
+      outgoingStatus: 'dhl_de_outgoing_status_changed',
+      outgoingDelivered: 'dhl_de_outgoing_delivered',
+      // dhl_de_delivery_window_changed is fired by the app
+    },
+  };
+
+  async onDhlInit() {
+    this._session = null;
+    // 0.3.3 stored the raw (sometimes un-normalised) shipment list here and could crash on start.
+    if (this.getStoreValue('snapshot')) await this.unsetStoreValue('snapshot').catch(() => {});
+  }
+
+  _mode() { return this.getStoreValue('login_mode') === 'dhlde' ? 'dhlde' : 'app'; }
+
+  hasUsableConfiguration() {
+    return this._mode() === 'dhlde' ? Boolean(this.getStoreValue('dhl_de_refresh_token')) : Boolean(this.getStoreValue('refresh_token') || this.getStoreValue('access_token'));
+  }
+
+  /* --------------------------------------------------------------- auth -- */
+
+  _api() {
+    return new API({
+      accessToken: this.getStoreValue('access_token'),
+      refreshToken: this.getStoreValue('refresh_token'),
+      expiresAt: this.getStoreValue('expires_at') || 0,
+      onTokens: tokens => {
+        this.setStoreValue('access_token', tokens.accessToken).catch(this.error);
+        this.setStoreValue('refresh_token', tokens.refreshToken).catch(this.error);
+        this.setStoreValue('expires_at', tokens.expiresAt).catch(this.error);
+      },
+    });
+  }
+
+  _deClient() {
+    if (!this._session) {
+      this._session = new DhlDeSession({
+        refreshToken: this.getStoreValue('dhl_de_refresh_token'),
+        onRefreshToken: token => this.setStoreValue('dhl_de_refresh_token', token).catch(this.error),
+      });
+    }
+    return new DhlDeClient({ session: this._session });
+  }
+
+  async updateTokens(tokens, expiresAt) {
+    await this.setStoreValue('login_mode', 'app');
+    await this.setStoreValue('access_token', tokens.accessToken);
+    await this.setStoreValue('refresh_token', tokens.refreshToken);
+    await this.setStoreValue('expires_at', expiresAt);
+    await this.setStoreValue('authExpiredNotified', false);
+    await this.setAvailable().catch(() => {});
+    return this.refresh(true);
+  }
+
+  async updateDhlDeLogin(refreshToken, postNumber) {
+    await this.setStoreValue('login_mode', 'dhlde');
+    await this.setStoreValue('dhl_de_refresh_token', refreshToken);
+    if (postNumber) await this.setStoreValue('postnumber', String(postNumber));
+    await this.setStoreValue('authExpiredNotified', false);
+    this._session = null;
+    await this.setAvailable().catch(() => {});
+    return this.refresh(true);
+  }
+
+  async validateTrackingCode() {
+    if (this._mode() !== 'dhlde') {
+      throw new Error(this._lang() === 'de'
+        ? 'Zusätzliche Sendungsnummern brauchen die DHL.de-Anmeldung (Gerät reparieren).'
+        : this._lang() === 'nl'
+          ? 'Extra trackingnummers werken met de DHL.de-login (repareer het apparaat).'
+          : 'Extra tracking numbers need the DHL.de login (repair the device).');
+    }
+  }
+
+  /* ------------------------------------------------------------ fetching -- */
+
+  async _fetchParcels() {
+    if (!this.hasUsableConfiguration()) return null;
+    if (this._mode() === 'dhlde') {
+      const client = this._deClient();
+      let inbox;
+      try {
+        inbox = await client.getInbox();
+      } catch (error) {
+        if (error.auth) this._session = null;
+        throw error;
+      }
+      const out = [];
+      for (let element of inbox) {
+        // ha-dhl: stubs get a by-number lookup, "not found" elements are not parcels.
+        if (deNeedsEnrichment(element) && element.id) {
+          const known = this._parcels[String(element.id).toUpperCase()];
+          if (known?.delivered) { out.push(known); continue; }
+          element = await client.getByNumber(element.id).catch(error => { if (error.auth) throw error; return null; }) || element;
+        }
+        if (deIsNotFound(element)) continue;
+        const parcel = normalizeDeInbox(element);
+        if (parcel.barcode) out.push(parcel);
+      }
+      for (const entry of this.trackedEntries()) {
+        if (out.some(p => p.barcode === entry.code) || this.wasDelivered(entry.code)) continue;
+        const known = this._parcels[entry.code];
+        if (known?.delivered) { out.push(known); continue; }
+        try {
+          const raw = await client.getByNumber(entry.code);
+          if (raw) {
+            const parcel = normalizeDeInbox(raw);
+            out.push({ ...parcel, barcode: entry.code, direction: entry.direction });
+            continue;
+          }
+        } catch (error) {
+          if (error.auth) throw error;
+        }
+        out.push(known && !known.pending ? known : { source: 'dhlde', barcode: entry.code, status: 'registered', rawStatus: '', delivered: false, direction: entry.direction, history: [], pending: true });
+      }
+      return out;
+    }
+
+    const api = this._api();
+    let raw;
+    try {
+      raw = await api.shipments();
+    } catch (error) {
+      if (error.status === 401 || error.status === 403) error.auth = true;
+      throw error;
+    }
+    if (!this.getStoreValue('postnumber')) {
+      const info = await api.customer().catch(() => ({}));
+      if (info?.postNumber) await this.setStoreValue('postnumber', String(info.postNumber)).catch(() => {});
+    }
+    return list(raw).map(normalizeDeApp).filter(p => p.barcode);
+  }
+
+  async onRefreshed() { await this._accountCapabilities(true); }
+
+  async onAuthFailure() { this._session = null; await this._accountCapabilities(false); }
+
+  async _accountCapabilities(connected) {
+    await this._set('dhl_de_mail_count', 0);
+    await this._set('dhl_de_postnumber', String(this.getStoreValue('postnumber') || DhlDeviceBase.EMPTY));
+    await this._set('dhl_de_mail_status', this._t(MAIL_STATUS));
+    const label = this.homey.app?.getConnectionLabel?.(connected);
+    if (label) await this._set('dhl_de_account_status', label);
+  }
+
+  getWidgetData() {
+    const data = super.getWidgetData();
+    return { ...data, letters: [], mailStatus: 'endpoint_pending', authenticated: this.hasUsableConfiguration() && this.getStoreValue('authExpiredNotified') !== true };
+  }
+}
+
+module.exports = PostDhlDeDevice;

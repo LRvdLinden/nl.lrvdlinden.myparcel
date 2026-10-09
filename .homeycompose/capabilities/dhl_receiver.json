@@ -1,0 +1,22 @@
+{
+  "type": "string",
+  "title": {
+    "en": "Receiver",
+    "nl": "Ontvanger",
+    "de": "Empfänger",
+    "fr": "Destinataire",
+    "it": "Destinatario",
+    "sv": "Mottagare",
+    "no": "Mottaker",
+    "es": "Destinatario",
+    "da": "Modtager",
+    "ru": "Получатель",
+    "pl": "Odbiorca",
+    "ko": "수령인",
+    "ar": "المستلم"
+  },
+  "getable": true,
+  "setable": false,
+  "insights": false,
+  "icon": "/assets/capabilities/sender.svg"
+}

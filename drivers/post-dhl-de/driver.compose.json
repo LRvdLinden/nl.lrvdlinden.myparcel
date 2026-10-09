@@ -17,9 +17,19 @@
   "class": "sensor",
   "capabilities": [
     "dhl_de_parcel_count",
-    "dhl_de_mail_count",
     "dhl_de_status",
+    "dhl_de_tracking",
+    "dhl_de_sender",
+    "dhl_de_delivery_date",
+    "dhl_de_delivery_window",
     "dhl_de_next_delivery",
+    "dhl_de_out_for_delivery_count",
+    "dhl_de_pickup_count",
+    "dhl_de_pickup_point",
+    "dhl_de_delivered_count",
+    "dhl_de_outgoing_count",
+    "dhl_de_last_event",
+    "dhl_de_mail_count",
     "dhl_de_postnumber",
     "dhl_de_account_status",
     "dhl_de_mail_status",
@@ -40,6 +50,86 @@
   "repair": [
     {
       "id": "repair"
+    }
+  ],
+  "settings": [
+    {
+      "type": "group",
+      "label": {
+        "en": "DHL Track & Trace",
+        "nl": "DHL Track & Trace",
+        "de": "DHL Track & Trace",
+        "fr": "DHL Track & Trace",
+        "it": "DHL Track & Trace",
+        "sv": "DHL Track & Trace",
+        "no": "DHL Track & Trace",
+        "es": "DHL Track & Trace",
+        "da": "DHL Track & Trace",
+        "ru": "DHL Track & Trace",
+        "pl": "DHL Track & Trace",
+        "ko": "DHL Track & Trace",
+        "ar": "DHL Track & Trace"
+      },
+      "children": [
+        {
+          "id": "tracking_numbers",
+          "type": "textarea",
+          "label": {
+            "en": "Tracking numbers",
+            "nl": "Trackingnummers",
+            "de": "Sendungsnummern",
+            "fr": "Numéros de suivi",
+            "it": "Numeri di tracciamento",
+            "sv": "Spårningsnummer",
+            "no": "Sporingsnumre",
+            "es": "Números de seguimiento",
+            "da": "Sporingsnumre",
+            "ru": "Трек-номера",
+            "pl": "Numery przesyłek",
+            "ko": "운송장 번호",
+            "ar": "أرقام التتبع"
+          },
+          "hint": {
+            "en": "Extra DHL Paket tracking numbers, one per line (needs the DHL.de login). Add “out” for a parcel you sent yourself.",
+            "nl": "Extra DHL Paket-trackingnummers, één per regel (werkt met de DHL.de-login). Voeg “uit” toe voor een pakket dat je zelf verstuurt.",
+            "de": "Zusätzliche DHL-Paket-Sendungsnummern, eine pro Zeile (benötigt die DHL.de-Anmeldung). „out“ für selbst versendete Pakete.",
+            "fr": "Numéros DHL Paket supplémentaires, un par ligne (connexion DHL.de requise). Ajoutez « out » pour un colis envoyé.",
+            "it": "Extra DHL Paket tracking numbers, one per line (needs the DHL.de login). Add “out” for a parcel you sent yourself.",
+            "sv": "Extra DHL Paket tracking numbers, one per line (needs the DHL.de login). Add “out” for a parcel you sent yourself.",
+            "no": "Extra DHL Paket tracking numbers, one per line (needs the DHL.de login). Add “out” for a parcel you sent yourself.",
+            "es": "Extra DHL Paket tracking numbers, one per line (needs the DHL.de login). Add “out” for a parcel you sent yourself.",
+            "da": "Extra DHL Paket tracking numbers, one per line (needs the DHL.de login). Add “out” for a parcel you sent yourself.",
+            "ru": "Extra DHL Paket tracking numbers, one per line (needs the DHL.de login). Add “out” for a parcel you sent yourself.",
+            "pl": "Extra DHL Paket tracking numbers, one per line (needs the DHL.de login). Add “out” for a parcel you sent yourself.",
+            "ko": "Extra DHL Paket tracking numbers, one per line (needs the DHL.de login). Add “out” for a parcel you sent yourself.",
+            "ar": "Extra DHL Paket tracking numbers, one per line (needs the DHL.de login). Add “out” for a parcel you sent yourself."
+          },
+          "value": ""
+        },
+        {
+          "id": "delivered_days",
+          "type": "number",
+          "label": {
+            "en": "Show delivered parcels for (days)",
+            "nl": "Bezorgde pakketten tonen gedurende (dagen)",
+            "de": "Zugestellte Pakete anzeigen für (Tage)",
+            "fr": "Afficher les colis livrés pendant (jours)",
+            "it": "Mostra i pacchi consegnati per (giorni)",
+            "sv": "Visa levererade paket i (dagar)",
+            "no": "Vis leverte pakker i (dager)",
+            "es": "Mostrar paquetes entregados durante (días)",
+            "da": "Vis leverede pakker i (dage)",
+            "ru": "Показывать доставленные посылки (дней)",
+            "pl": "Pokazuj doręczone paczki przez (dni)",
+            "ko": "배송 완료 택배 표시 기간(일)",
+            "ar": "عرض الطرود المسلَّمة لمدة (أيام)"
+          },
+          "value": 7,
+          "min": 1,
+          "max": 60,
+          "step": 1
+        }
+      ]
     }
   ]
 }

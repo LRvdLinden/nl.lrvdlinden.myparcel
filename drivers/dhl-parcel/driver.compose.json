@@ -20,8 +20,17 @@
     "dhl_status",
     "dhl_tracking_number",
     "dhl_sender",
+    "dhl_receiver",
     "dhl_delivery_date",
     "dhl_delivery_window",
+    "dhl_next_delivery",
+    "dhl_out_for_delivery_count",
+    "dhl_en_route_pickup_count",
+    "dhl_pickup_count",
+    "dhl_pickup_point",
+    "dhl_delivered_count",
+    "dhl_outgoing_count",
+    "dhl_last_event",
     "myparcel_connection_status",
     "dhl_last_update"
   ],
@@ -41,5 +50,85 @@
   },
   "platforms": [
     "local"
+  ],
+  "settings": [
+    {
+      "type": "group",
+      "label": {
+        "en": "DHL Track & Trace",
+        "nl": "DHL Track & Trace",
+        "de": "DHL Track & Trace",
+        "fr": "DHL Track & Trace",
+        "it": "DHL Track & Trace",
+        "sv": "DHL Track & Trace",
+        "no": "DHL Track & Trace",
+        "es": "DHL Track & Trace",
+        "da": "DHL Track & Trace",
+        "ru": "DHL Track & Trace",
+        "pl": "DHL Track & Trace",
+        "ko": "DHL Track & Trace",
+        "ar": "DHL Track & Trace"
+      },
+      "children": [
+        {
+          "id": "tracking_numbers",
+          "type": "textarea",
+          "label": {
+            "en": "Tracking numbers",
+            "nl": "Trackingnummers",
+            "de": "Sendungsnummern",
+            "fr": "Numéros de suivi",
+            "it": "Numeri di tracciamento",
+            "sv": "Spårningsnummer",
+            "no": "Sporingsnumre",
+            "es": "Números de seguimiento",
+            "da": "Sporingsnumre",
+            "ru": "Трек-номера",
+            "pl": "Numery przesyłek",
+            "ko": "운송장 번호",
+            "ar": "أرقام التتبع"
+          },
+          "hint": {
+            "en": "One per line. Works without a My DHL account for DHL Parcel numbers (e.g. JJD…, 3S…). Optionally add a postcode for the tracking link, and “out” for a parcel you sent yourself, e.g. 3SABC1234567890 1234AB out.",
+            "nl": "Eén per regel. Werkt zonder My DHL-account voor DHL Parcel-nummers (bijv. JJD…, 3S…). Voeg eventueel een postcode toe voor de trackinglink, en “uit” voor een pakket dat je zelf verstuurt, bijv. 3SABC1234567890 1234AB uit.",
+            "de": "Eine pro Zeile. Funktioniert ohne My-DHL-Konto für DHL-Parcel-Nummern (z. B. JJD…, 3S…). Optional eine Postleitzahl für den Link und „out“ für selbst versendete Pakete.",
+            "fr": "Un par ligne. Fonctionne sans compte My DHL pour les numéros DHL Parcel (JJD…, 3S…). Ajoutez éventuellement un code postal et « out » pour un colis envoyé.",
+            "it": "One per line. Works without a My DHL account for DHL Parcel numbers (e.g. JJD…, 3S…). Optionally add a postcode for the tracking link, and “out” for a parcel you sent yourself, e.g. 3SABC1234567890 1234AB out.",
+            "sv": "One per line. Works without a My DHL account for DHL Parcel numbers (e.g. JJD…, 3S…). Optionally add a postcode for the tracking link, and “out” for a parcel you sent yourself, e.g. 3SABC1234567890 1234AB out.",
+            "no": "One per line. Works without a My DHL account for DHL Parcel numbers (e.g. JJD…, 3S…). Optionally add a postcode for the tracking link, and “out” for a parcel you sent yourself, e.g. 3SABC1234567890 1234AB out.",
+            "es": "One per line. Works without a My DHL account for DHL Parcel numbers (e.g. JJD…, 3S…). Optionally add a postcode for the tracking link, and “out” for a parcel you sent yourself, e.g. 3SABC1234567890 1234AB out.",
+            "da": "One per line. Works without a My DHL account for DHL Parcel numbers (e.g. JJD…, 3S…). Optionally add a postcode for the tracking link, and “out” for a parcel you sent yourself, e.g. 3SABC1234567890 1234AB out.",
+            "ru": "One per line. Works without a My DHL account for DHL Parcel numbers (e.g. JJD…, 3S…). Optionally add a postcode for the tracking link, and “out” for a parcel you sent yourself, e.g. 3SABC1234567890 1234AB out.",
+            "pl": "One per line. Works without a My DHL account for DHL Parcel numbers (e.g. JJD…, 3S…). Optionally add a postcode for the tracking link, and “out” for a parcel you sent yourself, e.g. 3SABC1234567890 1234AB out.",
+            "ko": "One per line. Works without a My DHL account for DHL Parcel numbers (e.g. JJD…, 3S…). Optionally add a postcode for the tracking link, and “out” for a parcel you sent yourself, e.g. 3SABC1234567890 1234AB out.",
+            "ar": "One per line. Works without a My DHL account for DHL Parcel numbers (e.g. JJD…, 3S…). Optionally add a postcode for the tracking link, and “out” for a parcel you sent yourself, e.g. 3SABC1234567890 1234AB out."
+          },
+          "value": ""
+        },
+        {
+          "id": "delivered_days",
+          "type": "number",
+          "label": {
+            "en": "Show delivered parcels for (days)",
+            "nl": "Bezorgde pakketten tonen gedurende (dagen)",
+            "de": "Zugestellte Pakete anzeigen für (Tage)",
+            "fr": "Afficher les colis livrés pendant (jours)",
+            "it": "Mostra i pacchi consegnati per (giorni)",
+            "sv": "Visa levererade paket i (dagar)",
+            "no": "Vis leverte pakker i (dager)",
+            "es": "Mostrar paquetes entregados durante (días)",
+            "da": "Vis leverede pakker i (dage)",
+            "ru": "Показывать доставленные посылки (дней)",
+            "pl": "Pokazuj doręczone paczki przez (dni)",
+            "ko": "배송 완료 택배 표시 기간(일)",
+            "ar": "عرض الطرود المسلَّمة لمدة (أيام)"
+          },
+          "value": 7,
+          "min": 1,
+          "max": 60,
+          "step": 1
+        }
+      ]
+    }
   ]
 }

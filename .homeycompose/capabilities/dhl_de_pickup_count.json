@@ -1,0 +1,23 @@
+{
+  "type": "number",
+  "title": {
+    "en": "Ready for pickup",
+    "nl": "Klaar om op te halen",
+    "de": "Abholbereit",
+    "fr": "Prêt à être retiré",
+    "it": "Pronto per il ritiro",
+    "sv": "Redo att hämtas",
+    "no": "Klar for henting",
+    "es": "Listo para recoger",
+    "da": "Klar til afhentning",
+    "ru": "Готова к выдаче",
+    "pl": "Gotowa do odbioru",
+    "ko": "픽업 준비 완료",
+    "ar": "جاهز للاستلام"
+  },
+  "getable": true,
+  "setable": false,
+  "insights": true,
+  "icon": "/assets/capabilities/package.svg",
+  "decimals": 0
+}

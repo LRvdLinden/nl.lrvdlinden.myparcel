@@ -1,0 +1,23 @@
+{
+  "type": "number",
+  "title": {
+    "en": "En route to ParcelShop",
+    "nl": "Onderweg naar ParcelShop",
+    "de": "Unterwegs zum PaketShop",
+    "fr": "En route vers le point relais",
+    "it": "In viaggio verso il punto di ritiro",
+    "sv": "På väg till utlämningsställe",
+    "no": "På vei til hentested",
+    "es": "En camino al punto de recogida",
+    "da": "På vej til pakkeshop",
+    "ru": "В пути в пункт выдачи",
+    "pl": "W drodze do punktu odbioru",
+    "ko": "픽업 지점으로 이동 중",
+    "ar": "في الطريق إلى نقطة الاستلام"
+  },
+  "getable": true,
+  "setable": false,
+  "insights": true,
+  "icon": "/assets/capabilities/package.svg",
+  "decimals": 0
+}

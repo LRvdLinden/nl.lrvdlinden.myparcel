@@ -1,0 +1,37 @@
+{
+  "name": {
+    "en": "DHL Parcels (Germany)",
+    "nl": "DHL-pakketten (Duitsland)",
+    "de": "DHL Pakete",
+    "fr": "Colis DHL (Allemagne)",
+    "it": "Pacchi DHL (Germania)",
+    "sv": "DHL-paket (Tyskland)",
+    "no": "DHL-pakker (Tyskland)",
+    "es": "Paquetes DHL (Alemania)",
+    "da": "DHL-pakker (Tyskland)",
+    "ru": "Посылки DHL (Германия)",
+    "pl": "Paczki DHL (Niemcy)",
+    "ko": "DHL 택배 (독일)",
+    "ar": "طرود DHL (ألمانيا)"
+  },
+  "height": 360,
+  "api": {
+    "getData": {
+      "method": "GET",
+      "path": "/"
+    },
+    "sync": {
+      "method": "POST",
+      "path": "/sync"
+    }
+  },
+  "devices": {
+    "type": "app",
+    "singular": true,
+    "filter": {
+      "capabilities": "dhl_de_parcel_count"
+    }
+  },
+  "id": "dhl-de-pakete",
+  "settings": []
+}

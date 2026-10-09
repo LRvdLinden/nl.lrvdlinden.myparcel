@@ -27,10 +27,14 @@
     "dhl_express_receiver",
     "dhl_express_delivery_date",
     "dhl_express_delivery_window",
+    "dhl_express_next_delivery",
     "dhl_express_service",
     "dhl_express_origin",
     "dhl_express_destination",
+    "dhl_express_pieces",
     "dhl_express_last_event",
+    "dhl_express_out_for_delivery_count",
+    "dhl_express_delivered_count",
     "dhl_express_delivered",
     "myparcel_connection_status",
     "dhl_express_last_update"
@@ -51,24 +55,122 @@
   },
   "settings": [
     {
-      "id": "session_bundle",
-      "type": "password",
+      "type": "group",
       "label": {
-        "en": "MyDHL+ web session",
-        "nl": "MyDHL+ websessie",
-        "de": "MyDHL+ web session",
-        "fr": "MyDHL+ web session",
-        "it": "MyDHL+ web session",
-        "sv": "MyDHL+ web session",
-        "no": "MyDHL+ web session",
-        "es": "MyDHL+ web session",
-        "da": "MyDHL+ web session",
-        "ru": "MyDHL+ web session",
-        "pl": "MyDHL+ web session",
-        "ko": "MyDHL+ web session",
-        "ar": "MyDHL+ web session"
+        "en": "DHL Express Track & Trace",
+        "nl": "DHL Express Track & Trace",
+        "de": "DHL Express Track & Trace",
+        "fr": "DHL Express Track & Trace",
+        "it": "DHL Express Track & Trace",
+        "sv": "DHL Express Track & Trace",
+        "no": "DHL Express Track & Trace",
+        "es": "DHL Express Track & Trace",
+        "da": "DHL Express Track & Trace",
+        "ru": "DHL Express Track & Trace",
+        "pl": "DHL Express Track & Trace",
+        "ko": "DHL Express Track & Trace",
+        "ar": "DHL Express Track & Trace"
       },
-      "value": ""
+      "children": [
+        {
+          "id": "tracking_numbers",
+          "type": "textarea",
+          "label": {
+            "en": "Tracking numbers",
+            "nl": "Trackingnummers",
+            "de": "Sendungsnummern",
+            "fr": "Numéros de suivi",
+            "it": "Numeri di tracciamento",
+            "sv": "Spårningsnummer",
+            "no": "Sporingsnumre",
+            "es": "Números de seguimiento",
+            "da": "Sporingsnumre",
+            "ru": "Трек-номера",
+            "pl": "Numery przesyłek",
+            "ko": "운송장 번호",
+            "ar": "أرقام التتبع"
+          },
+          "hint": {
+            "en": "One 10-digit air waybill per line – no account needed. Add “out” for a shipment you sent yourself. DHL Express allows about one lookup per 40 minutes, so with several numbers each one is refreshed in turn.",
+            "nl": "Eén luchtvrachtbriefnummer van 10 cijfers per regel – geen account nodig. Voeg “uit” toe voor een zending die je zelf verstuurt. DHL Express staat ongeveer één opvraging per 40 minuten toe; met meerdere nummers wordt elk nummer om de beurt bijgewerkt.",
+            "de": "Eine 10-stellige Luftfrachtbriefnummer pro Zeile – kein Konto nötig. „out“ für selbst versendete Sendungen. DHL Express erlaubt etwa eine Abfrage pro 40 Minuten; mehrere Nummern werden abwechselnd aktualisiert.",
+            "fr": "Un numéro de lettre de transport à 10 chiffres par ligne – sans compte. Ajoutez « out » pour un envoi. DHL Express autorise environ une requête toutes les 40 minutes.",
+            "it": "One 10-digit air waybill per line – no account needed. Add “out” for a shipment you sent yourself. DHL Express allows about one lookup per 40 minutes, so with several numbers each one is refreshed in turn.",
+            "sv": "One 10-digit air waybill per line – no account needed. Add “out” for a shipment you sent yourself. DHL Express allows about one lookup per 40 minutes, so with several numbers each one is refreshed in turn.",
+            "no": "One 10-digit air waybill per line – no account needed. Add “out” for a shipment you sent yourself. DHL Express allows about one lookup per 40 minutes, so with several numbers each one is refreshed in turn.",
+            "es": "One 10-digit air waybill per line – no account needed. Add “out” for a shipment you sent yourself. DHL Express allows about one lookup per 40 minutes, so with several numbers each one is refreshed in turn.",
+            "da": "One 10-digit air waybill per line – no account needed. Add “out” for a shipment you sent yourself. DHL Express allows about one lookup per 40 minutes, so with several numbers each one is refreshed in turn.",
+            "ru": "One 10-digit air waybill per line – no account needed. Add “out” for a shipment you sent yourself. DHL Express allows about one lookup per 40 minutes, so with several numbers each one is refreshed in turn.",
+            "pl": "One 10-digit air waybill per line – no account needed. Add “out” for a shipment you sent yourself. DHL Express allows about one lookup per 40 minutes, so with several numbers each one is refreshed in turn.",
+            "ko": "One 10-digit air waybill per line – no account needed. Add “out” for a shipment you sent yourself. DHL Express allows about one lookup per 40 minutes, so with several numbers each one is refreshed in turn.",
+            "ar": "One 10-digit air waybill per line – no account needed. Add “out” for a shipment you sent yourself. DHL Express allows about one lookup per 40 minutes, so with several numbers each one is refreshed in turn."
+          },
+          "value": ""
+        },
+        {
+          "id": "delivered_days",
+          "type": "number",
+          "label": {
+            "en": "Show delivered parcels for (days)",
+            "nl": "Bezorgde pakketten tonen gedurende (dagen)",
+            "de": "Zugestellte Pakete anzeigen für (Tage)",
+            "fr": "Afficher les colis livrés pendant (jours)",
+            "it": "Mostra i pacchi consegnati per (giorni)",
+            "sv": "Visa levererade paket i (dagar)",
+            "no": "Vis leverte pakker i (dager)",
+            "es": "Mostrar paquetes entregados durante (días)",
+            "da": "Vis leverede pakker i (dage)",
+            "ru": "Показывать доставленные посылки (дней)",
+            "pl": "Pokazuj doręczone paczki przez (dni)",
+            "ko": "배송 완료 택배 표시 기간(일)",
+            "ar": "عرض الطرود المسلَّمة لمدة (أيام)"
+          },
+          "value": 7,
+          "min": 1,
+          "max": 60,
+          "step": 1
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "label": {
+        "en": "MyDHL+ account (optional)",
+        "nl": "MyDHL+-account (optioneel)",
+        "de": "MyDHL+-Konto (optional)",
+        "fr": "Compte MyDHL+ (facultatif)",
+        "it": "MyDHL+ account (optional)",
+        "sv": "MyDHL+ account (optional)",
+        "no": "MyDHL+ account (optional)",
+        "es": "MyDHL+ account (optional)",
+        "da": "MyDHL+ account (optional)",
+        "ru": "MyDHL+ account (optional)",
+        "pl": "MyDHL+ account (optional)",
+        "ko": "MyDHL+ account (optional)",
+        "ar": "MyDHL+ account (optional)"
+      },
+      "children": [
+        {
+          "id": "session_bundle",
+          "type": "password",
+          "label": {
+            "en": "MyDHL+ web session",
+            "nl": "MyDHL+ websessie",
+            "de": "MyDHL+ web session",
+            "fr": "MyDHL+ web session",
+            "it": "MyDHL+ web session",
+            "sv": "MyDHL+ web session",
+            "no": "MyDHL+ web session",
+            "es": "MyDHL+ web session",
+            "da": "MyDHL+ web session",
+            "ru": "MyDHL+ web session",
+            "pl": "MyDHL+ web session",
+            "ko": "MyDHL+ web session",
+            "ar": "MyDHL+ web session"
+          },
+          "value": ""
+        }
+      ]
     }
   ]
 }
