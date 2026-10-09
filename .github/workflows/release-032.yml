@@ -1,0 +1,28 @@
+name: Release MyParcel 0.3.2
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/release-032.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Create GitHub release v0.3.2
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if gh release view v0.3.2 >/dev/null 2>&1; then
+            echo "Release v0.3.2 already exists"; exit 0
+          fi
+          gh release create v0.3.2 MyParcel-for-Homey-v0.3.2.zip \
+            --target "${GITHUB_SHA}" \
+            --title "v0.3.2 — PostNL 1.2.7 & stability" \
+            --notes-file .github/release-notes/0.3.2.md \
+            --latest
