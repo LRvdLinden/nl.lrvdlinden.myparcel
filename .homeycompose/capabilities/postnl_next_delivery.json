@@ -2,7 +2,18 @@
   "type": "string",
   "title": {
     "en": "Next delivery",
-    "nl": "Volgende bezorging"
+    "nl": "Volgende bezorging",
+    "de": "Nächste Zustellung",
+    "fr": "Prochaine livraison",
+    "it": "Prossima consegna",
+    "sv": "Nästa leverans",
+    "no": "Neste levering",
+    "es": "Próxima entrega",
+    "da": "Næste levering",
+    "ru": "Следующая доставка",
+    "pl": "Następna dostawa",
+    "ko": "다음 배송",
+    "ar": "التوصيل التالي"
   },
   "getable": true,
   "setable": false,

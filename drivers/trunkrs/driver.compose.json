@@ -1,0 +1,166 @@
+{
+  "name": {
+    "en": "Trunkrs",
+    "nl": "Trunkrs",
+    "de": "Trunkrs",
+    "fr": "Trunkrs",
+    "it": "Trunkrs",
+    "sv": "Trunkrs",
+    "no": "Trunkrs",
+    "es": "Trunkrs",
+    "da": "Trunkrs",
+    "ru": "Trunkrs",
+    "pl": "Trunkrs",
+    "ko": "Trunkrs",
+    "ar": "Trunkrs"
+  },
+  "class": "sensor",
+  "capabilities": [
+    "trunkrs_parcel_count",
+    "trunkrs_status",
+    "trunkrs_tracking",
+    "trunkrs_sender",
+    "trunkrs_receiver",
+    "trunkrs_delivery_date",
+    "trunkrs_delivery_window",
+    "trunkrs_next_delivery",
+    "trunkrs_out_for_delivery_count",
+    "trunkrs_delivered_count",
+    "trunkrs_last_event",
+    "myparcel_connection_status",
+    "trunkrs_last_update"
+  ],
+  "pair": [
+    {
+      "id": "login"
+    }
+  ],
+  "repair": [
+    {
+      "id": "repair"
+    }
+  ],
+  "platforms": [
+    "local"
+  ],
+  "images": {
+    "small": "/drivers/trunkrs/assets/images/small.png",
+    "large": "/drivers/trunkrs/assets/images/large.png",
+    "xlarge": "/drivers/trunkrs/assets/images/xlarge.png"
+  },
+  "settings": [
+    {
+      "type": "group",
+      "label": {
+        "en": "Trunkrs Track & Trace",
+        "nl": "Trunkrs Track & Trace",
+        "de": "Trunkrs Track & Trace",
+        "fr": "Trunkrs Track & Trace",
+        "it": "Trunkrs Track & Trace",
+        "sv": "Trunkrs Track & Trace",
+        "no": "Trunkrs Track & Trace",
+        "es": "Trunkrs Track & Trace",
+        "da": "Trunkrs Track & Trace",
+        "ru": "Trunkrs Track & Trace",
+        "pl": "Trunkrs Track & Trace",
+        "ko": "Trunkrs Track & Trace",
+        "ar": "Trunkrs Track & Trace"
+      },
+      "children": [
+        {
+          "id": "postal_code",
+          "type": "text",
+          "label": {
+            "en": "Delivery postal code",
+            "nl": "Bezorgpostcode",
+            "de": "Zustell-Postleitzahl",
+            "fr": "Code postal de livraison",
+            "it": "CAP di consegna",
+            "sv": "Leveranspostnummer",
+            "no": "Leveringspostnummer",
+            "es": "Código postal de entrega",
+            "da": "Leveringspostnummer",
+            "ru": "Почтовый индекс доставки",
+            "pl": "Kod pocztowy dostawy",
+            "ko": "배송지 우편번호",
+            "ar": "الرمز البريدي للتوصيل"
+          },
+          "hint": {
+            "en": "Dutch postal code of the delivery address (e.g. 1234AB). Trunkrs needs it to show the parcel.",
+            "nl": "Postcode van het bezorgadres (bijv. 1234AB). Trunkrs heeft die nodig om het pakket te tonen.",
+            "de": "Niederländische Postleitzahl der Lieferadresse (z. B. 1234AB). Trunkrs benötigt sie, um das Paket anzuzeigen.",
+            "fr": "Code postal néerlandais de l’adresse de livraison (ex. 1234AB). Trunkrs en a besoin pour afficher le colis.",
+            "it": "CAP olandese dell’indirizzo di consegna (es. 1234AB). Trunkrs ne ha bisogno per mostrare il pacco.",
+            "sv": "Nederländskt postnummer för leveransadressen (t.ex. 1234AB). Trunkrs behöver det för att visa paketet.",
+            "no": "Nederlandsk postnummer for leveringsadressen (f.eks. 1234AB). Trunkrs trenger det for å vise pakken.",
+            "es": "Código postal neerlandés de la dirección de entrega (p. ej. 1234AB). Trunkrs lo necesita para mostrar el paquete.",
+            "da": "Hollandsk postnummer for leveringsadressen (f.eks. 1234AB). Trunkrs skal bruge det for at vise pakken.",
+            "ru": "Нидерландский индекс адреса доставки (напр. 1234AB). Он нужен Trunkrs, чтобы показать посылку.",
+            "pl": "Holenderski kod pocztowy adresu dostawy (np. 1234AB). Trunkrs potrzebuje go, aby pokazać paczkę.",
+            "ko": "배송지의 네덜란드 우편번호(예: 1234AB). Trunkrs가 택배를 표시하는 데 필요합니다.",
+            "ar": "الرمز البريدي الهولندي لعنوان التوصيل (مثل 1234AB). يحتاجه Trunkrs لعرض الطرد."
+          },
+          "value": ""
+        },
+        {
+          "id": "tracking_numbers",
+          "type": "textarea",
+          "label": {
+            "en": "Tracking numbers",
+            "nl": "Trackingnummers",
+            "de": "Sendungsnummern",
+            "fr": "Numéros de suivi",
+            "it": "Numeri di tracciamento",
+            "sv": "Spårningsnummer",
+            "no": "Sporingsnumre",
+            "es": "Números de seguimiento",
+            "da": "Sporingsnumre",
+            "ru": "Трек-номера",
+            "pl": "Numery przesyłek",
+            "ko": "운송장 번호",
+            "ar": "أرقام التتبع"
+          },
+          "hint": {
+            "en": "One tracking number per line. Add a postal code after a number when it differs from the one above (e.g. \"419719666 1234AB\").",
+            "nl": "Eén trackingnummer per regel. Zet een postcode achter een nummer als die afwijkt van de postcode hierboven (bijv. \"419719666 1234AB\").",
+            "de": "Eine Sendungsnummer pro Zeile. Gib nach einer Nummer eine Postleitzahl an, wenn sie von der obigen abweicht (z. B. „419719666 1234AB“).",
+            "fr": "Un numéro de suivi par ligne. Ajoutez un code postal après un numéro s’il diffère de celui ci-dessus (ex. « 419719666 1234AB »).",
+            "it": "Un numero di tracking per riga. Aggiungi un CAP dopo un numero se diverso da quello sopra (es. \"419719666 1234AB\").",
+            "sv": "Ett spårningsnummer per rad. Lägg till ett postnummer efter numret om det skiljer sig från det ovan (t.ex. \"419719666 1234AB\").",
+            "no": "Ett sporingsnummer per linje. Legg til et postnummer etter nummeret hvis det er et annet enn det over (f.eks. «419719666 1234AB»).",
+            "es": "Un número de seguimiento por línea. Añade un código postal tras el número si es distinto del de arriba (p. ej. «419719666 1234AB»).",
+            "da": "Ét sporingsnummer pr. linje. Tilføj et postnummer efter nummeret, hvis det afviger fra det ovenfor (f.eks. \"419719666 1234AB\").",
+            "ru": "Один номер отслеживания в строке. Укажите индекс после номера, если он отличается от указанного выше (напр. «419719666 1234AB»).",
+            "pl": "Jeden numer przesyłki w wierszu. Dodaj kod pocztowy po numerze, jeśli różni się od podanego wyżej (np. „419719666 1234AB”).",
+            "ko": "한 줄에 운송장 번호 하나. 위의 우편번호와 다르면 번호 뒤에 우편번호를 추가하세요(예: \"419719666 1234AB\").",
+            "ar": "رقم تتبع واحد في كل سطر. أضف رمزًا بريديًا بعد الرقم إذا كان مختلفًا عن الرمز أعلاه (مثل \"419719666 1234AB\")."
+          },
+          "value": ""
+        },
+        {
+          "id": "delivered_days",
+          "type": "number",
+          "label": {
+            "en": "Show delivered parcels for (days)",
+            "nl": "Bezorgde pakketten tonen gedurende (dagen)",
+            "de": "Zugestellte Pakete anzeigen für (Tage)",
+            "fr": "Afficher les colis livrés pendant (jours)",
+            "it": "Mostra i pacchi consegnati per (giorni)",
+            "sv": "Visa levererade paket i (dagar)",
+            "no": "Vis leverte pakker i (dager)",
+            "es": "Mostrar paquetes entregados durante (días)",
+            "da": "Vis leverede pakker i (dage)",
+            "ru": "Показывать доставленные посылки (дней)",
+            "pl": "Pokazuj doręczone paczki przez (dni)",
+            "ko": "배송 완료 택배 표시 기간(일)",
+            "ar": "عرض الطرود المسلَّمة لمدة (أيام)"
+          },
+          "value": 7,
+          "min": 1,
+          "max": 60,
+          "step": 1
+        }
+      ]
+    }
+  ]
+}

@@ -2,7 +2,18 @@
   "type": "string",
   "title": {
     "en": "Canonical status",
-    "nl": "Canonieke status"
+    "nl": "Canonieke status",
+    "de": "Einheitlicher Status",
+    "fr": "Statut normalisé",
+    "it": "Stato normalizzato",
+    "sv": "Normaliserad status",
+    "no": "Normalisert status",
+    "es": "Estado normalizado",
+    "da": "Normaliseret status",
+    "ru": "Унифицированный статус",
+    "pl": "Ujednolicony status",
+    "ko": "표준 상태",
+    "ar": "الحالة الموحدة"
   },
   "getable": true,
   "setable": false,

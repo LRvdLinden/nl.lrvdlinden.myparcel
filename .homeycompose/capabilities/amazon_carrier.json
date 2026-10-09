@@ -1,0 +1,22 @@
+{
+  "type": "string",
+  "title": {
+    "en": "Delivery carrier",
+    "nl": "Bezorgdienst",
+    "de": "Zustelldienst",
+    "fr": "Transporteur",
+    "it": "Corriere",
+    "sv": "Transportör",
+    "no": "Transportør",
+    "es": "Transportista",
+    "da": "Fragtfirma",
+    "ru": "Служба доставки",
+    "pl": "Przewoźnik",
+    "ko": "배송 업체",
+    "ar": "شركة التوصيل"
+  },
+  "getable": true,
+  "setable": false,
+  "insights": false,
+  "icon": "/assets/capabilities/delivery.svg"
+}

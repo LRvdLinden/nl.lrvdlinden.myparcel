@@ -1,7 +1,7 @@
 'use strict';
 
 const CarrierDeviceBase = require('../../lib/carrier-device-base');
-const { BudbeeClient, normalize, normalizeCode } = require('../../lib/budbee-tracking');
+const { BudbeeClient, normalize, normalizeCode, labelText } = require('../../lib/budbee-tracking');
 const { migrateTrackingList, simpleTrackingList } = require('../../lib/carrier-migrate');
 
 /** Budbee – like ha-budbee: public tracking per code, door deliveries and Budbee Box lockers. */
@@ -43,6 +43,9 @@ class BudbeeDevice extends CarrierDeviceBase {
 
   hasUsableConfiguration() { return true; }
 
+  /** Budbee event labels (English source in lib/budbee-tracking) in the user's language. */
+  _eventText(text) { return labelText(this.homey, text); }
+
   async _fetchParcels() {
     const entries = this.trackedEntries();
     const codes = new Set(entries.map(e => e.code));
@@ -63,7 +66,7 @@ class BudbeeDevice extends CarrierDeviceBase {
         if (cached) { keep[entry.code] = cached; out.push(normalize(cached, entry.code)); }
       }
     }
-    if (failures && failures === entries.length && !out.length) throw new Error('Budbee is unreachable');
+    if (failures && failures === entries.length && !out.length) throw new Error('Budbee is unreachable'); // i18n: translated by messages-i18n (carrier_unreachable)
     this._raw = keep;
     await this.setStoreValue('budbee_raw_cache', keep).catch(this.error);
     return out;

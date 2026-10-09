@@ -1,0 +1,208 @@
+{
+  "name": {
+    "en": "Mondial Relay",
+    "nl": "Mondial Relay",
+    "de": "Mondial Relay",
+    "fr": "Mondial Relay",
+    "it": "Mondial Relay",
+    "sv": "Mondial Relay",
+    "no": "Mondial Relay",
+    "es": "Mondial Relay",
+    "da": "Mondial Relay",
+    "ru": "Mondial Relay",
+    "pl": "Mondial Relay",
+    "ko": "Mondial Relay",
+    "ar": "Mondial Relay"
+  },
+  "class": "sensor",
+  "capabilities": [
+    "mondial_relay_parcel_count",
+    "mondial_relay_status",
+    "mondial_relay_tracking",
+    "mondial_relay_sender",
+    "mondial_relay_delivery_date",
+    "mondial_relay_delivery_window",
+    "mondial_relay_next_delivery",
+    "mondial_relay_out_for_delivery_count",
+    "mondial_relay_delivered_count",
+    "mondial_relay_outgoing_count",
+    "mondial_relay_last_event",
+    "myparcel_connection_status",
+    "mondial_relay_last_update"
+  ],
+  "pair": [
+    {
+      "id": "login"
+    }
+  ],
+  "repair": [
+    {
+      "id": "repair"
+    }
+  ],
+  "platforms": [
+    "local"
+  ],
+  "images": {
+    "small": "/drivers/mondial-relay/assets/images/small.png",
+    "large": "/drivers/mondial-relay/assets/images/large.png",
+    "xlarge": "/drivers/mondial-relay/assets/images/xlarge.png"
+  },
+  "settings": [
+    {
+      "type": "group",
+      "label": {
+        "en": "Mondial Relay",
+        "nl": "Mondial Relay",
+        "de": "Mondial Relay",
+        "fr": "Mondial Relay",
+        "it": "Mondial Relay",
+        "sv": "Mondial Relay",
+        "no": "Mondial Relay",
+        "es": "Mondial Relay",
+        "da": "Mondial Relay",
+        "ru": "Mondial Relay",
+        "pl": "Mondial Relay",
+        "ko": "Mondial Relay",
+        "ar": "Mondial Relay"
+      },
+      "children": [
+        {
+          "id": "country",
+          "type": "dropdown",
+          "label": {
+            "en": "Account country",
+            "nl": "Land van het account",
+            "de": "Land des Kontos",
+            "fr": "Pays du compte",
+            "it": "Paese dell'account",
+            "sv": "Kontots land",
+            "no": "Kontoens land",
+            "es": "País de la cuenta",
+            "da": "Kontoens land",
+            "ru": "Страна аккаунта",
+            "pl": "Kraj konta",
+            "ko": "계정 국가",
+            "ar": "بلد الحساب"
+          },
+          "value": "FR",
+          "values": [
+            {
+              "id": "FR",
+              "label": {
+                "en": "France",
+                "nl": "Frankrijk",
+                "de": "Frankreich",
+                "fr": "France",
+                "it": "Francia",
+                "sv": "Frankrike",
+                "no": "Frankrike",
+                "es": "Francia",
+                "da": "Frankrig",
+                "ru": "Франция",
+                "pl": "Francja",
+                "ko": "프랑스",
+                "ar": "فرنسا"
+              }
+            },
+            {
+              "id": "BE",
+              "label": {
+                "en": "Belgium",
+                "nl": "België",
+                "de": "Belgien",
+                "fr": "Belgique",
+                "it": "Belgio",
+                "sv": "Belgien",
+                "no": "Belgia",
+                "es": "Bélgica",
+                "da": "Belgien",
+                "ru": "Бельгия",
+                "pl": "Belgia",
+                "ko": "벨기에",
+                "ar": "بلجيكا"
+              }
+            },
+            {
+              "id": "NL",
+              "label": {
+                "en": "Netherlands",
+                "nl": "Nederland",
+                "de": "Niederlande",
+                "fr": "Pays-Bas",
+                "it": "Paesi Bassi",
+                "sv": "Nederländerna",
+                "no": "Nederland",
+                "es": "Países Bajos",
+                "da": "Nederlandene",
+                "ru": "Нидерланды",
+                "pl": "Holandia",
+                "ko": "네덜란드",
+                "ar": "هولندا"
+              }
+            },
+            {
+              "id": "ES",
+              "label": {
+                "en": "Spain",
+                "nl": "Spanje",
+                "de": "Spanien",
+                "fr": "Espagne",
+                "it": "Spagna",
+                "sv": "Spanien",
+                "no": "Spania",
+                "es": "España",
+                "da": "Spanien",
+                "ru": "Испания",
+                "pl": "Hiszpania",
+                "ko": "스페인",
+                "ar": "إسبانيا"
+              }
+            },
+            {
+              "id": "PT",
+              "label": {
+                "en": "Portugal",
+                "nl": "Portugal",
+                "de": "Portugal",
+                "fr": "Portugal",
+                "it": "Portogallo",
+                "sv": "Portugal",
+                "no": "Portugal",
+                "es": "Portugal",
+                "da": "Portugal",
+                "ru": "Португалия",
+                "pl": "Portugalia",
+                "ko": "포르투갈",
+                "ar": "البرتغال"
+              }
+            }
+          ]
+        },
+        {
+          "id": "delivered_days",
+          "type": "number",
+          "label": {
+            "en": "Show delivered parcels for (days)",
+            "nl": "Bezorgde pakketten tonen gedurende (dagen)",
+            "de": "Zugestellte Pakete anzeigen für (Tage)",
+            "fr": "Afficher les colis livrés pendant (jours)",
+            "it": "Mostra i pacchi consegnati per (giorni)",
+            "sv": "Visa levererade paket i (dagar)",
+            "no": "Vis leverte pakker i (dager)",
+            "es": "Mostrar paquetes entregados durante (días)",
+            "da": "Vis leverede pakker i (dage)",
+            "ru": "Показывать доставленные посылки (дней)",
+            "pl": "Pokazuj doręczone paczki przez (dni)",
+            "ko": "배송 완료 택배 표시 기간(일)",
+            "ar": "عرض الطرود المسلَّمة لمدة (أيام)"
+          },
+          "value": 7,
+          "min": 1,
+          "max": 60,
+          "step": 1
+        }
+      ]
+    }
+  ]
+}

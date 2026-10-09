@@ -9,7 +9,7 @@ function timestamp(item) {
 function selectedIds(value) { if (Array.isArray(value)) return value.map(String).filter(Boolean); if (typeof value !== 'string') return []; return value.split(',').map(item => item.trim()).filter(Boolean); }
 function safeDevices(homey, id) { try { return homey.drivers.getDriver(id).getDevices(); } catch (_) { return []; } }
 function allDevices(homey) {
-  const defs = [['postnl','PostNL','postnl'],['dhl-parcel','DHL','dhl'],['dhl-express','DHL Express','dhl-express'],['dpd','DPD','dpd'],['ups','UPS','ups'],['budbee','Budbee','budbee'],['homerr','Vinted Go','homerr'],['fedex','FedEx','fedex'],['gls','GLS','gls'],['inpost-uk','InPost','inpost-uk'],['bpost','bpost','bpost'],['royal-mail','Royal Mail','royal-mail'],['post-dhl-de','DHL Germany','dhl-de'],['ampere','Ampère','ampere']];
+  const defs = [['postnl','PostNL','postnl'],['dhl-parcel','DHL','dhl'],['dhl-express','DHL Express','dhl-express'],['dpd','DPD','dpd'],['ups','UPS','ups'],['budbee','Budbee','budbee'],['homerr','Vinted Go','homerr'],['fedex','FedEx','fedex'],['gls','GLS','gls'],['inpost-uk','InPost','inpost-uk'],['bpost','bpost','bpost'],['royal-mail','Royal Mail','royal-mail'],['post-dhl-de','DHL Germany','dhl-de'],['ampere','Ampère','ampere'],['trunkrs','Trunkrs','trunkrs'],['dynalogic','Dynalogic','dynalogic'],['dragonfly','Dragonfly / Intelcom','dragonfly'],['mondial-relay','Mondial Relay','mondial-relay'],['amazon','Amazon','amazon']];
   return defs.flatMap(([driver,carrier,carrierId]) => safeDevices(homey,driver).map(device => ({driver,carrier,carrierId,device})));
 }
 function wantsAll(value){return value===true||value==='1'||value==='true'}
@@ -25,7 +25,7 @@ module.exports={
    packages.push(...list.map(parcel=>{
     const tracking=str(parcel.tracking,parcel.barcode,parcel.shipmentNumber,parcel.id);
     return {
-     carrier,carrierId,carrierLogo:carrierId==='dhl-de'?'dhl.svg':carrierId==='ampere'?'ampere.png':`${carrierId}.svg`,account:device.getName(),deviceId:device.getId(),
+     carrier,carrierId,carrierLogo:carrierId==='dhl-de'?'dhl.svg':['ampere','trunkrs','dynalogic','dragonfly','mondial-relay','amazon'].includes(carrierId)?`${carrierId}.png`:`${carrierId}.svg`,account:device.getName(),deviceId:device.getId(),
      tracking,reference:str(parcel.reference),status:statusLabel(homey,parcel),statusKey:statusKey(parcel),sender:str(parcel.sender,parcel.title,parcel.sourceDisplayName),receiver:str(parcel.receiver),
      deliveryDate:str(parcel.deliveryDate,parcel.deliveryWindowFrom),deliveryWindow:str(parcel.deliveryWindow),deliveryWindowFrom:str(parcel.deliveryWindowFrom),deliveryWindowTo:str(parcel.deliveryWindowTo),
      updatedAt:str(parcel.updatedAt,parcel.createdAt),createdAt:str(parcel.createdAt),eventAt:str(parcel.lastEventAt,parcel.eventAt,parcel.delivered?parcel.deliveryDate:'',parcel.updatedAt,parcel.createdAt),lastEventAt:str(parcel.lastEventAt,parcel.eventAt,parcel.delivered?parcel.deliveryDate:'',parcel.updatedAt,parcel.createdAt),

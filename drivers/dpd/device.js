@@ -3,6 +3,8 @@
 const Homey = require('homey');
 const localizePackageStatus = require('../../lib/status-i18n.js');
 const i18n = require('../../lib/gls-i18n');
+const { language, formatDate, formatWeight, formatDimensions } = require('../../lib/i18n');
+const { t, errorText } = require('../../lib/messages-i18n');
 const {
   STATUS, COUNTRY_BY_CODE, backendFor, DpdAuthError,
   DpdGeneralClient, DpdDeClient, DpdPlClient, normalizeGeneral, normalizeDe, normalizePl, fmpHashcode,
@@ -49,19 +51,6 @@ const DELIVERY_TYPE_TEXT = {
   pl: { HOME: 'Dostawa do domu', PARCELSHOP: 'Punkt odbioru' }, ko: { HOME: '자택 배송', PARCELSHOP: '수령 지점' },
   ar: { HOME: 'توصيل إلى المنزل', PARCELSHOP: 'نقطة استلام' },
 };
-const AUTH_MESSAGES = {
-  en: name => `Reconnect DPD – the credentials for ${name} no longer work. Open the device and repair the connection.`,
-  nl: name => `DPD opnieuw koppelen – de inloggegevens voor ${name} werken niet meer. Open het apparaat en herstel de koppeling.`,
-  de: name => `DPD erneut verbinden – Die Anmeldedaten für ${name} funktionieren nicht mehr. Öffne das Gerät und stelle die Verbindung wieder her.`,
-  fr: name => `Reconnecter DPD – Les identifiants de ${name} ne fonctionnent plus. Ouvrez l’appareil et rétablissez la connexion.`,
-};
-const UNREACHABLE = {
-  en: 'DPD is temporarily unreachable; showing the last known data',
-  nl: 'DPD is tijdelijk niet bereikbaar; laatst bekende gegevens worden getoond',
-  de: 'DPD ist vorübergehend nicht erreichbar; letzte bekannte Daten werden angezeigt',
-  fr: 'DPD est temporairement inaccessible ; dernières données connues affichées',
-};
-
 function hasTimezone(value) {
   return /(?:Z|[+-]\d{2}:?\d{2})$/i.test(String(value || '').trim());
 }
@@ -106,9 +95,7 @@ class DpdDevice extends Homey.Device {
     await this.setStoreValue(STORE_DETAILS, {}).catch(this.error);
   }
 
-  _lang() {
-    try { return this.homey.i18n.getLanguage() || 'en'; } catch (_) { return 'en'; }
-  }
+  _lang() { return language(this.homey); }
 
   /* ------------------------------------------------------------ clients -- */
 
@@ -204,9 +191,9 @@ class DpdDevice extends Homey.Device {
         this._client = null;
         await this.unsetWarning().catch(() => {});
         await this._notifyAuth();
-        await this.setUnavailable('DPD login expired').catch(() => {});
+        await this.setUnavailable(this._unavailableText(error)).catch(() => {});
       } else {
-        await this.setWarning(UNREACHABLE[this._lang()] || UNREACHABLE.en).catch(() => {});
+        await this.setWarning(t(this.homey, 'unreachable', { name: 'DPD' })).catch(() => {});
       }
       this._schedule(this._nextDelay(true));
       return false;
@@ -246,9 +233,16 @@ class DpdDevice extends Homey.Device {
     return true;
   }
 
+  /** Unavailable text after a login failure: the translated DPD message, or the generic "login expired". */
+  _unavailableText(error) {
+    const text = errorText(this.homey, error, 'DPD');
+    if (!text || text === error?.message) return t(this.homey, 'auth_unavailable', { carrier: 'DPD' });
+    return text.includes('DPD') ? text : `DPD: ${text}`;
+  }
+
   async _notifyAuth() {
     if (this.getStoreValue('authExpiredNotified') === true) return;
-    const message = (AUTH_MESSAGES[this._lang()] || AUTH_MESSAGES.en)(this.getName());
+    const message = t(this.homey, 'auth_notification', { carrier: 'DPD', name: this.getName() });
     await this.homey.notifications.createNotification({ excerpt: message }).catch(() => {});
     await this.setStoreValue('authExpiredNotified', true).catch(() => {});
   }
@@ -339,9 +333,8 @@ class DpdDevice extends Homey.Device {
   /* --------------------------------------------------------- formatting -- */
 
   _statusText(code) {
-    if (code === STATUS.UNKNOWN || !code) return localizePackageStatus(this.homey, 'unknown') || 'Unknown';
-    const row = i18n.STATUS_TEXT[code];
-    return row ? (row[this._lang()] || row.en) : code;
+    if (code === STATUS.UNKNOWN || !code) return localizePackageStatus(this.homey, 'unknown') || i18n.statusText(this.homey, STATUS.UNKNOWN, 'DPD');
+    return i18n.STATUS_TEXT[code] ? i18n.statusText(this.homey, code, 'DPD') : code;
   }
 
   _parts(value) {
@@ -447,10 +440,18 @@ class DpdDevice extends Homey.Device {
   }
 
   _formatDateTime(value) {
-    const date = new Date(value);
-    if (Number.isNaN(date.getTime())) return '';
-    return new Intl.DateTimeFormat(this._lang(), { timeZone: this.homey.clock.getTimezone(), dateStyle: 'short', timeStyle: 'medium' }).format(date);
+    return formatDate(this.homey, value, { dateStyle: 'short', timeStyle: 'medium' }, this.homey.clock.getTimezone());
   }
+
+  /** Display-only date for capabilities; Flow tokens keep dd-mm-yyyy. */
+  _displayDate(value) {
+    const p = this._parts(value);
+    if (!p) return '';
+    const [d, m, y] = p.date.split('-').map(Number);
+    return formatDate(this.homey, new Date(Date.UTC(y, m - 1, d, 12)), { day: 'numeric', month: 'short', year: 'numeric' }, 'UTC');
+  }
+
+  _displayWeight(parcel) { return parcel && parcel.weight !== null && parcel.weight !== undefined ? formatWeight(this.homey, parcel.weight) : ''; }
 
   async _updateCapabilities(updatedAt = null) {
     const all = this._sortedParcels();
@@ -471,15 +472,15 @@ class DpdDevice extends Homey.Device {
     await this._set('dpd_tracking', text(focus?.tracking));
     await this._set('dpd_sender', text(focus?.sender));
     await this._set('dpd_receiver', text(focus?.receiver));
-    await this._set('dpd_delivery_date', text(focus ? this._date(focus.plannedFrom || focus.deliveredAt) : ''));
+    await this._set('dpd_delivery_date', text(focus ? this._displayDate(focus.plannedFrom || focus.deliveredAt) : ''));
     await this._set('dpd_delivery_window', text(focus ? this._window(focus) : ''));
     await this._set('dpd_delivery_point', text(focus?.pickupPoint));
-    await this._set('dpd_weight', text(focus && focus.weight !== null && focus.weight !== undefined ? `${focus.weight} kg` : ''));
-    await this._set('dpd_dimensions', text(focus?.dimensions?.text));
+    await this._set('dpd_weight', text(this._displayWeight(focus)));
+    await this._set('dpd_dimensions', text(formatDimensions(this.homey, focus?.dimensions)));
     await this._set('dpd_delivery_type', text(focus ? this._deliveryType(focus) : ''));
     await this._set('dpd_last_event', text(focus ? this._lastEventText(focus) : ''));
     await this._set('dpd_direction', text(focus ? this._direction(focus) : ''));
-    await this._set('dpd_next_delivery', next ? `${this._date(next.plannedFrom)} ${this._window(next)}`.trim() : EMPTY);
+    await this._set('dpd_next_delivery', next ? `${this._displayDate(next.plannedFrom)} ${this._window(next)}`.trim() : EMPTY);
     if (updatedAt) await this._set('dpd_last_update', this._formatDateTime(updatedAt));
   }
 
@@ -547,8 +548,8 @@ class DpdDevice extends Homey.Device {
         deliveryWindowTo: parcel.windowKnown ? parcel.plannedTo || '' : '',
         deliveryPoint: parcel.pickupPoint || '',
         accessPoint: parcel.pickupPoint || '',
-        weight: parcel.weight !== null && parcel.weight !== undefined ? `${parcel.weight} kg` : '',
-        dimensions: parcel.dimensions?.text || '',
+        weight: this._displayWeight(parcel),
+        dimensions: formatDimensions(this.homey, parcel.dimensions),
         lastEvent: this._lastEventText(parcel),
         lastEventAt: last?.timestamp || parcel.deliveredAt || '',
         eventAt: last?.timestamp || '',

@@ -98,15 +98,15 @@
             "nl": "Ander land? Gebruik “Repareren” op het apparaat om voor dat land in te loggen.",
             "de": "Anderes Land? Über „Reparieren“ am Gerät für dieses Land anmelden.",
             "fr": "Autre pays ? Utilisez « Réparer » sur l’appareil pour vous connecter à ce pays.",
-            "it": "Changing the country? Use “Repair” on the device to sign in for that country.",
-            "sv": "Changing the country? Use “Repair” on the device to sign in for that country.",
-            "no": "Changing the country? Use “Repair” on the device to sign in for that country.",
-            "es": "Changing the country? Use “Repair” on the device to sign in for that country.",
-            "da": "Changing the country? Use “Repair” on the device to sign in for that country.",
-            "ru": "Changing the country? Use “Repair” on the device to sign in for that country.",
-            "pl": "Changing the country? Use “Repair” on the device to sign in for that country.",
-            "ko": "Changing the country? Use “Repair” on the device to sign in for that country.",
-            "ar": "Changing the country? Use “Repair” on the device to sign in for that country."
+            "it": "Vuoi cambiare paese? Usa “Ripara” sul dispositivo per accedere per quel paese.",
+            "sv": "Byta land? Använd ”Reparera” på enheten för att logga in för det landet.",
+            "no": "Bytte land? Bruk «Reparer» på enheten for å logge inn for det landet.",
+            "es": "¿Cambias de país? Usa «Reparar» en el dispositivo para iniciar sesión en ese país.",
+            "da": "Skifte land? Brug “Reparer” på enheden for at logge ind for det land.",
+            "ru": "Меняете страну? Используйте «Восстановить» на устройстве, чтобы войти для этой страны.",
+            "pl": "Zmieniasz kraj? Użyj opcji „Napraw” na urządzeniu, aby zalogować się dla tego kraju.",
+            "ko": "국가를 변경하시나요? 기기에서 “복구”를 사용해 해당 국가로 로그인하세요.",
+            "ar": "هل تريد تغيير الدولة؟ استخدم ”إصلاح“ على الجهاز لتسجيل الدخول لتلك الدولة."
           },
           "value": "DPD-NL",
           "values": [
@@ -117,15 +117,15 @@
                 "nl": "Nederland",
                 "de": "Niederlande",
                 "fr": "Pays-Bas",
-                "it": "Netherlands",
-                "sv": "Netherlands",
-                "no": "Netherlands",
-                "es": "Netherlands",
-                "da": "Netherlands",
-                "ru": "Netherlands",
-                "pl": "Netherlands",
-                "ko": "Netherlands",
-                "ar": "Netherlands"
+                "it": "Paesi Bassi",
+                "sv": "Nederländerna",
+                "no": "Nederland",
+                "es": "Países Bajos",
+                "da": "Holland",
+                "ru": "Нидерланды",
+                "pl": "Holandia",
+                "ko": "네덜란드",
+                "ar": "هولندا"
               }
             },
             {
@@ -135,15 +135,15 @@
                 "nl": "België",
                 "de": "Belgien",
                 "fr": "Belgique",
-                "it": "Belgium",
-                "sv": "Belgium",
-                "no": "Belgium",
-                "es": "Belgium",
-                "da": "Belgium",
-                "ru": "Belgium",
-                "pl": "Belgium",
-                "ko": "Belgium",
-                "ar": "Belgium"
+                "it": "Belgio",
+                "sv": "Belgien",
+                "no": "Belgia",
+                "es": "Bélgica",
+                "da": "Belgien",
+                "ru": "Бельгия",
+                "pl": "Belgia",
+                "ko": "벨기에",
+                "ar": "بلجيكا"
               }
             },
             {
@@ -153,15 +153,15 @@
                 "nl": "Duitsland",
                 "de": "Deutschland",
                 "fr": "Allemagne",
-                "it": "Germany",
-                "sv": "Germany",
-                "no": "Germany",
-                "es": "Germany",
-                "da": "Germany",
-                "ru": "Germany",
-                "pl": "Germany",
-                "ko": "Germany",
-                "ar": "Germany"
+                "it": "Germania",
+                "sv": "Tyskland",
+                "no": "Tyskland",
+                "es": "Alemania",
+                "da": "Tyskland",
+                "ru": "Германия",
+                "pl": "Niemcy",
+                "ko": "독일",
+                "ar": "ألمانيا"
               }
             },
             {
@@ -171,15 +171,15 @@
                 "nl": "Luxemburg",
                 "de": "Luxemburg",
                 "fr": "Luxembourg",
-                "it": "Luxembourg",
-                "sv": "Luxembourg",
+                "it": "Lussemburgo",
+                "sv": "Luxemburg",
                 "no": "Luxembourg",
-                "es": "Luxembourg",
+                "es": "Luxemburgo",
                 "da": "Luxembourg",
-                "ru": "Luxembourg",
-                "pl": "Luxembourg",
-                "ko": "Luxembourg",
-                "ar": "Luxembourg"
+                "ru": "Люксембург",
+                "pl": "Luksemburg",
+                "ko": "룩셈부르크",
+                "ar": "لوكسمبورغ"
               }
             },
             {
@@ -189,15 +189,15 @@
                 "nl": "Frankrijk",
                 "de": "Frankreich",
                 "fr": "France",
-                "it": "France",
-                "sv": "France",
-                "no": "France",
-                "es": "France",
-                "da": "France",
-                "ru": "France",
-                "pl": "France",
-                "ko": "France",
-                "ar": "France"
+                "it": "Francia",
+                "sv": "Frankrike",
+                "no": "Frankrike",
+                "es": "Francia",
+                "da": "Frankrig",
+                "ru": "Франция",
+                "pl": "Francja",
+                "ko": "프랑스",
+                "ar": "فرنسا"
               }
             },
             {
@@ -207,15 +207,15 @@
                 "nl": "Zwitserland",
                 "de": "Schweiz",
                 "fr": "Suisse",
-                "it": "Switzerland",
-                "sv": "Switzerland",
-                "no": "Switzerland",
-                "es": "Switzerland",
-                "da": "Switzerland",
-                "ru": "Switzerland",
-                "pl": "Switzerland",
-                "ko": "Switzerland",
-                "ar": "Switzerland"
+                "it": "Svizzera",
+                "sv": "Schweiz",
+                "no": "Sveits",
+                "es": "Suiza",
+                "da": "Schweiz",
+                "ru": "Швейцария",
+                "pl": "Szwajcaria",
+                "ko": "스위스",
+                "ar": "سويسرا"
               }
             },
             {
@@ -225,15 +225,15 @@
                 "nl": "Verenigd Koninkrijk",
                 "de": "Vereinigtes Königreich",
                 "fr": "Royaume-Uni",
-                "it": "United Kingdom",
-                "sv": "United Kingdom",
-                "no": "United Kingdom",
-                "es": "United Kingdom",
-                "da": "United Kingdom",
-                "ru": "United Kingdom",
-                "pl": "United Kingdom",
-                "ko": "United Kingdom",
-                "ar": "United Kingdom"
+                "it": "Regno Unito",
+                "sv": "Storbritannien",
+                "no": "Storbritannia",
+                "es": "Reino Unido",
+                "da": "Storbritannien",
+                "ru": "Великобритания",
+                "pl": "Wielka Brytania",
+                "ko": "영국",
+                "ar": "المملكة المتحدة"
               }
             },
             {
@@ -243,15 +243,15 @@
                 "nl": "Italië (BRT)",
                 "de": "Italien (BRT)",
                 "fr": "Italie (BRT)",
-                "it": "Italy (BRT)",
-                "sv": "Italy (BRT)",
-                "no": "Italy (BRT)",
-                "es": "Italy (BRT)",
-                "da": "Italy (BRT)",
-                "ru": "Italy (BRT)",
-                "pl": "Italy (BRT)",
-                "ko": "Italy (BRT)",
-                "ar": "Italy (BRT)"
+                "it": "Italia (BRT)",
+                "sv": "Italien (BRT)",
+                "no": "Italia (BRT)",
+                "es": "Italia (BRT)",
+                "da": "Italien (BRT)",
+                "ru": "Италия (BRT)",
+                "pl": "Włochy (BRT)",
+                "ko": "이탈리아(BRT)",
+                "ar": "إيطاليا (BRT)"
               }
             },
             {
@@ -261,15 +261,15 @@
                 "nl": "Portugal",
                 "de": "Portugal",
                 "fr": "Portugal",
-                "it": "Portugal",
+                "it": "Portogallo",
                 "sv": "Portugal",
                 "no": "Portugal",
                 "es": "Portugal",
                 "da": "Portugal",
-                "ru": "Portugal",
-                "pl": "Portugal",
-                "ko": "Portugal",
-                "ar": "Portugal"
+                "ru": "Португалия",
+                "pl": "Portugalia",
+                "ko": "포르투갈",
+                "ar": "البرتغال"
               }
             },
             {
@@ -279,15 +279,15 @@
                 "nl": "Polen",
                 "de": "Polen",
                 "fr": "Pologne",
-                "it": "Poland",
-                "sv": "Poland",
-                "no": "Poland",
-                "es": "Poland",
-                "da": "Poland",
-                "ru": "Poland",
-                "pl": "Poland",
-                "ko": "Poland",
-                "ar": "Poland"
+                "it": "Polonia",
+                "sv": "Polen",
+                "no": "Polen",
+                "es": "Polonia",
+                "da": "Polen",
+                "ru": "Польша",
+                "pl": "Polska",
+                "ko": "폴란드",
+                "ar": "بولندا"
               }
             },
             {
@@ -297,15 +297,15 @@
                 "nl": "Tsjechië",
                 "de": "Tschechien",
                 "fr": "République tchèque",
-                "it": "Czech Republic",
-                "sv": "Czech Republic",
-                "no": "Czech Republic",
-                "es": "Czech Republic",
-                "da": "Czech Republic",
-                "ru": "Czech Republic",
-                "pl": "Czech Republic",
-                "ko": "Czech Republic",
-                "ar": "Czech Republic"
+                "it": "Repubblica Ceca",
+                "sv": "Tjeckien",
+                "no": "Tsjekkia",
+                "es": "Chequia",
+                "da": "Tjekkiet",
+                "ru": "Чехия",
+                "pl": "Czechy",
+                "ko": "체코",
+                "ar": "التشيك"
               }
             },
             {
@@ -315,15 +315,15 @@
                 "nl": "Slowakije",
                 "de": "Slowakei",
                 "fr": "Slovaquie",
-                "it": "Slovakia",
-                "sv": "Slovakia",
+                "it": "Slovacchia",
+                "sv": "Slovakien",
                 "no": "Slovakia",
-                "es": "Slovakia",
-                "da": "Slovakia",
-                "ru": "Slovakia",
-                "pl": "Slovakia",
-                "ko": "Slovakia",
-                "ar": "Slovakia"
+                "es": "Eslovaquia",
+                "da": "Slovakiet",
+                "ru": "Словакия",
+                "pl": "Słowacja",
+                "ko": "슬로바키아",
+                "ar": "سلوفاكيا"
               }
             },
             {
@@ -333,15 +333,15 @@
                 "nl": "Hongarije",
                 "de": "Ungarn",
                 "fr": "Hongrie",
-                "it": "Hungary",
-                "sv": "Hungary",
-                "no": "Hungary",
-                "es": "Hungary",
-                "da": "Hungary",
-                "ru": "Hungary",
-                "pl": "Hungary",
-                "ko": "Hungary",
-                "ar": "Hungary"
+                "it": "Ungheria",
+                "sv": "Ungern",
+                "no": "Ungarn",
+                "es": "Hungría",
+                "da": "Ungarn",
+                "ru": "Венгрия",
+                "pl": "Węgry",
+                "ko": "헝가리",
+                "ar": "المجر"
               }
             },
             {
@@ -352,14 +352,14 @@
                 "de": "Slowenien",
                 "fr": "Slovénie",
                 "it": "Slovenia",
-                "sv": "Slovenia",
+                "sv": "Slovenien",
                 "no": "Slovenia",
-                "es": "Slovenia",
-                "da": "Slovenia",
-                "ru": "Slovenia",
-                "pl": "Slovenia",
-                "ko": "Slovenia",
-                "ar": "Slovenia"
+                "es": "Eslovenia",
+                "da": "Slovenien",
+                "ru": "Словения",
+                "pl": "Słowenia",
+                "ko": "슬로베니아",
+                "ar": "سلوفينيا"
               }
             },
             {
@@ -369,15 +369,15 @@
                 "nl": "Kroatië",
                 "de": "Kroatien",
                 "fr": "Croatie",
-                "it": "Croatia",
-                "sv": "Croatia",
-                "no": "Croatia",
-                "es": "Croatia",
-                "da": "Croatia",
-                "ru": "Croatia",
-                "pl": "Croatia",
-                "ko": "Croatia",
-                "ar": "Croatia"
+                "it": "Croazia",
+                "sv": "Kroatien",
+                "no": "Kroatia",
+                "es": "Croacia",
+                "da": "Kroatien",
+                "ru": "Хорватия",
+                "pl": "Chorwacja",
+                "ko": "크로아티아",
+                "ar": "كرواتيا"
               }
             },
             {
@@ -388,14 +388,14 @@
                 "de": "Estland",
                 "fr": "Estonie",
                 "it": "Estonia",
-                "sv": "Estonia",
-                "no": "Estonia",
+                "sv": "Estland",
+                "no": "Estland",
                 "es": "Estonia",
-                "da": "Estonia",
-                "ru": "Estonia",
+                "da": "Estland",
+                "ru": "Эстония",
                 "pl": "Estonia",
-                "ko": "Estonia",
-                "ar": "Estonia"
+                "ko": "에스토니아",
+                "ar": "إستونيا"
               }
             },
             {
@@ -405,15 +405,15 @@
                 "nl": "Letland",
                 "de": "Lettland",
                 "fr": "Lettonie",
-                "it": "Latvia",
-                "sv": "Latvia",
+                "it": "Lettonia",
+                "sv": "Lettland",
                 "no": "Latvia",
-                "es": "Latvia",
-                "da": "Latvia",
-                "ru": "Latvia",
-                "pl": "Latvia",
-                "ko": "Latvia",
-                "ar": "Latvia"
+                "es": "Letonia",
+                "da": "Letland",
+                "ru": "Латвия",
+                "pl": "Łotwa",
+                "ko": "라트비아",
+                "ar": "لاتفيا"
               }
             },
             {
@@ -423,15 +423,15 @@
                 "nl": "Litouwen",
                 "de": "Litauen",
                 "fr": "Lituanie",
-                "it": "Lithuania",
-                "sv": "Lithuania",
-                "no": "Lithuania",
-                "es": "Lithuania",
-                "da": "Lithuania",
-                "ru": "Lithuania",
-                "pl": "Lithuania",
-                "ko": "Lithuania",
-                "ar": "Lithuania"
+                "it": "Lituania",
+                "sv": "Litauen",
+                "no": "Litauen",
+                "es": "Lituania",
+                "da": "Litauen",
+                "ru": "Литва",
+                "pl": "Litwa",
+                "ko": "리투아니아",
+                "ar": "ليتوانيا"
               }
             },
             {
@@ -446,10 +446,10 @@
                 "no": "Argentina",
                 "es": "Argentina",
                 "da": "Argentina",
-                "ru": "Argentina",
-                "pl": "Argentina",
-                "ko": "Argentina",
-                "ar": "Argentina"
+                "ru": "Аргентина",
+                "pl": "Argentyna",
+                "ko": "아르헨티나",
+                "ar": "الأرجنتين"
               }
             }
           ]

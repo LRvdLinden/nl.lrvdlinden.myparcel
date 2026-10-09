@@ -2,7 +2,18 @@
   "type": "number",
   "title": {
     "en": "Parcel length",
-    "nl": "Lengte pakket"
+    "nl": "Lengte pakket",
+    "de": "Paketlänge",
+    "fr": "Longueur du colis",
+    "it": "Lunghezza del pacco",
+    "sv": "Paketlängd",
+    "no": "Pakkelengde",
+    "es": "Longitud del paquete",
+    "da": "Pakkelængde",
+    "ru": "Длина посылки",
+    "pl": "Długość paczki",
+    "ko": "택배 길이",
+    "ar": "طول الطرد"
   },
   "getable": true,
   "setable": false,
@@ -10,7 +21,18 @@
   "icon": "/assets/package.svg",
   "units": {
     "en": "cm",
-    "nl": "cm"
+    "nl": "cm",
+    "de": "cm",
+    "fr": "cm",
+    "it": "cm",
+    "sv": "cm",
+    "no": "cm",
+    "es": "cm",
+    "da": "cm",
+    "ru": "см",
+    "pl": "cm",
+    "ko": "cm",
+    "ar": "سم"
   },
   "decimals": 1
 }

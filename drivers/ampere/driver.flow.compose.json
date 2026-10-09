@@ -1305,15 +1305,15 @@
             "nl": "Trackinglink",
             "de": "Tracking-Link",
             "fr": "Lien de suivi",
-            "it": "Tracking link",
-            "sv": "Tracking link",
-            "no": "Tracking link",
-            "es": "Tracking link",
-            "da": "Tracking link",
-            "ru": "Tracking link",
-            "pl": "Tracking link",
-            "ko": "Tracking link",
-            "ar": "Tracking link"
+            "it": "Link di tracciamento",
+            "sv": "Spårningslänk",
+            "no": "Sporingslenke",
+            "es": "Enlace de seguimiento",
+            "da": "Sporingslink",
+            "ru": "Ссылка отслеживания",
+            "pl": "Link śledzenia",
+            "ko": "추적 링크",
+            "ar": "رابط التتبع"
           }
         },
         {
@@ -1687,15 +1687,15 @@
             "nl": "Trackinglink",
             "de": "Tracking-Link",
             "fr": "Lien de suivi",
-            "it": "Tracking link",
-            "sv": "Tracking link",
-            "no": "Tracking link",
-            "es": "Tracking link",
-            "da": "Tracking link",
-            "ru": "Tracking link",
-            "pl": "Tracking link",
-            "ko": "Tracking link",
-            "ar": "Tracking link"
+            "it": "Link di tracciamento",
+            "sv": "Spårningslänk",
+            "no": "Sporingslenke",
+            "es": "Enlace de seguimiento",
+            "da": "Sporingslink",
+            "ru": "Ссылка отслеживания",
+            "pl": "Link śledzenia",
+            "ko": "추적 링크",
+            "ar": "رابط التتبع"
           }
         }
       ],
@@ -2529,15 +2529,15 @@
             "nl": "Trackinglink",
             "de": "Tracking-Link",
             "fr": "Lien de suivi",
-            "it": "Tracking link",
-            "sv": "Tracking link",
-            "no": "Tracking link",
-            "es": "Tracking link",
-            "da": "Tracking link",
-            "ru": "Tracking link",
-            "pl": "Tracking link",
-            "ko": "Tracking link",
-            "ar": "Tracking link"
+            "it": "Link di tracciamento",
+            "sv": "Spårningslänk",
+            "no": "Sporingslenke",
+            "es": "Enlace de seguimiento",
+            "da": "Sporingslink",
+            "ru": "Ссылка отслеживания",
+            "pl": "Link śledzenia",
+            "ko": "추적 링크",
+            "ar": "رابط التتبع"
           }
         }
       ]
@@ -3941,15 +3941,15 @@
         "nl": "Volg Ampère-pakket via bol.com-link…",
         "de": "Ampère-Paket per bol.com-Link verfolgen…",
         "fr": "Suivre un colis Ampère via le lien bol.com…",
-        "it": "Track Ampère parcel from bol.com link…",
-        "sv": "Track Ampère parcel from bol.com link…",
-        "no": "Track Ampère parcel from bol.com link…",
-        "es": "Track Ampère parcel from bol.com link…",
-        "da": "Track Ampère parcel from bol.com link…",
-        "ru": "Track Ampère parcel from bol.com link…",
-        "pl": "Track Ampère parcel from bol.com link…",
-        "ko": "Track Ampère parcel from bol.com link…",
-        "ar": "Track Ampère parcel from bol.com link…"
+        "it": "Monitora il pacco Ampère dal link bol.com…",
+        "sv": "Spåra Ampère-paket från bol.com-länk…",
+        "no": "Spor Ampère-pakke fra bol.com-lenke…",
+        "es": "Seguir paquete Ampère desde enlace de bol.com…",
+        "da": "Spor Ampère-pakke fra bol.com-link…",
+        "ru": "Отслеживать посылку Ampère по ссылке bol.com…",
+        "pl": "Śledź paczkę Ampère z linku bol.com…",
+        "ko": "bol.com 링크로 Ampère 택배 추적…",
+        "ar": "تتبع طرد Ampère من رابط bol.com…"
       },
       "titleFormatted": {
         "en": "Track Ampère parcel [[tracking]]",

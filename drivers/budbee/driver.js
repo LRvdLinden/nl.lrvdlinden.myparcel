@@ -1,6 +1,7 @@
 'use strict';
 
 const Homey = require('homey');
+const { t, localizeSession } = require('../../lib/messages-i18n');
 const crypto = require('crypto');
 const { BudbeeClient, normalizeCode } = require('../../lib/budbee-tracking');
 const { simpleTrackingList } = require('../../lib/carrier-migrate');
@@ -31,11 +32,12 @@ module.exports = class BudbeeDriver extends Homey.Driver {
 
   _codes(text) {
     const codes = simpleTrackingList(text, normalizeCode).map(e => e.code);
-    if (!codes.length) throw new Error(this.homey.i18n.getLanguage() === 'nl' ? 'Vul minstens één Budbee-trackingcode in.' : 'Enter at least one Budbee tracking code.');
+    if (!codes.length) throw new Error(t(this.homey, 'enter_at_least_one', { carrier: 'Budbee' }));
     return codes;
   }
 
   async onPair(session) {
+    localizeSession(this.homey, session, 'Budbee');
     session.setHandler('connect', async data => {
       const codes = this._codes(data.trackingCodes);
       // Budbee may not know a fresh code yet; only reject codes it explicitly refuses.
@@ -44,10 +46,11 @@ module.exports = class BudbeeDriver extends Homey.Driver {
     });
   }
 
-  async onRepair(session) {
+  async onRepair(session, repairDevice) {
+    localizeSession(this.homey, session, 'Budbee');
     session.setHandler('connect', async data => {
       const codes = this._codes(data.trackingCodes);
-      const d = session.getDevice();
+      const d = repairDevice;
       await d.setSettings({ tracking_numbers: codes.join('\n') });
       await d.setAvailable().catch(() => {});
       await d.refresh(true);

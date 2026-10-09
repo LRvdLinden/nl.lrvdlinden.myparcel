@@ -5,7 +5,12 @@ const fs = require('fs');
 const path = require('path');
 const PostNLApi = require('../../lib/postnl-api');
 const localizePackageStatus = require('../../lib/status-i18n');
-const { renderDeliveryCard, renderNoPackageCard, loadDeliveryVan, hhmm } = require('../../lib/delivery-image');
+const { renderDeliveryCard, renderNoPackageCard, loadDeliveryVan, hhmm, imageLanguage, imageText } = require('../../lib/delivery-image');
+const { language: userLanguage, formatDate, formatNumber, formatDimensions } = require('../../lib/i18n');
+const { t, errorText } = require('../../lib/messages-i18n');
+
+// The no-mail placeholder PNGs in assets/ are drawn in these languages only; others get the English one.
+const NO_MAIL_ASSET_LANGUAGES = ['en', 'nl'];
 
 const WIDGET_SYNC_MIN_MS = 5 * 60 * 1000;
 const MAX_LIVE_LETTER_IMAGES = 10;
@@ -78,7 +83,7 @@ class PostNLDevice extends Homey.Device {
 
   async _sync({ reason }) {
     if (!this.api.hasCredentials()) {
-      const error = new Error(this.homey.__('errors.not_authenticated'));
+      const error = new Error(t(this.homey, 'not_signed_in', { carrier: 'PostNL' }));
       error.code = 'AUTH_REAUTH_REQUIRED';
       if (!['interval', 'startup', 'device-init', 'midnight'].includes(reason)) throw error;
       return this.snapshot;
@@ -134,7 +139,7 @@ class PostNLDevice extends Homey.Device {
       await this.handleSnapshotChanges(previous, current);
       if (current.mailApiStatus === 'temporarily_unavailable') {
         const previousMailError = String(previous.mailApiError || '');
-        const currentMailError = String(current.mailApiError || 'Mijn PostNL is tijdelijk niet beschikbaar');
+        const currentMailError = String(current.mailApiError || t(this.homey, 'carrier_unavailable', { carrier: t(this.homey, 'my_postnl') }));
         if (previous.mailApiStatus !== 'temporarily_unavailable' || previousMailError !== currentMailError) {
           await this.triggerSyncFailed(currentMailError).catch(this.error);
         }
@@ -199,8 +204,7 @@ class PostNLDevice extends Homey.Device {
   _localizeShipmentType(value) {
     const raw = String(value || '').trim();
     if (!raw) return '';
-    const language = this.homey.i18n.getLanguage() === 'nl' ? 'nl' : 'en';
-    if (language === 'nl' && /^parcel$/i.test(raw)) return 'Pakket';
+    if (/^parcel$/i.test(raw)) return t(this.homey, 'parcel');
     return raw;
   }
 
@@ -439,7 +443,7 @@ class PostNLDevice extends Homey.Device {
       next_delivery: dates[0] ? this.api.formatDate(dates[0]) : '',
       package_image: this._packageCameraImage || null,
       mail_image: this._latestMailImage || null,
-      connection_status: connected ? (this.homey.i18n.getLanguage() === 'nl' ? 'Verbonden' : 'Connected') : (this.homey.i18n.getLanguage() === 'nl' ? 'Niet verbonden' : 'Not connected'),
+      connection_status: t(this.homey, connected ? 'connected' : 'not_connected'),
       last_update: snapshot.updatedAt ? this.api.formatDateTime(snapshot.updatedAt) : '',
     });
   }
@@ -486,7 +490,8 @@ class PostNLDevice extends Homey.Device {
     };
   }
 
-  _deliveryHeadline(parcel = {}, language = 'nl') {
+  /** Headline drawn on the delivery PNG (language = imageLanguage(): Latin-script text only). */
+  _deliveryHeadline(parcel = {}, language = 'en') {
     const fromParts = this._parseLocalOrZonedParts(parcel.deliveryWindowFrom);
     const toParts = this._parseLocalOrZonedParts(parcel.deliveryWindowTo);
     const dateKey = fromParts?.date || this._localDateKey(parcel.deliveryDate);
@@ -495,14 +500,15 @@ class PostNLDevice extends Homey.Device {
     tomorrow.setDate(tomorrow.getDate() + 1);
     const tomorrowKey = this._localDateKey(tomorrow);
     if (fromParts?.time && toParts?.time) {
-      if (dateKey === todayKey) return language === 'nl' ? `Vandaag tussen ${fromParts.time} en ${toParts.time}` : `Today between ${fromParts.time} and ${toParts.time}`;
-      if (dateKey === tomorrowKey) return language === 'nl' ? `Morgen tussen ${fromParts.time} en ${toParts.time}` : `Tomorrow between ${fromParts.time} and ${toParts.time}`;
-      const dateText = parcel.deliveryDate ? this.api.formatDate(parcel.deliveryDate) : dateKey;
-      return language === 'nl' ? `${dateText} tussen ${fromParts.time} en ${toParts.time}` : `${dateText} between ${fromParts.time} and ${toParts.time}`;
+      const times = { from: fromParts.time, to: toParts.time };
+      if (dateKey === todayKey) return imageText('today_between', language, times);
+      if (dateKey === tomorrowKey) return imageText('tomorrow_between', language, times);
+      const dateText = parcel.deliveryDate ? this.api.formatDate(parcel.deliveryDate, language) : dateKey;
+      return imageText('date_between', language, { ...times, date: dateText });
     }
     if (parcel.deliveryWindow) return parcel.deliveryWindow;
-    if (parcel.deliveryDate) return this.api.formatDate(parcel.deliveryDate);
-    return language === 'nl' ? 'Pakket onderweg' : 'Parcel on the way';
+    if (parcel.deliveryDate) return this.api.formatDate(parcel.deliveryDate, language);
+    return imageText('on_the_way', language);
   }
 
   _selectActivePackage(snapshot = this.snapshot) {
@@ -524,14 +530,13 @@ class PostNLDevice extends Homey.Device {
       const pinned = pin && Date.now() < pin.until ? pin.buffer : null;
       const parcel = this._activePackageForImage !== undefined ? this._activePackageForImage : this._selectActivePackage();
       const buffer = pinned || this._renderPackageCard(parcel, { cache: 'camera' });
-      if (!buffer?.length) throw new Error('PostNL delivery PNG buffer is empty');
+      if (!buffer?.length) throw new Error('PostNL delivery PNG buffer is empty'); // i18n-ignore: internal error, log only
       stream.contentType = 'image/png';
       stream.filename = 'postnl-my-delivery.png';
       stream.end(buffer);
       return stream;
     });
-    const language = this.homey.i18n.getLanguage() === 'nl' ? 'nl' : 'en';
-    await this.setCameraImage('latest_package', language === 'nl' ? 'Mijn Bezorging' : 'My Delivery', this._packageCameraImage);
+    await this.setCameraImage('latest_package', t(this.homey, 'my_delivery'), this._packageCameraImage);
     return this._packageCameraImage;
   }
 
@@ -542,7 +547,7 @@ class PostNLDevice extends Homey.Device {
   }
 
   _packageCardOptions(activePackage) {
-    const language = this.homey.i18n.getLanguage() === 'nl' ? 'nl' : 'en';
+    const language = imageLanguage(userLanguage(this.homey));
     if (!activePackage) return { empty: true, language };
     const from = this._parseLocalOrZonedParts(activePackage.deliveryWindowFrom);
     const to = this._parseLocalOrZonedParts(activePackage.deliveryWindowTo);
@@ -574,6 +579,7 @@ class PostNLDevice extends Homey.Device {
       sender: activePackage.sender || activePackage.title || activePackage.sourceDisplayName || 'PostNL',
       status: String(activePackage.statusRaw || activePackage.latestStatusEvent || activePackage.status || localizePackageStatus(this.homey, activePackage.status) || '').trim(),
       headline: this._deliveryHeadline(activePackage, language),
+      language,
       tracking: activePackage.barcode || activePackage.id || '',
       progress,
       windowStartPct, windowEndPct, timelineStart, timelineMid, timelineEnd,
@@ -684,13 +690,14 @@ class PostNLDevice extends Homey.Device {
   }
 
   async getNoMailPlaceholderImage() {
-    const language = this.homey.i18n.getLanguage() === 'nl' ? 'nl' : 'en';
+    const user = userLanguage(this.homey);
+    const language = NO_MAIL_ASSET_LANGUAGES.includes(user) ? user : 'en';
     const cacheKey = `no-mail-placeholder:${language}`;
     if (this._letterImageCache.has(cacheKey)) return this._letterImageCache.get(cacheKey);
 
     const filePath = path.join(__dirname, '..', '..', 'assets', `no-mail-${language}.png`);
     const buffer = await fs.promises.readFile(filePath);
-    if (!buffer?.length) throw new Error('PostNL fallback image is empty');
+    if (!buffer?.length) throw new Error('PostNL fallback image is empty'); // i18n-ignore: internal error, log only
 
     const image = await this.homey.images.createImage();
     image.setStream(async stream => {
@@ -706,7 +713,7 @@ class PostNLDevice extends Homey.Device {
   async _imageFromFile(cache, cacheKey, filePath, contentType, filename) {
     if (cache.has(cacheKey)) return cache.get(cacheKey);
     const buffer = await fs.promises.readFile(filePath);
-    if (!buffer?.length) throw new Error(`PostNL image is empty: ${filename}`);
+    if (!buffer?.length) throw new Error(`PostNL image is empty: ${filename}`); // i18n-ignore: internal error, log only
     const image = await this.homey.images.createImage();
     image.setStream(async stream => {
       stream.contentType = contentType;
@@ -723,7 +730,7 @@ class PostNLDevice extends Homey.Device {
   }
 
   async getNoPackagePlaceholderImage() {
-    const language = this.homey.i18n.getLanguage() === 'nl' ? 'nl' : 'en';
+    const language = imageLanguage(userLanguage(this.homey));
     const cacheKey = `no-package:${language}`;
     if (this._packageImageCache.has(cacheKey)) return this._packageImageCache.get(cacheKey);
     const buffer = renderNoPackageCard({ language, vanPng: loadDeliveryVan() });
@@ -771,7 +778,7 @@ class PostNLDevice extends Homey.Device {
     const packageDeliveryDate = nextPackage?.deliveryDate || nextPackage?.deliveryWindowFrom || nextPackage?.deliveryWindowTo || null;
     const packageDeliveryWindow = nextPackage?.deliveryWindow || this.api.formatWindow(nextPackage?.deliveryWindowFrom, nextPackage?.deliveryWindowTo) || '';
     const updated = snapshot.updatedAt
-      ? new Intl.DateTimeFormat(this.homey.i18n.getLanguage() === 'nl' ? 'nl-NL' : 'en-GB', { timeZone: this.homey.clock.getTimezone(), dateStyle: 'short', timeStyle: 'short' }).format(new Date(snapshot.updatedAt))
+      ? formatDate(this.homey, snapshot.updatedAt, { dateStyle: 'short', timeStyle: 'short' }, this.homey.clock.getTimezone())
       : '—';
     const connected = this.api.hasCredentials();
     const officialPackageStatus = nextPackage
@@ -787,7 +794,7 @@ class PostNLDevice extends Homey.Device {
       postnl_mail_count: currentMail.length,
       postnl_package_count: packages.length,
       postnl_next_delivery: nextDelivery,
-      postnl_delivery_date: packageDeliveryDate ? this.api.formatDateDMY(packageDeliveryDate) : '—',
+      postnl_delivery_date: packageDeliveryDate ? this.api.formatDate(packageDeliveryDate) : '—',
       postnl_delivery_window: packageDeliveryWindow || '—',
       postnl_package_status: officialPackageStatus,
       postnl_package_sender: packageSender,
@@ -797,9 +804,9 @@ class PostNLDevice extends Homey.Device {
       postnl_package_status_time: packageStatusTime,
       postnl_package_delivered: Boolean(nextPackage?.delivered),
       postnl_package_shipment_type: nextPackage ? (this._localizeShipmentType(nextPackage.shipmentType) || '—') : '—',
-      postnl_package_weight: nextPackage?.weight || '—',
+      postnl_package_weight: this._displayWeight(nextPackage) || '—',
       postnl_package_weight_kg: typeof nextPackage?.weightKg === 'number' && Number.isFinite(nextPackage.weightKg) ? nextPackage.weightKg : null,
-      postnl_package_dimensions: nextPackage?.dimensions || '—',
+      postnl_package_dimensions: formatDimensions(this.homey, nextPackage?.dimensions) || '—',
       postnl_package_length: typeof nextPackage?.dimensionLengthCm === 'number' && Number.isFinite(nextPackage.dimensionLengthCm) ? nextPackage.dimensionLengthCm : null,
       postnl_package_width: typeof nextPackage?.dimensionWidthCm === 'number' && Number.isFinite(nextPackage.dimensionWidthCm) ? nextPackage.dimensionWidthCm : null,
       postnl_package_height: typeof nextPackage?.dimensionHeightCm === 'number' && Number.isFinite(nextPackage.dimensionHeightCm) ? nextPackage.dimensionHeightCm : null,
@@ -808,13 +815,13 @@ class PostNLDevice extends Homey.Device {
       postnl_package_canonical_status: nextPackage?.canonicalStatus || 'unknown',
       postnl_package_pickup: Boolean(nextPackage?.pickup),
       postnl_package_pickup_point: nextPackage?.pickupPoint || '—',
-      postnl_status: connected ? (this.homey.i18n.getLanguage() === 'nl' ? 'Verbonden' : 'Connected') : (this.homey.i18n.getLanguage() === 'nl' ? 'Niet verbonden' : 'Not connected'),
+      postnl_status: t(this.homey, connected ? 'connected' : 'not_connected'),
       postnl_last_update: updated,
     };
     for (const [capability, value] of Object.entries(values)) if (this.hasCapability(capability)) await this.setCapabilityValue(capability, value).catch(this.error);
 
-    const language = this.homey.i18n.getLanguage() === 'nl' ? 'nl' : 'en';
-    const imageTitle = language === 'nl' ? 'Laatste poststuk' : 'Latest mail item';
+    const language = userLanguage(this.homey);
+    const imageTitle = t(this.homey, 'latest_mail_item');
     const latestWithImage = [...currentMail]
       .sort((a, b) => new Date(b.deliveryDate || 0) - new Date(a.deliveryDate || 0))
       .find(item => item?.imageData);
@@ -849,8 +856,15 @@ class PostNLDevice extends Homey.Device {
     await this._updateGlobalSnapshotTokens(snapshot).catch(error => this.error('[GlobalToken] snapshot update failed', error));
 
 
-    if (error) await this.setUnavailable(error.message).catch(this.error);
+    if (error) await this.setUnavailable(errorText(this.homey, error, 'PostNL')).catch(this.error);
     else await this.setAvailable().catch(this.error);
+  }
+
+  /** Display weight ("1.200 g", "1 200 г"); the Flow token keeps PostNL's own text. */
+  _displayWeight(parcel) {
+    const kg = parcel?.weightKg;
+    if (typeof kg === 'number' && Number.isFinite(kg)) return formatNumber(this.homey, kg * 1000, { style: 'unit', unit: 'gram', maximumFractionDigits: 1 });
+    return parcel?.weight || '';
   }
 
   isMailExpected() { return Boolean(this.getCapabilityValue('postnl_mail_expected')); }

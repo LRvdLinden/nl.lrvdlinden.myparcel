@@ -1,6 +1,7 @@
 'use strict';
 
 const Homey = require('homey');
+const { t, localizeSession } = require('../../lib/messages-i18n');
 const crypto = require('crypto');
 const { decodeBundle } = require('../../lib/bol-session');
 const { exchangeLink, isTrackingLink } = require('../../lib/ampere-tracking');
@@ -14,10 +15,10 @@ function validateSessionCode(value) {
   return raw;
 }
 
-async function validateLinks(value) {
+async function validateLinks(homey, value) {
   const links = String(value || '').split(/\s+/).map(v => v.trim()).filter(Boolean);
   for (const link of links) {
-    if (!isTrackingLink(link)) throw new Error('Use the tracking link from the bol.com e-mail (https://link.bol.com/t/…) or an Ampère link (bol.prd.amperebezorgt.nl).');
+    if (!isTrackingLink(link)) throw new Error(t(homey, 'ampere_link_use'));
   }
   if (links.length) await exchangeLink(links[0]);
   return links;
@@ -47,10 +48,11 @@ module.exports = class AmpereDriver extends Homey.Driver {
   }
 
   async onPair(session) {
+    localizeSession(this.homey, session, 'Ampère');
     session.setHandler('create_ampere', async ({ sessionCode, url }) => {
       const bundle = validateSessionCode(sessionCode);
-      const links = await validateLinks(url);
-      if (!bundle && !links.length) throw new Error('Paste the bol.com session code from the helper or the tracking link from the bol.com e-mail.');
+      const links = await validateLinks(this.homey, url);
+      if (!bundle && !links.length) throw new Error(t(this.homey, 'ampere_code_or_link'));
       return {
         device: {
           name: 'Ampère',
@@ -62,10 +64,11 @@ module.exports = class AmpereDriver extends Homey.Driver {
   }
 
   async onRepair(session, device) {
+    localizeSession(this.homey, session, 'Ampère');
     session.setHandler('repair_ampere', async ({ sessionCode, url }) => {
       const bundle = validateSessionCode(sessionCode);
-      const links = await validateLinks(url);
-      if (!bundle && !links.length) throw new Error('Paste the bol.com session code from the helper or the tracking link from the bol.com e-mail.');
+      const links = await validateLinks(this.homey, url);
+      if (!bundle && !links.length) throw new Error(t(this.homey, 'ampere_code_or_link'));
       if (bundle) await device.setSettings({ bol_session_bundle: bundle });
       if (links.length) {
         const current = device.trackedEntries().map(e => e.code);

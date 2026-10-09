@@ -2,7 +2,18 @@
   "type": "string",
   "title": {
     "en": "Parcel status",
-    "nl": "Pakketstatus"
+    "nl": "Pakketstatus",
+    "de": "Paketstatus",
+    "fr": "Statut du colis",
+    "it": "Stato del pacco",
+    "sv": "Paketstatus",
+    "no": "Pakkestatus",
+    "es": "Estado del paquete",
+    "da": "Pakkestatus",
+    "ru": "Статус посылки",
+    "pl": "Status paczki",
+    "ko": "택배 상태",
+    "ar": "حالة الطرد"
   },
   "getable": true,
   "setable": false,

@@ -1,6 +1,7 @@
 'use strict';
 
 const Homey = require('homey');
+const { t, localizeSession } = require('../../lib/messages-i18n');
 const { VintedGoClient } = require('../../lib/vintedgo-tracking');
 const { registerDhlFlowCards: registerFlowCards } = require('../../lib/dhl-flow');
 const { STATUS } = require('../../lib/dhl-tracking');
@@ -25,10 +26,11 @@ module.exports = class HomerrDriver extends Homey.Driver {
   }
 
   _handlers(session, device = null) {
+    localizeSession(this.homey, session, 'Vinted Go');
     let email = '';
     session.setHandler('start_login', async d => {
       email = String(d.email || device?.getSetting('email') || '').trim();
-      if (!email) throw new Error('Enter your Vinted Go e-mail address.');
+      if (!email) throw new Error(t(this.homey, 'enter_email', { account: 'Vinted Go' }));
       await VintedGoClient.register(email);
       return true;
     });
@@ -39,7 +41,7 @@ module.exports = class HomerrDriver extends Homey.Driver {
       const userId = String(me?.user_id || '');
       if (device) {
         const expected = String(device.getData()?.id || '').replace(/^homerr-/, '');
-        if (userId && expected && /^\d+$/.test(expected) && expected !== userId) throw new Error('This is a different Vinted Go account than the one this device belongs to.');
+        if (userId && expected && /^\d+$/.test(expected) && expected !== userId) throw new Error(t(this.homey, 'different_account', { carrier: 'Vinted Go' }));
         await device.updateLogin(client.refreshToken, email);
         return true;
       }

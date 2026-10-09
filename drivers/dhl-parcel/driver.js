@@ -1,6 +1,7 @@
 'use strict';
 
 const Homey = require('homey');
+const { t, localizeSession } = require('../../lib/messages-i18n');
 const crypto = require('crypto');
 const { DhlNlClient, parseTrackingList, formatTrackingList, STATUS } = require('../../lib/dhl-tracking');
 const { registerDhlFlowCards } = require('../../lib/dhl-flow');
@@ -32,9 +33,7 @@ module.exports = class DHLParcelDriver extends Homey.Driver {
     const mail = String(email || '').trim();
     const pass = String(password || '');
     const entries = parseTrackingList(tracking || '');
-    if (!mail && !pass && !entries.length) throw new Error(this.homey.i18n.getLanguage() === 'nl'
-      ? 'Vul je My DHL-account in, of minstens één trackingnummer.'
-      : 'Enter your My DHL account, or at least one tracking number.');
+    if (!mail && !pass && !entries.length) throw new Error(t(this.homey, 'dhl_account_or_tracking'));
     if (mail || pass) {
       const client = new DhlNlClient({ email: mail, password: pass });
       await client.login();
@@ -44,6 +43,7 @@ module.exports = class DHLParcelDriver extends Homey.Driver {
   }
 
   async onPair(session) {
+    localizeSession(this.homey, session, 'DHL');
     session.setHandler('login_dhl', async (data = {}) => {
       const { email, password, entries } = await this._validate(data);
       const key = email ? email.toLowerCase() : `tracking-${crypto.randomBytes(6).toString('hex')}`;
@@ -60,6 +60,7 @@ module.exports = class DHLParcelDriver extends Homey.Driver {
   }
 
   async onRepair(session, device) {
+    localizeSession(this.homey, session, 'DHL');
     session.setHandler('repair_login', async ({ email, password } = {}) => {
       const result = await this._validate({ email, password, tracking: device.getSetting('tracking_numbers') || '' });
       await device.updateCredentials(result.email, result.password);

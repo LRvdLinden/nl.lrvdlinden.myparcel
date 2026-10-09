@@ -2,7 +2,18 @@
   "type": "string",
   "title": {
     "en": "PostNL Point",
-    "nl": "PostNL-punt"
+    "nl": "PostNL-punt",
+    "de": "PostNL-Punkt",
+    "fr": "Point PostNL",
+    "it": "Punto PostNL",
+    "sv": "PostNL-ombud",
+    "no": "PostNL-utleveringssted",
+    "es": "Punto PostNL",
+    "da": "PostNL-udleveringssted",
+    "ru": "Пункт PostNL",
+    "pl": "Punkt PostNL",
+    "ko": "PostNL 픽업 지점",
+    "ar": "نقطة PostNL"
   },
   "getable": true,
   "setable": false,

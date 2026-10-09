@@ -1,0 +1,22 @@
+{
+  "type": "string",
+  "title": {
+    "en": "Tracking number",
+    "nl": "Trackingnummer",
+    "de": "Sendungsnummer",
+    "fr": "Numéro de suivi",
+    "it": "Numero di tracciamento",
+    "sv": "Spårningsnummer",
+    "no": "Sporingsnummer",
+    "es": "Número de seguimiento",
+    "da": "Sporingsnummer",
+    "ru": "Номер отслеживания",
+    "pl": "Numer śledzenia",
+    "ko": "운송장 번호",
+    "ar": "رقم التتبع"
+  },
+  "getable": true,
+  "setable": false,
+  "insights": false,
+  "icon": "/assets/capabilities/tracking.svg"
+}

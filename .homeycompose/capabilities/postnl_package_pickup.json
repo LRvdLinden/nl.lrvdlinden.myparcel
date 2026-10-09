@@ -2,7 +2,18 @@
   "type": "boolean",
   "title": {
     "en": "PostNL Point delivery",
-    "nl": "Bezorging bij PostNL-punt"
+    "nl": "Bezorging bij PostNL-punt",
+    "de": "Zustellung an PostNL-Punkt",
+    "fr": "Livraison en point PostNL",
+    "it": "Consegna presso punto PostNL",
+    "sv": "Leverans till PostNL-ombud",
+    "no": "Levering til PostNL-utleveringssted",
+    "es": "Entrega en punto PostNL",
+    "da": "Levering til PostNL-udleveringssted",
+    "ru": "Доставка в пункт PostNL",
+    "pl": "Dostawa do punktu PostNL",
+    "ko": "PostNL 픽업 지점 배송",
+    "ar": "التسليم إلى نقطة PostNL"
   },
   "getable": true,
   "setable": false,

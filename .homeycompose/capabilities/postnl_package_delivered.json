@@ -2,7 +2,18 @@
   "type": "boolean",
   "title": {
     "en": "Parcel delivered",
-    "nl": "Pakket bezorgd"
+    "nl": "Pakket bezorgd",
+    "de": "Paket zugestellt",
+    "fr": "Colis livré",
+    "it": "Pacco consegnato",
+    "sv": "Paket levererat",
+    "no": "Pakke levert",
+    "es": "Paquete entregado",
+    "da": "Pakke leveret",
+    "ru": "Посылка доставлена",
+    "pl": "Paczka doręczona",
+    "ko": "택배 배송 완료",
+    "ar": "تم تسليم الطرد"
   },
   "getable": true,
   "setable": false,

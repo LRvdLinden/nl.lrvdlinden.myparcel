@@ -92,15 +92,15 @@
                 "nl": "Verenigd Koninkrijk",
                 "de": "Vereinigtes Königreich",
                 "fr": "Royaume-Uni",
-                "it": "United Kingdom",
-                "sv": "United Kingdom",
-                "no": "United Kingdom",
-                "es": "United Kingdom",
-                "da": "United Kingdom",
-                "ru": "United Kingdom",
-                "pl": "United Kingdom",
-                "ko": "United Kingdom",
-                "ar": "United Kingdom"
+                "it": "Regno Unito",
+                "sv": "Storbritannien",
+                "no": "Storbritannia",
+                "es": "Reino Unido",
+                "da": "Storbritannien",
+                "ru": "Великобритания",
+                "pl": "Wielka Brytania",
+                "ko": "영국",
+                "ar": "المملكة المتحدة"
               }
             },
             {
@@ -110,15 +110,15 @@
                 "nl": "Polen",
                 "de": "Polen",
                 "fr": "Pologne",
-                "it": "Poland",
-                "sv": "Poland",
-                "no": "Poland",
-                "es": "Poland",
-                "da": "Poland",
-                "ru": "Poland",
-                "pl": "Poland",
-                "ko": "Poland",
-                "ar": "Poland"
+                "it": "Polonia",
+                "sv": "Polen",
+                "no": "Polen",
+                "es": "Polonia",
+                "da": "Polen",
+                "ru": "Польша",
+                "pl": "Polska",
+                "ko": "폴란드",
+                "ar": "بولندا"
               }
             },
             {
@@ -128,15 +128,15 @@
                 "nl": "Italië",
                 "de": "Italien",
                 "fr": "Italie",
-                "it": "Italy",
-                "sv": "Italy",
-                "no": "Italy",
-                "es": "Italy",
-                "da": "Italy",
-                "ru": "Italy",
-                "pl": "Italy",
-                "ko": "Italy",
-                "ar": "Italy"
+                "it": "Italia",
+                "sv": "Italien",
+                "no": "Italia",
+                "es": "Italia",
+                "da": "Italien",
+                "ru": "Италия",
+                "pl": "Włochy",
+                "ko": "이탈리아",
+                "ar": "إيطاليا"
               }
             },
             {
@@ -146,15 +146,15 @@
                 "nl": "Portugal",
                 "de": "Portugal",
                 "fr": "Portugal",
-                "it": "Portugal",
+                "it": "Portogallo",
                 "sv": "Portugal",
                 "no": "Portugal",
                 "es": "Portugal",
                 "da": "Portugal",
-                "ru": "Portugal",
-                "pl": "Portugal",
-                "ko": "Portugal",
-                "ar": "Portugal"
+                "ru": "Португалия",
+                "pl": "Portugalia",
+                "ko": "포르투갈",
+                "ar": "البرتغال"
               }
             },
             {
@@ -164,15 +164,15 @@
                 "nl": "Spanje",
                 "de": "Spanien",
                 "fr": "Espagne",
-                "it": "Spain",
-                "sv": "Spain",
-                "no": "Spain",
-                "es": "Spain",
-                "da": "Spain",
-                "ru": "Spain",
-                "pl": "Spain",
-                "ko": "Spain",
-                "ar": "Spain"
+                "it": "Spagna",
+                "sv": "Spanien",
+                "no": "Spania",
+                "es": "España",
+                "da": "Spanien",
+                "ru": "Испания",
+                "pl": "Hiszpania",
+                "ko": "스페인",
+                "ar": "إسبانيا"
               }
             }
           ]
@@ -200,15 +200,15 @@
             "nl": "Eén InPost-pakketnummer per regel.",
             "de": "Eine InPost-Sendungsnummer pro Zeile.",
             "fr": "Un numéro de colis InPost par ligne.",
-            "it": "One InPost parcel number per line.",
-            "sv": "One InPost parcel number per line.",
-            "no": "One InPost parcel number per line.",
-            "es": "One InPost parcel number per line.",
-            "da": "One InPost parcel number per line.",
-            "ru": "One InPost parcel number per line.",
-            "pl": "One InPost parcel number per line.",
-            "ko": "One InPost parcel number per line.",
-            "ar": "One InPost parcel number per line."
+            "it": "Un numero di pacco InPost per riga.",
+            "sv": "Ett InPost-paketnummer per rad.",
+            "no": "Ett InPost-pakkenummer per linje.",
+            "es": "Un número de paquete de InPost por línea.",
+            "da": "Ét InPost-pakkenummer pr. linje.",
+            "ru": "Один номер посылки InPost на строку.",
+            "pl": "Jeden numer paczki InPost w wierszu.",
+            "ko": "한 줄에 InPost 택배 번호 하나씩 입력하세요.",
+            "ar": "رقم طرد InPost واحد في كل سطر."
           },
           "value": ""
         },

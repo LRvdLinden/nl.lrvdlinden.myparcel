@@ -3,11 +3,14 @@ const Homey = require('homey');
 const fs = require('fs');
 const path = require('path');
 const localizePackageStatus = require('./lib/status-i18n.js');
+const { language } = require('./lib/i18n');
+const { t } = require('./lib/messages-i18n');
 const { validatePostcode: validateGlsPostcode } = require('./lib/gls-tracking');
 
 const DRIVER_IDS = [
   'postnl', 'dhl-parcel', 'dpd', 'ups', 'budbee', 'homerr',
   'fedex', 'gls', 'inpost-uk', 'bpost', 'royal-mail', 'post-dhl-de', 'ampere', 'dhl-express',
+  'trunkrs', 'dynalogic', 'dragonfly', 'mondial-relay', 'amazon',
 ];
 
 const CARRIER_NAMES = {
@@ -25,6 +28,11 @@ const CARRIER_NAMES = {
   'royal-mail': 'Royal Mail',
   'post-dhl-de': 'Post & DHL Germany',
   ampere: 'Ampère',
+  trunkrs: 'Trunkrs',
+  dynalogic: 'Dynalogic',
+  dragonfly: 'Dragonfly / Intelcom',
+  'mondial-relay': 'Mondial Relay',
+  amazon: 'Amazon',
 };
 
 const DELIVERY_WINDOW_FLOWS = {
@@ -46,23 +54,6 @@ const CONNECTION_CAPABILITIES = {
   'post-dhl-de': 'dhl_de_account_status',
 };
 
-const CONNECTION_TEXT = {
-  en: ['Connected', 'Not connected'],
-  nl: ['Verbonden', 'Niet verbonden'],
-  de: ['Verbunden', 'Nicht verbunden'],
-  fr: ['Connecté', 'Non connecté'],
-  it: ['Connesso', 'Non connesso'],
-  sv: ['Ansluten', 'Inte ansluten'],
-  no: ['Tilkoblet', 'Ikke tilkoblet'],
-  es: ['Conectado', 'No conectado'],
-  da: ['Forbundet', 'Ikke forbundet'],
-  ru: ['Подключено', 'Не подключено'],
-  pl: ['Połączono', 'Nie połączono'],
-  ko: ['연결됨', '연결되지 않음'],
-  ar: ['متصل', 'غير متصل'],
-};
-
-
 const DELIVERY_TOKEN_TEXT = {
   en: { image: 'MyParcel delivery image', carrier: 'Delivery carrier', status: 'Delivery status', sender: 'Delivery sender', tracking: 'Delivery tracking number', date: 'Delivery date', window: 'Delivery window' },
   nl: { image: 'MyParcel bezorging afbeelding', carrier: 'Bezorgvervoerder', status: 'Bezorgstatus', sender: 'Afzender bezorging', tracking: 'Trackingnummer bezorging', date: 'Bezorgdatum', window: 'Bezorgvenster' },
@@ -77,22 +68,6 @@ const DELIVERY_TOKEN_TEXT = {
   pl: { image: 'Obraz dostawy MyParcel', carrier: 'Przewoźnik', status: 'Status dostawy', sender: 'Nadawca', tracking: 'Numer śledzenia', date: 'Data dostawy', window: 'Okno dostawy' },
   ko: { image: 'MyParcel 배송 이미지', carrier: '배송사', status: '배송 상태', sender: '발송인', tracking: '운송장 번호', date: '배송 날짜', window: '배송 시간대' },
   ar: { image: 'صورة توصيل MyParcel', carrier: 'شركة الشحن', status: 'حالة التوصيل', sender: 'المرسل', tracking: 'رقم التتبع', date: 'تاريخ التوصيل', window: 'نافذة التوصيل' },
-};
-
-const DISCONNECTED_MESSAGES = {
-  en: (carrier, name) => `MyParcel – ${carrier} is not connected for ${name}. Open the device and repair the connection.`,
-  nl: (carrier, name) => `MyParcel – ${carrier} is niet verbonden voor ${name}. Open het apparaat en herstel de koppeling.`,
-  de: (carrier, name) => `MyParcel – ${carrier} ist für ${name} nicht verbunden. Öffne das Gerät und stelle die Verbindung wieder her.`,
-  fr: (carrier, name) => `MyParcel – ${carrier} n’est pas connecté pour ${name}. Ouvrez l’appareil et rétablissez la connexion.`,
-  it: (carrier, name) => `MyParcel – ${carrier} non è connesso per ${name}. Apri il dispositivo e ripristina il collegamento.`,
-  sv: (carrier, name) => `MyParcel – ${carrier} är inte ansluten för ${name}. Öppna enheten och återställ anslutningen.`,
-  no: (carrier, name) => `MyParcel – ${carrier} er ikke tilkoblet for ${name}. Åpne enheten og reparer tilkoblingen.`,
-  es: (carrier, name) => `MyParcel – ${carrier} no está conectado para ${name}. Abre el dispositivo y repara la conexión.`,
-  da: (carrier, name) => `MyParcel – ${carrier} er ikke forbundet for ${name}. Åbn enheden og reparer forbindelsen.`,
-  ru: (carrier, name) => `MyParcel – ${carrier} не подключён для ${name}. Откройте устройство и восстановите подключение.`,
-  pl: (carrier, name) => `MyParcel – ${carrier} nie jest połączony dla ${name}. Otwórz urządzenie i napraw połączenie.`,
-  ko: (carrier, name) => `MyParcel – ${name}의 ${carrier} 연결이 끊어졌습니다. 기기를 열고 연결을 복구하세요.`,
-  ar: (carrier, name) => `MyParcel – ‏${carrier} غير متصل للجهاز ${name}. افتح الجهاز وأصلح الاتصال.`,
 };
 
 module.exports = class MyParcelApp extends Homey.App {
@@ -136,9 +111,7 @@ module.exports = class MyParcelApp extends Homey.App {
   }
 
   getConnectionLabel(connected) {
-    const lang = this.homey.i18n.getLanguage();
-    const pair = CONNECTION_TEXT[lang] || CONNECTION_TEXT.en;
-    return pair[connected ? 0 : 1];
+    return t(this.homey, connected ? 'connected' : 'not_connected');
   }
 
   getPostNLDevices() {
@@ -239,8 +212,7 @@ module.exports = class MyParcelApp extends Homey.App {
       if (!connected) {
         const alreadyNotified = device.getStoreValue?.('myparcelConnectionNotified') === true || this._alreadyAuthNotified(device);
         if (!alreadyNotified) {
-          const lang = this.homey.i18n.getLanguage();
-          const message = (DISCONNECTED_MESSAGES[lang] || DISCONNECTED_MESSAGES.en)(CARRIER_NAMES[driverId] || driverId, device.getName());
+          const message = t(this.homey, 'disconnected', { carrier: CARRIER_NAMES[driverId] || driverId, name: device.getName() });
           await this.homey.notifications.createNotification({ excerpt: message }).catch(error => this.error(`[Connection notification] ${driverId}`, error));
         }
         await device.setStoreValue('myparcelConnectionNotified', true).catch(() => {});
@@ -408,8 +380,7 @@ module.exports = class MyParcelApp extends Homey.App {
   }
 
   async _initMyParcelDeliveryTokens() {
-    const lang = this.homey.i18n.getLanguage();
-    const t = DELIVERY_TOKEN_TEXT[lang] || DELIVERY_TOKEN_TEXT.en;
+    const titles = DELIVERY_TOKEN_TEXT[language(this.homey)] || DELIVERY_TOKEN_TEXT.en;
     const defs = {
       image: { id: 'myparcel_delivery_image', type: 'image' },
       carrier: { id: 'myparcel_delivery_carrier', type: 'string' },
@@ -421,7 +392,7 @@ module.exports = class MyParcelApp extends Homey.App {
     };
     this._myParcelDeliveryTokens = {};
     for (const [key, def] of Object.entries(defs)) {
-      this._myParcelDeliveryTokens[key] = await this.homey.flow.createToken(def.id, { type: def.type, title: t[key] });
+      this._myParcelDeliveryTokens[key] = await this.homey.flow.createToken(def.id, { type: def.type, title: titles[key] });
     }
     this._myParcelDeliveryImageCache = new Map();
   }
@@ -458,7 +429,7 @@ module.exports = class MyParcelApp extends Homey.App {
   }
 
   async _getMyParcelDeliveryImage(active) {
-    const lang = DELIVERY_TOKEN_TEXT[this.homey.i18n.getLanguage()] ? this.homey.i18n.getLanguage() : 'en';
+    const lang = language(this.homey);
     const key = `${lang}:${active ? 'active' : 'empty'}`;
     if (this._myParcelDeliveryImageCache?.has(key)) return this._myParcelDeliveryImageCache.get(key);
     const filePath = path.join(__dirname, 'widgets', 'myparcel-bezorging', 'public', 'van.svg');

@@ -6,11 +6,16 @@ const {
   DpdGeneralClient, DpdDeClient, DpdPlClient, normalizePolishPhone,
 } = require('../../lib/dpd-tracking');
 
+const { language, regionName } = require('../../lib/i18n');
+const { t, localizeSession, localizeListener } = require('../../lib/messages-i18n');
+
+// DPD business units → ISO country (names come from Intl in the user's language).
+const BU_REGION = { 'DPD-UK': 'GB', BRT: 'IT', 'CHR-PT': 'PT' };
+
 function countryName(homey, country) {
-  let lang = 'en';
-  try { lang = homey.i18n.getLanguage(); } catch (_) { /* default */ }
-  const index = { en: 0, nl: 1, de: 2, fr: 3 }[lang] ?? 0;
-  return country.name[index] || country.name[0];
+  const region = BU_REGION[country.code] || String(country.code).replace(/^DPD-/, '');
+  const name = regionName(homey, region) || country.name[0];
+  return country.code === 'BRT' ? `${name} (BRT)` : name;
 }
 
 module.exports = class DpdDriver extends Homey.Driver {
@@ -24,23 +29,21 @@ module.exports = class DpdDriver extends Homey.Driver {
     const delivered = condition('dpd_parcel_is_delivered');
     delivered.registerRunListener(async ({ device, tracking }) => device.isDelivered(tracking?.id || tracking?.name || ''));
     delivered.registerArgumentAutocompleteListener('tracking', async (query, args) => (args.device ? args.device.autocompleteParcels(query) : []));
-    this.homey.flow.getActionCard('dpd_refresh').registerRunListener(async ({ device }) => device.refresh(true));
+    this.homey.flow.getActionCard('dpd_refresh').registerRunListener(localizeListener(this.homey, async ({ device }) => device.refresh(true), 'DPD'));
   }
 
   _countries() {
     return COUNTRIES.map(country => ({ id: country.code, name: countryName(this.homey, country), backend: country.backend }));
   }
 
-  _language() {
-    try { return this.homey.i18n.getLanguage(); } catch (_) { return 'en'; }
-  }
+  _language() { return language(this.homey); }
 
   /** Validate credentials for e-mail/password countries; returns the settings to store. */
   async _login({ country, email, password }) {
     const bu = COUNTRY_BY_CODE[country] ? country : 'DPD-NL';
     const mail = String(email || '').trim();
     const pass = String(password || '');
-    if (!mail || !pass) throw new Error('Enter your DPD e-mail address and password.');
+    if (!mail || !pass) throw new Error(t(this.homey, 'enter_email_password', { account: 'DPD' }));
     const client = backendFor(bu) === 'de'
       ? new DpdDeClient({ email: mail, password: pass })
       : new DpdGeneralClient({ email: mail, password: pass, bu });
@@ -49,6 +52,7 @@ module.exports = class DpdDriver extends Homey.Driver {
   }
 
   _registerHandlers(session, { device = null } = {}) {
+    localizeSession(this.homey, session, 'DPD');
     session.setHandler('countries', async () => ({
       countries: this._countries(),
       language: this._language(),
@@ -81,7 +85,7 @@ module.exports = class DpdDriver extends Homey.Driver {
 
     session.setHandler('pl_verify', async ({ phone, code }) => {
       const number = normalizePolishPhone(phone);
-      if (!number) throw new Error('Enter a Polish nine-digit mobile number.');
+      if (!number) throw new Error(t(this.homey, 'polish_phone'));
       const client = new DpdPlClient();
       const refreshToken = await client.register(number, code);
       if (device) {

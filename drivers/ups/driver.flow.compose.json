@@ -5,17 +5,17 @@
       "title": {
         "en": "New UPS package",
         "nl": "Nieuw UPS-pakket",
-        "de": "New UPS package",
-        "fr": "New UPS package",
-        "it": "New UPS package",
-        "sv": "New UPS package",
-        "no": "New UPS package",
-        "es": "New UPS package",
-        "da": "New UPS package",
-        "ru": "New UPS package",
-        "pl": "New UPS package",
-        "ko": "New UPS package",
-        "ar": "New UPS package"
+        "de": "Neues UPS-Paket",
+        "fr": "Nouveau colis UPS",
+        "it": "Nuovo pacco UPS",
+        "sv": "Nytt UPS-paket",
+        "no": "Ny UPS-pakke",
+        "es": "Nuevo paquete UPS",
+        "da": "Ny UPS-pakke",
+        "ru": "Новая посылка UPS",
+        "pl": "Nowa paczka UPS",
+        "ko": "새 UPS 택배",
+        "ar": "طرد UPS جديد"
       },
       "args": [],
       "tokens": [
@@ -25,17 +25,17 @@
           "title": {
             "en": "Tracking number",
             "nl": "Trackingnummer",
-            "de": "Tracking number",
-            "fr": "Tracking number",
-            "it": "Tracking number",
-            "sv": "Tracking number",
-            "no": "Tracking number",
-            "es": "Tracking number",
-            "da": "Tracking number",
-            "ru": "Tracking number",
-            "pl": "Tracking number",
-            "ko": "Tracking number",
-            "ar": "Tracking number"
+            "de": "Sendungsnummer",
+            "fr": "Numéro de suivi",
+            "it": "Numero di tracciamento",
+            "sv": "Spårningsnummer",
+            "no": "Sporingsnummer",
+            "es": "Número de seguimiento",
+            "da": "Sporingsnummer",
+            "ru": "Трек-номер",
+            "pl": "Numer przesyłki",
+            "ko": "운송장 번호",
+            "ar": "رقم التتبع"
           }
         },
         {
@@ -45,16 +45,16 @@
             "en": "Status",
             "nl": "Status",
             "de": "Status",
-            "fr": "Status",
+            "fr": "Statut",
             "it": "Status",
             "sv": "Status",
             "no": "Status",
-            "es": "Status",
+            "es": "Estado",
             "da": "Status",
-            "ru": "Status",
+            "ru": "Статус",
             "pl": "Status",
-            "ko": "Status",
-            "ar": "Status"
+            "ko": "상태",
+            "ar": "الحالة"
           }
         },
         {
@@ -64,16 +64,16 @@
             "en": "Sender",
             "nl": "Afzender",
             "de": "Sender",
-            "fr": "Sender",
-            "it": "Sender",
-            "sv": "Sender",
-            "no": "Sender",
-            "es": "Sender",
-            "da": "Sender",
-            "ru": "Sender",
-            "pl": "Sender",
-            "ko": "Sender",
-            "ar": "Sender"
+            "fr": "Expéditeur",
+            "it": "Mittente",
+            "sv": "Avsändare",
+            "no": "Avsender",
+            "es": "Remitente",
+            "da": "Afsender",
+            "ru": "Отправитель",
+            "pl": "Nadawca",
+            "ko": "발송인",
+            "ar": "المرسل"
           }
         },
         {
@@ -82,17 +82,17 @@
           "title": {
             "en": "Expected delivery",
             "nl": "Verwachte bezorging",
-            "de": "Expected delivery",
-            "fr": "Expected delivery",
-            "it": "Expected delivery",
-            "sv": "Expected delivery",
-            "no": "Expected delivery",
-            "es": "Expected delivery",
-            "da": "Expected delivery",
-            "ru": "Expected delivery",
-            "pl": "Expected delivery",
-            "ko": "Expected delivery",
-            "ar": "Expected delivery"
+            "de": "Voraussichtliche Zustellung",
+            "fr": "Livraison prévue",
+            "it": "Consegna prevista",
+            "sv": "Förväntad leverans",
+            "no": "Forventet levering",
+            "es": "Entrega prevista",
+            "da": "Forventet levering",
+            "ru": "Ожидаемая доставка",
+            "pl": "Przewidywana dostawa",
+            "ko": "예상 배송",
+            "ar": "التسليم المتوقع"
           }
         },
         {
@@ -101,17 +101,17 @@
           "title": {
             "en": "Delivery window",
             "nl": "Bezorgvenster",
-            "de": "Delivery window",
-            "fr": "Delivery window",
-            "it": "Delivery window",
-            "sv": "Delivery window",
-            "no": "Delivery window",
-            "es": "Delivery window",
-            "da": "Delivery window",
-            "ru": "Delivery window",
-            "pl": "Delivery window",
-            "ko": "Delivery window",
-            "ar": "Delivery window"
+            "de": "Zustellzeitfenster",
+            "fr": "Créneau de livraison",
+            "it": "Finestra di consegna",
+            "sv": "Leveransfönster",
+            "no": "Leveringsvindu",
+            "es": "Franja de entrega",
+            "da": "Leveringsvindue",
+            "ru": "Интервал доставки",
+            "pl": "Okno dostawy",
+            "ko": "배송 시간대",
+            "ar": "نافذة التوصيل"
           }
         },
         {
@@ -120,17 +120,17 @@
           "title": {
             "en": "UPS service",
             "nl": "UPS-service",
-            "de": "UPS service",
-            "fr": "UPS service",
-            "it": "UPS service",
-            "sv": "UPS service",
-            "no": "UPS service",
-            "es": "UPS service",
-            "da": "UPS service",
-            "ru": "UPS service",
-            "pl": "UPS service",
-            "ko": "UPS service",
-            "ar": "UPS service"
+            "de": "UPS-Dienst",
+            "fr": "Service UPS",
+            "it": "Servizio UPS",
+            "sv": "UPS-tjänst",
+            "no": "UPS-tjeneste",
+            "es": "Servicio de UPS",
+            "da": "UPS-tjeneste",
+            "ru": "Сервис UPS",
+            "pl": "Usługa UPS",
+            "ko": "UPS 서비스",
+            "ar": "خدمة UPS"
           }
         },
         {
@@ -139,17 +139,17 @@
           "title": {
             "en": "Ship from",
             "nl": "Verzonden vanaf",
-            "de": "Ship from",
-            "fr": "Ship from",
-            "it": "Ship from",
-            "sv": "Ship from",
-            "no": "Ship from",
-            "es": "Ship from",
-            "da": "Ship from",
-            "ru": "Ship from",
-            "pl": "Ship from",
-            "ko": "Ship from",
-            "ar": "Ship from"
+            "de": "Versand von",
+            "fr": "Expédié depuis",
+            "it": "Spedito da",
+            "sv": "Skickas från",
+            "no": "Sendes fra",
+            "es": "Enviado desde",
+            "da": "Afsendes fra",
+            "ru": "Отправлено из",
+            "pl": "Wysłano z",
+            "ko": "발송지",
+            "ar": "الشحن من"
           }
         },
         {
@@ -158,17 +158,17 @@
           "title": {
             "en": "Ship to",
             "nl": "Bestemming",
-            "de": "Ship to",
-            "fr": "Ship to",
-            "it": "Ship to",
-            "sv": "Ship to",
-            "no": "Ship to",
-            "es": "Ship to",
-            "da": "Ship to",
-            "ru": "Ship to",
-            "pl": "Ship to",
-            "ko": "Ship to",
-            "ar": "Ship to"
+            "de": "Versand an",
+            "fr": "Expédié à",
+            "it": "Spedito a",
+            "sv": "Skickas till",
+            "no": "Sendes til",
+            "es": "Enviado a",
+            "da": "Sendes til",
+            "ru": "Доставка в",
+            "pl": "Wysyłka do",
+            "ko": "배송지",
+            "ar": "الشحن إلى"
           }
         },
         {
@@ -196,17 +196,17 @@
           "title": {
             "en": "Last event",
             "nl": "Laatste gebeurtenis",
-            "de": "Last event",
-            "fr": "Last event",
-            "it": "Last event",
-            "sv": "Last event",
-            "no": "Last event",
-            "es": "Last event",
-            "da": "Last event",
-            "ru": "Last event",
-            "pl": "Last event",
-            "ko": "Last event",
-            "ar": "Last event"
+            "de": "Letztes Ereignis",
+            "fr": "Dernier événement",
+            "it": "Ultimo evento",
+            "sv": "Senaste händelse",
+            "no": "Siste hendelse",
+            "es": "Último evento",
+            "da": "Seneste hændelse",
+            "ru": "Последнее событие",
+            "pl": "Ostatnie zdarzenie",
+            "ko": "마지막 이벤트",
+            "ar": "آخر حدث"
           }
         }
       ]
@@ -216,17 +216,17 @@
       "title": {
         "en": "UPS package status changed",
         "nl": "UPS-pakketstatus gewijzigd",
-        "de": "UPS package status changed",
-        "fr": "UPS package status changed",
-        "it": "UPS package status changed",
-        "sv": "UPS package status changed",
-        "no": "UPS package status changed",
-        "es": "UPS package status changed",
-        "da": "UPS package status changed",
-        "ru": "UPS package status changed",
-        "pl": "UPS package status changed",
-        "ko": "UPS package status changed",
-        "ar": "UPS package status changed"
+        "de": "UPS-Paketstatus geändert",
+        "fr": "Statut du colis UPS modifié",
+        "it": "Stato del pacco UPS modificato",
+        "sv": "UPS-paketstatus ändrad",
+        "no": "UPS-pakkestatus endret",
+        "es": "Estado del paquete UPS modificado",
+        "da": "UPS-pakkestatus ændret",
+        "ru": "Статус посылки UPS изменён",
+        "pl": "Status paczki UPS zmieniony",
+        "ko": "UPS 택배 상태 변경됨",
+        "ar": "تم تغيير حالة طرد UPS"
       },
       "args": [],
       "tokens": [
@@ -236,17 +236,17 @@
           "title": {
             "en": "Tracking number",
             "nl": "Trackingnummer",
-            "de": "Tracking number",
-            "fr": "Tracking number",
-            "it": "Tracking number",
-            "sv": "Tracking number",
-            "no": "Tracking number",
-            "es": "Tracking number",
-            "da": "Tracking number",
-            "ru": "Tracking number",
-            "pl": "Tracking number",
-            "ko": "Tracking number",
-            "ar": "Tracking number"
+            "de": "Sendungsnummer",
+            "fr": "Numéro de suivi",
+            "it": "Numero di tracciamento",
+            "sv": "Spårningsnummer",
+            "no": "Sporingsnummer",
+            "es": "Número de seguimiento",
+            "da": "Sporingsnummer",
+            "ru": "Трек-номер",
+            "pl": "Numer przesyłki",
+            "ko": "운송장 번호",
+            "ar": "رقم التتبع"
           }
         },
         {
@@ -256,16 +256,16 @@
             "en": "Status",
             "nl": "Status",
             "de": "Status",
-            "fr": "Status",
+            "fr": "Statut",
             "it": "Status",
             "sv": "Status",
             "no": "Status",
-            "es": "Status",
+            "es": "Estado",
             "da": "Status",
-            "ru": "Status",
+            "ru": "Статус",
             "pl": "Status",
-            "ko": "Status",
-            "ar": "Status"
+            "ko": "상태",
+            "ar": "الحالة"
           }
         },
         {
@@ -275,16 +275,16 @@
             "en": "Sender",
             "nl": "Afzender",
             "de": "Sender",
-            "fr": "Sender",
-            "it": "Sender",
-            "sv": "Sender",
-            "no": "Sender",
-            "es": "Sender",
-            "da": "Sender",
-            "ru": "Sender",
-            "pl": "Sender",
-            "ko": "Sender",
-            "ar": "Sender"
+            "fr": "Expéditeur",
+            "it": "Mittente",
+            "sv": "Avsändare",
+            "no": "Avsender",
+            "es": "Remitente",
+            "da": "Afsender",
+            "ru": "Отправитель",
+            "pl": "Nadawca",
+            "ko": "발송인",
+            "ar": "المرسل"
           }
         },
         {
@@ -293,17 +293,17 @@
           "title": {
             "en": "Expected delivery",
             "nl": "Verwachte bezorging",
-            "de": "Expected delivery",
-            "fr": "Expected delivery",
-            "it": "Expected delivery",
-            "sv": "Expected delivery",
-            "no": "Expected delivery",
-            "es": "Expected delivery",
-            "da": "Expected delivery",
-            "ru": "Expected delivery",
-            "pl": "Expected delivery",
-            "ko": "Expected delivery",
-            "ar": "Expected delivery"
+            "de": "Voraussichtliche Zustellung",
+            "fr": "Livraison prévue",
+            "it": "Consegna prevista",
+            "sv": "Förväntad leverans",
+            "no": "Forventet levering",
+            "es": "Entrega prevista",
+            "da": "Forventet levering",
+            "ru": "Ожидаемая доставка",
+            "pl": "Przewidywana dostawa",
+            "ko": "예상 배송",
+            "ar": "التسليم المتوقع"
           }
         },
         {
@@ -312,17 +312,17 @@
           "title": {
             "en": "Delivery window",
             "nl": "Bezorgvenster",
-            "de": "Delivery window",
-            "fr": "Delivery window",
-            "it": "Delivery window",
-            "sv": "Delivery window",
-            "no": "Delivery window",
-            "es": "Delivery window",
-            "da": "Delivery window",
-            "ru": "Delivery window",
-            "pl": "Delivery window",
-            "ko": "Delivery window",
-            "ar": "Delivery window"
+            "de": "Zustellzeitfenster",
+            "fr": "Créneau de livraison",
+            "it": "Finestra di consegna",
+            "sv": "Leveransfönster",
+            "no": "Leveringsvindu",
+            "es": "Franja de entrega",
+            "da": "Leveringsvindue",
+            "ru": "Интервал доставки",
+            "pl": "Okno dostawy",
+            "ko": "배송 시간대",
+            "ar": "نافذة التوصيل"
           }
         },
         {
@@ -331,17 +331,17 @@
           "title": {
             "en": "UPS service",
             "nl": "UPS-service",
-            "de": "UPS service",
-            "fr": "UPS service",
-            "it": "UPS service",
-            "sv": "UPS service",
-            "no": "UPS service",
-            "es": "UPS service",
-            "da": "UPS service",
-            "ru": "UPS service",
-            "pl": "UPS service",
-            "ko": "UPS service",
-            "ar": "UPS service"
+            "de": "UPS-Dienst",
+            "fr": "Service UPS",
+            "it": "Servizio UPS",
+            "sv": "UPS-tjänst",
+            "no": "UPS-tjeneste",
+            "es": "Servicio de UPS",
+            "da": "UPS-tjeneste",
+            "ru": "Сервис UPS",
+            "pl": "Usługa UPS",
+            "ko": "UPS 서비스",
+            "ar": "خدمة UPS"
           }
         },
         {
@@ -350,17 +350,17 @@
           "title": {
             "en": "Ship from",
             "nl": "Verzonden vanaf",
-            "de": "Ship from",
-            "fr": "Ship from",
-            "it": "Ship from",
-            "sv": "Ship from",
-            "no": "Ship from",
-            "es": "Ship from",
-            "da": "Ship from",
-            "ru": "Ship from",
-            "pl": "Ship from",
-            "ko": "Ship from",
-            "ar": "Ship from"
+            "de": "Versand von",
+            "fr": "Expédié depuis",
+            "it": "Spedito da",
+            "sv": "Skickas från",
+            "no": "Sendes fra",
+            "es": "Enviado desde",
+            "da": "Afsendes fra",
+            "ru": "Отправлено из",
+            "pl": "Wysłano z",
+            "ko": "발송지",
+            "ar": "الشحن من"
           }
         },
         {
@@ -369,17 +369,17 @@
           "title": {
             "en": "Ship to",
             "nl": "Bestemming",
-            "de": "Ship to",
-            "fr": "Ship to",
-            "it": "Ship to",
-            "sv": "Ship to",
-            "no": "Ship to",
-            "es": "Ship to",
-            "da": "Ship to",
-            "ru": "Ship to",
-            "pl": "Ship to",
-            "ko": "Ship to",
-            "ar": "Ship to"
+            "de": "Versand an",
+            "fr": "Expédié à",
+            "it": "Spedito a",
+            "sv": "Skickas till",
+            "no": "Sendes til",
+            "es": "Enviado a",
+            "da": "Sendes til",
+            "ru": "Доставка в",
+            "pl": "Wysyłka do",
+            "ko": "배송지",
+            "ar": "الشحن إلى"
           }
         },
         {
@@ -407,17 +407,17 @@
           "title": {
             "en": "Last event",
             "nl": "Laatste gebeurtenis",
-            "de": "Last event",
-            "fr": "Last event",
-            "it": "Last event",
-            "sv": "Last event",
-            "no": "Last event",
-            "es": "Last event",
-            "da": "Last event",
-            "ru": "Last event",
-            "pl": "Last event",
-            "ko": "Last event",
-            "ar": "Last event"
+            "de": "Letztes Ereignis",
+            "fr": "Dernier événement",
+            "it": "Ultimo evento",
+            "sv": "Senaste händelse",
+            "no": "Siste hendelse",
+            "es": "Último evento",
+            "da": "Seneste hændelse",
+            "ru": "Последнее событие",
+            "pl": "Ostatnie zdarzenie",
+            "ko": "마지막 이벤트",
+            "ar": "آخر حدث"
           }
         },
         {
@@ -426,17 +426,17 @@
           "title": {
             "en": "Previous status",
             "nl": "Vorige status",
-            "de": "Previous status",
-            "fr": "Previous status",
-            "it": "Previous status",
-            "sv": "Previous status",
-            "no": "Previous status",
-            "es": "Previous status",
-            "da": "Previous status",
-            "ru": "Previous status",
-            "pl": "Previous status",
-            "ko": "Previous status",
-            "ar": "Previous status"
+            "de": "Vorheriger Status",
+            "fr": "Statut précédent",
+            "it": "Stato precedente",
+            "sv": "Föregående status",
+            "no": "Forrige status",
+            "es": "Estado anterior",
+            "da": "Forrige status",
+            "ru": "Предыдущий статус",
+            "pl": "Poprzedni status",
+            "ko": "이전 상태",
+            "ar": "الحالة السابقة"
           }
         }
       ]
@@ -446,17 +446,17 @@
       "title": {
         "en": "UPS package delivered",
         "nl": "UPS-pakket bezorgd",
-        "de": "UPS package delivered",
-        "fr": "UPS package delivered",
-        "it": "UPS package delivered",
-        "sv": "UPS package delivered",
-        "no": "UPS package delivered",
-        "es": "UPS package delivered",
-        "da": "UPS package delivered",
-        "ru": "UPS package delivered",
-        "pl": "UPS package delivered",
-        "ko": "UPS package delivered",
-        "ar": "UPS package delivered"
+        "de": "UPS-Paket zugestellt",
+        "fr": "Colis UPS livré",
+        "it": "Pacco UPS consegnato",
+        "sv": "UPS-paket levererat",
+        "no": "UPS-pakke levert",
+        "es": "Paquete UPS entregado",
+        "da": "UPS-pakke leveret",
+        "ru": "Посылка UPS доставлена",
+        "pl": "Paczka UPS doręczona",
+        "ko": "UPS 택배 배송 완료",
+        "ar": "تم تسليم طرد UPS"
       },
       "args": [],
       "tokens": [
@@ -466,17 +466,17 @@
           "title": {
             "en": "Tracking number",
             "nl": "Trackingnummer",
-            "de": "Tracking number",
-            "fr": "Tracking number",
-            "it": "Tracking number",
-            "sv": "Tracking number",
-            "no": "Tracking number",
-            "es": "Tracking number",
-            "da": "Tracking number",
-            "ru": "Tracking number",
-            "pl": "Tracking number",
-            "ko": "Tracking number",
-            "ar": "Tracking number"
+            "de": "Sendungsnummer",
+            "fr": "Numéro de suivi",
+            "it": "Numero di tracciamento",
+            "sv": "Spårningsnummer",
+            "no": "Sporingsnummer",
+            "es": "Número de seguimiento",
+            "da": "Sporingsnummer",
+            "ru": "Трек-номер",
+            "pl": "Numer przesyłki",
+            "ko": "운송장 번호",
+            "ar": "رقم التتبع"
           }
         },
         {
@@ -486,16 +486,16 @@
             "en": "Status",
             "nl": "Status",
             "de": "Status",
-            "fr": "Status",
+            "fr": "Statut",
             "it": "Status",
             "sv": "Status",
             "no": "Status",
-            "es": "Status",
+            "es": "Estado",
             "da": "Status",
-            "ru": "Status",
+            "ru": "Статус",
             "pl": "Status",
-            "ko": "Status",
-            "ar": "Status"
+            "ko": "상태",
+            "ar": "الحالة"
           }
         },
         {
@@ -505,16 +505,16 @@
             "en": "Sender",
             "nl": "Afzender",
             "de": "Sender",
-            "fr": "Sender",
-            "it": "Sender",
-            "sv": "Sender",
-            "no": "Sender",
-            "es": "Sender",
-            "da": "Sender",
-            "ru": "Sender",
-            "pl": "Sender",
-            "ko": "Sender",
-            "ar": "Sender"
+            "fr": "Expéditeur",
+            "it": "Mittente",
+            "sv": "Avsändare",
+            "no": "Avsender",
+            "es": "Remitente",
+            "da": "Afsender",
+            "ru": "Отправитель",
+            "pl": "Nadawca",
+            "ko": "발송인",
+            "ar": "المرسل"
           }
         },
         {
@@ -523,17 +523,17 @@
           "title": {
             "en": "Expected delivery",
             "nl": "Verwachte bezorging",
-            "de": "Expected delivery",
-            "fr": "Expected delivery",
-            "it": "Expected delivery",
-            "sv": "Expected delivery",
-            "no": "Expected delivery",
-            "es": "Expected delivery",
-            "da": "Expected delivery",
-            "ru": "Expected delivery",
-            "pl": "Expected delivery",
-            "ko": "Expected delivery",
-            "ar": "Expected delivery"
+            "de": "Voraussichtliche Zustellung",
+            "fr": "Livraison prévue",
+            "it": "Consegna prevista",
+            "sv": "Förväntad leverans",
+            "no": "Forventet levering",
+            "es": "Entrega prevista",
+            "da": "Forventet levering",
+            "ru": "Ожидаемая доставка",
+            "pl": "Przewidywana dostawa",
+            "ko": "예상 배송",
+            "ar": "التسليم المتوقع"
           }
         },
         {
@@ -542,17 +542,17 @@
           "title": {
             "en": "Delivery window",
             "nl": "Bezorgvenster",
-            "de": "Delivery window",
-            "fr": "Delivery window",
-            "it": "Delivery window",
-            "sv": "Delivery window",
-            "no": "Delivery window",
-            "es": "Delivery window",
-            "da": "Delivery window",
-            "ru": "Delivery window",
-            "pl": "Delivery window",
-            "ko": "Delivery window",
-            "ar": "Delivery window"
+            "de": "Zustellzeitfenster",
+            "fr": "Créneau de livraison",
+            "it": "Finestra di consegna",
+            "sv": "Leveransfönster",
+            "no": "Leveringsvindu",
+            "es": "Franja de entrega",
+            "da": "Leveringsvindue",
+            "ru": "Интервал доставки",
+            "pl": "Okno dostawy",
+            "ko": "배송 시간대",
+            "ar": "نافذة التوصيل"
           }
         },
         {
@@ -561,17 +561,17 @@
           "title": {
             "en": "UPS service",
             "nl": "UPS-service",
-            "de": "UPS service",
-            "fr": "UPS service",
-            "it": "UPS service",
-            "sv": "UPS service",
-            "no": "UPS service",
-            "es": "UPS service",
-            "da": "UPS service",
-            "ru": "UPS service",
-            "pl": "UPS service",
-            "ko": "UPS service",
-            "ar": "UPS service"
+            "de": "UPS-Dienst",
+            "fr": "Service UPS",
+            "it": "Servizio UPS",
+            "sv": "UPS-tjänst",
+            "no": "UPS-tjeneste",
+            "es": "Servicio de UPS",
+            "da": "UPS-tjeneste",
+            "ru": "Сервис UPS",
+            "pl": "Usługa UPS",
+            "ko": "UPS 서비스",
+            "ar": "خدمة UPS"
           }
         },
         {
@@ -580,17 +580,17 @@
           "title": {
             "en": "Ship from",
             "nl": "Verzonden vanaf",
-            "de": "Ship from",
-            "fr": "Ship from",
-            "it": "Ship from",
-            "sv": "Ship from",
-            "no": "Ship from",
-            "es": "Ship from",
-            "da": "Ship from",
-            "ru": "Ship from",
-            "pl": "Ship from",
-            "ko": "Ship from",
-            "ar": "Ship from"
+            "de": "Versand von",
+            "fr": "Expédié depuis",
+            "it": "Spedito da",
+            "sv": "Skickas från",
+            "no": "Sendes fra",
+            "es": "Enviado desde",
+            "da": "Afsendes fra",
+            "ru": "Отправлено из",
+            "pl": "Wysłano z",
+            "ko": "발송지",
+            "ar": "الشحن من"
           }
         },
         {
@@ -599,17 +599,17 @@
           "title": {
             "en": "Ship to",
             "nl": "Bestemming",
-            "de": "Ship to",
-            "fr": "Ship to",
-            "it": "Ship to",
-            "sv": "Ship to",
-            "no": "Ship to",
-            "es": "Ship to",
-            "da": "Ship to",
-            "ru": "Ship to",
-            "pl": "Ship to",
-            "ko": "Ship to",
-            "ar": "Ship to"
+            "de": "Versand an",
+            "fr": "Expédié à",
+            "it": "Spedito a",
+            "sv": "Skickas till",
+            "no": "Sendes til",
+            "es": "Enviado a",
+            "da": "Sendes til",
+            "ru": "Доставка в",
+            "pl": "Wysyłka do",
+            "ko": "배송지",
+            "ar": "الشحن إلى"
           }
         },
         {
@@ -637,17 +637,17 @@
           "title": {
             "en": "Last event",
             "nl": "Laatste gebeurtenis",
-            "de": "Last event",
-            "fr": "Last event",
-            "it": "Last event",
-            "sv": "Last event",
-            "no": "Last event",
-            "es": "Last event",
-            "da": "Last event",
-            "ru": "Last event",
-            "pl": "Last event",
-            "ko": "Last event",
-            "ar": "Last event"
+            "de": "Letztes Ereignis",
+            "fr": "Dernier événement",
+            "it": "Ultimo evento",
+            "sv": "Senaste händelse",
+            "no": "Siste hendelse",
+            "es": "Último evento",
+            "da": "Seneste hændelse",
+            "ru": "Последнее событие",
+            "pl": "Ostatnie zdarzenie",
+            "ko": "마지막 이벤트",
+            "ar": "آخر حدث"
           }
         }
       ]
@@ -833,17 +833,17 @@
       "title": {
         "en": "UPS packages are underway",
         "nl": "Er zijn UPS-pakketten onderweg",
-        "de": "UPS packages are underway",
-        "fr": "UPS packages are underway",
-        "it": "UPS packages are underway",
-        "sv": "UPS packages are underway",
-        "no": "UPS packages are underway",
-        "es": "UPS packages are underway",
-        "da": "UPS packages are underway",
-        "ru": "UPS packages are underway",
-        "pl": "UPS packages are underway",
-        "ko": "UPS packages are underway",
-        "ar": "UPS packages are underway"
+        "de": "UPS-Pakete sind unterwegs",
+        "fr": "Des colis UPS sont en route",
+        "it": "Pacchi UPS in viaggio",
+        "sv": "UPS-paket är på väg",
+        "no": "UPS-pakker er underveis",
+        "es": "Hay paquetes UPS en camino",
+        "da": "UPS-pakker er undervejs",
+        "ru": "Посылки UPS в пути",
+        "pl": "Paczki UPS są w drodze",
+        "ko": "UPS 택배 배송 중",
+        "ar": "طرود UPS قيد التوصيل"
       },
       "args": []
     },
@@ -852,17 +852,17 @@
       "title": {
         "en": "UPS account is connected",
         "nl": "UPS-account is gekoppeld",
-        "de": "UPS account is connected",
-        "fr": "UPS account is connected",
-        "it": "UPS account is connected",
-        "sv": "UPS account is connected",
-        "no": "UPS account is connected",
-        "es": "UPS account is connected",
-        "da": "UPS account is connected",
-        "ru": "UPS account is connected",
-        "pl": "UPS account is connected",
-        "ko": "UPS account is connected",
-        "ar": "UPS account is connected"
+        "de": "UPS-Konto ist verbunden",
+        "fr": "Le compte UPS est connecté",
+        "it": "L’account UPS è connesso",
+        "sv": "UPS-kontot är anslutet",
+        "no": "UPS-kontoen er tilkoblet",
+        "es": "La cuenta de UPS está conectada",
+        "da": "UPS-kontoen er forbundet",
+        "ru": "Учётная запись UPS подключена",
+        "pl": "Konto UPS jest połączone",
+        "ko": "UPS 계정이 연결됨",
+        "ar": "حساب UPS متصل"
       },
       "args": []
     },
@@ -892,17 +892,17 @@
       "title": {
         "en": "Refresh UPS",
         "nl": "Vernieuw UPS",
-        "de": "Refresh UPS",
-        "fr": "Refresh UPS",
-        "it": "Refresh UPS",
-        "sv": "Refresh UPS",
-        "no": "Refresh UPS",
-        "es": "Refresh UPS",
-        "da": "Refresh UPS",
-        "ru": "Refresh UPS",
-        "pl": "Refresh UPS",
-        "ko": "Refresh UPS",
-        "ar": "Refresh UPS"
+        "de": "UPS aktualisieren",
+        "fr": "Actualiser UPS",
+        "it": "Aggiorna UPS",
+        "sv": "Uppdatera UPS",
+        "no": "Oppdater UPS",
+        "es": "Actualizar UPS",
+        "da": "Opdater UPS",
+        "ru": "Обновить UPS",
+        "pl": "Odśwież UPS",
+        "ko": "UPS 새로고침",
+        "ar": "تحديث UPS"
       },
       "args": []
     }

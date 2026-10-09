@@ -21,6 +21,18 @@
   "icon": "/assets/capabilities/package.svg",
   "decimals": 2,
   "units": {
-    "en": "kg"
+    "en": "kg",
+    "nl": "kg",
+    "de": "kg",
+    "fr": "kg",
+    "it": "kg",
+    "sv": "kg",
+    "no": "kg",
+    "es": "kg",
+    "da": "kg",
+    "ru": "кг",
+    "pl": "kg",
+    "ko": "kg",
+    "ar": "كغ"
   }
 }

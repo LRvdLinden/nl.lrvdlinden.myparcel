@@ -3,9 +3,9 @@
     "email": "Indirizzo e-mail",
     "password": "Password",
     "connect": "Collega account",
-    "title": "Add My PostNL",
-    "subtitle": "Connect each device to one PostNL account.",
-    "language_marker": "en"
+    "title": "Aggiungi My PostNL",
+    "subtitle": "Collega ogni dispositivo a un account PostNL.",
+    "language_marker": "it"
   },
   "widget": {
     "loading": "Caricamento…",
@@ -14,7 +14,7 @@
     "unknown": "Sconosciuto",
     "active": "Attivo",
     "delivered": "Consegnato",
-    "offline": "Offline"
+    "offline": "Non in linea"
   },
   "errors": {
     "not_authenticated": "L’account DHL non è collegato."
@@ -26,7 +26,7 @@
     "name": "My PostNL"
   },
   "carrier": {
-    "pending": "Account API not configured"
+    "pending": "API dell’account non configurata"
   },
   "ups": {
     "pair": {

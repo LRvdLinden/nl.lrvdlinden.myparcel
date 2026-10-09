@@ -2,7 +2,18 @@
   "type": "string",
   "title": {
     "en": "Tracking number",
-    "nl": "Trackingnummer"
+    "nl": "Trackingnummer",
+    "de": "Sendungsnummer",
+    "fr": "Numéro de suivi",
+    "it": "Numero di tracciamento",
+    "sv": "Spårningsnummer",
+    "no": "Sporingsnummer",
+    "es": "Número de seguimiento",
+    "da": "Sporingsnummer",
+    "ru": "Трек-номер",
+    "pl": "Numer przesyłki",
+    "ko": "운송장 번호",
+    "ar": "رقم التتبع"
   },
   "getable": true,
   "setable": false,

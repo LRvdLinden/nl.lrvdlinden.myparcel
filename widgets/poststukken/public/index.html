@@ -7,67 +7,88 @@
     *{box-sizing:border-box}
     html,body{width:100%;height:100%;margin:0;overflow:hidden;background:transparent;color:#232323;font:14px/1.25 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
     .card{display:grid;grid-template-rows:52px minmax(0,1fr);width:100%;height:100%;overflow:hidden;border-radius:17px;background:#f4f4f5;box-shadow:0 1px 1px #0000000d}
-    header{display:flex;align-items:center;padding:0 18px;border-bottom:1px solid #dedee0;background:#fafafa}
-    .app-icon{display:block;width:36px;height:36px;object-fit:contain}
-    h1{margin:0 0 0 auto;color:#77767b;font-size:18px;font-weight:600;white-space:nowrap}
+    header{display:flex;align-items:center;gap:10px;min-width:0;padding:0 18px;border-bottom:1px solid #dedee0;background:#fafafa}
+    .app-icon{display:block;flex:0 0 auto;width:36px;height:36px;object-fit:contain}
+    h1{min-width:0;margin:0;margin-inline-start:auto;color:#77767b;font-size:clamp(14px,5vw,18px);line-height:1.1;font-weight:600;text-align:end;overflow-wrap:anywhere;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}
     #content{min-width:0;min-height:0;overflow:hidden}
     .track{display:flex;align-items:stretch;gap:12px;width:100%;height:100%;padding:12px 14px 11px;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x proximity;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch;touch-action:pan-x;scrollbar-width:none}
     .track::-webkit-scrollbar{display:none}
-    .mail{flex:0 0 146px;display:grid;grid-template-rows:minmax(0,1fr) 31px;gap:7px;min-width:0;scroll-snap-align:start;cursor:pointer}
+    .mail{flex:0 0 146px;display:grid;grid-template-rows:minmax(0,1fr) 31px;gap:7px;min-width:0;scroll-snap-align:start;cursor:pointer;border:0;padding:0;background:none;font:inherit;color:inherit}
+    .mail:focus-visible{outline:3px solid #77767b;outline-offset:2px;border-radius:9px}
     .scan{display:grid;place-items:center;min-height:0;overflow:hidden;padding:7px;border-radius:9px;background:#e6e6e8}
     .scan img{display:block;width:100%;height:100%;object-fit:contain;border-radius:3px;background:#fff;box-shadow:0 1px 4px #0003}
     .placeholder{display:grid;place-items:center;width:100%;height:100%;color:#aaa9ad;font-size:30px}
     .date{justify-self:center;align-self:start;max-width:100%;overflow:hidden;padding:4px 13px 5px;border-radius:999px;background:#d9d9db;color:#454449;font-size:15px;line-height:20px;font-weight:800;text-overflow:ellipsis;white-space:nowrap}
-    .state{display:grid;place-items:center;height:100%;padding:20px;color:#77767b;text-align:center}
+    .state{display:grid;place-items:center;height:100%;padding:20px;color:#77767b;text-align:center;overflow-wrap:anywhere}
     .error{color:#b32632}
     .modal{position:fixed;inset:0;z-index:20;display:none;place-items:center;padding:18px;background:#000c}
     .modal.open{display:grid}
     .modal img{display:block;max-width:100%;max-height:100%;border-radius:10px;background:#fff;box-shadow:0 14px 46px #0009;object-fit:contain}
-    .modal button{position:absolute;top:14px;right:14px;width:36px;height:36px;border:0;border-radius:50%;background:#1d1d1fd9;color:#fff;font-size:24px;cursor:pointer}
+    .modal button{position:absolute;top:14px;inset-inline-end:14px;width:36px;height:36px;border:0;border-radius:50%;background:#1d1d1fd9;color:#fff;font-size:24px;cursor:pointer}
     @media(max-width:350px){header{padding-inline:14px}.mail{flex-basis:132px}.date{font-size:14px;padding-inline:10px}}
     @media(prefers-color-scheme:dark){html,body{color:#f3f3f4}.card{background:#2d2d2f;box-shadow:none}header{border-color:#3b3b3d;background:#29292b}h1{color:#aaa9ad}.scan{background:#1d1d1f}.date{background:#57575a;color:#fff}.state{color:#aaa9ad}}
   </style>
 </head>
 <body>
   <main class="card">
-    <header><img class="app-icon" src="icon.svg" alt="PostNL"><h1 id="title">Mijn Post</h1></header>
-    <section id="content"><div class="state">Post ophalen…</div></section>
+    <header><img class="app-icon" src="icon.svg" alt="PostNL"><h1 id="title" data-t="title"></h1></header>
+    <section id="content" aria-live="polite"><div class="state" data-t="loading"></div></section>
   </main>
-  <div id="modal" class="modal" role="dialog" aria-modal="true"><button id="close" type="button" aria-label="Sluiten">×</button><img id="modalImage" alt="Poststuk"></div>
+  <div id="modal" class="modal" role="dialog" aria-modal="true"><button id="close" type="button" data-al="close">×</button><img id="modalImage" alt="" data-alt="mailItemPlain"></div>
   <script>
+    const I18N={"en":{"close":"Close","empty":"No mail is currently expected.","loading":"Loading mail…","login":"Connect your PostNL account first.","mailCount":{"one":"{count} mail item","other":"{count} mail items"},"mailItem":"Mail item of {date}","mailItemPlain":"Mail item","title":"My Post","unavailable":"My Post is temporarily unavailable."},"nl":{"close":"Sluiten","empty":"Er wordt momenteel geen post verwacht.","loading":"Post ophalen…","login":"Koppel eerst je PostNL-account.","mailCount":{"one":"{count} poststuk","other":"{count} poststukken"},"mailItem":"Poststuk van {date}","mailItemPlain":"Poststuk","title":"Mijn Post","unavailable":"Mijn Post is tijdelijk niet beschikbaar."},"de":{"close":"Schließen","empty":"Zurzeit wird keine Post erwartet.","loading":"Post wird geladen…","login":"Verbinde zuerst dein PostNL-Konto.","mailCount":{"one":"{count} Briefsendung","other":"{count} Briefsendungen"},"mailItem":"Briefsendung vom {date}","mailItemPlain":"Briefsendung","title":"PostNL Briefsendungen","unavailable":"PostNL-Briefsendungen sind vorübergehend nicht verfügbar."},"fr":{"close":"Fermer","empty":"Aucun courrier n’est attendu pour le moment.","loading":"Chargement du courrier…","login":"Connectez d’abord votre compte PostNL.","mailCount":{"one":"{count} courrier","many":"{count} courriers","other":"{count} courriers"},"mailItem":"Courrier du {date}","mailItemPlain":"Courrier","title":"Courrier PostNL","unavailable":"Le courrier PostNL est temporairement indisponible."},"it":{"close":"Chiudi","empty":"Al momento non è prevista posta.","loading":"Caricamento della posta…","login":"Collega prima il tuo account PostNL.","mailCount":{"one":"{count} invio postale","many":"{count} invii postali","other":"{count} invii postali"},"mailItem":"Posta del {date}","mailItemPlain":"Invio postale","title":"Posta PostNL","unavailable":"La posta PostNL non è temporaneamente disponibile."},"sv":{"close":"Stäng","empty":"Ingen post väntas för närvarande.","loading":"Hämtar post…","login":"Anslut först ditt PostNL-konto.","mailCount":{"one":"{count} försändelse","other":"{count} försändelser"},"mailItem":"Försändelse från {date}","mailItemPlain":"Försändelse","title":"PostNL-post","unavailable":"PostNL-post är tillfälligt otillgänglig."},"no":{"close":"Lukk","empty":"Det forventes ingen post akkurat nå.","loading":"Henter post…","login":"Koble til PostNL-kontoen din først.","mailCount":{"one":"{count} postsending","other":"{count} postsendinger"},"mailItem":"Postsending fra {date}","mailItemPlain":"Postsending","title":"PostNL-post","unavailable":"PostNL-post er midlertidig utilgjengelig."},"es":{"close":"Cerrar","empty":"Actualmente no se espera correo.","loading":"Cargando correo…","login":"Conecta primero tu cuenta de PostNL.","mailCount":{"one":"{count} envío postal","many":"{count} envíos postales","other":"{count} envíos postales"},"mailItem":"Correo del {date}","mailItemPlain":"Envío postal","title":"Correo PostNL","unavailable":"El correo de PostNL no está disponible temporalmente."},"da":{"close":"Luk","empty":"Der forventes ingen post i øjeblikket.","loading":"Henter post…","login":"Forbind først din PostNL-konto.","mailCount":{"one":"{count} postforsendelse","other":"{count} postforsendelser"},"mailItem":"Postforsendelse fra {date}","mailItemPlain":"Postforsendelse","title":"PostNL-post","unavailable":"PostNL-post er midlertidigt utilgængelig."},"ru":{"close":"Закрыть","empty":"Сейчас почта не ожидается.","loading":"Загрузка почты…","login":"Сначала подключите аккаунт PostNL.","mailCount":{"one":"{count} почтовое отправление","few":"{count} почтовых отправления","many":"{count} почтовых отправлений","other":"{count} почтового отправления"},"mailItem":"Почтовое отправление от {date}","mailItemPlain":"Почтовое отправление","title":"Почта PostNL","unavailable":"Почта PostNL временно недоступна."},"pl":{"close":"Zamknij","empty":"Obecnie nie oczekuje się poczty.","loading":"Wczytywanie poczty…","login":"Najpierw połącz konto PostNL.","mailCount":{"one":"{count} przesyłka listowa","few":"{count} przesyłki listowe","many":"{count} przesyłek listowych","other":"{count} przesyłki listowej"},"mailItem":"Przesyłka listowa z {date}","mailItemPlain":"Przesyłka listowa","title":"Przesyłki PostNL","unavailable":"Przesyłki PostNL są chwilowo niedostępne."},"ko":{"close":"닫기","empty":"현재 예정된 우편물이 없습니다.","loading":"우편물 불러오는 중…","login":"먼저 PostNL 계정을 연결하세요.","mailCount":{"other":"우편물 {count}개"},"mailItem":"{date} 우편물","mailItemPlain":"우편물","title":"PostNL 우편물","unavailable":"PostNL 우편물을 일시적으로 사용할 수 없습니다."},"ar":{"close":"إغلاق","empty":"لا يُتوقع وصول بريد حاليًا.","loading":"جارٍ تحميل البريد…","login":"اربط حساب PostNL أولًا.","mailCount":{"zero":"لا توجد رسائل","one":"رسالة واحدة","two":"رسالتان","few":"{count} رسائل","many":"{count} رسالة","other":"{count} رسالة"},"mailItem":"بريد بتاريخ {date}","mailItemPlain":"بريد","title":"بريد PostNL","unavailable":"بريد PostNL غير متاح مؤقتًا."}};
+    const LANGS=['en','nl','de','fr','it','sv','no','es','da','ru','pl','ko','ar'];
+const LOCALES={en:'en-GB',nl:'nl-NL',de:'de-DE',fr:'fr-FR',it:'it-IT',sv:'sv-SE',no:'nb-NO',es:'es-ES',da:'da-DK',ru:'ru-RU',pl:'pl-PL',ko:'ko-KR',ar:'ar'};
+function langOf(v){v=String(v||'').toLowerCase().split(/[-_]/)[0];if(v==='nb'||v==='nn')v='no';return LANGS.includes(v)?v:'en'}
+let LANG='en',LOC='en-GB',TZ='UTC',W=I18N.en;
+function fill(s,v){return String(s==null?'':s).replace(/\{(\w+)\}/g,(m,k)=>v&&v[k]!=null?(LANG==='ar'?'\u2068'+v[k]+'\u2069':String(v[k])):m)}
+function tr(k,v){return fill(W[k]!=null?W[k]:I18N.en[k],v)}
+function fmtNum(n){try{return new Intl.NumberFormat(LOC).format(n)}catch(_){return String(n)}}
+function trCount(k,n,v){const e=(W[k]!=null?W[k]:I18N.en[k])||{};let c='other';try{c=new Intl.PluralRules(LOC).select(n)}catch(_){}return fill(e[c]!=null?e[c]:e.other,Object.assign({count:fmtNum(n)},v))}
+function setLang(l,tz){LANG=langOf(l);LOC=LOCALES[LANG];if(tz)TZ=tz;W=Object.assign({},I18N.en,I18N[LANG]);const h=document.documentElement;h.lang=LOC;h.dir=LANG==='ar'?'rtl':'ltr';document.querySelectorAll('[data-t]').forEach(e=>{e.textContent=tr(e.dataset.t)});document.querySelectorAll('[data-al]').forEach(e=>{e.setAttribute('aria-label',tr(e.dataset.al))});document.querySelectorAll('[data-alt]').forEach(e=>{e.alt=tr(e.dataset.alt)})}
+setLang(navigator.language);
+function txt(v){return String(v??'').trim()}
+function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]))}
+function zoned(r){return/(?:Z|[+-]\d{2}:?\d{2})$/i.test(r)}
+function toDate(value){const raw=txt(value);if(!raw)return null;let m=raw.match(/^(\d{4})-(\d{2})-(\d{2})$/);if(m)return{d:new Date(Date.UTC(+m[1],m[2]-1,+m[3],12)),tz:'UTC',dateOnly:true};m=raw.match(/^(\d{2})[-/.](\d{2})[-/.](\d{4})$/);if(m)return{d:new Date(Date.UTC(+m[3],m[2]-1,+m[1],12)),tz:'UTC',dateOnly:true};m=raw.match(/^(\d{4})-(\d{2})-(\d{2})[T\s](\d{2}):(\d{2})(?::(\d{2}))?/);if(m&&!zoned(raw))return{d:new Date(Date.UTC(+m[1],m[2]-1,+m[3],+m[4],+m[5],+(m[6]||0))),tz:'UTC'};const d=new Date(raw);return Number.isNaN(d.getTime())?null:{d,tz:TZ}}
+function fmtDate(value,opts){const x=toDate(value);if(!x)return txt(value);try{return new Intl.DateTimeFormat(LOC,Object.assign({},opts,{timeZone:x.tz})).format(x.d)}catch(_){return txt(value)}}
+function fmtDateTime(value){const x=toDate(value);if(!x)return txt(value);return fmtDate(value,x.dateOnly?{dateStyle:'medium'}:{dateStyle:'medium',timeStyle:'short'})}
+function fmtTime(value){const x=toDate(value);if(!x||x.dateOnly)return'';try{return new Intl.DateTimeFormat(LOC,{hour:'numeric',minute:'2-digit',timeZone:x.tz}).format(x.d)}catch(_){return''}}
+function fmtMinutes(mins){mins=((Math.round(mins)%1440)+1440)%1440;try{return new Intl.DateTimeFormat(LOC,{hour:'numeric',minute:'2-digit',timeZone:'UTC'}).format(new Date(Date.UTC(2000,0,1,0,mins)))}catch(_){return String(Math.floor(mins/60)).padStart(2,'0')+':'+String(mins%60).padStart(2,'0')}}
+function keyOf(d,tz){try{const p=new Intl.DateTimeFormat('en-CA',{timeZone:tz,year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(d),g=t=>(p.find(y=>y.type===t)||{}).value||'';return g('year')+'-'+g('month')+'-'+g('day')}catch(_){return d.toISOString().slice(0,10)}}
+function dayKey(value){const x=toDate(value);return x?keyOf(x.d,x.tz):''}
+function todayKey(offsetDays){return keyOf(new Date(Date.now()+(offsetDays||0)*864e5),TZ)}
+function fmtRelative(value){const t=Date.parse(txt(value));if(!Number.isFinite(t))return'';const s=Math.round((t-Date.now())/1000);const units=[['year',31536000],['month',2592000],['week',604800],['day',86400],['hour',3600],['minute',60],['second',1]];for(const[u,n]of units){if(Math.abs(s)>=n||u==='second'){try{return new Intl.RelativeTimeFormat(LOC,{numeric:'auto'}).format(Math.round(s/n),u)}catch(_){return fmtDateTime(value)}}}return''}
     const content=document.getElementById('content');
-    const title=document.getElementById('title');
     const modal=document.getElementById('modal');
     const modalImage=document.getElementById('modalImage');
-    const words={
-      nl:{title:'Mijn Post',loading:'Post ophalen…',empty:'Er wordt momenteel geen post verwacht.',login:'Koppel eerst je PostNL-account.',unavailable:'Mijn Post is tijdelijk niet beschikbaar.'},
-      en:{title:'My Post',loading:'Loading mail…',empty:'No mail is currently expected.',login:'Connect your PostNL account first.',unavailable:'My Post is temporarily unavailable.'}
-    };
-    function langOf(v){return String(v||'nl').toLowerCase().split('-')[0]==='nl'?'nl':'en'}
-    function dateLabel(value,lang,timeZone){const d=new Date(value);if(Number.isNaN(d.getTime()))return '—';const parts=new Intl.DateTimeFormat('en-GB',{day:'numeric',month:'numeric',timeZone}).formatToParts(d);const day=parts.find(p=>p.type==='day')?.value||String(d.getDate());const month=Number(parts.find(p=>p.type==='month')?.value||d.getMonth()+1)-1;const months=lang==='nl'?['jan','feb','mrt','apr','mei','jun','jul','aug','sept','okt','nov','dec']:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];return `${day} ${months[month]||''}`.trim()}
-    function openImage(src,alt){if(!src)return;modalImage.src=src;modalImage.alt=alt||'Poststuk';modal.classList.add('open')}
-    function closeImage(){modal.classList.remove('open');modalImage.removeAttribute('src')}
+    let lastFocus=null;
+    function dateLabel(value){const x=toDate(value);return x?fmtDate(value,{day:'numeric',month:'short'}):'—'}
+    function openImage(src,alt){if(!src)return;lastFocus=document.activeElement;modalImage.src=src;modalImage.alt=alt||tr('mailItemPlain');modal.classList.add('open');document.getElementById('close').focus()}
+    function closeImage(){modal.classList.remove('open');modalImage.removeAttribute('src');if(lastFocus&&lastFocus.focus)lastFocus.focus()}
     document.getElementById('close').onclick=closeImage;modal.onclick=e=>{if(e.target===modal)closeImage()};document.addEventListener('keydown',e=>{if(e.key==='Escape')closeImage()});
     function render(data){
-      const lang=langOf(data.locale),t=words[lang];title.textContent=t.title;
-      if(!data.authenticated){content.innerHTML=`<div class="state">${t.login}</div>`;return}
-      if(!data.letters?.length){const msg=data.mailApiStatus==='temporarily_unavailable'?t.unavailable:t.empty;content.innerHTML=`<div class="state${data.mailApiStatus==='temporarily_unavailable'?' error':''}">${msg}</div>`;return}
-      const track=document.createElement('div');track.className='track';
+      setLang(data.locale,data.timeZone||'UTC');
+      if(!data.authenticated){content.innerHTML=`<div class="state">${esc(tr('login'))}</div>`;return}
+      if(!data.letters?.length){const down=data.mailApiStatus==='temporarily_unavailable';content.innerHTML=`<div class="state${down?' error':''}">${esc(down?tr('unavailable'):tr('empty'))}</div>`;return}
+      const track=document.createElement('div');track.className='track';track.setAttribute('role','list');track.setAttribute('aria-label',trCount('mailCount',data.letters.length));
       for(const item of data.letters){
-        const article=document.createElement('article');article.className='mail';
-        const scan=document.createElement('div');scan.className='scan';
         const src=item.imageData||item.imageUrl||'';
-        if(src){const img=document.createElement('img');img.src=src;img.alt=`Post ${dateLabel(item.deliveryDate||item.archivedAt,lang,data.timeZone)}`;scan.appendChild(img);article.addEventListener('click',()=>openImage(src,img.alt))}
-        else{const p=document.createElement('div');p.className='placeholder';p.textContent='✉';scan.appendChild(p);article.style.cursor='default'}
-        const date=document.createElement('div');date.className='date';date.textContent=dateLabel(item.deliveryDate||item.archivedAt,lang,data.timeZone);
+        const article=document.createElement(src?'button':'div');article.className='mail';article.setAttribute('role','listitem');if(src)article.type='button';
+        const scan=document.createElement('div');scan.className='scan';
+        const label=dateLabel(item.deliveryDate||item.archivedAt);
+        const alt=label!=='—'?tr('mailItem',{date:label}):tr('mailItemPlain');
+        if(src){const img=document.createElement('img');img.src=src;img.alt=alt;scan.appendChild(img);article.addEventListener('click',()=>openImage(src,alt))}
+        else{const p=document.createElement('div');p.className='placeholder';p.textContent='✉';p.setAttribute('role','img');p.setAttribute('aria-label',alt);scan.appendChild(p);article.style.cursor='default'}
+        const date=document.createElement('div');date.className='date';date.textContent=label;
         article.append(scan,date);track.appendChild(article)
       }
-      track.addEventListener('wheel',e=>{if(track.scrollWidth<=track.clientWidth)return;if(Math.abs(e.deltaY)>Math.abs(e.deltaX)){e.preventDefault();track.scrollLeft+=e.deltaY}},{passive:false});
+      track.addEventListener('wheel',e=>{if(track.scrollWidth<=track.clientWidth)return;if(Math.abs(e.deltaY)>Math.abs(e.deltaX)){e.preventDefault();track.scrollLeft+=(document.documentElement.dir==='rtl'?-1:1)*e.deltaY}},{passive:false});
       content.replaceChildren(track)
     }
     let refreshTimer=null,syncBusy=false;
     function deviceId(){return (Homey.getDeviceIds()||[])[0]||''}
-    async function load(showLoading=false){if(showLoading)content.innerHTML=`<div class="state">${words.nl.loading}</div>`;try{render(await Homey.api('GET','/?deviceId='+encodeURIComponent(deviceId()),{}))}catch(e){content.innerHTML=`<div class="state error">${String(e.message||e)}</div>`}}
+    async function load(showLoading=false){if(showLoading)content.innerHTML=`<div class="state">${esc(tr('loading'))}</div>`;try{render(await Homey.api('GET','/?deviceId='+encodeURIComponent(deviceId()),{}))}catch(e){content.innerHTML=`<div class="state error">${esc(e.message||e)}</div>`}}
     async function refreshLive(){if(syncBusy)return;syncBusy=true;try{await Homey.api('POST','/sync',{deviceId:deviceId()});await load(false)}catch(_){ }finally{syncBusy=false}}
     async function onHomeyReady(Homey){await load(true);Homey.ready();refreshLive();if(refreshTimer)clearInterval(refreshTimer);refreshTimer=setInterval(refreshLive,300000)}
   </script>

@@ -2,7 +2,18 @@
   "type": "string",
   "title": {
     "en": "Shipment type",
-    "nl": "Type zending"
+    "nl": "Type zending",
+    "de": "Sendungsart",
+    "fr": "Type d’envoi",
+    "it": "Tipo di spedizione",
+    "sv": "Försändelsetyp",
+    "no": "Forsendelsestype",
+    "es": "Tipo de envío",
+    "da": "Forsendelsestype",
+    "ru": "Тип отправления",
+    "pl": "Typ przesyłki",
+    "ko": "배송 유형",
+    "ar": "نوع الشحنة"
   },
   "getable": true,
   "setable": false,

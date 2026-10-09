@@ -2,7 +2,18 @@
   "type": "number",
   "title": {
     "en": "Parcels underway",
-    "nl": "Pakketten onderweg"
+    "nl": "Pakketten onderweg",
+    "de": "Pakete unterwegs",
+    "fr": "Colis en route",
+    "it": "Pacchi in viaggio",
+    "sv": "Paket på väg",
+    "no": "Pakker underveis",
+    "es": "Paquetes en camino",
+    "da": "Pakker undervejs",
+    "ru": "Посылки в пути",
+    "pl": "Paczki w drodze",
+    "ko": "배송 중인 택배",
+    "ar": "الطرود قيد التوصيل"
   },
   "getable": true,
   "setable": false,

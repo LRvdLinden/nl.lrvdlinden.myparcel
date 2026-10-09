@@ -2,7 +2,18 @@
   "type": "string",
   "title": {
     "en": "Observation code",
-    "nl": "ObservationCode"
+    "nl": "ObservationCode",
+    "de": "Beobachtungscode",
+    "fr": "Code d’observation",
+    "it": "Codice di osservazione",
+    "sv": "Observationskod",
+    "no": "Observasjonskode",
+    "es": "Código de observación",
+    "da": "Observationskode",
+    "ru": "Код наблюдения",
+    "pl": "Kod obserwacji",
+    "ko": "관찰 코드",
+    "ar": "رمز الملاحظة"
   },
   "getable": true,
   "setable": false,

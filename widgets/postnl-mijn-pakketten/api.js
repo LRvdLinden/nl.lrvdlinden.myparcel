@@ -1,9 +1,13 @@
 'use strict';
+const { tr } = require('../../lib/i18n.js');
+// User-facing widget texts (all 13 app languages; English is the fallback).
+const SELECT_DEVICE = { en: 'Select a {carrier} device for this widget.', nl: 'Selecteer een {carrier}-apparaat voor deze widget.', de: 'Wähle ein {carrier}-Gerät für dieses Widget.', fr: 'Sélectionnez un appareil {carrier} pour ce widget.', it: 'Seleziona un dispositivo {carrier} per questo widget.', sv: 'Välj en {carrier}-enhet för den här widgeten.', no: 'Velg en {carrier}-enhet for denne widgeten.', es: 'Selecciona un dispositivo de {carrier} para este widget.', da: 'Vælg en {carrier}-enhed til denne widget.', ru: 'Выберите устройство {carrier} для этого виджета.', pl: 'Wybierz urządzenie {carrier} dla tego widżetu.', ko: '이 위젯에 사용할 {carrier} 기기를 선택하세요.', ar: 'اختر جهاز {carrier} لهذه الأداة.' };
+const PARCEL_TYPE = { en: 'Parcel', nl: 'Pakket', de: 'Paket', fr: 'Colis', it: 'Pacco', sv: 'Paket', no: 'Pakke', es: 'Paquete', da: 'Pakke', ru: 'Посылка', pl: 'Paczka', ko: '택배', ar: 'طرد' };
 const localizePackageStatus = require('../../lib/status-i18n');
 function timestamp(item){const value=item?.deliveryDate||item?.deliveryWindowFrom||item?.updatedAt||item?.createdAt||0;const time=Date.parse(value);return Number.isFinite(time)?time:0;}
 function str(...values){for(const value of values){if(value===0)return'0';if(value!==undefined&&value!==null&&String(value).trim())return String(value).trim();}return'';}
-function shipmentType(homey,value){const raw=str(value);if(!raw)return'';return homey.i18n.getLanguage()==='nl'&&/^parcel$/i.test(raw)?'Pakket':raw;}
-function getDevice(homey,id){const device=homey.drivers.getDriver('postnl').getDevices().find(d=>d.getId()===id);if(!device)throw new Error('PostNL device not found.');return device;}
+function shipmentType(homey,value){const raw=str(value);if(!raw)return'';return /^parcel$/i.test(raw)?tr(homey,PARCEL_TYPE):raw;}
+function getDevice(homey,id){const device=homey.drivers.getDriver('postnl').getDevices().find(d=>d.getId()===id);if(!device)throw new Error(tr(homey,SELECT_DEVICE,{carrier:'PostNL'}));return device;}
 module.exports={
  async getData({homey,query}){
   const device=getDevice(homey,query?.deviceId);const data=device.getWidgetData();

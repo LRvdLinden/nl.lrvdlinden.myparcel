@@ -1,6 +1,7 @@
 'use strict';
 
 const DhlDeviceBase = require('../../lib/dhl-device-base');
+const { t } = require('../../lib/messages-i18n');
 const {
   DhlNlClient, normalizeNlAccount, nlIsActive, buildNlHistory, fetchGateway, normalizeGateway, isExpressAwb,
 } = require('../../lib/dhl-tracking');
@@ -83,9 +84,7 @@ class DhlParcelDevice extends DhlDeviceBase {
 
   async validateTrackingCode(entry) {
     if (isExpressAwb(entry.code)) {
-      throw new Error(this._lang() === 'nl'
-        ? 'Dit is een DHL Express-luchtvrachtbriefnummer. Voeg het toe aan het DHL Express-apparaat.'
-        : 'This is a DHL Express air waybill. Add it to the DHL Express device instead.');
+      throw new Error(t(this.homey, 'awb_wrong_device'));
     }
   }
 

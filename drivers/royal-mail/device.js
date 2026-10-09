@@ -2,6 +2,8 @@ const localizePackageStatus = require('../../lib/status-i18n.js');
 'use strict';
 const Homey = require('homey');
 const { RoyalMailApi } = require('../../lib/royal-mail-api');
+const { formatDate } = require('../../lib/i18n');
+const { t } = require('../../lib/messages-i18n');
 
 function first(o, ...keys) {
   for (const key of keys) if (o && o[key] !== undefined && o[key] !== null && o[key] !== '') return o[key];
@@ -49,7 +51,7 @@ module.exports = class RoyalMailDevice extends Homey.Device {
   async notifyAuth() {
     if (this.getStoreValue('authExpiredNotified') === true) return;
     await this.homey.notifications.createNotification({
-      excerpt: `Reconnect Royal Mail – the Click & Drop API key for ${this.getName()} no longer works.`
+      excerpt: t(this.homey, 'auth_notification', { carrier: 'Royal Mail', name: this.getName() }),
     }).catch(() => {});
     await this.setStoreValue('authExpiredNotified', true);
   }
@@ -77,15 +79,15 @@ module.exports = class RoyalMailDevice extends Homey.Device {
 
       const active = rows.filter(p => !p.delivered).length;
       await this.setCapabilityValue('royal_mail_parcel_count', active);
-      await this.setCapabilityValue('royal_mail_status', rows[0]?.status ? localizePackageStatus(this.homey, rows[0].status) : 'Connected – no recent orders');
-      await this.setCapabilityValue('royal_mail_last_update', new Date().toISOString());
+      await this.setCapabilityValue('royal_mail_status', rows[0]?.status ? localizePackageStatus(this.homey, rows[0].status) : t(this.homey, 'no_recent_orders'));
+      await this.setCapabilityValue('royal_mail_last_update', formatDate(this.homey, new Date(), { dateStyle: 'short', timeStyle: 'short' }, this.homey.clock.getTimezone()));
       await this.setStoreValue('authExpiredNotified', false);
       await this.setAvailable();
       return true;
     } catch (e) {
       if ([401,403].includes(e.status)) {
         await this.notifyAuth();
-        await this.setUnavailable('Royal Mail authorization failed').catch(() => {});
+        await this.setUnavailable(t(this.homey, 'auth_unavailable', { carrier: 'Royal Mail' })).catch(() => {});
       }
       this.error(e);
       return false;

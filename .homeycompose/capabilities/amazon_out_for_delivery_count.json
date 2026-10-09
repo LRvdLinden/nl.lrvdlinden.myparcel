@@ -1,0 +1,23 @@
+{
+  "type": "number",
+  "title": {
+    "en": "Out for delivery",
+    "nl": "Onderweg voor bezorging",
+    "de": "In Zustellung",
+    "fr": "En cours de livraison",
+    "it": "In consegna",
+    "sv": "Ute för leverans",
+    "no": "Ute for levering",
+    "es": "En reparto",
+    "da": "Ude til levering",
+    "ru": "Передана курьеру",
+    "pl": "W doręczeniu",
+    "ko": "배송 출발",
+    "ar": "خرج للتوصيل"
+  },
+  "getable": true,
+  "setable": false,
+  "insights": true,
+  "icon": "/assets/capabilities/delivery.svg",
+  "decimals": 0
+}

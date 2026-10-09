@@ -38,7 +38,18 @@
       },
       "hint": {
         "en": "When on, every MyParcel carrier device is shown, also devices you add later. Turn off to only show the devices selected for this widget.",
-        "nl": "Aan: alle MyParcel-vervoerders worden getoond, ook apparaten die je later toevoegt. Uit: alleen de apparaten die je voor deze widget hebt gekozen."
+        "nl": "Aan: alle MyParcel-vervoerders worden getoond, ook apparaten die je later toevoegt. Uit: alleen de apparaten die je voor deze widget hebt gekozen.",
+        "de": "Wenn aktiviert, wird jedes MyParcel-Paketdienstgerät angezeigt, auch Geräte, die du später hinzufügst. Deaktiviere die Option, um nur die für dieses Widget ausgewählten Geräte anzuzeigen.",
+        "fr": "Si activé, chaque appareil de transporteur MyParcel est affiché, y compris ceux ajoutés plus tard. Désactivez pour n’afficher que les appareils sélectionnés pour ce widget.",
+        "it": "Se attivo, viene mostrato ogni dispositivo corriere di MyParcel, anche quelli aggiunti in seguito. Disattiva per mostrare solo i dispositivi selezionati per questo widget.",
+        "sv": "När det är på visas varje MyParcel-transportörenhet, även enheter du lägger till senare. Stäng av för att bara visa de enheter som valts för den här widgeten.",
+        "no": "Når dette er på, vises alle MyParcel-transportørenheter, også enheter du legger til senere. Slå av for kun å vise enhetene som er valgt for denne widgeten.",
+        "es": "Si está activado, se muestran todos los dispositivos de transportista de MyParcel, también los que añadas más tarde. Desactívalo para mostrar solo los dispositivos seleccionados para este widget.",
+        "da": "Når det er slået til, vises alle MyParcel-transportørenheder, også enheder du tilføjer senere. Slå fra for kun at vise de enheder, der er valgt til denne widget.",
+        "ru": "Если включено, показываются все устройства перевозчиков MyParcel, в том числе добавленные позже. Выключите, чтобы показывать только устройства, выбранные для этого виджета.",
+        "pl": "Gdy włączone, wyświetlane są wszystkie urządzenia przewoźników MyParcel, także dodane później. Wyłącz, aby pokazywać tylko urządzenia wybrane dla tego widżetu.",
+        "ko": "켜면 나중에 추가하는 기기를 포함해 모든 MyParcel 배송사 기기가 표시됩니다. 끄면 이 위젯에 선택한 기기만 표시됩니다.",
+        "ar": "عند التشغيل، يُعرض كل جهاز لشركة شحن في MyParcel، بما في ذلك الأجهزة التي تضيفها لاحقًا. أوقفه لعرض الأجهزة المحددة لهذه الأداة فقط."
       },
       "value": true
     }
@@ -57,7 +68,7 @@
     "type": "app",
     "singular": false,
     "filter": {
-      "capabilities": "postnl_package_count|dhl_parcel_count|dhl_express_parcel_count|dpd_parcel_count|ups_parcel_count|budbee_parcel_count|homerr_parcel_count|fedex_parcel_count|gls_parcel_count|inpost_uk_parcel_count|bpost_parcel_count|royal_mail_parcel_count|dhl_de_parcel_count|ampere_parcel_count"
+      "capabilities": "postnl_package_count|dhl_parcel_count|dhl_express_parcel_count|dpd_parcel_count|ups_parcel_count|budbee_parcel_count|homerr_parcel_count|fedex_parcel_count|gls_parcel_count|inpost_uk_parcel_count|bpost_parcel_count|royal_mail_parcel_count|dhl_de_parcel_count|ampere_parcel_count|trunkrs_parcel_count|dynalogic_parcel_count|dragonfly_parcel_count|mondial_relay_parcel_count|amazon_parcel_count"
     }
   }
 }

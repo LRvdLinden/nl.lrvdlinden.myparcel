@@ -5,6 +5,7 @@ const {
   COUNTRIES, STATUS, parseTrackingList, formatTrackingList, normalizePostcode, validatePostcode,
 } = require('../../lib/gls-tracking');
 const i18n = require('../../lib/gls-i18n');
+const { localizeSession, localizeListener } = require('../../lib/messages-i18n');
 
 const COUNTRY_ORDER = ['NL', 'BE', 'DE', 'AT', 'CH', 'LU', 'FR', 'IT', 'DK', 'FI', 'IE', 'PL', 'CZ', 'SK', 'HU', 'SI', 'HR', 'RS', 'US', 'CA'];
 
@@ -23,8 +24,8 @@ module.exports = class GlsDriver extends Homey.Driver {
     delivered.registerArgumentAutocompleteListener('tracking', autocomplete);
     condition('gls_is_tracking').registerRunListener(async ({ device, tracking }) => device.isTracking(tracking));
 
-    action('gls_refresh').registerRunListener(async ({ device }) => device.refresh(true));
-    action('gls_track_parcel').registerRunListener(async ({ device, tracking }) => device.addTracking(tracking));
+    action('gls_refresh').registerRunListener(localizeListener(this.homey, async ({ device }) => device.refresh(true), 'GLS'));
+    action('gls_track_parcel').registerRunListener(localizeListener(this.homey, async ({ device, tracking }) => device.addTracking(tracking), 'GLS'));
     const untrack = action('gls_untrack_parcel');
     untrack.registerRunListener(async ({ device, tracking }) => device.removeTracking(tracking?.id || tracking?.name || ''));
     untrack.registerArgumentAutocompleteListener('tracking', autocomplete);
@@ -51,13 +52,14 @@ module.exports = class GlsDriver extends Homey.Driver {
     const rows = parseTrackingList(data?.tracking || '');
     for (const row of rows) {
       if (row.postcode && !validatePostcode(country, row.postcode)) {
-        throw new Error(`${row.parcelNo}: ${i18n.text(this.homey, 'invalid_postcode', { country: i18n.countryName(this.homey, country), example: COUNTRIES[country].postcode_example })}`);
+        throw new Error(i18n.text(this.homey, 'invalid_postcode_row', { tracking: row.parcelNo, country: i18n.countryName(this.homey, country), example: COUNTRIES[country].postcode_example }));
       }
     }
     return { country, postcode, tracking: formatTrackingList(rows) };
   }
 
   async onPair(session) {
+    localizeSession(this.homey, session, 'GLS');
     session.setHandler('countries', async () => ({ countries: this._countries(), language: i18n.lang(this.homey) }));
     session.setHandler('create', async data => {
       const { country, postcode, tracking } = this._validate(data);
@@ -75,6 +77,7 @@ module.exports = class GlsDriver extends Homey.Driver {
   }
 
   async onRepair(session, device) {
+    localizeSession(this.homey, session, 'GLS');
     session.setHandler('countries', async () => ({
       countries: this._countries(),
       language: i18n.lang(this.homey),

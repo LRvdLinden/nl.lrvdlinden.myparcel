@@ -2,19 +2,21 @@
 const Homey = require('homey');
 const crypto = require('crypto');
 const { RoyalMailApi } = require('../../lib/royal-mail-api');
+const { t, localizeSession, localizeListener } = require('../../lib/messages-i18n');
 
 module.exports = class RoyalMailDriver extends Homey.Driver {
   async onInit() {
     this.homey.flow.getConditionCard('royal_mail_packages_underway')
       .registerRunListener(async ({ device }) => (device.getCapabilityValue('royal_mail_parcel_count') || 0) > 0);
     this.homey.flow.getActionCard('royal_mail_refresh')
-      .registerRunListener(async ({ device }) => device.refresh(true));
+      .registerRunListener(localizeListener(this.homey, async ({ device }) => device.refresh(true), 'Royal Mail'));
   }
 
   async onPair(session) {
+    localizeSession(this.homey, session, 'Royal Mail');
     session.setHandler('connect', async ({ apiKey }) => {
       const key = String(apiKey || '').trim();
-      if (!key) throw new Error('Enter the Royal Mail Click & Drop API key.');
+      if (!key) throw new Error(t(this.homey, 'royal_mail_key'));
       const api = new RoyalMailApi({ apiKey: key });
       await api.version();
       await api.orders({ days: 7, pageSize: 1 });
@@ -28,9 +30,10 @@ module.exports = class RoyalMailDriver extends Homey.Driver {
     });
   }
 
-  async onRepair(session) {
+  async onRepair(session, repairDevice) {
+    localizeSession(this.homey, session, 'Royal Mail');
     session.setHandler('connect', async ({ apiKey }) => {
-      const device = session.getDevice();
+      const device = repairDevice;
       const key = String(apiKey || device.getSettings().api_key || '').trim();
       const api = new RoyalMailApi({ apiKey: key });
       await api.version();

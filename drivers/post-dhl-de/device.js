@@ -1,6 +1,7 @@
 'use strict';
 
 const DhlDeviceBase = require('../../lib/dhl-device-base');
+const { t } = require('../../lib/messages-i18n');
 const API = require('../../lib/post-dhl-de-api');
 const { DhlDeSession, DhlDeClient, normalizeDeInbox, normalizeDeApp, deNeedsEnrichment, deIsNotFound } = require('../../lib/dhl-tracking');
 
@@ -14,7 +15,9 @@ function list(value) {
 
 const MAIL_STATUS = {
   en: 'Letter announcement not available', nl: 'Briefaankondiging niet beschikbaar', de: 'Briefankündigung nicht verfügbar',
-  fr: 'Annonce de courrier indisponible', it: 'Avviso lettere non disponibile', es: 'Aviso de cartas no disponible',
+  fr: 'Annonce de courrier indisponible', it: 'Avviso lettere non disponibile', sv: 'Brevavisering är inte tillgänglig',
+  no: 'Brevvarsling er ikke tilgjengelig', es: 'Aviso de cartas no disponible', da: 'Brevvarsling er ikke tilgængelig',
+  ru: 'Уведомление о письмах недоступно', pl: 'Awizo listów niedostępne', ko: '우편물 사전 알림을 사용할 수 없음', ar: 'إشعار الرسائل غير متاح',
 };
 
 /**
@@ -118,11 +121,7 @@ class PostDhlDeDevice extends DhlDeviceBase {
 
   async validateTrackingCode() {
     if (this._mode() !== 'dhlde') {
-      throw new Error(this._lang() === 'de'
-        ? 'Zusätzliche Sendungsnummern brauchen die DHL.de-Anmeldung (Gerät reparieren).'
-        : this._lang() === 'nl'
-          ? 'Extra trackingnummers werken met de DHL.de-login (repareer het apparaat).'
-          : 'Extra tracking numbers need the DHL.de login (repair the device).');
+      throw new Error(t(this.homey, 'dhlde_extra'));
     }
   }
 

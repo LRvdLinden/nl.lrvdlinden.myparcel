@@ -2,7 +2,18 @@
   "type": "boolean",
   "title": {
     "en": "Mail expected",
-    "nl": "Post verwacht"
+    "nl": "Post verwacht",
+    "de": "Post erwartet",
+    "fr": "Courrier attendu",
+    "it": "Posta in arrivo",
+    "sv": "Post väntas",
+    "no": "Post ventes",
+    "es": "Correo previsto",
+    "da": "Post forventes",
+    "ru": "Ожидается почта",
+    "pl": "Oczekiwana poczta",
+    "ko": "우편물 도착 예정",
+    "ar": "بريد متوقع"
   },
   "getable": true,
   "setable": false,

@@ -1,5 +1,7 @@
 'use strict';
 
+const { t, localizeError } = require('../../lib/messages-i18n');
+
 const CarrierDeviceBase = require('../../lib/carrier-device-base');
 const { BolSessionClient } = require('../../lib/bol-session');
 const { exchangeLink, fetchParcel, normalize, isTrackingLink } = require('../../lib/ampere-tracking');
@@ -74,8 +76,8 @@ class AmpereDevice extends CarrierDeviceBase {
   isConnected() { return this.hasUsableConfiguration() && this.getStoreValue('authExpiredNotified') !== true; }
 
   async validateTrackingCode(entry) {
-    if (!isTrackingLink(entry.code)) throw new Error('Paste the tracking link from the bol.com e-mail (https://link.bol.com/t/…).');
-    await exchangeLink(entry.code); // proves the link works before it is stored
+    if (!isTrackingLink(entry.code)) throw new Error(t(this.homey, 'ampere_link_paste'));
+    await exchangeLink(entry.code).catch(error => { throw localizeError(this.homey, error, 'Ampère'); }); // proves the link works before it is stored
   }
 
   async untrackParcel(input) {
@@ -106,7 +108,7 @@ class AmpereDevice extends CarrierDeviceBase {
       this._discovered = { at: Date.now(), links: [...new Set(urls)].slice(-40) };
     } catch (error) {
       this.error('[Ampère] bol.com discovery failed:', error.message);
-      if (error.code === 'AUTH_REAUTH_REQUIRED') { const e = new Error('The bol.com helper session has expired'); e.auth = true; throw e; }
+      if (error.code === 'AUTH_REAUTH_REQUIRED') { const e = new Error('The bol.com helper session has expired'); e.auth = true; throw e; } // i18n: translated by messages-i18n (bol_expired)
       this._discovered = { at: Date.now(), links: this._discovered.links || [] };
     }
     await this.setStoreValue(STORE_DISCOVERED, this._discovered).catch(this.error);
@@ -157,7 +159,7 @@ class AmpereDevice extends CarrierDeviceBase {
           if (!session) throw error;
           raw = await fetchParcel(session);
         }
-        if (!raw.barcode && !raw.banner_status_text && !raw.history_status_texts.length) throw new Error('Ampère page without parcel data');
+        if (!raw.barcode && !raw.banner_status_text && !raw.history_status_texts.length) throw new Error('Ampère page without parcel data'); // i18n-ignore: log only
         this._raw[link] = raw;
         if (raw.barcode) this._sessions[link] = { ...this._sessions[link], barcode: raw.barcode };
         out.push({ ...normalize(raw, { url: link }), link });
@@ -172,7 +174,7 @@ class AmpereDevice extends CarrierDeviceBase {
     for (const key of Object.keys(this._sessions)) if (!links.includes(key)) delete this._sessions[key];
     await this.setStoreValue(STORE_RAW, this._raw).catch(this.error);
     await this.setStoreValue(STORE_SESSIONS, this._sessions).catch(this.error);
-    if (links.length && failures === links.length && !out.length) throw new Error('Ampère is unreachable');
+    if (links.length && failures === links.length && !out.length) throw new Error('Ampère is unreachable'); // i18n: translated by messages-i18n (carrier_unreachable)
     return out;
   }
 

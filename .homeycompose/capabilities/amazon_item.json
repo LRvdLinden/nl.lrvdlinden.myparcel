@@ -1,0 +1,22 @@
+{
+  "type": "string",
+  "title": {
+    "en": "Item",
+    "nl": "Artikel",
+    "de": "Artikel",
+    "fr": "Article",
+    "it": "Articolo",
+    "sv": "Artikel",
+    "no": "Artikkel",
+    "es": "Artículo",
+    "da": "Vare",
+    "ru": "Товар",
+    "pl": "Przedmiot",
+    "ko": "물품",
+    "ar": "المنتج"
+  },
+  "getable": true,
+  "setable": false,
+  "insights": false,
+  "icon": "/assets/capabilities/package.svg"
+}

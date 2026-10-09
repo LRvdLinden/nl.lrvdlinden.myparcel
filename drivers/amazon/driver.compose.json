@@ -1,0 +1,439 @@
+{
+  "name": {
+    "en": "Amazon",
+    "nl": "Amazon",
+    "de": "Amazon",
+    "fr": "Amazon",
+    "it": "Amazon",
+    "sv": "Amazon",
+    "no": "Amazon",
+    "es": "Amazon",
+    "da": "Amazon",
+    "ru": "Amazon",
+    "pl": "Amazon",
+    "ko": "Amazon",
+    "ar": "Amazon"
+  },
+  "class": "sensor",
+  "capabilities": [
+    "amazon_parcel_count",
+    "amazon_status",
+    "amazon_tracking",
+    "amazon_item",
+    "amazon_carrier",
+    "amazon_delivery_date",
+    "amazon_next_delivery",
+    "amazon_out_for_delivery_count",
+    "amazon_pickup_count",
+    "amazon_delivered_count",
+    "amazon_last_event",
+    "myparcel_connection_status",
+    "amazon_last_update"
+  ],
+  "pair": [
+    {
+      "id": "login"
+    }
+  ],
+  "repair": [
+    {
+      "id": "repair"
+    }
+  ],
+  "platforms": [
+    "local"
+  ],
+  "images": {
+    "small": "/drivers/amazon/assets/images/small.png",
+    "large": "/drivers/amazon/assets/images/large.png",
+    "xlarge": "/drivers/amazon/assets/images/xlarge.png"
+  },
+  "settings": [
+    {
+      "type": "group",
+      "label": {
+        "en": "Amazon",
+        "nl": "Amazon",
+        "de": "Amazon",
+        "fr": "Amazon",
+        "it": "Amazon",
+        "sv": "Amazon",
+        "no": "Amazon",
+        "es": "Amazon",
+        "da": "Amazon",
+        "ru": "Amazon",
+        "pl": "Amazon",
+        "ko": "Amazon",
+        "ar": "Amazon"
+      },
+      "children": [
+        {
+          "id": "country",
+          "type": "dropdown",
+          "label": {
+            "en": "Amazon store",
+            "nl": "Amazon-winkel",
+            "de": "Amazon-Shop",
+            "fr": "Boutique Amazon",
+            "it": "Negozio Amazon",
+            "sv": "Amazon-butik",
+            "no": "Amazon-butikk",
+            "es": "Tienda de Amazon",
+            "da": "Amazon-butik",
+            "ru": "Магазин Amazon",
+            "pl": "Sklep Amazon",
+            "ko": "Amazon 스토어",
+            "ar": "متجر Amazon"
+          },
+          "value": "NL",
+          "values": [
+            {
+              "id": "NL",
+              "label": {
+                "en": "Netherlands",
+                "nl": "Nederland",
+                "de": "Niederlande",
+                "fr": "Pays-Bas",
+                "it": "Paesi Bassi",
+                "sv": "Nederländerna",
+                "no": "Nederland",
+                "es": "Países Bajos",
+                "da": "Nederlandene",
+                "ru": "Нидерланды",
+                "pl": "Holandia",
+                "ko": "네덜란드",
+                "ar": "هولندا"
+              }
+            },
+            {
+              "id": "BE",
+              "label": {
+                "en": "Belgium",
+                "nl": "België",
+                "de": "Belgien",
+                "fr": "Belgique",
+                "it": "Belgio",
+                "sv": "Belgien",
+                "no": "Belgia",
+                "es": "Bélgica",
+                "da": "Belgien",
+                "ru": "Бельгия",
+                "pl": "Belgia",
+                "ko": "벨기에",
+                "ar": "بلجيكا"
+              }
+            },
+            {
+              "id": "DE",
+              "label": {
+                "en": "Germany",
+                "nl": "Duitsland",
+                "de": "Deutschland",
+                "fr": "Allemagne",
+                "it": "Germania",
+                "sv": "Tyskland",
+                "no": "Tyskland",
+                "es": "Alemania",
+                "da": "Tyskland",
+                "ru": "Германия",
+                "pl": "Niemcy",
+                "ko": "독일",
+                "ar": "ألمانيا"
+              }
+            },
+            {
+              "id": "FR",
+              "label": {
+                "en": "France",
+                "nl": "Frankrijk",
+                "de": "Frankreich",
+                "fr": "France",
+                "it": "Francia",
+                "sv": "Frankrike",
+                "no": "Frankrike",
+                "es": "Francia",
+                "da": "Frankrig",
+                "ru": "Франция",
+                "pl": "Francja",
+                "ko": "프랑스",
+                "ar": "فرنسا"
+              }
+            },
+            {
+              "id": "GB",
+              "label": {
+                "en": "United Kingdom",
+                "nl": "Verenigd Koninkrijk",
+                "de": "Vereinigtes Königreich",
+                "fr": "Royaume-Uni",
+                "it": "Regno Unito",
+                "sv": "Storbritannien",
+                "no": "Storbritannia",
+                "es": "Reino Unido",
+                "da": "Storbritannien",
+                "ru": "Великобритания",
+                "pl": "Wielka Brytania",
+                "ko": "영국",
+                "ar": "المملكة المتحدة"
+              }
+            },
+            {
+              "id": "IE",
+              "label": {
+                "en": "Ireland",
+                "nl": "Ierland",
+                "de": "Irland",
+                "fr": "Irlande",
+                "it": "Irlanda",
+                "sv": "Irland",
+                "no": "Irland",
+                "es": "Irlanda",
+                "da": "Irland",
+                "ru": "Ирландия",
+                "pl": "Irlandia",
+                "ko": "아일랜드",
+                "ar": "أيرلندا"
+              }
+            },
+            {
+              "id": "ES",
+              "label": {
+                "en": "Spain",
+                "nl": "Spanje",
+                "de": "Spanien",
+                "fr": "Espagne",
+                "it": "Spagna",
+                "sv": "Spanien",
+                "no": "Spania",
+                "es": "España",
+                "da": "Spanien",
+                "ru": "Испания",
+                "pl": "Hiszpania",
+                "ko": "스페인",
+                "ar": "إسبانيا"
+              }
+            },
+            {
+              "id": "IT",
+              "label": {
+                "en": "Italy",
+                "nl": "Italië",
+                "de": "Italien",
+                "fr": "Italie",
+                "it": "Italia",
+                "sv": "Italien",
+                "no": "Italia",
+                "es": "Italia",
+                "da": "Italien",
+                "ru": "Италия",
+                "pl": "Włochy",
+                "ko": "이탈리아",
+                "ar": "إيطاليا"
+              }
+            },
+            {
+              "id": "SE",
+              "label": {
+                "en": "Sweden",
+                "nl": "Zweden",
+                "de": "Schweden",
+                "fr": "Suède",
+                "it": "Svezia",
+                "sv": "Sverige",
+                "no": "Sverige",
+                "es": "Suecia",
+                "da": "Sverige",
+                "ru": "Швеция",
+                "pl": "Szwecja",
+                "ko": "스웨덴",
+                "ar": "السويد"
+              }
+            },
+            {
+              "id": "PL",
+              "label": {
+                "en": "Poland",
+                "nl": "Polen",
+                "de": "Polen",
+                "fr": "Pologne",
+                "it": "Polonia",
+                "sv": "Polen",
+                "no": "Polen",
+                "es": "Polonia",
+                "da": "Polen",
+                "ru": "Польша",
+                "pl": "Polska",
+                "ko": "폴란드",
+                "ar": "بولندا"
+              }
+            },
+            {
+              "id": "US",
+              "label": {
+                "en": "United States",
+                "nl": "Verenigde Staten",
+                "de": "Vereinigte Staaten",
+                "fr": "États-Unis",
+                "it": "Stati Uniti",
+                "sv": "USA",
+                "no": "USA",
+                "es": "Estados Unidos",
+                "da": "USA",
+                "ru": "Соединенные Штаты",
+                "pl": "Stany Zjednoczone",
+                "ko": "미국",
+                "ar": "الولايات المتحدة"
+              }
+            },
+            {
+              "id": "CA",
+              "label": {
+                "en": "Canada",
+                "nl": "Canada",
+                "de": "Kanada",
+                "fr": "Canada",
+                "it": "Canada",
+                "sv": "Kanada",
+                "no": "Canada",
+                "es": "Canadá",
+                "da": "Canada",
+                "ru": "Канада",
+                "pl": "Kanada",
+                "ko": "캐나다",
+                "ar": "كندا"
+              }
+            },
+            {
+              "id": "MX",
+              "label": {
+                "en": "Mexico",
+                "nl": "Mexico",
+                "de": "Mexiko",
+                "fr": "Mexique",
+                "it": "Messico",
+                "sv": "Mexiko",
+                "no": "Mexico",
+                "es": "México",
+                "da": "Mexico",
+                "ru": "Мексика",
+                "pl": "Meksyk",
+                "ko": "멕시코",
+                "ar": "المكسيك"
+              }
+            },
+            {
+              "id": "BR",
+              "label": {
+                "en": "Brazil",
+                "nl": "Brazilië",
+                "de": "Brasilien",
+                "fr": "Brésil",
+                "it": "Brasile",
+                "sv": "Brasilien",
+                "no": "Brasil",
+                "es": "Brasil",
+                "da": "Brasilien",
+                "ru": "Бразилия",
+                "pl": "Brazylia",
+                "ko": "브라질",
+                "ar": "البرازيل"
+              }
+            },
+            {
+              "id": "AU",
+              "label": {
+                "en": "Australia",
+                "nl": "Australië",
+                "de": "Australien",
+                "fr": "Australie",
+                "it": "Australia",
+                "sv": "Australien",
+                "no": "Australia",
+                "es": "Australia",
+                "da": "Australien",
+                "ru": "Австралия",
+                "pl": "Australia",
+                "ko": "오스트레일리아",
+                "ar": "أستراليا"
+              }
+            },
+            {
+              "id": "JP",
+              "label": {
+                "en": "Japan",
+                "nl": "Japan",
+                "de": "Japan",
+                "fr": "Japon",
+                "it": "Giappone",
+                "sv": "Japan",
+                "no": "Japan",
+                "es": "Japón",
+                "da": "Japan",
+                "ru": "Япония",
+                "pl": "Japonia",
+                "ko": "일본",
+                "ar": "اليابان"
+              }
+            },
+            {
+              "id": "IN",
+              "label": {
+                "en": "India",
+                "nl": "India",
+                "de": "Indien",
+                "fr": "Inde",
+                "it": "India",
+                "sv": "Indien",
+                "no": "India",
+                "es": "India",
+                "da": "Indien",
+                "ru": "Индия",
+                "pl": "Indie",
+                "ko": "인도",
+                "ar": "الهند"
+              }
+            }
+          ],
+          "hint": {
+            "en": "The Amazon website your orders are placed on. After changing it, run Repair if Amazon asks you to sign in again.",
+            "nl": "De Amazon-website waarop je bestelt. Gebruik na een wijziging Repareren als Amazon opnieuw om inloggen vraagt.",
+            "de": "Die Amazon-Website, auf der du bestellst. Nutze nach einer Änderung „Reparieren“, falls Amazon eine neue Anmeldung verlangt.",
+            "fr": "Le site Amazon sur lequel vous commandez. Après un changement, utilisez Réparer si Amazon demande une nouvelle connexion.",
+            "it": "Il sito Amazon su cui ordini. Dopo una modifica usa Ripara se Amazon chiede di accedere di nuovo.",
+            "sv": "Amazon-webbplatsen du beställer på. Använd Reparera efter en ändring om Amazon ber dig logga in igen.",
+            "no": "Amazon-nettstedet du bestiller på. Bruk Reparer etter en endring hvis Amazon ber deg logge inn på nytt.",
+            "es": "La web de Amazon en la que haces tus pedidos. Tras cambiarla, usa Reparar si Amazon pide iniciar sesión de nuevo.",
+            "da": "Det Amazon-websted, du bestiller på. Brug Reparer efter en ændring, hvis Amazon beder dig logge ind igen.",
+            "ru": "Сайт Amazon, на котором вы делаете заказы. После изменения используйте «Восстановить», если Amazon попросит войти снова.",
+            "pl": "Witryna Amazon, w której zamawiasz. Po zmianie użyj Napraw, jeśli Amazon poprosi o ponowne zalogowanie.",
+            "ko": "주문하는 Amazon 웹사이트. 변경 후 Amazon이 다시 로그인을 요청하면 복구를 실행하세요.",
+            "ar": "موقع Amazon الذي تطلب منه. بعد تغييره استخدم «إصلاح» إذا طلب Amazon تسجيل الدخول مجددًا."
+          }
+        },
+        {
+          "id": "delivered_days",
+          "type": "number",
+          "label": {
+            "en": "Show delivered parcels for (days)",
+            "nl": "Bezorgde pakketten tonen gedurende (dagen)",
+            "de": "Zugestellte Pakete anzeigen für (Tage)",
+            "fr": "Afficher les colis livrés pendant (jours)",
+            "it": "Mostra i pacchi consegnati per (giorni)",
+            "sv": "Visa levererade paket i (dagar)",
+            "no": "Vis leverte pakker i (dager)",
+            "es": "Mostrar paquetes entregados durante (días)",
+            "da": "Vis leverede pakker i (dage)",
+            "ru": "Показывать доставленные посылки (дней)",
+            "pl": "Pokazuj doręczone paczki przez (dni)",
+            "ko": "배송 완료 택배 표시 기간(일)",
+            "ar": "عرض الطرود المسلَّمة لمدة (أيام)"
+          },
+          "value": 7,
+          "min": 1,
+          "max": 60,
+          "step": 1
+        }
+      ]
+    }
+  ]
+}

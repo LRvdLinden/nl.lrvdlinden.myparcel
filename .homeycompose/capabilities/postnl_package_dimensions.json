@@ -2,7 +2,18 @@
   "type": "string",
   "title": {
     "en": "Parcel dimensions",
-    "nl": "Afmetingen pakket"
+    "nl": "Afmetingen pakket",
+    "de": "Paketabmessungen",
+    "fr": "Dimensions du colis",
+    "it": "Dimensioni del pacco",
+    "sv": "Paketmått",
+    "no": "Pakkemål",
+    "es": "Dimensiones del paquete",
+    "da": "Pakkemål",
+    "ru": "Размеры посылки",
+    "pl": "Wymiary paczki",
+    "ko": "택배 크기",
+    "ar": "أبعاد الطرد"
   },
   "getable": true,
   "setable": false,

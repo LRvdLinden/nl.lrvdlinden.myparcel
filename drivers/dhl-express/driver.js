@@ -1,6 +1,7 @@
 'use strict';
 
 const Homey = require('homey');
+const { t, localizeSession } = require('../../lib/messages-i18n');
 const crypto = require('crypto');
 const DHLExpressAccountApi = require('../../lib/dhl-express-account');
 const { decodeBundle } = require('../../lib/dhl-express-session');
@@ -32,8 +33,6 @@ module.exports = class DHLExpressDriver extends Homey.Driver {
     });
   }
 
-  _nl() { return this.homey.i18n.getLanguage() === 'nl'; }
-
   async _validateDirect(email, password, otp = '') {
     const api = new DHLExpressAccountApi({ fetch, email, password, otp, log: (...args) => this.log('[DHLExpressPair]', ...args) });
     await api.login();
@@ -44,17 +43,16 @@ module.exports = class DHLExpressDriver extends Homey.Driver {
     const entries = parseTrackingList(text || '');
     const wrong = entries.filter(entry => !isExpressAwb(entry.code));
     if (wrong.length) {
-      throw new Error(this._nl()
-        ? `Geen DHL Express-luchtvrachtbriefnummer (10 cijfers): ${wrong.map(e => e.code).join(', ')}`
-        : `Not a DHL Express air waybill (10 digits): ${wrong.map(e => e.code).join(', ')}`);
+      throw new Error(t(this.homey, 'awb_not_express', { codes: wrong.map(e => e.code).join(', ') }));
     }
     return entries;
   }
 
   async onPair(session) {
+    localizeSession(this.homey, session, 'DHL Express');
     session.setHandler('track_awb', async ({ tracking } = {}) => {
       const entries = this._awbList(tracking);
-      if (!entries.length) throw new Error(this._nl() ? 'Vul minstens één luchtvrachtbriefnummer in.' : 'Enter at least one air waybill number.');
+      if (!entries.length) throw new Error(t(this.homey, 'awb_enter_one'));
       return {
         device: {
           name: 'DHL Express',
@@ -67,7 +65,7 @@ module.exports = class DHLExpressDriver extends Homey.Driver {
 
     session.setHandler('login_dhl_express', async ({ email, password, otp, tracking } = {}) => {
       const normalized = String(email || '').trim().toLowerCase();
-      if (!normalized || !password) throw new Error(this._nl() ? 'Vul je DHL Express e-mailadres en wachtwoord in.' : 'Enter your DHL Express e-mail address and password.');
+      if (!normalized || !password) throw new Error(t(this.homey, 'enter_email_password', { account: 'DHL Express' }));
       const entries = this._awbList(tracking);
       await this._validateDirect(normalized, password, otp || '');
       return {
@@ -96,6 +94,7 @@ module.exports = class DHLExpressDriver extends Homey.Driver {
   }
 
   async onRepair(session, device) {
+    localizeSession(this.homey, session, 'DHL Express');
     session.setHandler('login_dhl_express', async ({ email, password, otp } = {}) => {
       const normalized = String(email || '').trim().toLowerCase();
       await this._validateDirect(normalized, password, otp || '');

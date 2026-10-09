@@ -1,6 +1,7 @@
 'use strict';
 
 const DhlDeviceBase = require('../../lib/dhl-device-base');
+const { t } = require('../../lib/messages-i18n');
 const DHLExpressAccountApi = require('../../lib/dhl-express-account');
 const { DHLExpressSessionClient } = require('../../lib/dhl-express-session');
 const {
@@ -105,9 +106,7 @@ class DhlExpressDevice extends DhlDeviceBase {
 
   async validateTrackingCode(entry) {
     if (!isExpressAwb(entry.code)) {
-      throw new Error(this._lang() === 'nl'
-        ? 'Een DHL Express-luchtvrachtbriefnummer bestaat uit 10 cijfers. Andere DHL-nummers horen bij het DHL-apparaat.'
-        : 'A DHL Express air waybill has 10 digits. Other DHL numbers belong on the DHL device.');
+      throw new Error(t(this.homey, 'awb_digits'));
     }
   }
 

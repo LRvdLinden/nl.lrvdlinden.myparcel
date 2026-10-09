@@ -1,6 +1,8 @@
 'use strict';
 
 const Homey = require('homey');
+const { t, localizeSession } = require('../../lib/messages-i18n');
+const { language } = require('../../lib/i18n');
 const crypto = require('crypto');
 const { authorizationUrl, parseCallback, exchangeCode, ACCOUNT_MARKETS, COUNTRIES } = require('../../lib/inpost-tracking');
 const { simpleTrackingList } = require('../../lib/carrier-migrate');
@@ -31,11 +33,12 @@ module.exports = class InPostDriver extends Homey.Driver {
   }
 
   _handlers(session, device = null) {
+    localizeSession(this.homey, session, 'InPost');
     let oauth = null;
     const tracking = async data => {
       const codes = simpleTrackingList(data.trackingCodes, norm).map(e => e.code);
       const country = COUNTRIES.includes(String(data.country || '').toUpperCase()) ? String(data.country).toUpperCase() : 'GB';
-      if (!codes.length) throw new Error(this.homey.i18n.getLanguage() === 'nl' ? 'Vul minstens één InPost-pakketnummer in.' : 'Enter at least one InPost parcel number.');
+      if (!codes.length) throw new Error(t(this.homey, 'enter_at_least_one', { carrier: 'InPost' }));
       if (device) {
         await device.setSettings({ tracking_numbers: codes.join('\n'), country });
         await device.refresh(true);
@@ -46,17 +49,17 @@ module.exports = class InPostDriver extends Homey.Driver {
     session.setHandler('connect', tracking);
     session.setHandler('account_url', async ({ market } = {}) => {
       const m = ACCOUNT_MARKETS.includes(String(market || '').toUpperCase()) ? String(market).toUpperCase() : 'PL';
-      oauth = { market: m, ...authorizationUrl(m, this.homey.i18n.getLanguage()) };
+      oauth = { market: m, ...authorizationUrl(m, language(this.homey)) };
       return { url: oauth.url };
     });
     session.setHandler('account_login', async ({ callback, trackingCodes } = {}) => {
-      if (!oauth) throw new Error('Start the InPost sign-in first.');
+      if (!oauth) throw new Error(t(this.homey, 'start_first', { service: 'InPost' }));
       const code = parseCallback(callback, oauth.state);
       const result = await exchangeCode(code, oauth.verifier, oauth.market);
       oauth = null;
       if (device) {
         const phone = device.getStoreValue('inpost_phone');
-        if (phone && phone !== result.phone) throw new Error('This is a different InPost account than the one this device belongs to.');
+        if (phone && phone !== result.phone) throw new Error(t(this.homey, 'different_account', { carrier: 'InPost' }));
         await device.updateAccount(result);
         return true;
       }

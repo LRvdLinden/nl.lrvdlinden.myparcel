@@ -2,7 +2,18 @@
   "type": "string",
   "title": {
     "en": "Parcel status time",
-    "nl": "Tijdstip pakketstatus"
+    "nl": "Tijdstip pakketstatus",
+    "de": "Zeitpunkt des Paketstatus",
+    "fr": "Heure du statut du colis",
+    "it": "Ora dello stato del pacco",
+    "sv": "Tid för paketstatus",
+    "no": "Tidspunkt for pakkestatus",
+    "es": "Hora del estado del paquete",
+    "da": "Tidspunkt for pakkestatus",
+    "ru": "Время статуса посылки",
+    "pl": "Czas statusu paczki",
+    "ko": "택배 상태 시간",
+    "ar": "وقت حالة الطرد"
   },
   "getable": true,
   "setable": false,

@@ -7,6 +7,8 @@ const {
 } = require('../../lib/gls-tracking');
 const { GlsApi } = require('../../lib/gls-api');
 const i18n = require('../../lib/gls-i18n');
+const { formatDate, formatWeight, formatDimensions } = require('../../lib/i18n');
+const { t } = require('../../lib/messages-i18n');
 
 const CAPABILITIES = [
   'gls_parcel_count', 'gls_status', 'gls_next_delivery', 'gls_delivery_window', 'gls_tracking',
@@ -110,7 +112,7 @@ class GlsDevice extends Homey.Device {
 
   async addTracking(input) {
     const [parsed] = parseTrackingList(String(input || ''));
-    if (!parsed) throw new Error(i18n.text(this.homey, 'invalid_tracking'));
+    if (!parsed) throw new Error(t(this.homey, 'enter_tracking'));
     const country = this.getSetting('country') || 'NL';
     if (parsed.postcode && !validatePostcode(country, parsed.postcode)) {
       throw new Error(i18n.text(this.homey, 'invalid_postcode', { country: i18n.countryName(this.homey, country), example: COUNTRIES[country]?.postcode_example || '' }));
@@ -269,9 +271,9 @@ class GlsDevice extends Homey.Device {
     await this.setStoreValue(STORE_PARCELS, next).catch(this.error);
 
     if (rows.length && missingPostcode) await this.setWarning(i18n.text(this.homey, 'setup_needed')).catch(() => {});
-    else if (attempted && failed === attempted) await this.setWarning(i18n.text(this.homey, 'gls_unreachable')).catch(() => {});
+    else if (attempted && failed === attempted) await this.setWarning(t(this.homey, 'unreachable', { name: 'GLS' })).catch(() => {});
     else await this.unsetWarning().catch(() => {});
-    if (!(attempted && failed === attempted)) await this.setCapabilityValue('gls_last_update', new Date(now).toISOString()).catch(this.error);
+    if (!(attempted && failed === attempted)) await this.setCapabilityValue('gls_last_update', formatDate(this.homey, now, { dateStyle: 'short', timeStyle: 'medium' }, this.homey.clock.getTimezone())).catch(this.error);
     await this.setAvailable().catch(() => {});
 
     await this._updateCapabilities();
@@ -424,6 +426,14 @@ class GlsDevice extends Homey.Device {
   }
 
   _date(value) { return this._parts(value)?.date || ''; }
+
+  /** Display-only date for capabilities; Flow tokens keep dd-mm-yyyy. */
+  _displayDate(value) {
+    const p = this._parts(value);
+    if (!p) return '';
+    const [d, m, y] = p.date.split('-').map(Number);
+    return formatDate(this.homey, new Date(Date.UTC(y, m - 1, d, 12)), { day: 'numeric', month: 'short', year: 'numeric' }, 'UTC');
+  }
   _time(value) { return this._parts(value)?.time || ''; }
   _dateTime(value) { const p = this._parts(value); return p ? `${p.date}${p.time ? ` ${p.time}` : ''}` : ''; }
 
@@ -502,7 +512,7 @@ class GlsDevice extends Homey.Device {
     await this._set('gls_en_route_pickup_count', active.filter(parcel => parcel.pickup && parcel.status !== STATUS.AT_PICKUP_POINT).length);
     await this._set('gls_delivered_count', list.filter(parcel => parcel.delivered).length);
     await this._set('gls_status', focus ? i18n.statusText(this.homey, focus.found ? focus.status : STATUS.UNKNOWN) : i18n.text(this.homey, 'no_parcels'));
-    await this._set('gls_next_delivery', next ? `${this._date(next.plannedFrom)} ${this._window(next)}`.trim() : EMPTY);
+    await this._set('gls_next_delivery', next ? `${this._displayDate(next.plannedFrom)} ${this._window(next)}`.trim() : EMPTY);
     await this._set('gls_delivery_window', text(focus && !focus.delivered ? this._window(focus) : ''));
     await this._set('gls_tracking', text(focus?.tracking));
     await this._set('gls_sender', text(focus?.sender));
@@ -510,7 +520,7 @@ class GlsDevice extends Homey.Device {
     await this._set('gls_last_event', text(focus?.rawStatus));
     await this._set('gls_pickup_point', text(focus?.pickupPoint));
     await this._set('gls_weight', focus && typeof focus.weight === 'number' ? focus.weight : null);
-    await this._set('gls_dimensions', text(focus?.dimensions));
+    await this._set('gls_dimensions', text(formatDimensions(this.homey, focus?.dimensions)));
   }
 
   /* ----------------------------------------------------------- polling -- */
@@ -585,8 +595,8 @@ class GlsDevice extends Homey.Device {
         updatedAt: last?.timestamp || (parcel.checkedAt ? new Date(parcel.checkedAt).toISOString() : ''),
         createdAt: parcel.firstSeen ? new Date(parcel.firstSeen).toISOString() : '',
         delivered: Boolean(parcel.delivered),
-        weight: parcel.weight !== null && parcel.weight !== undefined ? `${parcel.weight} kg` : '',
-        dimensions: parcel.dimensions || '',
+        weight: parcel.weight !== null && parcel.weight !== undefined ? formatWeight(this.homey, parcel.weight) : '',
+        dimensions: formatDimensions(this.homey, parcel.dimensions),
         deliveryPoint: parcel.pickupPoint || '',
         detailsUrl: parcel.url || '',
       };

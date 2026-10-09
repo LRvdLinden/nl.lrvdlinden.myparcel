@@ -2,7 +2,18 @@
   "type": "string",
   "title": {
     "en": "Parcel weight",
-    "nl": "Gewicht pakket"
+    "nl": "Gewicht pakket",
+    "de": "Paketgewicht",
+    "fr": "Poids du colis",
+    "it": "Peso del pacco",
+    "sv": "Paketvikt",
+    "no": "Pakkevekt",
+    "es": "Peso del paquete",
+    "da": "Pakkevægt",
+    "ru": "Вес посылки",
+    "pl": "Waga paczki",
+    "ko": "택배 무게",
+    "ar": "وزن الطرد"
   },
   "getable": true,
   "setable": false,

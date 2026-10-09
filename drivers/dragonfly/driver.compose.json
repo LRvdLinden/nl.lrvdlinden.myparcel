@@ -1,0 +1,207 @@
+{
+  "name": {
+    "en": "Dragonfly / Intelcom",
+    "nl": "Dragonfly / Intelcom",
+    "de": "Dragonfly / Intelcom",
+    "fr": "Dragonfly / Intelcom",
+    "it": "Dragonfly / Intelcom",
+    "sv": "Dragonfly / Intelcom",
+    "no": "Dragonfly / Intelcom",
+    "es": "Dragonfly / Intelcom",
+    "da": "Dragonfly / Intelcom",
+    "ru": "Dragonfly / Intelcom",
+    "pl": "Dragonfly / Intelcom",
+    "ko": "Dragonfly / Intelcom",
+    "ar": "Dragonfly / Intelcom"
+  },
+  "class": "sensor",
+  "capabilities": [
+    "dragonfly_parcel_count",
+    "dragonfly_status",
+    "dragonfly_tracking",
+    "dragonfly_sender",
+    "dragonfly_delivery_date",
+    "dragonfly_delivery_window",
+    "dragonfly_next_delivery",
+    "dragonfly_out_for_delivery_count",
+    "dragonfly_delivered_count",
+    "dragonfly_outgoing_count",
+    "dragonfly_last_event",
+    "myparcel_connection_status",
+    "dragonfly_last_update"
+  ],
+  "pair": [
+    {
+      "id": "login"
+    }
+  ],
+  "repair": [
+    {
+      "id": "repair"
+    }
+  ],
+  "platforms": [
+    "local"
+  ],
+  "images": {
+    "small": "/drivers/dragonfly/assets/images/small.png",
+    "large": "/drivers/dragonfly/assets/images/large.png",
+    "xlarge": "/drivers/dragonfly/assets/images/xlarge.png"
+  },
+  "settings": [
+    {
+      "type": "group",
+      "label": {
+        "en": "Dragonfly / Intelcom Track & Trace",
+        "nl": "Dragonfly / Intelcom Track & Trace",
+        "de": "Dragonfly / Intelcom Track & Trace",
+        "fr": "Dragonfly / Intelcom Track & Trace",
+        "it": "Dragonfly / Intelcom Track & Trace",
+        "sv": "Dragonfly / Intelcom Track & Trace",
+        "no": "Dragonfly / Intelcom Track & Trace",
+        "es": "Dragonfly / Intelcom Track & Trace",
+        "da": "Dragonfly / Intelcom Track & Trace",
+        "ru": "Dragonfly / Intelcom Track & Trace",
+        "pl": "Dragonfly / Intelcom Track & Trace",
+        "ko": "Dragonfly / Intelcom Track & Trace",
+        "ar": "Dragonfly / Intelcom Track & Trace"
+      },
+      "children": [
+        {
+          "id": "country",
+          "type": "dropdown",
+          "label": {
+            "en": "Country",
+            "nl": "Land",
+            "de": "Land",
+            "fr": "Pays",
+            "it": "Paese",
+            "sv": "Land",
+            "no": "Land",
+            "es": "País",
+            "da": "Land",
+            "ru": "Страна",
+            "pl": "Kraj",
+            "ko": "국가",
+            "ar": "الدولة"
+          },
+          "value": "NL",
+          "values": [
+            {
+              "id": "NL",
+              "label": {
+                "en": "Netherlands (Dragonfly)",
+                "nl": "Nederland (Dragonfly)",
+                "de": "Niederlande (Dragonfly)",
+                "fr": "Pays-Bas (Dragonfly)",
+                "it": "Paesi Bassi (Dragonfly)",
+                "sv": "Nederländerna (Dragonfly)",
+                "no": "Nederland (Dragonfly)",
+                "es": "Países Bajos (Dragonfly)",
+                "da": "Nederlandene (Dragonfly)",
+                "ru": "Нидерланды (Dragonfly)",
+                "pl": "Holandia (Dragonfly)",
+                "ko": "네덜란드 (Dragonfly)",
+                "ar": "هولندا (Dragonfly)"
+              }
+            },
+            {
+              "id": "AU",
+              "label": {
+                "en": "Australia (Dragonfly)",
+                "nl": "Australië (Dragonfly)",
+                "de": "Australien (Dragonfly)",
+                "fr": "Australie (Dragonfly)",
+                "it": "Australia (Dragonfly)",
+                "sv": "Australien (Dragonfly)",
+                "no": "Australia (Dragonfly)",
+                "es": "Australia (Dragonfly)",
+                "da": "Australien (Dragonfly)",
+                "ru": "Австралия (Dragonfly)",
+                "pl": "Australia (Dragonfly)",
+                "ko": "오스트레일리아 (Dragonfly)",
+                "ar": "أستراليا (Dragonfly)"
+              }
+            },
+            {
+              "id": "CA",
+              "label": {
+                "en": "Canada (Intelcom)",
+                "nl": "Canada (Intelcom)",
+                "de": "Kanada (Intelcom)",
+                "fr": "Canada (Intelcom)",
+                "it": "Canada (Intelcom)",
+                "sv": "Kanada (Intelcom)",
+                "no": "Canada (Intelcom)",
+                "es": "Canadá (Intelcom)",
+                "da": "Canada (Intelcom)",
+                "ru": "Канада (Intelcom)",
+                "pl": "Kanada (Intelcom)",
+                "ko": "캐나다 (Intelcom)",
+                "ar": "كندا (Intelcom)"
+              }
+            }
+          ]
+        },
+        {
+          "id": "tracking_numbers",
+          "type": "textarea",
+          "label": {
+            "en": "Tracking numbers",
+            "nl": "Trackingnummers",
+            "de": "Sendungsnummern",
+            "fr": "Numéros de suivi",
+            "it": "Numeri di tracciamento",
+            "sv": "Spårningsnummer",
+            "no": "Sporingsnumre",
+            "es": "Números de seguimiento",
+            "da": "Sporingsnumre",
+            "ru": "Трек-номера",
+            "pl": "Numery przesyłek",
+            "ko": "운송장 번호",
+            "ar": "أرقام التتبع"
+          },
+          "hint": {
+            "en": "One tracking number per line. Add \" out\" after a number for a parcel you send yourself.",
+            "nl": "Eén trackingnummer per regel. Zet \" uit\" achter een nummer voor een pakket dat je zelf verstuurt.",
+            "de": "Eine Sendungsnummer pro Zeile. Schreibe „ out“ hinter eine Nummer für ein Paket, das du selbst versendest.",
+            "fr": "Un numéro de suivi par ligne. Ajoutez « out » après un numéro pour un colis que vous envoyez vous-même.",
+            "it": "Un numero di tracking per riga. Aggiungi \" out\" dopo un numero per un pacco che spedisci tu.",
+            "sv": "Ett spårningsnummer per rad. Skriv \" out\" efter numret för ett paket du skickar själv.",
+            "no": "Ett sporingsnummer per linje. Skriv « out» etter nummeret for en pakke du sender selv.",
+            "es": "Un número de seguimiento por línea. Añade « out» tras el número para un paquete que envías tú.",
+            "da": "Ét sporingsnummer pr. linje. Skriv \" out\" efter nummeret for en pakke, du selv sender.",
+            "ru": "Один номер отслеживания в строке. Добавьте « out» после номера для посылки, которую отправляете вы.",
+            "pl": "Jeden numer przesyłki w wierszu. Dopisz „ out” po numerze paczki, którą sam wysyłasz.",
+            "ko": "한 줄에 운송장 번호 하나. 직접 보내는 택배는 번호 뒤에 \" out\"을 추가하세요.",
+            "ar": "رقم تتبع واحد في كل سطر. أضف \" out\" بعد الرقم للطرد الذي ترسله بنفسك."
+          },
+          "value": ""
+        },
+        {
+          "id": "delivered_days",
+          "type": "number",
+          "label": {
+            "en": "Show delivered parcels for (days)",
+            "nl": "Bezorgde pakketten tonen gedurende (dagen)",
+            "de": "Zugestellte Pakete anzeigen für (Tage)",
+            "fr": "Afficher les colis livrés pendant (jours)",
+            "it": "Mostra i pacchi consegnati per (giorni)",
+            "sv": "Visa levererade paket i (dagar)",
+            "no": "Vis leverte pakker i (dager)",
+            "es": "Mostrar paquetes entregados durante (días)",
+            "da": "Vis leverede pakker i (dage)",
+            "ru": "Показывать доставленные посылки (дней)",
+            "pl": "Pokazuj doręczone paczki przez (dni)",
+            "ko": "배송 완료 택배 표시 기간(일)",
+            "ar": "عرض الطرود المسلَّمة لمدة (أيام)"
+          },
+          "value": 7,
+          "min": 1,
+          "max": 60,
+          "step": 1
+        }
+      ]
+    }
+  ]
+}

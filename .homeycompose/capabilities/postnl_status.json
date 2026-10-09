@@ -2,7 +2,18 @@
   "type": "string",
   "title": {
     "en": "Connection status",
-    "nl": "Verbindingsstatus"
+    "nl": "Verbindingsstatus",
+    "de": "Verbindungsstatus",
+    "fr": "État de connexion",
+    "it": "Stato connessione",
+    "sv": "Anslutningsstatus",
+    "no": "Tilkoblingsstatus",
+    "es": "Estado de conexión",
+    "da": "Forbindelsesstatus",
+    "ru": "Статус подключения",
+    "pl": "Stan połączenia",
+    "ko": "연결 상태",
+    "ar": "حالة الاتصال"
   },
   "getable": true,
   "setable": false,

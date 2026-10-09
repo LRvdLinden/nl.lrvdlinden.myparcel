@@ -2,7 +2,18 @@
   "type": "string",
   "title": {
     "en": "Parcel sender",
-    "nl": "Afzender pakket"
+    "nl": "Afzender pakket",
+    "de": "Paketabsender",
+    "fr": "Expéditeur du colis",
+    "it": "Mittente del pacco",
+    "sv": "Paketavsändare",
+    "no": "Pakkeavsender",
+    "es": "Remitente del paquete",
+    "da": "Pakkeafsender",
+    "ru": "Отправитель посылки",
+    "pl": "Nadawca paczki",
+    "ko": "택배 발송인",
+    "ar": "مرسل الطرد"
   },
   "getable": true,
   "setable": false,

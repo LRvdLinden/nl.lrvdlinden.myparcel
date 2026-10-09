@@ -3,9 +3,9 @@
     "email": "E-postadress",
     "password": "Lösenord",
     "connect": "Anslut konto",
-    "title": "Add My PostNL",
-    "subtitle": "Connect each device to one PostNL account.",
-    "language_marker": "en"
+    "title": "Lägg till My PostNL",
+    "subtitle": "Anslut varje enhet till ett PostNL-konto.",
+    "language_marker": "sv"
   },
   "widget": {
     "loading": "Laddar…",
@@ -14,7 +14,7 @@
     "unknown": "Okänd",
     "active": "Aktiv",
     "delivered": "Levererat",
-    "offline": "Offline"
+    "offline": "Frånkopplad"
   },
   "errors": {
     "not_authenticated": "DHL-kontot är inte anslutet."
@@ -26,7 +26,7 @@
     "name": "My PostNL"
   },
   "carrier": {
-    "pending": "Account API not configured"
+    "pending": "Konto-API är inte konfigurerat"
   },
   "ups": {
     "pair": {

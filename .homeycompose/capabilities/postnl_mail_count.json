@@ -2,7 +2,18 @@
   "type": "number",
   "title": {
     "en": "Mail items",
-    "nl": "Poststukken"
+    "nl": "Poststukken",
+    "de": "Briefsendungen",
+    "fr": "Courriers",
+    "it": "Invii postali",
+    "sv": "Postförsändelser",
+    "no": "Postsendinger",
+    "es": "Envíos postales",
+    "da": "Postforsendelser",
+    "ru": "Почтовые отправления",
+    "pl": "Przesyłki listowe",
+    "ko": "우편물",
+    "ar": "المراسلات البريدية"
   },
   "getable": true,
   "setable": false,

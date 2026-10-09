@@ -6,7 +6,7 @@ const DEFS = [
   ['postnl','PostNL','postnl'],['dhl-parcel','DHL','dhl'],['dhl-express','DHL Express','dhl-express'],['dpd','DPD','dpd'],['ups','UPS','ups'],
   ['budbee','Budbee','budbee'],['homerr','Vinted Go','homerr'],['fedex','FedEx','fedex'],
   ['gls','GLS','gls'],['inpost-uk','InPost','inpost-uk'],['bpost','bpost','bpost'],
-  ['royal-mail','Royal Mail','royal-mail'],['post-dhl-de','Post & DHL Germany','dhl-de'],['ampere','Ampère','ampere'],
+  ['royal-mail','Royal Mail','royal-mail'],['post-dhl-de','Post & DHL Germany','dhl-de'],['ampere','Ampère','ampere'],['trunkrs','Trunkrs','trunkrs'],['dynalogic','Dynalogic','dynalogic'],['dragonfly','Dragonfly / Intelcom','dragonfly'],['mondial-relay','Mondial Relay','mondial-relay'],['amazon','Amazon','amazon'],
 ];
 function selectedIds(value){if(Array.isArray(value))return value.map(String).filter(Boolean);if(typeof value!=='string')return[];return value.split(',').map(v=>v.trim()).filter(Boolean)}
 function safeDevices(homey,id){try{return homey.drivers.getDriver(id).getDevices()}catch(_){return[]}}
@@ -19,7 +19,7 @@ function time(item){for(const v of [item.deliveryWindowFrom,item.deliveryDate,it
 function normalize(homey,{driver,carrier,carrierId,device},parcel,timeZone){
  const tracking=str(parcel.tracking,parcel.barcode,parcel.shipmentNumber,parcel.id);
  return {
-  carrier,carrierId,carrierLogo:carrierId==='dhl-de'?'dhl.svg':carrierId==='ampere'?'ampere.png':`${carrierId}.svg`,account:device.getName(),deviceId:device.getId(),driver,
+  carrier,carrierId,carrierLogo:carrierId==='dhl-de'?'dhl.svg':['ampere','trunkrs','dynalogic','dragonfly','mondial-relay','amazon'].includes(carrierId)?`${carrierId}.png`:`${carrierId}.svg`,account:device.getName(),deviceId:device.getId(),driver,
   tracking,status:statusLabel(homey,parcel),statusKey:statusKey(parcel),stage:stage(parcel,timeZone),sender:str(parcel.sender,parcel.title,parcel.sourceDisplayName),receiver:str(parcel.receiver),
   deliveryDate:str(parcel.deliveryDate,parcel.deliveryWindowFrom),deliveryWindow:str(parcel.deliveryWindow),deliveryWindowFrom:str(parcel.deliveryWindowFrom),deliveryWindowTo:str(parcel.deliveryWindowTo),
   updatedAt:str(parcel.updatedAt,parcel.createdAt),createdAt:str(parcel.createdAt),lastEvent:eventText(homey,str(parcel.lastEvent,parcel.latestStatusEvent,parcel.statusRaw,parcel.status)),

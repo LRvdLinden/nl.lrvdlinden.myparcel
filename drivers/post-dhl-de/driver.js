@@ -1,6 +1,7 @@
 'use strict';
 
 const Homey = require('homey');
+const { t, localizeSession } = require('../../lib/messages-i18n');
 const crypto = require('crypto');
 const API = require('../../lib/post-dhl-de-api');
 const { STATUS, DhlDeSession, DhlDeClient, parseDeRedirect, parseTrackingList, formatTrackingList } = require('../../lib/dhl-tracking');
@@ -31,6 +32,7 @@ module.exports = class PostDhlDeDriver extends Homey.Driver {
   }
 
   _handlers(session, device = null) {
+    localizeSession(this.homey, session, 'DHL');
     let pkce = null;
     let de = null;
 
@@ -40,9 +42,9 @@ module.exports = class PostDhlDeDriver extends Homey.Driver {
       return { url: API.authUrl(pkce) };
     });
     const appLogin = async ({ callback } = {}) => {
-      if (!pkce) throw new Error('Start the DHL login first.');
+      if (!pkce) throw new Error(t(this.homey, 'start_first', { service: 'DHL' }));
       const c = API.callback(callback);
-      if (!c.code || c.state !== pkce.state) throw new Error('Invalid DHL login callback. Copy the complete address after signing in.');
+      if (!c.code || c.state !== pkce.state) throw new Error(t(this.homey, 'invalid_callback'));
       const api = new API();
       const tokens = await api.exchange(c.code, pkce.verifier);
       const info = await api.customer().catch(() => ({}));
@@ -71,10 +73,10 @@ module.exports = class PostDhlDeDriver extends Homey.Driver {
       return { url };
     });
     session.setHandler('login_dhlde', async ({ redirect, tracking } = {}) => {
-      if (!de) throw new Error('Start the DHL.de login first.');
+      if (!de) throw new Error(t(this.homey, 'start_first', { service: 'DHL.de' }));
       const { code, state } = parseDeRedirect(redirect);
-      if (!code) throw new Error('Paste the complete dhllogin://… address (it contains code=…).');
-      if (state && state !== de.state) throw new Error('This sign-in belongs to an older attempt. Start the DHL.de login again.');
+      if (!code) throw new Error(t(this.homey, 'paste_address', { url: 'dhllogin://…' }));
+      if (state && state !== de.state) throw new Error(t(this.homey, 'older_attempt', { service: 'DHL.de' }));
       const claims = await de.session.exchange(code, de.verifier);
       const refreshToken = de.session.refreshToken;
       await new DhlDeClient({ session: de.session }).getInbox(); // proves the account link and the German IP

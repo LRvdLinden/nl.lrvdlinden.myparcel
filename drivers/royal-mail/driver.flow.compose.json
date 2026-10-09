@@ -5,17 +5,17 @@
       "title": {
         "en": "New Royal Mail package",
         "nl": "Nieuw Royal Mail-pakket",
-        "de": "New Royal Mail package",
-        "fr": "New Royal Mail package",
-        "it": "New Royal Mail package",
-        "sv": "New Royal Mail package",
-        "no": "New Royal Mail package",
-        "es": "New Royal Mail package",
-        "da": "New Royal Mail package",
-        "ru": "New Royal Mail package",
-        "pl": "New Royal Mail package",
-        "ko": "New Royal Mail package",
-        "ar": "New Royal Mail package"
+        "de": "Neues Royal Mail-Paket",
+        "fr": "Nouveau colis Royal Mail",
+        "it": "Nuovo pacco Royal Mail",
+        "sv": "Nytt Royal Mail-paket",
+        "no": "Ny Royal Mail-pakke",
+        "es": "Nuevo paquete Royal Mail",
+        "da": "Ny Royal Mail-pakke",
+        "ru": "Новая посылка Royal Mail",
+        "pl": "Nowa paczka Royal Mail",
+        "ko": "새 Royal Mail 택배",
+        "ar": "طرد Royal Mail جديد"
       },
       "args": [],
       "tokens": [
@@ -25,17 +25,17 @@
           "title": {
             "en": "Tracking number",
             "nl": "Trackingnummer",
-            "de": "Tracking number",
-            "fr": "Tracking number",
-            "it": "Tracking number",
-            "sv": "Tracking number",
-            "no": "Tracking number",
-            "es": "Tracking number",
-            "da": "Tracking number",
-            "ru": "Tracking number",
-            "pl": "Tracking number",
-            "ko": "Tracking number",
-            "ar": "Tracking number"
+            "de": "Sendungsnummer",
+            "fr": "Numéro de suivi",
+            "it": "Numero di tracciamento",
+            "sv": "Spårningsnummer",
+            "no": "Sporingsnummer",
+            "es": "Número de seguimiento",
+            "da": "Sporingsnummer",
+            "ru": "Трек-номер",
+            "pl": "Numer przesyłki",
+            "ko": "운송장 번호",
+            "ar": "رقم التتبع"
           }
         },
         {
@@ -64,17 +64,17 @@
       "title": {
         "en": "Royal Mail package status changed",
         "nl": "Royal Mail-pakketstatus gewijzigd",
-        "de": "Royal Mail package status changed",
-        "fr": "Royal Mail package status changed",
-        "it": "Royal Mail package status changed",
-        "sv": "Royal Mail package status changed",
-        "no": "Royal Mail package status changed",
-        "es": "Royal Mail package status changed",
-        "da": "Royal Mail package status changed",
-        "ru": "Royal Mail package status changed",
-        "pl": "Royal Mail package status changed",
-        "ko": "Royal Mail package status changed",
-        "ar": "Royal Mail package status changed"
+        "de": "Royal Mail-Paketstatus geändert",
+        "fr": "Statut du colis Royal Mail modifié",
+        "it": "Stato del pacco Royal Mail modificato",
+        "sv": "Royal Mail-paketstatus ändrad",
+        "no": "Royal Mail-pakkestatus endret",
+        "es": "Estado del paquete Royal Mail modificado",
+        "da": "Royal Mail-pakkestatus ændret",
+        "ru": "Статус посылки Royal Mail изменён",
+        "pl": "Status paczki Royal Mail zmieniony",
+        "ko": "Royal Mail 택배 상태 변경됨",
+        "ar": "تم تغيير حالة طرد Royal Mail"
       },
       "args": [],
       "tokens": [
@@ -84,17 +84,17 @@
           "title": {
             "en": "Tracking number",
             "nl": "Trackingnummer",
-            "de": "Tracking number",
-            "fr": "Tracking number",
-            "it": "Tracking number",
-            "sv": "Tracking number",
-            "no": "Tracking number",
-            "es": "Tracking number",
-            "da": "Tracking number",
-            "ru": "Tracking number",
-            "pl": "Tracking number",
-            "ko": "Tracking number",
-            "ar": "Tracking number"
+            "de": "Sendungsnummer",
+            "fr": "Numéro de suivi",
+            "it": "Numero di tracciamento",
+            "sv": "Spårningsnummer",
+            "no": "Sporingsnummer",
+            "es": "Número de seguimiento",
+            "da": "Sporingsnummer",
+            "ru": "Трек-номер",
+            "pl": "Numer przesyłki",
+            "ko": "운송장 번호",
+            "ar": "رقم التتبع"
           }
         },
         {
@@ -122,17 +122,17 @@
           "title": {
             "en": "Previous status",
             "nl": "Vorige status",
-            "de": "Previous status",
-            "fr": "Previous status",
-            "it": "Previous status",
-            "sv": "Previous status",
-            "no": "Previous status",
-            "es": "Previous status",
-            "da": "Previous status",
-            "ru": "Previous status",
-            "pl": "Previous status",
-            "ko": "Previous status",
-            "ar": "Previous status"
+            "de": "Vorheriger Status",
+            "fr": "Statut précédent",
+            "it": "Stato precedente",
+            "sv": "Föregående status",
+            "no": "Forrige status",
+            "es": "Estado anterior",
+            "da": "Forrige status",
+            "ru": "Предыдущий статус",
+            "pl": "Poprzedni status",
+            "ko": "이전 상태",
+            "ar": "الحالة السابقة"
           }
         }
       ]
@@ -144,17 +144,17 @@
       "title": {
         "en": "Royal Mail packages are underway",
         "nl": "Er zijn Royal Mail-pakketten onderweg",
-        "de": "Royal Mail packages are underway",
-        "fr": "Royal Mail packages are underway",
-        "it": "Royal Mail packages are underway",
-        "sv": "Royal Mail packages are underway",
-        "no": "Royal Mail packages are underway",
-        "es": "Royal Mail packages are underway",
-        "da": "Royal Mail packages are underway",
-        "ru": "Royal Mail packages are underway",
-        "pl": "Royal Mail packages are underway",
-        "ko": "Royal Mail packages are underway",
-        "ar": "Royal Mail packages are underway"
+        "de": "Royal Mail-Pakete sind unterwegs",
+        "fr": "Des colis Royal Mail sont en route",
+        "it": "Pacchi Royal Mail in viaggio",
+        "sv": "Royal Mail-paket är på väg",
+        "no": "Royal Mail-pakker er underveis",
+        "es": "Hay paquetes Royal Mail en camino",
+        "da": "Royal Mail-pakker er undervejs",
+        "ru": "Посылки Royal Mail в пути",
+        "pl": "Paczki Royal Mail są w drodze",
+        "ko": "Royal Mail 택배 배송 중",
+        "ar": "طرود Royal Mail قيد التوصيل"
       },
       "args": []
     }
@@ -165,17 +165,17 @@
       "title": {
         "en": "Refresh Royal Mail",
         "nl": "Vernieuw Royal Mail",
-        "de": "Refresh Royal Mail",
-        "fr": "Refresh Royal Mail",
-        "it": "Refresh Royal Mail",
-        "sv": "Refresh Royal Mail",
-        "no": "Refresh Royal Mail",
-        "es": "Refresh Royal Mail",
-        "da": "Refresh Royal Mail",
-        "ru": "Refresh Royal Mail",
-        "pl": "Refresh Royal Mail",
-        "ko": "Refresh Royal Mail",
-        "ar": "Refresh Royal Mail"
+        "de": "Royal Mail aktualisieren",
+        "fr": "Actualiser Royal Mail",
+        "it": "Aggiorna Royal Mail",
+        "sv": "Uppdatera Royal Mail",
+        "no": "Oppdater Royal Mail",
+        "es": "Actualizar Royal Mail",
+        "da": "Opdater Royal Mail",
+        "ru": "Обновить Royal Mail",
+        "pl": "Odśwież Royal Mail",
+        "ko": "Royal Mail 새로고침",
+        "ar": "تحديث Royal Mail"
       },
       "args": []
     }

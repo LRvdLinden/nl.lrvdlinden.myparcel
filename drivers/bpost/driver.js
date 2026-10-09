@@ -1,6 +1,7 @@
 'use strict';
 
 const Homey = require('homey');
+const { t, localizeSession } = require('../../lib/messages-i18n');
 const crypto = require('crypto');
 const { BpostAccountClient } = require('../../lib/bpost-tracking');
 const { registerDhlFlowCards: registerFlowCards } = require('../../lib/dhl-flow');
@@ -35,7 +36,7 @@ module.exports = class BpostDriver extends Homey.Driver {
 
   async _login(email, password) {
     const mail = String(email || '').trim().toLowerCase();
-    if (!mail || !password) throw new Error('Enter your My bpost e-mail address and password.');
+    if (!mail || !password) throw new Error(t(this.homey, 'enter_email_password', { account: 'My bpost' }));
     const tokens = {};
     const client = new BpostAccountClient({ onTokens: t => Object.assign(tokens, t) });
     await client.login(mail, password);
@@ -43,6 +44,7 @@ module.exports = class BpostDriver extends Homey.Driver {
   }
 
   _handlers(session, device = null) {
+    localizeSession(this.homey, session, 'bpost');
     session.setHandler('connect', async ({ email, password } = {}) => {
       const { email: mail, tokens } = await this._login(email, password);
       if (device) { await device.updateAccount(mail, tokens); return true; }
@@ -57,7 +59,7 @@ module.exports = class BpostDriver extends Homey.Driver {
     });
     session.setHandler('manual_connect', async ({ trackingCodes, postalCode } = {}) => {
       const list = rows(trackingCodes);
-      if (!list.length) throw new Error('Enter at least one bpost barcode.');
+      if (!list.length) throw new Error(t(this.homey, 'enter_at_least_one', { carrier: 'bpost' }));
       if (device) { await device.setSettings({ tracking_numbers: list.join('\n'), ...(postalCode ? { postal_code: String(postalCode).trim() } : {}) }); await device.refresh(true); return true; }
       return {
         device: {

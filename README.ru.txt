@@ -1,14 +1,14 @@
-MyParcel brings supported parcel carriers together in Homey. View your parcels in one place with Homey devices, Flows and widgets.
+MyParcel объединяет поддерживаемых перевозчиков посылок в Homey. Следите за всеми посылками в одном месте с помощью устройств, Flow и виджетов Homey.
 
-Supported countries and carriers
+Поддерживаемые страны и перевозчики
 
-- 🇳🇱 Netherlands: PostNL, DHL, DPD, Budbee, Homerr / Vinted Go, FedEx and GLS.
-- 🇧🇪 Belgium: bpost.
-- 🇬🇧 United Kingdom: InPost UK.
-- 🇩🇪 Germany: Post & DHL.
-- 🗺️ International: UPS.
+- 🇳🇱 Нидерланды: PostNL, DHL, DPD, Budbee, Homerr / Vinted Go, FedEx, GLS и Ampère.
+- 🇧🇪 Бельгия: bpost.
+- 🇬🇧 Великобритания: InPost UK и Royal Mail.
+- 🇩🇪 Германия: Post & DHL.
+- 🗺️ Международные: UPS и DHL Express.
 
-Installation
+Установка
 
-For carrier-specific installation and account-linking instructions, see the MyParcel Community topic:
+Инструкции по установке и подключению учётной записи для каждого перевозчика смотрите в теме MyParcel в сообществе Homey:
 https://community.homey.app/t/app-pro-myparcel/159800

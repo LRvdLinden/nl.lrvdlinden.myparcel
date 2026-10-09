@@ -3,9 +3,9 @@
     "email": "이메일 주소",
     "password": "비밀번호",
     "connect": "계정 연결",
-    "title": "Add My PostNL",
-    "subtitle": "Connect each device to one PostNL account.",
-    "language_marker": "en"
+    "title": "My PostNL 추가",
+    "subtitle": "각 기기를 하나의 PostNL 계정에 연결하세요.",
+    "language_marker": "ko"
   },
   "widget": {
     "loading": "불러오는 중…",
@@ -26,7 +26,7 @@
     "name": "My PostNL"
   },
   "carrier": {
-    "pending": "Account API not configured"
+    "pending": "계정 API가 구성되지 않음"
   },
   "ups": {
     "pair": {

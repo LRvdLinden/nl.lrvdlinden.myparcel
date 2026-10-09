@@ -2,11 +2,11 @@ MyParcel brings supported parcel carriers together in Homey. View your parcels i
 
 Supported countries and carriers
 
-- 🇳🇱 Netherlands: PostNL, DHL, DPD, Budbee, Homerr / Vinted Go, FedEx and GLS.
+- 🇳🇱 Netherlands: PostNL, DHL, DPD, Budbee, Homerr / Vinted Go, FedEx, GLS and Ampère.
 - 🇧🇪 Belgium: bpost.
-- 🇬🇧 United Kingdom: InPost UK.
+- 🇬🇧 United Kingdom: InPost UK and Royal Mail.
 - 🇩🇪 Germany: Post & DHL.
-- 🗺️ International: UPS.
+- 🗺️ International: UPS and DHL Express.
 
 Installation
 

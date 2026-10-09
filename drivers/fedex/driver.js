@@ -1,6 +1,7 @@
 'use strict';
 
 const Homey = require('homey');
+const { t, localizeSession } = require('../../lib/messages-i18n');
 const crypto = require('crypto');
 const { FedExClient, normalizeCode } = require('../../lib/fedex-tracking');
 const { simpleTrackingList } = require('../../lib/carrier-migrate');
@@ -34,10 +35,11 @@ module.exports = class FedExDriver extends Homey.Driver {
   }
 
   async onPair(session) {
+    localizeSession(this.homey, session, 'FedEx');
     session.setHandler('login', async d => {
       const clientId = String(d.clientId || '').trim();
       const clientSecret = String(d.clientSecret || '');
-      if (!clientId || !clientSecret) throw new Error('Client ID and Client Secret are required.');
+      if (!clientId || !clientSecret) throw new Error(t(this.homey, 'fedex_credentials'));
       await this._validate(clientId, clientSecret);
       const codes = simpleTrackingList(d.trackingNumbers, normalizeCode).map(e => e.code);
       return {
@@ -50,9 +52,10 @@ module.exports = class FedExDriver extends Homey.Driver {
     });
   }
 
-  async onRepair(session) {
+  async onRepair(session, repairDevice) {
+    localizeSession(this.homey, session, 'FedEx');
     session.setHandler('repair', async d => {
-      const dev = session.getDevice();
+      const dev = repairDevice;
       const clientId = String(d.clientId || dev.getSetting('client_id') || '').trim();
       const clientSecret = String(d.clientSecret || dev.getSetting('client_secret') || '');
       await this._validate(clientId, clientSecret);

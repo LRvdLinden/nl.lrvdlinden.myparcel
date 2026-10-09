@@ -6,17 +6,17 @@
       "title": {
         "en": "New DHL Express parcel found",
         "nl": "Nieuw DHL Express-pakket gevonden",
-        "de": "New DHL Express parcel found",
-        "fr": "New DHL Express parcel found",
-        "it": "New DHL Express parcel found",
-        "sv": "New DHL Express parcel found",
-        "no": "New DHL Express parcel found",
-        "es": "New DHL Express parcel found",
-        "da": "New DHL Express parcel found",
-        "ru": "New DHL Express parcel found",
-        "pl": "New DHL Express parcel found",
-        "ko": "New DHL Express parcel found",
-        "ar": "New DHL Express parcel found"
+        "de": "Neues DHL Express-Paket gefunden",
+        "fr": "Nouveau colis DHL Express trouvé",
+        "it": "Trovato nuovo pacco DHL Express",
+        "sv": "Nytt DHL Express-paket hittat",
+        "no": "Ny DHL Express-pakke funnet",
+        "es": "Nuevo paquete DHL Express encontrado",
+        "da": "Ny DHL Express-pakke fundet",
+        "ru": "Найдена новая посылка DHL Express",
+        "pl": "Znaleziono nową paczkę DHL Express",
+        "ko": "새 DHL Express 택배 발견",
+        "ar": "تم العثور على طرد DHL Express جديد"
       },
       "args": [],
       "tokens": [
@@ -26,17 +26,17 @@
           "title": {
             "en": "Carrier",
             "nl": "Vervoerder",
-            "de": "Carrier",
-            "fr": "Carrier",
-            "it": "Carrier",
-            "sv": "Carrier",
-            "no": "Carrier",
-            "es": "Carrier",
-            "da": "Carrier",
-            "ru": "Carrier",
-            "pl": "Carrier",
-            "ko": "Carrier",
-            "ar": "Carrier"
+            "de": "Paketdienst",
+            "fr": "Transporteur",
+            "it": "Corriere",
+            "sv": "Transportör",
+            "no": "Transportør",
+            "es": "Transportista",
+            "da": "Transportør",
+            "ru": "Перевозчик",
+            "pl": "Przewoźnik",
+            "ko": "배송사",
+            "ar": "شركة الشحن"
           }
         },
         {
@@ -45,17 +45,17 @@
           "title": {
             "en": "Tracking number",
             "nl": "Trackingnummer",
-            "de": "Tracking number",
-            "fr": "Tracking number",
-            "it": "Tracking number",
-            "sv": "Tracking number",
-            "no": "Tracking number",
-            "es": "Tracking number",
-            "da": "Tracking number",
-            "ru": "Tracking number",
-            "pl": "Tracking number",
-            "ko": "Tracking number",
-            "ar": "Tracking number"
+            "de": "Sendungsnummer",
+            "fr": "Numéro de suivi",
+            "it": "Numero di tracciamento",
+            "sv": "Spårningsnummer",
+            "no": "Sporingsnummer",
+            "es": "Número de seguimiento",
+            "da": "Sporingsnummer",
+            "ru": "Трек-номер",
+            "pl": "Numer przesyłki",
+            "ko": "운송장 번호",
+            "ar": "رقم التتبع"
           }
         },
         {
@@ -65,16 +65,16 @@
             "en": "Sender",
             "nl": "Afzender",
             "de": "Sender",
-            "fr": "Sender",
-            "it": "Sender",
-            "sv": "Sender",
-            "no": "Sender",
-            "es": "Sender",
-            "da": "Sender",
-            "ru": "Sender",
-            "pl": "Sender",
-            "ko": "Sender",
-            "ar": "Sender"
+            "fr": "Expéditeur",
+            "it": "Mittente",
+            "sv": "Avsändare",
+            "no": "Avsender",
+            "es": "Remitente",
+            "da": "Afsender",
+            "ru": "Отправитель",
+            "pl": "Nadawca",
+            "ko": "발송인",
+            "ar": "المرسل"
           }
         },
         {
@@ -83,17 +83,17 @@
           "title": {
             "en": "Receiver",
             "nl": "Ontvanger",
-            "de": "Receiver",
-            "fr": "Receiver",
-            "it": "Receiver",
-            "sv": "Receiver",
-            "no": "Receiver",
-            "es": "Receiver",
-            "da": "Receiver",
-            "ru": "Receiver",
-            "pl": "Receiver",
-            "ko": "Receiver",
-            "ar": "Receiver"
+            "de": "Empfänger",
+            "fr": "Destinataire",
+            "it": "Destinatario",
+            "sv": "Mottagare",
+            "no": "Mottaker",
+            "es": "Destinatario",
+            "da": "Modtager",
+            "ru": "Получатель",
+            "pl": "Odbiorca",
+            "ko": "수령인",
+            "ar": "المستلم"
           }
         },
         {
@@ -103,16 +103,16 @@
             "en": "Status",
             "nl": "Status",
             "de": "Status",
-            "fr": "Status",
+            "fr": "Statut",
             "it": "Status",
             "sv": "Status",
             "no": "Status",
-            "es": "Status",
+            "es": "Estado",
             "da": "Status",
-            "ru": "Status",
+            "ru": "Статус",
             "pl": "Status",
-            "ko": "Status",
-            "ar": "Status"
+            "ko": "상태",
+            "ar": "الحالة"
           }
         },
         {
@@ -121,17 +121,17 @@
           "title": {
             "en": "Delivery date",
             "nl": "Bezorgdatum",
-            "de": "Delivery date",
-            "fr": "Delivery date",
-            "it": "Delivery date",
-            "sv": "Delivery date",
-            "no": "Delivery date",
-            "es": "Delivery date",
-            "da": "Delivery date",
-            "ru": "Delivery date",
-            "pl": "Delivery date",
-            "ko": "Delivery date",
-            "ar": "Delivery date"
+            "de": "Zustelldatum",
+            "fr": "Date de livraison",
+            "it": "Data di consegna",
+            "sv": "Leveransdatum",
+            "no": "Leveringsdato",
+            "es": "Fecha de entrega",
+            "da": "Leveringsdato",
+            "ru": "Дата доставки",
+            "pl": "Data dostawy",
+            "ko": "배송 날짜",
+            "ar": "تاريخ التوصيل"
           }
         },
         {
@@ -140,17 +140,17 @@
           "title": {
             "en": "Delivery window",
             "nl": "Bezorgvenster",
-            "de": "Delivery window",
-            "fr": "Delivery window",
-            "it": "Delivery window",
-            "sv": "Delivery window",
-            "no": "Delivery window",
-            "es": "Delivery window",
-            "da": "Delivery window",
-            "ru": "Delivery window",
-            "pl": "Delivery window",
-            "ko": "Delivery window",
-            "ar": "Delivery window"
+            "de": "Zustellzeitfenster",
+            "fr": "Créneau de livraison",
+            "it": "Finestra di consegna",
+            "sv": "Leveransfönster",
+            "no": "Leveringsvindu",
+            "es": "Franja de entrega",
+            "da": "Leveringsvindue",
+            "ru": "Интервал доставки",
+            "pl": "Okno dostawy",
+            "ko": "배송 시간대",
+            "ar": "نافذة التوصيل"
           }
         },
         {
@@ -161,15 +161,15 @@
             "nl": "Service",
             "de": "Service",
             "fr": "Service",
-            "it": "Service",
+            "it": "Servizio",
             "sv": "Service",
             "no": "Service",
-            "es": "Service",
+            "es": "Servicio",
             "da": "Service",
-            "ru": "Service",
-            "pl": "Service",
-            "ko": "Service",
-            "ar": "Service"
+            "ru": "Сервис",
+            "pl": "Usługa",
+            "ko": "서비스",
+            "ar": "الخدمة"
           }
         },
         {
@@ -178,17 +178,17 @@
           "title": {
             "en": "Origin",
             "nl": "Herkomst",
-            "de": "Origin",
-            "fr": "Origin",
-            "it": "Origin",
-            "sv": "Origin",
-            "no": "Origin",
-            "es": "Origin",
-            "da": "Origin",
-            "ru": "Origin",
-            "pl": "Origin",
-            "ko": "Origin",
-            "ar": "Origin"
+            "de": "Herkunft",
+            "fr": "Origine",
+            "it": "Origine",
+            "sv": "Ursprung",
+            "no": "Opprinnelse",
+            "es": "Origen",
+            "da": "Oprindelse",
+            "ru": "Откуда",
+            "pl": "Skąd",
+            "ko": "출발지",
+            "ar": "المنشأ"
           }
         },
         {
@@ -197,17 +197,17 @@
           "title": {
             "en": "Destination",
             "nl": "Bestemming",
-            "de": "Destination",
+            "de": "Zielort",
             "fr": "Destination",
-            "it": "Destination",
+            "it": "Destinazione",
             "sv": "Destination",
-            "no": "Destination",
-            "es": "Destination",
+            "no": "Destinasjon",
+            "es": "Destino",
             "da": "Destination",
-            "ru": "Destination",
-            "pl": "Destination",
-            "ko": "Destination",
-            "ar": "Destination"
+            "ru": "Пункт назначения",
+            "pl": "Miejsce docelowe",
+            "ko": "목적지",
+            "ar": "الوجهة"
           }
         },
         {
@@ -216,17 +216,17 @@
           "title": {
             "en": "Last event",
             "nl": "Laatste gebeurtenis",
-            "de": "Last event",
-            "fr": "Last event",
-            "it": "Last event",
-            "sv": "Last event",
-            "no": "Last event",
-            "es": "Last event",
-            "da": "Last event",
-            "ru": "Last event",
-            "pl": "Last event",
-            "ko": "Last event",
-            "ar": "Last event"
+            "de": "Letztes Ereignis",
+            "fr": "Dernier événement",
+            "it": "Ultimo evento",
+            "sv": "Senaste händelse",
+            "no": "Siste hendelse",
+            "es": "Último evento",
+            "da": "Seneste hændelse",
+            "ru": "Последнее событие",
+            "pl": "Ostatnie zdarzenie",
+            "ko": "마지막 이벤트",
+            "ar": "آخر حدث"
           }
         },
         {
@@ -235,17 +235,17 @@
           "title": {
             "en": "Delivered",
             "nl": "Bezorgd",
-            "de": "Delivered",
-            "fr": "Delivered",
-            "it": "Delivered",
-            "sv": "Delivered",
-            "no": "Delivered",
-            "es": "Delivered",
-            "da": "Delivered",
-            "ru": "Delivered",
-            "pl": "Delivered",
-            "ko": "Delivered",
-            "ar": "Delivered"
+            "de": "Zugestellt",
+            "fr": "Livré",
+            "it": "Consegnato",
+            "sv": "Levererad",
+            "no": "Levert",
+            "es": "Entregado",
+            "da": "Leveret",
+            "ru": "Доставлена",
+            "pl": "Doręczona",
+            "ko": "배송 완료",
+            "ar": "تم التسليم"
           }
         },
         {
@@ -254,17 +254,17 @@
           "title": {
             "en": "Active parcels",
             "nl": "Actieve pakketten",
-            "de": "Active parcels",
-            "fr": "Active parcels",
-            "it": "Active parcels",
-            "sv": "Active parcels",
-            "no": "Active parcels",
-            "es": "Active parcels",
-            "da": "Active parcels",
-            "ru": "Active parcels",
-            "pl": "Active parcels",
-            "ko": "Active parcels",
-            "ar": "Active parcels"
+            "de": "Aktive Pakete",
+            "fr": "Colis actifs",
+            "it": "Pacchi attivi",
+            "sv": "Aktiva paket",
+            "no": "Aktive pakker",
+            "es": "Paquetes activos",
+            "da": "Aktive pakker",
+            "ru": "Активные посылки",
+            "pl": "Aktywne paczki",
+            "ko": "활성 소포",
+            "ar": "الطرود النشطة"
           }
         },
         {
@@ -273,17 +273,17 @@
           "title": {
             "en": "Total parcels",
             "nl": "Totaal pakketten",
-            "de": "Total parcels",
-            "fr": "Total parcels",
-            "it": "Total parcels",
-            "sv": "Total parcels",
-            "no": "Total parcels",
-            "es": "Total parcels",
-            "da": "Total parcels",
-            "ru": "Total parcels",
-            "pl": "Total parcels",
-            "ko": "Total parcels",
-            "ar": "Total parcels"
+            "de": "Pakete gesamt",
+            "fr": "Total des colis",
+            "it": "Pacchi totali",
+            "sv": "Totalt antal paket",
+            "no": "Totalt antall pakker",
+            "es": "Paquetes totales",
+            "da": "Pakker i alt",
+            "ru": "Всего посылок",
+            "pl": "Łączna liczba paczek",
+            "ko": "전체 소포",
+            "ar": "إجمالي الطرود"
           }
         },
         {
@@ -292,17 +292,17 @@
           "title": {
             "en": "Last update",
             "nl": "Laatste update",
-            "de": "Last update",
-            "fr": "Last update",
-            "it": "Last update",
-            "sv": "Last update",
-            "no": "Last update",
-            "es": "Last update",
-            "da": "Last update",
-            "ru": "Last update",
-            "pl": "Last update",
-            "ko": "Last update",
-            "ar": "Last update"
+            "de": "Letzte Aktualisierung",
+            "fr": "Dernière mise à jour",
+            "it": "Ultimo aggiornamento",
+            "sv": "Senaste uppdatering",
+            "no": "Siste oppdatering",
+            "es": "Última actualización",
+            "da": "Seneste opdatering",
+            "ru": "Последнее обновление",
+            "pl": "Ostatnia aktualizacja",
+            "ko": "마지막 업데이트",
+            "ar": "آخر تحديث"
           }
         },
         {
@@ -540,17 +540,17 @@
       "title": {
         "en": "DHL Express parcel status changed",
         "nl": "Status DHL Express-pakket gewijzigd",
-        "de": "DHL Express parcel status changed",
-        "fr": "DHL Express parcel status changed",
-        "it": "DHL Express parcel status changed",
-        "sv": "DHL Express parcel status changed",
-        "no": "DHL Express parcel status changed",
-        "es": "DHL Express parcel status changed",
-        "da": "DHL Express parcel status changed",
-        "ru": "DHL Express parcel status changed",
-        "pl": "DHL Express parcel status changed",
-        "ko": "DHL Express parcel status changed",
-        "ar": "DHL Express parcel status changed"
+        "de": "DHL Express-Paketstatus geändert",
+        "fr": "Statut du colis DHL Express modifié",
+        "it": "Stato del pacco DHL Express modificato",
+        "sv": "DHL Express-paketstatus ändrad",
+        "no": "DHL Express-pakkestatus endret",
+        "es": "Estado del paquete DHL Express modificado",
+        "da": "DHL Express-pakkestatus ændret",
+        "ru": "Статус посылки DHL Express изменён",
+        "pl": "Status paczki DHL Express zmieniony",
+        "ko": "DHL Express 택배 상태 변경됨",
+        "ar": "تم تغيير حالة طرد DHL Express"
       },
       "args": [],
       "tokens": [
@@ -560,17 +560,17 @@
           "title": {
             "en": "Previous status",
             "nl": "Vorige status",
-            "de": "Previous status",
-            "fr": "Previous status",
-            "it": "Previous status",
-            "sv": "Previous status",
-            "no": "Previous status",
-            "es": "Previous status",
-            "da": "Previous status",
-            "ru": "Previous status",
-            "pl": "Previous status",
-            "ko": "Previous status",
-            "ar": "Previous status"
+            "de": "Vorheriger Status",
+            "fr": "Statut précédent",
+            "it": "Stato precedente",
+            "sv": "Föregående status",
+            "no": "Forrige status",
+            "es": "Estado anterior",
+            "da": "Forrige status",
+            "ru": "Предыдущий статус",
+            "pl": "Poprzedni status",
+            "ko": "이전 상태",
+            "ar": "الحالة السابقة"
           }
         },
         {
@@ -579,17 +579,17 @@
           "title": {
             "en": "Carrier",
             "nl": "Vervoerder",
-            "de": "Carrier",
-            "fr": "Carrier",
-            "it": "Carrier",
-            "sv": "Carrier",
-            "no": "Carrier",
-            "es": "Carrier",
-            "da": "Carrier",
-            "ru": "Carrier",
-            "pl": "Carrier",
-            "ko": "Carrier",
-            "ar": "Carrier"
+            "de": "Paketdienst",
+            "fr": "Transporteur",
+            "it": "Corriere",
+            "sv": "Transportör",
+            "no": "Transportør",
+            "es": "Transportista",
+            "da": "Transportør",
+            "ru": "Перевозчик",
+            "pl": "Przewoźnik",
+            "ko": "배송사",
+            "ar": "شركة الشحن"
           }
         },
         {
@@ -598,17 +598,17 @@
           "title": {
             "en": "Tracking number",
             "nl": "Trackingnummer",
-            "de": "Tracking number",
-            "fr": "Tracking number",
-            "it": "Tracking number",
-            "sv": "Tracking number",
-            "no": "Tracking number",
-            "es": "Tracking number",
-            "da": "Tracking number",
-            "ru": "Tracking number",
-            "pl": "Tracking number",
-            "ko": "Tracking number",
-            "ar": "Tracking number"
+            "de": "Sendungsnummer",
+            "fr": "Numéro de suivi",
+            "it": "Numero di tracciamento",
+            "sv": "Spårningsnummer",
+            "no": "Sporingsnummer",
+            "es": "Número de seguimiento",
+            "da": "Sporingsnummer",
+            "ru": "Трек-номер",
+            "pl": "Numer przesyłki",
+            "ko": "운송장 번호",
+            "ar": "رقم التتبع"
           }
         },
         {
@@ -618,16 +618,16 @@
             "en": "Sender",
             "nl": "Afzender",
             "de": "Sender",
-            "fr": "Sender",
-            "it": "Sender",
-            "sv": "Sender",
-            "no": "Sender",
-            "es": "Sender",
-            "da": "Sender",
-            "ru": "Sender",
-            "pl": "Sender",
-            "ko": "Sender",
-            "ar": "Sender"
+            "fr": "Expéditeur",
+            "it": "Mittente",
+            "sv": "Avsändare",
+            "no": "Avsender",
+            "es": "Remitente",
+            "da": "Afsender",
+            "ru": "Отправитель",
+            "pl": "Nadawca",
+            "ko": "발송인",
+            "ar": "المرسل"
           }
         },
         {
@@ -636,17 +636,17 @@
           "title": {
             "en": "Receiver",
             "nl": "Ontvanger",
-            "de": "Receiver",
-            "fr": "Receiver",
-            "it": "Receiver",
-            "sv": "Receiver",
-            "no": "Receiver",
-            "es": "Receiver",
-            "da": "Receiver",
-            "ru": "Receiver",
-            "pl": "Receiver",
-            "ko": "Receiver",
-            "ar": "Receiver"
+            "de": "Empfänger",
+            "fr": "Destinataire",
+            "it": "Destinatario",
+            "sv": "Mottagare",
+            "no": "Mottaker",
+            "es": "Destinatario",
+            "da": "Modtager",
+            "ru": "Получатель",
+            "pl": "Odbiorca",
+            "ko": "수령인",
+            "ar": "المستلم"
           }
         },
         {
@@ -656,16 +656,16 @@
             "en": "Status",
             "nl": "Status",
             "de": "Status",
-            "fr": "Status",
+            "fr": "Statut",
             "it": "Status",
             "sv": "Status",
             "no": "Status",
-            "es": "Status",
+            "es": "Estado",
             "da": "Status",
-            "ru": "Status",
+            "ru": "Статус",
             "pl": "Status",
-            "ko": "Status",
-            "ar": "Status"
+            "ko": "상태",
+            "ar": "الحالة"
           }
         },
         {
@@ -674,17 +674,17 @@
           "title": {
             "en": "Delivery date",
             "nl": "Bezorgdatum",
-            "de": "Delivery date",
-            "fr": "Delivery date",
-            "it": "Delivery date",
-            "sv": "Delivery date",
-            "no": "Delivery date",
-            "es": "Delivery date",
-            "da": "Delivery date",
-            "ru": "Delivery date",
-            "pl": "Delivery date",
-            "ko": "Delivery date",
-            "ar": "Delivery date"
+            "de": "Zustelldatum",
+            "fr": "Date de livraison",
+            "it": "Data di consegna",
+            "sv": "Leveransdatum",
+            "no": "Leveringsdato",
+            "es": "Fecha de entrega",
+            "da": "Leveringsdato",
+            "ru": "Дата доставки",
+            "pl": "Data dostawy",
+            "ko": "배송 날짜",
+            "ar": "تاريخ التوصيل"
           }
         },
         {
@@ -693,17 +693,17 @@
           "title": {
             "en": "Delivery window",
             "nl": "Bezorgvenster",
-            "de": "Delivery window",
-            "fr": "Delivery window",
-            "it": "Delivery window",
-            "sv": "Delivery window",
-            "no": "Delivery window",
-            "es": "Delivery window",
-            "da": "Delivery window",
-            "ru": "Delivery window",
-            "pl": "Delivery window",
-            "ko": "Delivery window",
-            "ar": "Delivery window"
+            "de": "Zustellzeitfenster",
+            "fr": "Créneau de livraison",
+            "it": "Finestra di consegna",
+            "sv": "Leveransfönster",
+            "no": "Leveringsvindu",
+            "es": "Franja de entrega",
+            "da": "Leveringsvindue",
+            "ru": "Интервал доставки",
+            "pl": "Okno dostawy",
+            "ko": "배송 시간대",
+            "ar": "نافذة التوصيل"
           }
         },
         {
@@ -714,15 +714,15 @@
             "nl": "Service",
             "de": "Service",
             "fr": "Service",
-            "it": "Service",
+            "it": "Servizio",
             "sv": "Service",
             "no": "Service",
-            "es": "Service",
+            "es": "Servicio",
             "da": "Service",
-            "ru": "Service",
-            "pl": "Service",
-            "ko": "Service",
-            "ar": "Service"
+            "ru": "Сервис",
+            "pl": "Usługa",
+            "ko": "서비스",
+            "ar": "الخدمة"
           }
         },
         {
@@ -731,17 +731,17 @@
           "title": {
             "en": "Origin",
             "nl": "Herkomst",
-            "de": "Origin",
-            "fr": "Origin",
-            "it": "Origin",
-            "sv": "Origin",
-            "no": "Origin",
-            "es": "Origin",
-            "da": "Origin",
-            "ru": "Origin",
-            "pl": "Origin",
-            "ko": "Origin",
-            "ar": "Origin"
+            "de": "Herkunft",
+            "fr": "Origine",
+            "it": "Origine",
+            "sv": "Ursprung",
+            "no": "Opprinnelse",
+            "es": "Origen",
+            "da": "Oprindelse",
+            "ru": "Откуда",
+            "pl": "Skąd",
+            "ko": "출발지",
+            "ar": "المنشأ"
           }
         },
         {
@@ -750,17 +750,17 @@
           "title": {
             "en": "Destination",
             "nl": "Bestemming",
-            "de": "Destination",
+            "de": "Zielort",
             "fr": "Destination",
-            "it": "Destination",
+            "it": "Destinazione",
             "sv": "Destination",
-            "no": "Destination",
-            "es": "Destination",
+            "no": "Destinasjon",
+            "es": "Destino",
             "da": "Destination",
-            "ru": "Destination",
-            "pl": "Destination",
-            "ko": "Destination",
-            "ar": "Destination"
+            "ru": "Пункт назначения",
+            "pl": "Miejsce docelowe",
+            "ko": "목적지",
+            "ar": "الوجهة"
           }
         },
         {
@@ -769,17 +769,17 @@
           "title": {
             "en": "Last event",
             "nl": "Laatste gebeurtenis",
-            "de": "Last event",
-            "fr": "Last event",
-            "it": "Last event",
-            "sv": "Last event",
-            "no": "Last event",
-            "es": "Last event",
-            "da": "Last event",
-            "ru": "Last event",
-            "pl": "Last event",
-            "ko": "Last event",
-            "ar": "Last event"
+            "de": "Letztes Ereignis",
+            "fr": "Dernier événement",
+            "it": "Ultimo evento",
+            "sv": "Senaste händelse",
+            "no": "Siste hendelse",
+            "es": "Último evento",
+            "da": "Seneste hændelse",
+            "ru": "Последнее событие",
+            "pl": "Ostatnie zdarzenie",
+            "ko": "마지막 이벤트",
+            "ar": "آخر حدث"
           }
         },
         {
@@ -788,17 +788,17 @@
           "title": {
             "en": "Delivered",
             "nl": "Bezorgd",
-            "de": "Delivered",
-            "fr": "Delivered",
-            "it": "Delivered",
-            "sv": "Delivered",
-            "no": "Delivered",
-            "es": "Delivered",
-            "da": "Delivered",
-            "ru": "Delivered",
-            "pl": "Delivered",
-            "ko": "Delivered",
-            "ar": "Delivered"
+            "de": "Zugestellt",
+            "fr": "Livré",
+            "it": "Consegnato",
+            "sv": "Levererad",
+            "no": "Levert",
+            "es": "Entregado",
+            "da": "Leveret",
+            "ru": "Доставлена",
+            "pl": "Doręczona",
+            "ko": "배송 완료",
+            "ar": "تم التسليم"
           }
         },
         {
@@ -807,17 +807,17 @@
           "title": {
             "en": "Active parcels",
             "nl": "Actieve pakketten",
-            "de": "Active parcels",
-            "fr": "Active parcels",
-            "it": "Active parcels",
-            "sv": "Active parcels",
-            "no": "Active parcels",
-            "es": "Active parcels",
-            "da": "Active parcels",
-            "ru": "Active parcels",
-            "pl": "Active parcels",
-            "ko": "Active parcels",
-            "ar": "Active parcels"
+            "de": "Aktive Pakete",
+            "fr": "Colis actifs",
+            "it": "Pacchi attivi",
+            "sv": "Aktiva paket",
+            "no": "Aktive pakker",
+            "es": "Paquetes activos",
+            "da": "Aktive pakker",
+            "ru": "Активные посылки",
+            "pl": "Aktywne paczki",
+            "ko": "활성 소포",
+            "ar": "الطرود النشطة"
           }
         },
         {
@@ -826,17 +826,17 @@
           "title": {
             "en": "Total parcels",
             "nl": "Totaal pakketten",
-            "de": "Total parcels",
-            "fr": "Total parcels",
-            "it": "Total parcels",
-            "sv": "Total parcels",
-            "no": "Total parcels",
-            "es": "Total parcels",
-            "da": "Total parcels",
-            "ru": "Total parcels",
-            "pl": "Total parcels",
-            "ko": "Total parcels",
-            "ar": "Total parcels"
+            "de": "Pakete gesamt",
+            "fr": "Total des colis",
+            "it": "Pacchi totali",
+            "sv": "Totalt antal paket",
+            "no": "Totalt antall pakker",
+            "es": "Paquetes totales",
+            "da": "Pakker i alt",
+            "ru": "Всего посылок",
+            "pl": "Łączna liczba paczek",
+            "ko": "전체 소포",
+            "ar": "إجمالي الطرود"
           }
         },
         {
@@ -845,17 +845,17 @@
           "title": {
             "en": "Last update",
             "nl": "Laatste update",
-            "de": "Last update",
-            "fr": "Last update",
-            "it": "Last update",
-            "sv": "Last update",
-            "no": "Last update",
-            "es": "Last update",
-            "da": "Last update",
-            "ru": "Last update",
-            "pl": "Last update",
-            "ko": "Last update",
-            "ar": "Last update"
+            "de": "Letzte Aktualisierung",
+            "fr": "Dernière mise à jour",
+            "it": "Ultimo aggiornamento",
+            "sv": "Senaste uppdatering",
+            "no": "Siste oppdatering",
+            "es": "Última actualización",
+            "da": "Seneste opdatering",
+            "ru": "Последнее обновление",
+            "pl": "Ostatnia aktualizacja",
+            "ko": "마지막 업데이트",
+            "ar": "آخر تحديث"
           }
         },
         {
@@ -2011,17 +2011,17 @@
       "title": {
         "en": "DHL Express parcel delivered",
         "nl": "DHL Express-pakket bezorgd",
-        "de": "DHL Express parcel delivered",
-        "fr": "DHL Express parcel delivered",
-        "it": "DHL Express parcel delivered",
-        "sv": "DHL Express parcel delivered",
-        "no": "DHL Express parcel delivered",
-        "es": "DHL Express parcel delivered",
-        "da": "DHL Express parcel delivered",
-        "ru": "DHL Express parcel delivered",
-        "pl": "DHL Express parcel delivered",
-        "ko": "DHL Express parcel delivered",
-        "ar": "DHL Express parcel delivered"
+        "de": "DHL Express-Paket zugestellt",
+        "fr": "Colis DHL Express livré",
+        "it": "Pacco DHL Express consegnato",
+        "sv": "DHL Express-paket levererat",
+        "no": "DHL Express-pakke levert",
+        "es": "Paquete DHL Express entregado",
+        "da": "DHL Express-pakke leveret",
+        "ru": "Посылка DHL Express доставлена",
+        "pl": "Paczka DHL Express doręczona",
+        "ko": "DHL Express 택배 배송 완료",
+        "ar": "تم تسليم طرد DHL Express"
       },
       "args": [],
       "tokens": [
@@ -2031,17 +2031,17 @@
           "title": {
             "en": "Carrier",
             "nl": "Vervoerder",
-            "de": "Carrier",
-            "fr": "Carrier",
-            "it": "Carrier",
-            "sv": "Carrier",
-            "no": "Carrier",
-            "es": "Carrier",
-            "da": "Carrier",
-            "ru": "Carrier",
-            "pl": "Carrier",
-            "ko": "Carrier",
-            "ar": "Carrier"
+            "de": "Paketdienst",
+            "fr": "Transporteur",
+            "it": "Corriere",
+            "sv": "Transportör",
+            "no": "Transportør",
+            "es": "Transportista",
+            "da": "Transportør",
+            "ru": "Перевозчик",
+            "pl": "Przewoźnik",
+            "ko": "배송사",
+            "ar": "شركة الشحن"
           }
         },
         {
@@ -2050,17 +2050,17 @@
           "title": {
             "en": "Tracking number",
             "nl": "Trackingnummer",
-            "de": "Tracking number",
-            "fr": "Tracking number",
-            "it": "Tracking number",
-            "sv": "Tracking number",
-            "no": "Tracking number",
-            "es": "Tracking number",
-            "da": "Tracking number",
-            "ru": "Tracking number",
-            "pl": "Tracking number",
-            "ko": "Tracking number",
-            "ar": "Tracking number"
+            "de": "Sendungsnummer",
+            "fr": "Numéro de suivi",
+            "it": "Numero di tracciamento",
+            "sv": "Spårningsnummer",
+            "no": "Sporingsnummer",
+            "es": "Número de seguimiento",
+            "da": "Sporingsnummer",
+            "ru": "Трек-номер",
+            "pl": "Numer przesyłki",
+            "ko": "운송장 번호",
+            "ar": "رقم التتبع"
           }
         },
         {
@@ -2070,16 +2070,16 @@
             "en": "Sender",
             "nl": "Afzender",
             "de": "Sender",
-            "fr": "Sender",
-            "it": "Sender",
-            "sv": "Sender",
-            "no": "Sender",
-            "es": "Sender",
-            "da": "Sender",
-            "ru": "Sender",
-            "pl": "Sender",
-            "ko": "Sender",
-            "ar": "Sender"
+            "fr": "Expéditeur",
+            "it": "Mittente",
+            "sv": "Avsändare",
+            "no": "Avsender",
+            "es": "Remitente",
+            "da": "Afsender",
+            "ru": "Отправитель",
+            "pl": "Nadawca",
+            "ko": "발송인",
+            "ar": "المرسل"
           }
         },
         {
@@ -2088,17 +2088,17 @@
           "title": {
             "en": "Receiver",
             "nl": "Ontvanger",
-            "de": "Receiver",
-            "fr": "Receiver",
-            "it": "Receiver",
-            "sv": "Receiver",
-            "no": "Receiver",
-            "es": "Receiver",
-            "da": "Receiver",
-            "ru": "Receiver",
-            "pl": "Receiver",
-            "ko": "Receiver",
-            "ar": "Receiver"
+            "de": "Empfänger",
+            "fr": "Destinataire",
+            "it": "Destinatario",
+            "sv": "Mottagare",
+            "no": "Mottaker",
+            "es": "Destinatario",
+            "da": "Modtager",
+            "ru": "Получатель",
+            "pl": "Odbiorca",
+            "ko": "수령인",
+            "ar": "المستلم"
           }
         },
         {
@@ -2108,16 +2108,16 @@
             "en": "Status",
             "nl": "Status",
             "de": "Status",
-            "fr": "Status",
+            "fr": "Statut",
             "it": "Status",
             "sv": "Status",
             "no": "Status",
-            "es": "Status",
+            "es": "Estado",
             "da": "Status",
-            "ru": "Status",
+            "ru": "Статус",
             "pl": "Status",
-            "ko": "Status",
-            "ar": "Status"
+            "ko": "상태",
+            "ar": "الحالة"
           }
         },
         {
@@ -2126,17 +2126,17 @@
           "title": {
             "en": "Delivery date",
             "nl": "Bezorgdatum",
-            "de": "Delivery date",
-            "fr": "Delivery date",
-            "it": "Delivery date",
-            "sv": "Delivery date",
-            "no": "Delivery date",
-            "es": "Delivery date",
-            "da": "Delivery date",
-            "ru": "Delivery date",
-            "pl": "Delivery date",
-            "ko": "Delivery date",
-            "ar": "Delivery date"
+            "de": "Zustelldatum",
+            "fr": "Date de livraison",
+            "it": "Data di consegna",
+            "sv": "Leveransdatum",
+            "no": "Leveringsdato",
+            "es": "Fecha de entrega",
+            "da": "Leveringsdato",
+            "ru": "Дата доставки",
+            "pl": "Data dostawy",
+            "ko": "배송 날짜",
+            "ar": "تاريخ التوصيل"
           }
         },
         {
@@ -2145,17 +2145,17 @@
           "title": {
             "en": "Delivery window",
             "nl": "Bezorgvenster",
-            "de": "Delivery window",
-            "fr": "Delivery window",
-            "it": "Delivery window",
-            "sv": "Delivery window",
-            "no": "Delivery window",
-            "es": "Delivery window",
-            "da": "Delivery window",
-            "ru": "Delivery window",
-            "pl": "Delivery window",
-            "ko": "Delivery window",
-            "ar": "Delivery window"
+            "de": "Zustellzeitfenster",
+            "fr": "Créneau de livraison",
+            "it": "Finestra di consegna",
+            "sv": "Leveransfönster",
+            "no": "Leveringsvindu",
+            "es": "Franja de entrega",
+            "da": "Leveringsvindue",
+            "ru": "Интервал доставки",
+            "pl": "Okno dostawy",
+            "ko": "배송 시간대",
+            "ar": "نافذة التوصيل"
           }
         },
         {
@@ -2166,15 +2166,15 @@
             "nl": "Service",
             "de": "Service",
             "fr": "Service",
-            "it": "Service",
+            "it": "Servizio",
             "sv": "Service",
             "no": "Service",
-            "es": "Service",
+            "es": "Servicio",
             "da": "Service",
-            "ru": "Service",
-            "pl": "Service",
-            "ko": "Service",
-            "ar": "Service"
+            "ru": "Сервис",
+            "pl": "Usługa",
+            "ko": "서비스",
+            "ar": "الخدمة"
           }
         },
         {
@@ -2183,17 +2183,17 @@
           "title": {
             "en": "Origin",
             "nl": "Herkomst",
-            "de": "Origin",
-            "fr": "Origin",
-            "it": "Origin",
-            "sv": "Origin",
-            "no": "Origin",
-            "es": "Origin",
-            "da": "Origin",
-            "ru": "Origin",
-            "pl": "Origin",
-            "ko": "Origin",
-            "ar": "Origin"
+            "de": "Herkunft",
+            "fr": "Origine",
+            "it": "Origine",
+            "sv": "Ursprung",
+            "no": "Opprinnelse",
+            "es": "Origen",
+            "da": "Oprindelse",
+            "ru": "Откуда",
+            "pl": "Skąd",
+            "ko": "출발지",
+            "ar": "المنشأ"
           }
         },
         {
@@ -2202,17 +2202,17 @@
           "title": {
             "en": "Destination",
             "nl": "Bestemming",
-            "de": "Destination",
+            "de": "Zielort",
             "fr": "Destination",
-            "it": "Destination",
+            "it": "Destinazione",
             "sv": "Destination",
-            "no": "Destination",
-            "es": "Destination",
+            "no": "Destinasjon",
+            "es": "Destino",
             "da": "Destination",
-            "ru": "Destination",
-            "pl": "Destination",
-            "ko": "Destination",
-            "ar": "Destination"
+            "ru": "Пункт назначения",
+            "pl": "Miejsce docelowe",
+            "ko": "목적지",
+            "ar": "الوجهة"
           }
         },
         {
@@ -2221,17 +2221,17 @@
           "title": {
             "en": "Last event",
             "nl": "Laatste gebeurtenis",
-            "de": "Last event",
-            "fr": "Last event",
-            "it": "Last event",
-            "sv": "Last event",
-            "no": "Last event",
-            "es": "Last event",
-            "da": "Last event",
-            "ru": "Last event",
-            "pl": "Last event",
-            "ko": "Last event",
-            "ar": "Last event"
+            "de": "Letztes Ereignis",
+            "fr": "Dernier événement",
+            "it": "Ultimo evento",
+            "sv": "Senaste händelse",
+            "no": "Siste hendelse",
+            "es": "Último evento",
+            "da": "Seneste hændelse",
+            "ru": "Последнее событие",
+            "pl": "Ostatnie zdarzenie",
+            "ko": "마지막 이벤트",
+            "ar": "آخر حدث"
           }
         },
         {
@@ -2240,17 +2240,17 @@
           "title": {
             "en": "Delivered",
             "nl": "Bezorgd",
-            "de": "Delivered",
-            "fr": "Delivered",
-            "it": "Delivered",
-            "sv": "Delivered",
-            "no": "Delivered",
-            "es": "Delivered",
-            "da": "Delivered",
-            "ru": "Delivered",
-            "pl": "Delivered",
-            "ko": "Delivered",
-            "ar": "Delivered"
+            "de": "Zugestellt",
+            "fr": "Livré",
+            "it": "Consegnato",
+            "sv": "Levererad",
+            "no": "Levert",
+            "es": "Entregado",
+            "da": "Leveret",
+            "ru": "Доставлена",
+            "pl": "Doręczona",
+            "ko": "배송 완료",
+            "ar": "تم التسليم"
           }
         },
         {
@@ -2259,17 +2259,17 @@
           "title": {
             "en": "Active parcels",
             "nl": "Actieve pakketten",
-            "de": "Active parcels",
-            "fr": "Active parcels",
-            "it": "Active parcels",
-            "sv": "Active parcels",
-            "no": "Active parcels",
-            "es": "Active parcels",
-            "da": "Active parcels",
-            "ru": "Active parcels",
-            "pl": "Active parcels",
-            "ko": "Active parcels",
-            "ar": "Active parcels"
+            "de": "Aktive Pakete",
+            "fr": "Colis actifs",
+            "it": "Pacchi attivi",
+            "sv": "Aktiva paket",
+            "no": "Aktive pakker",
+            "es": "Paquetes activos",
+            "da": "Aktive pakker",
+            "ru": "Активные посылки",
+            "pl": "Aktywne paczki",
+            "ko": "활성 소포",
+            "ar": "الطرود النشطة"
           }
         },
         {
@@ -2278,17 +2278,17 @@
           "title": {
             "en": "Total parcels",
             "nl": "Totaal pakketten",
-            "de": "Total parcels",
-            "fr": "Total parcels",
-            "it": "Total parcels",
-            "sv": "Total parcels",
-            "no": "Total parcels",
-            "es": "Total parcels",
-            "da": "Total parcels",
-            "ru": "Total parcels",
-            "pl": "Total parcels",
-            "ko": "Total parcels",
-            "ar": "Total parcels"
+            "de": "Pakete gesamt",
+            "fr": "Total des colis",
+            "it": "Pacchi totali",
+            "sv": "Totalt antal paket",
+            "no": "Totalt antall pakker",
+            "es": "Paquetes totales",
+            "da": "Pakker i alt",
+            "ru": "Всего посылок",
+            "pl": "Łączna liczba paczek",
+            "ko": "전체 소포",
+            "ar": "إجمالي الطرود"
           }
         },
         {
@@ -2297,17 +2297,17 @@
           "title": {
             "en": "Last update",
             "nl": "Laatste update",
-            "de": "Last update",
-            "fr": "Last update",
-            "it": "Last update",
-            "sv": "Last update",
-            "no": "Last update",
-            "es": "Last update",
-            "da": "Last update",
-            "ru": "Last update",
-            "pl": "Last update",
-            "ko": "Last update",
-            "ar": "Last update"
+            "de": "Letzte Aktualisierung",
+            "fr": "Dernière mise à jour",
+            "it": "Ultimo aggiornamento",
+            "sv": "Senaste uppdatering",
+            "no": "Siste oppdatering",
+            "es": "Última actualización",
+            "da": "Seneste opdatering",
+            "ru": "Последнее обновление",
+            "pl": "Ostatnia aktualizacja",
+            "ko": "마지막 업데이트",
+            "ar": "آخر تحديث"
           }
         },
         {
@@ -3919,17 +3919,17 @@
       "title": {
         "en": "DHL Express delivery information updated",
         "nl": "DHL Express-bezorginformatie bijgewerkt",
-        "de": "DHL Express delivery information updated",
-        "fr": "DHL Express delivery information updated",
-        "it": "DHL Express delivery information updated",
-        "sv": "DHL Express delivery information updated",
-        "no": "DHL Express delivery information updated",
-        "es": "DHL Express delivery information updated",
-        "da": "DHL Express delivery information updated",
-        "ru": "DHL Express delivery information updated",
-        "pl": "DHL Express delivery information updated",
-        "ko": "DHL Express delivery information updated",
-        "ar": "DHL Express delivery information updated"
+        "de": "DHL Express-Zustellinformationen aktualisiert",
+        "fr": "Informations de livraison DHL Express mises à jour",
+        "it": "Informazioni di consegna DHL Express aggiornate",
+        "sv": "DHL Express-leveransinformation uppdaterad",
+        "no": "DHL Express-leveringsinformasjon oppdatert",
+        "es": "Información de entrega DHL Express actualizada",
+        "da": "DHL Express-leveringsoplysninger opdateret",
+        "ru": "Информация о доставке DHL Express обновлена",
+        "pl": "Informacje o dostawie DHL Express zaktualizowane",
+        "ko": "DHL Express 배송 정보 업데이트됨",
+        "ar": "تم تحديث معلومات تسليم DHL Express"
       },
       "args": [],
       "tokens": [
@@ -3939,17 +3939,17 @@
           "title": {
             "en": "Carrier",
             "nl": "Vervoerder",
-            "de": "Carrier",
-            "fr": "Carrier",
-            "it": "Carrier",
-            "sv": "Carrier",
-            "no": "Carrier",
-            "es": "Carrier",
-            "da": "Carrier",
-            "ru": "Carrier",
-            "pl": "Carrier",
-            "ko": "Carrier",
-            "ar": "Carrier"
+            "de": "Paketdienst",
+            "fr": "Transporteur",
+            "it": "Corriere",
+            "sv": "Transportör",
+            "no": "Transportør",
+            "es": "Transportista",
+            "da": "Transportør",
+            "ru": "Перевозчик",
+            "pl": "Przewoźnik",
+            "ko": "배송사",
+            "ar": "شركة الشحن"
           }
         },
         {
@@ -3958,17 +3958,17 @@
           "title": {
             "en": "Tracking number",
             "nl": "Trackingnummer",
-            "de": "Tracking number",
-            "fr": "Tracking number",
-            "it": "Tracking number",
-            "sv": "Tracking number",
-            "no": "Tracking number",
-            "es": "Tracking number",
-            "da": "Tracking number",
-            "ru": "Tracking number",
-            "pl": "Tracking number",
-            "ko": "Tracking number",
-            "ar": "Tracking number"
+            "de": "Sendungsnummer",
+            "fr": "Numéro de suivi",
+            "it": "Numero di tracciamento",
+            "sv": "Spårningsnummer",
+            "no": "Sporingsnummer",
+            "es": "Número de seguimiento",
+            "da": "Sporingsnummer",
+            "ru": "Трек-номер",
+            "pl": "Numer przesyłki",
+            "ko": "운송장 번호",
+            "ar": "رقم التتبع"
           }
         },
         {
@@ -3978,16 +3978,16 @@
             "en": "Sender",
             "nl": "Afzender",
             "de": "Sender",
-            "fr": "Sender",
-            "it": "Sender",
-            "sv": "Sender",
-            "no": "Sender",
-            "es": "Sender",
-            "da": "Sender",
-            "ru": "Sender",
-            "pl": "Sender",
-            "ko": "Sender",
-            "ar": "Sender"
+            "fr": "Expéditeur",
+            "it": "Mittente",
+            "sv": "Avsändare",
+            "no": "Avsender",
+            "es": "Remitente",
+            "da": "Afsender",
+            "ru": "Отправитель",
+            "pl": "Nadawca",
+            "ko": "발송인",
+            "ar": "المرسل"
           }
         },
         {
@@ -3996,17 +3996,17 @@
           "title": {
             "en": "Receiver",
             "nl": "Ontvanger",
-            "de": "Receiver",
-            "fr": "Receiver",
-            "it": "Receiver",
-            "sv": "Receiver",
-            "no": "Receiver",
-            "es": "Receiver",
-            "da": "Receiver",
-            "ru": "Receiver",
-            "pl": "Receiver",
-            "ko": "Receiver",
-            "ar": "Receiver"
+            "de": "Empfänger",
+            "fr": "Destinataire",
+            "it": "Destinatario",
+            "sv": "Mottagare",
+            "no": "Mottaker",
+            "es": "Destinatario",
+            "da": "Modtager",
+            "ru": "Получатель",
+            "pl": "Odbiorca",
+            "ko": "수령인",
+            "ar": "المستلم"
           }
         },
         {
@@ -4016,16 +4016,16 @@
             "en": "Status",
             "nl": "Status",
             "de": "Status",
-            "fr": "Status",
+            "fr": "Statut",
             "it": "Status",
             "sv": "Status",
             "no": "Status",
-            "es": "Status",
+            "es": "Estado",
             "da": "Status",
-            "ru": "Status",
+            "ru": "Статус",
             "pl": "Status",
-            "ko": "Status",
-            "ar": "Status"
+            "ko": "상태",
+            "ar": "الحالة"
           }
         },
         {
@@ -4034,17 +4034,17 @@
           "title": {
             "en": "Delivery date",
             "nl": "Bezorgdatum",
-            "de": "Delivery date",
-            "fr": "Delivery date",
-            "it": "Delivery date",
-            "sv": "Delivery date",
-            "no": "Delivery date",
-            "es": "Delivery date",
-            "da": "Delivery date",
-            "ru": "Delivery date",
-            "pl": "Delivery date",
-            "ko": "Delivery date",
-            "ar": "Delivery date"
+            "de": "Zustelldatum",
+            "fr": "Date de livraison",
+            "it": "Data di consegna",
+            "sv": "Leveransdatum",
+            "no": "Leveringsdato",
+            "es": "Fecha de entrega",
+            "da": "Leveringsdato",
+            "ru": "Дата доставки",
+            "pl": "Data dostawy",
+            "ko": "배송 날짜",
+            "ar": "تاريخ التوصيل"
           }
         },
         {
@@ -4053,17 +4053,17 @@
           "title": {
             "en": "Delivery window",
             "nl": "Bezorgvenster",
-            "de": "Delivery window",
-            "fr": "Delivery window",
-            "it": "Delivery window",
-            "sv": "Delivery window",
-            "no": "Delivery window",
-            "es": "Delivery window",
-            "da": "Delivery window",
-            "ru": "Delivery window",
-            "pl": "Delivery window",
-            "ko": "Delivery window",
-            "ar": "Delivery window"
+            "de": "Zustellzeitfenster",
+            "fr": "Créneau de livraison",
+            "it": "Finestra di consegna",
+            "sv": "Leveransfönster",
+            "no": "Leveringsvindu",
+            "es": "Franja de entrega",
+            "da": "Leveringsvindue",
+            "ru": "Интервал доставки",
+            "pl": "Okno dostawy",
+            "ko": "배송 시간대",
+            "ar": "نافذة التوصيل"
           }
         },
         {
@@ -4074,15 +4074,15 @@
             "nl": "Service",
             "de": "Service",
             "fr": "Service",
-            "it": "Service",
+            "it": "Servizio",
             "sv": "Service",
             "no": "Service",
-            "es": "Service",
+            "es": "Servicio",
             "da": "Service",
-            "ru": "Service",
-            "pl": "Service",
-            "ko": "Service",
-            "ar": "Service"
+            "ru": "Сервис",
+            "pl": "Usługa",
+            "ko": "서비스",
+            "ar": "الخدمة"
           }
         },
         {
@@ -4091,17 +4091,17 @@
           "title": {
             "en": "Origin",
             "nl": "Herkomst",
-            "de": "Origin",
-            "fr": "Origin",
-            "it": "Origin",
-            "sv": "Origin",
-            "no": "Origin",
-            "es": "Origin",
-            "da": "Origin",
-            "ru": "Origin",
-            "pl": "Origin",
-            "ko": "Origin",
-            "ar": "Origin"
+            "de": "Herkunft",
+            "fr": "Origine",
+            "it": "Origine",
+            "sv": "Ursprung",
+            "no": "Opprinnelse",
+            "es": "Origen",
+            "da": "Oprindelse",
+            "ru": "Откуда",
+            "pl": "Skąd",
+            "ko": "출발지",
+            "ar": "المنشأ"
           }
         },
         {
@@ -4110,17 +4110,17 @@
           "title": {
             "en": "Destination",
             "nl": "Bestemming",
-            "de": "Destination",
+            "de": "Zielort",
             "fr": "Destination",
-            "it": "Destination",
+            "it": "Destinazione",
             "sv": "Destination",
-            "no": "Destination",
-            "es": "Destination",
+            "no": "Destinasjon",
+            "es": "Destino",
             "da": "Destination",
-            "ru": "Destination",
-            "pl": "Destination",
-            "ko": "Destination",
-            "ar": "Destination"
+            "ru": "Пункт назначения",
+            "pl": "Miejsce docelowe",
+            "ko": "목적지",
+            "ar": "الوجهة"
           }
         },
         {
@@ -4129,17 +4129,17 @@
           "title": {
             "en": "Last event",
             "nl": "Laatste gebeurtenis",
-            "de": "Last event",
-            "fr": "Last event",
-            "it": "Last event",
-            "sv": "Last event",
-            "no": "Last event",
-            "es": "Last event",
-            "da": "Last event",
-            "ru": "Last event",
-            "pl": "Last event",
-            "ko": "Last event",
-            "ar": "Last event"
+            "de": "Letztes Ereignis",
+            "fr": "Dernier événement",
+            "it": "Ultimo evento",
+            "sv": "Senaste händelse",
+            "no": "Siste hendelse",
+            "es": "Último evento",
+            "da": "Seneste hændelse",
+            "ru": "Последнее событие",
+            "pl": "Ostatnie zdarzenie",
+            "ko": "마지막 이벤트",
+            "ar": "آخر حدث"
           }
         },
         {
@@ -4148,17 +4148,17 @@
           "title": {
             "en": "Delivered",
             "nl": "Bezorgd",
-            "de": "Delivered",
-            "fr": "Delivered",
-            "it": "Delivered",
-            "sv": "Delivered",
-            "no": "Delivered",
-            "es": "Delivered",
-            "da": "Delivered",
-            "ru": "Delivered",
-            "pl": "Delivered",
-            "ko": "Delivered",
-            "ar": "Delivered"
+            "de": "Zugestellt",
+            "fr": "Livré",
+            "it": "Consegnato",
+            "sv": "Levererad",
+            "no": "Levert",
+            "es": "Entregado",
+            "da": "Leveret",
+            "ru": "Доставлена",
+            "pl": "Doręczona",
+            "ko": "배송 완료",
+            "ar": "تم التسليم"
           }
         },
         {
@@ -4167,17 +4167,17 @@
           "title": {
             "en": "Active parcels",
             "nl": "Actieve pakketten",
-            "de": "Active parcels",
-            "fr": "Active parcels",
-            "it": "Active parcels",
-            "sv": "Active parcels",
-            "no": "Active parcels",
-            "es": "Active parcels",
-            "da": "Active parcels",
-            "ru": "Active parcels",
-            "pl": "Active parcels",
-            "ko": "Active parcels",
-            "ar": "Active parcels"
+            "de": "Aktive Pakete",
+            "fr": "Colis actifs",
+            "it": "Pacchi attivi",
+            "sv": "Aktiva paket",
+            "no": "Aktive pakker",
+            "es": "Paquetes activos",
+            "da": "Aktive pakker",
+            "ru": "Активные посылки",
+            "pl": "Aktywne paczki",
+            "ko": "활성 소포",
+            "ar": "الطرود النشطة"
           }
         },
         {
@@ -4186,17 +4186,17 @@
           "title": {
             "en": "Total parcels",
             "nl": "Totaal pakketten",
-            "de": "Total parcels",
-            "fr": "Total parcels",
-            "it": "Total parcels",
-            "sv": "Total parcels",
-            "no": "Total parcels",
-            "es": "Total parcels",
-            "da": "Total parcels",
-            "ru": "Total parcels",
-            "pl": "Total parcels",
-            "ko": "Total parcels",
-            "ar": "Total parcels"
+            "de": "Pakete gesamt",
+            "fr": "Total des colis",
+            "it": "Pacchi totali",
+            "sv": "Totalt antal paket",
+            "no": "Totalt antall pakker",
+            "es": "Paquetes totales",
+            "da": "Pakker i alt",
+            "ru": "Всего посылок",
+            "pl": "Łączna liczba paczek",
+            "ko": "전체 소포",
+            "ar": "إجمالي الطرود"
           }
         },
         {
@@ -4205,17 +4205,17 @@
           "title": {
             "en": "Last update",
             "nl": "Laatste update",
-            "de": "Last update",
-            "fr": "Last update",
-            "it": "Last update",
-            "sv": "Last update",
-            "no": "Last update",
-            "es": "Last update",
-            "da": "Last update",
-            "ru": "Last update",
-            "pl": "Last update",
-            "ko": "Last update",
-            "ar": "Last update"
+            "de": "Letzte Aktualisierung",
+            "fr": "Dernière mise à jour",
+            "it": "Ultimo aggiornamento",
+            "sv": "Senaste uppdatering",
+            "no": "Siste oppdatering",
+            "es": "Última actualización",
+            "da": "Seneste opdatering",
+            "ru": "Последнее обновление",
+            "pl": "Ostatnia aktualizacja",
+            "ko": "마지막 업데이트",
+            "ar": "آخر تحديث"
           }
         },
         {
@@ -4455,17 +4455,17 @@
       "title": {
         "en": "DHL Express parcels are underway",
         "nl": "Er zijn DHL Express-pakketten onderweg",
-        "de": "DHL Express parcels are underway",
-        "fr": "DHL Express parcels are underway",
-        "it": "DHL Express parcels are underway",
-        "sv": "DHL Express parcels are underway",
-        "no": "DHL Express parcels are underway",
-        "es": "DHL Express parcels are underway",
-        "da": "DHL Express parcels are underway",
-        "ru": "DHL Express parcels are underway",
-        "pl": "DHL Express parcels are underway",
-        "ko": "DHL Express parcels are underway",
-        "ar": "DHL Express parcels are underway"
+        "de": "DHL Express-Pakete sind unterwegs",
+        "fr": "Des colis DHL Express sont en route",
+        "it": "Pacchi DHL Express in viaggio",
+        "sv": "DHL Express-paket är på väg",
+        "no": "DHL Express-pakker er underveis",
+        "es": "Hay paquetes DHL Express en camino",
+        "da": "DHL Express-pakker er undervejs",
+        "ru": "Посылки DHL Express в пути",
+        "pl": "Paczki DHL Express są w drodze",
+        "ko": "DHL Express 택배 배송 중",
+        "ar": "طرود DHL Express قيد التوصيل"
       },
       "args": []
     },
@@ -4474,17 +4474,17 @@
       "title": {
         "en": "DHL Express !{{is|isn't}} connected",
         "nl": "DHL Express !{{is|is niet}} verbonden",
-        "de": "DHL Express !{{is|isn't}} connected",
-        "fr": "DHL Express !{{is|isn't}} connected",
-        "it": "DHL Express !{{is|isn't}} connected",
-        "sv": "DHL Express !{{is|isn't}} connected",
-        "no": "DHL Express !{{is|isn't}} connected",
-        "es": "DHL Express !{{is|isn't}} connected",
-        "da": "DHL Express !{{is|isn't}} connected",
-        "ru": "DHL Express !{{is|isn't}} connected",
-        "pl": "DHL Express !{{is|isn't}} connected",
-        "ko": "DHL Express !{{is|isn't}} connected",
-        "ar": "DHL Express !{{is|isn't}} connected"
+        "de": "DHL Express !{{ist|ist nicht}} verbunden",
+        "fr": "DHL Express !{{est|n’est pas}} connecté",
+        "it": "DHL Express !{{è|non è}} connesso",
+        "sv": "DHL Express !{{är|är inte}} anslutet",
+        "no": "DHL Express !{{er|er ikke}} tilkoblet",
+        "es": "DHL Express !{{está|no está}} conectado",
+        "da": "DHL Express !{{er|er ikke}} forbundet",
+        "ru": "DHL Express !{{подключён|не подключён}}",
+        "pl": "DHL Express !{{jest|nie jest}} połączony",
+        "ko": "DHL Express이(가) !{{연결됨|연결되지 않음}}",
+        "ar": "DHL Express !{{متصل|غير متصل}}"
       },
       "args": []
     },
@@ -4493,17 +4493,17 @@
       "title": {
         "en": "DHL Express delivery window !{{is|isn't}} known",
         "nl": "DHL Express-bezorgvenster !{{is|is niet}} bekend",
-        "de": "DHL Express delivery window !{{is|isn't}} known",
-        "fr": "DHL Express delivery window !{{is|isn't}} known",
-        "it": "DHL Express delivery window !{{is|isn't}} known",
-        "sv": "DHL Express delivery window !{{is|isn't}} known",
-        "no": "DHL Express delivery window !{{is|isn't}} known",
-        "es": "DHL Express delivery window !{{is|isn't}} known",
-        "da": "DHL Express delivery window !{{is|isn't}} known",
-        "ru": "DHL Express delivery window !{{is|isn't}} known",
-        "pl": "DHL Express delivery window !{{is|isn't}} known",
-        "ko": "DHL Express delivery window !{{is|isn't}} known",
-        "ar": "DHL Express delivery window !{{is|isn't}} known"
+        "de": "DHL Express-Zustellzeitfenster !{{ist|ist nicht}} bekannt",
+        "fr": "Le créneau DHL Express !{{est|n’est pas}} connu",
+        "it": "La finestra DHL Express !{{è|non è}} nota",
+        "sv": "DHL Express-leveransfönster !{{är|är inte}} känt",
+        "no": "DHL Express-leveringsvindu !{{er|er ikke}} kjent",
+        "es": "La franja DHL Express !{{es|no es}} conocida",
+        "da": "DHL Express-leveringsvindue !{{er|er ikke}} kendt",
+        "ru": "Интервал DHL Express !{{известен|неизвестен}}",
+        "pl": "Okno DHL Express !{{jest|nie jest}} znane",
+        "ko": "DHL Express 배송 시간대가 !{{확인됨|확인되지 않음}}",
+        "ar": "نافذة تسليم DHL Express !{{معروفة|غير معروفة}}"
       },
       "args": []
     },
@@ -4890,17 +4890,17 @@
       "title": {
         "en": "Refresh DHL Express",
         "nl": "Vernieuw DHL Express",
-        "de": "Refresh DHL Express",
-        "fr": "Refresh DHL Express",
-        "it": "Refresh DHL Express",
-        "sv": "Refresh DHL Express",
-        "no": "Refresh DHL Express",
-        "es": "Refresh DHL Express",
-        "da": "Refresh DHL Express",
-        "ru": "Refresh DHL Express",
-        "pl": "Refresh DHL Express",
-        "ko": "Refresh DHL Express",
-        "ar": "Refresh DHL Express"
+        "de": "DHL Express aktualisieren",
+        "fr": "Actualiser DHL Express",
+        "it": "Aggiorna DHL Express",
+        "sv": "Uppdatera DHL Express",
+        "no": "Oppdater DHL Express",
+        "es": "Actualizar DHL Express",
+        "da": "Opdater DHL Express",
+        "ru": "Обновить DHL Express",
+        "pl": "Odśwież DHL Express",
+        "ko": "DHL Express 새로고침",
+        "ar": "تحديث DHL Express"
       },
       "args": []
     },

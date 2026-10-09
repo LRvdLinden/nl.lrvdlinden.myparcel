@@ -3,9 +3,9 @@
     "email": "E-mailadresse",
     "password": "Adgangskode",
     "connect": "Forbind konto",
-    "title": "Add My PostNL",
-    "subtitle": "Connect each device to one PostNL account.",
-    "language_marker": "en"
+    "title": "Tilføj My PostNL",
+    "subtitle": "Forbind hver enhed med én PostNL-konto.",
+    "language_marker": "da"
   },
   "widget": {
     "loading": "Indlæser…",
@@ -26,7 +26,7 @@
     "name": "My PostNL"
   },
   "carrier": {
-    "pending": "Account API not configured"
+    "pending": "Konto-API er ikke konfigureret"
   },
   "ups": {
     "pair": {

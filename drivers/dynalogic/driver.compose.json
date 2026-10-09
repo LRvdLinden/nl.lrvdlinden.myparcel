@@ -1,0 +1,224 @@
+{
+  "name": {
+    "en": "Dynalogic",
+    "nl": "Dynalogic",
+    "de": "Dynalogic",
+    "fr": "Dynalogic",
+    "it": "Dynalogic",
+    "sv": "Dynalogic",
+    "no": "Dynalogic",
+    "es": "Dynalogic",
+    "da": "Dynalogic",
+    "ru": "Dynalogic",
+    "pl": "Dynalogic",
+    "ko": "Dynalogic",
+    "ar": "Dynalogic"
+  },
+  "class": "sensor",
+  "capabilities": [
+    "dynalogic_parcel_count",
+    "dynalogic_status",
+    "dynalogic_tracking",
+    "dynalogic_sender",
+    "dynalogic_receiver",
+    "dynalogic_delivery_date",
+    "dynalogic_delivery_window",
+    "dynalogic_next_delivery",
+    "dynalogic_out_for_delivery_count",
+    "dynalogic_delivered_count",
+    "dynalogic_last_event",
+    "myparcel_connection_status",
+    "dynalogic_last_update"
+  ],
+  "pair": [
+    {
+      "id": "login"
+    }
+  ],
+  "repair": [
+    {
+      "id": "repair"
+    }
+  ],
+  "platforms": [
+    "local"
+  ],
+  "images": {
+    "small": "/drivers/dynalogic/assets/images/small.png",
+    "large": "/drivers/dynalogic/assets/images/large.png",
+    "xlarge": "/drivers/dynalogic/assets/images/xlarge.png"
+  },
+  "settings": [
+    {
+      "type": "group",
+      "label": {
+        "en": "Dynalogic Track & Trace",
+        "nl": "Dynalogic Track & Trace",
+        "de": "Dynalogic Track & Trace",
+        "fr": "Dynalogic Track & Trace",
+        "it": "Dynalogic Track & Trace",
+        "sv": "Dynalogic Track & Trace",
+        "no": "Dynalogic Track & Trace",
+        "es": "Dynalogic Track & Trace",
+        "da": "Dynalogic Track & Trace",
+        "ru": "Dynalogic Track & Trace",
+        "pl": "Dynalogic Track & Trace",
+        "ko": "Dynalogic Track & Trace",
+        "ar": "Dynalogic Track & Trace"
+      },
+      "children": [
+        {
+          "id": "country",
+          "type": "dropdown",
+          "label": {
+            "en": "Country",
+            "nl": "Land",
+            "de": "Land",
+            "fr": "Pays",
+            "it": "Paese",
+            "sv": "Land",
+            "no": "Land",
+            "es": "País",
+            "da": "Land",
+            "ru": "Страна",
+            "pl": "Kraj",
+            "ko": "국가",
+            "ar": "الدولة"
+          },
+          "value": "NL",
+          "values": [
+            {
+              "id": "NL",
+              "label": {
+                "en": "Netherlands",
+                "nl": "Nederland",
+                "de": "Niederlande",
+                "fr": "Pays-Bas",
+                "it": "Paesi Bassi",
+                "sv": "Nederländerna",
+                "no": "Nederland",
+                "es": "Países Bajos",
+                "da": "Nederlandene",
+                "ru": "Нидерланды",
+                "pl": "Holandia",
+                "ko": "네덜란드",
+                "ar": "هولندا"
+              }
+            },
+            {
+              "id": "BE",
+              "label": {
+                "en": "Belgium",
+                "nl": "België",
+                "de": "Belgien",
+                "fr": "Belgique",
+                "it": "Belgio",
+                "sv": "Belgien",
+                "no": "Belgia",
+                "es": "Bélgica",
+                "da": "Belgien",
+                "ru": "Бельгия",
+                "pl": "Belgia",
+                "ko": "벨기에",
+                "ar": "بلجيكا"
+              }
+            }
+          ]
+        },
+        {
+          "id": "postal_code",
+          "type": "text",
+          "label": {
+            "en": "Delivery postal code",
+            "nl": "Bezorgpostcode",
+            "de": "Zustell-Postleitzahl",
+            "fr": "Code postal de livraison",
+            "it": "CAP di consegna",
+            "sv": "Leveranspostnummer",
+            "no": "Leveringspostnummer",
+            "es": "Código postal de entrega",
+            "da": "Leveringspostnummer",
+            "ru": "Почтовый индекс доставки",
+            "pl": "Kod pocztowy dostawy",
+            "ko": "배송지 우편번호",
+            "ar": "الرمز البريدي للتوصيل"
+          },
+          "hint": {
+            "en": "Postal code of the delivery address (Netherlands 1234AB, Belgium 1000). Dynalogic needs it to show the order.",
+            "nl": "Postcode van het bezorgadres (Nederland 1234AB, België 1000). Dynalogic heeft die nodig om de order te tonen.",
+            "de": "Postleitzahl der Lieferadresse (Niederlande 1234AB, Belgien 1000). Dynalogic benötigt sie, um den Auftrag anzuzeigen.",
+            "fr": "Code postal de l’adresse de livraison (Pays-Bas 1234AB, Belgique 1000). Dynalogic en a besoin pour afficher la commande.",
+            "it": "CAP dell’indirizzo di consegna (Paesi Bassi 1234AB, Belgio 1000). Dynalogic ne ha bisogno per mostrare l’ordine.",
+            "sv": "Postnummer för leveransadressen (Nederländerna 1234AB, Belgien 1000). Dynalogic behöver det för att visa ordern.",
+            "no": "Postnummer for leveringsadressen (Nederland 1234AB, Belgia 1000). Dynalogic trenger det for å vise ordren.",
+            "es": "Código postal de la dirección de entrega (Países Bajos 1234AB, Bélgica 1000). Dynalogic lo necesita para mostrar el pedido.",
+            "da": "Postnummer for leveringsadressen (Holland 1234AB, Belgien 1000). Dynalogic skal bruge det for at vise ordren.",
+            "ru": "Индекс адреса доставки (Нидерланды 1234AB, Бельгия 1000). Он нужен Dynalogic, чтобы показать заказ.",
+            "pl": "Kod pocztowy adresu dostawy (Holandia 1234AB, Belgia 1000). Dynalogic potrzebuje go, aby pokazać zlecenie.",
+            "ko": "배송지 우편번호(네덜란드 1234AB, 벨기에 1000). Dynalogic이 주문을 표시하는 데 필요합니다.",
+            "ar": "الرمز البريدي لعنوان التوصيل (هولندا 1234AB، بلجيكا 1000). تحتاجه Dynalogic لعرض الطلب."
+          },
+          "value": ""
+        },
+        {
+          "id": "tracking_numbers",
+          "type": "textarea",
+          "label": {
+            "en": "Tracking numbers",
+            "nl": "Trackingnummers",
+            "de": "Sendungsnummern",
+            "fr": "Numéros de suivi",
+            "it": "Numeri di tracciamento",
+            "sv": "Spårningsnummer",
+            "no": "Sporingsnumre",
+            "es": "Números de seguimiento",
+            "da": "Sporingsnumre",
+            "ru": "Трек-номера",
+            "pl": "Numery przesyłek",
+            "ko": "운송장 번호",
+            "ar": "أرقام التتبع"
+          },
+          "hint": {
+            "en": "One tracking number per line. Add a postal code after a number when it differs from the one above (e.g. \"1234567890 1234AB\").",
+            "nl": "Eén trackingnummer per regel. Zet een postcode achter een nummer als die afwijkt van de postcode hierboven (bijv. \"1234567890 1234AB\").",
+            "de": "Eine Sendungsnummer pro Zeile. Gib nach einer Nummer eine Postleitzahl an, wenn sie von der obigen abweicht (z. B. „1234567890 1234AB“).",
+            "fr": "Un numéro de suivi par ligne. Ajoutez un code postal après un numéro s’il diffère de celui ci-dessus (ex. « 1234567890 1234AB »).",
+            "it": "Un numero di tracking per riga. Aggiungi un CAP dopo un numero se diverso da quello sopra (es. \"1234567890 1234AB\").",
+            "sv": "Ett spårningsnummer per rad. Lägg till ett postnummer efter numret om det skiljer sig från det ovan (t.ex. \"1234567890 1234AB\").",
+            "no": "Ett sporingsnummer per linje. Legg til et postnummer etter nummeret hvis det er et annet enn det over (f.eks. «1234567890 1234AB»).",
+            "es": "Un número de seguimiento por línea. Añade un código postal tras el número si es distinto del de arriba (p. ej. «1234567890 1234AB»).",
+            "da": "Ét sporingsnummer pr. linje. Tilføj et postnummer efter nummeret, hvis det afviger fra det ovenfor (f.eks. \"1234567890 1234AB\").",
+            "ru": "Один номер отслеживания в строке. Укажите индекс после номера, если он отличается от указанного выше (напр. «1234567890 1234AB»).",
+            "pl": "Jeden numer przesyłki w wierszu. Dodaj kod pocztowy po numerze, jeśli różni się od podanego wyżej (np. „1234567890 1234AB”).",
+            "ko": "한 줄에 운송장 번호 하나. 위의 우편번호와 다르면 번호 뒤에 우편번호를 추가하세요(예: \"1234567890 1234AB\").",
+            "ar": "رقم تتبع واحد في كل سطر. أضف رمزًا بريديًا بعد الرقم إذا كان مختلفًا عن الرمز أعلاه (مثل \"1234567890 1234AB\")."
+          },
+          "value": ""
+        },
+        {
+          "id": "delivered_days",
+          "type": "number",
+          "label": {
+            "en": "Show delivered parcels for (days)",
+            "nl": "Bezorgde pakketten tonen gedurende (dagen)",
+            "de": "Zugestellte Pakete anzeigen für (Tage)",
+            "fr": "Afficher les colis livrés pendant (jours)",
+            "it": "Mostra i pacchi consegnati per (giorni)",
+            "sv": "Visa levererade paket i (dagar)",
+            "no": "Vis leverte pakker i (dager)",
+            "es": "Mostrar paquetes entregados durante (días)",
+            "da": "Vis leverede pakker i (dage)",
+            "ru": "Показывать доставленные посылки (дней)",
+            "pl": "Pokazuj doręczone paczki przez (dni)",
+            "ko": "배송 완료 택배 표시 기간(일)",
+            "ar": "عرض الطرود المسلَّمة لمدة (أيام)"
+          },
+          "value": 7,
+          "min": 1,
+          "max": 60,
+          "step": 1
+        }
+      ]
+    }
+  ]
+}

@@ -2,7 +2,18 @@
   "type": "string",
   "title": {
     "en": "Latest parcel event",
-    "nl": "Laatste pakketgebeurtenis"
+    "nl": "Laatste pakketgebeurtenis",
+    "de": "Letztes Paketereignis",
+    "fr": "Dernier événement du colis",
+    "it": "Ultimo evento del pacco",
+    "sv": "Senaste pakethändelse",
+    "no": "Siste pakkehendelse",
+    "es": "Último evento del paquete",
+    "da": "Seneste pakkehændelse",
+    "ru": "Последнее событие посылки",
+    "pl": "Ostatnie zdarzenie paczki",
+    "ko": "최근 택배 이벤트",
+    "ar": "آخر حدث للطرد"
   },
   "getable": true,
   "setable": false,

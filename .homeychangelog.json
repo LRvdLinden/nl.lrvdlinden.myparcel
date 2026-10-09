@@ -186,5 +186,20 @@
   "0.3.5": {
     "en": "FedEx, Budbee, Vinted Go, InPost, bpost and Ampère rebuilt: more parcel data, new capabilities, Flow cards and tokens, triggers once per change, and all of them in the MyParcel widgets.",
     "nl": "FedEx, Budbee, Vinted Go, InPost, bpost en Ampère vernieuwd: meer pakketgegevens, nieuwe capabilities, Flow-kaarten en tokens, triggers één keer per wijziging en allemaal zichtbaar in de MyParcel-widgets."
+  },
+  "0.3.6": {
+    "en": "New carriers Trunkrs, Dynalogic, Dragonfly / Intelcom, Mondial Relay and Amazon (experimental), each with every country it supports, Flow cards, tokens and the MyParcel widgets. The whole app is now fully translated into 13 languages, with dates and numbers in your own format.",
+    "nl": "Nieuwe vervoerders Trunkrs, Dynalogic, Dragonfly / Intelcom, Mondial Relay en Amazon (experimenteel), elk met alle landen die ze ondersteunen, Flow-kaarten, tokens en de MyParcel-widgets. De hele app is nu volledig vertaald in 13 talen, met datums en getallen in je eigen notatie.",
+    "de": "Neue Paketdienste Trunkrs, Dynalogic, Dragonfly / Intelcom, Mondial Relay und Amazon (experimentell), jeweils mit allen unterstützten Ländern, Flow-Karten, Tokens und den MyParcel-Widgets. Die gesamte App ist jetzt vollständig in 13 Sprachen übersetzt, mit Datums- und Zahlenformaten deiner Region.",
+    "fr": "Nouveaux transporteurs Trunkrs, Dynalogic, Dragonfly / Intelcom, Mondial Relay et Amazon (expérimental), chacun avec tous ses pays, des cartes Flow, des jetons et les widgets MyParcel. Toute l’app est désormais entièrement traduite en 13 langues, avec les dates et nombres dans votre format.",
+    "it": "Nuovi corrieri Trunkrs, Dynalogic, Dragonfly / Intelcom, Mondial Relay e Amazon (sperimentale), ciascuno con tutti i paesi supportati, schede Flow, token e i widget MyParcel. L’intera app è ora completamente tradotta in 13 lingue, con date e numeri nel tuo formato.",
+    "sv": "Nya transportörer Trunkrs, Dynalogic, Dragonfly / Intelcom, Mondial Relay och Amazon (experimentell), var och en med alla länder den stöder, Flow-kort, tokens och MyParcel-widgetarna. Hela appen är nu helt översatt till 13 språk, med datum och tal i ditt eget format.",
+    "no": "Nye transportører Trunkrs, Dynalogic, Dragonfly / Intelcom, Mondial Relay og Amazon (eksperimentell), hver med alle land de støtter, Flow-kort, tokens og MyParcel-widgetene. Hele appen er nå fullt oversatt til 13 språk, med datoer og tall i ditt eget format.",
+    "es": "Nuevos transportistas Trunkrs, Dynalogic, Dragonfly / Intelcom, Mondial Relay y Amazon (experimental), cada uno con todos sus países, tarjetas Flow, tokens y los widgets de MyParcel. Toda la app está ahora traducida por completo a 13 idiomas, con fechas y números en tu formato.",
+    "da": "Nye fragtfirmaer Trunkrs, Dynalogic, Dragonfly / Intelcom, Mondial Relay og Amazon (eksperimentel), hver med alle de lande, de understøtter, Flow-kort, tokens og MyParcel-widgetterne. Hele appen er nu fuldt oversat til 13 sprog, med datoer og tal i dit eget format.",
+    "ru": "Новые службы доставки Trunkrs, Dynalogic, Dragonfly / Intelcom, Mondial Relay и Amazon (экспериментально) — со всеми поддерживаемыми странами, карточками Flow, токенами и виджетами MyParcel. Всё приложение теперь полностью переведено на 13 языков, даты и числа — в вашем формате.",
+    "pl": "Nowi przewoźnicy Trunkrs, Dynalogic, Dragonfly / Intelcom, Mondial Relay i Amazon (eksperymentalnie), każdy ze wszystkimi obsługiwanymi krajami, kartami Flow, tokenami i widżetami MyParcel. Cała aplikacja jest teraz w pełni przetłumaczona na 13 języków, a daty i liczby są w Twoim formacie.",
+    "ko": "새 택배사 Trunkrs, Dynalogic, Dragonfly / Intelcom, Mondial Relay, Amazon(실험적)가 추가되었습니다. 각 택배사가 지원하는 모든 국가, Flow 카드, 토큰, MyParcel 위젯을 지원합니다. 앱 전체가 13개 언어로 완전히 번역되었으며 날짜와 숫자는 사용자 형식으로 표시됩니다.",
+    "ar": "شركات شحن جديدة: Trunkrs وDynalogic وDragonfly / Intelcom وMondial Relay وAmazon (تجريبي)، كلٌّ منها بجميع الدول التي يدعمها وبطاقات Flow والرموز وأدوات MyParcel. أصبح التطبيق بالكامل مترجمًا إلى 13 لغة، مع عرض التواريخ والأرقام بتنسيقك."
   }
 }

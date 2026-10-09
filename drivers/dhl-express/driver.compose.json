@@ -95,15 +95,15 @@
             "nl": "Eén luchtvrachtbriefnummer van 10 cijfers per regel – geen account nodig. Voeg “uit” toe voor een zending die je zelf verstuurt. DHL Express staat ongeveer één opvraging per 40 minuten toe; met meerdere nummers wordt elk nummer om de beurt bijgewerkt.",
             "de": "Eine 10-stellige Luftfrachtbriefnummer pro Zeile – kein Konto nötig. „out“ für selbst versendete Sendungen. DHL Express erlaubt etwa eine Abfrage pro 40 Minuten; mehrere Nummern werden abwechselnd aktualisiert.",
             "fr": "Un numéro de lettre de transport à 10 chiffres par ligne – sans compte. Ajoutez « out » pour un envoi. DHL Express autorise environ une requête toutes les 40 minutes.",
-            "it": "One 10-digit air waybill per line – no account needed. Add “out” for a shipment you sent yourself. DHL Express allows about one lookup per 40 minutes, so with several numbers each one is refreshed in turn.",
-            "sv": "One 10-digit air waybill per line – no account needed. Add “out” for a shipment you sent yourself. DHL Express allows about one lookup per 40 minutes, so with several numbers each one is refreshed in turn.",
-            "no": "One 10-digit air waybill per line – no account needed. Add “out” for a shipment you sent yourself. DHL Express allows about one lookup per 40 minutes, so with several numbers each one is refreshed in turn.",
-            "es": "One 10-digit air waybill per line – no account needed. Add “out” for a shipment you sent yourself. DHL Express allows about one lookup per 40 minutes, so with several numbers each one is refreshed in turn.",
-            "da": "One 10-digit air waybill per line – no account needed. Add “out” for a shipment you sent yourself. DHL Express allows about one lookup per 40 minutes, so with several numbers each one is refreshed in turn.",
-            "ru": "One 10-digit air waybill per line – no account needed. Add “out” for a shipment you sent yourself. DHL Express allows about one lookup per 40 minutes, so with several numbers each one is refreshed in turn.",
-            "pl": "One 10-digit air waybill per line – no account needed. Add “out” for a shipment you sent yourself. DHL Express allows about one lookup per 40 minutes, so with several numbers each one is refreshed in turn.",
-            "ko": "One 10-digit air waybill per line – no account needed. Add “out” for a shipment you sent yourself. DHL Express allows about one lookup per 40 minutes, so with several numbers each one is refreshed in turn.",
-            "ar": "One 10-digit air waybill per line – no account needed. Add “out” for a shipment you sent yourself. DHL Express allows about one lookup per 40 minutes, so with several numbers each one is refreshed in turn."
+            "it": "Una lettera di vettura aerea di 10 cifre per riga – nessun account necessario. Aggiungi “out” per una spedizione inviata da te. DHL Express consente circa una consultazione ogni 40 minuti, quindi con più numeri ciascuno viene aggiornato a turno.",
+            "sv": "En 10-siffrig flygfraktsedel per rad – inget konto behövs. Lägg till ”out” för en försändelse du själv har skickat. DHL Express tillåter ungefär en sökning per 40 minuter, så med flera nummer uppdateras de ett i taget.",
+            "no": "Ett 10-sifret flyfraktbrevnummer per linje – ingen konto nødvendig. Legg til «out» for en forsendelse du har sendt selv. DHL Express tillater omtrent ett oppslag per 40 minutter, så med flere numre oppdateres hvert nummer etter tur.",
+            "es": "Una guía aérea de 10 dígitos por línea – no se necesita cuenta. Añade «out» para un envío que hayas enviado tú. DHL Express permite aproximadamente una consulta cada 40 minutos, así que con varios números cada uno se actualiza por turnos.",
+            "da": "Ét 10-cifret luftfragtbrevsnummer pr. linje – ingen konto nødvendig. Tilføj “out” for en forsendelse, du selv har sendt. DHL Express tillader cirka ét opslag pr. 40 minutter, så med flere numre opdateres hvert nummer på skift.",
+            "ru": "Один 10-значный номер авианакладной на строку – учётная запись не нужна. Добавьте «out» для отправления, которое вы отправили сами. DHL Express разрешает примерно один запрос в 40 минут, поэтому при нескольких номерах они обновляются по очереди.",
+            "pl": "Jeden 10-cyfrowy numer lotniczego listu przewozowego w wierszu – konto nie jest potrzebne. Dodaj „out” dla przesyłki wysłanej przez Ciebie. DHL Express pozwala na około jedno zapytanie na 40 minut, więc przy kilku numerach każdy jest odświeżany po kolei.",
+            "ko": "한 줄에 10자리 항공 운송장 번호 하나씩 입력하세요. 계정은 필요 없습니다. 직접 보낸 배송에는 “out”을 추가하세요. DHL Express는 약 40분에 한 번 조회를 허용하므로 번호가 여러 개면 차례로 새로고침됩니다.",
+            "ar": "رقم بوليصة شحن جوي واحد من 10 أرقام في كل سطر – لا حاجة إلى حساب. أضف ”out“ لشحنة أرسلتها بنفسك. يسمح DHL Express باستعلام واحد تقريبًا كل 40 دقيقة، لذا عند وجود عدة أرقام يتم تحديث كل رقم بالتناوب."
           },
           "value": ""
         },
@@ -139,15 +139,15 @@
         "nl": "MyDHL+-account (optioneel)",
         "de": "MyDHL+-Konto (optional)",
         "fr": "Compte MyDHL+ (facultatif)",
-        "it": "MyDHL+ account (optional)",
-        "sv": "MyDHL+ account (optional)",
-        "no": "MyDHL+ account (optional)",
-        "es": "MyDHL+ account (optional)",
-        "da": "MyDHL+ account (optional)",
-        "ru": "MyDHL+ account (optional)",
-        "pl": "MyDHL+ account (optional)",
-        "ko": "MyDHL+ account (optional)",
-        "ar": "MyDHL+ account (optional)"
+        "it": "Account MyDHL+ (facoltativo)",
+        "sv": "MyDHL+-konto (valfritt)",
+        "no": "MyDHL+-konto (valgfritt)",
+        "es": "Cuenta MyDHL+ (opcional)",
+        "da": "MyDHL+-konto (valgfrit)",
+        "ru": "Учётная запись MyDHL+ (необязательно)",
+        "pl": "Konto MyDHL+ (opcjonalnie)",
+        "ko": "MyDHL+ 계정(선택 사항)",
+        "ar": "حساب MyDHL+ (اختياري)"
       },
       "children": [
         {
@@ -156,17 +156,17 @@
           "label": {
             "en": "MyDHL+ web session",
             "nl": "MyDHL+ websessie",
-            "de": "MyDHL+ web session",
-            "fr": "MyDHL+ web session",
-            "it": "MyDHL+ web session",
-            "sv": "MyDHL+ web session",
-            "no": "MyDHL+ web session",
-            "es": "MyDHL+ web session",
-            "da": "MyDHL+ web session",
-            "ru": "MyDHL+ web session",
-            "pl": "MyDHL+ web session",
-            "ko": "MyDHL+ web session",
-            "ar": "MyDHL+ web session"
+            "de": "MyDHL+-Websitzung",
+            "fr": "Session web MyDHL+",
+            "it": "Sessione web MyDHL+",
+            "sv": "MyDHL+-webbsession",
+            "no": "MyDHL+-nettøkt",
+            "es": "Sesión web de MyDHL+",
+            "da": "MyDHL+-websession",
+            "ru": "Веб-сеанс MyDHL+",
+            "pl": "Sesja internetowa MyDHL+",
+            "ko": "MyDHL+ 웹 세션",
+            "ar": "جلسة ويب MyDHL+"
           },
           "value": ""
         }

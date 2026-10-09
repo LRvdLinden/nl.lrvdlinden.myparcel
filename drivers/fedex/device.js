@@ -81,7 +81,7 @@ class FedExDevice extends CarrierDeviceBase {
         this.error('[FedEx]', entry.code, error.message);
       }
     }
-    if (entries.length && failures === entries.length && !out.length) throw new Error('FedEx is unreachable');
+    if (entries.length && failures === entries.length && !out.length) throw new Error('FedEx is unreachable'); // i18n: translated by messages-i18n (carrier_unreachable)
     this._raw = keep;
     await this.setStoreValue('fedex_raw_cache', keep).catch(this.error);
     return out;

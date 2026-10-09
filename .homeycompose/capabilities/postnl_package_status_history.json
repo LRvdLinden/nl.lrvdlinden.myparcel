@@ -2,7 +2,18 @@
   "type": "string",
   "title": {
     "en": "Full status history",
-    "nl": "Volledige status-history"
+    "nl": "Volledige statusgeschiedenis",
+    "de": "Vollständiger Statusverlauf",
+    "fr": "Historique complet des statuts",
+    "it": "Cronologia completa degli stati",
+    "sv": "Fullständig statushistorik",
+    "no": "Fullstendig statushistorikk",
+    "es": "Historial completo de estados",
+    "da": "Fuld statushistorik",
+    "ru": "Полная история статусов",
+    "pl": "Pełna historia statusów",
+    "ko": "전체 상태 기록",
+    "ar": "سجل الحالات الكامل"
   },
   "getable": true,
   "setable": false,

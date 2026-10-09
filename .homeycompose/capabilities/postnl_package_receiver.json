@@ -2,7 +2,18 @@
   "type": "string",
   "title": {
     "en": "Parcel receiver",
-    "nl": "Ontvanger pakket"
+    "nl": "Ontvanger pakket",
+    "de": "Paketempfänger",
+    "fr": "Destinataire du colis",
+    "it": "Destinatario del pacco",
+    "sv": "Paketmottagare",
+    "no": "Pakkemottaker",
+    "es": "Destinatario del paquete",
+    "da": "Pakkemodtager",
+    "ru": "Получатель посылки",
+    "pl": "Odbiorca paczki",
+    "ko": "택배 수령인",
+    "ar": "مستلم الطرد"
   },
   "getable": true,
   "setable": false,

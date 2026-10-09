@@ -2,7 +2,18 @@
   "type": "number",
   "title": {
     "en": "Parcel height",
-    "nl": "Hoogte pakket"
+    "nl": "Hoogte pakket",
+    "de": "Pakethöhe",
+    "fr": "Hauteur du colis",
+    "it": "Altezza del pacco",
+    "sv": "Pakethöjd",
+    "no": "Pakkehøyde",
+    "es": "Altura del paquete",
+    "da": "Pakkehøjde",
+    "ru": "Высота посылки",
+    "pl": "Wysokość paczki",
+    "ko": "택배 높이",
+    "ar": "ارتفاع الطرد"
   },
   "getable": true,
   "setable": false,
@@ -10,7 +21,18 @@
   "icon": "/assets/package.svg",
   "units": {
     "en": "cm",
-    "nl": "cm"
+    "nl": "cm",
+    "de": "cm",
+    "fr": "cm",
+    "it": "cm",
+    "sv": "cm",
+    "no": "cm",
+    "es": "cm",
+    "da": "cm",
+    "ru": "см",
+    "pl": "cm",
+    "ko": "cm",
+    "ar": "سم"
   },
   "decimals": 1
 }

@@ -3411,15 +3411,15 @@
         "nl": "Zet eventueel een afwijkende postcode achter het nummer, bijv. 12345678901 1234AB. Zonder postcode wordt de postcode van het apparaat gebruikt.",
         "de": "Optional eine abweichende Postleitzahl hinter die Nummer setzen, z. B. 12345678901 12345. Ohne PLZ wird die Postleitzahl des Geräts verwendet.",
         "fr": "Ajoutez éventuellement un autre code postal après le numéro, p. ex. 12345678901 75001. Sinon, le code postal de l’appareil est utilisé.",
-        "it": "Optionally add a different postal code after the number, e.g. 12345678901 1234AB. Without one, the device postal code is used.",
-        "sv": "Optionally add a different postal code after the number, e.g. 12345678901 1234AB. Without one, the device postal code is used.",
-        "no": "Optionally add a different postal code after the number, e.g. 12345678901 1234AB. Without one, the device postal code is used.",
-        "es": "Optionally add a different postal code after the number, e.g. 12345678901 1234AB. Without one, the device postal code is used.",
-        "da": "Optionally add a different postal code after the number, e.g. 12345678901 1234AB. Without one, the device postal code is used.",
-        "ru": "Optionally add a different postal code after the number, e.g. 12345678901 1234AB. Without one, the device postal code is used.",
-        "pl": "Optionally add a different postal code after the number, e.g. 12345678901 1234AB. Without one, the device postal code is used.",
-        "ko": "Optionally add a different postal code after the number, e.g. 12345678901 1234AB. Without one, the device postal code is used.",
-        "ar": "Optionally add a different postal code after the number, e.g. 12345678901 1234AB. Without one, the device postal code is used."
+        "it": "Facoltativamente aggiungi un CAP diverso dopo il numero, es. 12345678901 1234AB. Altrimenti viene usato il CAP del dispositivo.",
+        "sv": "Lägg eventuellt till ett annat postnummer efter numret, t.ex. 12345678901 1234AB. Annars används enhetens postnummer.",
+        "no": "Legg eventuelt til et annet postnummer etter nummeret, f.eks. 12345678901 1234AB. Uten dette brukes enhetens postnummer.",
+        "es": "Opcionalmente añade otro código postal después del número, p. ej. 12345678901 1234AB. Si no, se usa el código postal del dispositivo.",
+        "da": "Tilføj eventuelt et andet postnummer efter nummeret, f.eks. 12345678901 1234AB. Ellers bruges enhedens postnummer.",
+        "ru": "При желании добавьте другой индекс после номера, напр. 12345678901 1234AB. Без него используется индекс устройства.",
+        "pl": "Opcjonalnie dodaj inny kod pocztowy po numerze, np. 12345678901 1234AB. Bez niego używany jest kod pocztowy urządzenia.",
+        "ko": "필요하면 번호 뒤에 다른 우편번호를 추가하세요(예: 12345678901 1234AB). 없으면 기기의 우편번호가 사용됩니다.",
+        "ar": "يمكنك إضافة رمز بريدي مختلف بعد الرقم، مثل 12345678901 1234AB. وبدونه يُستخدم الرمز البريدي للجهاز."
       }
     },
     {
