@@ -176,7 +176,7 @@
     "nl": "PostNL-integratie volledig vernieuwd op basis van PostNL voor Homey 1.2.7: directe accountlogin, uitgebreidere pakketdata en Flow-tokens/-kaarten, plus PostNL-widgets voor Mijn Post, Mijn Pakketten, Mijn Bezorging en Reis van je pakket. Crash bij het opstarten opgelost, PostNL herhaalt geen triggers meer voor bezorgde pakketten en een nieuw PostNL-apparaaticoon."
   },
   "0.3.3": {
-    "en": "GLS now works without an account in 20 countries, DPD was rebuilt for 19 countries, and memory use dropped sharply: the PostNL delivery image is only drawn when viewed, Track & Trace only for active parcels, and widgets no longer sync every minute.",
-    "nl": "GLS werkt nu zonder account in 20 landen, DPD is vernieuwd voor 19 landen en het geheugengebruik is fors omlaag: de PostNL-bezorgafbeelding wordt alleen getekend als je ernaar kijkt, Track & Trace alleen voor actieve pakketten, en widgets synchroniseren niet meer elke minuut."
+    "en": "GLS now works without an account in 20 countries, DPD was rebuilt for 19 countries, and memory use dropped sharply: the PostNL delivery image is only drawn when viewed, Track & Trace only for active parcels, and widgets no longer sync every minute. The MyParcel widgets now show all carriers including GLS and DPD, with correct statuses and timeline.",
+    "nl": "GLS werkt nu zonder account in 20 landen, DPD is vernieuwd voor 19 landen en het geheugengebruik is fors omlaag: de PostNL-bezorgafbeelding wordt alleen getekend als je ernaar kijkt, Track & Trace alleen voor actieve pakketten, en widgets synchroniseren niet meer elke minuut. De MyParcel-widgets tonen nu alle vervoerders, ook GLS en DPD, met juiste statussen en tijdlijn."
   }
 }

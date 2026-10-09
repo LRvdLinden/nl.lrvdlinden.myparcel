@@ -109,7 +109,32 @@
       },
       "height": 420,
       "transparent": false,
-      "settings": [],
+      "settings": [
+        {
+          "id": "all_carriers",
+          "type": "checkbox",
+          "title": {
+            "en": "Show all carriers (including newly added ones)",
+            "nl": "Toon alle vervoerders (ook nieuw toegevoegde)",
+            "de": "Alle Paketdienste anzeigen (auch neu hinzugefügte)",
+            "fr": "Afficher tous les transporteurs (y compris les nouveaux)",
+            "it": "Mostra tutti i corrieri (anche quelli aggiunti di recente)",
+            "sv": "Visa alla transportörer (även nyligen tillagda)",
+            "no": "Vis alle transportører (også nylig lagt til)",
+            "es": "Mostrar todos los transportistas (incluidos los nuevos)",
+            "da": "Vis alle transportører (også nyligt tilføjede)",
+            "ru": "Показывать всех перевозчиков (включая новых)",
+            "pl": "Pokaż wszystkich przewoźników (także nowo dodanych)",
+            "ko": "모든 배송사 표시 (새로 추가된 배송사 포함)",
+            "ar": "عرض جميع شركات الشحن (بما فيها المضافة حديثًا)"
+          },
+          "hint": {
+            "en": "When on, every MyParcel carrier device is shown, also devices you add later. Turn off to only show the devices selected for this widget.",
+            "nl": "Aan: alle MyParcel-vervoerders worden getoond, ook apparaten die je later toevoegt. Uit: alleen de apparaten die je voor deze widget hebt gekozen."
+          },
+          "value": true
+        }
+      ],
       "api": {
         "getData": {
           "method": "GET",
@@ -147,7 +172,32 @@
       },
       "height": 360,
       "transparent": false,
-      "settings": [],
+      "settings": [
+        {
+          "id": "all_carriers",
+          "type": "checkbox",
+          "title": {
+            "en": "Show all carriers (including newly added ones)",
+            "nl": "Toon alle vervoerders (ook nieuw toegevoegde)",
+            "de": "Alle Paketdienste anzeigen (auch neu hinzugefügte)",
+            "fr": "Afficher tous les transporteurs (y compris les nouveaux)",
+            "it": "Mostra tutti i corrieri (anche quelli aggiunti di recente)",
+            "sv": "Visa alla transportörer (även nyligen tillagda)",
+            "no": "Vis alle transportører (også nylig lagt til)",
+            "es": "Mostrar todos los transportistas (incluidos los nuevos)",
+            "da": "Vis alle transportører (også nyligt tilføjede)",
+            "ru": "Показывать всех перевозчиков (включая новых)",
+            "pl": "Pokaż wszystkich przewoźników (także nowo dodanych)",
+            "ko": "모든 배송사 표시 (새로 추가된 배송사 포함)",
+            "ar": "عرض جميع شركات الشحن (بما فيها المضافة حديثًا)"
+          },
+          "hint": {
+            "en": "When on, every MyParcel carrier device is shown, also devices you add later. Turn off to only show the devices selected for this widget.",
+            "nl": "Aan: alle MyParcel-vervoerders worden getoond, ook apparaten die je later toevoegt. Uit: alleen de apparaten die je voor deze widget hebt gekozen."
+          },
+          "value": true
+        }
+      ],
       "api": {
         "getData": {
           "method": "GET",

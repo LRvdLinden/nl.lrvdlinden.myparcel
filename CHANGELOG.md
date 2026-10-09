@@ -19,6 +19,8 @@
 - Mail scans are downloaded once per letter and kept in memory instead of on every sync.
 - Widgets no longer start a full sync every minute per open screen: widget refreshes are limited to once every 5 minutes per device.
 - The decoded fonts of the delivery image are released one minute after the last drawing instead of staying in memory.
+- MyParcel Pakketten and MyParcel Bezorging widgets show all carriers by default, including devices added later (GLS, DPD…); turn off *Show all carriers* in the widget settings to use your own selection.
+- MyParcel Bezorging: statuses and the timeline now follow each carrier's own status (PostNL canonical status, GLS/DPD status codes); “wordt vandaag bezorgd” no longer shows as delivered, and the last update is shown as a readable date.
 - Fixed: the PostNL status “Je pakket wordt vandaag bezorgd” counted as delivered, so the *Package delivered* Flow could fire while the courier was still on the way.
 
 ## 0.3.2 — PostNL 1.2.7 & stability
