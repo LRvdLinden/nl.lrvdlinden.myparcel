@@ -1,0 +1,22 @@
+{
+  "type": "string",
+  "title": {
+    "en": "ParcelShop",
+    "nl": "ParcelShop",
+    "de": "PaketShop",
+    "fr": "Point relais",
+    "it": "Punto di ritiro",
+    "sv": "Utlämningsställe",
+    "no": "Hentested",
+    "es": "Punto de recogida",
+    "da": "Pakkeshop",
+    "ru": "Пункт выдачи",
+    "pl": "Punkt odbioru",
+    "ko": "픽업 지점",
+    "ar": "نقطة الاستلام"
+  },
+  "getable": true,
+  "setable": false,
+  "insights": false,
+  "icon": "/assets/capabilities/package.svg"
+}

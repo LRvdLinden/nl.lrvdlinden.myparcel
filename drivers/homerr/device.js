@@ -1,5 +1,96 @@
-const localizePackageStatus = require('../../lib/status-i18n.js');
-'use strict';const Homey=require('homey');const {HomerrApi}=require('../../lib/homerr-api');const MAP={created:'Registered',tracking_code_created:'Registered',shipped:'In transit',hand_over:'In transit',in_depot:'In transit',left_depot:'In transit',in_transit:'In transit',redirected:'In transit',in_delivery:'Out for delivery',available_for_pickup:'Ready for pickup',ready_for_pickup:'Ready for pickup',ready_for_collection_at_merchant:'Ready for pickup',delivered:'Delivered',concluded:'Delivered',returned:'Delivered',return:'Returning',return_to_sender:'Returning',lost:'Problem',cancelled:'Problem'};
-module.exports=class HomerrDevice extends Homey.Device{async onInit(){this._packages=[];this._timer=this.homey.setInterval(()=>this.refresh(false),15*60*1000);this.homey.setTimeout(()=>this.refresh(true),3000)}async onDeleted(){if(this._timer)this.homey.clearInterval(this._timer)}async notifyAuth(){if(this.getStoreValue('authExpiredNotified')===true)return;await this.homey.notifications.createNotification({excerpt:`Reconnect Homerr / Vinted Go – the credentials for ${this.getName()} have expired. Repair this device.`}).catch(()=>{});await this.setStoreValue('authExpiredNotified',true)}
- async refresh(){let s=this.getSettings(),a=new HomerrApi(s.refresh_token);try{let list=await a.shipments();if(a.refreshToken&&a.refreshToken!==s.refresh_token)await this.setSettings({refresh_token:a.refreshToken});const previous=new Map((this._packages||[]).map(x=>[x.tracking,x]));this._packages=(Array.isArray(list)?list:[]).map(x=>{let ev=Array.isArray(x.tracking_events)?x.tracking_events:[],last=ev[ev.length-1]||{},raw=last.group||x.shipment_state||x.resolution||'',st=MAP[raw]||String(raw||'Unknown'),del=/delivered|concluded|returned/i.test(raw);return {id:x.tracking_code,tracking:x.tracking_code,sender:x.content_title||'Homerr / Vinted Go',status:st,carrierState:String(x.shipment_state||''),carrierResolution:String(x.resolution||''),deliveryDate:'',deliveryWindow:'',lastEvent:String(last.group||last.status||last.description||raw||st),lastEventAt:String(x.last_tracking_event_at||last.timestamp||last.date||''),updatedAt:x.last_tracking_event_at||last.timestamp||last.date||new Date().toISOString(),delivered:del,detailsUrl:`https://vintedgo.com/en/tracking/${encodeURIComponent(x.tracking_code||'')}?country=nl&region=europe`}});for(const p of this._packages){const old=previous.get(p.tracking);if(old&&old.status!==p.status)await this.homey.flow.getDeviceTriggerCard('homerr_package_status_changed').trigger(this,{tracking:p.tracking||'',status:localizePackageStatus(this.homey, p.status)||''},{}).catch(()=>{})}await this.setCapabilityValue('homerr_parcel_count',this._packages.filter(p=>!p.delivered).length);await this.setCapabilityValue('homerr_status',this._packages[0]?.status?localizePackageStatus(this.homey,this._packages[0].status):'Connected');await this.setCapabilityValue('homerr_last_update',new Date().toISOString());await this.setStoreValue('authExpiredNotified',false);await this.setAvailable();return true}catch(e){if([400,401,403,404,422].includes(e.status)){await this.notifyAuth();await this.setUnavailable('Homerr / Vinted Go login expired').catch(()=>{})}this.error(e);return false}}
- getWidgetData(){return {parcels:this._packages||[],authenticated:this.getStoreValue('authExpiredNotified')!==true,carrier:'homerr'}}};
+'use strict';
+
+const CarrierDeviceBase = require('../../lib/carrier-device-base');
+const { VintedGoClient, normalize } = require('../../lib/vintedgo-tracking');
+
+/** Vinted Go (formerly Homerr) – like ha-vinted-go: account shipments + public timeline per parcel. */
+class HomerrDevice extends CarrierDeviceBase {
+  static config = {
+    carrier: 'Vinted Go',
+    log: '[Vinted Go]',
+    storePrefix: 'homerr',
+    widgetCarrier: 'homerr',
+    capabilities: [
+      'homerr_parcel_count', 'homerr_status', 'homerr_tracking', 'homerr_item', 'homerr_pickup_count', 'homerr_en_route_pickup_count',
+      'homerr_pickup_point', 'homerr_pickup_code', 'homerr_delivered_count', 'homerr_outgoing_count', 'homerr_last_event',
+      'myparcel_connection_status', 'homerr_last_update',
+    ],
+    caps: {
+      count: 'homerr_parcel_count', status: 'homerr_status', tracking: 'homerr_tracking', item: 'homerr_item', pickupCount: 'homerr_pickup_count',
+      enRouteCount: 'homerr_en_route_pickup_count', pickupPoint: 'homerr_pickup_point', pickupCode: 'homerr_pickup_code',
+      deliveredCount: 'homerr_delivered_count', outgoingCount: 'homerr_outgoing_count', lastEvent: 'homerr_last_event', lastUpdate: 'homerr_last_update',
+      total: null, sender: null, receiver: null, date: null, window: null, next: null, outCount: null,
+    },
+    cards: {
+      newPackage: 'homerr_new_package', statusChanged: 'homerr_package_status_changed', delivered: 'homerr_delivered',
+      outForDelivery: 'homerr_out_for_delivery', readyForPickup: 'homerr_ready_for_pickup', problem: 'homerr_package_problem',
+      eventChanged: 'homerr_package_event_changed', outgoingStatus: 'homerr_outgoing_status_changed', outgoingDelivered: 'homerr_outgoing_delivered',
+    },
+  };
+
+  async onDhlInit() {
+    this._client = null;
+    this._timelines = this.getStoreValue('homerr_timeline_cache') || {};
+    // 0.3.4 and older kept the refresh token as a device setting.
+    const legacy = this.getSetting('refresh_token');
+    if (legacy && !this.getStoreValue('refresh_token')) {
+      await this.setStoreValue('refresh_token', legacy).catch(this.error);
+      await this.setSettings({ refresh_token: '' }).catch(() => {});
+    }
+  }
+
+  hasUsableConfiguration() { return Boolean(this.getStoreValue('refresh_token')); }
+
+  hasAccount() { return true; }
+
+  async updateLogin(refreshToken, email) {
+    await this.setStoreValue('refresh_token', refreshToken);
+    if (email) await this.setSettings({ email }).catch(() => {});
+    this._client = null;
+    await this.setStoreValue('authExpiredNotified', false);
+    await this.setAvailable().catch(() => {});
+    return this.refresh(true);
+  }
+
+  _getClient() {
+    if (!this._client) {
+      this._client = new VintedGoClient({
+        refreshToken: this.getStoreValue('refresh_token'),
+        onRefreshToken: token => this.setStoreValue('refresh_token', token).catch(this.error),
+      });
+    }
+    return this._client;
+  }
+
+  async _fetchParcels() {
+    if (!this.hasUsableConfiguration()) return null;
+    const client = this._getClient();
+    let shipments;
+    try { shipments = await client.shipments(); } catch (error) { if (error.auth) this._client = null; throw error; }
+    const cache = {};
+    const out = [];
+    for (const shipment of shipments) {
+      const code = shipment.tracking_code;
+      if (!code) continue;
+      const cached = this._timelines[code];
+      let events;
+      if (cached && cached.at === (shipment.last_tracking_event_at ?? null)) events = cached.events;
+      else {
+        const timeline = await client.timeline(code);
+        events = Array.isArray(timeline?.tracking_events) ? timeline.tracking_events.slice(-30) : [];
+      }
+      cache[code] = { at: shipment.last_tracking_event_at ?? null, events };
+      const parcel = normalize({ ...shipment, tracking_events: events });
+      // Closed but never delivered (lost, disposed, cancelled): announce once, then hide.
+      if (parcel.closed && this._memory[code] && this._memory[code].status === parcel.status) continue;
+      out.push(parcel);
+    }
+    this._timelines = cache;
+    await this.setStoreValue('homerr_timeline_cache', cache).catch(this.error);
+    return out;
+  }
+
+  async onAuthFailure() { this._client = null; }
+}
+
+module.exports = HomerrDevice;

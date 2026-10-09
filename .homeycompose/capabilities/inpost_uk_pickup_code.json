@@ -1,0 +1,22 @@
+{
+  "type": "string",
+  "title": {
+    "en": "Pickup code",
+    "nl": "Ophaalcode",
+    "de": "Abholcode",
+    "fr": "Code de retrait",
+    "it": "Codice di ritiro",
+    "sv": "Uthämtningskod",
+    "no": "Hentekode",
+    "es": "Código de recogida",
+    "da": "Afhentningskode",
+    "ru": "Код получения",
+    "pl": "Kod odbioru",
+    "ko": "수령 코드",
+    "ar": "رمز الاستلام"
+  },
+  "getable": true,
+  "setable": false,
+  "insights": false,
+  "icon": "/assets/capabilities/package.svg"
+}

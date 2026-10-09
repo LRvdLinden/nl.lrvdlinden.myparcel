@@ -18,6 +18,18 @@
   "capabilities": [
     "budbee_parcel_count",
     "budbee_status",
+    "budbee_tracking",
+    "budbee_sender",
+    "budbee_delivery_date",
+    "budbee_delivery_window",
+    "budbee_next_delivery",
+    "budbee_out_for_delivery_count",
+    "budbee_en_route_pickup_count",
+    "budbee_pickup_count",
+    "budbee_pickup_point",
+    "budbee_delivered_count",
+    "budbee_outgoing_count",
+    "budbee_last_event",
     "myparcel_connection_status",
     "budbee_last_update"
   ],
@@ -37,5 +49,85 @@
   "images": {
     "small": "/drivers/budbee/assets/images/small.png",
     "large": "/drivers/budbee/assets/images/large.png"
-  }
+  },
+  "settings": [
+    {
+      "type": "group",
+      "label": {
+        "en": "Budbee Track & Trace",
+        "nl": "Budbee Track & Trace",
+        "de": "Budbee Track & Trace",
+        "fr": "Budbee Track & Trace",
+        "it": "Budbee Track & Trace",
+        "sv": "Budbee Track & Trace",
+        "no": "Budbee Track & Trace",
+        "es": "Budbee Track & Trace",
+        "da": "Budbee Track & Trace",
+        "ru": "Budbee Track & Trace",
+        "pl": "Budbee Track & Trace",
+        "ko": "Budbee Track & Trace",
+        "ar": "Budbee Track & Trace"
+      },
+      "children": [
+        {
+          "id": "tracking_numbers",
+          "type": "textarea",
+          "label": {
+            "en": "Tracking numbers",
+            "nl": "Trackingnummers",
+            "de": "Sendungsnummern",
+            "fr": "Numéros de suivi",
+            "it": "Numeri di tracciamento",
+            "sv": "Spårningsnummer",
+            "no": "Sporingsnumre",
+            "es": "Números de seguimiento",
+            "da": "Sporingsnumre",
+            "ru": "Трек-номера",
+            "pl": "Numery przesyłek",
+            "ko": "운송장 번호",
+            "ar": "أرقام التتبع"
+          },
+          "hint": {
+            "en": "One Budbee tracking code per line (from the shop e-mail or the Budbee link).",
+            "nl": "Eén Budbee-trackingcode per regel (uit de mail van de winkel of de Budbee-link).",
+            "de": "Ein Budbee-Code pro Zeile (aus der Shop-E-Mail oder dem Budbee-Link).",
+            "fr": "Un code Budbee par ligne.",
+            "it": "One Budbee tracking code per line (from the shop e-mail or the Budbee link).",
+            "sv": "One Budbee tracking code per line (from the shop e-mail or the Budbee link).",
+            "no": "One Budbee tracking code per line (from the shop e-mail or the Budbee link).",
+            "es": "One Budbee tracking code per line (from the shop e-mail or the Budbee link).",
+            "da": "One Budbee tracking code per line (from the shop e-mail or the Budbee link).",
+            "ru": "One Budbee tracking code per line (from the shop e-mail or the Budbee link).",
+            "pl": "One Budbee tracking code per line (from the shop e-mail or the Budbee link).",
+            "ko": "One Budbee tracking code per line (from the shop e-mail or the Budbee link).",
+            "ar": "One Budbee tracking code per line (from the shop e-mail or the Budbee link)."
+          },
+          "value": ""
+        },
+        {
+          "id": "delivered_days",
+          "type": "number",
+          "label": {
+            "en": "Show delivered parcels for (days)",
+            "nl": "Bezorgde pakketten tonen gedurende (dagen)",
+            "de": "Zugestellte Pakete anzeigen für (Tage)",
+            "fr": "Afficher les colis livrés pendant (jours)",
+            "it": "Mostra i pacchi consegnati per (giorni)",
+            "sv": "Visa levererade paket i (dagar)",
+            "no": "Vis leverte pakker i (dager)",
+            "es": "Mostrar paquetes entregados durante (días)",
+            "da": "Vis leverede pakker i (dage)",
+            "ru": "Показывать доставленные посылки (дней)",
+            "pl": "Pokazuj doręczone paczki przez (dni)",
+            "ko": "배송 완료 택배 표시 기간(일)",
+            "ar": "عرض الطرود المسلَّمة لمدة (أيام)"
+          },
+          "value": 7,
+          "min": 1,
+          "max": 60,
+          "step": 1
+        }
+      ]
+    }
+  ]
 }

@@ -1,0 +1,23 @@
+{
+  "type": "number",
+  "title": {
+    "en": "Sent parcels underway",
+    "nl": "Verzonden pakketten onderweg",
+    "de": "Versendete Pakete unterwegs",
+    "fr": "Colis envoyés en route",
+    "it": "Pacchi spediti in viaggio",
+    "sv": "Skickade paket på väg",
+    "no": "Sendte pakker underveis",
+    "es": "Paquetes enviados en camino",
+    "da": "Sendte pakker undervejs",
+    "ru": "Отправленные посылки в пути",
+    "pl": "Wysłane paczki w drodze",
+    "ko": "보낸 택배 배송 중",
+    "ar": "الطرود المُرسلة قيد التوصيل"
+  },
+  "getable": true,
+  "setable": false,
+  "insights": true,
+  "icon": "/assets/capabilities/package.svg",
+  "decimals": 0
+}

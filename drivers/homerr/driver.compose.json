@@ -18,6 +18,15 @@
   "capabilities": [
     "homerr_parcel_count",
     "homerr_status",
+    "homerr_tracking",
+    "homerr_item",
+    "homerr_pickup_count",
+    "homerr_en_route_pickup_count",
+    "homerr_pickup_point",
+    "homerr_pickup_code",
+    "homerr_delivered_count",
+    "homerr_outgoing_count",
+    "homerr_last_event",
     "myparcel_connection_status",
     "homerr_last_update"
   ],
@@ -36,6 +45,71 @@
   "repair": [
     {
       "id": "repair"
+    }
+  ],
+  "settings": [
+    {
+      "type": "group",
+      "label": {
+        "en": "Vinted Go",
+        "nl": "Vinted Go",
+        "de": "Vinted Go",
+        "fr": "Vinted Go",
+        "it": "Vinted Go",
+        "sv": "Vinted Go",
+        "no": "Vinted Go",
+        "es": "Vinted Go",
+        "da": "Vinted Go",
+        "ru": "Vinted Go",
+        "pl": "Vinted Go",
+        "ko": "Vinted Go",
+        "ar": "Vinted Go"
+      },
+      "children": [
+        {
+          "id": "email",
+          "type": "label",
+          "label": {
+            "en": "E-mail address",
+            "nl": "E-mailadres",
+            "de": "E-Mail-Adresse",
+            "fr": "Adresse e-mail",
+            "it": "E-mail address",
+            "sv": "E-mail address",
+            "no": "E-mail address",
+            "es": "E-mail address",
+            "da": "E-mail address",
+            "ru": "E-mail address",
+            "pl": "E-mail address",
+            "ko": "E-mail address",
+            "ar": "E-mail address"
+          },
+          "value": ""
+        },
+        {
+          "id": "delivered_days",
+          "type": "number",
+          "label": {
+            "en": "Show delivered parcels for (days)",
+            "nl": "Bezorgde pakketten tonen gedurende (dagen)",
+            "de": "Zugestellte Pakete anzeigen für (Tage)",
+            "fr": "Afficher les colis livrés pendant (jours)",
+            "it": "Mostra i pacchi consegnati per (giorni)",
+            "sv": "Visa levererade paket i (dagar)",
+            "no": "Vis leverte pakker i (dager)",
+            "es": "Mostrar paquetes entregados durante (días)",
+            "da": "Vis leverede pakker i (dage)",
+            "ru": "Показывать доставленные посылки (дней)",
+            "pl": "Pokazuj doręczone paczki przez (dni)",
+            "ko": "배송 완료 택배 표시 기간(일)",
+            "ar": "عرض الطرود المسلَّمة لمدة (أيام)"
+          },
+          "value": 7,
+          "min": 1,
+          "max": 60,
+          "step": 1
+        }
+      ]
     }
   ]
 }

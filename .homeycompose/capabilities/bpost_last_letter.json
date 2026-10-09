@@ -1,0 +1,22 @@
+{
+  "type": "string",
+  "title": {
+    "en": "Last letter",
+    "nl": "Laatste brief",
+    "de": "Letzter Brief",
+    "fr": "Dernière lettre",
+    "it": "Ultima lettera",
+    "sv": "Senaste brev",
+    "no": "Siste brev",
+    "es": "Última carta",
+    "da": "Seneste brev",
+    "ru": "Последнее письмо",
+    "pl": "Ostatni list",
+    "ko": "최근 우편",
+    "ar": "آخر رسالة"
+  },
+  "getable": true,
+  "setable": false,
+  "insights": false,
+  "icon": "/assets/capabilities/package.svg"
+}

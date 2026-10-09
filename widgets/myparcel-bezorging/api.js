@@ -4,8 +4,8 @@ const { statusKey, statusLabel, stage, eventText } = require('../../lib/widget-s
 
 const DEFS = [
   ['postnl','PostNL','postnl'],['dhl-parcel','DHL','dhl'],['dhl-express','DHL Express','dhl-express'],['dpd','DPD','dpd'],['ups','UPS','ups'],
-  ['budbee','Budbee','budbee'],['homerr','Homerr / Vinted Go','homerr'],['fedex','FedEx','fedex'],
-  ['gls','GLS','gls'],['inpost-uk','InPost UK','inpost-uk'],['bpost','bpost','bpost'],
+  ['budbee','Budbee','budbee'],['homerr','Vinted Go','homerr'],['fedex','FedEx','fedex'],
+  ['gls','GLS','gls'],['inpost-uk','InPost','inpost-uk'],['bpost','bpost','bpost'],
   ['royal-mail','Royal Mail','royal-mail'],['post-dhl-de','Post & DHL Germany','dhl-de'],['ampere','Ampère','ampere'],
 ];
 function selectedIds(value){if(Array.isArray(value))return value.map(String).filter(Boolean);if(typeof value!=='string')return[];return value.split(',').map(v=>v.trim()).filter(Boolean)}

@@ -1,0 +1,23 @@
+{
+  "type": "number",
+  "title": {
+    "en": "Letters announced",
+    "nl": "Aangekondigde brieven",
+    "de": "Angekündigte Briefe",
+    "fr": "Lettres annoncées",
+    "it": "Lettere annunciate",
+    "sv": "Aviserade brev",
+    "no": "Varslede brev",
+    "es": "Cartas anunciadas",
+    "da": "Varslede breve",
+    "ru": "Объявленные письма",
+    "pl": "Zapowiedziane listy",
+    "ko": "예고된 우편",
+    "ar": "الرسائل المعلنة"
+  },
+  "getable": true,
+  "setable": false,
+  "insights": true,
+  "icon": "/assets/capabilities/package.svg",
+  "decimals": 0
+}

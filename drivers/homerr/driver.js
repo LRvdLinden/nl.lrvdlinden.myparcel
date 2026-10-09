@@ -1,4 +1,53 @@
-'use strict';const Homey=require('homey');const {HomerrApi}=require('../../lib/homerr-api');function token(v){try{let u=new URL(v);return u.searchParams.get('token')||v.trim()}catch{return String(v||'').trim()}}
-module.exports=class HomerrDriver extends Homey.Driver{async onInit(){this.homey.flow.getConditionCard('homerr_packages_underway').registerRunListener(async({device})=>(device.getCapabilityValue('homerr_parcel_count')||0)>0);this.homey.flow.getActionCard('homerr_refresh').registerRunListener(async({device})=>device.refresh(true));}
- async onPair(session){let email='';session.setHandler('start_login',async d=>{email=String(d.email||'').trim();let a=new HomerrApi();await a.register(email);return true});session.setHandler('finish_login',async d=>{let a=new HomerrApi();await a.confirm(token(d.token));let me=await a.me();return {device:{name: 'Homerr',data:{id:`homerr-${me.user_id||email.toLowerCase()}`},settings:{email,refresh_token:a.refreshToken},capabilities:['homerr_parcel_count','homerr_status','homerr_last_update']}}});}
- async onRepair(session){let email='';session.setHandler('start_login',async d=>{email=String(d.email||session.getDevice().getSetting('email')||'').trim();let a=new HomerrApi();await a.register(email);return true});session.setHandler('finish_login',async d=>{let a=new HomerrApi();await a.confirm(token(d.token));let dev=session.getDevice();await dev.setSettings({email,refresh_token:a.refreshToken});await dev.setAvailable();await dev.refresh(true);return true});}}
+'use strict';
+
+const Homey = require('homey');
+const { VintedGoClient } = require('../../lib/vintedgo-tracking');
+const { registerDhlFlowCards: registerFlowCards } = require('../../lib/dhl-flow');
+const { STATUS } = require('../../lib/dhl-tracking');
+
+module.exports = class HomerrDriver extends Homey.Driver {
+  async onInit() {
+    registerFlowCards(this.homey, {
+      conditions: {
+        homerr_packages_underway: ({ device }) => device.hasPackagesUnderway(),
+        homerr_out_for_delivery_now: ({ device }) => device.hasStatus(STATUS.OUT_FOR_DELIVERY),
+        homerr_ready_for_pickup_now: ({ device }) => device.hasStatus(STATUS.AT_PICKUP_POINT),
+        homerr_any_status_is: ({ device, status }) => device.hasStatus(status),
+        homerr_parcel_is_delivered: ({ device, tracking }) => device.isDelivered(tracking?.id || tracking?.name || ''),
+        homerr_outgoing_underway: ({ device }) => device.hasOutgoingUnderway(),
+      },
+      autocomplete: { homerr_parcel_is_delivered: 'tracking' },
+      actions: {
+        homerr_refresh: ({ device }) => device.refresh(true).then(() => true),
+        homerr_remove_delivered: ({ device }) => device.removeDelivered(),
+      },
+    });
+  }
+
+  _handlers(session, device = null) {
+    let email = '';
+    session.setHandler('start_login', async d => {
+      email = String(d.email || device?.getSetting('email') || '').trim();
+      if (!email) throw new Error('Enter your Vinted Go e-mail address.');
+      await VintedGoClient.register(email);
+      return true;
+    });
+    session.setHandler('finish_login', async d => {
+      const client = new VintedGoClient();
+      await client.confirm(d.token);
+      const me = await client.me();
+      const userId = String(me?.user_id || '');
+      if (device) {
+        const expected = String(device.getData()?.id || '').replace(/^homerr-/, '');
+        if (userId && expected && /^\d+$/.test(expected) && expected !== userId) throw new Error('This is a different Vinted Go account than the one this device belongs to.');
+        await device.updateLogin(client.refreshToken, email);
+        return true;
+      }
+      return { device: { name: 'Vinted Go', data: { id: `homerr-${userId || email.toLowerCase()}` }, settings: { email, delivered_days: 7 }, store: { refresh_token: client.refreshToken } } };
+    });
+  }
+
+  async onPair(session) { this._handlers(session); }
+
+  async onRepair(session, device) { this._handlers(session, device); }
+};

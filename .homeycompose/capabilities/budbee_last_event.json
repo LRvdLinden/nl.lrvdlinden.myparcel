@@ -1,0 +1,22 @@
+{
+  "type": "string",
+  "title": {
+    "en": "Last event",
+    "nl": "Laatste gebeurtenis",
+    "de": "Letztes Ereignis",
+    "fr": "Dernier événement",
+    "it": "Ultimo evento",
+    "sv": "Senaste händelse",
+    "no": "Siste hendelse",
+    "es": "Último evento",
+    "da": "Seneste hændelse",
+    "ru": "Последнее событие",
+    "pl": "Ostatnie zdarzenie",
+    "ko": "마지막 이벤트",
+    "ar": "آخر حدث"
+  },
+  "getable": true,
+  "setable": false,
+  "insights": false,
+  "icon": "/assets/capabilities/status.svg"
+}

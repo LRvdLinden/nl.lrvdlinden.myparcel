@@ -28,6 +28,16 @@
     "bpost_product",
     "bpost_partner",
     "bpost_last_event",
+    "bpost_receiver",
+    "bpost_next_delivery",
+    "bpost_out_for_delivery_count",
+    "bpost_en_route_pickup_count",
+    "bpost_pickup_count",
+    "bpost_delivered_count",
+    "bpost_outgoing_count",
+    "bpost_dimensions",
+    "bpost_letter_count",
+    "bpost_last_letter",
     "bpost_account_status",
     "bpost_last_update"
   ],
@@ -50,64 +60,177 @@
   ],
   "settings": [
     {
-      "id": "account_email",
-      "type": "text",
+      "type": "group",
       "label": {
-        "en": "My bpost e-mail",
-        "nl": "My bpost e-mail",
-        "de": "My bpost e-mail",
-        "fr": "My bpost e-mail",
-        "it": "My bpost e-mail",
-        "sv": "My bpost e-mail",
-        "no": "My bpost e-mail",
-        "es": "My bpost e-mail",
-        "da": "My bpost e-mail",
-        "ru": "My bpost e-mail",
-        "pl": "My bpost e-mail",
-        "ko": "My bpost e-mail",
-        "ar": "My bpost e-mail"
+        "en": "My bpost account (optional)",
+        "nl": "My bpost-account (optioneel)",
+        "de": "My-bpost-Konto (optional)",
+        "fr": "Compte My bpost (facultatif)",
+        "it": "My bpost account (optional)",
+        "sv": "My bpost account (optional)",
+        "no": "My bpost account (optional)",
+        "es": "My bpost account (optional)",
+        "da": "My bpost account (optional)",
+        "ru": "My bpost account (optional)",
+        "pl": "My bpost account (optional)",
+        "ko": "My bpost account (optional)",
+        "ar": "My bpost account (optional)"
       },
-      "value": ""
+      "children": [
+        {
+          "id": "account_email",
+          "type": "text",
+          "label": {
+            "en": "E-mail address",
+            "nl": "E-mailadres",
+            "de": "E-Mail-Adresse",
+            "fr": "Adresse e-mail",
+            "it": "E-mail address",
+            "sv": "E-mail address",
+            "no": "E-mail address",
+            "es": "E-mail address",
+            "da": "E-mail address",
+            "ru": "E-mail address",
+            "pl": "E-mail address",
+            "ko": "E-mail address",
+            "ar": "E-mail address"
+          },
+          "value": ""
+        },
+        {
+          "id": "account_password",
+          "type": "password",
+          "label": {
+            "en": "Password (only to sign in again)",
+            "nl": "Wachtwoord (alleen om opnieuw in te loggen)",
+            "de": "Passwort (nur zur erneuten Anmeldung)",
+            "fr": "Mot de passe (uniquement pour se reconnecter)",
+            "it": "Password (only to sign in again)",
+            "sv": "Password (only to sign in again)",
+            "no": "Password (only to sign in again)",
+            "es": "Password (only to sign in again)",
+            "da": "Password (only to sign in again)",
+            "ru": "Password (only to sign in again)",
+            "pl": "Password (only to sign in again)",
+            "ko": "Password (only to sign in again)",
+            "ar": "Password (only to sign in again)"
+          },
+          "hint": {
+            "en": "MyParcel signs in once and then uses bpost login tokens; the password is not kept.",
+            "nl": "MyParcel logt één keer in en gebruikt daarna bpost-logintokens; het wachtwoord wordt niet bewaard.",
+            "de": "MyParcel meldet sich einmal an und nutzt danach bpost-Anmeldetokens; das Passwort wird nicht gespeichert.",
+            "fr": "MyParcel se connecte une fois puis utilise des jetons bpost ; le mot de passe n’est pas conservé.",
+            "it": "MyParcel signs in once and then uses bpost login tokens; the password is not kept.",
+            "sv": "MyParcel signs in once and then uses bpost login tokens; the password is not kept.",
+            "no": "MyParcel signs in once and then uses bpost login tokens; the password is not kept.",
+            "es": "MyParcel signs in once and then uses bpost login tokens; the password is not kept.",
+            "da": "MyParcel signs in once and then uses bpost login tokens; the password is not kept.",
+            "ru": "MyParcel signs in once and then uses bpost login tokens; the password is not kept.",
+            "pl": "MyParcel signs in once and then uses bpost login tokens; the password is not kept.",
+            "ko": "MyParcel signs in once and then uses bpost login tokens; the password is not kept.",
+            "ar": "MyParcel signs in once and then uses bpost login tokens; the password is not kept."
+          },
+          "value": ""
+        }
+      ]
     },
     {
-      "id": "account_password",
-      "type": "password",
+      "type": "group",
       "label": {
-        "en": "My bpost password",
-        "nl": "My bpost-wachtwoord",
-        "de": "My bpost password",
-        "fr": "My bpost password",
-        "it": "My bpost password",
-        "sv": "My bpost password",
-        "no": "My bpost password",
-        "es": "My bpost password",
-        "da": "My bpost password",
-        "ru": "My bpost password",
-        "pl": "My bpost password",
-        "ko": "My bpost password",
-        "ar": "My bpost password"
+        "en": "bpost Track & Trace",
+        "nl": "bpost Track & Trace",
+        "de": "bpost Track & Trace",
+        "fr": "bpost Track & Trace",
+        "it": "bpost Track & Trace",
+        "sv": "bpost Track & Trace",
+        "no": "bpost Track & Trace",
+        "es": "bpost Track & Trace",
+        "da": "bpost Track & Trace",
+        "ru": "bpost Track & Trace",
+        "pl": "bpost Track & Trace",
+        "ko": "bpost Track & Trace",
+        "ar": "bpost Track & Trace"
       },
-      "value": ""
-    },
-    {
-      "id": "tracking_numbers_json",
-      "type": "text",
-      "label": {
-        "en": "Manual fallback shipments",
-        "nl": "Handmatige fallback-zendingen",
-        "de": "Manual fallback shipments",
-        "fr": "Manual fallback shipments",
-        "it": "Manual fallback shipments",
-        "sv": "Manual fallback shipments",
-        "no": "Manual fallback shipments",
-        "es": "Manual fallback shipments",
-        "da": "Manual fallback shipments",
-        "ru": "Manual fallback shipments",
-        "pl": "Manual fallback shipments",
-        "ko": "Manual fallback shipments",
-        "ar": "Manual fallback shipments"
-      },
-      "value": "[]"
+      "children": [
+        {
+          "id": "postal_code",
+          "type": "text",
+          "label": {
+            "en": "Delivery postal code",
+            "nl": "Postcode van het bezorgadres",
+            "de": "Postleitzahl der Lieferadresse",
+            "fr": "Code postal de livraison",
+            "it": "Delivery postal code",
+            "sv": "Delivery postal code",
+            "no": "Delivery postal code",
+            "es": "Delivery postal code",
+            "da": "Delivery postal code",
+            "ru": "Delivery postal code",
+            "pl": "Delivery postal code",
+            "ko": "Delivery postal code",
+            "ar": "Delivery postal code"
+          },
+          "value": ""
+        },
+        {
+          "id": "tracking_numbers",
+          "type": "textarea",
+          "label": {
+            "en": "Tracking numbers",
+            "nl": "Trackingnummers",
+            "de": "Sendungsnummern",
+            "fr": "Numéros de suivi",
+            "it": "Numeri di tracciamento",
+            "sv": "Spårningsnummer",
+            "no": "Sporingsnumre",
+            "es": "Números de seguimiento",
+            "da": "Sporingsnumre",
+            "ru": "Трек-номера",
+            "pl": "Numery przesyłek",
+            "ko": "운송장 번호",
+            "ar": "أرقام التتبع"
+          },
+          "hint": {
+            "en": "One barcode per line. Add the postal code after the barcode when it differs from the one above, e.g. 323456789012345678 1000.",
+            "nl": "Eén barcode per regel. Zet de postcode achter de barcode als die afwijkt van die hierboven, bijv. 323456789012345678 1000.",
+            "de": "Ein Barcode pro Zeile, ggf. mit Postleitzahl dahinter.",
+            "fr": "Un code-barres par ligne, suivi du code postal s’il diffère.",
+            "it": "One barcode per line. Add the postal code after the barcode when it differs from the one above, e.g. 323456789012345678 1000.",
+            "sv": "One barcode per line. Add the postal code after the barcode when it differs from the one above, e.g. 323456789012345678 1000.",
+            "no": "One barcode per line. Add the postal code after the barcode when it differs from the one above, e.g. 323456789012345678 1000.",
+            "es": "One barcode per line. Add the postal code after the barcode when it differs from the one above, e.g. 323456789012345678 1000.",
+            "da": "One barcode per line. Add the postal code after the barcode when it differs from the one above, e.g. 323456789012345678 1000.",
+            "ru": "One barcode per line. Add the postal code after the barcode when it differs from the one above, e.g. 323456789012345678 1000.",
+            "pl": "One barcode per line. Add the postal code after the barcode when it differs from the one above, e.g. 323456789012345678 1000.",
+            "ko": "One barcode per line. Add the postal code after the barcode when it differs from the one above, e.g. 323456789012345678 1000.",
+            "ar": "One barcode per line. Add the postal code after the barcode when it differs from the one above, e.g. 323456789012345678 1000."
+          },
+          "value": ""
+        },
+        {
+          "id": "delivered_days",
+          "type": "number",
+          "label": {
+            "en": "Show delivered parcels for (days)",
+            "nl": "Bezorgde pakketten tonen gedurende (dagen)",
+            "de": "Zugestellte Pakete anzeigen für (Tage)",
+            "fr": "Afficher les colis livrés pendant (jours)",
+            "it": "Mostra i pacchi consegnati per (giorni)",
+            "sv": "Visa levererade paket i (dagar)",
+            "no": "Vis leverte pakker i (dager)",
+            "es": "Mostrar paquetes entregados durante (días)",
+            "da": "Vis leverede pakker i (dage)",
+            "ru": "Показывать доставленные посылки (дней)",
+            "pl": "Pokazuj doręczone paczki przez (dni)",
+            "ko": "배송 완료 택배 표시 기간(일)",
+            "ar": "عرض الطرود المسلَّمة لمدة (أيام)"
+          },
+          "value": 7,
+          "min": 1,
+          "max": 60,
+          "step": 1
+        }
+      ]
     }
   ]
 }

@@ -1,12 +1,93 @@
-const localizePackageStatus = require('../../lib/status-i18n.js');
 'use strict';
-const Homey=require('homey');const {FedExApi}=require('../../lib/fedex-api');
-function nums(s){try{const a=JSON.parse(s.tracking_numbers_json||'[]');return Array.isArray(a)?a:[]}catch{return[]}}
-function parse(d,fallback){const r=d?.output?.completeTrackResults?.[0]?.trackResults?.[0]||{};const status=r.latestStatusDetail?.description||r.derivedStatus||'Connected';const dates=Array.isArray(r.dateAndTimes)?r.dateAndTimes:[];const eta=dates.find(x=>/ESTIMATED_DELIVERY/i.test(String(x.type)))?.dateTime||'';const latestDate=dates.map(x=>String(x?.dateTime||'')).filter(Boolean).sort((a,b)=>(Date.parse(b)||0)-(Date.parse(a)||0))[0]||'';const tracking=r.trackingNumberInfo?.trackingNumber||fallback;const service=r.serviceDetail?.description||'';return{id:tracking,tracking,sender:r.shipperInformation?.contact?.companyName||service||'FedEx',status:String(status),deliveryDate:eta,deliveryWindow:'',service:String(service),lastEvent:String(status),lastEventAt:latestDate,updatedAt:latestDate||new Date().toISOString(),delivered:/delivered|bezorgd|afgeleverd/i.test(String(status)),detailsUrl:`https://www.fedex.com/fedextrack/?trknbr=${encodeURIComponent(tracking)}`}}
-module.exports=class FedExDevice extends Homey.Device{
- async onInit(){this._packages=[];this._timer=this.homey.setInterval(()=>this.refresh(false),15*60*1000);this.homey.setTimeout(()=>this.refresh(true),3000)}
- async onDeleted(){if(this._timer)this.homey.clearInterval(this._timer)}
- async notifyAuth(){if(this.getStoreValue('authExpiredNotified')===true)return;await this.homey.notifications.createNotification({excerpt:`Reconnect FedEx – credentials for ${this.getName()} no longer work.`}).catch(()=>{});await this.setStoreValue('authExpiredNotified',true)}
- async refresh(){const s=this.getSettings(),api=new FedExApi({clientId:s.client_id,clientSecret:s.client_secret,accessToken:s.access_token,expiresAt:s.expires_at});try{const rows=[];for(const n of nums(s)){try{rows.push(parse(await api.track(n),n))}catch(e){if([400,401,403].includes(e.status))throw e;this.error(`FedEx ${n}:`,e)}}if(api.accessToken!==s.access_token||api.expiresAt!==s.expires_at)await this.setSettings({access_token:api.accessToken,expires_at:api.expiresAt});const prev=new Map((this._packages||[]).map(x=>[x.tracking,x]));this._packages=rows;for(const p of rows){const old=prev.get(p.tracking),t={tracking:p.tracking||'',status:localizePackageStatus(this.homey, p.status)||''};if(!old)await this.homey.flow.getDeviceTriggerCard('fedex_new_package').trigger(this,t,{}).catch(()=>{});else if(old.status!==p.status)await this.homey.flow.getDeviceTriggerCard('fedex_status_changed').trigger(this,{...t,previous_status:localizePackageStatus(this.homey,old.status)||''},{}).catch(()=>{})}await this.setCapabilityValue('fedex_parcel_count',rows.filter(x=>!x.delivered).length);await this.setCapabilityValue('fedex_status',rows[0]?.status?localizePackageStatus(this.homey,rows[0].status):(nums(s).length?'Connected':'Connected – add tracking numbers via Repair'));await this.setCapabilityValue('fedex_last_update',new Date().toISOString());await this.setStoreValue('authExpiredNotified',false);await this.setAvailable();return true}catch(e){if([400,401,403].includes(e.status)||/auth|credential|client|oauth/i.test(e.message)){await this.notifyAuth();await this.setUnavailable('FedEx authorization failed').catch(()=>{})}this.error(e);return false}}
- getWidgetData(){return{parcels:this._packages||[],authenticated:this.getStoreValue('authExpiredNotified')!==true,carrier:'fedex'}}
-};
+
+const CarrierDeviceBase = require('../../lib/carrier-device-base');
+const { FedExClient, normalize, normalizeCode } = require('../../lib/fedex-tracking');
+const { migrateTrackingList, simpleTrackingList } = require('../../lib/carrier-migrate');
+
+/** FedEx – like ha-fedex: official API with your own credentials, tracking numbers in the settings. */
+class FedExDevice extends CarrierDeviceBase {
+  static config = {
+    carrier: 'FedEx',
+    log: '[FedEx]',
+    storePrefix: 'fedex',
+    widgetCarrier: 'fedex',
+    idleWhenNothingActive: true,
+    capabilities: [
+      'fedex_parcel_count', 'fedex_status', 'fedex_tracking', 'fedex_sender', 'fedex_receiver', 'fedex_delivery_date',
+      'fedex_delivery_window', 'fedex_next_delivery', 'fedex_out_for_delivery_count', 'fedex_pickup_count', 'fedex_pickup_point',
+      'fedex_delivered_count', 'fedex_last_event', 'fedex_service', 'fedex_weight', 'fedex_dimensions',
+      'myparcel_connection_status', 'fedex_last_update',
+    ],
+    caps: {
+      count: 'fedex_parcel_count', status: 'fedex_status', tracking: 'fedex_tracking', sender: 'fedex_sender', receiver: 'fedex_receiver',
+      date: 'fedex_delivery_date', window: 'fedex_delivery_window', next: 'fedex_next_delivery', outCount: 'fedex_out_for_delivery_count',
+      pickupCount: 'fedex_pickup_count', pickupPoint: 'fedex_pickup_point', deliveredCount: 'fedex_delivered_count', lastEvent: 'fedex_last_event',
+      service: 'fedex_service', weight: 'fedex_weight', dimensions: 'fedex_dimensions', lastUpdate: 'fedex_last_update',
+      total: null, enRouteCount: null, outgoingCount: null,
+    },
+    cards: {
+      newPackage: 'fedex_new_package', statusChanged: 'fedex_status_changed', delivered: 'fedex_delivered', outForDelivery: 'fedex_out_for_delivery',
+      readyForPickup: 'fedex_ready_for_pickup', problem: 'fedex_package_problem', eventChanged: 'fedex_package_event_changed', deliveryUpdated: 'fedex_delivery_updated',
+    },
+  };
+
+  async onDhlInit() {
+    this._client = null;
+    this._raw = this.getStoreValue('fedex_raw_cache') || {};
+    await migrateTrackingList(this);
+    for (const key of ['access_token', 'expires_at']) if (this.getSetting(key)) await this.setSettings({ [key]: '' }).catch(() => {});
+  }
+
+  async onDhlSettings(changed) { if (changed.some(k => ['client_id', 'client_secret'].includes(k))) this._client = null; }
+
+  parseTracking(text) { return simpleTrackingList(text, normalizeCode); }
+
+  normalizeTrackingCode(code) { return normalizeCode(code); }
+
+  hasUsableConfiguration() { return Boolean(this.getSetting('client_id') && this.getSetting('client_secret')); }
+
+  async updateCredentials(clientId, clientSecret) {
+    await this.setSettings({ client_id: clientId, client_secret: clientSecret });
+    this._client = null;
+    await this.setStoreValue('authExpiredNotified', false);
+    await this.setAvailable().catch(() => {});
+    return this.refresh(true);
+  }
+
+  _getClient() {
+    const id = this.getSetting('client_id');
+    const secret = this.getSetting('client_secret');
+    if (!this._client || this._client.clientId !== id || this._client.clientSecret !== secret) this._client = new FedExClient({ clientId: id, clientSecret: secret });
+    return this._client;
+  }
+
+  async _fetchParcels() {
+    if (!this.hasUsableConfiguration()) return null;
+    const entries = this.trackedEntries();
+    const client = this._getClient();
+    const out = [];
+    const keep = {};
+    let failures = 0;
+    for (const entry of entries) {
+      if (this.wasDelivered(entry.code)) continue;
+      if (this._parcels[entry.code]?.delivered && this._raw[entry.code]) { out.push(normalize(this._raw[entry.code], entry.code)); keep[entry.code] = this._raw[entry.code]; continue; }
+      try {
+        const raw = await client.track(entry.code);
+        if (raw) { this._raw[entry.code] = raw; keep[entry.code] = raw; out.push(normalize(raw, entry.code)); } else if (this._raw[entry.code]) { keep[entry.code] = this._raw[entry.code]; out.push(normalize(this._raw[entry.code], entry.code)); } else out.push(normalize(null, entry.code));
+      } catch (error) {
+        if (error.auth || error.status === 429) throw error;
+        failures += 1;
+        if (this._raw[entry.code]) { keep[entry.code] = this._raw[entry.code]; out.push(normalize(this._raw[entry.code], entry.code)); }
+        this.error('[FedEx]', entry.code, error.message);
+      }
+    }
+    if (entries.length && failures === entries.length && !out.length) throw new Error('FedEx is unreachable');
+    this._raw = keep;
+    await this.setStoreValue('fedex_raw_cache', keep).catch(this.error);
+    return out;
+  }
+
+  async onAuthFailure() { this._client = null; }
+}
+
+module.exports = FedExDevice;

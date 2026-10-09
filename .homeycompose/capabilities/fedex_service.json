@@ -1,0 +1,22 @@
+{
+  "type": "string",
+  "title": {
+    "en": "Service",
+    "nl": "Dienst",
+    "de": "Dienst",
+    "fr": "Service",
+    "it": "Servizio",
+    "sv": "Tjänst",
+    "no": "Tjeneste",
+    "es": "Servicio",
+    "da": "Tjeneste",
+    "ru": "Сервис",
+    "pl": "Usługa",
+    "ko": "서비스",
+    "ar": "الخدمة"
+  },
+  "getable": true,
+  "setable": false,
+  "insights": false,
+  "icon": "/assets/capabilities/delivery.svg"
+}

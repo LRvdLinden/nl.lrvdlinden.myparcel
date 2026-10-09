@@ -1,0 +1,23 @@
+{
+  "type": "number",
+  "title": {
+    "en": "Recently delivered",
+    "nl": "Recent bezorgd",
+    "de": "Kürzlich zugestellt",
+    "fr": "Livrés récemment",
+    "it": "Consegnati di recente",
+    "sv": "Nyligen levererade",
+    "no": "Nylig levert",
+    "es": "Entregados recientemente",
+    "da": "For nylig leveret",
+    "ru": "Недавно доставлены",
+    "pl": "Ostatnio doręczone",
+    "ko": "최근 배송 완료",
+    "ar": "تم تسليمها مؤخرًا"
+  },
+  "getable": true,
+  "setable": false,
+  "insights": true,
+  "icon": "/assets/capabilities/package.svg",
+  "decimals": 0
+}

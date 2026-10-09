@@ -27,6 +27,11 @@
     "ampere_window_end",
     "ampere_delivered",
     "ampere_details_url",
+    "ampere_receiver",
+    "ampere_next_delivery",
+    "ampere_out_for_delivery_count",
+    "ampere_delivered_count",
+    "ampere_last_event",
     "myparcel_connection_status",
     "ampere_last_update"
   ],
@@ -49,44 +54,142 @@
   ],
   "settings": [
     {
-      "id": "bol_session_bundle",
-      "type": "password",
+      "type": "group",
       "label": {
-        "en": "bol.com session code",
-        "nl": "bol.com-sessiecode",
-        "de": "bol.com-Sitzungscode",
-        "fr": "Code de session bol.com",
-        "it": "Codice sessione bol.com",
-        "sv": "bol.com-sessionskod",
-        "no": "bol.com-sesjonskode",
-        "es": "Código de sesión de bol.com",
-        "da": "bol.com-sessionskode",
-        "ru": "Код сессии bol.com",
-        "pl": "Kod sesji bol.com",
-        "ko": "bol.com 세션 코드",
-        "ar": "رمز جلسة bol.com"
+        "en": "Ampère Track & Trace",
+        "nl": "Ampère Track & Trace",
+        "de": "Ampère Track & Trace",
+        "fr": "Ampère Track & Trace",
+        "it": "Ampère Track & Trace",
+        "sv": "Ampère Track & Trace",
+        "no": "Ampère Track & Trace",
+        "es": "Ampère Track & Trace",
+        "da": "Ampère Track & Trace",
+        "ru": "Ampère Track & Trace",
+        "pl": "Ampère Track & Trace",
+        "ko": "Ampère Track & Trace",
+        "ar": "Ampère Track & Trace"
       },
-      "value": ""
+      "children": [
+        {
+          "id": "tracking_numbers",
+          "type": "textarea",
+          "label": {
+            "en": "Tracking links from the bol.com e-mail",
+            "nl": "Trackinglinks uit de bol.com-mail",
+            "de": "Tracking-Links aus der bol.com-E-Mail",
+            "fr": "Liens de suivi de l’e-mail bol.com",
+            "it": "Tracking links from the bol.com e-mail",
+            "sv": "Tracking links from the bol.com e-mail",
+            "no": "Tracking links from the bol.com e-mail",
+            "es": "Tracking links from the bol.com e-mail",
+            "da": "Tracking links from the bol.com e-mail",
+            "ru": "Tracking links from the bol.com e-mail",
+            "pl": "Tracking links from the bol.com e-mail",
+            "ko": "Tracking links from the bol.com e-mail",
+            "ar": "Tracking links from the bol.com e-mail"
+          },
+          "hint": {
+            "en": "One link per line, e.g. https://link.bol.com/t/… – parcels from your bol.com account are found automatically when the helper code is set.",
+            "nl": "Eén link per regel, bijv. https://link.bol.com/t/… – pakketten uit je bol.com-account worden automatisch gevonden als de helpercode is ingesteld.",
+            "de": "Ein Link pro Zeile, z. B. https://link.bol.com/t/… – Pakete aus dem bol.com-Konto werden mit dem Helfer-Code automatisch gefunden.",
+            "fr": "Un lien par ligne.",
+            "it": "One link per line, e.g. https://link.bol.com/t/… – parcels from your bol.com account are found automatically when the helper code is set.",
+            "sv": "One link per line, e.g. https://link.bol.com/t/… – parcels from your bol.com account are found automatically when the helper code is set.",
+            "no": "One link per line, e.g. https://link.bol.com/t/… – parcels from your bol.com account are found automatically when the helper code is set.",
+            "es": "One link per line, e.g. https://link.bol.com/t/… – parcels from your bol.com account are found automatically when the helper code is set.",
+            "da": "One link per line, e.g. https://link.bol.com/t/… – parcels from your bol.com account are found automatically when the helper code is set.",
+            "ru": "One link per line, e.g. https://link.bol.com/t/… – parcels from your bol.com account are found automatically when the helper code is set.",
+            "pl": "One link per line, e.g. https://link.bol.com/t/… – parcels from your bol.com account are found automatically when the helper code is set.",
+            "ko": "One link per line, e.g. https://link.bol.com/t/… – parcels from your bol.com account are found automatically when the helper code is set.",
+            "ar": "One link per line, e.g. https://link.bol.com/t/… – parcels from your bol.com account are found automatically when the helper code is set."
+          },
+          "value": ""
+        },
+        {
+          "id": "delivered_days",
+          "type": "number",
+          "label": {
+            "en": "Show delivered parcels for (days)",
+            "nl": "Bezorgde pakketten tonen gedurende (dagen)",
+            "de": "Zugestellte Pakete anzeigen für (Tage)",
+            "fr": "Afficher les colis livrés pendant (jours)",
+            "it": "Mostra i pacchi consegnati per (giorni)",
+            "sv": "Visa levererade paket i (dagar)",
+            "no": "Vis leverte pakker i (dager)",
+            "es": "Mostrar paquetes entregados durante (días)",
+            "da": "Vis leverede pakker i (dage)",
+            "ru": "Показывать доставленные посылки (дней)",
+            "pl": "Pokazuj doręczone paczki przez (dni)",
+            "ko": "배송 완료 택배 표시 기간(일)",
+            "ar": "عرض الطرود المسلَّمة لمدة (أيام)"
+          },
+          "value": 7,
+          "min": 1,
+          "max": 60,
+          "step": 1
+        }
+      ]
     },
     {
-      "id": "tracking_url",
-      "type": "text",
+      "type": "group",
       "label": {
-        "en": "Ampère Track & Trace URL (fallback)",
-        "nl": "Ampère Track & Trace-URL (fallback)",
-        "de": "Ampère Track-&-Trace-URL (Alternative)",
-        "fr": "URL Track & Trace Ampère (secours)",
-        "it": "URL Track & Trace Ampère (fallback)",
-        "sv": "Ampère Track & Trace-URL (reserv)",
-        "no": "Ampère Track & Trace-URL (reserve)",
-        "es": "URL Track & Trace de Ampère (alternativa)",
-        "da": "Ampère Track & Trace-URL (reserve)",
-        "ru": "URL Ampère Track & Trace (резерв)",
-        "pl": "Adres URL Ampère Track & Trace (awaryjnie)",
-        "ko": "Ampère Track & Trace URL (대체)",
-        "ar": "رابط Ampère Track & Trace (احتياطي)"
+        "en": "bol.com account (helper)",
+        "nl": "bol.com-account (helper)",
+        "de": "bol.com-Konto (Helfer)",
+        "fr": "Compte bol.com (assistant)",
+        "it": "bol.com account (helper)",
+        "sv": "bol.com account (helper)",
+        "no": "bol.com account (helper)",
+        "es": "bol.com account (helper)",
+        "da": "bol.com account (helper)",
+        "ru": "bol.com account (helper)",
+        "pl": "bol.com account (helper)",
+        "ko": "bol.com account (helper)",
+        "ar": "bol.com account (helper)"
       },
-      "value": ""
+      "children": [
+        {
+          "id": "bol_session_bundle",
+          "type": "password",
+          "label": {
+            "en": "bol.com session code",
+            "nl": "bol.com-sessiecode",
+            "de": "bol.com-Sitzungscode",
+            "fr": "Code de session bol.com",
+            "it": "Codice sessione bol.com",
+            "sv": "bol.com-sessionskod",
+            "no": "bol.com-sesjonskode",
+            "es": "Código de sesión de bol.com",
+            "da": "bol.com-sessionskode",
+            "ru": "Код сессии bol.com",
+            "pl": "Kod sesji bol.com",
+            "ko": "bol.com 세션 코드",
+            "ar": "رمز جلسة bol.com"
+          },
+          "value": ""
+        },
+        {
+          "id": "tracking_url",
+          "type": "text",
+          "label": {
+            "en": "Ampère Track & Trace URL (fallback)",
+            "nl": "Ampère Track & Trace-URL (fallback)",
+            "de": "Ampère Track-&-Trace-URL (Alternative)",
+            "fr": "URL Track & Trace Ampère (secours)",
+            "it": "URL Track & Trace Ampère (fallback)",
+            "sv": "Ampère Track & Trace-URL (reserv)",
+            "no": "Ampère Track & Trace-URL (reserve)",
+            "es": "URL Track & Trace de Ampère (alternativa)",
+            "da": "Ampère Track & Trace-URL (reserve)",
+            "ru": "URL Ampère Track & Trace (резерв)",
+            "pl": "Adres URL Ampère Track & Trace (awaryjnie)",
+            "ko": "Ampère Track & Trace URL (대체)",
+            "ar": "رابط Ampère Track & Trace (احتياطي)"
+          },
+          "value": ""
+        }
+      ]
     }
   ]
 }

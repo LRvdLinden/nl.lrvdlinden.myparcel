@@ -18,6 +18,20 @@
   "capabilities": [
     "fedex_parcel_count",
     "fedex_status",
+    "fedex_tracking",
+    "fedex_sender",
+    "fedex_receiver",
+    "fedex_delivery_date",
+    "fedex_delivery_window",
+    "fedex_next_delivery",
+    "fedex_out_for_delivery_count",
+    "fedex_pickup_count",
+    "fedex_pickup_point",
+    "fedex_delivered_count",
+    "fedex_last_event",
+    "fedex_service",
+    "fedex_weight",
+    "fedex_dimensions",
     "myparcel_connection_status",
     "fedex_last_update"
   ],
@@ -36,6 +50,146 @@
   "repair": [
     {
       "id": "repair"
+    }
+  ],
+  "settings": [
+    {
+      "type": "group",
+      "label": {
+        "en": "FedEx API",
+        "nl": "FedEx API",
+        "de": "FedEx API",
+        "fr": "API FedEx",
+        "it": "FedEx API",
+        "sv": "FedEx API",
+        "no": "FedEx API",
+        "es": "FedEx API",
+        "da": "FedEx API",
+        "ru": "FedEx API",
+        "pl": "FedEx API",
+        "ko": "FedEx API",
+        "ar": "FedEx API"
+      },
+      "children": [
+        {
+          "id": "client_id",
+          "type": "text",
+          "label": {
+            "en": "Client ID",
+            "nl": "Client ID",
+            "de": "Client ID",
+            "fr": "Client ID",
+            "it": "Client ID",
+            "sv": "Client ID",
+            "no": "Client ID",
+            "es": "Client ID",
+            "da": "Client ID",
+            "ru": "Client ID",
+            "pl": "Client ID",
+            "ko": "Client ID",
+            "ar": "Client ID"
+          },
+          "value": ""
+        },
+        {
+          "id": "client_secret",
+          "type": "password",
+          "label": {
+            "en": "Client Secret",
+            "nl": "Client Secret",
+            "de": "Client Secret",
+            "fr": "Client Secret",
+            "it": "Client Secret",
+            "sv": "Client Secret",
+            "no": "Client Secret",
+            "es": "Client Secret",
+            "da": "Client Secret",
+            "ru": "Client Secret",
+            "pl": "Client Secret",
+            "ko": "Client Secret",
+            "ar": "Client Secret"
+          },
+          "value": ""
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "label": {
+        "en": "FedEx Track & Trace",
+        "nl": "FedEx Track & Trace",
+        "de": "FedEx Track & Trace",
+        "fr": "FedEx Track & Trace",
+        "it": "FedEx Track & Trace",
+        "sv": "FedEx Track & Trace",
+        "no": "FedEx Track & Trace",
+        "es": "FedEx Track & Trace",
+        "da": "FedEx Track & Trace",
+        "ru": "FedEx Track & Trace",
+        "pl": "FedEx Track & Trace",
+        "ko": "FedEx Track & Trace",
+        "ar": "FedEx Track & Trace"
+      },
+      "children": [
+        {
+          "id": "tracking_numbers",
+          "type": "textarea",
+          "label": {
+            "en": "Tracking numbers",
+            "nl": "Trackingnummers",
+            "de": "Sendungsnummern",
+            "fr": "Numéros de suivi",
+            "it": "Numeri di tracciamento",
+            "sv": "Spårningsnummer",
+            "no": "Sporingsnumre",
+            "es": "Números de seguimiento",
+            "da": "Sporingsnumre",
+            "ru": "Трек-номера",
+            "pl": "Numery przesyłek",
+            "ko": "운송장 번호",
+            "ar": "أرقام التتبع"
+          },
+          "hint": {
+            "en": "One tracking number per line.",
+            "nl": "Eén trackingnummer per regel.",
+            "de": "Eine Sendungsnummer pro Zeile.",
+            "fr": "Un numéro de suivi par ligne.",
+            "it": "One tracking number per line.",
+            "sv": "One tracking number per line.",
+            "no": "One tracking number per line.",
+            "es": "One tracking number per line.",
+            "da": "One tracking number per line.",
+            "ru": "One tracking number per line.",
+            "pl": "One tracking number per line.",
+            "ko": "One tracking number per line.",
+            "ar": "One tracking number per line."
+          },
+          "value": ""
+        },
+        {
+          "id": "delivered_days",
+          "type": "number",
+          "label": {
+            "en": "Show delivered parcels for (days)",
+            "nl": "Bezorgde pakketten tonen gedurende (dagen)",
+            "de": "Zugestellte Pakete anzeigen für (Tage)",
+            "fr": "Afficher les colis livrés pendant (jours)",
+            "it": "Mostra i pacchi consegnati per (giorni)",
+            "sv": "Visa levererade paket i (dagar)",
+            "no": "Vis leverte pakker i (dager)",
+            "es": "Mostrar paquetes entregados durante (días)",
+            "da": "Vis leverede pakker i (dage)",
+            "ru": "Показывать доставленные посылки (дней)",
+            "pl": "Pokazuj doręczone paczki przez (dni)",
+            "ko": "배송 완료 택배 표시 기간(일)",
+            "ar": "عرض الطرود المسلَّمة لمدة (أيام)"
+          },
+          "value": 7,
+          "min": 1,
+          "max": 60,
+          "step": 1
+        }
+      ]
     }
   ]
 }
