@@ -30,6 +30,12 @@
     "dpd_delivery_type",
     "dpd_last_event",
     "dpd_direction",
+    "dpd_next_delivery",
+    "dpd_out_for_delivery_count",
+    "dpd_en_route_pickup_count",
+    "dpd_pickup_count",
+    "dpd_delivered_count",
+    "dpd_outgoing_count",
     "myparcel_connection_status",
     "dpd_last_update"
   ],
@@ -49,5 +55,489 @@
   "images": {
     "small": "/drivers/dpd/assets/images/small.png",
     "large": "/drivers/dpd/assets/images/large.png"
-  }
+  },
+  "settings": [
+    {
+      "type": "group",
+      "label": {
+        "en": "DPD account",
+        "nl": "DPD-account",
+        "de": "DPD-Konto",
+        "fr": "Compte DPD",
+        "it": "Account DPD",
+        "sv": "DPD-konto",
+        "no": "DPD-konto",
+        "es": "Cuenta DPD",
+        "da": "DPD-konto",
+        "ru": "Аккаунт DPD",
+        "pl": "Konto DPD",
+        "ko": "DPD 계정",
+        "ar": "حساب DPD"
+      },
+      "children": [
+        {
+          "id": "bu",
+          "type": "dropdown",
+          "label": {
+            "en": "Country",
+            "nl": "Land",
+            "de": "Land",
+            "fr": "Pays",
+            "it": "Paese",
+            "sv": "Land",
+            "no": "Land",
+            "es": "País",
+            "da": "Land",
+            "ru": "Страна",
+            "pl": "Kraj",
+            "ko": "국가",
+            "ar": "الدولة"
+          },
+          "hint": {
+            "en": "Changing the country? Use “Repair” on the device to sign in for that country.",
+            "nl": "Ander land? Gebruik “Repareren” op het apparaat om voor dat land in te loggen.",
+            "de": "Anderes Land? Über „Reparieren“ am Gerät für dieses Land anmelden.",
+            "fr": "Autre pays ? Utilisez « Réparer » sur l’appareil pour vous connecter à ce pays.",
+            "it": "Changing the country? Use “Repair” on the device to sign in for that country.",
+            "sv": "Changing the country? Use “Repair” on the device to sign in for that country.",
+            "no": "Changing the country? Use “Repair” on the device to sign in for that country.",
+            "es": "Changing the country? Use “Repair” on the device to sign in for that country.",
+            "da": "Changing the country? Use “Repair” on the device to sign in for that country.",
+            "ru": "Changing the country? Use “Repair” on the device to sign in for that country.",
+            "pl": "Changing the country? Use “Repair” on the device to sign in for that country.",
+            "ko": "Changing the country? Use “Repair” on the device to sign in for that country.",
+            "ar": "Changing the country? Use “Repair” on the device to sign in for that country."
+          },
+          "value": "DPD-NL",
+          "values": [
+            {
+              "id": "DPD-NL",
+              "label": {
+                "en": "Netherlands",
+                "nl": "Nederland",
+                "de": "Niederlande",
+                "fr": "Pays-Bas",
+                "it": "Netherlands",
+                "sv": "Netherlands",
+                "no": "Netherlands",
+                "es": "Netherlands",
+                "da": "Netherlands",
+                "ru": "Netherlands",
+                "pl": "Netherlands",
+                "ko": "Netherlands",
+                "ar": "Netherlands"
+              }
+            },
+            {
+              "id": "DPD-BE",
+              "label": {
+                "en": "Belgium",
+                "nl": "België",
+                "de": "Belgien",
+                "fr": "Belgique",
+                "it": "Belgium",
+                "sv": "Belgium",
+                "no": "Belgium",
+                "es": "Belgium",
+                "da": "Belgium",
+                "ru": "Belgium",
+                "pl": "Belgium",
+                "ko": "Belgium",
+                "ar": "Belgium"
+              }
+            },
+            {
+              "id": "DPD-DE",
+              "label": {
+                "en": "Germany",
+                "nl": "Duitsland",
+                "de": "Deutschland",
+                "fr": "Allemagne",
+                "it": "Germany",
+                "sv": "Germany",
+                "no": "Germany",
+                "es": "Germany",
+                "da": "Germany",
+                "ru": "Germany",
+                "pl": "Germany",
+                "ko": "Germany",
+                "ar": "Germany"
+              }
+            },
+            {
+              "id": "DPD-LU",
+              "label": {
+                "en": "Luxembourg",
+                "nl": "Luxemburg",
+                "de": "Luxemburg",
+                "fr": "Luxembourg",
+                "it": "Luxembourg",
+                "sv": "Luxembourg",
+                "no": "Luxembourg",
+                "es": "Luxembourg",
+                "da": "Luxembourg",
+                "ru": "Luxembourg",
+                "pl": "Luxembourg",
+                "ko": "Luxembourg",
+                "ar": "Luxembourg"
+              }
+            },
+            {
+              "id": "DPD-FR",
+              "label": {
+                "en": "France",
+                "nl": "Frankrijk",
+                "de": "Frankreich",
+                "fr": "France",
+                "it": "France",
+                "sv": "France",
+                "no": "France",
+                "es": "France",
+                "da": "France",
+                "ru": "France",
+                "pl": "France",
+                "ko": "France",
+                "ar": "France"
+              }
+            },
+            {
+              "id": "DPD-CH",
+              "label": {
+                "en": "Switzerland",
+                "nl": "Zwitserland",
+                "de": "Schweiz",
+                "fr": "Suisse",
+                "it": "Switzerland",
+                "sv": "Switzerland",
+                "no": "Switzerland",
+                "es": "Switzerland",
+                "da": "Switzerland",
+                "ru": "Switzerland",
+                "pl": "Switzerland",
+                "ko": "Switzerland",
+                "ar": "Switzerland"
+              }
+            },
+            {
+              "id": "DPD-UK",
+              "label": {
+                "en": "United Kingdom",
+                "nl": "Verenigd Koninkrijk",
+                "de": "Vereinigtes Königreich",
+                "fr": "Royaume-Uni",
+                "it": "United Kingdom",
+                "sv": "United Kingdom",
+                "no": "United Kingdom",
+                "es": "United Kingdom",
+                "da": "United Kingdom",
+                "ru": "United Kingdom",
+                "pl": "United Kingdom",
+                "ko": "United Kingdom",
+                "ar": "United Kingdom"
+              }
+            },
+            {
+              "id": "BRT",
+              "label": {
+                "en": "Italy (BRT)",
+                "nl": "Italië (BRT)",
+                "de": "Italien (BRT)",
+                "fr": "Italie (BRT)",
+                "it": "Italy (BRT)",
+                "sv": "Italy (BRT)",
+                "no": "Italy (BRT)",
+                "es": "Italy (BRT)",
+                "da": "Italy (BRT)",
+                "ru": "Italy (BRT)",
+                "pl": "Italy (BRT)",
+                "ko": "Italy (BRT)",
+                "ar": "Italy (BRT)"
+              }
+            },
+            {
+              "id": "CHR-PT",
+              "label": {
+                "en": "Portugal",
+                "nl": "Portugal",
+                "de": "Portugal",
+                "fr": "Portugal",
+                "it": "Portugal",
+                "sv": "Portugal",
+                "no": "Portugal",
+                "es": "Portugal",
+                "da": "Portugal",
+                "ru": "Portugal",
+                "pl": "Portugal",
+                "ko": "Portugal",
+                "ar": "Portugal"
+              }
+            },
+            {
+              "id": "DPD-PL",
+              "label": {
+                "en": "Poland",
+                "nl": "Polen",
+                "de": "Polen",
+                "fr": "Pologne",
+                "it": "Poland",
+                "sv": "Poland",
+                "no": "Poland",
+                "es": "Poland",
+                "da": "Poland",
+                "ru": "Poland",
+                "pl": "Poland",
+                "ko": "Poland",
+                "ar": "Poland"
+              }
+            },
+            {
+              "id": "DPD-CZ",
+              "label": {
+                "en": "Czech Republic",
+                "nl": "Tsjechië",
+                "de": "Tschechien",
+                "fr": "République tchèque",
+                "it": "Czech Republic",
+                "sv": "Czech Republic",
+                "no": "Czech Republic",
+                "es": "Czech Republic",
+                "da": "Czech Republic",
+                "ru": "Czech Republic",
+                "pl": "Czech Republic",
+                "ko": "Czech Republic",
+                "ar": "Czech Republic"
+              }
+            },
+            {
+              "id": "DPD-SK",
+              "label": {
+                "en": "Slovakia",
+                "nl": "Slowakije",
+                "de": "Slowakei",
+                "fr": "Slovaquie",
+                "it": "Slovakia",
+                "sv": "Slovakia",
+                "no": "Slovakia",
+                "es": "Slovakia",
+                "da": "Slovakia",
+                "ru": "Slovakia",
+                "pl": "Slovakia",
+                "ko": "Slovakia",
+                "ar": "Slovakia"
+              }
+            },
+            {
+              "id": "DPD-HU",
+              "label": {
+                "en": "Hungary",
+                "nl": "Hongarije",
+                "de": "Ungarn",
+                "fr": "Hongrie",
+                "it": "Hungary",
+                "sv": "Hungary",
+                "no": "Hungary",
+                "es": "Hungary",
+                "da": "Hungary",
+                "ru": "Hungary",
+                "pl": "Hungary",
+                "ko": "Hungary",
+                "ar": "Hungary"
+              }
+            },
+            {
+              "id": "DPD-SI",
+              "label": {
+                "en": "Slovenia",
+                "nl": "Slovenië",
+                "de": "Slowenien",
+                "fr": "Slovénie",
+                "it": "Slovenia",
+                "sv": "Slovenia",
+                "no": "Slovenia",
+                "es": "Slovenia",
+                "da": "Slovenia",
+                "ru": "Slovenia",
+                "pl": "Slovenia",
+                "ko": "Slovenia",
+                "ar": "Slovenia"
+              }
+            },
+            {
+              "id": "DPD-HR",
+              "label": {
+                "en": "Croatia",
+                "nl": "Kroatië",
+                "de": "Kroatien",
+                "fr": "Croatie",
+                "it": "Croatia",
+                "sv": "Croatia",
+                "no": "Croatia",
+                "es": "Croatia",
+                "da": "Croatia",
+                "ru": "Croatia",
+                "pl": "Croatia",
+                "ko": "Croatia",
+                "ar": "Croatia"
+              }
+            },
+            {
+              "id": "DPD-EE",
+              "label": {
+                "en": "Estonia",
+                "nl": "Estland",
+                "de": "Estland",
+                "fr": "Estonie",
+                "it": "Estonia",
+                "sv": "Estonia",
+                "no": "Estonia",
+                "es": "Estonia",
+                "da": "Estonia",
+                "ru": "Estonia",
+                "pl": "Estonia",
+                "ko": "Estonia",
+                "ar": "Estonia"
+              }
+            },
+            {
+              "id": "DPD-LV",
+              "label": {
+                "en": "Latvia",
+                "nl": "Letland",
+                "de": "Lettland",
+                "fr": "Lettonie",
+                "it": "Latvia",
+                "sv": "Latvia",
+                "no": "Latvia",
+                "es": "Latvia",
+                "da": "Latvia",
+                "ru": "Latvia",
+                "pl": "Latvia",
+                "ko": "Latvia",
+                "ar": "Latvia"
+              }
+            },
+            {
+              "id": "DPD-LT",
+              "label": {
+                "en": "Lithuania",
+                "nl": "Litouwen",
+                "de": "Litauen",
+                "fr": "Lituanie",
+                "it": "Lithuania",
+                "sv": "Lithuania",
+                "no": "Lithuania",
+                "es": "Lithuania",
+                "da": "Lithuania",
+                "ru": "Lithuania",
+                "pl": "Lithuania",
+                "ko": "Lithuania",
+                "ar": "Lithuania"
+              }
+            },
+            {
+              "id": "DPD-AR",
+              "label": {
+                "en": "Argentina",
+                "nl": "Argentinië",
+                "de": "Argentinien",
+                "fr": "Argentine",
+                "it": "Argentina",
+                "sv": "Argentina",
+                "no": "Argentina",
+                "es": "Argentina",
+                "da": "Argentina",
+                "ru": "Argentina",
+                "pl": "Argentina",
+                "ko": "Argentina",
+                "ar": "Argentina"
+              }
+            }
+          ]
+        },
+        {
+          "id": "email",
+          "type": "text",
+          "label": {
+            "en": "E-mail address",
+            "nl": "E-mailadres",
+            "de": "E-Mail-Adresse",
+            "fr": "Adresse e-mail",
+            "it": "Indirizzo e-mail",
+            "sv": "E-postadress",
+            "no": "E-postadresse",
+            "es": "Correo electrónico",
+            "da": "E-mailadresse",
+            "ru": "Эл. почта",
+            "pl": "Adres e-mail",
+            "ko": "이메일 주소",
+            "ar": "البريد الإلكتروني"
+          },
+          "value": ""
+        },
+        {
+          "id": "password",
+          "type": "password",
+          "label": {
+            "en": "Password",
+            "nl": "Wachtwoord",
+            "de": "Passwort",
+            "fr": "Mot de passe",
+            "it": "Password",
+            "sv": "Lösenord",
+            "no": "Passord",
+            "es": "Contraseña",
+            "da": "Adgangskode",
+            "ru": "Пароль",
+            "pl": "Hasło",
+            "ko": "비밀번호",
+            "ar": "كلمة المرور"
+          },
+          "value": ""
+        },
+        {
+          "id": "phone",
+          "type": "text",
+          "label": {
+            "en": "Mobile number (Poland only)",
+            "nl": "Mobiel nummer (alleen Polen)",
+            "de": "Handynummer (nur Polen)",
+            "fr": "Numéro de mobile (Pologne uniquement)",
+            "it": "Numero di cellulare (solo Polonia)",
+            "sv": "Mobilnummer (endast Polen)",
+            "no": "Mobilnummer (kun Polen)",
+            "es": "Número de móvil (solo Polonia)",
+            "da": "Mobilnummer (kun Polen)",
+            "ru": "Номер мобильного (только Польша)",
+            "pl": "Numer telefonu (tylko Polska)",
+            "ko": "휴대폰 번호(폴란드 전용)",
+            "ar": "رقم الجوال (بولندا فقط)"
+          },
+          "value": ""
+        },
+        {
+          "id": "delivered_days",
+          "type": "number",
+          "label": {
+            "en": "Show delivered parcels for (days)",
+            "nl": "Bezorgde pakketten tonen gedurende (dagen)",
+            "de": "Zugestellte Pakete anzeigen für (Tage)",
+            "fr": "Afficher les colis livrés pendant (jours)",
+            "it": "Mostra i pacchi consegnati per (giorni)",
+            "sv": "Visa levererade paket i (dagar)",
+            "no": "Vis leverte pakker i (dager)",
+            "es": "Mostrar paquetes entregados durante (días)",
+            "da": "Vis leverede pakker i (dage)",
+            "ru": "Показывать доставленные посылки (дней)",
+            "pl": "Pokazuj doręczone paczki przez (dni)",
+            "ko": "배송 완료 택배 표시 기간(일)",
+            "ar": "عرض الطرود المسلَّمة لمدة (أيام)"
+          },
+          "value": 7,
+          "min": 1,
+          "max": 60,
+          "step": 1
+        }
+      ]
+    }
+  ]
 }

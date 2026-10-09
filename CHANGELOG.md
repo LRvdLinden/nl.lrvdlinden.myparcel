@@ -1,4 +1,12 @@
-## 0.3.3 — GLS without account
+## 0.3.3 — GLS without account, DPD like ha-dpd
+- **DPD rebuilt like ha-dpd**: choose your country while pairing — Netherlands, Belgium, Germany (own DPD Paketnavigator backend), Luxembourg, France, Switzerland, United Kingdom, Italy (BRT), Portugal, Poland (mobile number + one SMS code), Czech Republic, Slovakia, Hungary, Slovenia, Croatia, Estonia, Latvia, Lithuania and Argentina.
+- DPD keeps its login session instead of signing in on every refresh; parcel details are only fetched again when a status changes, and the delivery window only for active incoming parcels.
+- DPD statuses use the ha-dpd canonical set (registered, in transit, out for delivery, ready for pickup, delivered, returning, problem) including all ~40 DPD scan event codes for the history.
+- New DPD capabilities: next delivery, out for delivery, en route to ParcelShop, ready for pickup, recently delivered and sent parcels underway. Existing capabilities, triggers and tokens keep working.
+- New DPD Flow cards: tracking event, out for delivery, ready for pickup, problem/returning, sent parcel status changed, sent parcel delivered; conditions out for delivery, ready for pickup, a parcel has status…, parcel … is delivered, sent parcels underway. All triggers now carry status code, DPD status, window start/end, delivered time, history, tracking link and country as extra tokens.
+- DPD triggers fire once per change: no "new parcel" storm on the first sync or after a restart, no repeats when DPD briefly drops, re-lists or flips a parcel, and sent parcels no longer fire the incoming-parcel cards.
+- DPD polling like ha-dpd: 15 minutes near a delivery, 45 minutes otherwise, quiet at night. A network hiccup now shows a warning with the last known data instead of making the device unavailable.
+
 - **GLS rebuilt like ha-gls**: no MyGLS account needed anymore. Enter your country, delivery postal code and tracking numbers (one per line, optionally with a different postal code) in the device settings, while pairing, or with a Flow.
 - 20 countries supported through GLS' own public tracking: Netherlands (with weight, dimensions, delivery window, ParcelShop and history), Belgium, Germany, Austria, Switzerland, Luxembourg, France, Italy, Denmark, Finland, Ireland, Poland, Czech Republic, Slovakia, Hungary, Slovenia, Croatia, Serbia, United States and Canada.
 - New capabilities: next delivery, delivery window, tracking number, sender, recipient, last event, out for delivery, en route to ParcelShop, ready for pickup, ParcelShop, recently delivered, weight and dimensions.

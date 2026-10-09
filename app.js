@@ -194,6 +194,7 @@ module.exports = class MyParcelApp extends Homey.App {
       case 'bpost':
         return Boolean((settings.account_email && settings.account_password) || this._parseJsonArray(settings.tracking_numbers_json).length);
       case 'dpd':
+        if (settings.bu === 'DPD-PL') return Boolean(device.getStoreValue?.('dpd_pl_refresh_token'));
         return Boolean(settings.email && settings.password);
       case 'homerr':
         return Boolean(settings.refresh_token);

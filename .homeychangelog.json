@@ -176,7 +176,7 @@
     "nl": "PostNL-integratie volledig vernieuwd op basis van PostNL voor Homey 1.2.7: directe accountlogin, uitgebreidere pakketdata en Flow-tokens/-kaarten, plus PostNL-widgets voor Mijn Post, Mijn Pakketten, Mijn Bezorging en Reis van je pakket. Crash bij het opstarten opgelost, PostNL herhaalt geen triggers meer voor bezorgde pakketten en een nieuw PostNL-apparaaticoon."
   },
   "0.3.3": {
-    "en": "GLS now works without an account: just a postal code and tracking numbers, in 20 countries, with new capabilities, Flow cards and smart polling.",
-    "nl": "GLS werkt nu zonder account: alleen postcode en trackingnummers, in 20 landen, met nieuwe capabilities, Flow-kaarten en slimme polling."
+    "en": "GLS now works without an account in 20 countries, and DPD was rebuilt: 19 countries, a reused login session, smarter polling, new capabilities and Flow cards, and no repeated triggers.",
+    "nl": "GLS werkt nu zonder account in 20 landen en DPD is vernieuwd: 19 landen, hergebruikte inlogsessie, slimmere polling, nieuwe capabilities en Flow-kaarten, en geen herhaalde triggers meer."
   }
 }
