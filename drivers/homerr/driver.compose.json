@@ -1,18 +1,18 @@
 {
   "name": {
-    "en": "Homerr",
-    "nl": "Homerr",
-    "de": "Homerr",
-    "fr": "Homerr",
-    "it": "Homerr",
-    "sv": "Homerr",
-    "no": "Homerr",
-    "es": "Homerr",
-    "da": "Homerr",
-    "ru": "Homerr",
-    "pl": "Homerr",
-    "ko": "Homerr",
-    "ar": "Homerr"
+    "en": "Vinted Go",
+    "nl": "Vinted Go",
+    "de": "Vinted Go",
+    "fr": "Vinted Go",
+    "it": "Vinted Go",
+    "sv": "Vinted Go",
+    "no": "Vinted Go",
+    "es": "Vinted Go",
+    "da": "Vinted Go",
+    "ru": "Vinted Go",
+    "pl": "Vinted Go",
+    "ko": "Vinted Go",
+    "ar": "Vinted Go"
   },
   "class": "sensor",
   "capabilities": [

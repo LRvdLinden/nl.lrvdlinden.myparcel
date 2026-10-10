@@ -201,5 +201,20 @@
     "pl": "Nowi przewoźnicy Trunkrs, Dynalogic, Dragonfly / Intelcom, Mondial Relay i Amazon (eksperymentalnie), każdy ze wszystkimi obsługiwanymi krajami, kartami Flow, tokenami i widżetami MyParcel. Cała aplikacja jest teraz w pełni przetłumaczona na 13 języków, a daty i liczby są w Twoim formacie.",
     "ko": "새 택배사 Trunkrs, Dynalogic, Dragonfly / Intelcom, Mondial Relay, Amazon(실험적)가 추가되었습니다. 각 택배사가 지원하는 모든 국가, Flow 카드, 토큰, MyParcel 위젯을 지원합니다. 앱 전체가 13개 언어로 완전히 번역되었으며 날짜와 숫자는 사용자 형식으로 표시됩니다.",
     "ar": "شركات شحن جديدة: Trunkrs وDynalogic وDragonfly / Intelcom وMondial Relay وAmazon (تجريبي)، كلٌّ منها بجميع الدول التي يدعمها وبطاقات Flow والرموز وأدوات MyParcel. أصبح التطبيق بالكامل مترجمًا إلى 13 لغة، مع عرض التواريخ والأرقام بتنسيقك."
+  },
+  "0.3.7": {
+    "en": "Flow token titles and the \"unknown\" status now name the right carrier, pickup point titles are generic, Vinted Go everywhere instead of Homerr, and an updated App Store description in 13 languages.",
+    "nl": "Titels van Flow-tokens en de status \"onbekend\" noemen nu de juiste vervoerder, afhaalpunttitels zijn algemeen, overal Vinted Go in plaats van Homerr, en een bijgewerkte App Store-beschrijving in 13 talen.",
+    "de": "Titel von Flow-Tokens und der Status „unbekannt“ nennen jetzt den richtigen Paketdienst, Abholstellen-Titel sind neutral, überall Vinted Go statt Homerr und eine aktualisierte App-Store-Beschreibung in 13 Sprachen.",
+    "fr": "Les titres des jetons Flow et le statut « inconnu » indiquent désormais le bon transporteur, les titres de point relais sont génériques, Vinted Go partout au lieu de Homerr, et une description App Store mise à jour en 13 langues.",
+    "it": "I titoli dei token Flow e lo stato \"sconosciuto\" indicano ora il corriere giusto, i titoli del punto di ritiro sono generici, Vinted Go ovunque al posto di Homerr e una descrizione dell’App Store aggiornata in 13 lingue.",
+    "sv": "Titlar på Flow-tokens och statusen ”okänd” nämner nu rätt transportör, titlar för utlämningsställe är generella, Vinted Go överallt i stället för Homerr och en uppdaterad App Store-beskrivning på 13 språk.",
+    "no": "Titler på Flow-tokens og statusen «ukjent» nevner nå riktig transportør, titler for hentested er generelle, Vinted Go overalt i stedet for Homerr og en oppdatert App Store-beskrivelse på 13 språk.",
+    "es": "Los títulos de los tokens Flow y el estado «desconocido» indican ahora el transportista correcto, los títulos del punto de recogida son genéricos, Vinted Go en lugar de Homerr en todas partes y una descripción de la App Store actualizada en 13 idiomas.",
+    "da": "Titler på Flow-tokens og status \"ukendt\" nævner nu det rigtige fragtfirma, titler for afhentningssted er generelle, Vinted Go overalt i stedet for Homerr og en opdateret App Store-beskrivelse på 13 sprog.",
+    "ru": "Названия токенов Flow и статус «неизвестно» теперь указывают правильную службу доставки, названия пунктов выдачи стали общими, везде Vinted Go вместо Homerr, а описание в App Store обновлено на 13 языках.",
+    "pl": "Tytuły tokenów Flow i status „nieznany” wskazują teraz właściwego przewoźnika, tytuły punktów odbioru są ogólne, wszędzie Vinted Go zamiast Homerr, a opis w App Store jest zaktualizowany w 13 językach.",
+    "ko": "Flow 토큰 제목과 \"알 수 없음\" 상태에 올바른 택배사 이름이 표시되고, 픽업 지점 제목이 일반화되었으며, Homerr 대신 모든 곳에 Vinted Go가 표시되고, App Store 설명이 13개 언어로 업데이트되었습니다.",
+    "ar": "أصبحت عناوين رموز Flow والحالة \"غير معروف\" تذكر شركة الشحن الصحيحة، وعناوين نقطة الاستلام عامة، وVinted Go في كل مكان بدلًا من Homerr، ووصف محدَّث في App Store بـ13 لغة."
   }
 }

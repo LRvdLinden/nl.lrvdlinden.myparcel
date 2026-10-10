@@ -1,12 +1,26 @@
-MyParcel은 지원되는 택배사를 Homey에 통합합니다. Homey 기기, Flow, 위젯으로 모든 택배를 한곳에서 확인하세요.
+MyParcel은 사용하는 택배사를 Homey에 모아 줍니다. Homey 기기, Flow, 위젯으로 모든 택배를 한곳에서 확인하세요. 앱은 13개 언어로 제공됩니다.
 
-지원 국가 및 택배사
+지원 택배사
 
-- 🇳🇱 네덜란드: PostNL, DHL, DPD, Budbee, Homerr / Vinted Go, FedEx, GLS, Ampère
-- 🇧🇪 벨기에: bpost
-- 🇬🇧 영국: InPost UK, Royal Mail
-- 🇩🇪 독일: Post & DHL
-- 🗺️ 국제: UPS, DHL Express
+- PostNL
+- DHL (네덜란드)
+- DHL Express (국제)
+- Post & DHL (독일)
+- DPD
+- UPS
+- GLS
+- FedEx
+- Budbee
+- Vinted Go (이전 이름 Homerr)
+- InPost (영국, 폴란드, 이탈리아, 포르투갈, 스페인)
+- bpost (벨기에)
+- Royal Mail (영국)
+- Ampère (네덜란드)
+- Trunkrs (네덜란드)
+- Dynalogic (네덜란드, 벨기에)
+- Dragonfly / Intelcom (네덜란드, 호주, 캐나다)
+- Mondial Relay (프랑스, 벨기에, 네덜란드, 스페인, 포르투갈; 계정 필요)
+- Amazon (실험적, 17개 스토어)
 
 설치
 

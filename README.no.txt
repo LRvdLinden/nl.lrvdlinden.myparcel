@@ -1,12 +1,26 @@
-MyParcel samler støttede pakketransportører i Homey. Se alle pakkene dine på ett sted med Homey-enheter, Flows og widgeter.
+MyParcel samler pakketransportørene dine i Homey. Følg alle pakkene dine på ett sted med Homey-enheter, Flows og widgeter. Appen er tilgjengelig på 13 språk.
 
-Støttede land og transportører
+Støttede transportører
 
-- 🇳🇱 Nederland: PostNL, DHL, DPD, Budbee, Homerr / Vinted Go, FedEx, GLS og Ampère.
-- 🇧🇪 Belgia: bpost.
-- 🇬🇧 Storbritannia: InPost UK og Royal Mail.
-- 🇩🇪 Tyskland: Post & DHL.
-- 🗺️ Internasjonalt: UPS og DHL Express.
+- PostNL
+- DHL (Nederland)
+- DHL Express (internasjonalt)
+- Post & DHL (Tyskland)
+- DPD
+- UPS
+- GLS
+- FedEx
+- Budbee
+- Vinted Go (tidligere Homerr)
+- InPost (Storbritannia, Polen, Italia, Portugal, Spania)
+- bpost (Belgia)
+- Royal Mail (Storbritannia)
+- Ampère (Nederland)
+- Trunkrs (Nederland)
+- Dynalogic (Nederland, Belgia)
+- Dragonfly / Intelcom (Nederland, Australia, Canada)
+- Mondial Relay (Frankrike, Belgia, Nederland, Spania, Portugal; konto kreves)
+- Amazon (eksperimentell, 17 butikker)
 
 Installasjon
 

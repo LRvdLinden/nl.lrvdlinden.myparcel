@@ -1,9 +1,9 @@
 {
   "type": "string",
   "title": {
-    "en": "ParcelShop",
-    "nl": "ParcelShop",
-    "de": "PaketShop",
+    "en": "Pickup point",
+    "nl": "Afhaalpunt",
+    "de": "Abholstelle",
     "fr": "Point relais",
     "it": "Punto di ritiro",
     "sv": "Utlämningsställe",

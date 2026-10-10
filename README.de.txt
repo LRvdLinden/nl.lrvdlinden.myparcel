@@ -1,12 +1,26 @@
-MyParcel vereint unterstützte Paketdienste in Homey. Sieh dir deine Pakete an einem Ort an – mit Homey-Geräten, Flows und Widgets.
+MyParcel vereint deine Paketdienste in Homey. Verfolge alle deine Pakete an einem Ort – mit Homey-Geräten, Flows und Widgets. Die App ist in 13 Sprachen verfügbar.
 
-Unterstützte Länder und Paketdienste
+Unterstützte Paketdienste
 
-- 🇳🇱 Niederlande: PostNL, DHL, DPD, Budbee, Homerr / Vinted Go, FedEx, GLS und Ampère.
-- 🇧🇪 Belgien: bpost.
-- 🇬🇧 Vereinigtes Königreich: InPost UK und Royal Mail.
-- 🇩🇪 Deutschland: Post & DHL.
-- 🗺️ International: UPS und DHL Express.
+- PostNL
+- DHL (Niederlande)
+- DHL Express (international)
+- Post & DHL (Deutschland)
+- DPD
+- UPS
+- GLS
+- FedEx
+- Budbee
+- Vinted Go (früher Homerr)
+- InPost (Vereinigtes Königreich, Polen, Italien, Portugal, Spanien)
+- bpost (Belgien)
+- Royal Mail (Vereinigtes Königreich)
+- Ampère (Niederlande)
+- Trunkrs (Niederlande)
+- Dynalogic (Niederlande, Belgien)
+- Dragonfly / Intelcom (Niederlande, Australien, Kanada)
+- Mondial Relay (Frankreich, Belgien, Niederlande, Spanien, Portugal; Konto erforderlich)
+- Amazon (experimentell, 17 Shops)
 
 Installation
 

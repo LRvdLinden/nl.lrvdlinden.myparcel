@@ -1,12 +1,26 @@
-MyParcel réunit les transporteurs de colis pris en charge dans Homey. Consultez tous vos colis au même endroit grâce aux appareils, Flows et widgets Homey.
+MyParcel réunit vos transporteurs de colis dans Homey. Suivez tous vos colis au même endroit grâce aux appareils, Flows et widgets Homey. L’app est disponible en 13 langues.
 
-Pays et transporteurs pris en charge
+Transporteurs pris en charge
 
-- 🇳🇱 Pays-Bas : PostNL, DHL, DPD, Budbee, Homerr / Vinted Go, FedEx, GLS et Ampère.
-- 🇧🇪 Belgique : bpost.
-- 🇬🇧 Royaume-Uni : InPost UK et Royal Mail.
-- 🇩🇪 Allemagne : Post & DHL.
-- 🗺️ International : UPS et DHL Express.
+- PostNL
+- DHL (Pays-Bas)
+- DHL Express (international)
+- Post & DHL (Allemagne)
+- DPD
+- UPS
+- GLS
+- FedEx
+- Budbee
+- Vinted Go (anciennement Homerr)
+- InPost (Royaume-Uni, Pologne, Italie, Portugal, Espagne)
+- bpost (Belgique)
+- Royal Mail (Royaume-Uni)
+- Ampère (Pays-Bas)
+- Trunkrs (Pays-Bas)
+- Dynalogic (Pays-Bas, Belgique)
+- Dragonfly / Intelcom (Pays-Bas, Australie, Canada)
+- Mondial Relay (France, Belgique, Pays-Bas, Espagne, Portugal; compte requis)
+- Amazon (expérimental, 17 boutiques)
 
 Installation
 

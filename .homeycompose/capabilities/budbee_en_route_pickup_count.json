@@ -1,9 +1,9 @@
 {
   "type": "number",
   "title": {
-    "en": "En route to ParcelShop",
-    "nl": "Onderweg naar ParcelShop",
-    "de": "Unterwegs zum PaketShop",
+    "en": "En route to pickup point",
+    "nl": "Onderweg naar afhaalpunt",
+    "de": "Unterwegs zur Abholstelle",
     "fr": "En route vers le point relais",
     "it": "In viaggio verso il punto di ritiro",
     "sv": "På väg till utlämningsställe",

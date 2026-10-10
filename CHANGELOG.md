@@ -1,3 +1,9 @@
+## 0.3.7 — Correct carrier names in Flow tokens
+- Fixed: on every carrier except GLS, the Flow tokens were titled "GLS status text" / "Previous GLS status text" and "ParcelShop", and the "unknown" status in the "a parcel has status…" condition said "Not yet known at GLS". They now name the right carrier; pickup point titles are generic (DPD and GLS keep ParcelShop).
+- Vinted Go: the device and all its Flow cards are now called Vinted Go instead of Homerr. Existing devices and Flows keep working.
+- Updated App Store description in 13 languages with all 19 carriers.
+- Documentation updated (GitBook, NL/EN) with a page per carrier, all Flow cards and tokens.
+
 ## 0.3.6 — New carriers and the whole app in 13 languages
 - **Trunkrs** (Netherlands): tracking number + delivery postal code (per parcel a different postal code is possible). Same-day/evening delivery window from Trunkrs, out for delivery, delivered, history. Cards: new parcel, status, event, out for delivery, delivered, problem, delivery time changed; conditions and track/stop tracking/remove delivered actions.
 - **Dynalogic** (Netherlands and Belgium): order number + postal code, statuses from Dynalogic's own scenario/step/result codes (delivered, out for delivery, problem, returning), sender, receiver and history.

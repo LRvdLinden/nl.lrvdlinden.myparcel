@@ -1,12 +1,26 @@
-MyParcel łączy obsługiwanych przewoźników paczek w Homey. Przeglądaj wszystkie paczki w jednym miejscu dzięki urządzeniom, Flow i widżetom Homey.
+MyParcel łączy Twoich przewoźników paczek w Homey. Śledź wszystkie paczki w jednym miejscu dzięki urządzeniom, Flow i widżetom Homey. Aplikacja jest dostępna w 13 językach.
 
-Obsługiwane kraje i przewoźnicy
+Obsługiwani przewoźnicy
 
-- 🇳🇱 Holandia: PostNL, DHL, DPD, Budbee, Homerr / Vinted Go, FedEx, GLS i Ampère.
-- 🇧🇪 Belgia: bpost.
-- 🇬🇧 Wielka Brytania: InPost UK i Royal Mail.
-- 🇩🇪 Niemcy: Post & DHL.
-- 🗺️ Międzynarodowo: UPS i DHL Express.
+- PostNL
+- DHL (Holandia)
+- DHL Express (międzynarodowo)
+- Post & DHL (Niemcy)
+- DPD
+- UPS
+- GLS
+- FedEx
+- Budbee
+- Vinted Go (dawniej Homerr)
+- InPost (Wielka Brytania, Polska, Włochy, Portugalia, Hiszpania)
+- bpost (Belgia)
+- Royal Mail (Wielka Brytania)
+- Ampère (Holandia)
+- Trunkrs (Holandia)
+- Dynalogic (Holandia, Belgia)
+- Dragonfly / Intelcom (Holandia, Australia, Kanada)
+- Mondial Relay (Francja, Belgia, Holandia, Hiszpania, Portugalia; wymagane konto)
+- Amazon (eksperymentalnie, 17 sklepów)
 
 Instalacja
 

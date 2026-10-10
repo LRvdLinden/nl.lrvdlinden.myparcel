@@ -1,0 +1,35 @@
+name: Release MyParcel 0.3.7
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/release-037.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build zip and create GitHub release v0.3.7
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          # Recreate v0.3.7 on this commit (PostNL Flow image fix added to 0.3.7)
+          if gh release view v0.3.7 >/dev/null 2>&1; then
+            gh release delete v0.3.7 --cleanup-tag -y
+            sleep 5
+          fi
+          mkdir -p /tmp/zipb
+          git archive --prefix=MyParcel-for-Homey-v0.3.7/ HEAD | tar -x -C /tmp/zipb
+          rm -rf /tmp/zipb/MyParcel-for-Homey-v0.3.7/.github /tmp/zipb/MyParcel-for-Homey-v0.3.7/.gitignore
+          find /tmp/zipb -name '*.zip' -delete
+          (cd /tmp/zipb && zip -qr -X "$GITHUB_WORKSPACE/MyParcel-for-Homey-v0.3.7.zip" MyParcel-for-Homey-v0.3.7)
+          gh release create v0.3.7 MyParcel-for-Homey-v0.3.7.zip \
+            --target "${GITHUB_SHA}" \
+            --title "v0.3.7 — Correct carrier names & updated docs" \
+            --notes-file .github/release-notes/0.3.7.md \
+            --latest
